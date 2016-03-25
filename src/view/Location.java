@@ -8,7 +8,6 @@ package view;
 
 public class Location {
 	final public int x;
-
 	final public int y;
 
 	public Location(int x, int y) {
