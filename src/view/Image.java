@@ -6,6 +6,6 @@ package view;
  *
  */
 
-public class Images {
+public class Image {
 
 }
