@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 public class ChessBoardPanel extends JPanel {
 	static FieldBlock[][] FieldBlock;
-	private static int rows;//height
+	private static int rows;
 	private static int columns;
 	
 	public ChessBoardPanel(int rows,int columns){
@@ -54,8 +54,8 @@ public class ChessBoardPanel extends JPanel {
 		ChessBoardPanel.columns=columns;
 	}
 	
-	private final int width;
-	private final int height;
+	private final int width=1/15*900;
+	private final int height=1/15*225;
 
 }
 	

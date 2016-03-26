@@ -14,10 +14,10 @@ public class MainFrame implements Observer{
 	int panelheight;
 	public void go(){
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(1200, 900);
+		mainFrame.setSize(mainwide, mainheight);
 		mainFrame.setLayout(null);
-		
-		ChessBoardPanel.setBounds(150, 200, 800, 700);
+		//下面的面积大小比是按照1200*900来大致算的//
+		ChessBoardPanel.setBounds(1/8*mainwide, 1/4*mainheight, panelwide, panelheight);
 		mainFrame.getContentPane().add(ChessBoardPanel);
 		mainFrame.setVisible(true);
 	}
