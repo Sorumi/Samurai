@@ -7,5 +7,5 @@ package model.state;
  */
 
 public enum ActualBlockState {
-
+    HIDDEN,OCCUPIED
 }
