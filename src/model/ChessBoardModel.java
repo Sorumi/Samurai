@@ -22,6 +22,9 @@ public class ChessBoardModel extends BaseModel {
 	public void changeActualBlock(int x, int y, int state) {
 		this.actualBlockArray[x][y].setState(state);
 	}
+	public void changeActualBlock(int x, int y,boolean occ) {
+		actualBlockArray[x][y].setOccupied(occ);
+	}
 
 	public int getActualBlockState(int x, int y) {
 		return this.actualBlockArray[x][y].getState();
