@@ -1,5 +1,10 @@
 package main;
 
-public class SamurAI {
+import model.GameModel;
 
+public class SamurAI {
+    public static void main(String[] args){
+        GameModel gameModel = new GameModel(1008);
+        gameModel.gameStart();
+    }
 }

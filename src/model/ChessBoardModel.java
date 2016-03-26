@@ -9,25 +9,25 @@ public class ChessBoardModel extends BaseModel {
 	public ChessBoardModel(int length) {
 		for (int i = 0; i <= length; i++) {
 			for (int x = 0; x <= length; x++) {
-				actualBlockArray[i][x] = new ActualBlock();
+				this.actualBlockArray[i][x] = new ActualBlock();
 			}
 		}
 		for (int i = 0; i <= length; i++) {
 			for (int x = 0; x <= length; x++) {
-				displayBlockArray[i][x] = new DisplayBlock();
+				this.displayBlockArray[i][x] = new DisplayBlock();
 			}
 		}
 	}
 
 	public void changeActualBlock(int x, int y, int state) {
-		actualBlockArray[x][y].setState(state);
+		this.actualBlockArray[x][y].setState(state);
 	}
 
 	public int getActualBlockState(int x, int y) {
-		return actualBlockArray[x][y].getState();
+		return this.actualBlockArray[x][y].getState();
 	}
 
 	public boolean getActualBlockOccupied(int x, int y) {
-		return actualBlockArray[x][y].getOccupied();
+		return this.actualBlockArray[x][y].getOccupied();
 	}
 }
