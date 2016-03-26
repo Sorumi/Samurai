@@ -1,19 +1,33 @@
 package model;
 
-import model.po.BlockPO;
-import model.state.ActualBlockState;
+import model.state.*;
 
 public class ChessBoardModel extends BaseModel {
-    private int length;
-    private BlockPO[][] chessBoardBlock;
-    //类型要换一下
+	private ActualBlock[][] actualBlockArray;
+	private DisplayBlock[][] displayBlockArray;
 
-    public ChessBoardModel(int length){
-        this.length = length;
-        this.chessBoardBlock = new BlockPO[this.length][this.length];
-    }
+	public ChessBoardModel(int length) {
+		for (int i = 0; i <= length; i++) {
+			for (int x = 0; x <= length; x++) {
+				actualBlockArray[i][x] = new ActualBlock();
+			}
+		}
+		for (int i = 0; i <= length; i++) {
+			for (int x = 0; x <= length; x++) {
+				displayBlockArray[i][x] = new DisplayBlock();
+			}
+		}
+	}
 
-    public void setBlockState(int x, int y, ActualBlockState state){
-        this.chessBoardBlock[x][y].setActualBlockState(state);
-    }
+	public void changeActualBlock(int x, int y, int state) {
+		actualBlockArray[x][y].setState(state);
+	}
+
+	public int getActualBlockState(int x, int y) {
+		return actualBlockArray[x][y].getState();
+	}
+
+	public boolean getActualBlockOccupied(int x, int y) {
+		return actualBlockArray[x][y].getOccupied();
+	}
 }
