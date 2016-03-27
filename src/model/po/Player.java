@@ -4,39 +4,53 @@ import model.GameModel;
 import model.state.GameState;
 
 import java.util.Calendar;
+import java.util.Timer;
 
 /**
  * Created by Kray on 16/3/26.
  */
 public class Player {
+    private GameModel gameModel;
     private int playerNum;
     private SamuraiPO[] samuraiPOs;
-    private int currSamurai;
+    private int currentSamurai;
     private int actionPoint;
-    private int time;
-    private int startTime;
     private boolean canAction;
+
     private Thread timeUpdateThread;
 
-    public Player(int num){
-        this.playerNum = num;
+    public Player(GameModel model,int playerNum){
+        this.playerNum = playerNum;
+        this.gameModel = model;
         this.samuraiPOs = new SamuraiPO[3];
-        this.startTime = (int)Calendar.getInstance().getTimeInMillis();
+        samuraiPOs[0] = new SamuraiPO(1+3*playerNum,playerNum,0,this.gameModel.getLength(),this.gameModel.getChessBoardModel());
+        samuraiPOs[1] = new SamuraiPO(2+3*playerNum,playerNum,1,this.gameModel.getLength(),this.gameModel.getChessBoardModel());
+        samuraiPOs[2] = new SamuraiPO(3+3*playerNum,playerNum,2,this.gameModel.getLength(),this.gameModel.getChessBoardModel());
         this.timeUpdateThread = new Thread(new CountDown());
     }
 
     public void setEnableToAction() {
         this.canAction = true;
+        this.currentSamurai = gameModel.getCurrentSamurai();
         timeUpdateThread.start();
-        this.currSamurai = GameModel.getCurrSamurai();
+    }
+
+    //当做出动作的时候 调用这个方法
+    public void actionPerformed(){
+        if(this.canAction){
+            //Do sth.
+        }
+    }
+
+    public SamuraiPO getSamuraiOfNum(int num){
+        return samuraiPOs[num];
     }
 
     private class CountDown implements Runnable{
-        public void run(){
-            time = (int)(Calendar.getInstance().getTimeInMillis() - startTime)/1000;
-            if(time >= 30.0){
-                //告诉MODEL该结束了
-            }
+        public void run() {
+            //Countdown 30 seconds.
         }
     }
+
+
 }
