@@ -20,6 +20,7 @@ public class Player {
     private ChessBoardModel chessBoardModel;
 
     public Player(GameModel model,int playerNum){
+        this.canAction = false;
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
@@ -51,20 +52,28 @@ public class Player {
                 case 1:
                     if(this.samuraiPOs[currentSamurai].move(direction,this.chessBoardModel)){
 
-                    };
+                    }
                     break;
                 case 2:
                     if(this.samuraiPOs[currentSamurai].show(this.chessBoardModel)){
 
-                    };
+                    }
                     break;
                 case 3:
                     if(this.samuraiPOs[currentSamurai].hide(this.chessBoardModel)){
 
-                    };
+                    }
+                    break;
+                default:
                     break;
             }
         }
+    }
+
+    //时间到了或者没点数的时候调用此方法
+    public void actionDone(){
+        this.timeUpdateThread.interrupt();
+        this.gameModel.actionDone();
     }
 
     public SamuraiPO getSamuraiOfNum(int num){
@@ -72,9 +81,20 @@ public class Player {
     }
 
     private class CountDown implements Runnable{
-        public void run() {
-            //Countdown 30 seconds.
+        public void run(){
+            for(int i = 30; i > 0; i--){
+                System.out.println("还有"+i+"秒");
+                try {
+                    Thread.sleep(1000);
+                }catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
         }
+    }
+
+    public boolean canAction(){
+        return this.canAction;
     }
 
     public int getPlayerNum(){
