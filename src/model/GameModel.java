@@ -8,18 +8,24 @@ public class GameModel extends BaseModel {
     private ChessBoardModel chessBoardModel;
     private GameState gameState;
     private GameResultState gameResultState;
-    private static int currentSamurai;
+    private int currentSamurai;
     private Player[] players;
+    private int currentPlayer;
     private int currentRound;
     private int totalRound;
+    private int length;
 
-    public GameModel(int round){
-        this.chessBoardModel = new ChessBoardModel(15);
+    public GameModel(int round,int length){
+        this.length = length;
+        this.chessBoardModel = new ChessBoardModel(this.length);
         this.gameState = GameState.RUN;
-        currentSamurai = 1;
-        this.currentRound = 0;
+        this.currentSamurai = 1;
+        this.currentPlayer = 0;
+        this.currentRound = 1;
         this.totalRound = round;
         this.players = new Player[2];
+        players[0] = new Player(this,0);
+        players[1] = new Player(this,1);
     }
 
     public boolean gameStart(){
@@ -27,21 +33,23 @@ public class GameModel extends BaseModel {
         return true;
     }
 
-    public static int getCurrSamurai(){
-        return currentSamurai;
-    }
-
-    //指派下一个行动的 samurai
+    //Assign next samurai
     public void assignNext(){
-        int playerNum = (currentSamurai / 3);
-        Player currPlayer = players[playerNum];
-        currPlayer.setEnableToAction();
+        if(this.currentRound <= this.totalRound) {
+            this.players[this.currentPlayer].setEnableToAction();
+
+            //此处加上告诉 view 应该是哪个 samurai 行动的代码
+        }else{
+            this.gameOver();
+        }
     }
 
-    //一个 samurai 完成动作了以后
+    //一个 samurai 一套动作完成时调用此方法
     public void actionDone(){
+        this.currentPlayer = (++this.currentPlayer) % 2;
         this.currentRound++;
-        currentSamurai = (currentSamurai++) % 6;
+        this.currentSamurai = (++this.currentSamurai) % 6;
+
         this.assignNext();
     }
 
@@ -50,5 +58,15 @@ public class GameModel extends BaseModel {
         return true;
     }
 
+    public int getCurrentSamurai(){
+        return this.currentSamurai;
+    }
 
+    public int getLength(){
+        return this.length;
+    }
+
+    public ChessBoardModel getChessBoardModel(){
+        return this.chessBoardModel;
+    }
 }
