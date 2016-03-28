@@ -15,8 +15,8 @@ public class GameModel extends BaseModel {
     private int totalRound;
     private int length;
 
-    public GameModel(int round){
-        this.length = 15;
+    public GameModel(int round,int length){
+        this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.gameState = GameState.RUN;
         this.currentSamurai = 1;
@@ -37,12 +37,14 @@ public class GameModel extends BaseModel {
     public void assignNext(){
         if(this.currentRound <= this.totalRound) {
             this.players[this.currentPlayer].setEnableToAction();
+
+            //此处加上告诉 view 应该是哪个 samurai 行动的代码
         }else{
             this.gameOver();
         }
     }
 
-    //One samurai's action is Done
+    //一个 samurai 一套动作完成时调用此方法
     public void actionDone(){
         this.currentPlayer = (++this.currentPlayer) % 2;
         this.currentRound++;

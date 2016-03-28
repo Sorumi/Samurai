@@ -1,5 +1,6 @@
 package model.po;
 
+import model.ChessBoardModel;
 import model.GameModel;
 import model.state.GameState;
 
@@ -13,32 +14,48 @@ public class Player {
     private GameModel gameModel;
     private int playerNum;
     private SamuraiPO[] samuraiPOs;
-    private int currentSamurai;
-    private int actionPoint;
     private boolean canAction;
-
+    private int currentSamurai;
     private Thread timeUpdateThread;
+    private ChessBoardModel chessBoardModel;
 
     public Player(GameModel model,int playerNum){
         this.playerNum = playerNum;
         this.gameModel = model;
+        this.chessBoardModel = this.gameModel.getChessBoardModel();
         this.samuraiPOs = new SamuraiPO[3];
-        samuraiPOs[0] = new SamuraiPO(1+3*playerNum,playerNum,0,this.gameModel.getLength(),this.gameModel.getChessBoardModel());
-        samuraiPOs[1] = new SamuraiPO(2+3*playerNum,playerNum,1,this.gameModel.getLength(),this.gameModel.getChessBoardModel());
-        samuraiPOs[2] = new SamuraiPO(3+3*playerNum,playerNum,2,this.gameModel.getLength(),this.gameModel.getChessBoardModel());
+        samuraiPOs[0] = new SamuraiPO(1+3*playerNum,playerNum,0,this.gameModel.getLength(),this.chessBoardModel);
+        samuraiPOs[1] = new SamuraiPO(2+3*playerNum,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
+        samuraiPOs[2] = new SamuraiPO(3+3*playerNum,playerNum,2,this.gameModel.getLength(),this.chessBoardModel);
         this.timeUpdateThread = new Thread(new CountDown());
     }
 
     public void setEnableToAction() {
         this.canAction = true;
         this.currentSamurai = gameModel.getCurrentSamurai();
+        samuraiPOs[currentSamurai].resetActionPoint();
         timeUpdateThread.start();
     }
 
-    //当做出动作的时候 调用这个方法
-    public void actionPerformed(){
+    //当view做出动作的时候 调用这个方法
+    public void actionPerformed(int actionNum, int direction){
         if(this.canAction){
-            //Do sth.
+            //actionNum:动作编号
+            switch (actionNum){
+                //要加上更新 view 的代码
+                case 0:
+                    this.samuraiPOs[currentSamurai].occupied(direction,this.chessBoardModel);
+                    break;
+                case 1:
+                    this.samuraiPOs[currentSamurai].move(direction,this.chessBoardModel);
+                    break;
+                case 2:
+                    this.samuraiPOs[currentSamurai].show(this.chessBoardModel);
+                    break;
+                case 3:
+                    this.samuraiPOs[currentSamurai].hide(this.chessBoardModel);
+                    break;
+            }
         }
     }
 
@@ -52,5 +69,8 @@ public class Player {
         }
     }
 
+    public int getPlayerNum(){
+        return this.playerNum;
+    }
 
 }
