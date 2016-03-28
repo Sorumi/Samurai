@@ -11,6 +11,7 @@ import model.ChessBoardModel;
  */
 
 public class SamuraiPO implements Serializable {
+
 	private int length;
 	private int number;
 	private int player;
@@ -21,6 +22,46 @@ public class SamuraiPO implements Serializable {
 	private Position pos;
 	private boolean hide = false;
 
+	public static void main(String[] args) {
+		ChessBoardModel cbm = new ChessBoardModel(14);
+		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
+		SamuraiPO No2 = new SamuraiPO(2, 1, 0, 14, cbm);
+		SamuraiPO No3 = new SamuraiPO(3, 1, 1, 14, cbm);
+		SamuraiPO No4 = new SamuraiPO(4, 0, 1, 14, cbm);
+		SamuraiPO No5 = new SamuraiPO(5, 0, 2, 14, cbm);
+		SamuraiPO No6 = new SamuraiPO(6, 1, 2, 14, cbm);
+		for (int i = 0; i <= 14; i++) {
+			System.out.print(i + ":");
+			for (int x = 0; x <= 14; x++) {
+				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
+			}
+			System.out.println();
+		}
+		No5.move(0,cbm);
+		No5.move(2,cbm);
+		No5.occupied(3,cbm);
+		No5.move(0, cbm);
+		No5.hide(cbm);
+		No3.move(1, cbm);
+		No3.occupied(1,cbm);
+		boolean f=No2.occupied(1, cbm);
+		System.out.println(f);
+		for (int i = 0; i <= 14; i++) {
+			System.out.print(i + ":");
+			for (int x = 0; x <= 14; x++) {
+				System.out.print(cbm.getActualBlockState(i, x) + " ");
+			}
+			System.out.println();
+		}
+		for (int i = 0; i <= 14; i++) {
+			System.out.print(i + ":");
+			for (int x = 0; x <= 14; x++) {
+				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
+			}
+			System.out.println();
+		}
+	}
+
 	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
 		this.number = number;
 		this.player = player;
@@ -29,21 +70,27 @@ public class SamuraiPO implements Serializable {
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(),number);
 		} else if (number == 4 && player == 0) {
 			pos = new Position(length / 2, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(),number);
 		} else if (number == 5 && player == 0) {
 			pos = new Position(length, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(),number);
 		} else if (number == 2 && player == 1) {
 			pos = new Position(0, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(),number);
 		} else if (number == 3 && player == 1) {
 			pos = new Position(length / 2, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(),number);
 		} else {
 			pos = new Position(length, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(),number);
 		}
 	}
 
@@ -52,8 +99,8 @@ public class SamuraiPO implements Serializable {
 		int state;
 		switch (direction) {
 		case 0:
-			state = cbm.getActualBlockState(pos.getX() - 1, pos.getY());
 			if (pos.getX() - 1 >= 0) {
+				state = cbm.getActualBlockState(pos.getX() - 1, pos.getY());
 				if (cbm.getActualBlockOccupied(pos.getX() - 1, pos.getY()) || hide) {
 					if (hide || player == 0) {
 						if (state == 1 || state == 4 || state == 5) {
@@ -81,8 +128,8 @@ public class SamuraiPO implements Serializable {
 			}
 			break;
 		case 1:
-			state = cbm.getActualBlockState(pos.getX(), pos.getY() - 1);
 			if (pos.getY() - 1 >= 0) {
+				state = cbm.getActualBlockState(pos.getX(), pos.getY() - 1);
 				if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() - 1) || hide) {
 					if (hide || player == 0) {
 						if (state == 1 || state == 4 || state == 5) {
@@ -110,8 +157,8 @@ public class SamuraiPO implements Serializable {
 			}
 			break;
 		case 2:
-			state = cbm.getActualBlockState(pos.getX(), pos.getY() + 1);
 			if (pos.getY() + 1 <= length) {
+				state = cbm.getActualBlockState(pos.getX(), pos.getY() + 1);
 				if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() + 1) || hide) {
 					if (hide || player == 0) {
 						if (state == 1 || state == 4 || state == 5) {
@@ -139,8 +186,8 @@ public class SamuraiPO implements Serializable {
 			}
 			break;
 		default:
-			state = cbm.getActualBlockState(pos.getX() + 1, pos.getY());
 			if (pos.getX() + 1 <= length) {
+				state = cbm.getActualBlockState(pos.getX() + 1, pos.getY());
 				if (cbm.getActualBlockOccupied(pos.getX() + 1, pos.getY()) || hide) {
 					if (hide || player == 0) {
 						if (state == 1 || state == 4 || state == 5) {
@@ -228,7 +275,7 @@ public class SamuraiPO implements Serializable {
 				}
 				break;
 			case 1:
-				for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i--, x++) {
+				for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i++, x++) {
 					effective = true;
 					cbm.changeActualBlock(i, pos.getY(), number);
 				}
@@ -250,22 +297,23 @@ public class SamuraiPO implements Serializable {
 					effective = true;
 					cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
 				}
-				for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i--, x++) {
+				for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i++, x++) {
 					effective = true;
 					cbm.changeActualBlock(pos.getX(), i, number);
 				}
 				break;
 
 			default:
-				for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i--, x++) {
+				for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i++, x++) {
 					effective = true;
 					cbm.changeActualBlock(i, pos.getY(), number);
+					System.out.println(i);
 				}
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
 					effective = true;
 					cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
 				}
-				for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i--, x++) {
+				for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i++, x++) {
 					effective = true;
 					cbm.changeActualBlock(pos.getX(), i, number);
 				}
@@ -328,7 +376,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length) {
-					cbm.changeActualBlock(pos.getX()+1, pos.getY(), number);
+					cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
 				}
 				//
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
@@ -340,7 +388,7 @@ public class SamuraiPO implements Serializable {
 					cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
 				}
 				//
-				if (pos.getY() +1 <=length) {
+				if (pos.getY() + 1 <= length) {
 					cbm.changeActualBlock(pos.getX(), pos.getY() + 1, number);
 				}
 				//
@@ -357,7 +405,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length) {
-					cbm.changeActualBlock(pos.getX()+1, pos.getY(), number);
+					cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
 				}
 				//
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
@@ -378,8 +426,8 @@ public class SamuraiPO implements Serializable {
 					cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
 				}
 				//
-				if (pos.getX() + 1 <=length ) {
-					cbm.changeActualBlock(pos.getX() +1, pos.getY(), number);
+				if (pos.getX() + 1 <= length) {
+					cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
@@ -397,10 +445,9 @@ public class SamuraiPO implements Serializable {
 			}
 			break;
 		}
-		if(effective){
+		if (effective) {
 			return true;
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
