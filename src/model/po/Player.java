@@ -18,6 +18,7 @@ public class Player {
     private int currentSamurai;
     private Thread timeUpdateThread;
     private ChessBoardModel chessBoardModel;
+    private int actionPoint;
 
     public Player(GameModel model,int playerNum){
         this.canAction = false;
@@ -34,7 +35,7 @@ public class Player {
     public void setEnableToAction() {
         this.canAction = true;
         this.currentSamurai = gameModel.getCurrentSamurai();
-        samuraiPOs[currentSamurai].resetActionPoint();
+        this.actionPoint = 7;
         timeUpdateThread.start();
     }
 
@@ -46,22 +47,22 @@ public class Player {
                 //要加上更新 view 的代码
                 case 0:
                     if(this.samuraiPOs[currentSamurai].occupied(direction,this.chessBoardModel)){
-
+                        this.actionPoint -= 4;
                     }
                     break;
                 case 1:
                     if(this.samuraiPOs[currentSamurai].move(direction,this.chessBoardModel)){
-
+                        this.actionPoint -= 2;
                     }
                     break;
                 case 2:
                     if(this.samuraiPOs[currentSamurai].show(this.chessBoardModel)){
-
+                        this.actionPoint -= 1;
                     }
                     break;
                 case 3:
                     if(this.samuraiPOs[currentSamurai].hide(this.chessBoardModel)){
-
+                        this.actionPoint -= 1;
                     }
                     break;
                 default:
