@@ -59,6 +59,7 @@ public class SamuraiPO implements Serializable {
 	// 0:up 1:right 2:left 3:down
 	public boolean move(int direction, ChessBoardModel cbm) {
 		if(this.actionPoint >= 2) {
+
 			this.actionPoint = this.actionPoint - 2;
 
 			int state;
@@ -428,6 +429,7 @@ public class SamuraiPO implements Serializable {
 
 	public boolean hide(ChessBoardModel cbm) {
 		if(this.actionPoint >= 1) {
+
 			this.actionPoint = this.actionPoint - 1;
 
 			int state = cbm.getActualBlockState(pos.getX(), pos.getY());
@@ -455,6 +457,7 @@ public class SamuraiPO implements Serializable {
 
 	public boolean show(ChessBoardModel cbm) {
 		if(this.actionPoint >= 1) {
+
 			this.actionPoint = this.actionPoint - 1;
 
 			if (hide && !cbm.getActualBlockOccupied(pos.getX(), pos.getY())) {

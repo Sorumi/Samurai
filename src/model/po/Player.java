@@ -44,16 +44,24 @@ public class Player {
             switch (actionNum){
                 //要加上更新 view 的代码
                 case 0:
-                    this.samuraiPOs[currentSamurai].occupied(direction,this.chessBoardModel);
+                    if(this.samuraiPOs[currentSamurai].occupied(direction,this.chessBoardModel)){
+
+                    }
                     break;
                 case 1:
-                    this.samuraiPOs[currentSamurai].move(direction,this.chessBoardModel);
+                    if(this.samuraiPOs[currentSamurai].move(direction,this.chessBoardModel)){
+
+                    };
                     break;
                 case 2:
-                    this.samuraiPOs[currentSamurai].show(this.chessBoardModel);
+                    if(this.samuraiPOs[currentSamurai].show(this.chessBoardModel)){
+
+                    };
                     break;
                 case 3:
-                    this.samuraiPOs[currentSamurai].hide(this.chessBoardModel);
+                    if(this.samuraiPOs[currentSamurai].hide(this.chessBoardModel)){
+
+                    };
                     break;
             }
         }

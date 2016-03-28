@@ -2,7 +2,7 @@ package model;
 
 import model.state.*;
 
-public class ChessBoardModel extends BaseModel {
+public class   ChessBoardModel extends BaseModel {
 	private ActualBlock[][] actualBlockArray;
 	private DisplayBlock[][] displayBlockArray;
 
