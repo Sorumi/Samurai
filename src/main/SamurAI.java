@@ -1,10 +1,44 @@
 package main;
 
+import model.ChessBoardModel;
 import model.GameModel;
+import model.po.Player;
 
 public class SamurAI {
-    public static void main(String[] args){
-        GameModel gameModel = new GameModel(1008);
+
+    //2016-03-29 14:28:25 Kray 测试
+    public static void main(String[] args) {
+        GameModel gameModel = new GameModel(12,14);
+        //先动作 再方向
+        //actionNum: 0:occupy 1:move 2:show 3:hide
+        //direction: 0:up 1:right 2:left 3:down
+        //左和右反了???
         gameModel.gameStart();
+        gameModel.sendMsg(1,3);
+        gameModel.actionDone();
+        gameModel.sendMsg(1,3);
+        gameModel.actionDone();
+        gameModel.sendMsg(1,1);
+        gameModel.actionDone();
+        gameModel.sendMsg(1,2);
+        gameModel.actionDone();
+        gameModel.sendMsg(1,0);
+        gameModel.actionDone();
+        gameModel.sendMsg(1,0);
+        gameModel.actionDone();
+
+        gameModel.sendMsg(0,3);
+        gameModel.actionDone();
+        gameModel.sendMsg(0,3);
+        gameModel.actionDone();
+        gameModel.sendMsg(0,1);
+        gameModel.actionDone();
+        gameModel.sendMsg(0,2);
+        gameModel.actionDone();
+        gameModel.sendMsg(0,0);
+        gameModel.actionDone();
+        gameModel.sendMsg(0,0);
+        gameModel.actionDone();
+
     }
 }
