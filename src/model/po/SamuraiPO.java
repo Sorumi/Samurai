@@ -22,7 +22,7 @@ public class SamuraiPO implements Serializable {
 	private Position pos;
 	private boolean hide = false;
 
-	/*
+
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
@@ -62,7 +62,7 @@ public class SamuraiPO implements Serializable {
 			System.out.println();
 		}
 	}
-	*/
+
 
 	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
 		this.number = number;
