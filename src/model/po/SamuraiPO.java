@@ -22,9 +22,9 @@ public class SamuraiPO implements Serializable {
 	private Position pos;
 	private boolean hide = false;
 
-<<<<<<< HEAD
+
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
 		SamuraiPO No2 = new SamuraiPO(2, 1, 0, 14, cbm);
@@ -62,9 +62,8 @@ public class SamuraiPO implements Serializable {
 			}
 			System.out.println();
 		}
-	}
+	}*/
 	
-=======
 
 
 //	public static void main(String[] args) {
@@ -110,7 +109,7 @@ public class SamuraiPO implements Serializable {
 	public Position getPos(){
 		return this.pos;
 	}
->>>>>>> bc2b17be5518f6c455ee34e7d0225e38170ca3cd
+
 
 	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
 		this.number = number;
