@@ -11,7 +11,6 @@ public class ChessBoardModel extends BaseModel {
 		this.length = length;
 		actualBlockArray = new ActualBlock[this.length+1][this.length+1];
 		for (int i = 0; i <= this.length; i++) {
-			
 			for (int x = 0; x <= this.length; x++) {
 				this.actualBlockArray[i][x] = new ActualBlock();
 			}
