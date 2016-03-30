@@ -1,17 +1,22 @@
 package main;
 
-import model.ChessBoardModel;
+import controller.GameController;
+import controller.MenuController;
+import controller.msgqueue.OperationQueue;
 import model.GameModel;
-import model.po.Player;
 
 public class SamurAI {
 
     //2016-03-29 19:00:18 Kray 测试
     public static void main(String[] args) {
         GameModel gameModel = new GameModel(12,14);
+
+        MenuController menuController = new MenuController();
+        GameController gameController = new GameController();
         //先动作 再方向
         //actionNum: 0:occupy 1:move 2:show 3:hide
         //direction: 0:up 1:left 2:right 3:down
+<<<<<<< HEAD
         //左和右反了???  
         //Sliver Narcissus 修复了这个bug
         gameModel.gameStart();
@@ -20,6 +25,24 @@ public class SamurAI {
             gameModel.sendMsg(1, 3);
             gameModel.sendMsg(1, 3);
 //        }
+=======
+
+
+        OperationQueue operationQueue = new OperationQueue(gameModel);
+        Thread operationThread = new Thread(operationQueue);
+        operationThread.start();
+
+        menuController.startGame();
+
+        gameController.handleAction(1,3);
+        //左和右反了???  
+        //Sliver Narcissus 修复了这个bug
+
+//        gameModel.gameStart();
+
+//        gameModel.sendMsg(1, 3);
+//        gameModel.sendMsg(1, 3);
+>>>>>>> c1b3e5c5b7a1163e8f31353ca064e633825d2693
 
 //        gameModel.sendMsg(1,1);
 //        gameModel.sendMsg(1,2);
