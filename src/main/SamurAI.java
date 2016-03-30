@@ -12,11 +12,8 @@ public class SamurAI {
         //先动作 再方向
         //actionNum: 0:occupy 1:move 2:show 3:hide
         //direction: 0:up 1:left 2:right 3:down
-<<<<<<< HEAD
         //左和右反了???  
         //Sliver Narcissus 修复了这个bug
-=======
->>>>>>> 445919af26b3fdfa370990ea871b27ee2894f966
         gameModel.gameStart();
 
 //        while(gameModel.getCanHandle()) {
