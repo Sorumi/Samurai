@@ -48,6 +48,9 @@ public class GameModel extends BaseModel {
 
     //Assign next samurai
     public void assignNext(){
+
+        super.updateChange(new UpdateMessage("next",this.chessBoardModel));
+
         System.out.println("This Player:" + this.playerSeq[this.currentPlayer - 1]);
         System.out.println("This Samurai:" + this.samuraiSeq[this.currentSamurai - 1]);
         System.out.println("This Round:" + this.currentRound);
@@ -73,9 +76,6 @@ public class GameModel extends BaseModel {
                 this.currentPlayer = 1;
             }
             this.assignNext();
-
-            super.updateChange(new UpdateMessage("next",this.chessBoardModel));
-
         }else{
             this.gameOver();
         }

@@ -4,13 +4,17 @@ import controller.GameController;
 import controller.MenuController;
 import controller.msgqueue.OperationQueue;
 import model.GameModel;
+import view.MainFrame;
 
 public class SamurAI {
 
     //2016-03-29 19:00:18 Kray 测试
     public static void main(String[] args) {
-        GameModel gameModel = new GameModel(12,14);
 
+        MainFrame mainFrame = new MainFrame();
+
+        GameModel gameModel = new GameModel(12,14);
+        gameModel.addObserver(mainFrame);
         MenuController menuController = new MenuController();
         GameController gameController = new GameController();
 

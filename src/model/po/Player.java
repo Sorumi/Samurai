@@ -108,10 +108,13 @@ public class Player {
                 default:
                     break;
             }
+            System.out.println("ActionPoint Left:" + actionPoint);
+            if(this.actionPoint == 0){
+                this.actionDone();
+            }
             if(!done){
                 System.out.println("Action NOT Performed.");
             }
-            System.out.println("ActionPoint Left:" + actionPoint);
         }
 
         //打印一下棋盘
@@ -133,7 +136,7 @@ public class Player {
         }
     }
 
-    //时间到了或者没点数的时候调用此方法
+    //时间到了或者没点数或者玩家主动放弃的时候调用此方法
     public void actionDone(){
         this.gameModel.actionDone();
     }
