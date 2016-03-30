@@ -25,6 +25,7 @@ public class MainFrame implements Observer{
 		//布局设为null!
 		frame.getContentPane().setLayout(null);
 		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+//		frame.setUndecorated(true);
 		
 
 		
@@ -39,7 +40,7 @@ public class MainFrame implements Observer{
 	}
 	class ButtonListener implements ActionListener{
 		public void actionPerformed(ActionEvent event){
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			System.exit(0);
 		}
 	}
 
