@@ -23,8 +23,6 @@ public class SamuraiPO implements Serializable {
 	private int weapon;
 	private Position pos;
 	private boolean hide = false;
-
-
 	
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
@@ -66,53 +64,6 @@ public class SamuraiPO implements Serializable {
 			System.out.println();
 		}
 	}
-	
-
-
-//	public static void main(String[] args) {
-//		ChessBoardModel cbm = new ChessBoardModel(14);
-//		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
-//		SamuraiPO No2 = new SamuraiPO(2, 1, 0, 14, cbm);
-//		SamuraiPO No3 = new SamuraiPO(3, 1, 1, 14, cbm);
-//		SamuraiPO No4 = new SamuraiPO(4, 0, 1, 14, cbm);
-//		SamuraiPO No5 = new SamuraiPO(5, 0, 2, 14, cbm);
-//		SamuraiPO No6 = new SamuraiPO(6, 1, 2, 14, cbm);
-//		for (int i = 0; i <= 14; i++) {
-//			System.out.print(i + ":");
-//			for (int x = 0; x <= 14; x++) {
-//				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
-//			}
-//			System.out.println();
-//		}
-//		No5.move(0,cbm);
-//		No5.move(2,cbm);
-//		No5.occupied(3,cbm);
-//		No5.move(0, cbm);
-//		No5.hide(cbm);
-//		No3.move(1, cbm);
-//		No3.occupied(1,cbm);
-//		boolean f = No2.occupied(1, cbm);
-//		System.out.println(f);
-//		for (int i = 0; i <= 14; i++) {
-//			System.out.print(i + ":");
-//			for (int x = 0; x <= 14; x++) {
-//				System.out.print(cbm.getActualBlockState(i, x) + " ");
-//			}
-//			System.out.println();
-//		}
-//		for (int i = 0; i <= 14; i++) {
-//			System.out.print(i + ":");
-//			for (int x = 0; x <= 14; x++) {
-//				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
-//			}
-//			System.out.println();
-//		}
-//	}
-
-	public Position getPos(){
-		return this.pos;
-	}
-
 
 	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
 		this.number = number;

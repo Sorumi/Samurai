@@ -16,7 +16,6 @@ public class Player {
     private SamuraiPO[] samuraiPOs;
     private boolean canAction;
     private int currentSamurai;
-    private Thread timeUpdateThread;
     private ChessBoardModel chessBoardModel;
     private int actionPoint;
 
@@ -35,25 +34,17 @@ public class Player {
             samuraiPOs[3] = new SamuraiPO(3,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
             samuraiPOs[6] = new SamuraiPO(6,playerNum,2,this.gameModel.getLength(),this.chessBoardModel);
         }
-        this.timeUpdateThread = new Thread(new CountDown());
-        this.timeUpdateThread.start();
     }
 
     public void setEnableToAction(){
         this.canAction = true;
         this.currentSamurai = gameModel.getCurrentSamurai();
         this.actionPoint = 7;
-//        try {
-//            this.timeUpdateThread.run();
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        this.actionDone();
     }
 
     //当view做出动作的时候 调用这个方法
     //actionNum: 0:occupy 1:move 2:show 3:hide
-    //direction: 0:up 1:right 2:left 3:down
+    //direction: 0:up 1:left 2:right 3:down
     public void actionPerformed(int actionNum, int direction){
         if(this.canAction){
             //actionNum:动作编号
@@ -96,7 +87,7 @@ public class Player {
                     break;
             }
             if(!done){
-                System.out.println("Action NOT performed.");
+                System.out.println("Action NOT Performed.");
             }
             System.out.println("ActionPoint Left:" + actionPoint);
         }
@@ -122,26 +113,15 @@ public class Player {
 
     //时间到了或者没点数的时候调用此方法
     public void actionDone(){
-        System.out.println("Time out OR Action Done");
         this.gameModel.actionDone();
+    }
+
+    public int getPlayerNum(){
+        return this.playerNum;
     }
 
     public SamuraiPO getSamuraiOfNum(int num){
         return samuraiPOs[num];
-    }
-
-    private class CountDown implements Runnable{
-        public void run(){
-//            for(int i = 10; i > 0; i--){
-//                System.out.println("还有"+i+"秒");
-//                try {
-//                    Thread.sleep(1000);
-//                }catch (InterruptedException e){
-//                    e.printStackTrace();
-//                }
-//            }
-//            timeUpdateThread.interrupt();
-        }
     }
 
     public int getActionPoint(){
@@ -150,10 +130,6 @@ public class Player {
 
     public boolean canAction(){
         return this.canAction;
-    }
-
-    public int getPlayerNum(){
-        return this.playerNum;
     }
 
 }
