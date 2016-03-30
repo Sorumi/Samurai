@@ -11,8 +11,9 @@ public class SamurAI {
         GameModel gameModel = new GameModel(12,14);
         //先动作 再方向
         //actionNum: 0:occupy 1:move 2:show 3:hide
-        //direction: 0:up 1:right 2:left 3:down
-        //左和右反了???
+        //direction: 0:up 1:left 2:right 3:down
+        //左和右反了???  
+        //Sliver Narcissus 修复了这个bug
         gameModel.gameStart();
         gameModel.sendMsg(1,3);
         gameModel.actionDone();
