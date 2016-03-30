@@ -1,6 +1,8 @@
 package model.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import model.ChessBoardModel;
 
 /**
@@ -22,7 +24,7 @@ public class SamuraiPO implements Serializable {
 	private Position pos;
 	private boolean hide = false;
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
 		SamuraiPO No2 = new SamuraiPO(2, 1, 0, 14, cbm);
@@ -39,13 +41,14 @@ public class SamuraiPO implements Serializable {
 		}
 		No5.move(0,cbm);
 		No5.move(2,cbm);
-		No5.occupied(3,cbm);
+		ArrayList<Position> positions=No5.occupied(3,cbm);
 		No5.move(0, cbm);
 		No5.hide(cbm);
 		No3.move(1, cbm);
 		No3.occupied(1,cbm);
-		boolean f=No2.occupied(1, cbm);
-		System.out.println(f);
+		for(Position po:positions){
+			System.out.println(po.getX()+"  "+po.getY());
+		}
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
 			for (int x = 0; x <= 14; x++) {
@@ -60,7 +63,7 @@ public class SamuraiPO implements Serializable {
 			}
 			System.out.println();
 		}
-	}*/
+	}
 
 	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
 		this.number = number;
@@ -220,34 +223,38 @@ public class SamuraiPO implements Serializable {
 	}
 
 	// 0:up 1:right 2:left 3:down
-	public boolean occupied(int direction, ChessBoardModel cbm) {
-		boolean effective = false;
+	public ArrayList<Position> occupied(int direction, ChessBoardModel cbm) {
+		ArrayList<Position> positions=new ArrayList<Position>();
 		switch (weapon) {
 			// weapon 0
 			case 0:
 				switch (direction) {
 					case 0:
-						for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 4; i--, x++) {
-							effective = true;
+						for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 4; i--, x++) {					
 							cbm.changeActualBlock(i, pos.getY(), number);
+							Position position=new Position(i, pos.getY());
+							positions.add(position);
 						}
 						break;
 					case 1:
-						for (int i = pos.getY() - 1, x = 0; i >= 0 && x < 4; i--, x++) {
-							effective = true;
+						for (int i = pos.getY() - 1, x = 0; i >= 0 && x < 4; i--, x++) {			
 							cbm.changeActualBlock(pos.getX(), i, number);
+							Position position=new Position(pos.getX(), i);
+							positions.add(position);
 						}
 						break;
 					case 2:
-						for (int i = pos.getY() + 1, x = 0; i <= length && x < 4; i++, x++) {
-							effective = true;
+						for (int i = pos.getY() + 1, x = 0; i <= length && x < 4; i++, x++) {	
 							cbm.changeActualBlock(pos.getX(), i, number);
+							Position position=new Position(pos.getX(), i);
+							positions.add(position);
 						}
 						break;
 					default:
 						for (int i = pos.getX() + 1, x = 0; i >= 0 && x < 4; i++, x++) {
-							effective = true;
 							cbm.changeActualBlock(i, pos.getY(), number);
+							Position position=new Position(i, pos.getY());
+							positions.add(position);
 						}
 						break;
 				}
@@ -262,60 +269,71 @@ public class SamuraiPO implements Serializable {
 				switch (direction) {
 					case 0:
 						for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
-							effective = true;
 							cbm.changeActualBlock(i, pos.getY(), number);
+							Position position=new Position(i, pos.getY());
+							positions.add(position);
 						}
 						if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						for (int i = pos.getY() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX(), i, number);
+							Position position=new Position(pos.getX(), i);
+							positions.add(position);
 						}
 						break;
 					case 1:
 						for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i++, x++) {
-							effective = true;
 							cbm.changeActualBlock(i, pos.getY(), number);
+							Position position=new Position(i, pos.getY());
+							positions.add(position);
 						}
 						if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						for (int i = pos.getY() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX(), i, number);
+							Position position=new Position(pos.getX(), i);
+							positions.add(position);
 						}
 						break;
 					case 2:
 						for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
-							effective = true;
 							cbm.changeActualBlock(i, pos.getY(), number);
+							Position position=new Position(i, pos.getY());
+							positions.add(position);
 						}
 						if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i++, x++) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX(), i, number);
+							Position position=new Position(pos.getX(), i);
+							positions.add(position);
 						}
 						break;
 
 					default:
 						for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i++, x++) {
-							effective = true;
 							cbm.changeActualBlock(i, pos.getY(), number);
-							System.out.println(i);
+							Position position=new Position(i, pos.getY());
+							positions.add(position);
 						}
 						if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i++, x++) {
-							effective = true;
 							cbm.changeActualBlock(pos.getX(), i, number);
+							Position position=new Position(pos.getX(), i);
+							positions.add(position);
 						}
 						break;
 				}
@@ -323,133 +341,184 @@ public class SamuraiPO implements Serializable {
 			//
 			// weapon 2
 			default:
-				effective = true;
 				switch (direction) {
 					case 0:
 						if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX(), pos.getY() - 1, number);
+							Position position=new Position(pos.getX(), pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY(), number);
+							Position position=new Position(pos.getX() - 1, pos.getY());
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX(), pos.getY() + 1, number);
+							Position position=new Position(pos.getX(), pos.getY() + 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						break;
 					case 1:
 						if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX(), pos.getY() - 1, number);
+							Position position=new Position(pos.getX(), pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY(), number);
+							Position position=new Position(pos.getX() - 1, pos.getY());
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
+							Position position=new Position(pos.getX() + 1, pos.getY());
+							positions.add(position);
 						}
 						//
 						if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						break;
 					case 2:
 						if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX(), pos.getY() + 1, number);
+							Position position=new Position(pos.getX(), pos.getY() + 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY(), number);
+							Position position=new Position(pos.getX() - 1, pos.getY());
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
+							Position position=new Position(pos.getX() + 1, pos.getY());
+							positions.add(position);
 						}
 						//
 						if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						break;
 
 					default:
 						if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX(), pos.getY() - 1, number);
+							Position position=new Position(pos.getX(), pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() - 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
+							Position position=new Position(pos.getX() + 1, pos.getY());
+							positions.add(position);
 						}
 						//
 						if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() - 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX(), pos.getY() + 1, number);
+							Position position=new Position(pos.getX(), pos.getY() + 1);
+							positions.add(position);
 						}
 						//
 						if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
 							cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
+							Position position=new Position(pos.getX() + 1, pos.getY() + 1);
+							positions.add(position);
 						}
 						break;
 				}
 				break;
 		}
-		if (effective) {
-			return true;
-		} else {
-			return false;
-		}
+		return positions;
 	}
 
 	public boolean hide(ChessBoardModel cbm) {
