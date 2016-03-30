@@ -16,7 +16,6 @@ public class SamurAI {
         //先动作 再方向
         //actionNum: 0:occupy 1:move 2:show 3:hide
         //direction: 0:up 1:left 2:right 3:down
-//        gameModel.gameStart();
 
 
         OperationQueue operationQueue = new OperationQueue(gameModel);
@@ -26,6 +25,10 @@ public class SamurAI {
         menuController.startGame();
 
         gameController.handleAction(1,3);
+        //左和右反了???  
+        //Sliver Narcissus 修复了这个bug
+
+//        gameModel.gameStart();
 
 //        gameModel.sendMsg(1, 3);
 //        gameModel.sendMsg(1, 3);
