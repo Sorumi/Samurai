@@ -66,11 +66,9 @@ public class FieldBlock extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if (image != null) {
+		
 			Graphics2D g2 = (Graphics2D) g;
-//			g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-			
-
+		
 			//设置菱形边框
 			Stroke stroke = new BasicStroke((float)strokeSize);
 			g2.setStroke(stroke);
@@ -84,12 +82,8 @@ public class FieldBlock extends JPanel{
 
 			this.setSize(width, height);
 //			this.setSize(image.getWidth(), image.getHeight());
-		}
+		
 	}
 	
-	public void draw(BufferedImage image){
-//		this.imageIcon = imageIcon;
-		this.image = image;
-		repaint();
-	}
+
 }

@@ -49,7 +49,6 @@ public class ChessBoardPanel extends JPanel {
 				blocks[i][j] = new FieldBlock(i,j,sideBlockQuantity);
 				blocks[i][j].setBounds( (i+j) * blockWidth/2, fieldHeight/2 + (i-j-1) * blockHeight/2, blockWidth,
 						blockHeight);
-//				blocks[i][j].draw(blockImages[0]);
 				this.add(blocks[i][j]);
 			}
 		}

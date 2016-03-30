@@ -29,19 +29,19 @@ public class MainFrame implements Observer{
 
 		
 		chessBoard = new ChessBoardPanel(10);
-//		closebutton=new JButton("Quit");
-//		closebutton.addActionListener(new ButtonListener());
-		
+		closebutton=new JButton("Quit");
+		closebutton.addActionListener(new ButtonListener());
+		closebutton.setBounds(1135, 600, 40, 20);
 //		
 		frame.getContentPane().add(chessBoard);
-//		frame.getContentPane().add(closebutton);
+		frame.getContentPane().add(closebutton);
 		frame.setVisible(true);
 	}
-//	class ButtonListener implements ActionListener{
-//	public void actionPerformed(ActionEvent event){
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//	}
-//	}
+	class ButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent event){
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		}
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
