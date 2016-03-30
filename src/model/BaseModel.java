@@ -14,9 +14,7 @@ public class BaseModel extends Observable {
 	 * @param data
 	 */
 	protected void updateChange(UpdateMessage message){
-		
 		super.setChanged();
 		super.notifyObservers(message);
-		
 	}
 }

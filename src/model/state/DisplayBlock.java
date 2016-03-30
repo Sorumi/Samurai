@@ -6,6 +6,13 @@ package model.state;
  *
  */
 
-public enum DisplayBlockState {
-
+public class DisplayBlock {
+  
 }
+
+
+
+
+
+
+
