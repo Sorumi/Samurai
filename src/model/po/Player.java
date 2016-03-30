@@ -56,6 +56,7 @@ public class Player {
                         if(this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel)) {
                             done = true;
                             this.actionPoint -= 4;
+                            //加上检测需不需要把别人踢回去的代码
                         }
                     }
                     break;

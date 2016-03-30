@@ -95,7 +95,7 @@ public class GameModel extends BaseModel {
 
     public class CountDownTask extends java.util.TimerTask{
         public void run(){
-            for(int i = 30; i > 0; i--) {
+            for(int i = 3; i > 0; i--) {
                 try {
                     System.out.println("还有"+i+"秒");
                     Thread.sleep(1000);
