@@ -13,10 +13,12 @@ public class SamurAI {
 
         MenuController menuController = new MenuController();
         GameController gameController = new GameController();
+
         //先动作 再方向
         //actionNum: 0:occupy 1:move 2:show 3:hide
         //direction: 0:up 1:left 2:right 3:down
-
+        //左和右反了???
+        //Sliver Narcissus 修复了这个bug
 
         OperationQueue operationQueue = new OperationQueue(gameModel);
         Thread operationThread = new Thread(operationQueue);
@@ -24,9 +26,8 @@ public class SamurAI {
 
         menuController.startGame();
 
+        //暂时扮演 view 发消息的角色
         gameController.handleAction(1,3);
-        //左和右反了???  
-        //Sliver Narcissus 修复了这个bug
 
 //        gameModel.gameStart();
 
