@@ -4,18 +4,12 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-<<<<<<< HEAD
 import java.awt.Image;
 import java.awt.Stroke;
 import java.awt.color.*;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
-=======
-import java.awt.Stroke;
-import java.awt.image.BufferedImage;
-
->>>>>>> 25db614a068826719183f3b9e734d2e5b2e6c1c0
 import javax.swing.JPanel;
 
 /**
