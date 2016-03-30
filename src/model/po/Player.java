@@ -4,6 +4,7 @@ import model.ChessBoardModel;
 import model.GameModel;
 import model.state.GameState;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Timer;
 
@@ -42,6 +43,8 @@ public class Player {
         this.actionPoint = 7;
     }
 
+
+
     //当view做出动作的时候 调用这个方法
     //actionNum: 0:occupy 1:move 2:show 3:hide
     //direction: 0:up 1:left 2:right 3:down
@@ -53,10 +56,28 @@ public class Player {
                 //要加上更新 view 的代码
                 case 0:
                     if(this.actionPoint >= 4){
-                        if(this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel)) {
+                        ArrayList<Position> positions
+                                = this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel);
+                        if(!positions.isEmpty()) {
                             done = true;
                             this.actionPoint -= 4;
-                            //加上检测需不需要把别人踢回去的代码
+                            //检测需不需要把别人踢回去
+                            for(Position position : positions){
+                                int x = position.getX();
+                                int y = position.getY();
+                                int state = this.chessBoardModel.getActualBlockState(x,y);
+
+                                if(this.playerNum == 0){
+                                    if(state == 2 || state == 3 || state == 6){
+
+                                    }
+                                }else{
+                                    if(state == 1 || state == 4 || state == 5){
+
+                                    }
+                                }
+
+                            }
                         }
                     }
                     break;

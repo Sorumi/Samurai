@@ -1,6 +1,7 @@
 package model;
 
 import model.po.Player;
+import model.po.Position;
 import model.state.GameResultState;
 import model.state.GameState;
 
@@ -38,6 +39,9 @@ public class GameModel extends BaseModel {
 
     public boolean gameStart(){
         System.out.println("Game Start.");
+
+        super.updateChange(new UpdateMessage("start",this.chessBoardModel));
+
         this.assignNext();
         return true;
     }
@@ -50,6 +54,11 @@ public class GameModel extends BaseModel {
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
         this.timer.schedule(new CountDownTask(),0);
         //此处加上告诉 view 应该是哪个 samurai 行动的代码
+
+        super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
+        super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
+        super.updateChange(new UpdateMessage("round",this.currentRound));
+
     }
 
     //一个 samurai 一套动作完成时调用此方法
@@ -64,6 +73,9 @@ public class GameModel extends BaseModel {
                 this.currentPlayer = 1;
             }
             this.assignNext();
+
+            super.updateChange(new UpdateMessage("next",this.chessBoardModel));
+
         }else{
             this.gameOver();
         }
@@ -71,12 +83,15 @@ public class GameModel extends BaseModel {
 
     public boolean gameOver(){
         this.gameState = GameState.OVER;
+
+        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
+
         System.out.println("Game Over.");
         System.exit(0);
         return true;
     }
 
-    //暂时扮演Controller发消息的角色
+    //负责给 player 发消息
     public void sendMsg(int actionNum, int direction){
         this.players[this.playerSeq[this.currentPlayer - 1]].actionPerformed(actionNum, direction);
     }
