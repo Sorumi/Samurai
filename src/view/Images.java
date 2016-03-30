@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
  *
  */
 
-
 public class Images {
 	protected static ImageIcon createImageIcon(String path) {
 		ImageIcon icon = new ImageIcon(path);
@@ -31,9 +30,19 @@ public class Images {
 		return null;
 	}
 	
+	
+	
 	public static final BufferedImage BLOCK_FIELD = createImage("images/block_field.png");
 	
-//	//缩放图片 不用了！！！
+	
+	
+	
+	
+	
+	
+	
+	
+	//缩放图片 不用了！！！
 //	public static BufferedImage getBlockByProportion(int proportion){
 //		int width = BLOCK_DEFAULT_1.getWidth() / proportion;
 //		int height = BLOCK_DEFAULT_1.getHeight() / proportion;
