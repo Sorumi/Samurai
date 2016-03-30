@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 
 /**
  * 棋盘单元块
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
  *
  */
 public class FieldBlock extends JPanel{
+
 	private Location location;
 	private BufferedImage image;
 	
@@ -63,7 +65,6 @@ public class FieldBlock extends JPanel{
 			g2.drawPolygon(xPoints, yPoints, 4);
 			g2.setColor(Color.gray);
 			g2.fillPolygon(xPoints, yPoints, 4);
-			
 
 			this.setSize(width, height);
 //			this.setSize(image.getWidth(), image.getHeight());
