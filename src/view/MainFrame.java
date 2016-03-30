@@ -1,57 +1,54 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 public class MainFrame implements Observer{
-	JFrame mainFrame=new JFrame();
-	JPanel ChessBoardPanel;
-	int mainwide;
-	int mainheight;
-	int panelwide;
-	int panelheight;
-	public void go(){
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(mainwide, mainheight);
-		mainFrame.setLayout(null);
-		//下面的面积大小比是按照1200*900来大致算的//
-		ChessBoardPanel.setBounds(1/8*mainwide, 1/4*mainheight, panelwide, panelheight);
-		mainFrame.getContentPane().add(ChessBoardPanel);
-		mainFrame.setVisible(true);
+	
+	final static int WINDOW_WIDTH = 1200;
+	final static int WINDOW_HEIGHT = 800;
+	
+	public JFrame frame;
+	public ChessBoardPanel chessBoard;
+	public JButton closebutton;
+	
+	public MainFrame(){
+		frame = new JFrame();
+		
+		//布局设为null!
+		frame.getContentPane().setLayout(null);
+		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		
+		
+		chessBoard = new ChessBoardPanel(10);
+//		closebutton=new JButton("Quit");
+//		closebutton.addActionListener(new ButtonListener());
+		
+//		
+		frame.getContentPane().add(chessBoard);
+//		frame.getContentPane().add(closebutton);
+		frame.setVisible(true);
 	}
-	public int getmainwide(){
-		return mainwide;
-	}
-	public int getmainheight(){
-		return mainheight;
-	}
-	public int getpanelwide(){
-		return panelwide;
-	}
-	public int getpanelheight(){
-		return panelheight;
-	}
-	public void setmainwide(int x){
-		mainwide=x;
-	}
-	public void setmainheight(int x){
-		mainheight=x;
-	}
-	public void setpanelwide(int x){
-		panelwide=x;
-	}
-	public void setpanelheight(int x){
-		panelheight=x;
-	}
-
-
+//	class ButtonListener implements ActionListener{
+//	public void actionPerformed(ActionEvent event){
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	}
+//	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		
+		// TODO Auto-generated method stub
 		
 	}
+	
+	public static void main(String[] args){
+		new MainFrame();
+	}
+	
 
 }

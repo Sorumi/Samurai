@@ -1,43 +1,90 @@
 package view;
 
-import java.awt.Graphics2D;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
 
 /**
- * 土地块
+ * 棋盘单元块
  * @author Sorumi
  *
  */
 public class FieldBlock extends JPanel{
-	private  Location location;
-	private Image image;
-	private ImageIcon imageIcon;
+	private Location location;
+	private BufferedImage image;
 	
-	FieldBlock(Location alocation){
+	int width = 105;
+	int height = 60;
+	int strokeSize = 2;
+	
+	FieldBlock(Location location) {
 		super();
-		this.location=alocation;
+		this.location = location;
+		this.setTransparentBackground();
 	}
-	FieldBlock(int x,int y){
+	FieldBlock(int x, int y,int z) {
 		super();
-		location=new Location(x,y);
+		location = new Location(x, y);
+		this.setTransparentBackground();
+//		switch(z){
+//		case 5:
+//			width=210;
+//			height=120;
+//			break;
+//		case 10:
+//			width=105;
+//			height=60;
+//			break;
+//		case 15:
+//			width=7;
+//			height=4;
+//			break;
+//		}
+		
 	}
-	public Location getLocation(Location location){
+	
+	public Location getMyLocation() {
 		return location;
 	}
 	
-	public void paintComponent(Graphics g){
+	public void setTransparentBackground()
+	{
+		this.setBackground(null);
+		this.setOpaque(false);
+	}
+	
+	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		if(image!=null){
-			Graphics2D g2d=(Graphics2D) g;
-			g2d.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		if (image != null) {
+			Graphics2D g2 = (Graphics2D) g;
+//			g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+			
+
+			//设置菱形边框
+			Stroke stroke = new BasicStroke((float)strokeSize);
+			g2.setStroke(stroke);
+			g2.setColor(Color.white);
+			//画菱形TODO
+			int[] xPoints = {strokeSize,width/2,width-strokeSize,width/2};
+			int[] yPoints = {height/2,strokeSize,height/2,height-strokeSize};
+			g2.drawPolygon(xPoints, yPoints, 4);
+			g2.setColor(Color.gray);
+			g2.fillPolygon(xPoints, yPoints, 4);
+			
+
+			this.setSize(width, height);
+//			this.setSize(image.getWidth(), image.getHeight());
 		}
 	}
-	public void draw(ImageIcon imageIcon){
-		this.imageIcon=imageIcon;
+	
+	public void draw(BufferedImage image){
+//		this.imageIcon = imageIcon;
+		this.image = image;
 		repaint();
 	}
-
 }
