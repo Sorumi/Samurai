@@ -4,16 +4,21 @@ import controller.GameController;
 import controller.MenuController;
 import controller.msgqueue.OperationQueue;
 import model.GameModel;
+import model.UpdateMessage;
 import view.MainFrame;
+import view.TestView;
 
 public class SamurAI {
+	
+	private static MainFrame mainFrame;
+	private static GameModel gameModel;
 
     //2016-03-29 19:00:18 Kray 测试
     public static void main(String[] args) {
 
-        MainFrame mainFrame = new MainFrame();
-
-        GameModel gameModel = new GameModel(12,14);
+        mainFrame = new MainFrame();
+        gameModel = new GameModel(12,14);
+        
         gameModel.addObserver(mainFrame);
         MenuController menuController = new MenuController();
         GameController gameController = new GameController();
@@ -55,5 +60,11 @@ public class SamurAI {
 //        gameModel.sendMsg(0,0);
 //        gameModel.actionDone();
 
+    
+        //界面交互测试方法 by Sorumi
+        //所有界面接收消息的测试放在TestView中 这里无需改动
+        TestView testView = new TestView();
+        testView.addObserver(mainFrame.chessBoard);
+        testView.test();
     }
 }

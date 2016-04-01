@@ -27,9 +27,7 @@ public class MainFrame implements Observer{
 		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 //		frame.setUndecorated(true);
 		
-
-		
-		chessBoard = new ChessBoardPanel(10);
+		chessBoard = new ChessBoardPanel(6);
 		closebutton=new JButton("Quit");
 		closebutton.addActionListener(new ButtonListener());
 		closebutton.setBounds(1135, 600, 40, 20);

@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class FieldBlock extends JPanel{
 
 	private Location location;
-	private BufferedImage image;
+	private Color color = Color.gray;
 	
 	int width = 105;
 	int height = 60;
@@ -37,20 +37,28 @@ public class FieldBlock extends JPanel{
 		super();
 		location = new Location(x, y);
 		this.setTransparentBackground();
-//		switch(z){
-//		case 5:
-//			width=210;
-//			height=120;
-//			break;
-//		case 10:
-//			width=105;
-//			height=60;
-//			break;
-//		case 15:
-//			width=7;
-//			height=4;
-//			break;
-//		}
+		switch(z){
+		case 6:
+			width=175;
+			height=100;
+			strokeSize = 3;
+			break;
+		case 10:
+			width=105;
+			height=60;
+			strokeSize = 2;
+			break;
+		case 12:
+			width=87;
+			height=50;
+			strokeSize = 2;
+			break;
+		case 15:
+			width=70;
+			height=40;
+			strokeSize = 1;
+			break;
+		}
 		
 	}
 	
@@ -62,6 +70,13 @@ public class FieldBlock extends JPanel{
 	{
 		this.setBackground(null);
 		this.setOpaque(false);
+	}
+	
+	public void setColor(Color color){
+		this.color = color;
+	}
+	public Color getColor(){
+		return color;
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -77,7 +92,7 @@ public class FieldBlock extends JPanel{
 			int[] xPoints = {strokeSize,width/2,width-strokeSize,width/2};
 			int[] yPoints = {height/2,strokeSize,height/2,height-strokeSize};
 			g2.drawPolygon(xPoints, yPoints, 4);
-			g2.setColor(Color.gray);
+			g2.setColor(color);
 			g2.fillPolygon(xPoints, yPoints, 4);
 
 			this.setSize(width, height);
