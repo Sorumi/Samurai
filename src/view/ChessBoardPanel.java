@@ -4,8 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
+
+import model.UpdateMessage;
+import model.po.DisplayBlock;
 
 
 /**
@@ -14,7 +19,7 @@ import javax.swing.JPanel;
  *
  */
 
-public class ChessBoardPanel extends JPanel {
+public class ChessBoardPanel extends JPanel implements Observer {
 	
 	static FieldBlock[][] blocks;
 	private static int SideBlockQuantity;//width
@@ -58,8 +63,28 @@ public class ChessBoardPanel extends JPanel {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(bgImage, 0, 0, getWidth(), getHeight(), null);
+		g2.drawImage(bgImage, 0, 0, fieldWidth, fieldHeight, null);
 		this.setSize(fieldWidth, fieldHeight);
 		
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		UpdateMessage notifingObject = (UpdateMessage)arg;
+		String key = notifingObject.getKey();
+		
+		//如果听到的消息是‘block’时
+		if (key == "block") {
+			DisplayBlock displayBlock = (DisplayBlock) notifingObject.getValue();
+			
+			Color blockColor = BlockColor.getBlockColor(displayBlock.getState());
+			int x = displayBlock.getX();
+			int y = displayBlock.getY();
+			System.out.println("x " + x + " y " + y);
+			blocks[x][y].setColor(blockColor);
+			blocks[x][y].repaint();
+			
+		}
 	}
 }

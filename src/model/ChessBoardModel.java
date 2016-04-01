@@ -1,5 +1,7 @@
 package model;
 
+import model.po.ActualBlock;
+import model.po.DisplayBlock;
 import model.state.*;
 
 public class ChessBoardModel extends BaseModel {
@@ -10,9 +12,9 @@ public class ChessBoardModel extends BaseModel {
 	public ChessBoardModel(int length) {
 		this.length = length;
 		actualBlockArray = new ActualBlock[this.length+1][this.length+1];
-		for (int i = 0; i <= this.length; i++) {
-			for (int x = 0; x <= this.length; x++) {
-				this.actualBlockArray[i][x] = new ActualBlock();
+		for (int x = 0; x <= this.length; x++) {
+			for (int y = 0; y <= this.length; y++) {
+				this.actualBlockArray[x][y] = new ActualBlock(x, y);
 			}
 		}
 	}
