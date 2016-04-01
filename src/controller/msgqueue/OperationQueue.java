@@ -42,7 +42,7 @@ public class OperationQueue implements Runnable{
 	}
 
 	private static Operation getNewOperation (){
-		Operation  operation = null;
+		Operation operation = null;
 		try {
 			operation = queue.take();
 		} catch (InterruptedException e) {
