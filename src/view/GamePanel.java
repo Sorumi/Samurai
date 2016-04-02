@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
 
+import view.listener.GameListener;
+
 public class GamePanel extends JPanel{
 	
     private final int WINDOW_WIDTH = 1200;
@@ -21,12 +23,16 @@ public class GamePanel extends JPanel{
 	private int blockHeight;
 	
 	public ChessBoardPanel chessBoard;
-	public SamuraiView A1;
-	public SamuraiView A2;
-	public SamuraiView A3;
-	public SamuraiView B1;
-	public SamuraiView B2;
-	public SamuraiView B3;
+	public SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
+	
+	private SamuraiView A1;
+	private SamuraiView A2;
+	private SamuraiView A3;
+	private SamuraiView B1;
+	private SamuraiView B2;
+	private SamuraiView B3;
+	
+	private GameListener gameListener;
 	
 	private Image bgImage = Images.BG_0;
 	
@@ -49,6 +55,11 @@ public class GamePanel extends JPanel{
 		B1 = new SamuraiView(4, size, 14, 0);
 		B2 = new SamuraiView(5, size, 14, 7);
 		B3 = new SamuraiView(6, size, 14, 14);
+		//TODO
+		currentSamurai = A1;
+		gameListener = new GameListener(this);
+		currentSamurai.addMouseListener(gameListener);
+		
 		this.add(A1);
 		this.add(A2);
 		this.add(A3);
@@ -61,6 +72,7 @@ public class GamePanel extends JPanel{
 		this.setComponentZOrder(B1, 0);
 		this.setComponentZOrder(B2, 0);
 		this.setComponentZOrder(B3, 0);
+		
 	}
 	
 	public void paintComponent(Graphics g){

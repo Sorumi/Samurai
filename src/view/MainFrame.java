@@ -15,7 +15,7 @@ public class MainFrame implements Observer{
     private final int window_fix = 22;
 	
 	public JFrame frame;
-	public JButton closebutton;
+	public JButton exitButton;
 	
 	public GamePanel gamePanel;
 	
@@ -26,14 +26,15 @@ public class MainFrame implements Observer{
 		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT+window_fix);
 //		frame.setUndecorated(true);
 		
-		closebutton=new JButton("Quit");
-		closebutton.addActionListener(new ButtonListener());
-		closebutton.setBounds(1135, 600, 40, 20);
+		exitButton = new JButton("Quit");
+		exitButton.addActionListener(new ButtonListener());
+		exitButton.setBounds(1135, 20, 40, 40);
 	
 		gamePanel = new GamePanel(15);
 		
 		frame.getContentPane().add(gamePanel);
-		frame.getContentPane().add(closebutton);
+		frame.getContentPane().add(exitButton);
+		frame.getContentPane().setComponentZOrder(exitButton, 0);
 		frame.setVisible(true);
 	}
 	

@@ -19,11 +19,13 @@ public class SamuraiView extends JPanel {
 	private int chessBoardHeightOffset = WINDOW_HEIGHT-FIELD_HEIGHT-FIELD_FIX;
 	private int blockWidthOffset;
 	private int blockHeightOffset;
-	private int selfWidthOffset = -34;
-	private int selfHeightOffset = -95;
+	
+	private final int selfWidthOffset = -34;
+	private final int selfHeightOffset = -95;
 
 	private int number;
 	private BufferedImage image;
+	private BufferedImage shadowImage;
 	
 	private int x;
 	private int y;
@@ -31,8 +33,6 @@ public class SamuraiView extends JPanel {
 	public SamuraiView(int number, int size, int x, int y){
   		
 		this.number = number;
-		this.x = x;
-		this.y = y;
 		this.image = Images.SAMURAI_CLASSIC[number];
 		
 		blockWidthOffset = FIELD_WIDTH / size / 2;
@@ -46,16 +46,17 @@ public class SamuraiView extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		System.out.println("eee");
+
 		if (image != null){
-			System.out.println("aaa");
 			Graphics2D g2 = (Graphics2D) g;
 			g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-
+			
 		}
 	}
 	
 	public void setActualLocation(int x, int y){
+		this.x = x;
+		this.y = y;
 		this.setLocation(chessBoardWidthOffset+(x+y+1)*blockWidthOffset+selfWidthOffset,chessBoardHeightOffset+FIELD_HEIGHT/2+(x-y)*blockHeightOffset+selfHeightOffset);
 	}
 	
