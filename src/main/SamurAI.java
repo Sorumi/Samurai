@@ -61,7 +61,7 @@ public class SamurAI {
         //界面交互测试方法 by Sorumi
         //所有界面接收消息的测试放在TestView中 这里无需改动
         TestView testView = new TestView();
-        testView.addObserver(mainFrame.chessBoard);
+        testView.addObserver(mainFrame.gamePanel.chessBoard);
         testView.test();
     }
 }

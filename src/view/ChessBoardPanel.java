@@ -24,7 +24,7 @@ public class ChessBoardPanel extends JPanel implements Observer {
 	static FieldBlock[][] blocks;
 	private static int SideBlockQuantity;//width
 
-    private final int window_fix = 22;
+    private final int imageFix = 20;
     private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
 	private final int fieldWidth = 1050;
@@ -36,17 +36,14 @@ public class ChessBoardPanel extends JPanel implements Observer {
 
 	public ChessBoardPanel(int sideBlockQuantity){
   		ChessBoardPanel.SideBlockQuantity = sideBlockQuantity;
-  		BufferedImage[] blockImages = null;
   		this.setLayout(null);
-  		
-  		blockWidth = fieldWidth / sideBlockQuantity;
-  		blockHeight = fieldHeight / sideBlockQuantity;
-  		
-		this.setBackground(Color.black);
-//		this.setOpaque(false);
-  		this.setBounds((WINDOW_WIDTH-fieldWidth)/2, WINDOW_HEIGHT-fieldHeight-window_fix, fieldWidth, fieldHeight);
+		this.setBackground(null);
+		this.setOpaque(false);
+  		this.setBounds((WINDOW_WIDTH-fieldWidth)/2, WINDOW_HEIGHT-fieldHeight-imageFix, fieldWidth, fieldHeight);
   		
   		blocks = new FieldBlock[SideBlockQuantity][SideBlockQuantity];
+  		blockWidth = fieldWidth / sideBlockQuantity;
+  		blockHeight = fieldHeight / sideBlockQuantity;
 		
 		for(int i=0; i<SideBlockQuantity; i++){
 			for(int j=0; j<SideBlockQuantity; j++){

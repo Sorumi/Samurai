@@ -20,7 +20,17 @@ public class Images {
 		return icon;
 	}
 
-	protected static BufferedImage createImage(String path) {
+	protected static BufferedImage createBufferedImage(String path) {
+		try {
+			BufferedImage image = ImageIO.read(new FileInputStream(path));
+			return image;
+		} catch (Exception exception) {
+			exception.printStackTrace();
+		}
+		return null;
+	}
+	
+	protected static Image createImage(String path) {
 		try {
 			BufferedImage image = ImageIO.read(new FileInputStream(path));
 			return image;
@@ -31,8 +41,16 @@ public class Images {
 	}
 	
 	
+	public static final BufferedImage BLOCK_FIELD = createBufferedImage("images/block_field.png");
 	
-	public static final BufferedImage BLOCK_FIELD = createImage("images/block_field.png");
+	public static final Image BG_0 = createImage("images/bg_0.png");
+	
+	public static final BufferedImage SAMURAI_A1 = createBufferedImage("images/samurai_A1.png");
+	public static final BufferedImage SAMURAI_A2 = createBufferedImage("images/samurai_A2.png");
+	public static final BufferedImage SAMURAI_A3 = createBufferedImage("images/samurai_A3.png");
+	public static final BufferedImage SAMURAI_B1 = createBufferedImage("images/samurai_B1.png");
+	public static final BufferedImage SAMURAI_B2 = createBufferedImage("images/samurai_B2.png");
+	public static final BufferedImage SAMURAI_B3 = createBufferedImage("images/samurai_B3.png");
 	
 	
 	

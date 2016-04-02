@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class FieldBlock extends JPanel{
 
 	private Location location;
-	private Color color = Color.gray;
+	private Color color = new Color(200,200,200,50);
 	
 	int width = 105;
 	int height = 60;
