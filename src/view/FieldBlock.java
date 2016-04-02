@@ -20,12 +20,11 @@ import javax.swing.JPanel;
 public class FieldBlock extends JPanel{
 
 	private Location location;
-	private Color color = new Color(200,200,200,50);
+	private Color color = BlockColor.getBlockColor(0);
 	
 	int width = 105;
 	int height = 60;
 	int strokeSize = 2;
-	
 
 	FieldBlock(Location location) {
 		super();
@@ -88,7 +87,7 @@ public class FieldBlock extends JPanel{
 			Stroke stroke = new BasicStroke((float)strokeSize);
 			g2.setStroke(stroke);
 			g2.setColor(Color.white);
-			//画菱形TODO
+			//画菱形
 			int[] xPoints = {strokeSize,width/2,width-strokeSize,width/2};
 			int[] yPoints = {height/2,strokeSize,height/2,height-strokeSize};
 			g2.drawPolygon(xPoints, yPoints, 4);

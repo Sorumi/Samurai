@@ -22,34 +22,35 @@ import model.po.DisplayBlock;
 public class ChessBoardPanel extends JPanel implements Observer {
 	
 	static FieldBlock[][] blocks;
-	private static int SideBlockQuantity;//width
-
-    private final int imageFix = 20;
+	private int sideBlockQuantity;//width
+    
     private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
-	private final int fieldWidth = 1050;
-	private final int fieldHeight = 600;
+	private final int FIELD_WIDTH = 1050;
+	private final int FIELD_HEIGHT = 600;
+	private final int FIELD_FIX = 20;
 	
     private final BufferedImage bgImage = Images.BLOCK_FIELD;
 	private int blockWidth;
 	private int blockHeight;
 
 	public ChessBoardPanel(int sideBlockQuantity){
-  		ChessBoardPanel.SideBlockQuantity = sideBlockQuantity;
+  		this.sideBlockQuantity = sideBlockQuantity;
+  		
   		this.setLayout(null);
 		this.setBackground(null);
 		this.setOpaque(false);
-  		this.setBounds((WINDOW_WIDTH-fieldWidth)/2, WINDOW_HEIGHT-fieldHeight-imageFix, fieldWidth, fieldHeight);
+  		this.setBounds((WINDOW_WIDTH-FIELD_WIDTH)/2, WINDOW_HEIGHT-FIELD_HEIGHT-FIELD_FIX, FIELD_WIDTH, FIELD_HEIGHT);
   		
-  		blocks = new FieldBlock[SideBlockQuantity][SideBlockQuantity];
-  		blockWidth = fieldWidth / sideBlockQuantity;
-  		blockHeight = fieldHeight / sideBlockQuantity;
+  		blocks = new FieldBlock[sideBlockQuantity][sideBlockQuantity];
+  		blockWidth = FIELD_WIDTH / sideBlockQuantity;
+  		blockHeight = FIELD_HEIGHT / sideBlockQuantity;
 		
-		for(int i=0; i<SideBlockQuantity; i++){
-			for(int j=0; j<SideBlockQuantity; j++){
+		for(int i=0; i<sideBlockQuantity; i++){
+			for(int j=0; j<sideBlockQuantity; j++){
 
 				blocks[i][j] = new FieldBlock(i,j,sideBlockQuantity);
-				blocks[i][j].setBounds( (i+j) * blockWidth/2, fieldHeight/2 + (i-j-1) * blockHeight/2, blockWidth,
+				blocks[i][j].setBounds( (i+j) * blockWidth/2, FIELD_HEIGHT/2 + (i-j-1) * blockHeight/2, blockWidth,
 						blockHeight);
 				this.add(blocks[i][j]);
 			}
@@ -60,9 +61,8 @@ public class ChessBoardPanel extends JPanel implements Observer {
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
-		g2.drawImage(bgImage, 0, 0, fieldWidth, fieldHeight, null);
-		this.setSize(fieldWidth, fieldHeight);
-		
+		g2.drawImage(bgImage, 0, 0, FIELD_WIDTH, FIELD_HEIGHT, null);
+		this.setSize(FIELD_WIDTH, FIELD_HEIGHT);
 	}
 
 	@Override
@@ -78,7 +78,6 @@ public class ChessBoardPanel extends JPanel implements Observer {
 			Color blockColor = BlockColor.getBlockColor(displayBlock.getState());
 			int x = displayBlock.getX();
 			int y = displayBlock.getY();
-			System.out.println("x " + x + " y " + y);
 			blocks[x][y].setColor(blockColor);
 			blocks[x][y].repaint();
 			

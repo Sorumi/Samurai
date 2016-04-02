@@ -9,12 +9,14 @@ public class BlockColor {
 		Color color;
 		
 		switch(x) {
-		case 0: color =  new Color(0,0,0);break;//black
-		case 1: color = new Color(255,0,0);break;//red
-		case 2: color = new Color(0,255,0);break;//green
-		case 3: color = new Color(0,0,255);break;//blue
-		case 4: color = new Color(255,255,255);break;//white
-		default: color = new Color(200,200,200);//grey
+		case 0: color =  new Color(200,200,200,10);break;//grey
+		case 1: color = new Color(194,90,62);break;
+		case 2: color = new Color(211,131,63);break;
+		case 3: color = new Color(206,174,60);break;
+		case 4: color = new Color(67,114,199);break;
+		case 5: color = new Color(72,150,178);break;
+		case 6: color = new Color(74,192,210);break;
+		default: color = new Color(200,200,200,10);//grey
 		}
 		
 		return color;
