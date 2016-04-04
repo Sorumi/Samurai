@@ -25,7 +25,6 @@ public class SamuraiView extends JPanel {
 
 	private int number;
 	private BufferedImage image;
-	private BufferedImage shadowImage;
 	
 	private int x;
 	private int y;

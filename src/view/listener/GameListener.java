@@ -34,7 +34,7 @@ public class GameListener implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == game.currentSamurai){
+		if(e.getSource() == game.getCurrentSamurai()){
 			
 		}
 		

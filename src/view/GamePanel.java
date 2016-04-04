@@ -23,7 +23,9 @@ public class GamePanel extends JPanel{
 	private int blockHeight;
 	
 	public ChessBoardPanel chessBoard;
-	public SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
+	
+	private Arrow arrow;
+	private SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
 	
 	private SamuraiView A1;
 	private SamuraiView A2;
@@ -47,6 +49,9 @@ public class GamePanel extends JPanel{
 		chessBoard = new ChessBoardPanel(sideBlockQuantity);
 		this.add(chessBoard);
 		
+		//listener
+		gameListener = new GameListener(this);
+		
 		//samurais 需要设置初始位置home
 		//TODO
 		A1 = new SamuraiView(1, size, 0, 0);
@@ -55,10 +60,13 @@ public class GamePanel extends JPanel{
 		B1 = new SamuraiView(4, size, 14, 0);
 		B2 = new SamuraiView(5, size, 14, 7);
 		B3 = new SamuraiView(6, size, 14, 14);
+		
 		//TODO
 		currentSamurai = A1;
-		gameListener = new GameListener(this);
 		currentSamurai.addMouseListener(gameListener);
+		arrow = new Arrow();
+		arrow.setCurrentSamurai(currentSamurai);
+		this.add(arrow);
 		
 		this.add(A1);
 		this.add(A2);
@@ -80,5 +88,9 @@ public class GamePanel extends JPanel{
 
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(bgImage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, null);
+	}
+	
+	public SamuraiView getCurrentSamurai(){
+		return this.currentSamurai;
 	}
 }

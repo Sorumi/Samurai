@@ -46,6 +46,9 @@ public class Images {
 	//bg
 	public static final BufferedImage BG_0 = createBufferedImage("images/bg_0.png");
 	
+	//arrow
+	public static final BufferedImage ARROW = createBufferedImage("images/arrow.png");
+	
 	//classic
 	public static final BufferedImage SAMURAI_A1 = createBufferedImage("images/samurai_A1.png");
 	public static final BufferedImage SAMURAI_A2 = createBufferedImage("images/samurai_A2.png");
