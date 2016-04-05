@@ -49,6 +49,13 @@ public class Images {
 	//arrow
 	public static final BufferedImage ARROW = createBufferedImage("images/arrow.png");
 	
+	//button
+	public static final ImageIcon BUTTON_OCCUPY = createImageIcon("images/button_occupy.png");
+	public static final ImageIcon BUTTON_MOVE = createImageIcon("images/button_move.png");
+	public static final ImageIcon BUTTON_HIDE = createImageIcon("images/button_hide.png");
+	public static final ImageIcon BUTTON_EXIT = createImageIcon("images/button_exit.png");
+	public static final ImageIcon BUTTON_BACK = createImageIcon("images/button_back.png");
+	
 	//classic
 	public static final BufferedImage SAMURAI_A1 = createBufferedImage("images/samurai_A1.png");
 	public static final BufferedImage SAMURAI_A2 = createBufferedImage("images/samurai_A2.png");

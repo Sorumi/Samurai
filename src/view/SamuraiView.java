@@ -29,7 +29,7 @@ public class SamuraiView extends JPanel {
 	private int x;
 	private int y;
 	
-	public SamuraiView(int number, int size, int x, int y){
+	public SamuraiView(int number, int size){
   		
 		this.number = number;
 		this.image = Images.SAMURAI_CLASSIC[number];
@@ -38,9 +38,12 @@ public class SamuraiView extends JPanel {
 		blockHeightOffset = FIELD_HEIGHT / size / 2;
 				
 		this.setSize(image.getWidth(), image.getHeight());
-		this.setActualLocation(x, y);
 		this.setBackground(null);
 		this.setOpaque(false);
+	}
+	public SamuraiView(int number, int size, int x, int y){
+  		this(number, size);
+		this.setActualLocation(x, y);
 	}
 	
 	public void paintComponent(Graphics g){
@@ -58,6 +61,5 @@ public class SamuraiView extends JPanel {
 		this.y = y;
 		this.setLocation(chessBoardWidthOffset+(x+y+1)*blockWidthOffset+selfWidthOffset,chessBoardHeightOffset+FIELD_HEIGHT/2+(x-y)*blockHeightOffset+selfHeightOffset);
 	}
-	
-	
+
 }

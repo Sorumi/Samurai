@@ -34,6 +34,7 @@ public class GamePanel extends JPanel{
 	private SamuraiView B2;
 	private SamuraiView B3;
 	
+	private ActionButtonPanel actionButtons;
 	private GameListener gameListener;
 	
 	private Image bgImage = Images.BG_0;
@@ -49,9 +50,6 @@ public class GamePanel extends JPanel{
 		chessBoard = new ChessBoardPanel(sideBlockQuantity);
 		this.add(chessBoard);
 		
-		//listener
-		gameListener = new GameListener(this);
-		
 		//samurais 需要设置初始位置home
 		//TODO
 		A1 = new SamuraiView(1, size, 0, 0);
@@ -60,14 +58,7 @@ public class GamePanel extends JPanel{
 		B1 = new SamuraiView(4, size, 14, 0);
 		B2 = new SamuraiView(5, size, 14, 7);
 		B3 = new SamuraiView(6, size, 14, 14);
-		
-		//TODO
-		currentSamurai = A1;
-		currentSamurai.addMouseListener(gameListener);
-		arrow = new Arrow();
-		arrow.setCurrentSamurai(currentSamurai);
-		this.add(arrow);
-		
+	
 		this.add(A1);
 		this.add(A2);
 		this.add(A3);
@@ -75,12 +66,30 @@ public class GamePanel extends JPanel{
 		this.add(B2);
 		this.add(B3);
 		this.setComponentZOrder(A1, 0);
-		this.setComponentZOrder(A2, 0);
-		this.setComponentZOrder(A3, 0);
-		this.setComponentZOrder(B1, 0);
-		this.setComponentZOrder(B2, 0);
-		this.setComponentZOrder(B3, 0);
+		this.setComponentZOrder(A2, 1);
+		this.setComponentZOrder(A3, 2);
+		this.setComponentZOrder(B1, 3);
+		this.setComponentZOrder(B2, 4);
+		this.setComponentZOrder(B3, 5);
 		
+		//TODO
+		currentSamurai = A1;
+		
+		//listener
+		gameListener = new GameListener(this);
+		this.addMouseListener(gameListener);
+		A1.addMouseListener(gameListener);
+		
+		//arrow & actionButtons
+		arrow = new Arrow();
+		arrow.setCurrentSamurai(currentSamurai);
+		this.add(arrow);
+		
+		actionButtons = new ActionButtonPanel(gameListener);
+		actionButtons.setCurrentSamurai(currentSamurai);
+		this.add(actionButtons);
+		this.setComponentZOrder(actionButtons, 6);
+	
 	}
 	
 	public void paintComponent(Graphics g){
@@ -92,5 +101,13 @@ public class GamePanel extends JPanel{
 	
 	public SamuraiView getCurrentSamurai(){
 		return this.currentSamurai;
+	}
+	
+	public ActionButtonPanel getActionButtons(){
+		return this.actionButtons;
+	}
+	
+	public Arrow getArrow(){
+		return this.arrow;
 	}
 }
