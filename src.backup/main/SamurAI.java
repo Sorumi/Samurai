@@ -23,7 +23,7 @@ public class SamurAI {
         mainFrame = new MainFrame();
         gameModel = new GameModel(12,14);
 
-        gameModel.addObserver(mainFrame);
+        gameModel.addObserver(mainFrame.gamePanel);
         MenuController menuController = new MenuController();
         GameController gameController = new GameController();
 

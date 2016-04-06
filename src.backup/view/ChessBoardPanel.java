@@ -74,7 +74,8 @@ public class ChessBoardPanel extends JPanel implements Observer {
 		// TODO Auto-generated method stub
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
-		
+
+		System.out.println(key);
 		//如果听到的消息是‘block’时
 		if (key == "block") {
 			DisplayBlock displayBlock = (DisplayBlock) notifingObject.getValue();
@@ -86,5 +87,6 @@ public class ChessBoardPanel extends JPanel implements Observer {
 			blocks[x][y].repaint();
 			
 		}
+
 	}
 }
