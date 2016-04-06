@@ -10,7 +10,7 @@ import view.listener.GameListener;
 public class ActionButtonPanel extends JPanel {
 	
 	private final int BUTTONPANEL_WIDTH = 160;
-	private final int BUTTONPANEL_HEIGHT = 220;
+	private final int BUTTONPANEL_HEIGHT = 215;
 	
 	private final int BUTTON_WIDTH = 50;
 
@@ -29,7 +29,7 @@ public class ActionButtonPanel extends JPanel {
 		occupyButton = new ActionButton(Images.BUTTON_OCCUPY, gamelistener);	
 		hideButton = new ActionButton(Images.BUTTON_HIDE, gamelistener);
 		exitButton = new ActionButton(Images.BUTTON_EXIT, gamelistener);
-		backButton = new ActionButton(Images.BUTTON_MOVE, gamelistener);
+		backButton = new ActionButton(Images.BUTTON_BACK, gamelistener);
 
 		this.setLayout(null);
 		this.setSize(BUTTONPANEL_WIDTH, BUTTONPANEL_HEIGHT);
@@ -43,6 +43,8 @@ public class ActionButtonPanel extends JPanel {
 		exitButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, BUTTONPANEL_HEIGHT-BUTTON_WIDTH);
 		backButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, BUTTONPANEL_HEIGHT-BUTTON_WIDTH);
 		
+		backButton.setVisible(false);
+		
 		this.add(moveButton);
 		this.add(occupyButton);
 		this.add(hideButton);
@@ -52,7 +54,7 @@ public class ActionButtonPanel extends JPanel {
 	
 	public void setCurrentSamurai(SamuraiView samurai){
 		this.currentSamurai = samurai;
-		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-50);
+		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-60);
 	}
 	
 	public ActionButton getMoveButton(){
@@ -70,6 +72,12 @@ public class ActionButtonPanel extends JPanel {
 	public ActionButton getBackButton(){
 		return this.backButton;
 	}
-	//设置返回按钮显现的接口
-	//TODO
+	//点击move occupy hide进入二级菜单
+	public void setSecondary(boolean isVisible){
+		backButton.setVisible(isVisible);
+		exitButton.setVisible(!isVisible);
+		moveButton.setVisible(!isVisible);
+		occupyButton.setVisible(!isVisible);
+		hideButton.setVisible(!isVisible);
+	}
 }
