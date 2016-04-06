@@ -5,6 +5,7 @@ import model.po.Position;
 import model.state.GameResultState;
 import model.state.GameState;
 
+import java.util.ArrayList;
 import java.util.Timer;
 
 public class GameModel extends BaseModel {
@@ -46,6 +47,10 @@ public class GameModel extends BaseModel {
         return true;
     }
 
+    public void actionPerformed(){
+        super.updateChange(new UpdateMessage("actionPoint",this.players[this.playerSeq[this.currentPlayer - 1]].getActionPoint()));
+    }
+
     //Assign next samurai
     public void assignNext(){
 
@@ -58,9 +63,11 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
+        super.updateChange(new UpdateMessage("vision",this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
 
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
         this.timer.schedule(new CountDownTask(),0);
+
     }
 
     //一个 samurai 一套动作完成时调用此方法

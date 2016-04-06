@@ -10,7 +10,6 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import model.UpdateMessage;
-import model.po.DisplayBlock;
 
 
 /**

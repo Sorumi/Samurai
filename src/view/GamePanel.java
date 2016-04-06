@@ -1,17 +1,14 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.*;
 
 import model.UpdateMessage;
-import model.po.DisplayBlock;
 import view.listener.GameListener;
 
 public class GamePanel extends JPanel implements Observer {
@@ -31,7 +28,8 @@ public class GamePanel extends JPanel implements Observer {
 	private JLabel playerLabel;
 	private JLabel roundLabel;
 	private JLabel timeLabel;
-	
+	private JLabel actionPointLabel;
+
 	private Arrow arrow;
 	private SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
 	
@@ -68,6 +66,11 @@ public class GamePanel extends JPanel implements Observer {
 		this.timeLabel = new JLabel("Time");
 		this.timeLabel.setBounds(900,20,100,40);
 		this.add(this.timeLabel);
+
+		//actionPoint 标签
+		this.actionPointLabel = new JLabel("ActionPoint");
+		this.actionPointLabel.setBounds(700,20,100,40);
+		this.add(this.actionPointLabel);
 
 		//chessboard
 		chessBoard = new ChessBoardPanel(sideBlockQuantity);
@@ -173,9 +176,11 @@ public class GamePanel extends JPanel implements Observer {
 		}else if(key.equals("player")){
 			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
 		}else if(key.equals("round")){
-			this.roundLabel.setText("Round " + Integer.toString((int)notifingObject.getValue()));
+			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
 		}else if(key.equals("time")){
 			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
+		}else if(key.equals("actionPoint")){
+			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
 		}
 
 	}

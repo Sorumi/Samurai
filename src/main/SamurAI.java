@@ -34,29 +34,8 @@ public class SamurAI {
         menuController.startGame();
 
         //暂时扮演 view 发消息的角色
-        gameController.handleAction(1,3);
-
-//        gameModel.sendMsg(1, 3);
-//        gameModel.sendMsg(1, 3);
-
-//        gameModel.sendMsg(1,1);
-//        gameModel.sendMsg(1,2);
-//        gameModel.sendMsg(1,0);
-//        gameModel.sendMsg(1,0);
-
-//        gameModel.sendMsg(0,3);
-//        gameModel.actionDone();
-//        gameModel.sendMsg(0,3);
-//        gameModel.actionDone();
-//        gameModel.sendMsg(0,1);
-//        gameModel.actionDone();
-//        gameModel.sendMsg(0,2);
-//        gameModel.actionDone();
-//        gameModel.sendMsg(0,0);
-//        gameModel.actionDone();
-//        gameModel.sendMsg(0,0);
-//        gameModel.actionDone();
-
+//        gameController.handleAction(1,3);
+//        gameController.handleAction(1,3);
     
         //界面交互测试方法 by Sorumi
         //所有界面接收消息的测试放在TestView中 这里无需改动

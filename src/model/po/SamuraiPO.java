@@ -773,6 +773,7 @@ public class SamuraiPO implements Serializable {
 	public Position getPos(){
 		return this.pos;
 	}
+
     public ArrayList<Position> see(){
     	ArrayList<Position> positions=new ArrayList<Position>();
     	for(int i=5;i>=0;i--){
