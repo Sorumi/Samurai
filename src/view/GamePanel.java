@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import model.UpdateMessage;
 import model.po.DisplayBlock;
@@ -27,6 +27,8 @@ public class GamePanel extends JPanel implements Observer {
 	private int blockHeight;
 	
 	public ChessBoardPanel chessBoard;
+
+	private JLabel roundLabel;
 	
 	private Arrow arrow;
 	private SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
@@ -49,7 +51,12 @@ public class GamePanel extends JPanel implements Observer {
 		this.setBounds(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 //		this.setBackground(null);
 //		this.setOpaque(false);
-		
+
+		//round 标签
+		this.roundLabel = new JLabel("Round");
+		this.roundLabel.setBounds(1000, 20, 100, 40);
+		this.add(this.roundLabel);
+
 		//chessboard
 		chessBoard = new ChessBoardPanel(sideBlockQuantity);
 		this.add(chessBoard);
@@ -153,6 +160,8 @@ public class GamePanel extends JPanel implements Observer {
 			this.setCurrentSamurai((int)notifingObject.getValue());
 		}else if(key.equals("player")){
 
+		}else if(key.equals("round")){
+			this.roundLabel.setText("Round : " + Integer.toString((int)notifingObject.getValue()));
 		}
 
 	}

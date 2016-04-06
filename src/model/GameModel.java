@@ -83,7 +83,7 @@ public class GameModel extends BaseModel {
     public boolean gameOver(){
         this.gameState = GameState.OVER;
 
-        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
+//        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
 
         System.out.println("Game Over.");
         System.exit(0);
