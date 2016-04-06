@@ -40,7 +40,7 @@ public class GameModel extends BaseModel {
     public boolean gameStart(){
         System.out.println("Game Start.");
 
-        super.updateChange(new UpdateMessage("start",this.chessBoardModel));
+//        super.updateChange(new UpdateMessage("start",this.chessBoardModel));
 
         this.assignNext();
         return true;
@@ -49,19 +49,18 @@ public class GameModel extends BaseModel {
     //Assign next samurai
     public void assignNext(){
 
-        super.updateChange(new UpdateMessage("next",this.chessBoardModel));
+//        super.updateChange(new UpdateMessage("next",this.chessBoardModel));
 
         System.out.println("This Player:" + this.playerSeq[this.currentPlayer - 1]);
         System.out.println("This Samurai:" + this.samuraiSeq[this.currentSamurai - 1]);
         System.out.println("This Round:" + this.currentRound);
-        this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
-        this.timer.schedule(new CountDownTask(),0);
-        //此处加上告诉 view 应该是哪个 samurai 行动的代码
 
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
 
+        this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+        this.timer.schedule(new CountDownTask(),0);
     }
 
     //一个 samurai 一套动作完成时调用此方法
