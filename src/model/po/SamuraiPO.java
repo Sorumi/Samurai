@@ -783,4 +783,9 @@ public class SamuraiPO implements Serializable {
 			return false;
 		}
 	}
+
+	public Position getPos(){
+		return this.pos;
+	}
+
 }
