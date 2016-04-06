@@ -5,13 +5,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
+import model.UpdateMessage;
+import model.po.DisplayBlock;
 import view.listener.GameListener;
 
-public class GamePanel extends JPanel{
-	
+public class GamePanel extends JPanel implements Observer {
+
     private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
 	private final int FIELD_WIDTH = 1050;
@@ -79,14 +84,19 @@ public class GamePanel extends JPanel{
 		gameListener = new GameListener(this);
 		this.addMouseListener(gameListener);
 		A1.addMouseListener(gameListener);
+		A2.addMouseListener(gameListener);
+		A3.addMouseListener(gameListener);
+		B1.addMouseListener(gameListener);
+		B2.addMouseListener(gameListener);
+		B3.addMouseListener(gameListener);
 		
 		//arrow & actionButtons
 		arrow = new Arrow();
-		arrow.setCurrentSamurai(currentSamurai);
+//		arrow.setCurrentSamurai(currentSamurai);
 		this.add(arrow);
 		
 		actionButtons = new ActionButtonPanel(gameListener);
-		actionButtons.setCurrentSamurai(currentSamurai);
+//		actionButtons.setCurrentSamurai(currentSamurai);
 		this.add(actionButtons);
 		this.setComponentZOrder(actionButtons, 6);
 	
@@ -98,7 +108,32 @@ public class GamePanel extends JPanel{
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(bgImage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, null);
 	}
-	
+
+	public void setCurrentSamurai(int i){
+		switch (i){
+			case 1:
+				this.currentSamurai = A1;
+				break;
+			case 2:
+				this.currentSamurai = B1;
+				break;
+			case 3:
+				this.currentSamurai = B2;
+				break;
+			case 4:
+				this.currentSamurai = A2;
+				break;
+			case 5:
+				this.currentSamurai = A3;
+				break;
+			case 6:
+				this.currentSamurai = B3;
+				break;
+		}
+		arrow.setCurrentSamurai(currentSamurai);
+		actionButtons.setCurrentSamurai(currentSamurai);
+	}
+
 	public SamuraiView getCurrentSamurai(){
 		return this.currentSamurai;
 	}
@@ -110,4 +145,18 @@ public class GamePanel extends JPanel{
 	public Arrow getArrow(){
 		return this.arrow;
 	}
+
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		UpdateMessage notifingObject = (UpdateMessage)arg;
+		String key = notifingObject.getKey();
+
+		//如果听到的消息是‘samurai’时
+		if(key == "samurai"){
+			System.out.println("UPDATE! Samurai: " + notifingObject.getValue());
+			this.setCurrentSamurai((int)notifingObject.getValue());
+		}
+
+	}
 }
+
