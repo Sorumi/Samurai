@@ -20,6 +20,7 @@ public class Arrow extends JPanel{
 	
 	public void setCurrentSamurai(SamuraiView samurai){
 		this.currentSamurai = samurai;
+		this.setVisible(true);
 		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-getHeight());
 	}
 	

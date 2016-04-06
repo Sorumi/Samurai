@@ -23,6 +23,7 @@ public class MainFrame implements Observer{
 		//布局设为null!
 		frame.getContentPane().setLayout(null);
 		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT+window_fix);
+		frame.setResizable(false);
 //		frame.setUndecorated(true);
 		
 		exitButton = new JButton("Quit");

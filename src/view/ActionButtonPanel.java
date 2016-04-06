@@ -10,7 +10,7 @@ import view.listener.GameListener;
 public class ActionButtonPanel extends JPanel {
 	
 	private final int BUTTONPANEL_WIDTH = 160;
-	private final int BUTTONPANEL_HEIGHT = 215;
+	private final int BUTTONPANEL_HEIGHT = 200;
 	
 	private final int BUTTON_WIDTH = 50;
 
@@ -54,7 +54,9 @@ public class ActionButtonPanel extends JPanel {
 	
 	public void setCurrentSamurai(SamuraiView samurai){
 		this.currentSamurai = samurai;
-		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-60);
+		this.setVisible(false);
+		this.setSecondary(false);
+		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-50);
 	}
 	
 	public ActionButton getMoveButton(){
