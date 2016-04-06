@@ -57,7 +57,7 @@ public class Player {
                 case 0:
                     if(this.actionPoint >= 4){
                         ArrayList<Position> positions
-                                = this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel);
+                                = this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,true);
                         if(!positions.isEmpty()) {
                             done = true;
                             this.actionPoint -= 4;
@@ -65,18 +65,34 @@ public class Player {
                             for(Position position : positions){
                                 int x = position.getX();
                                 int y = position.getY();
-                                int state = this.chessBoardModel.getActualBlockState(x,y);
 
                                 if(this.playerNum == 0){
-                                    if(state == 2 || state == 3 || state == 6){
-
+                                    if(position.getX() == samuraiPOs[2].getPos().getX()
+                                            && position.getY() == samuraiPOs[2].getPos().getY()){
+                                        samuraiPOs[2].beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                    }
+                                    if(position.getX() == samuraiPOs[3].getPos().getX()
+                                            && position.getY() == samuraiPOs[3].getPos().getY()){
+                                        samuraiPOs[3].beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                    }
+                                    if(position.getX() == samuraiPOs[6].getPos().getX()
+                                            && position.getY() == samuraiPOs[6].getPos().getY()){
+                                        samuraiPOs[6].beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                     }
                                 }else{
-                                    if(state == 1 || state == 4 || state == 5){
-
+                                    if(position.getX() == samuraiPOs[1].getPos().getX()
+                                            && position.getY() == samuraiPOs[1].getPos().getY()){
+                                        samuraiPOs[1].beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                    }
+                                    if(position.getX() == samuraiPOs[4].getPos().getX()
+                                            && position.getY() == samuraiPOs[4].getPos().getY()){
+                                        samuraiPOs[4].beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                    }
+                                    if(position.getX() == samuraiPOs[5].getPos().getX()
+                                            && position.getY() == samuraiPOs[5].getPos().getY()){
+                                        samuraiPOs[5].beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                     }
                                 }
-
                             }
                         }
                     }

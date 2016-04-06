@@ -2,7 +2,6 @@ package model.po;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import model.ChessBoardModel;
 
 /**
@@ -39,15 +38,9 @@ public class SamuraiPO implements Serializable {
 			}
 			System.out.println();
 		}
-		No5.move(0, cbm);
-		No5.move(2, cbm);
-		ArrayList<Position> positions = No5.occupied(3, cbm,true);
-		No5.move(0, cbm);
-		No5.hide(cbm);
-		No3.move(1, cbm);
-		No3.occupied(1, cbm,true);
+		ArrayList<Position> positions=No3.see();
 		for (Position po : positions) {
-			System.out.println(po.getX() + "  " + po.getY());
+			cbm.changeActualBlock(po.getX(), po.getY(), 9);
 		}
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
@@ -56,14 +49,7 @@ public class SamuraiPO implements Serializable {
 			}
 			System.out.println();
 		}
-		for (int i = 0; i <= 14; i++) {
-			System.out.print(i + ":");
-			for (int x = 0; x <= 14; x++) {
-				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
-			}
-			System.out.println();
 		}
-	}
 
 	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
 		this.number = number;
@@ -787,5 +773,34 @@ public class SamuraiPO implements Serializable {
 	public Position getPos(){
 		return this.pos;
 	}
-
+    public ArrayList<Position> see(){
+    	ArrayList<Position> positions=new ArrayList<Position>();
+    	for(int i=5;i>=0;i--){
+    		if(pos.getY()-i>=0){
+    			for(int a=i-5;a<=5-i;a++){
+    				if((pos.getX()+a>=0)&&(pos.getX()+a<=length)){
+    					Position position=new Position(pos.getX()+a, pos.getY()-i);
+    					positions.add(position);
+    				}
+    			}
+    		}
+    	}
+    	for(int i=5;i>0;i++){
+    		if(pos.getY()+i<=length){
+    			for(int a=i-5;a<=5-i;a++){
+    				if(pos.getX()+a>=0&&pos.getX()+a<=length){
+    					Position position=new Position(pos.getX()+a, pos.getY()+i);
+    					positions.add(position);
+    				}
+    			}
+    		}
+    	}
+    	return positions;
+    }   
 }
+
+
+
+
+
+
