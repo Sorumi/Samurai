@@ -50,12 +50,11 @@ public class GamePanel extends JPanel implements Observer {
 //		this.setBackground(null);
 //		this.setOpaque(false);
 		
-		//chesboard
+		//chessboard
 		chessBoard = new ChessBoardPanel(sideBlockQuantity);
 		this.add(chessBoard);
-		
+
 		//samurais 需要设置初始位置home
-		//TODO
 		A1 = new SamuraiView(1, size, 0, 0);
 		A2 = new SamuraiView(2, size, 0, 7);
 		A3 = new SamuraiView(3, size, 0, 14);
@@ -69,10 +68,6 @@ public class GamePanel extends JPanel implements Observer {
 		this.add(B1);
 		this.add(B2);
 		this.add(B3);
-
-		
-		//TODO
-		currentSamurai = A1;
 		
 		//listener
 		gameListener = new GameListener(this);
@@ -86,11 +81,9 @@ public class GamePanel extends JPanel implements Observer {
 		
 		//arrow & actionButtons
 		arrow = new Arrow();
-//		arrow.setCurrentSamurai(currentSamurai);
 		this.add(arrow);
 		
 		actionButtons = new ActionButtonPanel(gameListener);
-//		actionButtons.setCurrentSamurai(currentSamurai);
 		this.add(actionButtons);
 		this.setComponentZOrder(actionButtons, 6);
 	
