@@ -83,7 +83,7 @@ public class GameModel extends BaseModel {
     public boolean gameOver(){
         this.gameState = GameState.OVER;
 
-        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
+//        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
 
         System.out.println("Game Over.");
         System.exit(0);
@@ -111,6 +111,7 @@ public class GameModel extends BaseModel {
         public void run(){
             for(int i = 3; i > 0; i--) {
                 try {
+                    updateChange(new UpdateMessage("time",i));
                     System.out.println("还有"+i+"秒");
                     Thread.sleep(1000);
                 }catch (Exception e){
