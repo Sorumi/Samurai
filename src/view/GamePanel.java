@@ -10,7 +10,6 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import model.UpdateMessage;
 import model.po.DisplayBlock;
 import view.listener.GameListener;
@@ -70,12 +69,7 @@ public class GamePanel extends JPanel implements Observer {
 		this.add(B1);
 		this.add(B2);
 		this.add(B3);
-		this.setComponentZOrder(A1, 0);
-		this.setComponentZOrder(A2, 1);
-		this.setComponentZOrder(A3, 2);
-		this.setComponentZOrder(B1, 3);
-		this.setComponentZOrder(B2, 4);
-		this.setComponentZOrder(B3, 5);
+
 		
 		//TODO
 		currentSamurai = A1;
@@ -100,6 +94,16 @@ public class GamePanel extends JPanel implements Observer {
 		this.add(actionButtons);
 		this.setComponentZOrder(actionButtons, 6);
 	
+		//order
+		this.setComponentZOrder(A1, 0);
+		this.setComponentZOrder(A2, 1);
+		this.setComponentZOrder(A3, 2);
+		this.setComponentZOrder(B1, 3);
+		this.setComponentZOrder(B2, 4);
+		this.setComponentZOrder(B3, 5);
+		this.setComponentZOrder(arrow, 6);
+		this.setComponentZOrder(actionButtons, 7);
+		this.setComponentZOrder(chessBoard, 8);
 	}
 	
 	public void paintComponent(Graphics g){
