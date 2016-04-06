@@ -63,9 +63,6 @@ public class Player {
                             this.actionPoint -= 4;
                             //检测需不需要把别人踢回去
                             for(Position position : positions){
-                                int x = position.getX();
-                                int y = position.getY();
-
                                 if(this.playerNum == 0){
                                     if(position.getX() == samuraiPOs[2].getPos().getX()
                                             && position.getY() == samuraiPOs[2].getPos().getY()){

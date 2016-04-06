@@ -149,9 +149,10 @@ public class GamePanel extends JPanel implements Observer {
 		String key = notifingObject.getKey();
 
 		//如果听到的消息是‘samurai’时
-		if(key == "samurai"){
-			System.out.println("UPDATE! Samurai: " + notifingObject.getValue());
+		if(key.equals("samurai")){
 			this.setCurrentSamurai((int)notifingObject.getValue());
+		}else if(key.equals("player")){
+
 		}
 
 	}
