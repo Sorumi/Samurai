@@ -28,7 +28,9 @@ public class GamePanel extends JPanel implements Observer {
 	
 	public ChessBoardPanel chessBoard;
 
+	private JLabel playerLabel;
 	private JLabel roundLabel;
+	private JLabel timeLabel;
 	
 	private Arrow arrow;
 	private SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
@@ -52,10 +54,20 @@ public class GamePanel extends JPanel implements Observer {
 //		this.setBackground(null);
 //		this.setOpaque(false);
 
+		//player 标签
+		this.playerLabel = new JLabel("Player");
+		this.playerLabel.setBounds(800,20,100,40);
+		this.add(this.playerLabel);
+
 		//round 标签
 		this.roundLabel = new JLabel("Round");
 		this.roundLabel.setBounds(1000, 20, 100, 40);
 		this.add(this.roundLabel);
+
+		//time 标签
+		this.timeLabel = new JLabel("Time");
+		this.timeLabel.setBounds(900,20,100,40);
+		this.add(this.timeLabel);
 
 		//chessboard
 		chessBoard = new ChessBoardPanel(sideBlockQuantity);
@@ -159,9 +171,11 @@ public class GamePanel extends JPanel implements Observer {
 		if(key.equals("samurai")){
 			this.setCurrentSamurai((int)notifingObject.getValue());
 		}else if(key.equals("player")){
-
+			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
 		}else if(key.equals("round")){
-			this.roundLabel.setText("Round : " + Integer.toString((int)notifingObject.getValue()));
+			this.roundLabel.setText("Round " + Integer.toString((int)notifingObject.getValue()));
+		}else if(key.equals("time")){
+			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
 		}
 
 	}
