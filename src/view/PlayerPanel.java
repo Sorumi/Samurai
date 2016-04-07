@@ -29,7 +29,7 @@ public class PlayerPanel extends JPanel{
 		this.add(circlePanel);
 		
 		pointsPanel = new PointsPanel(); 
-		pointsPanel.setLocation(102, 174);
+		pointsPanel.setLocation(100, 170);
 		this.add(pointsPanel);
 		
 		this.setComponentZOrder(circlePanel, 0);
@@ -54,21 +54,15 @@ public class PlayerPanel extends JPanel{
 		//roundPanel
 		g2.fillOval(0, 0, 45, 45);
 	}
-	
-	public void setCurrentSamurai(int num){
-		currentSamurai = num;
-		if (num>=player && num<=player*3) {
-			//pointpanel 出现
-		}
-	}
 	public void setTimeRest(int timeRest){
 		circlePanel.setTimeRest(timeRest);
 	}
-	public void setPointsTotal(int pointsTotal){
-		pointsPanel.setPointsTotal(pointsTotal);
+	public PointsPanel getPointsPanel(){
+		return this.pointsPanel;
 	}
-	public void setPointsRest(int pointsRest){
-		pointsPanel.setPointsRest(pointsRest);
+	public void setCurrentSamurai(int currentSamurai){
+		this.currentSamurai = currentSamurai;
+		pointsPanel.setCurrentSamurai(currentSamurai);
 	}
 	//set round
 }

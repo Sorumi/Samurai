@@ -168,6 +168,8 @@ public class GamePanel extends JPanel implements Observer {
 		}
 		arrow.setCurrentSamurai(currentSamurai);
 		actionButtons.setCurrentSamurai(currentSamurai);
+		playerA.setCurrentSamurai(currentSamurai.getNum());
+		playerB.setCurrentSamurai(currentSamurai.getNum());
 	}
 
 	public SamuraiView getCurrentSamurai(){
@@ -186,9 +188,13 @@ public class GamePanel extends JPanel implements Observer {
 		switch(player){
 			case 0:
 				this.currentPlayer = playerA;
+				playerA.getPointsPanel().setIsShow(true);
+				playerB.getPointsPanel().setIsShow(false);
 				break;
 			case 1:
-				this.currentPlayer = playerB;//TODO
+				this.currentPlayer = playerB;
+				playerA.getPointsPanel().setIsShow(false);
+				playerB.getPointsPanel().setIsShow(true);
 				break;
 		}
 	}
@@ -211,9 +217,10 @@ public class GamePanel extends JPanel implements Observer {
 			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
 		}else if(key.equals("actionPoint")){
 			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
-			this.currentPlayer.setPointsRest((int)notifingObject.getValue());
+			this.currentPlayer.getPointsPanel().setPointsRest((int)notifingObject.getValue());
+			this.currentPlayer.repaint();
 		}else if(key.equals("pointsTotal")){
-			this.currentPlayer.setPointsTotal((int)notifingObject.getValue());
+			this.currentPlayer.getPointsPanel().setPointsTotal((int)notifingObject.getValue());
 		}
 		
 

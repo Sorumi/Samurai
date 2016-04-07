@@ -61,5 +61,9 @@ public class SamuraiView extends JPanel {
 		this.y = y;
 		this.setLocation(chessBoardWidthOffset+(x+y+1)*blockWidthOffset+selfWidthOffset,chessBoardHeightOffset+FIELD_HEIGHT/2+(x-y)*blockHeightOffset+selfHeightOffset);
 	}
+	
+	public int getNum(){
+		return this.number;
+	}
 
 }
