@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
@@ -10,25 +13,62 @@ import javax.swing.JPanel;
 public class PlayerPanel extends JPanel{
 	
 	private int player;
+	private int currentSamurai;
+	private int pointsTotal;
 	
-	private CirclePanel circle;
+	private CirclePanel circlePanel;
+	private PointsPanel pointsPanel;
 	
-	public PlayerPanel(int player, int timeInAll){
+	public PlayerPanel(int player, int timeTotal){
 		
 		this.player = player;
 		this.setLayout(null);
 		
-		circle = new CirclePanel(player, timeInAll);
-		circle.setLocation(0, 0);
-
-		this.add(circle);
+		circlePanel = new CirclePanel(player, timeTotal);
+		circlePanel.setLocation(0, 0);
+		this.add(circlePanel);
 		
-		this.setSize(300, 240);
-		this.setLocation(0, 0);
-	}
+		pointsPanel = new PointsPanel(); 
+		pointsPanel.setLocation(102, 174);
+		this.add(pointsPanel);
+		
+		this.setComponentZOrder(circlePanel, 0);
+		this.setComponentZOrder(pointsPanel, 1);
+		
+		this.setSize(304, 204);
+		if(player == 0){
+			this.setLocation(0, 0);
+		}else{
+			this.setLocation(850, 0);
+		}
 
-	public void setTimeRest(int timeRest){
-		circle.setTimeRest(timeRest);
 	}
-	//setRound
+	
+	public void paintComponent(Graphics g){
+		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		//平滑效果！！！
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+		g2.setColor(Color.white);
+		//roundPanel
+		g2.fillOval(0, 0, 45, 45);
+	}
+	
+	public void setCurrentSamurai(int num){
+		currentSamurai = num;
+		if (num>=player && num<=player*3) {
+			//pointpanel 出现
+		}
+	}
+	public void setTimeRest(int timeRest){
+		circlePanel.setTimeRest(timeRest);
+	}
+	public void setPointsTotal(int pointsTotal){
+		pointsPanel.setPointsTotal(pointsTotal);
+	}
+	public void setPointsRest(int pointsRest){
+		pointsPanel.setPointsRest(pointsRest);
+	}
+	//set round
 }

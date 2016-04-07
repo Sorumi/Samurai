@@ -59,7 +59,7 @@ public class Images {
 	//logo
 	public static final ImageIcon PLAYER_LOGO_A = createImageIcon("images/PLAYER_LOGO_A.png");
 	public static final ImageIcon PLAYER_LOGO_B = createImageIcon("images/PLAYER_LOGO_B.png");
-	public static final ImageIcon[] PLAYER_LOGO = {null, PLAYER_LOGO_A, PLAYER_LOGO_B};
+	public static final ImageIcon[] PLAYER_LOGO = {PLAYER_LOGO_A, PLAYER_LOGO_B};
 	
 	//classic
 	public static final BufferedImage SAMURAI_A1 = createBufferedImage("images/samurai_A1.png");

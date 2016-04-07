@@ -22,9 +22,9 @@ public class GamePanel extends JPanel implements Observer {
 	private int sideBlockQuantity;
 	private int blockWidth;
 	private int blockHeight;
-	
-	private int timeInAll = 30;
-	private int roundInAll = 12;
+	//TODO
+	private int timeTotal = 30;
+	private int roundTotal = 12;
 	
 	public ChessBoardPanel chessBoard;
 
@@ -43,6 +43,7 @@ public class GamePanel extends JPanel implements Observer {
 	private SamuraiView B2;
 	private SamuraiView B3;
 	
+	private PlayerPanel currentPlayer;
 	private PlayerPanel playerA;
 	private PlayerPanel playerB;
 	
@@ -60,8 +61,10 @@ public class GamePanel extends JPanel implements Observer {
 
 		
 		//playerInfo
-		playerA = new PlayerPanel(1, timeInAll);
+		playerA = new PlayerPanel(0, timeTotal);
 		this.add(playerA);
+		playerB = new PlayerPanel(1, timeTotal);
+		this.add(playerB);
 		
 		//player 标签
 		this.playerLabel = new JLabel("Player");
@@ -88,6 +91,7 @@ public class GamePanel extends JPanel implements Observer {
 		this.add(chessBoard);
 
 		//samurais 需要设置初始位置home
+		//TODO
 		A1 = new SamuraiView(1, size, 0, 0);
 		A2 = new SamuraiView(2, size, 0, 7);
 		A3 = new SamuraiView(3, size, 0, 14);
@@ -177,6 +181,17 @@ public class GamePanel extends JPanel implements Observer {
 	public Arrow getArrow(){
 		return this.arrow;
 	}
+	
+	public void setCurrentPlayer(int player){
+		switch(player){
+			case 0:
+				this.currentPlayer = playerA;
+				break;
+			case 1:
+				this.currentPlayer = playerB;//TODO
+				break;
+		}
+	}
 
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
@@ -188,13 +203,19 @@ public class GamePanel extends JPanel implements Observer {
 			this.setCurrentSamurai((int)notifingObject.getValue());
 		}else if(key.equals("player")){
 			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
+			this.setCurrentPlayer((int)notifingObject.getValue());
+			
 		}else if(key.equals("round")){
 			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
 		}else if(key.equals("time")){
 			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
 		}else if(key.equals("actionPoint")){
 			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
+			this.currentPlayer.setPointsRest((int)notifingObject.getValue());
+		}else if(key.equals("pointsTotal")){
+			this.currentPlayer.setPointsTotal((int)notifingObject.getValue());
 		}
+		
 
 	}
 }

@@ -20,12 +20,14 @@ public class GameModel extends BaseModel {
     private int currentRound;
     private int totalRound;
     private int length;
+    private int timeTotal;
     private Timer timer;
 
     public GameModel(int round,int length){
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.gameState = GameState.RUN;
+        this.timeTotal = 3;
         this.timer = new Timer();
         this.currentRound = 1;
         this.totalRound = round;
@@ -59,10 +61,11 @@ public class GameModel extends BaseModel {
         System.out.println("This Player:" + this.playerSeq[this.currentPlayer - 1]);
         System.out.println("This Samurai:" + this.samuraiSeq[this.currentSamurai - 1]);
         System.out.println("This Round:" + this.currentRound);
-
+       
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
+        super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
         super.updateChange(new UpdateMessage("vision",this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
 
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
@@ -116,7 +119,7 @@ public class GameModel extends BaseModel {
 
     public class CountDownTask extends java.util.TimerTask{
         public void run(){
-            for(int i = 3; i > 0; i--) {
+            for(int i = timeTotal; i > 0; i--) {
                 try {
                     updateChange(new UpdateMessage("time",i));
                     System.out.println("还有"+i+"秒");

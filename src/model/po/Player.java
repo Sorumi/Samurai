@@ -19,9 +19,11 @@ public class Player {
     private int currentSamurai;
     private ChessBoardModel chessBoardModel;
     private int actionPoint;
+    private int pointsTotal;
 
     public Player(GameModel model,int playerNum){
         this.canAction = false;
+        this.pointsTotal = 7;
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
@@ -40,7 +42,7 @@ public class Player {
     public void setEnableToAction(){
         this.canAction = true;
         this.currentSamurai = gameModel.getCurrentSamurai();
-        this.actionPoint = 7;
+        this.actionPoint = pointsTotal;
         this.gameModel.actionPerformed();
     }
 
@@ -180,7 +182,11 @@ public class Player {
     public int getActionPoint(){
         return this.actionPoint;
     }
-
+    
+    public int getPointsTotal(){
+        return this.pointsTotal;
+    }
+    
     public boolean canAction(){
         return this.canAction;
     }
