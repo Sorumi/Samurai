@@ -21,4 +21,16 @@ public class BlockColor {
 		
 		return color;
 	}
+	
+	public static Color getOtherColor(int x) {
+		Color color;
+		switch(x) {
+		case 0: color =  new Color(200,200,200,10);break;//grey
+		case 1: color = new Color(205,223,203);break;//PlayerA
+		case 2: color = new Color(196,187,216);break;//PlayerB
+		default: color = new Color(200,200,200,10);//grey
+		}
+		
+		return color;
+	}
 }

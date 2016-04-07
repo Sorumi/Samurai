@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.Stroke;
 import java.awt.color.*;
 import java.awt.image.BufferedImage;
@@ -80,23 +81,24 @@ public class FieldBlock extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2 = (Graphics2D) g;
+		//平滑效果！！！
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
-			Graphics2D g2 = (Graphics2D) g;
-		
-			//设置菱形边框
-			Stroke stroke = new BasicStroke((float)strokeSize);
-			g2.setStroke(stroke);
-			g2.setColor(Color.white);
-			//画菱形
-			int[] xPoints = {strokeSize,width/2,width-strokeSize,width/2};
-			int[] yPoints = {height/2,strokeSize,height/2,height-strokeSize};
-			g2.drawPolygon(xPoints, yPoints, 4);
-			g2.setColor(color);
-			g2.fillPolygon(xPoints, yPoints, 4);
+		//设置菱形边框
+		Stroke stroke = new BasicStroke((float)strokeSize);
+		g2.setStroke(stroke);
+		g2.setColor(Color.white);
+		//画菱形
+		int[] xPoints = {strokeSize,width/2,width-strokeSize,width/2};
+		int[] yPoints = {height/2,strokeSize,height/2,height-strokeSize};
+		g2.drawPolygon(xPoints, yPoints, 4);
+		g2.setColor(color);
+		g2.fillPolygon(xPoints, yPoints, 4);
 
-			this.setSize(width, height);
-//			this.setSize(image.getWidth(), image.getHeight());
-		
+		this.setSize(width, height);
+//		this.setSize(image.getWidth(), image.getHeight());
+	
 	}
 	
 

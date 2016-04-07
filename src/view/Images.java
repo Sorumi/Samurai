@@ -56,6 +56,11 @@ public class Images {
 	public static final ImageIcon BUTTON_EXIT = createImageIcon("images/button_exit.png");
 	public static final ImageIcon BUTTON_BACK = createImageIcon("images/button_back.png");
 	
+	//logo
+	public static final ImageIcon PLAYER_LOGO_A = createImageIcon("images/PLAYER_LOGO_A.png");
+	public static final ImageIcon PLAYER_LOGO_B = createImageIcon("images/PLAYER_LOGO_B.png");
+	public static final ImageIcon[] PLAYER_LOGO = {null, PLAYER_LOGO_A, PLAYER_LOGO_B};
+	
 	//classic
 	public static final BufferedImage SAMURAI_A1 = createBufferedImage("images/samurai_A1.png");
 	public static final BufferedImage SAMURAI_A2 = createBufferedImage("images/samurai_A2.png");
@@ -66,5 +71,5 @@ public class Images {
 	public static final BufferedImage[] SAMURAI_CLASSIC = {null,SAMURAI_A1,SAMURAI_A2,SAMURAI_A3,SAMURAI_B1,SAMURAI_B2,SAMURAI_B3};
 	
 	public static final BufferedImage SAMURAI_CLASSIC_SHADOW_1 = createBufferedImage("images/samurai_shadow_1.png");
-	public static final BufferedImage[] SAMURAI_CLASSIC_SHADOW = {SAMURAI_CLASSIC_SHADOW_1};
+	
 }

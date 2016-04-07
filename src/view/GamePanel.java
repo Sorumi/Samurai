@@ -23,6 +23,9 @@ public class GamePanel extends JPanel implements Observer {
 	private int blockWidth;
 	private int blockHeight;
 	
+	private int timeInAll = 30;
+	private int roundInAll = 12;
+	
 	public ChessBoardPanel chessBoard;
 
 	private JLabel playerLabel;
@@ -40,6 +43,9 @@ public class GamePanel extends JPanel implements Observer {
 	private SamuraiView B2;
 	private SamuraiView B3;
 	
+	private PlayerPanel playerA;
+	private PlayerPanel playerB;
+	
 	private ActionButtonPanel actionButtons;
 	private GameListener gameListener;
 	
@@ -52,6 +58,11 @@ public class GamePanel extends JPanel implements Observer {
 //		this.setBackground(null);
 //		this.setOpaque(false);
 
+		
+		//playerInfo
+		playerA = new PlayerPanel(1, timeInAll);
+		this.add(playerA);
+		
 		//player 标签
 		this.playerLabel = new JLabel("Player");
 		this.playerLabel.setBounds(800,20,100,40);
@@ -107,7 +118,8 @@ public class GamePanel extends JPanel implements Observer {
 		
 		actionButtons = new ActionButtonPanel(gameListener);
 		this.add(actionButtons);
-		this.setComponentZOrder(actionButtons, 6);
+		
+
 	
 		//order
 		this.setComponentZOrder(A1, 0);
@@ -119,6 +131,7 @@ public class GamePanel extends JPanel implements Observer {
 		this.setComponentZOrder(arrow, 6);
 		this.setComponentZOrder(actionButtons, 7);
 		this.setComponentZOrder(chessBoard, 8);
+		this.setComponentZOrder(playerA, 9);
 	}
 	
 	public void paintComponent(Graphics g){
