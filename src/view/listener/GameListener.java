@@ -27,13 +27,12 @@ public class GameListener implements MouseListener{
 		} else if (e.getSource() == game.getActionButtons().getMoveButton()) {
 			game.getActionButtons().setSecondary(true);
 			//发送判断
-			//出现（四个方向的）尖头
+			//出现（四个方向的）箭头
 		} else if (e.getSource() == game.getActionButtons().getOccupyButton()) {
 			game.getActionButtons().setSecondary(true);
 			//发送判断
-			//出现四个方向的尖头
+			//出现四个方向的箭头
 		} else if (e.getSource() == game.getActionButtons().getHideButton()) {
-			game.getActionButtons().setSecondary(true);
 			//
 		} else if (e.getSource() == game.getActionButtons().getBackButton()) {
 			game.getActionButtons().setSecondary(false);
@@ -64,14 +63,30 @@ public class GameListener implements MouseListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getSource() == game.getActionButtons().getDirectionPanel().getUpButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(0, true);
+		}else if(e.getSource() == game.getActionButtons().getDirectionPanel().getLeftButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(1, true);
+		}else if(e.getSource() == game.getActionButtons().getDirectionPanel().getRightButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(2, true);
+		}else if(e.getSource() == game.getActionButtons().getDirectionPanel().getDownButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(3, true);
+		}
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getSource() == game.getActionButtons().getDirectionPanel().getUpButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(0, false);
+		}else if(e.getSource() == game.getActionButtons().getDirectionPanel().getLeftButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(1, false);
+		}else if(e.getSource() == game.getActionButtons().getDirectionPanel().getRightButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(2, false);
+		}else if(e.getSource() == game.getActionButtons().getDirectionPanel().getDownButton()){
+			game.getActionButtons().getDirectionPanel().setHighLight(3, false);
+		}
 	}
 
 }

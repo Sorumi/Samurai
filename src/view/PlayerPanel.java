@@ -70,7 +70,8 @@ public class PlayerPanel extends JPanel{
 		Font f1 = new Font("Tsukushi B Round Gothic",Font.PLAIN,20);
 		g2.setFont(f1);
 		g2.setColor(BlockColor.getBlockColor(currentSamurai));//BlockColor.getOtherColor(2)
-		g2.drawString(currentRound+"", roundX+16, 26);
+		String roundStr = currentRound+"";
+		g2.drawString(roundStr, roundX+23-roundStr.length()*6, 28);
 
 	}
 	public CirclePanel getCirclePanel(){
@@ -85,5 +86,6 @@ public class PlayerPanel extends JPanel{
 	}
 	public void setCurrentRound(int round){
 		this.currentRound = round;
+//		this.currentRound = 12;
 	}
 }

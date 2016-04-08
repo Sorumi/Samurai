@@ -56,6 +56,18 @@ public class Images {
 	public static final ImageIcon BUTTON_EXIT = createImageIcon("images/button_exit.png");
 	public static final ImageIcon BUTTON_BACK = createImageIcon("images/button_back.png");
 	
+	//direction
+	public static final ImageIcon DIRECTION_0 = createImageIcon("images/direction_0.png");
+	public static final ImageIcon DIRECTION_1 = createImageIcon("images/direction_1.png");
+	public static final ImageIcon DIRECTION_2 = createImageIcon("images/direction_2.png");
+	public static final ImageIcon DIRECTION_3 = createImageIcon("images/direction_3.png");
+	public static final ImageIcon[] DIRECTION = {DIRECTION_0, DIRECTION_1, DIRECTION_2, DIRECTION_3};
+	public static final ImageIcon DIRECTION_HL_0 = createImageIcon("images/direction_highlight_0.png");
+	public static final ImageIcon DIRECTION_HL_1 = createImageIcon("images/direction_highlight_1.png");
+	public static final ImageIcon DIRECTION_HL_2 = createImageIcon("images/direction_highlight_2.png");
+	public static final ImageIcon DIRECTION_HL_3 = createImageIcon("images/direction_highlight_3.png");
+	public static final ImageIcon[] DIRECTION_HL = {DIRECTION_HL_0, DIRECTION_HL_1, DIRECTION_HL_2, DIRECTION_HL_3};
+	
 	//logo
 	public static final ImageIcon PLAYER_LOGO_A = createImageIcon("images/PLAYER_LOGO_A.png");
 	public static final ImageIcon PLAYER_LOGO_B = createImageIcon("images/PLAYER_LOGO_B.png");

@@ -27,7 +27,7 @@ public class GameModel extends BaseModel {
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.gameState = GameState.RUN;
-        this.timeTotal = 3;
+        this.timeTotal = 5;
         this.timer = new Timer();
         this.currentRound = 1;
         this.totalRound = round;
