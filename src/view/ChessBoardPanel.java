@@ -68,6 +68,7 @@ public class ChessBoardPanel extends JPanel implements Observer {
 
 		g2.drawImage(bgImage, 0, 0, FIELD_WIDTH, FIELD_HEIGHT, null);
 		this.setSize(FIELD_WIDTH, FIELD_HEIGHT);
+
 	}
 	
 	public FieldBlock getBlock(int x, int y){

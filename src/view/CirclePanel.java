@@ -29,7 +29,7 @@ public class CirclePanel extends JPanel {
 	public CirclePanel(int player, int timeTotal){
 		this.player = player;
 		this.timeTotal = timeTotal;
-		this.timeRest = timeTotal;
+//		this.timeRest = timeTotal;
 		
 		logo = Images.PLAYER_LOGO[player];
 		playerLogo = new JLabel();
@@ -91,13 +91,13 @@ public class CirclePanel extends JPanel {
 		startAngle = 90.0;
 		arcAngle = 180.0 / timeTotal;
 		g2.setColor(BlockColor.getOtherColor(player));
-		Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*timeRest, Arc2D.PIE);
+		Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*(timeRest-1), Arc2D.PIE);
 		g2.fill(arc);
+		
 	}
 	
 	public void setTimeRest(int timeRest){
 		this.timeRest = timeRest;
-		this.repaint();
 	}
 	
 }

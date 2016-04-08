@@ -97,7 +97,6 @@ public class FieldBlock extends JPanel{
 		g2.fillPolygon(xPoints, yPoints, 4);
 
 		this.setSize(width, height);
-//		this.setSize(image.getWidth(), image.getHeight());
 	
 	}
 	

@@ -44,7 +44,7 @@ public class GameModel extends BaseModel {
         System.out.println("Game Start.");
 
 //        super.updateChange(new UpdateMessage("start",this.chessBoardModel));
-
+        //start时发一下samurai的初始位置
         this.assignNext();
         return true;
     }

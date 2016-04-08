@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements Observer {
 	private int blockWidth;
 	private int blockHeight;
 	//TODO
-	private int timeTotal = 30;
+	private int timeTotal = 3;
 	private int roundTotal = 12;
 	
 	public ChessBoardPanel chessBoard;
@@ -122,8 +122,6 @@ public class GamePanel extends JPanel implements Observer {
 		
 		actionButtons = new ActionButtonPanel(gameListener);
 		this.add(actionButtons);
-		
-
 	
 		//order
 		this.setComponentZOrder(A1, 0);
@@ -143,6 +141,7 @@ public class GamePanel extends JPanel implements Observer {
 
 		Graphics2D g2 = (Graphics2D) g;
 		g2.drawImage(bgImage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, null);
+		
 	}
 
 	public void setCurrentSamurai(int i){
@@ -198,6 +197,13 @@ public class GamePanel extends JPanel implements Observer {
 				break;
 		}
 	}
+	
+	public void setCurrentRound(int round){
+		playerA.setCurrentRound(round);
+		playerB.setCurrentRound(round);
+		playerA.repaint();
+		playerB.repaint();
+	}
 
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
@@ -213,12 +219,18 @@ public class GamePanel extends JPanel implements Observer {
 			
 		}else if(key.equals("round")){
 			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
+			this.setCurrentRound((int)notifingObject.getValue());
+			
 		}else if(key.equals("time")){
 			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
+			this.currentPlayer.getCirclePanel().setTimeRest((int)notifingObject.getValue());
+			this.currentPlayer.repaint();
+			
 		}else if(key.equals("actionPoint")){
 			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
 			this.currentPlayer.getPointsPanel().setPointsRest((int)notifingObject.getValue());
 			this.currentPlayer.repaint();
+			
 		}else if(key.equals("pointsTotal")){
 			this.currentPlayer.getPointsPanel().setPointsTotal((int)notifingObject.getValue());
 		}
