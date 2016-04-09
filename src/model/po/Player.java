@@ -19,9 +19,11 @@ public class Player {
     private int currentSamurai;
     private ChessBoardModel chessBoardModel;
     private int actionPoint;
+    private int pointsTotal;
 
     public Player(GameModel model,int playerNum){
         this.canAction = false;
+        this.pointsTotal = 7;
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
@@ -40,10 +42,23 @@ public class Player {
     public void setEnableToAction(){
         this.canAction = true;
         this.currentSamurai = gameModel.getCurrentSamurai();
-        this.actionPoint = 7;
+        this.actionPoint = pointsTotal;
+        this.gameModel.actionPerformed();
     }
 
-
+    public ArrayList<Position> showVision(){
+        ArrayList<Position> positions = new ArrayList<>();
+        if(this.playerNum == 1){
+//            positions.addAll(samuraiPOs[2].see());
+//            positions.addAll(samuraiPOs[3].see());
+//            positions.addAll(samuraiPOs[6].see());
+        }else{
+//            positions.addAll(samuraiPOs[1].see());
+//            positions.addAll(samuraiPOs[4].see());
+//            positions.addAll(samuraiPOs[5].see());
+        }
+        return positions;
+    }
 
     //当view做出动作的时候 调用这个方法
     //actionNum: 0:occupy 1:move 2:show 3:hide
@@ -63,7 +78,7 @@ public class Player {
                             this.actionPoint -= 4;
                             //检测需不需要把别人踢回去
                             for(Position position : positions){
-                                if(this.playerNum == 0){
+                                if(this.playerNum == 1){
                                     if(position.getX() == samuraiPOs[2].getPos().getX()
                                             && position.getY() == samuraiPOs[2].getPos().getY()){
                                         samuraiPOs[2].beKilled(this.gameModel.getLength(),this.chessBoardModel);
@@ -122,31 +137,33 @@ public class Player {
                     break;
             }
             System.out.println("ActionPoint Left:" + actionPoint);
-            if(this.actionPoint == 0){
-                this.actionDone();
-            }
             if(!done){
                 System.out.println("Action NOT Performed.");
+            }else{
+                this.gameModel.actionPerformed();
+            }
+            if(this.actionPoint == 0){
+                this.actionDone();
             }
         }
 
         //打印一下棋盘
-        for (int i = 0; i <= this.gameModel.getLength(); i++) {
-            if(i < 10)  System.out.print(" ");
-            System.out.print(i + ":");
-            for (int x = 0; x <= this.gameModel.getLength(); x++) {
-                System.out.print(this.chessBoardModel.getActualBlockState(i, x) + " ");
-            }
-            System.out.println();
-        }
-        for (int i = 0; i <= this.gameModel.getLength(); i++) {
-            if(i < 10)  System.out.print(" ");
-            System.out.print(i + ":");
-            for (int x = 0; x <= this.gameModel.getLength(); x++) {
-                System.out.print(this.chessBoardModel.getActualBlockOccupied(i, x) + " ");
-            }
-            System.out.println();
-        }
+//        for (int i = 0; i <= this.gameModel.getLength(); i++) {
+//            if(i < 10)  System.out.print(" ");
+//            System.out.print(i + ":");
+//            for (int x = 0; x <= this.gameModel.getLength(); x++) {
+//                System.out.print(this.chessBoardModel.getActualBlockState(i, x) + " ");
+//            }
+//            System.out.println();
+//        }
+//        for (int i = 0; i <= this.gameModel.getLength(); i++) {
+//            if(i < 10)  System.out.print(" ");
+//            System.out.print(i + ":");
+//            for (int x = 0; x <= this.gameModel.getLength(); x++) {
+//                System.out.print(this.chessBoardModel.getActualBlockOccupied(i, x) + " ");
+//            }
+//            System.out.println();
+//        }
     }
 
     //时间到了或者没点数或者玩家主动放弃的时候调用此方法
@@ -165,7 +182,11 @@ public class Player {
     public int getActionPoint(){
         return this.actionPoint;
     }
-
+    
+    public int getPointsTotal(){
+        return this.pointsTotal;
+    }
+    
     public boolean canAction(){
         return this.canAction;
     }

@@ -11,7 +11,6 @@ import java.util.Observer;
 import javax.swing.*;
 
 import model.UpdateMessage;
-import model.po.DisplayBlock;
 import view.listener.GameListener;
 
 public class GamePanel extends JPanel implements Observer {

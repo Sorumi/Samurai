@@ -3,14 +3,17 @@ package view;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
 
 import model.UpdateMessage;
-import model.po.DisplayBlock;
+import model.po.ActualBlock;
+import model.po.Position;
 
 
 /**
@@ -59,10 +62,13 @@ public class ChessBoardPanel extends JPanel implements Observer {
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		Graphics2D g2 = (Graphics2D) g;
+		//平滑效果！！！
+		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
 		g2.drawImage(bgImage, 0, 0, FIELD_WIDTH, FIELD_HEIGHT, null);
 		this.setSize(FIELD_WIDTH, FIELD_HEIGHT);
+
 	}
 	
 	public FieldBlock getBlock(int x, int y){
@@ -77,15 +83,23 @@ public class ChessBoardPanel extends JPanel implements Observer {
 
 		System.out.println(key);
 		//如果听到的消息是‘block’时
-		if (key == "block") {
-			DisplayBlock displayBlock = (DisplayBlock) notifingObject.getValue();
+		if(key.equals("block")){
+			ActualBlock actualBlock = (ActualBlock) notifingObject.getValue();
 			
-			Color blockColor = BlockColor.getBlockColor(displayBlock.getState());
-			int x = displayBlock.getX();
-			int y = displayBlock.getY();
+			Color blockColor = BlockColor.getBlockColor(actualBlock.getState());
+			int x = actualBlock.getX();
+			int y = actualBlock.getY();
 			blocks[x][y].setColor(blockColor);
 			blocks[x][y].repaint();
 			
+		}else if(key.equals("vision")){
+			System.out.println("!@$#");
+			ArrayList<Position> positions = (ArrayList<Position>) notifingObject.getValue();
+			System.out.println("V!" + positions.size());
+			for(Position position : positions){
+				blocks[position.getX()][position.getY()].setColor(new Color(194,90,62));
+				blocks[position.getX()][position.getY()].repaint();
+			}
 		}
 
 	}

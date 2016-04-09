@@ -9,8 +9,8 @@ import view.listener.GameListener;
 
 public class ActionButtonPanel extends JPanel {
 	
-	private final int BUTTONPANEL_WIDTH = 160;
-	private final int BUTTONPANEL_HEIGHT = 215;
+	private final int BUTTONPANEL_WIDTH = 218;
+	private final int BUTTONPANEL_HEIGHT = 300;
 	
 	private final int BUTTON_WIDTH = 50;
 
@@ -19,6 +19,7 @@ public class ActionButtonPanel extends JPanel {
 	private ActionButton hideButton;
 	private ActionButton exitButton;
 	private ActionButton backButton;
+	private DirectionPanel directionPanel;
 	
 	private SamuraiView currentSamurai;
 	private GameListener gamelistener;
@@ -37,24 +38,31 @@ public class ActionButtonPanel extends JPanel {
 		this.setOpaque(false);
 		this.setVisible(false);
 		
-		moveButton.setLocation(0, 15);
-		occupyButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, 0);
-		hideButton.setLocation(BUTTONPANEL_WIDTH-BUTTON_WIDTH, 15);
-		exitButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, BUTTONPANEL_HEIGHT-BUTTON_WIDTH);
-		backButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, BUTTONPANEL_HEIGHT-BUTTON_WIDTH);
+		moveButton.setLocation(0, 60);
+		occupyButton.setLocation(40, 0);
+		hideButton.setLocation(110, 0);
+		exitButton.setLocation(150, 60);
+		backButton.setLocation(150, 60);
 		
 		backButton.setVisible(false);
+		
+		directionPanel = new DirectionPanel(gamelistener);
+		directionPanel.setLocation((BUTTONPANEL_WIDTH-directionPanel.getWidth())/2, 130);
+		directionPanel.setVisible(false);
 		
 		this.add(moveButton);
 		this.add(occupyButton);
 		this.add(hideButton);
 		this.add(exitButton);
 		this.add(backButton);
+		this.add(directionPanel);
 	}
 	
 	public void setCurrentSamurai(SamuraiView samurai){
 		this.currentSamurai = samurai;
-		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-60);
+		this.setVisible(false);
+		this.setSecondary(false);
+		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-70);
 	}
 	
 	public ActionButton getMoveButton(){
@@ -72,6 +80,9 @@ public class ActionButtonPanel extends JPanel {
 	public ActionButton getBackButton(){
 		return this.backButton;
 	}
+	public DirectionPanel getDirectionPanel(){
+		return this.directionPanel;
+	}
 	//点击move occupy hide进入二级菜单
 	public void setSecondary(boolean isVisible){
 		backButton.setVisible(isVisible);
@@ -79,5 +90,6 @@ public class ActionButtonPanel extends JPanel {
 		moveButton.setVisible(!isVisible);
 		occupyButton.setVisible(!isVisible);
 		hideButton.setVisible(!isVisible);
+		directionPanel.setVisible(isVisible);
 	}
 }

@@ -1,12 +1,9 @@
 package model;
 
 import model.po.ActualBlock;
-import model.po.DisplayBlock;
-import model.state.*;
 
 public class ChessBoardModel extends BaseModel {
 	private ActualBlock[][] actualBlockArray;
-	private DisplayBlock[][] displayBlockArray;
 	private int length;
 
 	public ChessBoardModel(int length) {
