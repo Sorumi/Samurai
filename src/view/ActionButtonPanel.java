@@ -9,8 +9,8 @@ import view.listener.GameListener;
 
 public class ActionButtonPanel extends JPanel {
 	
-	private final int BUTTONPANEL_WIDTH = 160;
-	private final int BUTTONPANEL_HEIGHT = 200;
+	private final int BUTTONPANEL_WIDTH = 218;
+	private final int BUTTONPANEL_HEIGHT = 300;
 	
 	private final int BUTTON_WIDTH = 50;
 
@@ -38,16 +38,16 @@ public class ActionButtonPanel extends JPanel {
 		this.setOpaque(false);
 		this.setVisible(false);
 		
-		moveButton.setLocation(0, 15);
-		occupyButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, 0);
-		hideButton.setLocation(BUTTONPANEL_WIDTH-BUTTON_WIDTH, 15);
-		exitButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, BUTTONPANEL_HEIGHT-BUTTON_WIDTH);
-		backButton.setLocation((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2, BUTTONPANEL_HEIGHT-BUTTON_WIDTH);
+		moveButton.setLocation(0, 60);
+		occupyButton.setLocation(40, 0);
+		hideButton.setLocation(110, 0);
+		exitButton.setLocation(150, 60);
+		backButton.setLocation(150, 60);
 		
 		backButton.setVisible(false);
 		
 		directionPanel = new DirectionPanel(gamelistener);
-		directionPanel.setLocation((BUTTONPANEL_WIDTH-directionPanel.getWidth())/2, 110);
+		directionPanel.setLocation((BUTTONPANEL_WIDTH-directionPanel.getWidth())/2, 130);
 		directionPanel.setVisible(false);
 		
 		this.add(moveButton);
@@ -62,7 +62,7 @@ public class ActionButtonPanel extends JPanel {
 		this.currentSamurai = samurai;
 		this.setVisible(false);
 		this.setSecondary(false);
-		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-50);
+		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-70);
 	}
 	
 	public ActionButton getMoveButton(){

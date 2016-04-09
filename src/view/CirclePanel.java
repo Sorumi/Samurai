@@ -17,6 +17,7 @@ public class CirclePanel extends JPanel {
 	private final int CIRCLE_DIAMETER = 200;
 	private final int strokeSize = 2;
 	
+	private int sideBlockQuantity;
 	private int player;
 	private int timeTotal;
 	private int timeRest;
@@ -71,7 +72,11 @@ public class CirclePanel extends JPanel {
 		//画扇形
 		//己方
 		double startAngle = 90.0;
-		double arcAngle = -180.0 / 255;
+		int direction = 1;
+		if (player == 1){
+			direction = -1;
+		}
+		double arcAngle = -180.0*direction / (sideBlockQuantity*sideBlockQuantity);
 		for (int i=1; i<=3; i++){
 			g2.setColor(BlockColor.getBlockColor(i));
 			Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*blockNum[i], Arc2D.PIE);
@@ -80,7 +85,7 @@ public class CirclePanel extends JPanel {
 		}
 		//敌方
 		startAngle = -90.0;
-		arcAngle = 180.0 / 255;
+		arcAngle = 180.0*direction / (sideBlockQuantity*sideBlockQuantity);
 		for (int i=1; i<=3; i++){
 			g2.setColor(BlockColor.getBlockColor(i+3));
 			Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*blockNum[i+3], Arc2D.PIE);
@@ -89,15 +94,17 @@ public class CirclePanel extends JPanel {
 		}
 		//time
 		startAngle = 90.0;
-		arcAngle = 180.0 / timeTotal;
+		arcAngle = 180.0*direction / timeTotal;
 		g2.setColor(BlockColor.getOtherColor(player));
 		Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*(timeRest-1), Arc2D.PIE);
 		g2.fill(arc);
 		
 	}
+	public void setSideBlockQuantity(int sideBlockQuantity){
+		this.sideBlockQuantity = sideBlockQuantity;
+	}
 	
 	public void setTimeRest(int timeRest){
 		this.timeRest = timeRest;
 	}
-	
 }

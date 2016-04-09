@@ -38,7 +38,9 @@ public class SamuraiPO implements Serializable {
 			}
 			System.out.println();
 		}
+		System.out.println("p");
 		ArrayList<Position> positions=No3.see();
+		System.out.println("p2");
 		for (Position po : positions) {
 			cbm.changeActualBlock(po.getX(), po.getY(), 9);
 		}
@@ -776,20 +778,22 @@ public class SamuraiPO implements Serializable {
 
     public ArrayList<Position> see(){
     	ArrayList<Position> positions=new ArrayList<Position>();
-    	for(int i=5;i>=0;i--){
+    	int x = 5;
+    	for(int i=x;i>=0;i--){
     		if(pos.getY()-i>=0){
-    			for(int a=i-5;a<=5-i;a++){
-    				if((pos.getX()+a>=0)&&(pos.getX()+a<=length)){
+    			for(int a=i-x;a<=x-i;a++){
+    				if((pos.getX()+a>=0) && (pos.getX()+a<=length)){
     					Position position=new Position(pos.getX()+a, pos.getY()-i);
     					positions.add(position);
     				}
     			}
     		}
     	}
-    	for(int i=5;i>0;i++){
+    	//修复bug!!!!!!
+    	for(int i=x;i>0;i--){
     		if(pos.getY()+i<=length){
-    			for(int a=i-5;a<=5-i;a++){
-    				if(pos.getX()+a>=0&&pos.getX()+a<=length){
+    			for(int a=i-x;a<=x-i;a++){
+    				if((pos.getX()+a>=0) && (pos.getX()+a<=length)){
     					Position position=new Position(pos.getX()+a, pos.getY()+i);
     					positions.add(position);
     				}

@@ -11,7 +11,7 @@ public class MainFrame implements Observer{
 	
 	final static int WINDOW_WIDTH = 1200;
 	final static int WINDOW_HEIGHT = 800;
-    private final int window_fix = 22;
+//    private final int window_fix = 22;
 	
 	public JFrame frame;
 	public JButton exitButton;
@@ -22,9 +22,9 @@ public class MainFrame implements Observer{
 		frame = new JFrame();
 		//布局设为null!
 		frame.getContentPane().setLayout(null);
-		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT+window_fix);
+		frame.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		frame.setResizable(false);
-//		frame.setUndecorated(true);
+		frame.setUndecorated(true);
 		
 		exitButton = new JButton("Quit");
 		exitButton.addActionListener(new ButtonListener());

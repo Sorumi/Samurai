@@ -23,7 +23,7 @@ public class GamePanel extends JPanel implements Observer {
 	private int blockWidth;
 	private int blockHeight;
 	//TODO
-	private int timeTotal = 3;
+	private int timeTotal = 5;
 	private int roundTotal = 12;
 	
 	public ChessBoardPanel chessBoard;
@@ -62,8 +62,10 @@ public class GamePanel extends JPanel implements Observer {
 		
 		//playerInfo
 		playerA = new PlayerPanel(0, timeTotal);
-		this.add(playerA);
 		playerB = new PlayerPanel(1, timeTotal);
+		playerA.getCirclePanel().setSideBlockQuantity(size);
+		playerB.getCirclePanel().setSideBlockQuantity(size);
+		this.add(playerA);
 		this.add(playerB);
 		
 		//player 标签
@@ -134,6 +136,7 @@ public class GamePanel extends JPanel implements Observer {
 		this.setComponentZOrder(actionButtons, 7);
 		this.setComponentZOrder(chessBoard, 8);
 		this.setComponentZOrder(playerA, 9);
+		this.setComponentZOrder(playerB, 10);
 	}
 	
 	public void paintComponent(Graphics g){
