@@ -11,6 +11,7 @@ public class ActualBlock {
 	//0 未占领 1:A0 2:B0 3:A1 4:B1 5:A2 6:B2 
 	private int state = 0;
 	private boolean occupied;
+	private boolean visible;
 	//棋盘的坐标 By Sorumi
 	private final int x;
 	private final int y;
@@ -31,7 +32,13 @@ public class ActualBlock {
 		return occupied;
 	}
 	public void setOccupied(boolean occupied){
-		this.occupied=occupied;
+		this.occupied = occupied;
+	}
+	public boolean getVisible(){
+		return visible;
+	}
+	public void setVisible(boolean visible){
+		this.visible = visible;
 	}
 	
 	public int getX(){

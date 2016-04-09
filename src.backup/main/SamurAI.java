@@ -21,7 +21,7 @@ public class SamurAI {
         //Sliver Narcissus 修复了这个bug
 
         mainFrame = new MainFrame();
-        gameModel = new GameModel(12,14);
+        gameModel = new GameModel(24,14);
 
         gameModel.addObserver(mainFrame.gamePanel);
         MenuController menuController = new MenuController();
