@@ -2,7 +2,7 @@ package model.po;
 
 import java.io.*;
 
-public class Position implements Serializable {
+public class Position implements Serializable,Cloneable {
   private int x;
   private int y;
   public Position(int x,int y){
@@ -21,4 +21,12 @@ public class Position implements Serializable {
   public void setY(int y){
 	  this.y=y;
   }
+  public Position clone() {
+		try {
+			return (Position)super.clone();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
 }

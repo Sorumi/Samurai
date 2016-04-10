@@ -7,7 +7,7 @@ package model.po;
  *
  */
 
-public class ActualBlock {
+public class ActualBlock implements Cloneable {
 	//0 未占领 1:A0 2:B0 3:A1 4:B1 5:A2 6:B2 
 	private int state = 0;
 	private boolean occupied;
@@ -47,5 +47,12 @@ public class ActualBlock {
 	public int getY(){
 		return y;
 	}
-    
+	public ActualBlock clone() {
+		try {
+			return (ActualBlock)super.clone();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
 }
