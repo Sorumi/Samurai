@@ -11,8 +11,9 @@ import model.ChessBoardModel;
  *
  */
 
-public class SamuraiPO implements Serializable {
-
+public class SamuraiPO implements Serializable, Cloneable {
+	private int experience;
+	private int level;
 	private int length;
 	private int number;
 	private int player;
@@ -39,11 +40,15 @@ public class SamuraiPO implements Serializable {
 			System.out.println();
 		}
 		System.out.println("p");
-		ArrayList<Position> positions=No3.see();
+		No1.move(4, cbm);
+		No1.occupied(1, cbm, true);
+		No1.move(4, cbm);
+		No1.occupied(1, cbm, true);
+		No1.move(4, cbm);
+		No1.occupied(1, cbm, true);
+		No1.move(4, cbm);
+		No1.occupied(1, cbm, true);
 		System.out.println("p2");
-		for (Position po : positions) {
-			cbm.changeActualBlock(po.getX(), po.getY(), 9);
-		}
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
 			for (int x = 0; x <= 14; x++) {
@@ -51,7 +56,7 @@ public class SamuraiPO implements Serializable {
 			}
 			System.out.println();
 		}
-		}
+	}
 
 	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
 		this.number = number;
@@ -84,6 +89,13 @@ public class SamuraiPO implements Serializable {
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 		}
 	}
+	public SamuraiPO(int number, int player, int weapon, int length, Position position) {
+		this.number = number;
+		this.player = player;
+		this.weapon = weapon;
+		this.length = length;
+		this.pos=position;
+	}
 
 	public void beKilled(int length, ChessBoardModel cbm) {
 		if (!hide) {
@@ -111,10 +123,34 @@ public class SamuraiPO implements Serializable {
 	}
 
 	// 0:up 1:right 2:left 3:down
-	public boolean[] tryMove(ChessBoardModel cbm) {
-			int state;
-			boolean[] result=new boolean[4];
-			for(int direction=0;direction<4;direction++){
+	public ArrayList<Position> tryMove(ChessBoardModel cbm) {
+		boolean[] check = checkBound(cbm);
+		ArrayList<Position> positions = new ArrayList<Position>();
+		for (int x = 0; x < 4; x++) {
+			if (check[x]) {
+				switch (x) {
+				case 0:
+					positions.add(new Position(pos.getX() - 1, pos.getY()));
+					break;
+				case 1:
+					positions.add(new Position(pos.getX(), pos.getY() - 1));
+					break;
+				case 2:
+					positions.add(new Position(pos.getX(), pos.getY() + 1));
+					break;
+				default:
+					positions.add(new Position(pos.getX() + 1, pos.getY()));
+					break;
+				}
+			}
+		}
+		return positions;
+	}
+
+	public boolean[] checkBound(ChessBoardModel cbm) {
+		int state;
+		boolean[] result = new boolean[4];
+		for (int direction = 0; direction < 4; direction++) {
 			switch (direction) {
 			case 0:
 				if (pos.getX() - 1 >= 0) {
@@ -122,25 +158,25 @@ public class SamuraiPO implements Serializable {
 					if (cbm.getActualBlockOccupied(pos.getX() - 1, pos.getY()) || hide) {
 						if (hide || player == 0) {
 							if (state == 1 || state == 4 || state == 5) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 
 						} else if (hide) {
 							if (state == 2 || state == 3 || state == 6) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 						} else {
-							 result[direction]=false;
+							result[direction] = false;
 						}
 					} else {
-						result[direction]=true;
+						result[direction] = true;
 					}
 				} else {
-					result[direction]=false;
+					result[direction] = false;
 				}
 				break;
 			case 1:
@@ -149,25 +185,25 @@ public class SamuraiPO implements Serializable {
 					if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() - 1) || hide) {
 						if (hide || player == 0) {
 							if (state == 1 || state == 4 || state == 5) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 
 						} else if (hide) {
 							if (state == 2 || state == 3 || state == 6) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 						} else {
-							result[direction]=false;
+							result[direction] = false;
 						}
 					} else {
-						result[direction]=true;
+						result[direction] = true;
 					}
 				} else {
-					result[direction]=false;
+					result[direction] = false;
 				}
 				break;
 			case 2:
@@ -176,25 +212,25 @@ public class SamuraiPO implements Serializable {
 					if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() + 1) || hide) {
 						if (hide || player == 0) {
 							if (state == 1 || state == 4 || state == 5) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 
 						} else if (hide) {
 							if (state == 2 || state == 3 || state == 6) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 						} else {
-							result[direction]=false;
+							result[direction] = false;
 						}
 					} else {
-						result[direction]=true;
+						result[direction] = true;
 					}
 				} else {
-					result[direction]=false;
+					result[direction] = false;
 				}
 				break;
 			default:
@@ -203,32 +239,33 @@ public class SamuraiPO implements Serializable {
 					if (cbm.getActualBlockOccupied(pos.getX() + 1, pos.getY()) || hide) {
 						if (hide || player == 0) {
 							if (state == 1 || state == 4 || state == 5) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 
 						} else if (hide) {
 							if (state == 2 || state == 3 || state == 6) {
-								result[direction]=true;
+								result[direction] = true;
 							} else {
-								result[direction]=false;
+								result[direction] = false;
 							}
 						} else {
-							result[direction]=false;
+							result[direction] = false;
 						}
 					} else {
-						result[direction]=true;
+						result[direction] = true;
 					}
 
 				} else {
-					result[direction]=false;
+					result[direction] = false;
 				}
 				break;
 			}
-			}
-			return result;
 		}
+		return result;
+	}
+
 	public boolean move(int direction, ChessBoardModel cbm) {
 		int state;
 		switch (direction) {
@@ -354,7 +391,7 @@ public class SamuraiPO implements Serializable {
 	}
 
 	// 0:up 1:right 2:left 3:down
-	public ArrayList<Position> occupied(int direction, ChessBoardModel cbm,boolean real) {
+	public ArrayList<Position> occupied(int direction, ChessBoardModel cbm, boolean real) {
 		ArrayList<Position> positions = new ArrayList<Position>();
 		switch (weapon) {
 		// weapon 0
@@ -362,8 +399,8 @@ public class SamuraiPO implements Serializable {
 			switch (direction) {
 			case 0:
 				for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 4; i--, x++) {
-					if(real){
-					cbm.changeActualBlock(i, pos.getY(), number);
+					if (real) {
+						cbm.changeActualBlock(i, pos.getY(), number);
 					}
 					Position position = new Position(i, pos.getY());
 					positions.add(position);
@@ -371,8 +408,8 @@ public class SamuraiPO implements Serializable {
 				break;
 			case 1:
 				for (int i = pos.getY() - 1, x = 0; i >= 0 && x < 4; i--, x++) {
-					if(real){
-					cbm.changeActualBlock(pos.getX(), i, number);
+					if (real) {
+						cbm.changeActualBlock(pos.getX(), i, number);
 					}
 					Position position = new Position(pos.getX(), i);
 					positions.add(position);
@@ -380,8 +417,8 @@ public class SamuraiPO implements Serializable {
 				break;
 			case 2:
 				for (int i = pos.getY() + 1, x = 0; i <= length && x < 4; i++, x++) {
-					if(real){
-					cbm.changeActualBlock(pos.getX(), i, number);
+					if (real) {
+						cbm.changeActualBlock(pos.getX(), i, number);
 					}
 					Position position = new Position(pos.getX(), i);
 					positions.add(position);
@@ -389,8 +426,8 @@ public class SamuraiPO implements Serializable {
 				break;
 			default:
 				for (int i = pos.getX() + 1, x = 0; i >= 0 && x < 4; i++, x++) {
-					if(real){
-					cbm.changeActualBlock(i, pos.getY(), number);
+					if (real) {
+						cbm.changeActualBlock(i, pos.getY(), number);
 					}
 					Position position = new Position(i, pos.getY());
 					positions.add(position);
@@ -408,22 +445,22 @@ public class SamuraiPO implements Serializable {
 			switch (direction) {
 			case 0:
 				for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
-					if(real){
-					cbm.changeActualBlock(i, pos.getY(), number);
+					if (real) {
+						cbm.changeActualBlock(i, pos.getY(), number);
 					}
 					Position position = new Position(i, pos.getY());
 					positions.add(position);
 				}
 				if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
-					if(real){
-					cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
+					if (real) {
+						cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() - 1);
 					positions.add(position);
 				}
 				for (int i = pos.getY() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
-					if(real){
-					cbm.changeActualBlock(pos.getX(), i, number);
+					if (real) {
+						cbm.changeActualBlock(pos.getX(), i, number);
 					}
 					Position position = new Position(pos.getX(), i);
 					positions.add(position);
@@ -431,44 +468,44 @@ public class SamuraiPO implements Serializable {
 				break;
 			case 1:
 				for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i++, x++) {
-					if(real){
-					cbm.changeActualBlock(i, pos.getY(), number);
+					if (real) {
+						cbm.changeActualBlock(i, pos.getY(), number);
 					}
 					Position position = new Position(i, pos.getY());
 					positions.add(position);
 				}
 				if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
-					if(real){
-					cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
+					if (real) {
+						cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() - 1);
 					positions.add(position);
 				}
 				for (int i = pos.getY() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
-					if(real){
-					cbm.changeActualBlock(pos.getX(), i, number);
+					if (real) {
+						cbm.changeActualBlock(pos.getX(), i, number);
 					}
 					Position position = new Position(pos.getX(), i);
 					positions.add(position);
 				}
 				break;
 			case 2:
-				for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 2; i--, x++) {	
-					if(real){
+				for (int i = pos.getX() - 1, x = 0; i >= 0 && x < 2; i--, x++) {
+					if (real) {
 						cbm.changeActualBlock(i, pos.getY(), number);
 					}
 					Position position = new Position(i, pos.getY());
 					positions.add(position);
 				}
 				if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() + 1);
 					positions.add(position);
 				}
 				for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i++, x++) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), i, number);
 					}
 					Position position = new Position(pos.getX(), i);
@@ -478,21 +515,21 @@ public class SamuraiPO implements Serializable {
 
 			default:
 				for (int i = pos.getX() + 1, x = 0; i <= length && x < 2; i++, x++) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(i, pos.getY(), number);
 					}
 					Position position = new Position(i, pos.getY());
 					positions.add(position);
 				}
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() + 1);
 					positions.add(position);
 				}
 				for (int i = pos.getY() + 1, x = 0; i <= length && x < 2; i++, x++) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), i, number);
 					}
 					Position position = new Position(pos.getX(), i);
@@ -507,7 +544,7 @@ public class SamuraiPO implements Serializable {
 			switch (direction) {
 			case 0:
 				if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() - 1);
@@ -515,7 +552,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX(), pos.getY() - 1);
@@ -523,7 +560,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() - 1);
@@ -531,7 +568,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY(), number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY());
@@ -539,7 +576,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() + 1);
@@ -547,7 +584,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX(), pos.getY() + 1);
@@ -555,7 +592,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() + 1);
@@ -564,7 +601,7 @@ public class SamuraiPO implements Serializable {
 				break;
 			case 1:
 				if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() - 1);
@@ -572,7 +609,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX(), pos.getY() - 1);
@@ -580,7 +617,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() - 1);
@@ -588,7 +625,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY(), number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY());
@@ -596,7 +633,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() + 1);
@@ -604,7 +641,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY());
@@ -612,7 +649,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() + 1);
@@ -621,7 +658,7 @@ public class SamuraiPO implements Serializable {
 				break;
 			case 2:
 				if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() - 1);
@@ -629,7 +666,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX(), pos.getY() + 1);
@@ -637,7 +674,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() - 1);
@@ -645,7 +682,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY(), number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY());
@@ -653,7 +690,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() + 1);
@@ -661,7 +698,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY());
@@ -669,7 +706,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() + 1);
@@ -679,7 +716,7 @@ public class SamuraiPO implements Serializable {
 
 			default:
 				if (pos.getX() + 1 <= length && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() - 1);
@@ -687,7 +724,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX(), pos.getY() - 1);
@@ -695,7 +732,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() - 1 >= 0) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() - 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() - 1);
@@ -703,7 +740,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY(), number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY());
@@ -711,7 +748,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() - 1 >= 0 && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() - 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() - 1, pos.getY() + 1);
@@ -719,7 +756,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX(), pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX(), pos.getY() + 1);
@@ -727,7 +764,7 @@ public class SamuraiPO implements Serializable {
 				}
 				//
 				if (pos.getX() + 1 <= length && pos.getY() + 1 <= length) {
-					if(real){
+					if (real) {
 						cbm.changeActualBlock(pos.getX() + 1, pos.getY() + 1, number);
 					}
 					Position position = new Position(pos.getX() + 1, pos.getY() + 1);
@@ -772,40 +809,88 @@ public class SamuraiPO implements Serializable {
 		}
 	}
 
-	public Position getPos(){
+	public Position getPos() {
 		return this.pos;
 	}
 
-    public ArrayList<Position> see(){
-    	ArrayList<Position> positions=new ArrayList<Position>();
-    	int x = 5;
-    	for(int i=x;i>=0;i--){
-    		if(pos.getY()-i>=0){
-    			for(int a=i-x;a<=x-i;a++){
-    				if((pos.getX()+a>=0) && (pos.getX()+a<=length)){
-    					Position position=new Position(pos.getX()+a, pos.getY()-i);
-    					positions.add(position);
-    				}
-    			}
-    		}
-    	}
-    	//修复bug!!!!!!
-    	for(int i=x;i>0;i--){
-    		if(pos.getY()+i<=length){
-    			for(int a=i-x;a<=x-i;a++){
-    				if((pos.getX()+a>=0) && (pos.getX()+a<=length)){
-    					Position position=new Position(pos.getX()+a, pos.getY()+i);
-    					positions.add(position);
-    				}
-    			}
-    		}
-    	}
-    	return positions;
-    }   
+	public ArrayList<Position> see() {
+		ArrayList<Position> positions = new ArrayList<Position>();
+		int x = 5;
+		for (int i = x; i >= 0; i--) {
+			if (pos.getY() - i >= 0) {
+				for (int a = i - x; a <= x - i; a++) {
+					if ((pos.getX() + a >= 0) && (pos.getX() + a <= length)) {
+						Position position = new Position(pos.getX() + a, pos.getY() - i);
+						positions.add(position);
+					}
+				}
+			}
+		}
+		// 修复bug!!!!!!
+		for (int i = x; i > 0; i--) {
+			if (pos.getY() + i <= length) {
+				for (int a = i - x; a <= x - i; a++) {
+					if ((pos.getX() + a >= 0) && (pos.getX() + a <= length)) {
+						Position position = new Position(pos.getX() + a, pos.getY() + i);
+						positions.add(position);
+					}
+				}
+			}
+		}
+		return positions;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
+	public int getPlayer() {
+		return player;
+	}
+
+	public void setExperience(int experience) {
+		this.experience = experience;
+	}
+
+	public int getExperience() {
+		return experience;
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public boolean isUpLevel() {
+		double cache = Math.pow(level, 1.5);
+		int upLevelExp = (int) (cache * 50);
+		if (experience >= upLevelExp) {
+			upLevel();
+			return true;
+		}
+		return false;
+	}
+
+	public int getNextLevelExperience() {
+		double cache = Math.pow(level, 1.5);
+		int upLevelExp = (int) (cache * 50);
+		return upLevelExp;
+	}
+
+	private void upLevel() {
+		level++;
+	}
+
+	public SamuraiPO clone() {
+		try {
+			SamuraiPO samuraiPO=new SamuraiPO(number, player, weapon, length, pos.clone());
+			return samuraiPO;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
 }
-
-
-
-
-
-

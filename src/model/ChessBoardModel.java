@@ -1,8 +1,9 @@
 package model;
 
 import model.po.ActualBlock;
+import model.po.SamuraiPO;
 
-public class ChessBoardModel extends BaseModel {
+public class ChessBoardModel extends BaseModel implements Cloneable {
 	private ActualBlock[][] actualBlockArray;
 	private int length;
 
@@ -14,6 +15,10 @@ public class ChessBoardModel extends BaseModel {
 				this.actualBlockArray[x][y] = new ActualBlock(x, y);
 			}
 		}
+	}
+	public ChessBoardModel(int length,ActualBlock[][] actualBlocks) {
+		this.length=length;
+		actualBlockArray=actualBlocks;
 	}
 
 	public void changeActualBlock(int x, int y, int state) {
@@ -41,5 +46,20 @@ public class ChessBoardModel extends BaseModel {
 			}
 		}
 		return statesCount;
+	}
+	public ChessBoardModel clone() {
+		try{
+			ChessBoardModel chessBoardModel=new ChessBoardModel(length, new ActualBlock[length+1][length+1]);
+			for(int i=0;i<this.actualBlockArray.length;i++){
+				for(int x=0;x<this.actualBlockArray.length;x++){
+				chessBoardModel.actualBlockArray[i][x]=this.actualBlockArray[i][x].clone();
+				}
+			}
+			return chessBoardModel;
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}
 	}
 }
