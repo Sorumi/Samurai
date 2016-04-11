@@ -79,7 +79,7 @@ public class Player {
 
                             //检测需不需要把别人踢回去
                             for(Position position : positions){
-                                if(this.playerNum == 0){
+                                if(this.playerNum == 1){
                                     if(position.getX() == samuraiPOs[4].getPos().getX()
                                             && position.getY() == samuraiPOs[4].getPos().getY()){
                                         samuraiPOs[4].beKilled(this.gameModel.getLength(),this.chessBoardModel);
