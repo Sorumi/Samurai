@@ -81,14 +81,16 @@ public class ChessBoardPanel extends JPanel implements Observer {
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
 
-		System.out.println(key);
 		//如果听到的消息是‘block’时
 		if(key.equals("block")){
-			ActualBlock actualBlock = (ActualBlock) notifingObject.getValue();
+			ActualBlock actualBlock = (ActualBlock)notifingObject.getValue();
 			
 			Color blockColor = BlockColor.getBlockColor(actualBlock.getState());
 			int x = actualBlock.getX();
 			int y = actualBlock.getY();
+
+			System.out.println(x + "," + y);
+
 			blocks[x][y].setColor(blockColor);
 			blocks[x][y].repaint();
 			
