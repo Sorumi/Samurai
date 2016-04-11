@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Observer {
 	private int blockWidth;
 	private int blockHeight;
 	//TODO
-	private int timeTotal = 5;
+	private int timeTotal = 30;
 	private int roundTotal = 12;
 	
 	public ChessBoardPanel chessBoard;

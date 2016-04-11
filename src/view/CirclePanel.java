@@ -35,7 +35,6 @@ public class CirclePanel extends JPanel {
 		logo = Images.PLAYER_LOGO[player];
 		playerLogo = new JLabel();
 		playerLogo.setIcon(logo);
-		System.out.println(logo.getIconWidth() + " " + logo.getIconHeight());
 		playerLogo.setBounds(strokeSize+(CIRCLE_DIAMETER-logo.getIconWidth())/2, strokeSize+(CIRCLE_DIAMETER-logo.getIconHeight())/2, logo.getIconWidth(), logo.getIconHeight());
 		this.add(playerLogo);
 		
