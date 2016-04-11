@@ -23,7 +23,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	private int weapon;
 	private Position pos;
 	private boolean hide = false;
-
+    private Position home;
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
@@ -67,35 +67,42 @@ public class SamuraiPO implements Serializable, Cloneable {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			home=pos.clone();
 		} else if (number == 2 && player == 0) {
 			pos = new Position(length / 2, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			home=pos.clone();
 		} else if (number == 3 && player == 0) {
 			pos = new Position(length, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			home=pos.clone();
 		} else if (number == 4 && player == 1) {
 			pos = new Position(0, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			home=pos.clone();
 		} else if (number == 5 && player == 1) {
 			pos = new Position(length / 2, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			home=pos.clone();
 		} else if (number == 6 && player == 1) {
 			pos = new Position(length, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			home=pos.clone();
 		}
 	}
 
-	public SamuraiPO(int number, int player, int weapon, int length, Position position) {
+	public SamuraiPO(int number, int player, int weapon, int length, Position position,Position home) {
 		this.number = number;
 		this.player = player;
 		this.weapon = weapon;
 		this.length = length;
 		this.pos = position;
+		this.home=home;
 	}
 
 	public Position getHome() {
@@ -921,7 +928,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public SamuraiPO clone() {
 		try {
-			SamuraiPO samuraiPO = new SamuraiPO(number, player, weapon, length, pos.clone());
+			SamuraiPO samuraiPO = new SamuraiPO(number, player, weapon, length, pos.clone(),home.clone());
 			return samuraiPO;
 		} catch (Exception ex) {
 			ex.printStackTrace();

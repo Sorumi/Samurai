@@ -1,16 +1,12 @@
 package model.po;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import controller.msgqueue.ActionOperation;
-import controller.msgqueue.OperationQueue;
 import model.ChessBoardModel;
 
 public class SamuraiAI {
-	//test
+	// test
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
@@ -25,33 +21,34 @@ public class SamuraiAI {
 		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 1);
 		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 1);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
-		for(int i=0;i<2;i++){
-		mine1.calculate();
-		print(cbm);
-		mine4.calculate();
-		print(cbm);
-		mine5.calculate();
-		print(cbm);
-		mine2.calculate();
-		print(cbm);
-		mine3.calculate();
-		print(cbm);
-		mine6.calculate();
-		print(cbm);
+		for (int i = 0; i < 2; i++) {
+			mine1.calculate();
+			print(cbm);
+			mine4.calculate();
+			print(cbm);
+			mine5.calculate();
+			print(cbm);
+			mine2.calculate();
+			print(cbm);
+			mine3.calculate();
+			print(cbm);
+			mine6.calculate();
+			print(cbm);
 		}
-		
+
 		//
-		
+
 	}
-    public static void print(ChessBoardModel cbm){
-    	for (int i = 0; i <= 14; i++) {
+
+	public static void print(ChessBoardModel cbm) {
+		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
 			for (int x = 0; x <= 14; x++) {
 				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
 			}
 			System.out.println();
 		}
-		
+
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
 			for (int x = 0; x <= 14; x++) {
@@ -59,7 +56,7 @@ public class SamuraiAI {
 			}
 			System.out.println();
 		}
-    }
+	}
 	// by SilverNarcissus
 
 	// 0:random
@@ -108,13 +105,12 @@ public class SamuraiAI {
 			}
 			Collections.sort(saveCaches);
 			//
-			samuraiPO.move(saveCaches.get(0).getLocation() / 4,chessBoardModel);
-			samuraiPO.occupied(saveCaches.get(0).getLocation() % 4,chessBoardModel,true);
+			samuraiPO.move(saveCaches.get(0).getLocation() / 4, chessBoardModel);
+			samuraiPO.occupied(saveCaches.get(0).getLocation() % 4, chessBoardModel, true);
 			//
 			actionOperations[0] = new ActionOperation(1, saveCaches.get(0).getLocation() / 4);
 			actionOperations[1] = new ActionOperation(0, saveCaches.get(0).getLocation() % 4);
-			
-			
+
 			return actionOperations;
 		//
 
