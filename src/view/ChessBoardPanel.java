@@ -39,7 +39,7 @@ public class ChessBoardPanel extends JPanel implements Observer {
 
 	public ChessBoardPanel(int sideBlockQuantity){
   		this.sideBlockQuantity = sideBlockQuantity;
-  		
+
   		this.setLayout(null);
 		this.setBackground(null);
 		this.setOpaque(false);
@@ -84,18 +84,12 @@ public class ChessBoardPanel extends JPanel implements Observer {
 		//如果听到的消息是‘block’时
 		if(key.equals("block")){
 			ActualBlock actualBlock = (ActualBlock)notifingObject.getValue();
-			
 			Color blockColor = BlockColor.getBlockColor(actualBlock.getState());
 			int x = actualBlock.getX();
 			int y = actualBlock.getY();
-
-			System.out.println(x + "," + y);
-
 			blocks[x][y].setColor(blockColor);
 			blocks[x][y].repaint();
-			
 		}else if(key.equals("vision")){
-			System.out.println("!@$#");
 			ArrayList<Position> positions = (ArrayList<Position>) notifingObject.getValue();
 			System.out.println("V!" + positions.size());
 			for(Position position : positions){

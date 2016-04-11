@@ -44,10 +44,8 @@ public class GameListener implements MouseListener{
 			System.out.println("hide");
 			Operation op = new ActionOperation(3, 0);
 			OperationQueue.addOperation(op);
-			//
 		} else if (e.getSource() == game.getActionButtons().getBackButton()) {
 			game.getActionButtons().setSecondary(false);
-			//
 		} else if (e.getSource() == game.getActionButtons().getExitButton()) {
 			game.getActionButtons().setSecondary(false);
 			//进入下一轮
