@@ -43,7 +43,7 @@ public class GameListener implements MouseListener{
 			//出现四个方向的箭头
 		} else if (e.getSource() == game.getActionButtons().getHideButton()) {
 			System.out.println("hide");
-			Operation op = new ActionOperation(3, 0);
+			Operation op = new ActionOperation(2, 0);
 			OperationQueue.addOperation(op);
 		} else if (e.getSource() == game.getActionButtons().getBackButton()) {
 			game.getActionButtons().setSecondary(false);
