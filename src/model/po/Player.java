@@ -74,9 +74,12 @@ public class Player {
                         if(!positions.isEmpty()) {
                             done = true;
                             this.actionPoint -= 4;
+
+                            System.out.println(positions.size());
+
                             //检测需不需要把别人踢回去
                             for(Position position : positions){
-                                if(this.playerNum == 1){
+                                if(this.playerNum == 0){
                                     if(position.getX() == samuraiPOs[4].getPos().getX()
                                             && position.getY() == samuraiPOs[4].getPos().getY()){
                                         samuraiPOs[4].beKilled(this.gameModel.getLength(),this.chessBoardModel);
@@ -89,7 +92,7 @@ public class Player {
                                             && position.getY() == samuraiPOs[6].getPos().getY()){
                                         samuraiPOs[6].beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                     }
-                                }else {
+                                }else{
                                     if (position.getX() == samuraiPOs[1].getPos().getX()
                                             && position.getY() == samuraiPOs[1].getPos().getY()) {
                                         samuraiPOs[1].beKilled(this.gameModel.getLength(), this.chessBoardModel);

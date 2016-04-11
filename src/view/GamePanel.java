@@ -11,6 +11,7 @@ import javax.swing.*;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
+import model.po.SamuraiPO;
 import view.listener.GameListener;
 
 public class GamePanel extends JPanel implements Observer {
@@ -240,8 +241,8 @@ public class GamePanel extends JPanel implements Observer {
 			this.actionButtonPanel.setActualLocation();
 			this.arrow.setActualLocation();
 		}else if(key.equals("home")){
-			Position position = (Position)notifingObject.getValue();
-			System.out.println(position.getX() + "," + position.getY());
+//			Position position = (Position)notifingObject.getValue();
+//			System.out.println(position.getX() + "," + position.getY());
 		}
 		
 

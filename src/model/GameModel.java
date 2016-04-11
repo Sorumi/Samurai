@@ -2,11 +2,13 @@ package model;
 
 import model.po.Player;
 import model.po.Position;
+import model.po.SamuraiPO;
 import model.state.GameResultState;
 import model.state.GameState;
 import view.MainFrame;
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameModel extends BaseModel {
     private ChessBoardModel chessBoardModel;
@@ -22,6 +24,8 @@ public class GameModel extends BaseModel {
     private int length;
     private int timeTotal;
     private Timer timer;
+    private int currentTime;
+
 
     public GameModel(int round, int length, MainFrame mainFrame){
         this.length = length;
@@ -29,7 +33,7 @@ public class GameModel extends BaseModel {
         this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
         this.gameState = GameState.RUN;
         this.timeTotal = 30;
-        this.timer = new Timer();
+        this.currentTime = this.timeTotal;
         this.currentRound = 1;
         this.totalRound = round;
         this.currentSamurai = 1;//1,2,3,4,5,6
@@ -42,13 +46,20 @@ public class GameModel extends BaseModel {
     }
 
     public boolean gameStart(){
-        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(1).getHome()));
-        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(2).getHome()));
-        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(3).getHome()));
-        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(4).getHome()));
-        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(5).getHome()));
-        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(6).getHome()));
+//        SamuraiPO[] samuraiPOs = new SamuraiPO[6];
+//        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(1)));
+//        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(2)));
+//        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(3)));
+//        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(4)));
+//        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(5)));
+//        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(6)));
+
+
         this.assignNext();
+
+        this.timer = new Timer();
+        timer.schedule(new countDownTask(),0,1000);
+
         return true;
     }
 
@@ -58,7 +69,6 @@ public class GameModel extends BaseModel {
 
     //Assign next samurai
     public void assignNext(){
-//        super.updateChange(new UpdateMessage("next",this.chessBoardModel));
 
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
@@ -68,11 +78,12 @@ public class GameModel extends BaseModel {
 
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
 
-        this.timer.schedule(this.new CountDownTask(),0);
     }
 
     //一个 samurai 一套动作完成时调用此方法
     public void actionDone(){
+
+        this.currentTime = this.timeTotal;
 
         System.out.println("Action Done");
         if(this.currentRound < this.totalRound) {
@@ -91,7 +102,7 @@ public class GameModel extends BaseModel {
 
     public boolean gameOver(){
         this.gameState = GameState.OVER;
-
+        this.timer.cancel();
         super.updateChange(new UpdateMessage("over",this.chessBoardModel));
 
         return true;
@@ -114,17 +125,15 @@ public class GameModel extends BaseModel {
         return this.chessBoardModel;
     }
 
-    public class CountDownTask extends java.util.TimerTask{
+    public class countDownTask extends java.util.TimerTask{
         public void run() {
-            for (int i = timeTotal; i > 0; i--) {
-                try {
-                    updateChange(new UpdateMessage("time", i));
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            if(currentTime > 0){
+                updateChange(new UpdateMessage("time",currentTime));
+                currentTime--;
+            }else{
+//                updateChange(new UpdateMessage("time",timeTotal));
+                actionDone();
             }
-            actionDone();
         }
     }
 }
