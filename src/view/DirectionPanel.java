@@ -34,10 +34,10 @@ public class DirectionPanel extends JPanel {
 	
 		buttons = new DirectionButton[]{upButton, leftButton, rightButton, downButton};
 		
-		upButton.setLocation(0, 0);
-		leftButton.setLocation(0, DIRECTION_HEIGHT+HEIGHT_FIX);
-		rightButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, 0);
-		downButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, DIRECTION_HEIGHT+HEIGHT_FIX);
+		upButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, 0);
+		leftButton.setLocation(0, 0);
+		rightButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, DIRECTION_HEIGHT+HEIGHT_FIX);
+		downButton.setLocation(0, DIRECTION_HEIGHT+HEIGHT_FIX);
 		
 		this.setLayout(null);
 		this.setBackground(null);
