@@ -3,6 +3,9 @@ package view.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import controller.msgqueue.ActionOperation;
+import controller.msgqueue.Operation;
+import controller.msgqueue.OperationQueue;
 import view.GamePanel;
 
 public class GameListener implements MouseListener{
@@ -20,6 +23,8 @@ public class GameListener implements MouseListener{
 	}
 
 	@Override
+	//actionNum: 0:occupy 1:move 2:show 3:hide
+	//direction: 0:up 1:left 2:right 3:down
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == game.getCurrentSamurai()) {
@@ -27,30 +32,39 @@ public class GameListener implements MouseListener{
 			game.getArrow().setVisible(false);
 		} else if (e.getSource() == game.getActionButtons().getMoveButton()) {
 			game.getActionButtons().setSecondary(true);
-			action = 0;
+			action = 1;
 			//发送判断
 			//出现（四个方向的）箭头
 		} else if (e.getSource() == game.getActionButtons().getOccupyButton()) {
 			game.getActionButtons().setSecondary(true);
-			action = 1;
+			action = 0;
 			//发送判断
 			//出现四个方向的箭头
 		} else if (e.getSource() == game.getActionButtons().getHideButton()) {
-			//
+			System.out.println("hide");
+			Operation op = new ActionOperation(3, 0);
+			OperationQueue.addOperation(op);
 		} else if (e.getSource() == game.getActionButtons().getBackButton()) {
 			game.getActionButtons().setSecondary(false);
-			//
 		} else if (e.getSource() == game.getActionButtons().getExitButton()) {
 			game.getActionButtons().setSecondary(false);
 			//进入下一轮
 		} else if (e.getSource() == game.getActionButtons().getDirectionPanel().getUpButton()) {
-				//0:move 1:occupy 
+			System.out.println("up");
+			Operation op = new ActionOperation(action, 0);
+			OperationQueue.addOperation(op);
 		} else if (e.getSource() == game.getActionButtons().getDirectionPanel().getLeftButton()) {
-				//0:move 1:occupy 
+			System.out.println("left");
+			Operation op = new ActionOperation(action, 1);
+			OperationQueue.addOperation(op);
 		} else if (e.getSource() == game.getActionButtons().getDirectionPanel().getRightButton()) {
-				//0:move 1:occupy 
+			System.out.println("right");
+			Operation op = new ActionOperation(action, 2);
+			OperationQueue.addOperation(op);
 		} else if (e.getSource() == game.getActionButtons().getDirectionPanel().getDownButton()) {
-				//0:move 1:occupy 
+			System.out.println("down");
+			Operation op = new ActionOperation(action, 3);
+			OperationQueue.addOperation(op);
 		} else {
 			game.getActionButtons().setVisible(false);
 			game.getActionButtons().setSecondary(false);

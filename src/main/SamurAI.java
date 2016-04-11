@@ -21,7 +21,7 @@ public class SamurAI {
         //Sliver Narcissus 修复了这个bug
 
         mainFrame = new MainFrame();
-        gameModel = new GameModel(24,14);
+        gameModel = new GameModel(24,14,mainFrame);
 
         gameModel.addObserver(mainFrame.gamePanel);
         MenuController menuController = new MenuController();
@@ -32,15 +32,11 @@ public class SamurAI {
         operationThread.start();
 
         menuController.startGame();
-
-        //暂时扮演 view 发消息的角色
-//        gameController.handleAction(1,3);
-//        gameController.handleAction(1,3);
     
         //界面交互测试方法 by Sorumi
         //所有界面接收消息的测试放在TestView中 这里无需改动
-        TestView testView = new TestView();
-        testView.addObserver(mainFrame.gamePanel.chessBoard);
-        testView.test();
+//        TestView testView = new TestView();
+//        testView.addObserver(mainFrame.gamePanel.chessBoard);
+//        testView.test();
     }
 }

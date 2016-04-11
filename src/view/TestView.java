@@ -8,9 +8,9 @@ public class TestView extends BaseModel{
 	
 	public void test(){
 
-		ActualBlock testBlock = new ActualBlock(3,2);
-		testBlock.setState(3);
-        super.updateChange(new UpdateMessage("block",testBlock));
+//		ActualBlock testBlock = new ActualBlock(3,2);
+//		testBlock.setState(3);
+//        super.updateChange(new UpdateMessage("block",testBlock));
         
 	}
 

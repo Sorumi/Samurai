@@ -67,7 +67,7 @@ public class GamePanel extends JPanel implements Observer {
 		playerB.getCirclePanel().setSideBlockQuantity(size);
 		this.add(playerA);
 		this.add(playerB);
-		
+
 		//player 标签
 		this.playerLabel = new JLabel("Player");
 		this.playerLabel.setBounds(800,20,100,40);
@@ -219,16 +219,13 @@ public class GamePanel extends JPanel implements Observer {
 		}else if(key.equals("player")){
 			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
 			this.setCurrentPlayer((int)notifingObject.getValue());
-			
 		}else if(key.equals("round")){
 			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
 			this.setCurrentRound((int)notifingObject.getValue());
-			
 		}else if(key.equals("time")){
 			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
 			this.currentPlayer.getCirclePanel().setTimeRest((int)notifingObject.getValue());
 			this.currentPlayer.repaint();
-			
 		}else if(key.equals("actionPoint")){
 			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
 			this.currentPlayer.getPointsPanel().setPointsRest((int)notifingObject.getValue());

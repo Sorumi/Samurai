@@ -50,4 +50,8 @@ public class MainFrame implements Observer{
 		
 	}
 
+	public GamePanel getGamePanel(){
+		return this.gamePanel;
+	}
+
 }
