@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import controller.msgqueue.ActionOperation;
+import controller.msgqueue.NextOperation;
 import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
 import view.GamePanel;
@@ -49,6 +50,8 @@ public class GameListener implements MouseListener{
 		} else if (e.getSource() == game.getActionButtons().getExitButton()) {
 			game.getActionButtons().setSecondary(false);
 			//进入下一轮
+			Operation op = new NextOperation();
+			OperationQueue.addOperation(op);
 		} else if (e.getSource() == game.getActionButtons().getDirectionPanel().getUpButton()) {
 			System.out.println("up");
 			Operation op = new ActionOperation(action, 0);
