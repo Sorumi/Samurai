@@ -89,12 +89,30 @@ public class SamuraiPO implements Serializable, Cloneable {
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 		}
 	}
+
 	public SamuraiPO(int number, int player, int weapon, int length, Position position) {
 		this.number = number;
 		this.player = player;
 		this.weapon = weapon;
 		this.length = length;
-		this.pos=position;
+		this.pos = position;
+	}
+
+	public Position getHome() {
+		switch (number) {
+		case 1:
+			return new Position(0, 0);
+		case 2:
+			return new Position(length / 2, 0);
+		case 3:
+			return new Position(length, 0);
+		case 4:
+			return new Position(0, length);
+		case 5:
+			return new Position(length / 2, length);
+		default:
+			return new Position(length, length);
+		}
 	}
 
 	public void beKilled(int length, ChessBoardModel cbm) {
@@ -124,7 +142,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	// 0:up 1:right 2:left 3:down
 	public ArrayList<Position> tryMove(ChessBoardModel cbm) {
-		boolean[] check = checkBound(cbm);
+		boolean[] check = checkMove(cbm);
 		ArrayList<Position> positions = new ArrayList<Position>();
 		for (int x = 0; x < 4; x++) {
 			if (check[x]) {
@@ -147,7 +165,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		return positions;
 	}
 
-	public boolean[] checkBound(ChessBoardModel cbm) {
+	public boolean[] checkMove(ChessBoardModel cbm) {
 		int state;
 		boolean[] result = new boolean[4];
 		for (int direction = 0; direction < 4; direction++) {
@@ -262,6 +280,20 @@ public class SamuraiPO implements Serializable, Cloneable {
 				}
 				break;
 			}
+		}
+		return result;
+	}
+
+	public boolean[] checkOccupy() {
+		boolean[] result = new boolean[4];
+		if (pos.getX() - 1 >= 0) {
+			result[0] = true;
+		} else if (pos.getY() - 1 >= 0) {
+			result[1] = true;
+		} else if (pos.getY() + 1 >= 0) {
+			result[2] = true;
+		} else if (pos.getX() + 1 >= 0) {
+			result[3] = true;
 		}
 		return result;
 	}
@@ -886,7 +918,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public SamuraiPO clone() {
 		try {
-			SamuraiPO samuraiPO=new SamuraiPO(number, player, weapon, length, pos.clone());
+			SamuraiPO samuraiPO = new SamuraiPO(number, player, weapon, length, pos.clone());
 			return samuraiPO;
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -1,9 +1,12 @@
 package model.po;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import controller.msgqueue.ActionOperation;
+import controller.msgqueue.OperationQueue;
 import model.ChessBoardModel;
 
 public class SamuraiAI {
@@ -11,31 +14,32 @@ public class SamuraiAI {
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
-		SamuraiPO No2 = new SamuraiPO(2, 1, 0, 14, cbm);
-		SamuraiPO No3 = new SamuraiPO(3, 1, 1, 14, cbm);
-		SamuraiPO No4 = new SamuraiPO(4, 0, 1, 14, cbm);
-		SamuraiPO No5 = new SamuraiPO(5, 0, 2, 14, cbm);
+		SamuraiPO No2 = new SamuraiPO(2, 0, 1, 14, cbm);
+		SamuraiPO No3 = new SamuraiPO(3, 0, 2, 14, cbm);
+		SamuraiPO No4 = new SamuraiPO(4, 1, 0, 14, cbm);
+		SamuraiPO No5 = new SamuraiPO(5, 1, 1, 14, cbm);
 		SamuraiPO No6 = new SamuraiPO(6, 1, 2, 14, cbm);
 		SamuraiAI mine1 = new SamuraiAI(No1, 1, cbm, 0);
-		SamuraiAI mine2 = new SamuraiAI(No2, 1, cbm, 1);
-		SamuraiAI mine3 = new SamuraiAI(No3, 1, cbm, 1);
-		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 0);
-		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 0);
+		SamuraiAI mine2 = new SamuraiAI(No2, 1, cbm, 0);
+		SamuraiAI mine3 = new SamuraiAI(No3, 1, cbm, 0);
+		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 1);
+		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 1);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
-		for(int i=0;i<10;i++){
+		for(int i=0;i<2;i++){
 		mine1.calculate();
-		print(cbm);
-		mine2.calculate();
-		print(cbm);
-		mine3.calculate();
 		print(cbm);
 		mine4.calculate();
 		print(cbm);
 		mine5.calculate();
 		print(cbm);
+		mine2.calculate();
+		print(cbm);
+		mine3.calculate();
+		print(cbm);
 		mine6.calculate();
 		print(cbm);
 		}
+		
 		//
 		
 	}
@@ -83,7 +87,7 @@ public class SamuraiAI {
 	public ActionOperation[] calculate() {
 		ArrayList<SaveCache> saveCaches = new ArrayList<SaveCache>();
 		ActionOperation[] actionOperations = new ActionOperation[2];
-		boolean[] check = samuraiPO.checkBound(chessBoardModel);
+		boolean[] check = samuraiPO.checkMove(chessBoardModel);
 		switch (type) {
 		case 0:
 			return null;
@@ -109,6 +113,8 @@ public class SamuraiAI {
 			//
 			actionOperations[0] = new ActionOperation(1, saveCaches.get(0).getLocation() / 4);
 			actionOperations[1] = new ActionOperation(0, saveCaches.get(0).getLocation() % 4);
+			
+			
 			return actionOperations;
 		//
 
@@ -123,8 +129,8 @@ public class SamuraiAI {
 		if (player == 0) {
 			for (int x = 0; x < samuraiPO.getLength(); x++) {
 				for (int y = 0; y < samuraiPO.getLength(); y++) {
-					if (cbm.getActualBlockState(x, y) == 1 || cbm.getActualBlockState(x, y) == 4
-							|| cbm.getActualBlockState(x, y) == 5) {
+					if (cbm.getActualBlockState(x, y) == 1 || cbm.getActualBlockState(x, y) == 2
+							|| cbm.getActualBlockState(x, y) == 3) {
 						result++;
 					}
 				}
@@ -132,7 +138,7 @@ public class SamuraiAI {
 		} else {
 			for (int x = 0; x < samuraiPO.getLength(); x++) {
 				for (int y = 0; y < samuraiPO.getLength(); y++) {
-					if (cbm.getActualBlockState(x, y) == 2 || cbm.getActualBlockState(x, y) == 3
+					if (cbm.getActualBlockState(x, y) == 4 || cbm.getActualBlockState(x, y) == 5
 							|| cbm.getActualBlockState(x, y) == 6) {
 						result++;
 					}

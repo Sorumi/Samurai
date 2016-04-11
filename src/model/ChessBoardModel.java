@@ -23,13 +23,13 @@ public class ChessBoardModel extends BaseModel implements Cloneable {
 
 	public void changeActualBlock(int x, int y, int state) {
 		this.actualBlockArray[x][y].setState(state);
-		System.out.println("A " + this.actualBlockArray[x][y].getX() + "," + this.actualBlockArray[x][y].getY());
+		//System.out.println("A " + this.actualBlockArray[x][y].getX() + "," + this.actualBlockArray[x][y].getY());
 		super.updateChange(new UpdateMessage("block",actualBlockArray[x][y]));
 	}
 
 	public void changeActualBlock(int x, int y, boolean occ) {
 		actualBlockArray[x][y].setOccupied(occ);
-		System.out.println("B " + this.actualBlockArray[x][y].getX() + "," + this.actualBlockArray[x][y].getY());
+		//System.out.println("B " + this.actualBlockArray[x][y].getX() + "," + this.actualBlockArray[x][y].getY());
 		super.updateChange(new UpdateMessage("samuraiPosition",actualBlockArray[x][y]));
 	}
 
