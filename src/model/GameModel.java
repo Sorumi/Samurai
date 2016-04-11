@@ -34,8 +34,7 @@ public class GameModel extends BaseModel {
         this.currentRound = 1;
         this.totalRound = round;
         this.currentSamurai = 1;//1,2,3,4,5,6
-//        this.samuraiSeq = new int[]{1,4,5,2,3,6};
-        this.samuraiSeq = new int[]{1,2,3,4,5,6};
+        this.samuraiSeq = new int[]{1,4,5,2,3,6};
         this.currentPlayer = 1;//1,2,3,4,5,6
         this.playerSeq = new int[]{0,1,1,0,0,1};
         this.players = new Player[2];

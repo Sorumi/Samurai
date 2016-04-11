@@ -154,16 +154,16 @@ public class GamePanel extends JPanel implements Observer {
 				this.currentSamurai = A1;
 				break;
 			case 2:
-				this.currentSamurai = B1;
-				break;
-			case 3:
-				this.currentSamurai = B2;
-				break;
-			case 4:
 				this.currentSamurai = A2;
 				break;
-			case 5:
+			case 3:
 				this.currentSamurai = A3;
+				break;
+			case 4:
+				this.currentSamurai = B1;
+				break;
+			case 5:
+				this.currentSamurai = B2;
 				break;
 			case 6:
 				this.currentSamurai = B3;

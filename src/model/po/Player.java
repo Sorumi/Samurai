@@ -32,11 +32,7 @@ public class Player {
             samuraiPOs[1] = new SamuraiPO(1,playerNum,0,this.gameModel.getLength(),this.chessBoardModel);
             samuraiPOs[2] = new SamuraiPO(2,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
             samuraiPOs[3] = new SamuraiPO(3,playerNum,2,this.gameModel.getLength(),this.chessBoardModel);
-//            samuraiPOs[4] = new SamuraiPO(4,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
-//            samuraiPOs[5] = new SamuraiPO(5,playerNum,2,this.gameModel.getLength(),this.chessBoardModel);
         }else if(playerNum == 1){
-//            samuraiPOs[2] = new SamuraiPO(2,playerNum,0,this.gameModel.getLength(),this.chessBoardModel);
-//            samuraiPOs[3] = new SamuraiPO(3,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
             samuraiPOs[4] = new SamuraiPO(4,playerNum,0,this.gameModel.getLength(),this.chessBoardModel);
             samuraiPOs[5] = new SamuraiPO(5,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
             samuraiPOs[6] = new SamuraiPO(6,playerNum,2,this.gameModel.getLength(),this.chessBoardModel);
@@ -83,14 +79,6 @@ public class Player {
                             //检测需不需要把别人踢回去
                             for(Position position : positions){
                                 if(this.playerNum == 1){
-//                                    if(position.getX() == samuraiPOs[2].getPos().getX()
-//                                            && position.getY() == samuraiPOs[2].getPos().getY()){
-//                                        samuraiPOs[2].beKilled(this.gameModel.getLength(),this.chessBoardModel);
-//                                    }
-//                                    if(position.getX() == samuraiPOs[3].getPos().getX()
-//                                            && position.getY() == samuraiPOs[3].getPos().getY()){
-//                                        samuraiPOs[3].beKilled(this.gameModel.getLength(),this.chessBoardModel);
-//                                    }
                                     if(position.getX() == samuraiPOs[4].getPos().getX()
                                             && position.getY() == samuraiPOs[4].getPos().getY()){
                                         samuraiPOs[4].beKilled(this.gameModel.getLength(),this.chessBoardModel);
@@ -116,14 +104,6 @@ public class Player {
                                             && position.getY() == samuraiPOs[3].getPos().getY()){
                                         samuraiPOs[3].beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                     }
-//                                    if (position.getX() == samuraiPOs[4].getPos().getX()
-//                                            && position.getY() == samuraiPOs[4].getPos().getY()) {
-//                                        samuraiPOs[4].beKilled(this.gameModel.getLength(), this.chessBoardModel);
-//                                    }
-//                                    if (position.getX() == samuraiPOs[5].getPos().getX()
-//                                            && position.getY() == samuraiPOs[5].getPos().getY()) {
-//                                        samuraiPOs[5].beKilled(this.gameModel.getLength(), this.chessBoardModel);
-//                                    }
                                 }
                             }
                         }
