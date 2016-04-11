@@ -21,10 +21,9 @@ public class SamurAI {
         //Sliver Narcissus 修复了这个bug
 
         mainFrame = new MainFrame();
-        gameModel = new GameModel(24,14);
+        gameModel = new GameModel(24,14,mainFrame);
 
         gameModel.addObserver(mainFrame.gamePanel);
-        gameModel.getChessBoardModel().addObserver(mainFrame.gamePanel.chessBoard);
         MenuController menuController = new MenuController();
         GameController gameController = new GameController();
 

@@ -4,6 +4,7 @@ import model.po.Player;
 import model.po.Position;
 import model.state.GameResultState;
 import model.state.GameState;
+import view.MainFrame;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -23,9 +24,10 @@ public class GameModel extends BaseModel {
     private int timeTotal;
     private Timer timer;
 
-    public GameModel(int round,int length){
+    public GameModel(int round, int length, MainFrame mainFrame){
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
+        this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
         this.gameState = GameState.RUN;
         this.timeTotal = 30;
         this.timer = new Timer();
@@ -42,7 +44,6 @@ public class GameModel extends BaseModel {
 
     public boolean gameStart(){
         System.out.println("Game Start.");
-
 //        super.updateChange(new UpdateMessage("start",this.chessBoardModel));
         //start时发一下samurai的初始位置
         this.assignNext();
@@ -55,7 +56,6 @@ public class GameModel extends BaseModel {
 
     //Assign next samurai
     public void assignNext(){
-
 //        super.updateChange(new UpdateMessage("next",this.chessBoardModel));
 
         System.out.println("This Player:" + this.playerSeq[this.currentPlayer - 1]);
@@ -69,12 +69,13 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("vision",this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
 
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
-        this.timer.schedule(new CountDownTask(),0);
 
+        this.timer.schedule(this.new CountDownTask(),0);
     }
 
     //一个 samurai 一套动作完成时调用此方法
     public void actionDone(){
+
         System.out.println("Action Done");
         if(this.currentRound < this.totalRound) {
             this.currentRound++;
@@ -118,14 +119,12 @@ public class GameModel extends BaseModel {
     }
 
     public class CountDownTask extends java.util.TimerTask{
-        public void run(){
-        	System.out.println();
-            for(int i = timeTotal; i > 0; i--) {
+        public void run() {
+            for (int i = timeTotal; i > 0; i--) {
                 try {
-                    updateChange(new UpdateMessage("time",i));
-//                    System.out.println("还有"+i+"秒");
+                    updateChange(new UpdateMessage("time", i));
                     Thread.sleep(1000);
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
