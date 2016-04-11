@@ -7,6 +7,7 @@ import controller.msgqueue.ActionOperation;
 import model.ChessBoardModel;
 
 public class SamuraiAI {
+	//test
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
@@ -21,6 +22,7 @@ public class SamuraiAI {
 		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 0);
 		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 0);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
+		for(int i=0;i<10;i++){
 		mine1.calculate();
 		print(cbm);
 		mine2.calculate();
@@ -33,18 +35,7 @@ public class SamuraiAI {
 		print(cbm);
 		mine6.calculate();
 		print(cbm);
-		mine1.calculate();
-		print(cbm);
-		mine2.calculate();
-		print(cbm);
-		mine3.calculate();
-		print(cbm);
-		mine4.calculate();
-		print(cbm);
-		mine5.calculate();
-		print(cbm);
-		mine6.calculate();
-		print(cbm);
+		}
 		//
 		
 	}
