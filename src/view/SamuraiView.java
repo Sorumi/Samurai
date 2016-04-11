@@ -21,7 +21,7 @@ public class SamuraiView extends JPanel {
 	private int blockHeightOffset;
 	
 	private final int selfWidthOffset = -34;
-	private final int selfHeightOffset = -95;
+	private final int selfHeightOffset = -75;
 
 	private int number;
 	private BufferedImage image;
@@ -59,7 +59,7 @@ public class SamuraiView extends JPanel {
 	public void setActualLocation(int x, int y){
 		this.x = x;
 		this.y = y;
-		this.setLocation(chessBoardWidthOffset+(x+y+1)*blockWidthOffset+selfWidthOffset,chessBoardHeightOffset+FIELD_HEIGHT/2+(x-y)*blockHeightOffset+selfHeightOffset);
+		this.setLocation(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset+selfWidthOffset, chessBoardHeightOffset+(x+y)*blockHeightOffset+selfHeightOffset);
 	}
 	
 	public int getNum(){

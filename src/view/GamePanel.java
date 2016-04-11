@@ -96,10 +96,10 @@ public class GamePanel extends JPanel implements Observer {
 		//samurais 需要设置初始位置home
 		//TODO
 		A1 = new SamuraiView(1, size, 0, 0);
-		A2 = new SamuraiView(2, size, 0, 7);
-		A3 = new SamuraiView(3, size, 0, 14);
-		B1 = new SamuraiView(4, size, 14, 0);
-		B2 = new SamuraiView(5, size, 14, 7);
+		A2 = new SamuraiView(2, size, 7, 0);
+		A3 = new SamuraiView(3, size, 14, 0);
+		B1 = new SamuraiView(4, size, 0, 14);
+		B2 = new SamuraiView(5, size, 7, 14);
 		B3 = new SamuraiView(6, size, 14, 14);
 	
 		this.add(A1);
@@ -154,16 +154,16 @@ public class GamePanel extends JPanel implements Observer {
 				this.currentSamurai = A1;
 				break;
 			case 2:
-				this.currentSamurai = B1;
-				break;
-			case 3:
-				this.currentSamurai = B2;
-				break;
-			case 4:
 				this.currentSamurai = A2;
 				break;
-			case 5:
+			case 3:
 				this.currentSamurai = A3;
+				break;
+			case 4:
+				this.currentSamurai = B1;
+				break;
+			case 5:
+				this.currentSamurai = B2;
 				break;
 			case 6:
 				this.currentSamurai = B3;
