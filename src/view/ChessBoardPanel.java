@@ -53,7 +53,7 @@ public class ChessBoardPanel extends JPanel implements Observer {
 			for(int j=0; j<sideBlockQuantity; j++){
 
 				blocks[i][j] = new FieldBlock(i,j,sideBlockQuantity);
-				blocks[i][j].setBounds( (i+j) * blockWidth/2, FIELD_HEIGHT/2 + (i-j-1) * blockHeight/2, blockWidth,
+				blocks[i][j].setBounds(FIELD_WIDTH/2 + (j-i-1)*blockWidth/2, (i+j)*blockHeight/2, blockWidth,
 						blockHeight);
 				this.add(blocks[i][j]);
 			}

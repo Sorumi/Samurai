@@ -96,10 +96,10 @@ public class GamePanel extends JPanel implements Observer {
 		//samurais 需要设置初始位置home
 		//TODO
 		A1 = new SamuraiView(1, size, 0, 0);
-		A2 = new SamuraiView(2, size, 0, 7);
-		A3 = new SamuraiView(3, size, 0, 14);
-		B1 = new SamuraiView(4, size, 14, 0);
-		B2 = new SamuraiView(5, size, 14, 7);
+		A2 = new SamuraiView(2, size, 7, 0);
+		A3 = new SamuraiView(3, size, 14, 0);
+		B1 = new SamuraiView(4, size, 0, 14);
+		B2 = new SamuraiView(5, size, 7, 14);
 		B3 = new SamuraiView(6, size, 14, 14);
 	
 		this.add(A1);
