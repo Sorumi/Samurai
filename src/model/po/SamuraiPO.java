@@ -141,28 +141,23 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	// 0:up 1:right 2:left 3:down
-	public ArrayList<Position> tryMove(ChessBoardModel cbm) {
-		boolean[] check = checkMove(cbm);
-		ArrayList<Position> positions = new ArrayList<Position>();
-		for (int x = 0; x < 4; x++) {
-			if (check[x]) {
-				switch (x) {
-				case 0:
-					positions.add(new Position(pos.getX() - 1, pos.getY()));
-					break;
-				case 1:
-					positions.add(new Position(pos.getX(), pos.getY() - 1));
-					break;
-				case 2:
-					positions.add(new Position(pos.getX(), pos.getY() + 1));
-					break;
-				default:
-					positions.add(new Position(pos.getX() + 1, pos.getY()));
-					break;
-				}
-			}
+	public Position tryMove(int direction) {
+		Position position;
+		switch (direction) {
+		case 0:
+			position = new Position(pos.getX() - 1, pos.getY());
+			break;
+		case 1:
+			position = new Position(pos.getX(), pos.getY() - 1);
+			break;
+		case 2:
+			position = new Position(pos.getX(), pos.getY() + 1);
+			break;
+		default:
+			position = new Position(pos.getX() + 1, pos.getY());
+			break;
 		}
-		return positions;
+		return position;
 	}
 
 	public boolean[] checkMove(ChessBoardModel cbm) {
@@ -423,6 +418,10 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	// 0:up 1:right 2:left 3:down
+	public void tryOccupied(int direction, ChessBoardModel cbm) {
+		occupied(direction, cbm, false);
+	}
+
 	public ArrayList<Position> occupied(int direction, ChessBoardModel cbm, boolean real) {
 		ArrayList<Position> positions = new ArrayList<Position>();
 		switch (weapon) {
@@ -910,6 +909,10 @@ public class SamuraiPO implements Serializable, Cloneable {
 		double cache = Math.pow(level, 1.5);
 		int upLevelExp = (int) (cache * 50);
 		return upLevelExp;
+	}
+
+	public boolean getHide() {
+		return hide;
 	}
 
 	private void upLevel() {
