@@ -69,24 +69,24 @@ public class GamePanel extends JPanel implements Observer {
 		this.add(playerB);
 		
 		//player 标签
-		this.playerLabel = new JLabel("Player");
-		this.playerLabel.setBounds(800,20,100,40);
-		this.add(this.playerLabel);
+//		this.playerLabel = new JLabel("Player");
+//		this.playerLabel.setBounds(800,20,100,40);
+//		this.add(this.playerLabel);
 
 		//round 标签
-		this.roundLabel = new JLabel("Round");
-		this.roundLabel.setBounds(1000, 20, 100, 40);
-		this.add(this.roundLabel);
+//		this.roundLabel = new JLabel("Round");
+//		this.roundLabel.setBounds(1000, 20, 100, 40);
+//		this.add(this.roundLabel);
 
 		//time 标签
-		this.timeLabel = new JLabel("Time");
-		this.timeLabel.setBounds(900,20,100,40);
-		this.add(this.timeLabel);
+//		this.timeLabel = new JLabel("Time");
+//		this.timeLabel.setBounds(900,20,100,40);
+//		this.add(this.timeLabel);
 
 		//actionPoint 标签
-		this.actionPointLabel = new JLabel("ActionPoint");
-		this.actionPointLabel.setBounds(700,20,100,40);
-		this.add(this.actionPointLabel);
+//		this.actionPointLabel = new JLabel("ActionPoint");
+//		this.actionPointLabel.setBounds(700,20,100,40);
+//		this.add(this.actionPointLabel);
 
 		//chessboard
 		chessBoard = new ChessBoardPanel(sideBlockQuantity);
@@ -217,20 +217,20 @@ public class GamePanel extends JPanel implements Observer {
 		if(key.equals("samurai")){
 			this.setCurrentSamurai((int)notifingObject.getValue());
 		}else if(key.equals("player")){
-			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
+//			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
 			this.setCurrentPlayer((int)notifingObject.getValue());
 			
 		}else if(key.equals("round")){
-			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
+//			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
 			this.setCurrentRound((int)notifingObject.getValue());
 			
 		}else if(key.equals("time")){
-			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
+//			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
 			this.currentPlayer.getCirclePanel().setTimeRest((int)notifingObject.getValue());
 			this.currentPlayer.repaint();
 			
 		}else if(key.equals("actionPoint")){
-			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
+//			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
 			this.currentPlayer.getPointsPanel().setPointsRest((int)notifingObject.getValue());
 			this.currentPlayer.repaint();
 			

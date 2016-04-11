@@ -27,7 +27,7 @@ public class GameModel extends BaseModel {
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.gameState = GameState.RUN;
-        this.timeTotal = 5;
+        this.timeTotal = 30;
         this.timer = new Timer();
         this.currentRound = 1;
         this.totalRound = round;
@@ -123,7 +123,7 @@ public class GameModel extends BaseModel {
             for(int i = timeTotal; i > 0; i--) {
                 try {
                     updateChange(new UpdateMessage("time",i));
-                    System.out.println("还有"+i+"秒");
+//                    System.out.println("还有"+i+"秒");
                     Thread.sleep(1000);
                 }catch (Exception e){
                     e.printStackTrace();

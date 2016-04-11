@@ -32,10 +32,6 @@ public class SamurAI {
         operationThread.start();
 
         menuController.startGame();
-
-        //暂时扮演 view 发消息的角色
-//        gameController.handleAction(1,3);
-//        gameController.handleAction(1,3);
     
         //界面交互测试方法 by Sorumi
         //所有界面接收消息的测试放在TestView中 这里无需改动
