@@ -30,7 +30,7 @@ public class ChessBoardModel extends BaseModel implements Cloneable {
 	public void changeActualBlock(int x, int y, boolean occ) {
 		actualBlockArray[x][y].setOccupied(occ);
 		System.out.println("B " + this.actualBlockArray[x][y].getX() + "," + this.actualBlockArray[x][y].getY());
-		super.updateChange(new UpdateMessage("block",actualBlockArray[x][y]));
+		super.updateChange(new UpdateMessage("samuraiPosition",actualBlockArray[x][y]));
 	}
 
 	public int getActualBlockState(int x, int y) {

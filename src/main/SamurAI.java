@@ -24,6 +24,7 @@ public class SamurAI {
         gameModel = new GameModel(24,14,mainFrame);
 
         gameModel.addObserver(mainFrame.gamePanel);
+        gameModel.getChessBoardModel().addObserver(mainFrame.gamePanel);
         MenuController menuController = new MenuController();
         GameController gameController = new GameController();
 

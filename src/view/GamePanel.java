@@ -9,6 +9,7 @@ import java.util.Observer;
 import javax.swing.*;
 
 import model.UpdateMessage;
+import model.po.ActualBlock;
 import view.listener.GameListener;
 
 public class GamePanel extends JPanel implements Observer {
@@ -230,9 +231,15 @@ public class GamePanel extends JPanel implements Observer {
 			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
 			this.currentPlayer.getPointsPanel().setPointsRest((int)notifingObject.getValue());
 			this.currentPlayer.repaint();
-			
 		}else if(key.equals("pointsTotal")){
 			this.currentPlayer.getPointsPanel().setPointsTotal((int)notifingObject.getValue());
+		}else if(key.equals("samuraiPosition")){
+			ActualBlock block = (ActualBlock)notifingObject.getValue();
+			System.out.println(block.getX() + "," + block.getY());
+			this.currentSamurai.setActualLocation(block.getX(),block.getY());
+		}else if(key.equals("start")){
+			System.out.println("Initialize...");
+
 		}
 		
 

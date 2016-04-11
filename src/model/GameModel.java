@@ -44,7 +44,7 @@ public class GameModel extends BaseModel {
 
     public boolean gameStart(){
         System.out.println("Game Start.");
-//        super.updateChange(new UpdateMessage("start",this.chessBoardModel));
+        super.updateChange(new UpdateMessage("start","Standard"));
         //start时发一下samurai的初始位置
         this.assignNext();
         return true;
@@ -58,9 +58,9 @@ public class GameModel extends BaseModel {
     public void assignNext(){
 //        super.updateChange(new UpdateMessage("next",this.chessBoardModel));
 
-        System.out.println("This Player:" + this.playerSeq[this.currentPlayer - 1]);
-        System.out.println("This Samurai:" + this.samuraiSeq[this.currentSamurai - 1]);
-        System.out.println("This Round:" + this.currentRound);
+//        System.out.println("This Player:" + this.playerSeq[this.currentPlayer - 1]);
+//        System.out.println("This Samurai:" + this.samuraiSeq[this.currentSamurai - 1]);
+//        System.out.println("This Round:" + this.currentRound);
        
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
@@ -94,10 +94,10 @@ public class GameModel extends BaseModel {
     public boolean gameOver(){
         this.gameState = GameState.OVER;
 
-//        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
+        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
 
-        System.out.println("Game Over.");
-        System.exit(0);
+//        System.out.println("Game Over.");
+//        System.exit(0);
         return true;
     }
 
