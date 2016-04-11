@@ -61,14 +61,12 @@ public class Player {
     }
 
     //当view做出动作的时候 调用这个方法
-    //actionNum: 0:occupy 1:move 2:show 3:hide
-    //direction: 0:up 1:left 2:right 3:down
     public void actionPerformed(int actionNum, int direction){
         if(this.canAction){
             //actionNum:动作编号
+            //0:occupy 1:move 2:show / hide
             boolean done = false;
             switch (actionNum){
-                //要加上更新 view 的代码
                 case 0:
                     if(this.actionPoint >= 4){
                         ArrayList<Position> positions
@@ -118,18 +116,19 @@ public class Player {
                     }
                     break;
                 case 2:
-                    if(this.actionPoint >= 1){
-                        if(this.samuraiPOs[this.currentSamurai].show(this.chessBoardModel)) {
-                            done = true;
-                            this.actionPoint -= 1;
+                    if(this.samuraiPOs[this.currentSamurai].getHide()) {
+                        if (this.actionPoint >= 1) {
+                            if (this.samuraiPOs[this.currentSamurai].show(this.chessBoardModel)) {
+                                done = true;
+                                this.actionPoint -= 1;
+                            }
                         }
-                    }
-                    break;
-                case 3:
-                    if(this.actionPoint >= 1){
-                        if(this.samuraiPOs[this.currentSamurai].hide(this.chessBoardModel)) {
-                            done = true;
-                            this.actionPoint -= 1;
+                    }else{
+                        if(this.actionPoint >= 1){
+                            if(this.samuraiPOs[this.currentSamurai].hide(this.chessBoardModel)) {
+                                done = true;
+                                this.actionPoint -= 1;
+                            }
                         }
                     }
                     break;

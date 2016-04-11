@@ -15,7 +15,7 @@ public class SamurAI {
 
     public static void main(String[] args) {
         //先动作 再方向
-        //actionNum: 0:occupy 1:move 2:show 3:hide
+        //actionNum: 0:occupy 1:move 2:show / hide
         //direction: 0:up 1:left 2:right 3:down
         //左和右反了???
         //Sliver Narcissus 修复了这个bug
