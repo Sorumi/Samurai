@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import model.UpdateMessage;
 import model.po.ActualBlock;
+import model.po.Position;
 import view.listener.GameListener;
 
 public class GamePanel extends JPanel implements Observer {
@@ -235,13 +236,12 @@ public class GamePanel extends JPanel implements Observer {
 			this.currentPlayer.getPointsPanel().setPointsTotal((int)notifingObject.getValue());
 		}else if(key.equals("samuraiPosition")){
 			ActualBlock block = (ActualBlock)notifingObject.getValue();
-			System.out.println(block.getX() + "," + block.getY());
 			this.currentSamurai.setActualLocation(block.getX(),block.getY());
 			this.actionButtonPanel.setActualLocation();
 			this.arrow.setActualLocation();
-		}else if(key.equals("start")){
-			System.out.println("Initialize...");
-
+		}else if(key.equals("home")){
+			Position position = (Position)notifingObject.getValue();
+			System.out.println(position.getX() + "," + position.getY());
 		}
 		
 
