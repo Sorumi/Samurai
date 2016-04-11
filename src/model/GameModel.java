@@ -119,6 +119,7 @@ public class GameModel extends BaseModel {
 
     public class CountDownTask extends java.util.TimerTask{
         public void run(){
+        	System.out.println();
             for(int i = timeTotal; i > 0; i--) {
                 try {
                     updateChange(new UpdateMessage("time",i));

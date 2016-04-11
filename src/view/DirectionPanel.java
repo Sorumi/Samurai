@@ -9,7 +9,8 @@ public class DirectionPanel extends JPanel {
 
 	private final int DIRECTION_WIDTH = 49;
 	private final int DIRECTION_HEIGHT = 35;
-	private final int DIRECTION_FIX = 6;
+	private final int WIDTH_FIX = 18;
+	private final int HEIGHT_FIX = 8;
 	
 	private boolean canUp;
 	private boolean canLeft;
@@ -34,14 +35,14 @@ public class DirectionPanel extends JPanel {
 		buttons = new DirectionButton[]{upButton, leftButton, rightButton, downButton};
 		
 		upButton.setLocation(0, 0);
-		leftButton.setLocation(0, DIRECTION_HEIGHT);
-		rightButton.setLocation(DIRECTION_WIDTH+DIRECTION_FIX, 0);
-		downButton.setLocation(DIRECTION_WIDTH+DIRECTION_FIX, DIRECTION_HEIGHT);
+		leftButton.setLocation(0, DIRECTION_HEIGHT+HEIGHT_FIX);
+		rightButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, 0);
+		downButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, DIRECTION_HEIGHT+HEIGHT_FIX);
 		
 		this.setLayout(null);
 		this.setBackground(null);
 		this.setOpaque(false);
-		this.setSize(DIRECTION_WIDTH*2+DIRECTION_FIX, DIRECTION_HEIGHT*2);
+		this.setSize(DIRECTION_WIDTH*2+WIDTH_FIX, DIRECTION_HEIGHT*2+HEIGHT_FIX);
 		
 		this.add(upButton);
 		this.add(leftButton);
