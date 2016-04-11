@@ -6,7 +6,6 @@ import model.state.GameResultState;
 import model.state.GameState;
 import view.MainFrame;
 
-import java.util.ArrayList;
 import java.util.Timer;
 
 public class GameModel extends BaseModel {
@@ -43,9 +42,12 @@ public class GameModel extends BaseModel {
     }
 
     public boolean gameStart(){
-        System.out.println("Game Start.");
-        super.updateChange(new UpdateMessage("start","Standard"));
-        //start时发一下samurai的初始位置
+        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(1).getHome()));
+        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(2).getHome()));
+        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(3).getHome()));
+        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(4).getHome()));
+        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(5).getHome()));
+        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(6).getHome()));
         this.assignNext();
         return true;
     }
@@ -58,10 +60,6 @@ public class GameModel extends BaseModel {
     public void assignNext(){
 //        super.updateChange(new UpdateMessage("next",this.chessBoardModel));
 
-//        System.out.println("This Player:" + this.playerSeq[this.currentPlayer - 1]);
-//        System.out.println("This Samurai:" + this.samuraiSeq[this.currentSamurai - 1]);
-//        System.out.println("This Round:" + this.currentRound);
-       
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
@@ -96,8 +94,6 @@ public class GameModel extends BaseModel {
 
         super.updateChange(new UpdateMessage("over",this.chessBoardModel));
 
-//        System.out.println("Game Over.");
-//        System.exit(0);
         return true;
     }
 
