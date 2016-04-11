@@ -48,7 +48,7 @@ public class GamePanel extends JPanel implements Observer {
 	private PlayerPanel playerA;
 	private PlayerPanel playerB;
 	
-	private ActionButtonPanel actionButtons;
+	private ActionButtonPanel actionButtonPanel;
 	private GameListener gameListener;
 	
 	private Image bgImage = Images.BG_0;
@@ -123,8 +123,8 @@ public class GamePanel extends JPanel implements Observer {
 		arrow = new Arrow();
 		this.add(arrow);
 		
-		actionButtons = new ActionButtonPanel(gameListener);
-		this.add(actionButtons);
+		actionButtonPanel = new ActionButtonPanel(gameListener);
+		this.add(actionButtonPanel);
 	
 		//order
 		this.setComponentZOrder(A1, 0);
@@ -134,7 +134,7 @@ public class GamePanel extends JPanel implements Observer {
 		this.setComponentZOrder(B2, 4);
 		this.setComponentZOrder(B3, 5);
 		this.setComponentZOrder(arrow, 6);
-		this.setComponentZOrder(actionButtons, 7);
+		this.setComponentZOrder(actionButtonPanel, 7);
 		this.setComponentZOrder(chessBoard, 8);
 		this.setComponentZOrder(playerA, 9);
 		this.setComponentZOrder(playerB, 10);
@@ -170,7 +170,7 @@ public class GamePanel extends JPanel implements Observer {
 				break;
 		}
 		arrow.setCurrentSamurai(currentSamurai);
-		actionButtons.setCurrentSamurai(currentSamurai);
+		actionButtonPanel.setCurrentSamurai(currentSamurai);
 		playerA.setCurrentSamurai(currentSamurai.getNum());
 		playerB.setCurrentSamurai(currentSamurai.getNum());
 	}
@@ -180,7 +180,7 @@ public class GamePanel extends JPanel implements Observer {
 	}
 	
 	public ActionButtonPanel getActionButtons(){
-		return this.actionButtons;
+		return this.actionButtonPanel;
 	}
 	
 	public Arrow getArrow(){
@@ -237,6 +237,8 @@ public class GamePanel extends JPanel implements Observer {
 			ActualBlock block = (ActualBlock)notifingObject.getValue();
 			System.out.println(block.getX() + "," + block.getY());
 			this.currentSamurai.setActualLocation(block.getX(),block.getY());
+			this.actionButtonPanel.setActualLocation();
+			this.arrow.setActualLocation();
 		}else if(key.equals("start")){
 			System.out.println("Initialize...");
 

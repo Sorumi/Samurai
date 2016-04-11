@@ -62,23 +62,6 @@ public class FieldBlock extends JPanel{
 		
 	}
 	
-	public Location getMyLocation() {
-		return location;
-	}
-	
-	public void setTransparentBackground()
-	{
-		this.setBackground(null);
-		this.setOpaque(false);
-	}
-	
-	public void setColor(Color color){
-		this.color = color;
-	}
-	public Color getColor(){
-		return color;
-	}
-	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
@@ -99,6 +82,28 @@ public class FieldBlock extends JPanel{
 		this.setSize(width, height);
 	
 	}
+	
+	public Location getMyLocation() {
+		return location;
+	}
+	
+	public void setTransparentBackground()
+	{
+		this.setBackground(null);
+		this.setOpaque(false);
+	}
+	
+	public void setColor(Color color){
+		this.color = color;
+	}
+	public Color getColor(){
+		return color;
+	}
+	
+	public void setHome(){
+		this.strokeSize = 4;
+	}
+	
 	
 
 }

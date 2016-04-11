@@ -62,6 +62,10 @@ public class ActionButtonPanel extends JPanel {
 		this.currentSamurai = samurai;
 		this.setVisible(false);
 		this.setSecondary(false);
+		this.setActualLocation();
+	}
+	
+	public void setActualLocation(){
 		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-70);
 	}
 	
