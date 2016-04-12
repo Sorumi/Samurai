@@ -21,6 +21,10 @@ public class ChessBoardModel extends BaseModel implements Cloneable {
 		actualBlockArray=actualBlocks;
 	}
 
+	public ActualBlock getActualBlock(int x, int y){
+		return actualBlockArray[x][y];
+	}
+
 	public void changeActualBlock(int x, int y, int state) {
 		this.actualBlockArray[x][y].setState(state);
 		super.updateChange(new UpdateMessage("block",actualBlockArray[x][y]));
@@ -29,6 +33,14 @@ public class ChessBoardModel extends BaseModel implements Cloneable {
 	public void changeActualBlock(int x, int y, boolean occ) {
 		actualBlockArray[x][y].setOccupied(occ);
 		super.updateChange(new UpdateMessage("samuraiPosition",actualBlockArray[x][y]));
+	}
+
+	public void setActualBlockVisible(int x, int y, boolean visible){
+		actualBlockArray[x][y].setVisible(visible);
+	}
+
+	public boolean getActualBlockVisible(int x, int y){
+		return actualBlockArray[x][y].getVisible();
 	}
 
 	public int getActualBlockState(int x, int y) {

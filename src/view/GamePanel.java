@@ -1,8 +1,7 @@
 package view;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -243,6 +242,8 @@ public class GamePanel extends JPanel implements Observer {
 		}else if(key.equals("home")){
 //			Position position = (Position)notifingObject.getValue();
 //			System.out.println(position.getX() + "," + position.getY());
+		}else if(key.equals("vision")){
+			this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
 		}
 		
 

@@ -26,7 +26,6 @@ public class GameModel extends BaseModel {
     private Timer timer;
     private int currentTime;
 
-
     public GameModel(int round, int length, MainFrame mainFrame){
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
@@ -63,7 +62,10 @@ public class GameModel extends BaseModel {
         return true;
     }
 
-    public void actionPerformed(){
+    public void actionPerformed(){;
+        //要 see 一下新的视野
+        super.updateChange(new UpdateMessage("vision",this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
+        //要更新一下actionPoint
         super.updateChange(new UpdateMessage("actionPoint",this.players[this.playerSeq[this.currentPlayer - 1]].getActionPoint()));
     }
 
@@ -121,6 +123,24 @@ public class GameModel extends BaseModel {
         return this.length;
     }
 
+    public SamuraiPO getSamuraiOfNum(int n){
+        switch (n){
+            case 1:
+                return players[0].getSamuraiOfNum(1);
+            case 2:
+                return players[0].getSamuraiOfNum(2);
+            case 3:
+                return players[0].getSamuraiOfNum(3);
+            case 4:
+                return players[1].getSamuraiOfNum(4);
+            case 5:
+                return players[1].getSamuraiOfNum(5);
+            case 6:
+                return players[1].getSamuraiOfNum(6);
+        }
+        return null;
+    }
+
     public ChessBoardModel getChessBoardModel(){
         return this.chessBoardModel;
     }
@@ -131,7 +151,6 @@ public class GameModel extends BaseModel {
                 updateChange(new UpdateMessage("time",currentTime));
                 currentTime--;
             }else{
-//                updateChange(new UpdateMessage("time",timeTotal));
                 actionDone();
             }
         }

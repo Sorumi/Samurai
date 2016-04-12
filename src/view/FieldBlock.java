@@ -103,7 +103,5 @@ public class FieldBlock extends JPanel{
 	public void setHome(){
 		this.strokeSize = 4;
 	}
-	
-	
 
 }

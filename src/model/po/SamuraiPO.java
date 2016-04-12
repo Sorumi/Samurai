@@ -126,6 +126,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		if (!hide) {
 			cbm.changeActualBlock(pos.getX(), pos.getY(), false);
 		}
+		System.out.println(player + "'s "+ number +  " is killed");
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);

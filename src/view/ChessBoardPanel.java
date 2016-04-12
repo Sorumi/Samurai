@@ -51,7 +51,6 @@ public class ChessBoardPanel extends JPanel implements Observer {
 		
 		for(int i=0; i<sideBlockQuantity; i++){
 			for(int j=0; j<sideBlockQuantity; j++){
-
 				blocks[i][j] = new FieldBlock(i,j,sideBlockQuantity);
 				blocks[i][j].setBounds(FIELD_WIDTH/2 + (j-i-1)*blockWidth/2, (i+j)*blockHeight/2, blockWidth,
 						blockHeight);
@@ -68,7 +67,6 @@ public class ChessBoardPanel extends JPanel implements Observer {
 
 		g2.drawImage(bgImage, 0, 0, FIELD_WIDTH, FIELD_HEIGHT, null);
 		this.setSize(FIELD_WIDTH, FIELD_HEIGHT);
-
 	}
 	
 	public FieldBlock getBlock(int x, int y){
@@ -89,12 +87,26 @@ public class ChessBoardPanel extends JPanel implements Observer {
 			int y = actualBlock.getY();
 			blocks[x][y].setColor(blockColor);
 			blocks[x][y].repaint();
-		}else if(key.equals("vision")){
-			ArrayList<Position> positions = (ArrayList<Position>) notifingObject.getValue();
-			System.out.println("V!" + positions.size());
-			for(Position position : positions){
-				blocks[position.getX()][position.getY()].setColor(new Color(194,90,62));
-				blocks[position.getX()][position.getY()].repaint();
+		}
+	}
+
+	//返回视野
+	public void see(ArrayList<ActualBlock> actualBlocks){
+		ArrayList<FieldBlock> tmp = new ArrayList<>();
+		for(ActualBlock block : actualBlocks){
+			tmp.add(blocks[block.getX()][block.getY()]);
+			Color blockColor = BlockColor.getBlockColor(block.getState());
+			int x = block.getX();
+			int y = block.getY();
+			blocks[x][y].setColor(blockColor);
+			blocks[x][y].repaint();
+		}
+		for(FieldBlock[] block : blocks){
+			for(FieldBlock block1 : block){
+				if(!tmp.contains(block1)){
+					block1.setColor(new Color(0,0,0));
+					block1.repaint();
+				}
 			}
 		}
 
