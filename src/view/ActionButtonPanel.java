@@ -9,10 +9,10 @@ import view.listener.GameListener;
 
 public class ActionButtonPanel extends JPanel {
 	
-	private final int BUTTONPANEL_WIDTH = 218;
+	private final int BUTTONPANEL_WIDTH = 208;
 	private final int BUTTONPANEL_HEIGHT = 300;
 	
-	private final int BUTTON_WIDTH = 50;
+	private final int BUTTON_WIDTH = 58;
 
 	private ActionButton moveButton;
 	private ActionButton occupyButton;
@@ -38,8 +38,8 @@ public class ActionButtonPanel extends JPanel {
 		this.setOpaque(false);
 		this.setVisible(false);
 		
-		moveButton.setLocation(0, 60);
-		occupyButton.setLocation(40, 0);
+		moveButton.setLocation(40, 0);
+		occupyButton.setLocation(0, 60);
 		hideButton.setLocation(110, 0);
 		exitButton.setLocation(150, 60);
 		backButton.setLocation(150, 60);

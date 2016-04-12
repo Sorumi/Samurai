@@ -1,8 +1,10 @@
 package view;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
@@ -28,11 +30,13 @@ public class SamuraiView extends JPanel {
 	
 	private int x;
 	private int y;
+	private boolean isHide;
 	
 	public SamuraiView(int number, int size){
   		
 		this.number = number;
 		this.image = Images.SAMURAI_CLASSIC[number];
+		this.isHide = false;
 		
 		blockWidthOffset = FIELD_WIDTH / size / 2;
 		blockHeightOffset = FIELD_HEIGHT / size / 2;
@@ -51,8 +55,16 @@ public class SamuraiView extends JPanel {
 
 		if (image != null){
 			Graphics2D g2 = (Graphics2D) g;
-			g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+			//平滑效果！！！
+			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 			
+			if(isHide){
+				 AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f); 
+		            g2.setComposite(ac); 
+		            g2.drawImage(image, 0, 0, getWidth(), getHeight(), null, null); 
+			}else{
+				g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+			}	
 		}
 	}
 	
@@ -64,6 +76,10 @@ public class SamuraiView extends JPanel {
 	
 	public int getNum(){
 		return this.number;
+	}
+	
+	public void setHide(boolean isHide){
+		this.isHide = isHide;
 	}
 
 }
