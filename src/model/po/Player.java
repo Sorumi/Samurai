@@ -23,7 +23,7 @@ public class Player {
 
     public Player(GameModel model,int playerNum){
         this.canAction = false;
-        this.pointsTotal = 7;
+        this.pointsTotal = 117;
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
@@ -86,27 +86,33 @@ public class Player {
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(4).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(4).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(4).beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                        this.gameModel.updateHome(4);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(5).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(5).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(5).beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                        this.gameModel.updateHome(5);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(6).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(6).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(6).beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                        this.gameModel.updateHome(6);
                                     }
                                 }else{
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(1).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(1).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(1).beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                        this.gameModel.updateHome(1);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(2).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(2).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(2).beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                        this.gameModel.updateHome(2);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(3).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(3).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(3).beKilled(this.gameModel.getLength(),this.chessBoardModel);
+                                        this.gameModel.updateHome(3);
                                     }
                                 }
                             }

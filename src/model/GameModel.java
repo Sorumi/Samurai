@@ -45,17 +45,38 @@ public class GameModel extends BaseModel {
     }
 
     public boolean gameStart(){
-//        SamuraiPO[] samuraiPOs = new SamuraiPO[6];
-//        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(1)));
-//        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(2)));
-//        super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(3)));
-//        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(4)));
-//        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(5)));
-//        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(6)));
+        for (int i = 1; i <= 6; i++) {
+            this.updateHome(i);
+        }
         this.assignNext();
         this.timer = new Timer();
         timer.schedule(new countDownTask(),0,1000);
         return true;
+    }
+
+    public void updateHome(int num){
+        switch (num){
+            case 1:
+                super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(1)));
+                break;
+            case 2:
+                super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(2)));
+                break;
+            case 3:
+                super.updateChange(new UpdateMessage("home",this.players[0].getSamuraiOfNum(3)));
+                break;
+            case 4:
+                super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(4)));
+                break;
+            case 5:
+                super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(5)));
+                break;
+            case 6:
+                super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(6)));
+                break;
+            default:
+                break;
+        }
     }
 
     public void actionPerformed(int actionNum){

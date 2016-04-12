@@ -243,6 +243,37 @@ public class GamePanel extends JPanel implements Observer {
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 		}else if(key.equals("vision")){
 			this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
+		}else if(key.equals("home")){
+			SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
+			SamuraiView tmpView;
+			switch (samuraiPO.getNumber()){
+				case 1:
+					tmpView = this.A1;
+					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
+					break;
+				case 2:
+					tmpView = this.A2;
+					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
+					break;
+				case 3:
+					tmpView = this.A3;
+					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
+					break;
+				case 4:
+					tmpView = this.B1;
+					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
+					break;
+				case 5:
+					tmpView = this.B2;
+					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
+					break;
+				case 6:
+					tmpView = this.B3;
+					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
+					break;
+				default:
+					break;
+			}
 		}
 	}
 }
