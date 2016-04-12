@@ -58,8 +58,10 @@ public class Player {
             positions.addAll(samuraiPOs[2].see());
             positions.addAll(samuraiPOs[3].see());
         }
+        //设为可见
         for(Position position : positions){
             blocks.add(this.chessBoardModel.getActualBlock(position.getX(),position.getY()));
+            this.chessBoardModel.setActualBlockVisible(position.getX(),position.getY(),true);
         }
         return blocks;
     }
@@ -120,9 +122,10 @@ public class Player {
                     }
                     break;
                 case 2:
+//                    System.out.println(this.currentSamurai + " is " + this.samuraiPOs[this.currentSamurai].getHide());
                     if(this.samuraiPOs[this.currentSamurai].getHide()) {
                         if (this.actionPoint >= 1) {
-                            if (this.samuraiPOs[this.currentSamurai].show(this.chessBoardModel)) {
+                            if(this.samuraiPOs[this.currentSamurai].show(this.chessBoardModel)) {
                                 done = true;
                                 this.actionPoint -= 1;
                             }

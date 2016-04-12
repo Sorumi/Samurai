@@ -239,14 +239,11 @@ public class GamePanel extends JPanel implements Observer {
 			this.currentSamurai.setActualLocation(block.getX(),block.getY());
 			this.actionButtonPanel.setActualLocation();
 			this.arrow.setActualLocation();
-		}else if(key.equals("home")){
-//			Position position = (Position)notifingObject.getValue();
-//			System.out.println(position.getX() + "," + position.getY());
+		}else if(key.equals("samuraiHide")){
+			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 		}else if(key.equals("vision")){
 			this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
 		}
-		
-
 	}
 }
 

@@ -80,6 +80,7 @@ public class SamuraiView extends JPanel {
 	
 	public void setHide(boolean isHide){
 		this.isHide = isHide;
+		this.repaint();
 	}
 
 }

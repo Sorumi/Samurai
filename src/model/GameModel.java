@@ -52,13 +52,9 @@ public class GameModel extends BaseModel {
 //        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(4)));
 //        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(5)));
 //        super.updateChange(new UpdateMessage("home",this.players[1].getSamuraiOfNum(6)));
-
-
         this.assignNext();
-
         this.timer = new Timer();
         timer.schedule(new countDownTask(),0,1000);
-
         return true;
     }
 
@@ -71,15 +67,18 @@ public class GameModel extends BaseModel {
 
     //Assign next samurai
     public void assignNext(){
-
+        //全部设为不可见
+        for(int i = 0; i < length; i++){
+            for (int j = 0; j < length; j++){
+                this.chessBoardModel.setActualBlockVisible(i,j,false);
+            }
+        }
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
         super.updateChange(new UpdateMessage("vision",this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
-
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
-
     }
 
     //一个 samurai 一套动作完成时调用此方法
@@ -106,7 +105,6 @@ public class GameModel extends BaseModel {
         this.gameState = GameState.OVER;
         this.timer.cancel();
         super.updateChange(new UpdateMessage("over",this.chessBoardModel));
-
         return true;
     }
 

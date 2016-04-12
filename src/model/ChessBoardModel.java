@@ -33,6 +33,8 @@ public class ChessBoardModel extends BaseModel implements Cloneable {
 	public void changeActualBlock(int x, int y, boolean occ) {
 		actualBlockArray[x][y].setOccupied(occ);
 		super.updateChange(new UpdateMessage("samuraiPosition",actualBlockArray[x][y]));
+		// occupied = !isHide
+		super.updateChange(new UpdateMessage("samuraiHide",!occ));
 	}
 
 	public void setActualBlockVisible(int x, int y, boolean visible){
