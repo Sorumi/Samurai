@@ -58,11 +58,17 @@ public class GameModel extends BaseModel {
         return true;
     }
 
-    public void actionPerformed(){;
-        //要 see 一下新的视野
-        super.updateChange(new UpdateMessage("vision",this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
+    public void actionPerformed(int actionNum){
+        //move 的时候要 see 一下新的视野
+        if(actionNum == 1) {
+            this.updateVision();
+        }
         //要更新一下actionPoint
         super.updateChange(new UpdateMessage("actionPoint",this.players[this.playerSeq[this.currentPlayer - 1]].getActionPoint()));
+    }
+
+    public void updateVision(){
+        super.updateChange(new UpdateMessage("vision", this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
     }
 
     //Assign next samurai
@@ -77,7 +83,7 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
-        super.updateChange(new UpdateMessage("vision",this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
+        this.updateVision();
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
     }
 

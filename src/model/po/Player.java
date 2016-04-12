@@ -43,7 +43,7 @@ public class Player {
         this.canAction = true;
         this.currentSamurai = gameModel.getCurrentSamurai();
         this.actionPoint = pointsTotal;
-        this.gameModel.actionPerformed();
+        this.gameModel.actionPerformed(0);
     }
 
     public ArrayList<ActualBlock> showVision(){
@@ -146,7 +146,7 @@ public class Player {
             if(!done){
                 System.out.println("Action NOT Performed.");
             }else{
-                this.gameModel.actionPerformed();
+                this.gameModel.actionPerformed(actionNum);
             }
             if(this.actionPoint == 0){
                 this.actionDone();
