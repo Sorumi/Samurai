@@ -1,11 +1,14 @@
 package view;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 
 import model.UpdateMessage;
 import model.po.ActualBlock;
@@ -13,7 +16,7 @@ import model.po.Position;
 import model.po.SamuraiPO;
 import view.listener.GameListener;
 
-public class GamePanel extends JPanel implements Observer {
+public class GamePanel extends JLayeredPane implements Observer {
 
     private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
@@ -61,38 +64,40 @@ public class GamePanel extends JPanel implements Observer {
 //		this.setBackground(null);
 //		this.setOpaque(false);
 
+		//chessboard
+		chessBoard = new ChessBoardPanel(sideBlockQuantity);
+		//默认层
+		this.add(chessBoard, JLayeredPane.DEFAULT_LAYER); 
 		
 		//playerInfo
 		playerA = new PlayerPanel(0, timeTotal);
 		playerB = new PlayerPanel(1, timeTotal);
 		playerA.getCirclePanel().setSideBlockQuantity(size);
 		playerB.getCirclePanel().setSideBlockQuantity(size);
-		this.add(playerA);
-		this.add(playerB);
+		//模式层
+		this.add(playerA, JLayeredPane.MODAL_LAYER);
+		this.add(playerB, JLayeredPane.MODAL_LAYER);
 
 		//player 标签
 		this.playerLabel = new JLabel("Player");
 		this.playerLabel.setBounds(800,20,100,40);
-		this.add(this.playerLabel);
+		this.add(this.playerLabel, JLayeredPane.MODAL_LAYER);
 
 		//round 标签
 		this.roundLabel = new JLabel("Round");
 		this.roundLabel.setBounds(1000, 20, 100, 40);
-		this.add(this.roundLabel);
+		this.add(this.roundLabel, JLayeredPane.MODAL_LAYER);
 
 		//time 标签
 		this.timeLabel = new JLabel("Time");
 		this.timeLabel.setBounds(900,20,100,40);
-		this.add(this.timeLabel);
+		this.add(this.timeLabel, JLayeredPane.MODAL_LAYER);
 
 		//actionPoint 标签
 		this.actionPointLabel = new JLabel("ActionPoint");
 		this.actionPointLabel.setBounds(700,20,100,40);
-		this.add(this.actionPointLabel);
+		this.add(this.actionPointLabel, JLayeredPane.MODAL_LAYER);
 
-		//chessboard
-		chessBoard = new ChessBoardPanel(sideBlockQuantity);
-		this.add(chessBoard);
 
 		//samurais 需要设置初始位置home
 		//TODO
@@ -102,13 +107,13 @@ public class GamePanel extends JPanel implements Observer {
 		B1 = new SamuraiView(4, size, 0, 14);
 		B2 = new SamuraiView(5, size, 7, 14);
 		B3 = new SamuraiView(6, size, 14, 14);
-	
-		this.add(A1);
-		this.add(A2);
-		this.add(A3);
-		this.add(B1);
-		this.add(B2);
-		this.add(B3);
+		//色板层
+		this.add(A1, JLayeredPane.PALETTE_LAYER);
+		this.add(A2, JLayeredPane.PALETTE_LAYER);
+		this.add(A3, JLayeredPane.PALETTE_LAYER);
+		this.add(B1, JLayeredPane.PALETTE_LAYER);
+		this.add(B2, JLayeredPane.PALETTE_LAYER);
+		this.add(B3, JLayeredPane.PALETTE_LAYER);
 		
 		//listener
 		gameListener = new GameListener(this);
@@ -123,23 +128,23 @@ public class GamePanel extends JPanel implements Observer {
 		
 		//arrow & actionButtons
 		arrow = new Arrow();
-		this.add(arrow);
+		this.add(arrow, JLayeredPane.DRAG_LAYER);
 		
 		actionButtonPanel = new ActionButtonPanel(gameListener);
-		this.add(actionButtonPanel);
+		this.add(actionButtonPanel, JLayeredPane.DEFAULT_LAYER);
 	
 		//order
-		this.setComponentZOrder(A1, 0);
-		this.setComponentZOrder(A2, 1);
-		this.setComponentZOrder(A3, 2);
-		this.setComponentZOrder(B1, 3);
-		this.setComponentZOrder(B2, 4);
-		this.setComponentZOrder(B3, 5);
-		this.setComponentZOrder(arrow, 6);
-		this.setComponentZOrder(actionButtonPanel, 7);
-		this.setComponentZOrder(chessBoard, 8);
-		this.setComponentZOrder(playerA, 9);
-		this.setComponentZOrder(playerB, 10);
+//		this.setComponentZOrder(A1, 0);
+//		this.setComponentZOrder(A2, 1);
+//		this.setComponentZOrder(A3, 2);
+//		this.setComponentZOrder(B1, 3);
+//		this.setComponentZOrder(B2, 4);
+//		this.setComponentZOrder(B3, 5);
+//		this.setComponentZOrder(arrow, 6);
+//		this.setComponentZOrder(actionButtonPanel, 7);
+//		this.setComponentZOrder(chessBoard, 8);
+//		this.setComponentZOrder(playerA, 9);
+//		this.setComponentZOrder(playerB, 10);
 	}
 	
 	public void paintComponent(Graphics g){
@@ -171,6 +176,7 @@ public class GamePanel extends JPanel implements Observer {
 				this.currentSamurai = B3;
 				break;
 		}
+		this.setLayer(currentSamurai, JLayeredPane.PALETTE_LAYER, 0);
 		arrow.setCurrentSamurai(currentSamurai);
 		actionButtonPanel.setCurrentSamurai(currentSamurai);
 		playerA.setCurrentSamurai(currentSamurai.getNum());
