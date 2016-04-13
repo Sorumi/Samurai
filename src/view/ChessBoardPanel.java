@@ -81,12 +81,10 @@ public class ChessBoardPanel extends JPanel implements Observer {
 
 		//如果听到的消息是‘block’时
 		if(key.equals("block")){
-			ActualBlock actualBlock = (ActualBlock)notifingObject.getValue();
-			Color blockColor = BlockColor.getBlockColor(actualBlock.getState());
-			int x = actualBlock.getX();
-			int y = actualBlock.getY();
-			blocks[x][y].setColor(blockColor);
-			blocks[x][y].repaint();
+			ActualBlock block = (ActualBlock)notifingObject.getValue();
+			int x = block.getX();
+			int y = block.getY();
+			blocks[x][y].setInvision(block.getState());
 		}
 	}
 
@@ -95,19 +93,14 @@ public class ChessBoardPanel extends JPanel implements Observer {
 		ArrayList<FieldBlock> tmp = new ArrayList<>();
 		for(ActualBlock block : actualBlocks){
 			tmp.add(blocks[block.getX()][block.getY()]);
-			Color blockColor = BlockColor.getBlockColor(block.getState());
 			int x = block.getX();
 			int y = block.getY();
-			blocks[x][y].setColor(blockColor);
-			blocks[x][y].setStrokeSize(1);
-			blocks[x][y].repaint();
+			blocks[x][y].setInvision(block.getState());
 		}
 		for(FieldBlock[] block : blocks){
 			for(FieldBlock block1 : block){
 				if(!tmp.contains(block1)){
-					block1.setColor(new Color(0,0,0,0));
-					block1.setStrokeSize(0);
-					block1.repaint();
+					block1.setOutvision();
 				}
 			}
 		}

@@ -101,12 +101,12 @@ public class GamePanel extends JLayeredPane implements Observer {
 
 		//samurais 需要设置初始位置home
 		//TODO
-		A1 = new SamuraiView(1, size, 0, 0);
-		A2 = new SamuraiView(2, size, 7, 0);
-		A3 = new SamuraiView(3, size, 14, 0);
-		B1 = new SamuraiView(4, size, 0, 14);
-		B2 = new SamuraiView(5, size, 7, 14);
-		B3 = new SamuraiView(6, size, 14, 14);
+		A1 = new SamuraiView(1, size);
+		A2 = new SamuraiView(2, size);
+		A3 = new SamuraiView(3, size);
+		B1 = new SamuraiView(4, size);
+		B2 = new SamuraiView(5, size);
+		B3 = new SamuraiView(6, size);
 		//色板层
 		this.add(A1, JLayeredPane.PALETTE_LAYER);
 		this.add(A2, JLayeredPane.PALETTE_LAYER);
@@ -222,25 +222,30 @@ public class GamePanel extends JLayeredPane implements Observer {
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
 
-		//如果听到的消息是‘samurai’时
 		if(key.equals("samurai")){
 			this.setCurrentSamurai((int)notifingObject.getValue());
+			
 		}else if(key.equals("player")){
 			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
 			this.setCurrentPlayer((int)notifingObject.getValue());
+			
 		}else if(key.equals("round")){
 			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
 			this.setCurrentRound((int)notifingObject.getValue());
+			
 		}else if(key.equals("time")){
 			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
 			this.currentPlayer.getCirclePanel().setTimeRest((int)notifingObject.getValue());
 			this.currentPlayer.repaint();
+			
 		}else if(key.equals("actionPoint")){
 			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
 			this.currentPlayer.getPointsPanel().setPointsRest((int)notifingObject.getValue());
 			this.currentPlayer.repaint();
+			
 		}else if(key.equals("pointsTotal")){
 			this.currentPlayer.getPointsPanel().setPointsTotal((int)notifingObject.getValue());
+			
 		}else if(key.equals("samuraiPosition")){
 			ActualBlock block = (ActualBlock)notifingObject.getValue();
 			if(block.getVisible()) {
@@ -248,8 +253,10 @@ public class GamePanel extends JLayeredPane implements Observer {
 			}
 			this.actionButtonPanel.setActualLocation();
 			this.arrow.setActualLocation();
+			
 		}else if(key.equals("samuraiHide")){
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
+			
 		}else if(key.equals("visible")) {
 			this.A1.setVisible(false);
 			this.A2.setVisible(false);
@@ -279,37 +286,34 @@ public class GamePanel extends JLayeredPane implements Observer {
 			}
 		}else if(key.equals("vision")){
 			this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
+			
 		}else if(key.equals("home")){
 			SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
-			SamuraiView tmpView;
+			SamuraiView tmpView = null;
 			switch (samuraiPO.getNumber()){
 				case 1:
 					tmpView = this.A1;
-					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
 					break;
 				case 2:
 					tmpView = this.A2;
-					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
 					break;
 				case 3:
 					tmpView = this.A3;
-					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
 					break;
 				case 4:
 					tmpView = this.B1;
-					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
 					break;
 				case 5:
 					tmpView = this.B2;
-					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
 					break;
 				case 6:
 					tmpView = this.B3;
-					tmpView.setActualLocation(samuraiPO.getHome().getX(),samuraiPO.getHome().getY());
 					break;
 				default:
 					break;
 			}
+			tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
+			chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
 		}
 	}
 }

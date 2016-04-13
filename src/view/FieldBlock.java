@@ -23,17 +23,12 @@ public class FieldBlock extends JPanel{
 	private Location location;
 	private Color color = BlockColor.getBlockColor(0);
 	
-	int width = 105;
-	int height = 60;
-	int strokeSize = 2;
+	private int width;
+	private int height;
+	private int stateStrokeSize;
+	private int currentStrokeSize;
 
-	FieldBlock(Location location) {
-		super();
-		this.location = location;
-		this.setTransparentBackground();
-	}
-
-	FieldBlock(int x, int y,int z) {
+	FieldBlock(int x, int y, int z) {
 		super();
 		location = new Location(x, y);
 		this.setTransparentBackground();
@@ -41,22 +36,22 @@ public class FieldBlock extends JPanel{
 		case 6:
 			width=175;
 			height=100;
-			strokeSize = 3;
+			stateStrokeSize = 3;
 			break;
 		case 10:
 			width=105;
 			height=60;
-			strokeSize = 2;
+			stateStrokeSize = 2;
 			break;
 		case 12:
 			width=87;
 			height=50;
-			strokeSize = 2;
+			stateStrokeSize = 2;
 			break;
 		case 15:
 			width=70;
 			height=40;
-			strokeSize = 1;
+			stateStrokeSize = 1;
 			break;
 		}
 		
@@ -69,12 +64,12 @@ public class FieldBlock extends JPanel{
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
 		//设置菱形边框
-		Stroke stroke = new BasicStroke((float)strokeSize);
+		Stroke stroke = new BasicStroke((float)currentStrokeSize);
 		g2.setStroke(stroke);
 		g2.setColor(Color.white);
 		//画菱形
-		int[] xPoints = {strokeSize,width/2,width-strokeSize,width/2};
-		int[] yPoints = {height/2,strokeSize,height/2,height-strokeSize};
+		int[] xPoints = {currentStrokeSize,width/2,width-currentStrokeSize,width/2};
+		int[] yPoints = {height/2,currentStrokeSize,height/2,height-currentStrokeSize};
 		g2.drawPolygon(xPoints, yPoints, 4);
 		g2.setColor(color);
 		g2.fillPolygon(xPoints, yPoints, 4);
@@ -92,18 +87,30 @@ public class FieldBlock extends JPanel{
 		this.setBackground(null);
 		this.setOpaque(false);
 	}
-	public void setStrokeSize(int size){
-		this.strokeSize = size;
-	}
-	public void setColor(Color color){
-		this.color = color;
-	}
+//	public void setStrokeSize(int size){
+//		this.currentStrokeSize = size;
+//	}
+//	public void setColor(Color color){
+//		this.color = color;
+//	}
 	public Color getColor(){
 		return color;
 	}
 	
 	public void setHome(){
-		this.strokeSize = 4;
+		this.stateStrokeSize = 4;
+		this.repaint();
 	}
+	public void setOutvision(){
+		currentStrokeSize = 0;
+		color = BlockColor.getBlockColor(99);
+		this.repaint();
 
+	}
+	
+	public void setInvision(int state){
+		currentStrokeSize = stateStrokeSize;
+		color = BlockColor.getBlockColor(state);
+		this.repaint();
+	}
 }

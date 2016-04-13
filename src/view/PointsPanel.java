@@ -34,11 +34,7 @@ public class PointsPanel extends JPanel{
 		this.setSize(PANEL_WIDTH+2*strokeSize, PANEL_HEIGHT+2*strokeSize);
 		this.setVisible(false);
 		
-		if(player == 0){
-			labelX = PANEL_WIDTH-50;
-		}else{
-			labelX = 10;
-		}
+
 	}
 	
 	public void paintComponent(Graphics g){
@@ -57,8 +53,16 @@ public class PointsPanel extends JPanel{
 		g2.fill(roundShape);
 		Font f1 = new Font("Tsukushi B Round Gothic",Font.PLAIN,20);
 		g2.setFont(f1);
-		g2.setColor(BlockColor.getOtherColor(2));//
-		g2.drawString(pointsRest + " / " + pointsTotal, labelX, 25);
+		g2.setColor(BlockColor.getOtherColor(2));
+		String text = pointsRest + " / " + pointsTotal;
+		int strWidth = g.getFontMetrics().stringWidth(text);
+		if(player == 0){
+			labelX = PANEL_WIDTH-10-strWidth;
+		}else{
+			labelX = 10;
+		}
+		g2.drawString(text, labelX, 25);
+		
 		//画填充
 		double proportion = ((double)pointsRest)/pointsTotal;
 		Rectangle2D fillShape = new Rectangle2D.Double(strokeSize+(1-proportion)*PANEL_WIDTH*player, strokeSize, proportion*PANEL_WIDTH, PANEL_HEIGHT);
@@ -72,7 +76,7 @@ public class PointsPanel extends JPanel{
 		
 		g2.clip(fill);
 		g2.setColor(Color.white);//BlockColor.getOtherColor(3)
-		g2.drawString(pointsRest + " / " + pointsTotal, labelX, 25);
+		g2.drawString(text, labelX, 25);
 		
 	}
 	
