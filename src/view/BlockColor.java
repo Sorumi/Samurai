@@ -9,7 +9,7 @@ public class BlockColor {
 		Color color;
 		
 		switch(x) {
-		case 0: color = new Color(200,200,200,10);break;//grey
+		case 0: color = new Color(200,200,200,70);break;//grey
 		case 1: color = new Color(194,90,62);break;
 		case 2: color = new Color(211,131,63);break;
 		case 3: color = new Color(206,174,60);break;
@@ -23,7 +23,9 @@ public class BlockColor {
 		case 10: color = new Color(158,236,248);break;
 		case 11: color = new Color(103,197,255);break;
 		case 12: color = new Color(104,157,255);break;
-		default: color = new Color(200,200,200,10);//grey
+		//alpha
+		case 99:color = new Color(0,0,0,0);break;
+		default: color = new Color(0,0,0,0);//alpha
 		}
 		
 		return color;

@@ -92,7 +92,9 @@ public class FieldBlock extends JPanel{
 		this.setBackground(null);
 		this.setOpaque(false);
 	}
-	
+	public void setStrokeSize(int size){
+		this.strokeSize = size;
+	}
 	public void setColor(Color color){
 		this.color = color;
 	}

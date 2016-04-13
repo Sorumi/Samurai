@@ -65,7 +65,7 @@ public class ChessBoardPanel extends JPanel implements Observer {
 		//平滑效果！！！
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2.drawImage(bgImage, 0, 0, FIELD_WIDTH, FIELD_HEIGHT, null);
+//		g2.drawImage(bgImage, 0, 0, FIELD_WIDTH, FIELD_HEIGHT, null);
 		this.setSize(FIELD_WIDTH, FIELD_HEIGHT);
 	}
 	
@@ -99,12 +99,14 @@ public class ChessBoardPanel extends JPanel implements Observer {
 			int x = block.getX();
 			int y = block.getY();
 			blocks[x][y].setColor(blockColor);
+			blocks[x][y].setStrokeSize(1);
 			blocks[x][y].repaint();
 		}
 		for(FieldBlock[] block : blocks){
 			for(FieldBlock block1 : block){
 				if(!tmp.contains(block1)){
-					block1.setColor(new Color(0,0,0));
+					block1.setColor(new Color(0,0,0,0));
+					block1.setStrokeSize(0);
 					block1.repaint();
 				}
 			}
