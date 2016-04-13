@@ -3,6 +3,8 @@ package view.listener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JLayeredPane;
+
 import controller.msgqueue.ActionOperation;
 import controller.msgqueue.NextOperation;
 import controller.msgqueue.Operation;
@@ -31,6 +33,8 @@ public class GameListener implements MouseListener{
 		if (e.getSource() == game.getCurrentSamurai()) {
 			game.getActionButtons().setVisible(true);
 			game.getArrow().setVisible(false);
+			game.setLayer(game.getArrow(), JLayeredPane.DEFAULT_LAYER, 0);
+			game.setLayer(game.getActionButtons(), JLayeredPane.DRAG_LAYER);
 		} else if (e.getSource() == game.getActionButtons().getMoveButton()) {
 			game.getActionButtons().setSecondary(true);
 			action = 1;
@@ -72,6 +76,8 @@ public class GameListener implements MouseListener{
 			game.getActionButtons().setVisible(false);
 			game.getActionButtons().setSecondary(false);
 			game.getArrow().setVisible(true);
+			game.setLayer(game.getActionButtons(), JLayeredPane.DEFAULT_LAYER);
+			game.setLayer(game.getArrow(), JLayeredPane.DRAG_LAYER);
 		}
 	
 	}
