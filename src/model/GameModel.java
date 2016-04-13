@@ -1,9 +1,9 @@
 package model;
 
-import model.po.ActualBlock;
-import model.po.Player;
-import model.po.Position;
-import model.po.SamuraiPO;
+import controller.msgqueue.ActionOperation;
+import controller.msgqueue.NextOperation;
+import controller.msgqueue.OperationQueue;
+import model.po.*;
 import model.state.GameResultState;
 import model.state.GameState;
 import view.MainFrame;
@@ -27,8 +27,11 @@ public class GameModel extends BaseModel {
     private int timeTotal;
     private Timer timer;
     private int currentTime;
+    private boolean isAI;
+    private SamuraiAI[] samuraiAI;
 
-    public GameModel(int round, int length, MainFrame mainFrame){
+    public GameModel(int round, int length, MainFrame mainFrame, boolean isAI){
+        this.isAI = isAI;
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
@@ -44,13 +47,23 @@ public class GameModel extends BaseModel {
         this.players = new Player[2];
         players[0] = new Player(this,0);
         players[1] = new Player(this,1);
+        if(this.isAI){
+            samuraiAI = new SamuraiAI[3];
+            samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+            samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+            samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+        }
     }
 
     public boolean gameStart(){
         for (int i = 1; i <= 6; i++) {
             this.updateHome(i);
         }
-        this.assignNext();
+        if(this.isAI) {
+            this.assignNextWithAI();
+        }else{
+            this.assignNext();
+        }
         this.timer = new Timer();
         timer.schedule(new countDownTask(),0,1000);
         return true;
@@ -88,9 +101,6 @@ public class GameModel extends BaseModel {
             blocks = this.updateVision();
             this.updateVisible(blocks);
         }
-//        if(actionNum == 0){
-//            this.updateVisible(blocks);
-//        }
         //要更新一下actionPoint
         super.updateChange(new UpdateMessage("actionPoint",this.players[this.playerSeq[this.currentPlayer - 1]].getActionPoint()));
     }
@@ -119,6 +129,44 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
         this.updateVisible(this.updateVision());
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+
+    }
+
+    public void assignNextWithAI(){
+        super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
+        super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
+        super.updateChange(new UpdateMessage("round",this.currentRound));
+        super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
+        this.updateVisible(this.updateVision());
+
+        this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+        if(this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5){
+
+        }else{
+            switch (this.currentPlayer){
+                case 2:
+                    for(ActionOperation operation : samuraiAI[0].calculate()){
+                        OperationQueue.addOperation(operation);
+                    }
+                    break;
+                case 3:
+                    for(ActionOperation operation : samuraiAI[1].calculate()){
+                        OperationQueue.addOperation(operation);
+                    }
+                    break;
+                case 6:
+                    for(ActionOperation operation : samuraiAI[2].calculate()){
+                        OperationQueue.addOperation(operation);
+                    }
+                    break;
+            }
+            OperationQueue.addOperation(new NextOperation());
+            try{
+                Thread.sleep(2000);
+            }catch (Exception E){
+                E.printStackTrace();
+            }
+        }
     }
 
     //一个 samurai 一套动作完成时调用此方法
@@ -135,7 +183,11 @@ public class GameModel extends BaseModel {
             if((this.currentPlayer++) % 6 == 0){
                 this.currentPlayer = 1;
             }
-            this.assignNext();
+            if(this.isAI) {
+                this.assignNextWithAI();
+            }else{
+                this.assignNext();
+            }
         }else{
             this.gameOver();
         }

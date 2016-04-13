@@ -20,4 +20,12 @@ public class ActionOperation extends Operation{
         model.sendMsg(actionNum,direction);
     }
 
+    public int getActionNum(){
+        return this.actionNum;
+    }
+
+    public int getDirection(){
+        return this.direction;
+    }
+
 }

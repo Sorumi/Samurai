@@ -127,34 +127,36 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public void beKilled(int length, ChessBoardModel cbm) {
-		if (!hide) {
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), false);
-		}
 		System.out.println(player + "'s "+ number +  " is killed");
+		Position tmpPos = pos;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 //			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 2 && player == 0) {
 			pos = new Position(length / 2, 0);
 //			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 3 && player == 0) {
 			pos = new Position(length, 0);
 //			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 4 && player == 1) {
 			pos = new Position(0, length);
 //			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 5 && player == 1) {
 			pos = new Position(length / 2, length);
 //			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 6 && player == 1) {
 			pos = new Position(length, length);
 //			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+		}
+
+		if (!hide) {
+			cbm.changeActualBlock(tmpPos.getX(), tmpPos.getY(), false);
 		}
 	}
 

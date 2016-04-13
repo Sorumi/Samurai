@@ -105,8 +105,8 @@ public class SamuraiAI {
 			}
 			Collections.sort(saveCaches);
 			//
-			samuraiPO.move(saveCaches.get(0).getLocation() / 4, chessBoardModel);
-			samuraiPO.occupied(saveCaches.get(0).getLocation() % 4, chessBoardModel, true);
+//			samuraiPO.move(saveCaches.get(0).getLocation() / 4, chessBoardModel);
+//			samuraiPO.occupied(saveCaches.get(0).getLocation() % 4, chessBoardModel, true);
 			//
 			actionOperations[0] = new ActionOperation(1, saveCaches.get(0).getLocation() / 4);
 			actionOperations[1] = new ActionOperation(0, saveCaches.get(0).getLocation() % 4);

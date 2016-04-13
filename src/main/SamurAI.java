@@ -21,7 +21,7 @@ public class SamurAI {
         //Sliver Narcissus 修复了这个bug
 
         mainFrame = new MainFrame();
-        gameModel = new GameModel(24,14,mainFrame);
+        gameModel = new GameModel(24,14,mainFrame,true);
 
         gameModel.addObserver(mainFrame.gamePanel);
         gameModel.getChessBoardModel().addObserver(mainFrame.gamePanel);
