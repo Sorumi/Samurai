@@ -81,39 +81,52 @@ public class Player {
                             done = true;
                             this.actionPoint -= 4;
                             //检测需不需要把别人踢回去
+                            boolean kicked = false;
                             for(Position position : positions){
                                 if(this.playerNum == 0){
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(4).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(4).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(4).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(4);
+                                        kicked = true;
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(5).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(5).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(5).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(5);
+                                        kicked = true;
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(6).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(6).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(6).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(6);
+                                        kicked = true;
                                     }
                                 }else{
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(1).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(1).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(1).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(1);
+                                        kicked = true;
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(2).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(2).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(2).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(2);
+                                        kicked = true;
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(3).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(3).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(3).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(3);
+                                        kicked = true;
                                     }
+                                }
+                                if(kicked) {
+                                    this.gameModel.getChessBoardModel().changeActualBlock(
+                                            this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getX(),
+                                            this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getY(),
+                                            true);
                                 }
                             }
                         }
