@@ -1,5 +1,7 @@
 package view.listener;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -9,7 +11,7 @@ import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
 import view.GamePanel;
 
-public class GameListener implements MouseListener{
+public class GameListener implements MouseListener, KeyListener {
 	
 	private GamePanel game;
 	private int action;//0:occupy 1:move 2:show 3:hide
@@ -115,6 +117,36 @@ public class GameListener implements MouseListener{
 		}else if(e.getSource() == game.getActionButtons().getDirectionPanel().getDownButton()){
 			game.getActionButtons().getDirectionPanel().setHighLight(3, false);
 		}
+	}
+
+	public void keyPressed(KeyEvent e) {
+		System.out.println("!");
+		// TODO 自动生成方法存根
+		switch(e.getKeyCode())
+		{
+			case KeyEvent.VK_LEFT:
+				System.out.println("left");
+				break ;
+			case KeyEvent.VK_RIGHT:
+				System.out.println("right");
+				break ;
+			case KeyEvent.VK_UP:
+				System.out.println("up");
+				break;
+			case KeyEvent.VK_DOWN:
+				System.out.println("down");
+				break;
+		}
+	}
+
+	public void keyReleased(KeyEvent e) {
+		// TODO 自动生成方法存根
+
+	}
+
+	public void keyTyped(KeyEvent e) {
+		// TODO 自动生成方法存根
+
 	}
 
 }

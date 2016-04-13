@@ -1,5 +1,6 @@
 package model;
 
+import model.po.ActualBlock;
 import model.po.Player;
 import model.po.Position;
 import model.po.SamuraiPO;
@@ -7,6 +8,7 @@ import model.state.GameResultState;
 import model.state.GameState;
 import view.MainFrame;
 
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -81,15 +83,26 @@ public class GameModel extends BaseModel {
 
     public void actionPerformed(int actionNum){
         //move 的时候要 see 一下新的视野
-        if(actionNum == 1) {
-            this.updateVision();
+        ArrayList<ActualBlock> blocks;
+        if(actionNum == 1 || actionNum == 0) {
+            blocks = this.updateVision();
+            this.updateVisible(blocks);
         }
+//        if(actionNum == 0){
+//            this.updateVisible(blocks);
+//        }
         //要更新一下actionPoint
         super.updateChange(new UpdateMessage("actionPoint",this.players[this.playerSeq[this.currentPlayer - 1]].getActionPoint()));
     }
 
-    public void updateVision(){
-        super.updateChange(new UpdateMessage("vision", this.players[this.playerSeq[this.currentPlayer - 1]].showVision()));
+    public ArrayList<ActualBlock> updateVision(){
+        ArrayList<ActualBlock> blocks = this.players[this.playerSeq[this.currentPlayer - 1]].showVision();
+        super.updateChange(new UpdateMessage("vision", blocks));
+        return blocks;
+    }
+
+    public void updateVisible(ArrayList<ActualBlock> blocks){
+        super.updateChange(new UpdateMessage("visible", blocks));
     }
 
     //Assign next samurai
@@ -104,7 +117,7 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
-        this.updateVision();
+        this.updateVisible(this.updateVision());
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
     }
 

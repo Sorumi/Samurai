@@ -1,5 +1,7 @@
 package view;
 
+import model.po.Position;
+
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,6 +10,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JPanel;
+
 
 public class SamuraiView extends JPanel {
 	
@@ -72,6 +75,10 @@ public class SamuraiView extends JPanel {
 		this.x = x;
 		this.y = y;
 		this.setLocation(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset+selfWidthOffset, chessBoardHeightOffset+(x+y)*blockHeightOffset+selfHeightOffset);
+	}
+
+	public Position getPosition(){
+		return new Position(x,y);
 	}
 	
 	public int getNum(){

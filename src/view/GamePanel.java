@@ -112,6 +112,7 @@ public class GamePanel extends JPanel implements Observer {
 		
 		//listener
 		gameListener = new GameListener(this);
+		this.addKeyListener(gameListener);
 		this.addMouseListener(gameListener);
 		A1.addMouseListener(gameListener);
 		A2.addMouseListener(gameListener);
@@ -236,11 +237,40 @@ public class GamePanel extends JPanel implements Observer {
 			this.currentPlayer.getPointsPanel().setPointsTotal((int)notifingObject.getValue());
 		}else if(key.equals("samuraiPosition")){
 			ActualBlock block = (ActualBlock)notifingObject.getValue();
-			this.currentSamurai.setActualLocation(block.getX(),block.getY());
+			if(block.getVisible()) {
+				this.currentSamurai.setActualLocation(block.getX(), block.getY());
+			}
 			this.actionButtonPanel.setActualLocation();
 			this.arrow.setActualLocation();
 		}else if(key.equals("samuraiHide")){
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
+		}else if(key.equals("visible")) {
+			this.A1.setVisible(false);
+			this.A2.setVisible(false);
+			this.A3.setVisible(false);
+			this.B1.setVisible(false);
+			this.B2.setVisible(false);
+			this.B3.setVisible(false);
+			for(ActualBlock block : (ArrayList<ActualBlock>)notifingObject.getValue()) {
+				if (block.getX() == this.A1.getPosition().getX() && block.getY() == this.A1.getPosition().getY()) {
+					this.A1.setVisible(true);
+				}
+				if (block.getX() == this.A2.getPosition().getX() && block.getY() == this.A2.getPosition().getY()) {
+					this.A2.setVisible(true);
+				}
+				if (block.getX() == this.A3.getPosition().getX() && block.getY() == this.A3.getPosition().getY()) {
+					this.A3.setVisible(true);
+				}
+				if (block.getX() == this.B1.getPosition().getX() && block.getY() == this.B1.getPosition().getY()) {
+					this.B1.setVisible(true);
+				}
+				if (block.getX() == this.B2.getPosition().getX() && block.getY() == this.B2.getPosition().getY()) {
+					this.B2.setVisible(true);
+				}
+				if (block.getX() == this.B3.getPosition().getX() && block.getY() == this.B3.getPosition().getY()) {
+					this.B3.setVisible(true);
+				}
+			}
 		}else if(key.equals("vision")){
 			this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
 		}else if(key.equals("home")){
