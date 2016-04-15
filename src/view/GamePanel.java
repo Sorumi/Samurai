@@ -179,15 +179,6 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("pointsTotal")){
 			this.currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
 
-		}else if(key.equals("samuraiPosition")){
-//			ActualBlock block = (ActualBlock)notifingObject.getValue();
-//			if(block.getVisible()) {
-//				this.currentSamurai.setActualLocation(block.getX(), block.getY());
-//			}
-//			this.actionButtonPanel.setActualLocation();
-//			this.arrow.setActualLocation();
-//
-//			System.out.println("new Pos" + block.getX() + "," + block.getY());
 		}else if(key.equals("samuraiMove")){
 			Position position = (Position)notifingObject.getValue();
 			this.currentSamurai.setActualLocation(position.getX(), position.getY());
@@ -198,10 +189,8 @@ public class GamePanel extends Pane implements Observer{
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			
 		}else if(key.equals("samuraiOccupy")){
-			System.out.println((int)notifingObject.getValue());
 
 		}else if(key.equals("samuraiKilled")){
-			System.out.println((int)notifingObject.getValue() + " is Killed");
 
 		}else if(key.equals("visible")) {
 			if(this.currentPlayer.getPlayer() == 0){
