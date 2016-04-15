@@ -122,6 +122,10 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("samuraiOccupy",direction));
     }
 
+    public void updateKilled(int i){
+        super.updateChange(new UpdateMessage("samuraiKilled",i));
+    }
+
     public void updateHide(boolean isHide){
         super.updateChange(new UpdateMessage("samuraiHide",isHide));
     }

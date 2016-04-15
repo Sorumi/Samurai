@@ -200,6 +200,9 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("samuraiOccupy")){
 			System.out.println((int)notifingObject.getValue());
 
+		}else if(key.equals("samuraiKilled")){
+			System.out.println((int)notifingObject.getValue() + " is Killed");
+
 		}else if(key.equals("visible")) {
 			if(this.currentPlayer.getPlayer() == 0){
 				this.A1.setVisible(true);
