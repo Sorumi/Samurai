@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
 import model.po.SamuraiPO;
 import view.eventhandler.ActionHandler;
+import view.eventhandler.GameHandler;
 
 
 public class GamePanel extends Pane implements Observer{
@@ -49,7 +48,7 @@ public class GamePanel extends Pane implements Observer{
 	private PlayerPanel playerA;
 	private PlayerPanel playerB;
 	
-	private Arrow arrow;
+	public Arrow arrow;
 	public ActionPanel actionPanel;
 	private ActionHandler actionHandler;
 	
@@ -78,7 +77,7 @@ public class GamePanel extends Pane implements Observer{
 		arrow = new Arrow();
 		this.getChildren().add(arrow);
 		
-		//actionHandler
+		//eventtHandler
 		actionHandler = new ActionHandler(this);
 		
 		//actionpanel
@@ -104,6 +103,9 @@ public class GamePanel extends Pane implements Observer{
 	}
 	
 	public void setCurrentSamurai(int i){
+		if (currentSamurai != null){
+			currentSamurai.setOnMouseClicked(null);
+		}
 		switch (i){
 			case 1:
 				this.currentSamurai = A1;
@@ -124,12 +126,7 @@ public class GamePanel extends Pane implements Observer{
 				this.currentSamurai = B3;
 				break;
 		}
-		currentSamurai.setOnMouseClicked(new EventHandler<MouseEvent>() {  
-		      public void handle(MouseEvent event) {
-		    	  actionPanel.setVisible(true);
-		    	  arrow.setVisible(false);
-		      }
-		});
+		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		arrow.setCurrentSamurai(currentSamurai);
 		actionPanel.setCurrentSamurai(currentSamurai);
 		playerA.setCurrentSamurai(currentSamurai.getNum());
@@ -170,7 +167,7 @@ public class GamePanel extends Pane implements Observer{
 
 		}else if(key.equals("time")){
 //			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
-//			this.currentPlayer.getCirclePanel().setTimeRest((int)notifingObject.getValue());
+			this.currentPlayer.circlePanel.setTimeRest((int)notifingObject.getValue());
 
 		}else if(key.equals("actionPoint")){
 //			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));

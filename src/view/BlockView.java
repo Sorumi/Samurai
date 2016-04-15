@@ -46,11 +46,15 @@ public class BlockView extends Polygon {
 	
 	public void setInvision(int state){
 		currentStrokeSize = stateStrokeSize;
+
 		Color newColor = GameColor.getBlockColor(state);
-//		FillTransition ft = new FillTransition(Duration.millis(800), this, this.color, newColor);
-//		ft.play();
-		this.color = newColor;
-		this.setFill(newColor);
+		if ( newColor != this.color ){
+			FillTransition ft = new FillTransition(Duration.millis(1000), this);
+			ft.setFromValue(this.color);
+			ft.setToValue(newColor);
+			ft.play();
+			this.color = newColor;
+		}
 		
 	}
 	

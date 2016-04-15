@@ -21,7 +21,12 @@ public class PointsPanel extends Pane {
 	private int currentSamurai = 2;
 	private boolean isShow;
 	
+	Rectangle clipRect;
+	Rectangle fillRect;
+	Shape fillShape;
+	
 	public PointsPanel(int player) {
+		
 		this.player = player;
 		this.isShow = true;
 		//bounds
@@ -44,13 +49,13 @@ public class PointsPanel extends Pane {
 		this.getChildren().add(bgRect);
 		
 		//fill
-		Rectangle fillRect = new Rectangle();
+		fillRect = new Rectangle();
 		fillRect.setX(strokeSize);
 		fillRect.setY(strokeSize);
 		fillRect.setWidth(PANEL_WIDTH/pointsTotal*pointsRest);
 		fillRect.setHeight(PANEL_HEIGHT);
 		
-		Rectangle clipRect = new Rectangle();
+		clipRect = new Rectangle();
 		clipRect.setX(strokeSize);
 		clipRect.setY(strokeSize);
 		clipRect.setWidth(PANEL_WIDTH);
@@ -58,7 +63,7 @@ public class PointsPanel extends Pane {
 		clipRect.setArcWidth(PANEL_HEIGHT);
 		clipRect.setArcHeight(PANEL_HEIGHT);
 
-		Shape fillShape = Shape.intersect(clipRect, fillRect);
+		fillShape = Shape.intersect(clipRect, fillRect);
 		fillShape.setFill(GameColor.getBlockColor(currentSamurai));
 		this.getChildren().add(fillShape);
 	}
@@ -82,14 +87,15 @@ public class PointsPanel extends Pane {
 		//TODO
 	}
 
-	public void setPointsRest(int value) {
+	public void setPointsRest(int pointsRest) {
 		// TODO Auto-generated method stub
-		
+		fillRect.setWidth(PANEL_WIDTH/pointsTotal*pointsRest);
+		fillShape = Shape.intersect(clipRect, fillRect);
 	}
 
-	public void setPointsTotal(int value) {
+	public void setPointsTotal(int pointsTotal) {
 		// TODO Auto-generated method stub
-		
+		this.pointsTotal = pointsTotal;
 	}
 
 }
