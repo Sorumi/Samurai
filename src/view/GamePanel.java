@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JLayeredPane;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -12,6 +11,7 @@ import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
 import model.po.SamuraiPO;
+import view.eventhandler.ActionHandler;
 
 
 public class GamePanel extends Pane implements Observer{
@@ -50,7 +50,8 @@ public class GamePanel extends Pane implements Observer{
 	private PlayerPanel playerB;
 	
 	private Arrow arrow;
-	private ActionPanel actionPanel;
+	public ActionPanel actionPanel;
+	private ActionHandler actionHandler;
 	
 	private String bgImagePath = Images.BG_0;
 		
@@ -77,8 +78,11 @@ public class GamePanel extends Pane implements Observer{
 		arrow = new Arrow();
 		this.getChildren().add(arrow);
 		
+		//actionHandler
+		actionHandler = new ActionHandler(this);
+		
 		//actionpanel
-		actionPanel = new ActionPanel();
+		actionPanel = new ActionPanel(actionHandler);
 		this.getChildren().add(actionPanel);
 		
 		//samurai

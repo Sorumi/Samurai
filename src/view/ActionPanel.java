@@ -7,6 +7,7 @@ import controller.msgqueue.OperationQueue;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import view.eventhandler.ActionHandler;
 
 public class ActionPanel extends Pane {
 	private final int BUTTONPANEL_WIDTH = 208;
@@ -14,7 +15,6 @@ public class ActionPanel extends Pane {
 	
 	private final int BUTTON_WIDTH = 58;
 
-	private int action;
 	private ActionButton moveButton;
 	private ActionButton occupyButton;
 	private ActionButton hideButton;
@@ -24,7 +24,11 @@ public class ActionPanel extends Pane {
 	
 	private SamuraiView currentSamurai;
 	
-	public ActionPanel(){
+	private ActionHandler actionHandler;
+	
+	public ActionPanel(ActionHandler actionHandler){
+		
+		this.actionHandler = actionHandler;
 		
 		occupyButton = new ActionButton(0);	
 		moveButton = new ActionButton(1);
@@ -47,16 +51,16 @@ public class ActionPanel extends Pane {
 		
 		backButton.setVisible(false);
 		
-		directionPanel = new DirectionPanel();
+		directionPanel = new DirectionPanel(actionHandler);
 		directionPanel.setLayoutX((BUTTONPANEL_WIDTH-directionPanel.getBoundsInParent().getWidth())/2);
 		directionPanel.setLayoutY(130);
 		directionPanel.setVisible(false);
 		
-		moveButton.setOnMouseClicked(secondaryEvent);
-		occupyButton.setOnMouseClicked(secondaryEvent);
-		hideButton.setOnMouseClicked(hideEvent);
-		exitButton.setOnMouseClicked(exitEvent);
-		backButton.setOnMouseClicked(backEvent);
+		moveButton.setOnMouseClicked(actionHandler.secondaryEvent);
+		occupyButton.setOnMouseClicked(actionHandler.secondaryEvent);
+		hideButton.setOnMouseClicked(actionHandler.hideEvent);
+		exitButton.setOnMouseClicked(actionHandler.exitEvent);
+		backButton.setOnMouseClicked(actionHandler.backEvent);
 		
 		this.getChildren().add(moveButton);
 		this.getChildren().add(occupyButton);
@@ -87,54 +91,5 @@ public class ActionPanel extends Pane {
 		directionPanel.setVisible(isVisible);
 	}
 	
-	EventHandler<MouseEvent> secondaryEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  ActionButton btn = (ActionButton)event.getSource();
-	    	  action = btn.action;
-	    	  directionPanel.setAction(action);
-	    	  backButton.setVisible(true);
-	    	  exitButton.setVisible(false);
-	    	  moveButton.setVisible(false);
-	    	  occupyButton.setVisible(false);
-	    	  hideButton.setVisible(false);
-	    	  directionPanel.setVisible(true);
-	      }
-	};
 	
-	EventHandler<MouseEvent> hideEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  ActionButton btn = (ActionButton)event.getSource();
-	    	  action = btn.action;
-	    	  System.out.println("hide");
-	    	  Operation op = new ActionOperation(action, 0);
-	    	  OperationQueue.addOperation(op);
-	      }
-	};
-	
-	EventHandler<MouseEvent> backEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  ActionButton btn = (ActionButton)event.getSource();
-	    	  action = btn.action;
-	    	  backButton.setVisible(false);
-	    	  exitButton.setVisible(true);
-	    	  moveButton.setVisible(true);
-	    	  occupyButton.setVisible(true);
-	    	  hideButton.setVisible(true);
-	    	  directionPanel.setVisible(false);
-	      }
-	};
-	
-	EventHandler<MouseEvent> exitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  backButton.setVisible(false);
-	    	  exitButton.setVisible(true);
-	    	  moveButton.setVisible(true);
-	    	  occupyButton.setVisible(true);
-	    	  hideButton.setVisible(true);
-	    	  directionPanel.setVisible(false);
-	    	  Operation op = new NextOperation();
-	    	  OperationQueue.addOperation(op);
-	      }
-	};
-
 }
