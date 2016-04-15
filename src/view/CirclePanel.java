@@ -3,7 +3,7 @@ package view;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,8 +31,6 @@ public class CirclePanel extends Pane {
 	private ImageView logo;
 	private Arc[] arcs;
 	private Arc timeArc;
-	
-//	final Timeline timeline;
 	
 	public CirclePanel(int player, int timeTotal) {
 		this.player = player;
@@ -103,11 +101,10 @@ public class CirclePanel extends Pane {
 				@Override
 				public void handle(MouseEvent event) {
 					// TODO Auto-generated method stub
-					Arc arc = (Arc) event.getSource();
 					Timeline timeline = new Timeline();
-					KeyValue kv1 = new KeyValue(arc.radiusXProperty(), 110);
+					KeyValue kv1 = new KeyValue(tmpArc.radiusXProperty(), 110);
 					KeyFrame kf1 = new KeyFrame(Duration.millis(100), kv1);
-					KeyValue kv2 = new KeyValue(arc.radiusYProperty(), 110);
+					KeyValue kv2 = new KeyValue(tmpArc.radiusYProperty(), 110);
 					KeyFrame kf2 = new KeyFrame(Duration.millis(100), kv2);
 					timeline.getKeyFrames().add(kf1);
 					timeline.getKeyFrames().add(kf2);
@@ -118,11 +115,10 @@ public class CirclePanel extends Pane {
 				@Override
 				public void handle(MouseEvent event) {
 					// TODO Auto-generated method stub
-					Arc arc = (Arc) event.getSource();
 					Timeline timeline = new Timeline();
-					KeyValue kv1 = new KeyValue(arc.radiusXProperty(), 100);
+					KeyValue kv1 = new KeyValue(tmpArc.radiusXProperty(), 100);
 					KeyFrame kf1 = new KeyFrame(Duration.millis(100), kv1);
-					KeyValue kv2 = new KeyValue(arc.radiusYProperty(), 100);
+					KeyValue kv2 = new KeyValue(tmpArc.radiusYProperty(), 100);
 					KeyFrame kf2 = new KeyFrame(Duration.millis(100), kv2);
 					timeline.getKeyFrames().add(kf1);
 					timeline.getKeyFrames().add(kf2);
@@ -140,7 +136,7 @@ public class CirclePanel extends Pane {
 		timeArc.setRadiusX(CIRCLE_RADIUS);
 		timeArc.setRadiusY(CIRCLE_RADIUS);
 		timeArc.setStartAngle(startAngle);
-		timeArc.setLength(preAngle * timeTotal);
+		timeArc.setLength(preAngle * timeRest);
 		timeArc.setType(ArcType.ROUND);
 		timeArc.setFill(GameColor.getOtherColor(player));
 		this.getChildren().add(timeArc);
@@ -151,30 +147,5 @@ public class CirclePanel extends Pane {
 		this.getChildren().add(logo);
 		
 	}
-
-	public void setTimeRest(int timeRest) {
-		// TODO Auto-generated method stub
-		this.timeRest = this.timeRest;
-		double length = 180 / timeTotal * (timeRest-1);
-		Timeline timeline= new Timeline();
-		KeyValue kv = new KeyValue(timeArc.lengthProperty(), length);
-		KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
-		timeline.getKeyFrames().add(kf);
-		timeline.play();
-	}
-	
-//	public void onHover(int num){
-//		Arc arc = this.arcs[num];
-//		Timeline timeline = new Timeline();
-//		timeline.setCycleCount(Timeline.INDEFINITE);
-//		timeline.setAutoReverse(true);
-//		KeyValue kv1 = new KeyValue(arc.radiusXProperty(), 110);
-//		KeyFrame kf1 = new KeyFrame(Duration.millis(500), kv1);
-//		KeyValue kv2 = new KeyValue(arc.radiusYProperty(), 110);
-//		KeyFrame kf2 = new KeyFrame(Duration.millis(500), kv2);
-//		timeline.getKeyFrames().add(kf1);
-//		timeline.getKeyFrames().add(kf2);
-//		timeline.play();
-//	}
 
 }

@@ -20,13 +20,6 @@ public class ActionHandler {
 	public ActionHandler(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
 	}
-	
-	public EventHandler<MouseEvent> samuraiEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  gamePanel.actionPanel.setVisible(true);
-	    	  gamePanel.arrow.setVisible(false);
-	      }
-	};
 
 	public EventHandler<MouseEvent> secondaryEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
