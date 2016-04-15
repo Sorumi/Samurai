@@ -55,7 +55,6 @@ public class SamuraiView extends Pane {
 			FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
 			ft.setAutoReverse(false);
 			if (isHide){
-				System.out.println("hide");
 				ft.setFromValue(1.0f);
 				ft.setToValue(0.5f);
 			} else {

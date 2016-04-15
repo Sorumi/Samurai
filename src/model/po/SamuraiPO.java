@@ -24,6 +24,8 @@ public class SamuraiPO implements Serializable, Cloneable {
 	private Position pos;
 	private boolean hide = false;
     private Position home;
+	private int coldRound;
+
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
@@ -63,6 +65,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.player = player;
 		this.weapon = weapon;
 		this.length = length;
+		this.coldRound = 0;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
@@ -105,6 +108,14 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.home = home;
 	}
 
+	public int getColdRound() {
+		return coldRound;
+	}
+
+	public void setColdRound(int coldRound) {
+		this.coldRound = coldRound;
+	}
+
 	public int getNumber(){
 		return this.number;
 	}
@@ -127,7 +138,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public void beKilled(int length, ChessBoardModel cbm) {
-		System.out.println(player + "'s "+ number +  " is killed");
 		Position tmpPos = pos;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);

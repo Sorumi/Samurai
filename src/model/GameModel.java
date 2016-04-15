@@ -30,6 +30,7 @@ public class GameModel extends BaseModel {
     private int currentTime;
     private int AILevel;
     private SamuraiAI[] samuraiAI;
+    private int coldRoundNum;
 
     public GameModel(int round, int length, Main mainFrame, int level){
         this.AILevel = level;
@@ -38,6 +39,7 @@ public class GameModel extends BaseModel {
         this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
         this.gameState = GameState.RUN;
         this.timeTotal = 30;
+        this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
         this.currentRound = 1;
         this.totalRound = round;
@@ -69,6 +71,7 @@ public class GameModel extends BaseModel {
                 blocks.add(this.chessBoardModel.getActualBlock(x,y));
             }
         }
+
         super.updateChange(new UpdateMessage("vision", blocks));
 
         for (int i = 1; i <= 6; i++) {
@@ -115,7 +118,35 @@ public class GameModel extends BaseModel {
     }
 
     public void updatePosition(Position position){
-        super.updateChange(new UpdateMessage("move",position));
+        super.updateChange(new UpdateMessage("samuraiMove",position));
+    }
+
+    public void updateOccupy(int direction){
+        super.updateChange(new UpdateMessage("samuraiOccupy",direction));
+    }
+
+    public void updateKilled(int i){
+        switch (i){
+            case 1:
+                this.players[0].getSamuraiOfNum(1).setColdRound(this.coldRoundNum);
+                break;
+            case 2:
+                this.players[0].getSamuraiOfNum(2).setColdRound(this.coldRoundNum);
+                break;
+            case 3:
+                this.players[0].getSamuraiOfNum(3).setColdRound(this.coldRoundNum);
+                break;
+            case 4:
+                this.players[1].getSamuraiOfNum(4).setColdRound(this.coldRoundNum);
+                break;
+            case 5:
+                this.players[1].getSamuraiOfNum(5).setColdRound(this.coldRoundNum);
+                break;
+            case 6:
+                this.players[1].getSamuraiOfNum(6).setColdRound(this.coldRoundNum);
+                break;
+        }
+        super.updateChange(new UpdateMessage("samuraiKilled",i));
     }
 
     public void updateHide(boolean isHide){
@@ -146,11 +177,11 @@ public class GameModel extends BaseModel {
     //Assign next samurai
     public void assignNext(){
         //全部设为不可见
-        for(int i = 0; i < length; i++){
-            for (int j = 0; j < length; j++){
-                this.chessBoardModel.setActualBlockVisible(i,j,false);
-            }
-        }
+//        for(int i = 0; i < length; i++){
+//            for (int j = 0; j < length; j++){
+//                this.chessBoardModel.setActualBlockVisible(i,j,false);
+//            }
+//        }
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
@@ -166,6 +197,7 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
 //        this.updateVisible(this.updateVision());
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+
         if(this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5){
 
         }else{
@@ -186,13 +218,17 @@ public class GameModel extends BaseModel {
                     }
                     break;
             }
-            OperationQueue.addOperation(new NextOperation());
             try{
                 Thread.sleep(2000);
             }catch (Exception E){
                 E.printStackTrace();
             }
+            this.skip1Round();
         }
+    }
+
+    public void skip1Round(){
+        OperationQueue.addOperation(new NextOperation());
     }
 
     //一个 samurai 一套动作完成时调用此方法
@@ -243,6 +279,10 @@ public class GameModel extends BaseModel {
 
     public int getLength(){
         return this.length;
+    }
+
+    public int getAILevel() {
+        return AILevel;
     }
 
     public SamuraiPO getSamuraiOfNum(int n){

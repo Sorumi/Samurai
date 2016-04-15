@@ -47,7 +47,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-	        gameModel = new GameModel(24, 14, this, 1);
+	        gameModel = new GameModel(24, 14, this, 0);
 
 	        gameModel.addObserver(gamePanel);
 	        gameModel.getChessBoardModel().addObserver(gamePanel);

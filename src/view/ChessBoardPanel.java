@@ -78,23 +78,10 @@ public class ChessBoardPanel extends Pane implements Observer{
 			int y = block.getY();
 			blocks[x][y].setInvision(block.getState());
 		}
-
-//		System.out.println("size: " + tmpBlocks.size());
-//		System.out.println("tmp  " + tmp.size());
-
 		for (BlockView block1 : this.tmpBlocks) {
 			if (!tmp.contains(block1)) {
 				block1.setOutvision();
 			}
 		}
-
-//		for(FieldBlock[] block : blocks){
-//			for(FieldBlock block1 : block){
-//				if(!tmp.contains(block1)){
-//					block1.setOutvision();
-//				}
-//			}
-//		}
-
 	}
 }
