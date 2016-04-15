@@ -89,18 +89,30 @@ public class Player {
                                         this.gameModel.getSamuraiOfNum(4).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(4);
                                         kicked = true;
+                                        this.gameModel.getChessBoardModel().changeActualBlock(
+                                                this.gameModel.getSamuraiOfNum(4).getHome().getX(),
+                                                this.gameModel.getSamuraiOfNum(4).getHome().getY(),
+                                                false);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(5).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(5).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(5).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(5);
                                         kicked = true;
+                                        this.gameModel.getChessBoardModel().changeActualBlock(
+                                                this.gameModel.getSamuraiOfNum(5).getHome().getX(),
+                                                this.gameModel.getSamuraiOfNum(5).getHome().getY(),
+                                                false);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(6).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(6).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(6).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(6);
                                         kicked = true;
+                                        this.gameModel.getChessBoardModel().changeActualBlock(
+                                                this.gameModel.getSamuraiOfNum(6).getHome().getX(),
+                                                this.gameModel.getSamuraiOfNum(6).getHome().getY(),
+                                                false);
                                     }
                                 }else{
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(1).getPos().getX()
@@ -108,18 +120,30 @@ public class Player {
                                         this.gameModel.getSamuraiOfNum(1).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(1);
                                         kicked = true;
+                                        this.gameModel.getChessBoardModel().changeActualBlock(
+                                                this.gameModel.getSamuraiOfNum(1).getHome().getX(),
+                                                this.gameModel.getSamuraiOfNum(1).getHome().getY(),
+                                                false);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(2).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(2).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(2).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(2);
                                         kicked = true;
+                                        this.gameModel.getChessBoardModel().changeActualBlock(
+                                                this.gameModel.getSamuraiOfNum(2).getHome().getX(),
+                                                this.gameModel.getSamuraiOfNum(2).getHome().getY(),
+                                                false);
                                     }
                                     if(position.getX() == this.gameModel.getSamuraiOfNum(3).getPos().getX()
                                             && position.getY() == this.gameModel.getSamuraiOfNum(3).getPos().getY()){
                                         this.gameModel.getSamuraiOfNum(3).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                         this.gameModel.updateHome(3);
                                         kicked = true;
+                                        this.gameModel.getChessBoardModel().changeActualBlock(
+                                                this.gameModel.getSamuraiOfNum(3).getHome().getX(),
+                                                this.gameModel.getSamuraiOfNum(3).getHome().getY(),
+                                                false);
                                     }
                                 }
                                 if(kicked) {
@@ -135,16 +159,21 @@ public class Player {
                 case 1:
                     if(this.actionPoint >= 2){
                         if(this.samuraiPOs[this.currentSamurai].move(direction,this.chessBoardModel)){
+
+                            this.gameModel.updatePosition(this.samuraiPOs[this.currentSamurai].getPos());
+
                             done = true;
                             this.actionPoint -= 2;
                         }
                     }
                     break;
                 case 2:
-//                    System.out.println(this.currentSamurai + " is " + this.samuraiPOs[this.currentSamurai].getHide());
                     if(this.samuraiPOs[this.currentSamurai].getHide()) {
                         if (this.actionPoint >= 1) {
                             if(this.samuraiPOs[this.currentSamurai].show(this.chessBoardModel)) {
+
+                                this.gameModel.updateHide(false);
+
                                 done = true;
                                 this.actionPoint -= 1;
                             }
@@ -152,6 +181,9 @@ public class Player {
                     }else{
                         if(this.actionPoint >= 1){
                             if(this.samuraiPOs[this.currentSamurai].hide(this.chessBoardModel)) {
+
+                                this.gameModel.updateHide(true);
+
                                 done = true;
                                 this.actionPoint -= 1;
                             }
@@ -161,10 +193,7 @@ public class Player {
                 default:
                     break;
             }
-            System.out.println("ActionPoint Left:" + actionPoint);
-            if(!done){
-                System.out.println("Action NOT Performed.");
-            }else{
+            if(done){
                 this.gameModel.actionPerformed(actionNum);
             }
             if(this.actionPoint == 0){

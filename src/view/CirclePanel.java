@@ -1,110 +1,113 @@
 package view;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
-import java.awt.geom.Arc2D;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
+import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeType;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+public class CirclePanel extends Pane {
 
-public class CirclePanel extends JPanel {
-	
-	private final int CIRCLE_DIAMETER = 200;
+	private final int CIRCLE_RADIUS = 100;
 	private final int strokeSize = 2;
 	
-	private int sideBlockQuantity;
+	private int size;
 	private int player;
 	private int timeTotal;
-	private int timeRest;
+	private int timeRest = 20;
 
 	private int[] blockNum = {0,0,0,0,0,0,0};
 	
-	private JLabel playerLogo;
-	private ImageIcon logo;
+	private ImageView logo;
+	private Arc[] arcs;
+	private Arc timeArc;
 	
-	public CirclePanel(int player, int timeTotal){
+	public CirclePanel(int player, int timeTotal) {
 		this.player = player;
 		this.timeTotal = timeTotal;
-//		this.timeRest = timeTotal;
-		
-		logo = Images.PLAYER_LOGO[player];
-		playerLogo = new JLabel();
-		playerLogo.setIcon(logo);
-		playerLogo.setBounds(strokeSize+(CIRCLE_DIAMETER-logo.getIconWidth())/2, strokeSize+(CIRCLE_DIAMETER-logo.getIconHeight())/2, logo.getIconWidth(), logo.getIconHeight());
-		this.add(playerLogo);
-		
-		this.setLayout(null);
-		this.setBackground(null);
-		this.setOpaque(false);
-		this.setSize(CIRCLE_DIAMETER+2*strokeSize, CIRCLE_DIAMETER+2*strokeSize);
-
+		Image image = Images.PLAYER_LOGO[player];
+		this.logo = new ImageView(image);
 		//TODO
-		blockNum[1] = 52;
-		blockNum[2] = 38;
-		blockNum[3] = 27;
-		blockNum[4] = 32;
-		blockNum[5] = 49;
-		blockNum[6] = 23;
+		size = 15;
+		blockNum[0] = 52;
+		blockNum[1] = 38;
+		blockNum[2] = 27;
+		blockNum[3] = 32;
+		blockNum[4] = 49;
+		blockNum[5] = 23;
 		
-	}
-
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		//平滑效果！！！
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-		//描边
-		Stroke stroke = new BasicStroke((float)strokeSize);
-		g2.setStroke(stroke);
-		g2.setColor(Color.white);
+		//Circle
+		Circle bgCircle = new Circle();
+		bgCircle.setCenterX(CIRCLE_RADIUS+strokeSize);
+		bgCircle.setCenterY(CIRCLE_RADIUS+strokeSize);
+		bgCircle.setRadius(CIRCLE_RADIUS);
+		bgCircle.setFill(Color.WHITE);
+		bgCircle.setStroke(Color.WHITE);
+		bgCircle.setStrokeWidth(strokeSize);
+		bgCircle.setStrokeType(StrokeType.OUTSIDE);
+		this.getChildren().add(bgCircle);
 		
-		//画圆
-		g2.drawOval(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
-		g2.setColor(Color.white);
-		g2.fillOval(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER);
-		
-		//画扇形
-		//己方
-		double startAngle = 90.0;
+		//block Arc
 		int direction = 1;
 		if (player == 1){
 			direction = -1;
 		}
-		double arcAngle = -180.0*direction / (sideBlockQuantity*sideBlockQuantity);
-		for (int i=1; i<=3; i++){
-			g2.setColor(BlockColor.getBlockColor(i));
-			Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*blockNum[i], Arc2D.PIE);
-			g2.fill(arc);
-			startAngle += arcAngle*blockNum[i];
+		arcs = new Arc[6];
+		double startAngle = 90.0;
+		double preAngle = -180.0*direction / (size*size);
+		for (int i=0; i<arcs.length/2; i++){
+			arcs[i] = new Arc();
+			Arc tmpArc = arcs[i];
+			tmpArc.setCenterX(CIRCLE_RADIUS+strokeSize);
+			tmpArc.setCenterY(CIRCLE_RADIUS+strokeSize);
+			tmpArc.setRadiusX(CIRCLE_RADIUS);
+			tmpArc.setRadiusY(CIRCLE_RADIUS);
+			tmpArc.setStartAngle(startAngle);
+			tmpArc.setLength(preAngle * blockNum[i]);
+			tmpArc.setType(ArcType.ROUND);
+			tmpArc.setFill(GameColor.getBlockColor(i+1));
+			this.getChildren().add(tmpArc);
+			startAngle += preAngle * blockNum[i];
 		}
-		//敌方
 		startAngle = -90.0;
-		arcAngle = 180.0*direction / (sideBlockQuantity*sideBlockQuantity);
-		for (int i=1; i<=3; i++){
-			g2.setColor(BlockColor.getBlockColor(i+3));
-			Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*blockNum[i+3], Arc2D.PIE);
-			g2.fill(arc);
-			startAngle += arcAngle*blockNum[i+3];
+		preAngle = 180.0*direction / (size*size);
+		for (int i=arcs.length/2; i<arcs.length; i++){
+			arcs[i] = new Arc();
+			Arc tmpArc = arcs[i];
+			tmpArc.setCenterX(CIRCLE_RADIUS+strokeSize);
+			tmpArc.setCenterY(CIRCLE_RADIUS+strokeSize);
+			tmpArc.setRadiusX(CIRCLE_RADIUS);
+			tmpArc.setRadiusY(CIRCLE_RADIUS);
+			tmpArc.setStartAngle(startAngle);
+			tmpArc.setLength(preAngle * blockNum[i]);
+			tmpArc.setType(ArcType.ROUND);
+			tmpArc.setFill(GameColor.getBlockColor(i+1));
+			this.getChildren().add(tmpArc);
+			startAngle += preAngle * blockNum[i];
 		}
-		//time
+		
+		//time Arc
 		startAngle = 90.0;
-		arcAngle = 180.0*direction / timeTotal;
-		g2.setColor(BlockColor.getOtherColor(player));
-		Arc2D arc = new Arc2D.Double(strokeSize, strokeSize, CIRCLE_DIAMETER, CIRCLE_DIAMETER, startAngle, arcAngle*(timeRest-1), Arc2D.PIE);
-		g2.fill(arc);
+		preAngle = 180.0*direction / timeTotal;
+		timeArc = new Arc();
+		timeArc.setCenterX(CIRCLE_RADIUS+strokeSize);
+		timeArc.setCenterY(CIRCLE_RADIUS+strokeSize);
+		timeArc.setRadiusX(CIRCLE_RADIUS);
+		timeArc.setRadiusY(CIRCLE_RADIUS);
+		timeArc.setStartAngle(startAngle);
+		timeArc.setLength(preAngle * timeRest);
+		timeArc.setType(ArcType.ROUND);
+		timeArc.setFill(GameColor.getOtherColor(player));
+		this.getChildren().add(timeArc);
+		
+		//Logo
+		logo.setLayoutX(strokeSize+CIRCLE_RADIUS-image.getWidth()/2);
+		logo.setLayoutY(strokeSize+CIRCLE_RADIUS-image.getHeight()/2);
+		this.getChildren().add(logo);
 		
 	}
-	public void setSideBlockQuantity(int sideBlockQuantity){
-		this.sideBlockQuantity = sideBlockQuantity;
-	}
-	
-	public void setTimeRest(int timeRest){
-		this.timeRest = timeRest;
-	}
+
 }

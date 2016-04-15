@@ -1,20 +1,19 @@
 package view;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
-import view.listener.GameListener;
+public class ActionButton extends Pane {
 
-public class ActionButton extends JButton {
-
-	private Icon image;
+	private ImageView imageV;
+	public int action;
 	
-	public ActionButton(Icon image, GameListener gamelistener){
-		this.image = image;
-		this.setIcon(image);
-		this.setBorderPainted(false);  
-		this.setContentAreaFilled(false);  
-		this.setSize(image.getIconWidth(), image.getIconHeight());
-		this.addMouseListener(gamelistener);
+	public ActionButton(int action){
+		this.action = action;
+		this.imageV = new ImageView(Images.ACTION_BUTTON[action]);
+		this.getChildren().add(imageV);
 	}
+	
 }

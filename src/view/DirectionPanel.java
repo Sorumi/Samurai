@@ -1,16 +1,21 @@
 package view;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import controller.msgqueue.ActionOperation;
+import controller.msgqueue.Operation;
+import controller.msgqueue.OperationQueue;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
-import view.listener.GameListener;
-
-public class DirectionPanel extends JPanel {
-
+public class DirectionPanel extends Pane {
+	
 	private final int DIRECTION_WIDTH = 49;
 	private final int DIRECTION_HEIGHT = 35;
 	private final int WIDTH_FIX = 18;
 	private final int HEIGHT_FIX = 8;
+	
+	private int action;
+	private int direction;
 	
 	private boolean canUp;
 	private boolean canLeft;
@@ -23,47 +28,50 @@ public class DirectionPanel extends JPanel {
 	private DirectionButton downButton;
 	private DirectionButton[] buttons;
 	
-	private GameListener gamelistener;
-	
-	public DirectionPanel(GameListener gamelistener){
+	public DirectionPanel(){
 
-		upButton = new DirectionButton(0, gamelistener);
-		leftButton = new DirectionButton(1, gamelistener);
-		rightButton = new DirectionButton(2, gamelistener);
-		downButton = new DirectionButton(3, gamelistener);
-	
+		upButton = new DirectionButton(0);
+		leftButton = new DirectionButton(1);
+		rightButton = new DirectionButton(2);
+		downButton = new DirectionButton(3);
+		
 		buttons = new DirectionButton[]{upButton, leftButton, rightButton, downButton};
 		
-		upButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, 0);
-		leftButton.setLocation(0, 0);
-		rightButton.setLocation(DIRECTION_WIDTH+WIDTH_FIX, DIRECTION_HEIGHT+HEIGHT_FIX);
-		downButton.setLocation(0, DIRECTION_HEIGHT+HEIGHT_FIX);
+		upButton.setLayoutX(DIRECTION_WIDTH+WIDTH_FIX);
+		upButton.setLayoutY(0);
+		leftButton.setLayoutX(0);
+		leftButton.setLayoutY(0);
+		rightButton.setLayoutX(DIRECTION_WIDTH+WIDTH_FIX);
+		rightButton.setLayoutY(DIRECTION_HEIGHT+HEIGHT_FIX);
+		downButton.setLayoutX(0);
+		downButton.setLayoutY(DIRECTION_HEIGHT+HEIGHT_FIX);
 		
-		this.setLayout(null);
-		this.setBackground(null);
-		this.setOpaque(false);
-		this.setSize(DIRECTION_WIDTH*2+WIDTH_FIX, DIRECTION_HEIGHT*2+HEIGHT_FIX);
+		upButton.setOnMouseClicked(directionEvent);
+		leftButton.setOnMouseClicked(directionEvent);
+		rightButton.setOnMouseClicked(directionEvent);
+		downButton.setOnMouseClicked(directionEvent);
 		
-		this.add(upButton);
-		this.add(leftButton);
-		this.add(rightButton);
-		this.add(downButton);
+		this.getChildren().add(upButton);
+		this.getChildren().add(leftButton);
+		this.getChildren().add(rightButton);
+		this.getChildren().add(downButton);
 	}
 	
-	public DirectionButton getUpButton(){
-		return this.upButton;
-	}
-	public DirectionButton getLeftButton(){
-		return this.leftButton;
-	}
-	public DirectionButton getRightButton(){
-		return this.rightButton;
-	}
-	public DirectionButton getDownButton(){
-		return this.downButton;
-	}
+
 	public void setHighLight(int direction, boolean isHL){
 		buttons[direction].setHighLight(isHL);
 	}
 	
+	EventHandler<MouseEvent> directionEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  DirectionButton btn = (DirectionButton)event.getSource();
+	    	  direction = btn.direction;
+	    	  Operation op = new ActionOperation(action, direction);
+	    	  OperationQueue.addOperation(op);
+	      }
+	};
+	
+	public void setAction(int action){
+		this.action = action;
+	}
 }

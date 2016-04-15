@@ -154,7 +154,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 //			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		}
-
 		if (!hide) {
 			cbm.changeActualBlock(tmpPos.getX(), tmpPos.getY(), false);
 		}

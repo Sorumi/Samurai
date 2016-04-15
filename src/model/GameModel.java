@@ -3,10 +3,11 @@ package model;
 import controller.msgqueue.ActionOperation;
 import controller.msgqueue.NextOperation;
 import controller.msgqueue.OperationQueue;
+import main.Main;
 import model.po.*;
 import model.state.GameResultState;
 import model.state.GameState;
-import view.MainFrame;
+//import view.MainFrame;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -27,11 +28,11 @@ public class GameModel extends BaseModel {
     private int timeTotal;
     private Timer timer;
     private int currentTime;
-    private boolean isAI;
+    private int AILevel;
     private SamuraiAI[] samuraiAI;
 
-    public GameModel(int round, int length, MainFrame mainFrame, boolean isAI){
-        this.isAI = isAI;
+    public GameModel(int round, int length, Main mainFrame, int level){
+        this.AILevel = level;
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
@@ -47,22 +48,41 @@ public class GameModel extends BaseModel {
         this.players = new Player[2];
         players[0] = new Player(this,0);
         players[1] = new Player(this,1);
-        if(this.isAI){
-            samuraiAI = new SamuraiAI[3];
-            samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
-            samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-            samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+        switch (this.AILevel){
+            case 0:
+                break;
+            case 1:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            default:
+                break;
         }
     }
 
     public boolean gameStart(){
+        ArrayList<ActualBlock> blocks = new ArrayList<>();
+        for(int x = 0; x <= this.length; x++){
+            for (int y = 0; y <= this.length; y++) {
+                blocks.add(this.chessBoardModel.getActualBlock(x,y));
+            }
+        }
+        super.updateChange(new UpdateMessage("vision", blocks));
+
         for (int i = 1; i <= 6; i++) {
             this.updateHome(i);
         }
-        if(this.isAI) {
-            this.assignNextWithAI();
-        }else{
-            this.assignNext();
+        switch (this.AILevel){
+            case 0:
+                this.assignNext();
+                break;
+            case 1:
+                this.assignNextWithAI();
+                break;
+            default:
+                break;
         }
         this.timer = new Timer();
         timer.schedule(new countDownTask(),0,1000);
@@ -92,6 +112,14 @@ public class GameModel extends BaseModel {
             default:
                 break;
         }
+    }
+
+    public void updatePosition(Position position){
+        super.updateChange(new UpdateMessage("move",position));
+    }
+
+    public void updateHide(boolean isHide){
+        super.updateChange(new UpdateMessage("samuraiHide",isHide));
     }
 
     public void actionPerformed(int actionNum){
@@ -127,9 +155,8 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
-        this.updateVisible(this.updateVision());
+//        this.updateVisible(this.updateVision());
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
-
     }
 
     public void assignNextWithAI(){
@@ -137,8 +164,7 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
-        this.updateVisible(this.updateVision());
-
+//        this.updateVisible(this.updateVision());
         this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
         if(this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5){
 
@@ -183,10 +209,16 @@ public class GameModel extends BaseModel {
             if((this.currentPlayer++) % 6 == 0){
                 this.currentPlayer = 1;
             }
-            if(this.isAI) {
-                this.assignNextWithAI();
-            }else{
-                this.assignNext();
+
+            switch (this.AILevel){
+                case 0:
+                    this.assignNext();
+                    break;
+                case 1:
+                    this.assignNextWithAI();
+                    break;
+                default:
+                    break;
             }
         }else{
             this.gameOver();

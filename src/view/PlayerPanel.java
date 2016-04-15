@@ -1,91 +1,51 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import javafx.scene.layout.Pane;
 
-import javax.swing.JPanel;
-
-public class PlayerPanel extends JPanel{
+public class PlayerPanel extends Pane {
 	
+
 	private int panelWidth;
 	private int panelHeight;
 	private int player;//0,1
 	private int currentSamurai;
 	private int pointsTotal;
-	private int currentRound;
-	
-	private int roundX;
-	private final int roundD = 45;
-	
-	private CirclePanel circlePanel;
-	private PointsPanel pointsPanel;
+	public CirclePanel circlePanel;
+	public PointsPanel pointsPanel;
 	
 	public PlayerPanel(int player, int timeTotal){
-		
 		this.player = player;
-		this.setLayout(null);
-		this.setBackground(null);
-		this.setOpaque(false);
 		
 		circlePanel = new CirclePanel(player, timeTotal);
-		this.add(circlePanel);
-		
 		pointsPanel = new PointsPanel(player);
-		this.add(pointsPanel);
 		
-		this.setComponentZOrder(circlePanel, 0);
-		this.setComponentZOrder(pointsPanel, 1);
+		this.getChildren().add(pointsPanel);
+		this.getChildren().add(circlePanel);
 		
-		panelWidth = pointsPanel.getWidth()+circlePanel.getWidth()/2;
-		panelHeight = circlePanel.getHeight();
-		
-		this.setSize(panelWidth, panelHeight);
+		//bounds
 		if(player == 0){
-			circlePanel.setLocation(0, 0);
-			pointsPanel.setLocation(circlePanel.getWidth()/2, circlePanel.getHeight()-pointsPanel.getHeight());
-			roundX = 0;
-			this.setLocation(0, 800-panelHeight);
+			circlePanel.setLayoutX(0);
+			circlePanel.setLayoutY(0);
+			pointsPanel.setLayoutX(circlePanel.getBoundsInParent().getWidth()/2);
+			pointsPanel.setLayoutY(circlePanel.getBoundsInParent().getHeight()-pointsPanel.getBoundsInParent().getHeight());
+			this.setLayoutX(0);
+			this.setLayoutY(800-circlePanel.getBoundsInParent().getHeight());
 		}else{
-			circlePanel.setLocation(pointsPanel.getWidth()-circlePanel.getWidth()/2, 0);
-			pointsPanel.setLocation(0, circlePanel.getHeight()-pointsPanel.getHeight());
-			roundX = panelWidth-roundD;
-			this.setLocation(1200-panelWidth, 800-panelHeight);
+			circlePanel.setLayoutX(pointsPanel.getBoundsInParent().getWidth()-circlePanel.getBoundsInParent().getWidth()/2);
+			circlePanel.setLayoutY(0);
+			pointsPanel.setLayoutX(0);
+			pointsPanel.setLayoutY(circlePanel.getBoundsInParent().getHeight()-pointsPanel.getBoundsInParent().getHeight());
+			this.setLayoutX(1200-this.getBoundsInParent().getWidth());
+			this.setLayoutY(800-circlePanel.getBoundsInParent().getHeight());
 		}
-
 	}
-	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		//平滑效果！！！
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-		g2.setColor(Color.white);
-		//roundPanel
-		g2.fillOval(roundX, 0, roundD, roundD);
-
-		Font f1 = new Font("Tsukushi B Round Gothic",Font.PLAIN,20);
-		g2.setFont(f1);
-		g2.setColor(BlockColor.getBlockColor(currentSamurai));//BlockColor.getOtherColor(2)
-		String roundStr = currentRound+"";
-		g2.drawString(roundStr, roundX+23-roundStr.length()*6, 28);
-
-	}
-	public CirclePanel getCirclePanel(){
-		return this.circlePanel;
-	}
-	public PointsPanel getPointsPanel(){
-		return this.pointsPanel;
-	}
 	public void setCurrentSamurai(int currentSamurai){
 		this.currentSamurai = currentSamurai;
 		pointsPanel.setCurrentSamurai(currentSamurai);
 	}
-	public void setCurrentRound(int round){
-		this.currentRound = round;
-//		this.currentRound = 12;
+	
+	public int getPlayer(){
+		return this.player;
 	}
 }

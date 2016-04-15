@@ -1,102 +1,95 @@
 package view;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.Stroke;
-import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
+import javafx.animation.ScaleTransition;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import javafx.scene.shape.StrokeType;
+import javafx.util.Duration;
 
-import javax.swing.JPanel;
+public class PointsPanel extends Pane {
 
-public class PointsPanel extends JPanel{
-	
 	private final int PANEL_WIDTH = 200;
 	private final int PANEL_HEIGHT = 30;
 	private final int strokeSize = 2;
-	private int labelX;
+//	private int labelX;
 
 	private int player;
-	private int pointsTotal;
-	private int pointsRest;
-	private int currentSamurai;
+	private int pointsTotal = 7;
+	private int pointsRest = 6;
+	private int currentSamurai = 2;
 	private boolean isShow;
 	
-	public PointsPanel(int player){
+	public PointsPanel(int player) {
 		this.player = player;
-		this.setLayout(null);
-		this.setBackground(null);
-		this.setOpaque(false);
-		this.setSize(PANEL_WIDTH+2*strokeSize, PANEL_HEIGHT+2*strokeSize);
+		this.isShow = true;
+		//bounds
+//		this.setPrefWidth(PANEL_WIDTH+2*strokeSize);
+//		this.setPrefHeight(PANEL_HEIGHT+2*strokeSize);
 		this.setVisible(false);
 		
+		//bg
+		Rectangle bgRect = new Rectangle();
+		bgRect.setX(strokeSize);
+		bgRect.setY(strokeSize);
+		bgRect.setWidth(PANEL_WIDTH);
+		bgRect.setHeight(PANEL_HEIGHT);
+		bgRect.setArcWidth(PANEL_HEIGHT);
+		bgRect.setArcHeight(PANEL_HEIGHT);
+		bgRect.setStroke(Color.WHITE);
+		bgRect.setStrokeWidth(strokeSize);
+		bgRect.setStrokeType(StrokeType.OUTSIDE);
+		bgRect.setFill(Color.WHITE);
+		this.getChildren().add(bgRect);
+		
+		//fill
+		Rectangle fillRect = new Rectangle();
+		fillRect.setX(strokeSize);
+		fillRect.setY(strokeSize);
+		fillRect.setWidth(PANEL_WIDTH/pointsTotal*pointsRest);
+		fillRect.setHeight(PANEL_HEIGHT);
+		
+		Rectangle clipRect = new Rectangle();
+		clipRect.setX(strokeSize);
+		clipRect.setY(strokeSize);
+		clipRect.setWidth(PANEL_WIDTH);
+		clipRect.setHeight(PANEL_HEIGHT);
+		clipRect.setArcWidth(PANEL_HEIGHT);
+		clipRect.setArcHeight(PANEL_HEIGHT);
 
+		Shape fillShape = Shape.intersect(clipRect, fillRect);
+		fillShape.setFill(GameColor.getBlockColor(currentSamurai));
+		this.getChildren().add(fillShape);
 	}
 	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-		Graphics2D g2 = (Graphics2D) g;
-		//平滑效果！！！
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-		//描边
-		Stroke stroke = new BasicStroke((float)strokeSize);
-		g2.setStroke(stroke);
-		g2.setColor(Color.white);
-		//画框和背景
-		RoundRectangle2D roundShape = new RoundRectangle2D.Float(strokeSize, strokeSize, PANEL_WIDTH, PANEL_HEIGHT, PANEL_HEIGHT, PANEL_HEIGHT);
-		g2.draw(roundShape);
-		g2.fill(roundShape);
-		Font f1 = new Font("Tsukushi B Round Gothic",Font.PLAIN,20);
-		g2.setFont(f1);
-		g2.setColor(BlockColor.getOtherColor(2));
-		String text = pointsRest + " / " + pointsTotal;
-		int strWidth = g.getFontMetrics().stringWidth(text);
-		if(player == 0){
-			labelX = PANEL_WIDTH-10-strWidth;
-		}else{
-			labelX = 10;
-		}
-		g2.drawString(text, labelX, 25);
-		
-		//画填充
-		double proportion = ((double)pointsRest)/pointsTotal;
-		Rectangle2D fillShape = new Rectangle2D.Double(strokeSize+(1-proportion)*PANEL_WIDTH*player, strokeSize, proportion*PANEL_WIDTH, PANEL_HEIGHT);
-		
-		Area round = new Area(roundShape);
-		Area fill = new Area(fillShape);
-		fill.intersect(round);
-		
-		g2.setColor(BlockColor.getBlockColor(currentSamurai));
-		g2.fill(fill);
-		
-		g2.clip(fill);
-		g2.setColor(Color.white);//BlockColor.getOtherColor(3)
-		g2.drawString(text, labelX, 25);
-		
-	}
-	
-	public void setPointsTotal(int pointsTotal){
-		this.pointsTotal = pointsTotal;
-	}
-	
-	public void setPointsRest(int pointsRest){
-		this.pointsRest = pointsRest;
-//		this.pointsRest = 6;
-		//动画
+	public void setIsShow(boolean isShow){
+//		if (isShow != this.isShow){
+//			ScaleTransition st = new ScaleTransition(Duration.millis(1000), this);
+//			if(isShow){
+//				st.setToX(10f);
+//			}else{
+//				st.setToX(0.1f);
+//			}
+//			st.play();
+//		}
+		this.isShow = isShow;
+		this.setVisible(isShow);
 	}
 	
 	public void setCurrentSamurai(int currentSamurai){
 		this.currentSamurai = currentSamurai;
-	}
-	
-	public void setIsShow(boolean isShow){
-		//判断是否弹出
 		//TODO
-		this.setVisible(isShow);
 	}
+
+	public void setPointsRest(int value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setPointsTotal(int value) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

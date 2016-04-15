@@ -21,7 +21,7 @@ public class SamuraiAI {
 		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 1);
 		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 1);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 10; i++) {
 			mine1.calculate();
 			print(cbm);
 			mine4.calculate();

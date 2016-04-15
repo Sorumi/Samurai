@@ -1,20 +1,14 @@
 package view;
 
-import model.po.Position;
+import javafx.animation.FadeTransition;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
+public class SamuraiView extends Pane {
 
-import javax.swing.JPanel;
-
-
-public class SamuraiView extends JPanel {
-	
-    private final int WINDOW_WIDTH = 1200;
+	private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
 	private final int FIELD_WIDTH = 1050;
 	private final int FIELD_HEIGHT = 600;
@@ -27,70 +21,58 @@ public class SamuraiView extends JPanel {
 	
 	private final int selfWidthOffset = -34;
 	private final int selfHeightOffset = -75;
-
+		
 	private int number;
-	private BufferedImage image;
+	private ImageView imageV;
 	
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 	private boolean isHide;
 	
 	public SamuraiView(int number, int size){
-  		
 		this.number = number;
-		this.image = Images.SAMURAI_CLASSIC[number];
+		this.imageV = new ImageView(Images.SAMURAI[number]);
 		this.isHide = false;
+		
+		this.getChildren().add(imageV);
 		
 		blockWidthOffset = FIELD_WIDTH / size / 2;
 		blockHeightOffset = FIELD_HEIGHT / size / 2;
-				
-		this.setSize(image.getWidth(), image.getHeight());
-		this.setBackground(null);
-		this.setOpaque(false);
-	}
-	public SamuraiView(int number, int size, int x, int y){
-  		this(number, size);
-		this.setActualLocation(x, y);
-	}
-	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-
-		if (image != null){
-			Graphics2D g2 = (Graphics2D) g;
-			//平滑效果！！！
-			g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-			
-			if(isHide){
-				 AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f); 
-		            g2.setComposite(ac); 
-		            g2.drawImage(image, 0, 0, getWidth(), getHeight(), null, null); 
-			}else{
-				g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-			}	
-		}
+		
+		
+//		this.setSize(imageV.getFitWidth(), image.getHeight());
 	}
 	
 	public void setActualLocation(int x, int y){
 		this.x = x;
 		this.y = y;
-		this.setLocation(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset+selfWidthOffset, chessBoardHeightOffset+(x+y)*blockHeightOffset+selfHeightOffset);
+		this.setLayoutX(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset+selfWidthOffset);
+		this.setLayoutY(chessBoardHeightOffset+(x+y)*blockHeightOffset+selfHeightOffset);
 	}
 
-	public Position getPosition(){
-		return new Position(x,y);
+	public void setHide(boolean isHide) {
+		if (isHide != this.isHide){
+			FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
+			ft.setAutoReverse(false);
+			if (isHide){
+				System.out.println("hide");
+				ft.setFromValue(1.0f);
+				ft.setToValue(0.5f);
+			} else {
+				ft.setFromValue(0.5f);
+				ft.setToValue(1.0f);ft.play();
+			}
+			ft.play();
+		}
+		this.isHide = isHide;
 	}
 	
 	public int getNum(){
 		return this.number;
 	}
-	
-	public void setHide(boolean isHide){
-		this.isHide = isHide;
-		this.repaint();
-	}
 
 	public boolean isHide() {
 		return isHide;
 	}
+
 }

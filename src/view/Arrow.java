@@ -1,21 +1,17 @@
 package view;
 
-import javax.swing.JPanel;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
+public class Arrow extends Pane{
 
-public class Arrow extends JPanel{
-	
-	private BufferedImage image;
+	private ImageView imageV;
 	private SamuraiView currentSamurai;
 	
 	public Arrow(){
-		image = Images.ARROW;
-		this.setSize(image.getWidth(), image.getHeight());
-		this.setBackground(null);
-		this.setOpaque(false);
+		imageV = new ImageView (Images.ARROW);
+		this.getChildren().add(imageV);
+		this.setVisible(false);
 	}
 	
 	public void setCurrentSamurai(SamuraiView samurai){
@@ -25,17 +21,7 @@ public class Arrow extends JPanel{
 	}
 	
 	public void setActualLocation(){
-		this.setLocation(currentSamurai.getLocation().x +34 -getWidth()/2, currentSamurai.getLocation().y-getHeight());
+		this.setLayoutX(currentSamurai.getLayoutX() +34 -this.getBoundsInParent().getWidth()/2);
+		this.setLayoutY(currentSamurai.getLayoutY() -this.getBoundsInParent().getHeight());
 	}
-	
-	public void paintComponent(Graphics g){
-		super.paintComponent(g);
-
-		if (image != null){
-			Graphics2D g2 = (Graphics2D) g;
-			g2.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		}
-	}
-
-	
 }

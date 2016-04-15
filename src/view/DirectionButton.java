@@ -1,30 +1,27 @@
 package view;
 
-import javax.swing.Icon;
-import javax.swing.JButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
-import view.listener.GameListener;
+public class DirectionButton extends Pane {
 
-public class DirectionButton extends JButton {
-
-	private Icon image;
-	private Icon imageHL;
+	private ImageView imageV;
+	private ImageView imageVHL;
+	public int direction;
 	
-	public DirectionButton(int direction, GameListener gamelistener){
-		this.image = Images.DIRECTION[direction];
-		this.imageHL = Images.DIRECTION_HL[direction];
-		this.setIcon(image);
-		this.setBorderPainted(false);  
-		this.setContentAreaFilled(false);  
-		this.setSize(image.getIconWidth(), image.getIconHeight());
-		this.addMouseListener(gamelistener);
+	public DirectionButton(int direction){
+		this.direction = direction;
+		this.imageV = new ImageView(Images.DIRECTION[direction]);
+		this.imageVHL = new ImageView(Images.DIRECTION_HL[direction]);
+		this.getChildren().add(imageV);
 	}
 	
 	public void setHighLight(boolean isHL){
 		if(isHL){
-			this.setIcon(imageHL);
+			//
 		}else{
-			this.setIcon(image);
+			//
 		}
 	}
 }
