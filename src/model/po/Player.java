@@ -78,6 +78,9 @@ public class Player {
                         ArrayList<Position> positions
                                 = this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,true);
                         if(!positions.isEmpty()) {
+
+                            this.gameModel.updateOccupy(direction);
+
                             done = true;
                             this.actionPoint -= 4;
                             //检测需不需要把别人踢回去

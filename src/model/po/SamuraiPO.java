@@ -127,7 +127,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public void beKilled(int length, ChessBoardModel cbm) {
-		System.out.println(player + "'s "+ number +  " is killed");
 		Position tmpPos = pos;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);

@@ -115,7 +115,11 @@ public class GameModel extends BaseModel {
     }
 
     public void updatePosition(Position position){
-        super.updateChange(new UpdateMessage("move",position));
+        super.updateChange(new UpdateMessage("samuraiMove",position));
+    }
+
+    public void updateOccupy(int direction){
+        super.updateChange(new UpdateMessage("samuraiOccupy",direction));
     }
 
     public void updateHide(boolean isHide){

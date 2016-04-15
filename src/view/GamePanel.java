@@ -188,7 +188,7 @@ public class GamePanel extends Pane implements Observer{
 //			this.arrow.setActualLocation();
 //
 //			System.out.println("new Pos" + block.getX() + "," + block.getY());
-		}else if(key.equals("move")){
+		}else if(key.equals("samuraiMove")){
 			Position position = (Position)notifingObject.getValue();
 			this.currentSamurai.setActualLocation(position.getX(), position.getY());
 			this.actionPanel.setActualLocation();
@@ -197,6 +197,9 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("samuraiHide")){
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			
+		}else if(key.equals("samuraiOccupy")){
+			System.out.println((int)notifingObject.getValue());
+
 		}else if(key.equals("visible")) {
 			if(this.currentPlayer.getPlayer() == 0){
 				this.A1.setVisible(true);
