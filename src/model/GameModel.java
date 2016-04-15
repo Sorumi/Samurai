@@ -233,11 +233,11 @@ public class GameModel extends BaseModel {
             }
         } else {
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
-            if (this.getAILevel() == 0) {
-                this.actionDone();
-            } else if (this.getAILevel() == 1) {
+//            if (this.getAILevel() == 0) {
+//                this.actionDone();
+//            } else if (this.getAILevel() == 1) {
                 this.skip1Round();
-            }
+//            }
         }
     }
 
