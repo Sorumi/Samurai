@@ -39,16 +39,6 @@ public class Player {
         this.currentSamurai = gameModel.getCurrentSamurai();
         this.actionPoint = pointsTotal;
         this.gameModel.actionPerformed(0);
-
-        if(samuraiPOs[this.currentSamurai].getColdRound() > 0){
-            samuraiPOs[this.currentSamurai].setColdRound(samuraiPOs[this.currentSamurai].getColdRound() - 1);
-            if(this.gameModel.getAILevel() == 0) {
-                this.actionDone();
-            }else if(this.gameModel.getAILevel() == 1){
-                this.gameModel.skip1Round();
-            }
-        }
-
     }
 
     public ArrayList<ActualBlock> showVision(){

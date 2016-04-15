@@ -187,43 +187,57 @@ public class GameModel extends BaseModel {
         super.updateChange(new UpdateMessage("round",this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
 //        this.updateVisible(this.updateVision());
-        this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+        if(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0){
+            this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+        }else{
+            this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
+            this.actionDone();
+        }
     }
 
-    public void assignNextWithAI(){
-        super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
-        super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
-        super.updateChange(new UpdateMessage("round",this.currentRound));
-        super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
+    public void assignNextWithAI() {
+        super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
+        super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
+        super.updateChange(new UpdateMessage("round", this.currentRound));
+        super.updateChange(new UpdateMessage("pointsTotal", this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
 //        this.updateVisible(this.updateVision());
-        this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
 
-        if(this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5){
+        if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
+            this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+            if (this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5) {
 
-        }else{
-            switch (this.currentPlayer){
-                case 2:
-                    for(ActionOperation operation : samuraiAI[0].calculate()){
-                        OperationQueue.addOperation(operation);
-                    }
-                    break;
-                case 3:
-                    for(ActionOperation operation : samuraiAI[1].calculate()){
-                        OperationQueue.addOperation(operation);
-                    }
-                    break;
-                case 6:
-                    for(ActionOperation operation : samuraiAI[2].calculate()){
-                        OperationQueue.addOperation(operation);
-                    }
-                    break;
+            } else {
+                switch (this.currentPlayer) {
+                    case 2:
+                        for (ActionOperation operation : samuraiAI[0].calculate()) {
+                            OperationQueue.addOperation(operation);
+                        }
+                        break;
+                    case 3:
+                        for (ActionOperation operation : samuraiAI[1].calculate()) {
+                            OperationQueue.addOperation(operation);
+                        }
+                        break;
+                    case 6:
+                        for (ActionOperation operation : samuraiAI[2].calculate()) {
+                            OperationQueue.addOperation(operation);
+                        }
+                        break;
+                }
+                try {
+                    Thread.sleep(2000);
+                } catch (Exception E) {
+                    E.printStackTrace();
+                }
+                this.skip1Round();
             }
-            try{
-                Thread.sleep(2000);
-            }catch (Exception E){
-                E.printStackTrace();
+        } else {
+            this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
+            if (this.getAILevel() == 0) {
+                this.actionDone();
+            } else if (this.getAILevel() == 1) {
+                this.skip1Round();
             }
-            this.skip1Round();
         }
     }
 
