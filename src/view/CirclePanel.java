@@ -24,7 +24,8 @@ public class CirclePanel extends Pane {
 	private int size;
 	private int player;
 	private int timeTotal;
-	private int timeRest = 20;
+	private int timeRest;
+	private int direction;
 
 	private int[] blockNum = {0,0,0,0,0,0,0};
 	
@@ -32,11 +33,19 @@ public class CirclePanel extends Pane {
 	private Arc[] arcs;
 	private Arc timeArc;
 	
+	Timeline timeline;
+
+	
 	public CirclePanel(int player, int timeTotal) {
 		this.player = player;
 		this.timeTotal = timeTotal;
 		Image image = Images.PLAYER_LOGO[player];
 		this.logo = new ImageView(image);
+		direction = 1;
+		if (player == 1){
+			direction = -1;
+		}
+		timeline = new Timeline();
 		//TODO
 		size = 15;
 		blockNum[0] = 52;
@@ -58,10 +67,6 @@ public class CirclePanel extends Pane {
 		this.getChildren().add(bgCircle);
 		
 		//block Arc
-		int direction = 1;
-		if (player == 1){
-			direction = -1;
-		}
 		arcs = new Arc[6];
 		double startAngle = 90.0;
 		double preAngle = -180.0*direction / (size*size);
@@ -146,6 +151,27 @@ public class CirclePanel extends Pane {
 		logo.setLayoutY(strokeSize+CIRCLE_RADIUS-image.getHeight()/2);
 		this.getChildren().add(logo);
 		
+	}
+
+	public void setTimeRest(int timeRest) {
+		timeline = new Timeline();
+		KeyValue kv = new KeyValue(timeArc.lengthProperty(), 180*direction/timeTotal*(timeRest-1));
+		KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
+		timeline.getKeyFrames().add(kf);
+		timeline.play();
+		
+	}
+
+	public void setNewTime(boolean isCurrent) {
+		if(isCurrent){
+			timeline.stop();
+			this.timeRest = timeTotal;
+			timeArc.setLength(180*direction);
+		}else{
+			timeline.stop();
+			this.timeRest = 0;
+			timeArc.setLength(0);
+		}
 	}
 
 }

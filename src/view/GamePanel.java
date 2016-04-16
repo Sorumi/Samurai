@@ -49,7 +49,7 @@ public class GamePanel extends Pane implements Observer{
 	private PlayerPanel playerA;
 	private PlayerPanel playerB;
 	
-	private Arrow arrow;
+	public Arrow arrow;
 	public ActionPanel actionPanel;
 	private ActionHandler actionHandler;
 	
@@ -104,6 +104,9 @@ public class GamePanel extends Pane implements Observer{
 	}
 	
 	public void setCurrentSamurai(int i){
+		if(currentSamurai != null){
+			currentSamurai.setOnMouseClicked(null);
+		}
 		switch (i){
 			case 1:
 				this.currentSamurai = A1;
@@ -124,12 +127,7 @@ public class GamePanel extends Pane implements Observer{
 				this.currentSamurai = B3;
 				break;
 		}
-		currentSamurai.setOnMouseClicked(new EventHandler<MouseEvent>() {  
-		      public void handle(MouseEvent event) {
-		    	  actionPanel.setVisible(true);
-		    	  arrow.setVisible(false);
-		      }
-		});
+		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		arrow.setCurrentSamurai(currentSamurai);
 		actionPanel.setCurrentSamurai(currentSamurai);
 		playerA.setCurrentSamurai(currentSamurai.getNum());
@@ -150,6 +148,17 @@ public class GamePanel extends Pane implements Observer{
 				break;
 		}
 	}
+	
+	public void setCurrentRound(int round){
+		if(this.currentPlayer == playerA){
+			playerA.circlePanel.setNewTime(true);
+			playerB.circlePanel.setNewTime(false);
+		}else{
+			playerA.circlePanel.setNewTime(false);
+			playerB.circlePanel.setNewTime(true);
+		}
+
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -166,11 +175,11 @@ public class GamePanel extends Pane implements Observer{
 
 		}else if(key.equals("round")){
 //			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
-//			this.setCurrentRound((int)notifingObject.getValue());
+			this.setCurrentRound((int)notifingObject.getValue());
 
 		}else if(key.equals("time")){
 //			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
-//			this.currentPlayer.getCirclePanel().setTimeRest((int)notifingObject.getValue());
+			this.currentPlayer.circlePanel.setTimeRest((int)notifingObject.getValue());
 
 		}else if(key.equals("actionPoint")){
 //			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
