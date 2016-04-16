@@ -4,9 +4,11 @@ import controller.msgqueue.ActionOperation;
 import controller.msgqueue.NextOperation;
 import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
+import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import view.eventhandler.ActionHandler;
 
 public class ActionPanel extends Pane {
@@ -38,18 +40,50 @@ public class ActionPanel extends Pane {
 
 		this.setVisible(false);
 		
-		moveButton.setLayoutX(40);
-		moveButton.setLayoutY(0);
-		occupyButton.setLayoutX(0);
-		occupyButton.setLayoutY(60);
-		hideButton.setLayoutX(110);
-		hideButton.setLayoutY(0);
-		exitButton.setLayoutX(150);
-		exitButton.setLayoutY(60);
+		moveButton.setLayoutX(75);
+		moveButton.setLayoutY(121);
+		occupyButton.setLayoutX(75);
+		occupyButton.setLayoutY(121);
+		hideButton.setLayoutX(75);
+		hideButton.setLayoutY(121);
+		exitButton.setLayoutX(75);
+		exitButton.setLayoutY(121);
 		backButton.setLayoutX(150);
 		backButton.setLayoutY(60);
 		
 		backButton.setVisible(false);
+		
+		 TranslateTransition translateTransition1 = new TranslateTransition(Duration.millis(4000), moveButton);
+	     translateTransition1.setFromX(0);
+	     translateTransition1.setFromY(0);
+         translateTransition1.setToX(-35);
+         translateTransition1.setToY(-121);
+	     translateTransition1.setAutoReverse(false);
+         translateTransition1.play();
+         
+    	 TranslateTransition translateTransition2 = new TranslateTransition(Duration.millis(4000), occupyButton);
+	     translateTransition2.setFromX(0);
+	     translateTransition2.setFromY(0);
+         translateTransition2.setToX(-75);
+         translateTransition2.setToY(-61);
+	     translateTransition2.setAutoReverse(false);
+         translateTransition2.play();
+         
+         TranslateTransition translateTransition3 = new TranslateTransition(Duration.millis(4000), hideButton);
+	     translateTransition3.setFromX(0);
+	     translateTransition3.setFromY(0);
+         translateTransition3.setToX(35);
+         translateTransition3.setToY(-121);
+	     translateTransition3.setAutoReverse(false);
+         translateTransition3.play();
+         
+         TranslateTransition translateTransition4 = new TranslateTransition(Duration.millis(4000), exitButton);
+   	     translateTransition4.setFromX(0);
+   	     translateTransition4.setFromY(0);
+         translateTransition4.setToX(75);
+         translateTransition4.setToY(-61);
+   	     translateTransition4.setAutoReverse(false);
+         translateTransition4.play();
 		
 		directionPanel = new DirectionPanel(actionHandler);
 		directionPanel.setLayoutX((BUTTONPANEL_WIDTH-directionPanel.getBoundsInParent().getWidth())/2);
