@@ -13,6 +13,8 @@ public class ActionButton extends Pane {
 	public ActionButton(int action){
 		this.action = action;
 		this.imageV = new ImageView(Images.ACTION_BUTTON[action]);
+		this.imageV.setFitWidth(58);
+		this.imageV.setPreserveRatio(true);
 		this.getChildren().add(imageV);
 	}
 	

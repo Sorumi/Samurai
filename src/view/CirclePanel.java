@@ -19,6 +19,7 @@ import javafx.util.Duration;
 public class CirclePanel extends Pane {
 
 	private final int CIRCLE_RADIUS = 100;
+	private final int RATIO = 2; //比例
 	private final int strokeSize = 2;
 	
 	private int size;
@@ -41,6 +42,8 @@ public class CirclePanel extends Pane {
 		this.timeTotal = timeTotal;
 		Image image = Images.PLAYER_LOGO[player];
 		this.logo = new ImageView(image);
+		this.logo.setFitWidth(image.getWidth()/RATIO);
+		this.logo.setPreserveRatio(true);
 		direction = 1;
 		if (player == 1){
 			direction = -1;
@@ -147,8 +150,8 @@ public class CirclePanel extends Pane {
 		this.getChildren().add(timeArc);
 		
 		//Logo
-		logo.setLayoutX(strokeSize+CIRCLE_RADIUS-image.getWidth()/2);
-		logo.setLayoutY(strokeSize+CIRCLE_RADIUS-image.getHeight()/2);
+		logo.setLayoutX(strokeSize+CIRCLE_RADIUS-image.getWidth()/RATIO/2);
+		logo.setLayoutY(strokeSize+CIRCLE_RADIUS-image.getHeight()/RATIO/2);
 		this.getChildren().add(logo);
 		
 	}

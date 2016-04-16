@@ -62,7 +62,8 @@ public class GamePanel extends Pane implements Observer{
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		
 		//background
-		this.setStyle("-fx-background-image: url("+bgImagePath+")");
+		this.setStyle("-fx-background-image: url("+bgImagePath+");"
+				+ "-fx-background-size: 100% 100%; ");
 		
 		//chessboard
 		chessBoard = new ChessBoardPanel(size);

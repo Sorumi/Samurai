@@ -14,6 +14,10 @@ public class DirectionButton extends Pane {
 		this.direction = direction;
 		this.imageV = new ImageView(Images.DIRECTION[direction]);
 		this.imageVHL = new ImageView(Images.DIRECTION_HL[direction]);
+		this.imageV.setFitWidth(49);
+		this.imageV.setPreserveRatio(true);
+		this.imageVHL.setFitWidth(49);
+		this.imageVHL.setPreserveRatio(true);
 		this.getChildren().add(imageV);
 	}
 	
