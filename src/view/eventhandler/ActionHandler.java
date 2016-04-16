@@ -23,7 +23,7 @@ public class ActionHandler {
 	
 	public EventHandler<MouseEvent> samuraiEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  gamePanel.actionPanel.setVisible(true);
+	    	  gamePanel.actionPanel.setAppear(true);
 	    	  gamePanel.arrow.setVisible(false);
 	      }
 	};
