@@ -1,5 +1,8 @@
 package controller.msgqueue;
 
+import com.sun.org.apache.bcel.internal.generic.FADD;
+import model.GameModel;
+
 import java.io.Serializable;
 
 /**
@@ -9,5 +12,25 @@ import java.io.Serializable;
  */
 
 public abstract class Operation implements Serializable {
+
+	private static boolean isServer = false;
+
 	public abstract void execute();
+
+	public Operation(){
+		if(!GameModel.isServer()) {
+			isServer = false;
+		}
+		if(GameModel.isServer()) {
+			isServer = true;
+		}
+	}
+
+	public static boolean isServer(){
+		return isServer;
+	}
+
+	public static void setServer(boolean server){
+		isServer = server;
+	}
 }

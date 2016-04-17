@@ -1,7 +1,6 @@
 package model;
 
 import model.po.ActualBlock;
-import model.po.SamuraiPO;
 
 public class ChessBoardModel extends BaseModel implements Cloneable {
 	private ActualBlock[][] actualBlockArray;
@@ -75,4 +74,5 @@ public class ChessBoardModel extends BaseModel implements Cloneable {
 			return null;
 		}
 	}
+
 }

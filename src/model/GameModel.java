@@ -2,18 +2,19 @@ package model;
 
 import controller.msgqueue.ActionOperation;
 import controller.msgqueue.NextOperation;
+import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
 import main.Main;
 import model.po.*;
 import model.state.GameResultState;
 import model.state.GameState;
+import network.TransformObject;
+import network.client.ClientService;
 //import view.MainFrame;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
-public class GameModel extends BaseModel {
+public class GameModel extends BaseModel implements Observer {
     private ChessBoardModel chessBoardModel;
     private GameState gameState;
     private GameResultState gameResultState;
@@ -31,6 +32,10 @@ public class GameModel extends BaseModel {
     private int AILevel;
     private SamuraiAI[] samuraiAI;
     private int coldRoundNum;
+
+    protected ClientService net;
+
+    private static boolean isServer = true;
 
     public GameModel(int round, int length, Main mainFrame, int level){
         this.AILevel = level;
@@ -62,9 +67,16 @@ public class GameModel extends BaseModel {
             default:
                 break;
         }
+        isServer = true;
+    }
+
+    public GameModel(ClientService client) {
+        this.net = client;
+        isServer = false;
     }
 
     public boolean gameStart(){
+        System.out.println("I'm " + isServer + " a server.");
         ArrayList<ActualBlock> blocks = new ArrayList<>();
         for(int x = 0; x <= this.length; x++){
             for (int y = 0; y <= this.length; y++) {
@@ -182,6 +194,13 @@ public class GameModel extends BaseModel {
 //                this.chessBoardModel.setActualBlockVisible(i,j,false);
 //            }
 //        }
+
+        if(this.playerSeq[this.currentPlayer - 1] == 0){
+            Operation.setServer(true);
+        }else{
+            Operation.setServer(false);
+        }
+
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
@@ -251,6 +270,7 @@ public class GameModel extends BaseModel {
         this.currentTime = this.timeTotal;
 
         System.out.println("Action Done");
+
         if(this.currentRound < this.totalRound) {
             this.currentRound++;
             if((this.currentSamurai++) % 6 == 0){
@@ -321,14 +341,42 @@ public class GameModel extends BaseModel {
         return this.chessBoardModel;
     }
 
+    public static boolean isServer() {
+        return isServer;
+    }
+
+    public static void setServer(boolean server) {
+        isServer = server;
+    }
+
     public class countDownTask extends java.util.TimerTask{
         public void run() {
             if(currentTime > 0){
-                updateChange(new UpdateMessage("time",currentTime));
-                currentTime--;
+//                updateChange(new UpdateMessage("time",currentTime));
+//                currentTime--;
             }else{
                 actionDone();
             }
+        }
+    }
+
+    public void update(Observable o, Object arg) {
+        TransformObject obj = (TransformObject) arg;
+        String trigger_class = obj.getSource();
+        UpdateMessage msg = obj.getMsg();
+        Class<?> super_class = this.getClass().getInterfaces()[0];
+        try {
+//            System.out.println("I'm " + GameModel.isServer() + " a Server");
+//            System.out.println(Class.forName(trigger_class));
+            if(super_class.isAssignableFrom(Class.forName(trigger_class))){
+                this.updateChange(msg);
+                //执行 operation
+                if(msg.getValue() instanceof Operation){
+                    OperationQueue.addOperation((Operation)msg.getValue());
+                }
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

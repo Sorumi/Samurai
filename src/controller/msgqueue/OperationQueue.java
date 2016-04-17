@@ -1,7 +1,14 @@
 package controller.msgqueue;
 
 import model.GameModel;
+import model.UpdateMessage;
+import network.client.ClientService;
+import network.client.ClientServiceImpl;
+import network.server.HostService;
+import network.server.HostServiceImpl;
 
+import java.io.Serializable;
+import java.util.Observable;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -11,15 +18,17 @@ import java.util.concurrent.BlockingQueue;
  *
  */
 
-public class OperationQueue implements Runnable{
+public class OperationQueue implements Runnable, Serializable {
 	
 	private static BlockingQueue<Operation> queue;
 	private static GameModel gameModel;
 	public static boolean isRunning;
-	public static boolean singleUpdateSwitch = true;
+
+	ClientService clientService = new ClientServiceImpl();
+	HostService hostService = new HostServiceImpl();
 
 	public OperationQueue(GameModel model){
-		queue = new ArrayBlockingQueue<Operation>(1000);
+		queue = new ArrayBlockingQueue<>(1000);
 		isRunning = true;
 		gameModel = model;
 	}
@@ -27,6 +36,12 @@ public class OperationQueue implements Runnable{
 	public void run() {
 		while(isRunning){
 			Operation operation = getNewOperation();
+			UpdateMessage updateMessage = new UpdateMessage("execute",operation);
+			if(!GameModel.isServer() && !Operation.isServer()){
+				clientService.submitOperation(operation);
+			}else if(GameModel.isServer() && Operation.isServer()){
+				hostService.update(gameModel, updateMessage);
+			}
 			operation.execute();
 		}
 	}
