@@ -7,6 +7,7 @@ import java.util.Observer;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
@@ -171,19 +172,15 @@ public class GamePanel extends Pane implements Observer{
 			this.setCurrentSamurai((int)notifingObject.getValue());
 
 		}else if(key.equals("player")){
-//			this.playerLabel.setText("玩家 " + Integer.toString((int)notifingObject.getValue()));
 			this.setCurrentPlayer((int)notifingObject.getValue());
 
 		}else if(key.equals("round")){
-//			this.roundLabel.setText("第 " + Integer.toString((int)notifingObject.getValue()) + " 轮");
 			this.setCurrentRound((int)notifingObject.getValue());
 
 		}else if(key.equals("time")){
-//			this.timeLabel.setText("还有 " + Integer.toString((int)notifingObject.getValue()) + " 秒");
 			this.currentPlayer.circlePanel.setTimeRest((int)notifingObject.getValue());
 
 		}else if(key.equals("actionPoint")){
-//			this.actionPointLabel.setText("点数剩余 " + Integer.toString((int)notifingObject.getValue()));
 			this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
 
 		}else if(key.equals("pointsTotal")){
@@ -203,56 +200,107 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("samuraiKilled")){
 
 		}else if(key.equals("visible")) {
-			if(this.currentPlayer.getPlayer() == 0){
-				this.A1.setVisible(true);
-				this.A2.setVisible(true);
-				this.A3.setVisible(true);
-				this.B1.setVisible(false);
-				this.B2.setVisible(false);
-				this.B3.setVisible(false);
-				for(ActualBlock block : (ArrayList<ActualBlock>)notifingObject.getValue()) {
-					if (block.getX() == this.B1.x && block.getY() == this.B1.y) {
-						if(!this.B1.isHide()) {
-							this.B1.setVisible(true);
+			if(!GameModel.isClient() && !GameModel.isServer()) {
+				if (this.currentPlayer.getPlayer() == 0) {
+					this.A1.setVisible(true);
+					this.A2.setVisible(true);
+					this.A3.setVisible(true);
+					this.B1.setVisible(false);
+					this.B2.setVisible(false);
+					this.B3.setVisible(false);
+					for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
+						if (block.getX() == this.B1.x && block.getY() == this.B1.y) {
+							if (!this.B1.isHide()) {
+								this.B1.setVisible(true);
+							}
+						}
+						if (block.getX() == this.B2.x && block.getY() == this.B2.y) {
+							if (!this.B2.isHide()) {
+								this.B2.setVisible(true);
+							}
+						}
+						if (block.getX() == this.B3.x && block.getY() == this.B3.y) {
+							if (!this.B3.isHide()) {
+								this.B3.setVisible(true);
+							}
 						}
 					}
-					if (block.getX() == this.B2.x && block.getY() == this.B2.y) {
-						if(!this.B2.isHide()) {
-							this.B2.setVisible(true);
+
+				} else {
+					this.B1.setVisible(true);
+					this.B2.setVisible(true);
+					this.B3.setVisible(true);
+					this.A1.setVisible(false);
+					this.A2.setVisible(false);
+					this.A3.setVisible(false);
+					for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
+						if (block.getX() == this.A1.x && block.getY() == this.A1.y) {
+							if (!this.A1.isHide()) {
+								this.A1.setVisible(true);
+							}
 						}
-					}
-					if (block.getX() == this.B3.x && block.getY() == this.B3.y) {
-						if(!this.B3.isHide()) {
-							this.B3.setVisible(true);
+						if (block.getX() == this.A2.x && block.getY() == this.A2.y) {
+							if (!this.A2.isHide()) {
+								this.A2.setVisible(true);
+							}
+						}
+						if (block.getX() == this.A3.x && block.getY() == this.A3.y) {
+							if (!this.A3.isHide()) {
+								this.A3.setVisible(true);
+							}
 						}
 					}
 				}
-
-			}else{
+			}else if(GameModel.isClient() && !GameModel.isServer()) {
 				this.B1.setVisible(true);
 				this.B2.setVisible(true);
 				this.B3.setVisible(true);
 				this.A1.setVisible(false);
 				this.A2.setVisible(false);
 				this.A3.setVisible(false);
-				for(ActualBlock block : (ArrayList<ActualBlock>)notifingObject.getValue()) {
+				for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
 					if (block.getX() == this.A1.x && block.getY() == this.A1.y) {
-						if(!this.A1.isHide()) {
+						if (!this.A1.isHide()) {
 							this.A1.setVisible(true);
 						}
 					}
 					if (block.getX() == this.A2.x && block.getY() == this.A2.y) {
-						if(!this.A2.isHide()) {
+						if (!this.A2.isHide()) {
 							this.A2.setVisible(true);
 						}
 					}
 					if (block.getX() == this.A3.x && block.getY() == this.A3.y) {
-						if(!this.A3.isHide()) {
+						if (!this.A3.isHide()) {
 							this.A3.setVisible(true);
 						}
 					}
 				}
+			}else if(!GameModel.isClient() && GameModel.isServer()) {
+				this.A1.setVisible(true);
+				this.A2.setVisible(true);
+				this.A3.setVisible(true);
+				this.B1.setVisible(false);
+				this.B2.setVisible(false);
+				this.B3.setVisible(false);
+				for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
+					if (block.getX() == this.B1.x && block.getY() == this.B1.y) {
+						if (!this.B1.isHide()) {
+							this.B1.setVisible(true);
+						}
+					}
+					if (block.getX() == this.B2.x && block.getY() == this.B2.y) {
+						if (!this.B2.isHide()) {
+							this.B2.setVisible(true);
+						}
+					}
+					if (block.getX() == this.B3.x && block.getY() == this.B3.y) {
+						if (!this.B3.isHide()) {
+							this.B3.setVisible(true);
+						}
+					}
+				}
 			}
+
 		}else if(key.equals("vision")){
 			this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
 			this.chessBoard.setTmpBlocks((ArrayList<ActualBlock>)notifingObject.getValue());

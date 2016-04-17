@@ -179,9 +179,22 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public ArrayList<ActualBlock> updateVision(){
-        ArrayList<ActualBlock> blocks = this.players[this.playerSeq[this.currentPlayer - 1]].showVision();
-        super.updateChange(new UpdateMessage("vision", blocks));
-        return blocks;
+        ArrayList<ActualBlock> blocks;
+        if(!GameModel.isClient() && !GameModel.isServer()) {
+            blocks = this.players[this.playerSeq[this.currentPlayer - 1]].showVision();
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
+        }else if(GameModel.isClient() && !GameModel.isServer()){
+            blocks = this.players[1].showVision();
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
+        }else if(!GameModel.isClient() && GameModel.isServer()){
+            blocks = this.players[0].showVision();
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
+        }else {
+            return null;
+        }
     }
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
