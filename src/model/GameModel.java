@@ -36,6 +36,7 @@ public class GameModel extends BaseModel implements Observer {
     protected ClientService net;
 
     private static boolean isServer = true;
+    private static boolean isClient = false;
 
     public GameModel(int round, int length, Main mainFrame, int level){
         this.AILevel = level;
@@ -67,12 +68,13 @@ public class GameModel extends BaseModel implements Observer {
             default:
                 break;
         }
-        isServer = true;
+        isServer = false;
+        isClient = false;
     }
 
     public GameModel(ClientService client) {
         this.net = client;
-        isServer = false;
+        isClient = true;
     }
 
     public boolean gameStart(){
@@ -345,15 +347,22 @@ public class GameModel extends BaseModel implements Observer {
         return isServer;
     }
 
+    public static boolean isClient(){
+        return isClient;
+    }
+
     public static void setServer(boolean server) {
         isServer = server;
+        isClient = !server;
     }
 
     public class countDownTask extends java.util.TimerTask{
         public void run() {
             if(currentTime > 0){
-//                updateChange(new UpdateMessage("time",currentTime));
-//                currentTime--;
+                if(!isClient && !isServer) {
+                    updateChange(new UpdateMessage("time",currentTime));
+                    currentTime--;
+                }
             }else{
                 actionDone();
             }
@@ -366,8 +375,6 @@ public class GameModel extends BaseModel implements Observer {
         UpdateMessage msg = obj.getMsg();
         Class<?> super_class = this.getClass().getInterfaces()[0];
         try {
-//            System.out.println("I'm " + GameModel.isServer() + " a Server");
-//            System.out.println(Class.forName(trigger_class));
             if(super_class.isAssignableFrom(Class.forName(trigger_class))){
                 this.updateChange(msg);
                 //执行 operation
