@@ -204,25 +204,6 @@ public class Player {
         if(this.actionPoint == 0){
             this.actionDone();
         }
-
-
-        //打印一下棋盘
-//        for (int i = 0; i <= this.gameModel.getLength(); i++) {
-//            if(i < 10)  System.out.print(" ");
-//            System.out.print(i + ":");
-//            for (int x = 0; x <= this.gameModel.getLength(); x++) {
-//                System.out.print(this.chessBoardModel.getActualBlockState(i, x) + " ");
-//            }
-//            System.out.println();
-//        }
-//        for (int i = 0; i <= this.gameModel.getLength(); i++) {
-//            if(i < 10)  System.out.print(" ");
-//            System.out.print(i + ":");
-//            for (int x = 0; x <= this.gameModel.getLength(); x++) {
-//                System.out.print(this.chessBoardModel.getActualBlockOccupied(i, x) + " ");
-//            }
-//            System.out.println();
-//        }
     }
 
     //时间到了或者没点数或者玩家主动放弃的时候调用此方法
