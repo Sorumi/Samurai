@@ -75,10 +75,11 @@ public class ActionPanel extends Pane {
 		this.setAppear(false);
 		this.setSecondary(false);
 		this.setActualLocation();
+		
 	}
 	
 	public void setActualLocation(){
-		this.setLayoutX(currentSamurai.getLayoutX() +34 -this.getBoundsInParent().getWidth()/2);
+		this.setLayoutX(currentSamurai.getLayoutX() +34 -BUTTONPANEL_WIDTH/2);
 		this.setLayoutY(currentSamurai.getLayoutY()-70);
 	}
 	
