@@ -73,10 +73,12 @@ public class GamePanelOL extends GamePanel{
             this.setCurrentRound((int)notifingObject.getValue());
 
         }else if(key.equals("time")){
-            if(!GameModel.isServer() && !GameModel.isClient()) {
-                this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
-            }else{
+            System.out.println("time" + (int) notifingObject.getValue());
+            int i = this.currentSamurai.getNum();
+            if((GameModel.isServer() && (i / 4) == 0)){
                 playerA.circlePanel.setTimeRest((int) notifingObject.getValue());
+            }
+            if((GameModel.isClient() && (i / 4) == 1)){
                 playerB.circlePanel.setTimeRest((int) notifingObject.getValue());
             }
 
@@ -88,10 +90,9 @@ public class GamePanelOL extends GamePanel{
 
         }else if(key.equals("samuraiMove")){
             Position position = (Position)notifingObject.getValue();
-
             int i = this.currentSamurai.getNum();
+            this.currentSamurai.setActualLocation(position.getX(), position.getY());
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
-                this.currentSamurai.setActualLocation(position.getX(), position.getY());
                 this.actionPanel.setActualLocation();
                 this.arrow.setActualLocation();
             }
@@ -155,6 +156,7 @@ public class GamePanelOL extends GamePanel{
             }
         }else if(key.equals("vision")){
             this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
+            System.out.println(((ArrayList<ActualBlock>) notifingObject.getValue()).size());
             this.chessBoard.setTmpBlocks((ArrayList<ActualBlock>)notifingObject.getValue());
         }else if(key.equals("home")){
             SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();

@@ -173,12 +173,7 @@ public class GamePanel extends Pane implements Observer{
 			this.setCurrentRound((int)notifingObject.getValue());
 
 		}else if(key.equals("time")){
-			if(!GameModel.isServer() && !GameModel.isClient()) {
-				this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
-			}else{
-				playerA.circlePanel.setTimeRest((int) notifingObject.getValue());
-				playerB.circlePanel.setTimeRest((int) notifingObject.getValue());
-			}
+			this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
 
 		}else if(key.equals("actionPoint")){
 			this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
