@@ -29,7 +29,7 @@ public class GameModel extends BaseModel implements Observer {
     private int timeTotal;
     private Timer timer;
     private int currentTime;
-    private int AILevel;
+    private int level;
     private SamuraiAI[] samuraiAI;
     private int coldRoundNum;
 
@@ -38,8 +38,13 @@ public class GameModel extends BaseModel implements Observer {
     private static boolean isServer = true;
     private static boolean isClient = false;
 
+
+    //level:
+    //1~9   : Regular Mode, AI Level from 0 ~ 9
+    //11~20 : Adventure Mode, Level from 1 ~7
+    //99    : Online Mode, No AI.
     public GameModel(int round, int length, Main mainFrame, int level){
-        this.AILevel = level;
+        this.level = level;
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
@@ -56,10 +61,8 @@ public class GameModel extends BaseModel implements Observer {
         this.players = new Player[2];
         players[0] = new Player(this,0);
         players[1] = new Player(this,1);
-        switch (this.AILevel){
-            case 0:
-                break;
-            case 1:
+        switch (this.level){
+            case 99:
                 samuraiAI = new SamuraiAI[3];
                 samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
@@ -91,7 +94,7 @@ public class GameModel extends BaseModel implements Observer {
         for (int i = 1; i <= 6; i++) {
             this.updateHome(i);
         }
-        switch (this.AILevel){
+        switch (this.level){
             case 0:
                 this.assignNext();
                 break;
@@ -267,11 +270,7 @@ public class GameModel extends BaseModel implements Observer {
             }
         } else {
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
-//            if (this.getAILevel() == 0) {
-//                this.actionDone();
-//            } else if (this.getAILevel() == 1) {
                 this.skip1Round();
-//            }
         }
     }
 
@@ -295,7 +294,7 @@ public class GameModel extends BaseModel implements Observer {
                 this.currentPlayer = 1;
             }
 
-            switch (this.AILevel){
+            switch (this.level){
                 case 0:
                     this.assignNext();
                     break;
@@ -330,8 +329,8 @@ public class GameModel extends BaseModel implements Observer {
         return this.length;
     }
 
-    public int getAILevel() {
-        return AILevel;
+    public int getLevel() {
+        return level;
     }
 
     public SamuraiPO getSamuraiOfNum(int n){
