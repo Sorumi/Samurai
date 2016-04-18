@@ -1,4 +1,4 @@
-package background;
+package view.background;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

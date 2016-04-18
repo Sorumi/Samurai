@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import background.BackgroundPanel;
-import background.BackgroundPanel0;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.GameModel;
@@ -14,6 +14,8 @@ import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
 import model.po.SamuraiPO;
+import view.background.BackgroundPanel;
+import view.background.BackgroundPanel0;
 import view.eventhandler.ActionHandler;
 
 
@@ -65,6 +67,17 @@ public class GamePanel extends Pane implements Observer{
 		backgroundPanel = new BackgroundPanel0();
 		this.getChildren().add(backgroundPanel);
 
+		Button exitBtn = new Button("Exit");
+		exitBtn.setLayoutX(1100);
+		exitBtn.setLayoutY(100);
+		exitBtn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
+			@Override
+			public void handle(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		this.getChildren().add(exitBtn);
+		
 		//chessboard
 		chessBoard = new ChessBoardPanel(size);
 		this.getChildren().add(chessBoard);
@@ -81,7 +94,7 @@ public class GamePanel extends Pane implements Observer{
 
 		//actionHandler
 		actionHandler = new ActionHandler(this);
-
+		this.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
 		//actionpanel
 		actionPanel = new ActionPanel(actionHandler);
 		this.getChildren().add(actionPanel);

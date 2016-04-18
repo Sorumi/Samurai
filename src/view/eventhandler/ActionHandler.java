@@ -5,6 +5,7 @@ import controller.msgqueue.NextOperation;
 import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
 import javafx.event.EventHandler;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import view.ActionButton;
 import view.DirectionButton;
@@ -25,6 +26,15 @@ public class ActionHandler {
 	      public void handle(MouseEvent event) {
 	    	  gamePanel.actionPanel.setAppear(true);
 	    	  gamePanel.arrow.setVisible(false);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> actionPanelDisappearEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  if (event.getButton() == MouseButton.SECONDARY) {
+	    	  gamePanel.actionPanel.setAppear(false);
+	    	  gamePanel.arrow.setVisible(true);
+	    	  }
 	      }
 	};
 

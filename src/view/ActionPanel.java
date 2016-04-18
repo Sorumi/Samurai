@@ -42,10 +42,11 @@ public class ActionPanel extends Pane {
 		exitButton = new ActionButton(3);
 		backButton = new ActionButton(4);
 
+		this.setPrefWidth(BUTTONPANEL_WIDTH);
+		this.setPrefHeight(BUTTONPANEL_HEIGHT);
 		this.setVisible(false);
 		this.isAppear = false;
-		
-		this.setStartLocation();
+//		this.setStyle("-fx-background-color: #DDDDDD");
 		
 		backButton.setVisible(false);
 		
@@ -100,57 +101,51 @@ public class ActionPanel extends Pane {
 		if(isAppear){
 			this.setVisible(isAppear);
 			TranslateTransition tt1 = new TranslateTransition(Duration.millis(1000), occupyButton);
-			tt1.setFromX(0);
-			tt1.setFromY(0);
-	        tt1.setToX(-(BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
-	        tt1.setToY(-BUTTON_Y+60);
+			tt1.setFromX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+			tt1.setFromY(BUTTON_Y);
+	        tt1.setToX(0);
+	        tt1.setToY(60);
 	        tt1.play();
 	        
 			TranslateTransition tt2 = new TranslateTransition(Duration.millis(1000), moveButton);
-			tt2.setFromX(0);
-			tt2.setFromY(0);
-	        tt2.setToX(-(BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2+40);
-	        tt2.setToY(-BUTTON_Y);
-	        tt2.setDelay(Duration.millis(50));
+			tt2.setFromX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+			tt2.setFromY(BUTTON_Y);
+	        tt2.setToX(40);
+	        tt2.setToY(0);
+//	        tt2.setDelay(Duration.millis(50));
 	        tt2.play();
 	        
 	        TranslateTransition tt3 = new TranslateTransition(Duration.millis(1000), hideButton);
-			tt3.setFromX(0);
-			tt3.setFromY(0);
-	        tt3.setToX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2-40);
-	        tt3.setToY(-BUTTON_Y);
-	        tt3.setDelay(Duration.millis(100));
+			tt3.setFromX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+			tt3.setFromY(BUTTON_Y);
+	        tt3.setToX(110);
+	        tt3.setToY(0);
+//	        tt3.setDelay(Duration.millis(100));
 	        tt3.play();
 
 	        TranslateTransition tt4 = new TranslateTransition(Duration.millis(1000), exitButton);
-			tt4.setFromX(0);
-			tt4.setFromY(0);
-	        tt4.setToX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
-	        tt4.setToY(-BUTTON_Y+60);
-	        tt4.setDelay(Duration.millis(150));
+			tt4.setFromX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+			tt4.setFromY(BUTTON_Y);
+	        tt4.setToX(150);
+	        tt4.setToY(60);
+//	        tt4.setDelay(Duration.millis(150));
 	        tt4.play();
+	        
+	        TranslateTransition tt5 = new TranslateTransition(Duration.millis(1000), backButton);
+			tt5.setFromX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+			tt5.setFromY(BUTTON_Y);
+	        tt5.setToX(150);
+	        tt5.setToY(60);
+//	        tt5.setDelay(Duration.millis(150));
+	        tt5.play();
 
 		}else{
-			this.setStartLocation();
-			System.out.println("startLoaction");
+//			this.setStartLocation();
+//			System.out.println("startLoaction");
 			this.setVisible(isAppear);
 		} 
-		
-        
         this.isAppear = isAppear;
-	}
-	
-	public void setStartLocation(){
-		moveButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
-		moveButton.setLayoutY(BUTTON_Y);
-		occupyButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
-		occupyButton.setLayoutY(BUTTON_Y);
-		hideButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
-		hideButton.setLayoutY(BUTTON_Y);
-		exitButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
-		exitButton.setLayoutY(BUTTON_Y);
-		backButton.setLayoutX(150);
-		backButton.setLayoutY(60);
+//        System.out.println(isAppear);
 	}
 	
 }
