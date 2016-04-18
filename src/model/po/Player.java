@@ -25,13 +25,13 @@ public class Player {
         this.chessBoardModel = this.gameModel.getChessBoardModel();
         this.samuraiPOs = new SamuraiPO[7];
         if(playerNum == 0){
-            samuraiPOs[1] = new SamuraiPO(1,playerNum,0,this.gameModel.getLength(),this.chessBoardModel);
-            samuraiPOs[2] = new SamuraiPO(2,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
-            samuraiPOs[3] = new SamuraiPO(3,playerNum,2,this.gameModel.getLength(),this.chessBoardModel);
+            samuraiPOs[1] = new SamuraiPO(1,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor());
+            samuraiPOs[2] = new SamuraiPO(2,playerNum,new Weapon(1),this.gameModel.getLength(),this.chessBoardModel,new Armor());
+            samuraiPOs[3] = new SamuraiPO(3,playerNum,new Weapon(2),this.gameModel.getLength(),this.chessBoardModel,new Armor());
         }else if(playerNum == 1){
-            samuraiPOs[4] = new SamuraiPO(4,playerNum,0,this.gameModel.getLength(),this.chessBoardModel);
-            samuraiPOs[5] = new SamuraiPO(5,playerNum,1,this.gameModel.getLength(),this.chessBoardModel);
-            samuraiPOs[6] = new SamuraiPO(6,playerNum,2,this.gameModel.getLength(),this.chessBoardModel);
+            samuraiPOs[4] = new SamuraiPO(4,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor());
+            samuraiPOs[5] = new SamuraiPO(5,playerNum,new Weapon(1),this.gameModel.getLength(),this.chessBoardModel,new Armor());
+            samuraiPOs[6] = new SamuraiPO(6,playerNum,new Weapon(2),this.gameModel.getLength(),this.chessBoardModel,new Armor());
         }
     }
 
