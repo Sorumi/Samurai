@@ -7,7 +7,7 @@ import model.ChessBoardModel;
 
 public class SamuraiAI {
 	// test
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
 		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
 		SamuraiPO No2 = new SamuraiPO(2, 0, 1, 14, cbm);
@@ -38,7 +38,7 @@ public class SamuraiAI {
 
 		//
 
-	}
+	}*/
 
 	public static void print(ChessBoardModel cbm) {
 		for (int i = 0; i <= 14; i++) {

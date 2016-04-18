@@ -2,6 +2,8 @@ package model.po;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Random;
+
 import model.ChessBoardModel;
 
 /**
@@ -20,20 +22,20 @@ public class SamuraiPO implements Serializable, Cloneable {
 	// 0:Spear
 	// 1:Sword
 	// 2:Battle ax
-	private int weapon;
 	private Position pos;
 	private boolean hide = false;
-    private Position home;
+	private Position home;
+	private int dodgeChance;
+	private int criticalHitChance;
+	private int armorValue;
+	private int attackValue;
 	private int coldRound;
+	private Weapon weapon;
+	private Armor armor;
+	private int healthPoint;
 
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
-		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
-		SamuraiPO No2 = new SamuraiPO(2, 1, 0, 14, cbm);
-		SamuraiPO No3 = new SamuraiPO(3, 1, 1, 14, cbm);
-		SamuraiPO No4 = new SamuraiPO(4, 0, 1, 14, cbm);
-		SamuraiPO No5 = new SamuraiPO(5, 0, 2, 14, cbm);
-		SamuraiPO No6 = new SamuraiPO(6, 1, 2, 14, cbm);
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
 			for (int x = 0; x <= 14; x++) {
@@ -42,14 +44,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 			System.out.println();
 		}
 		System.out.println("p");
-		No1.move(4, cbm);
-		No1.occupied(1, cbm, true);
-		No1.move(4, cbm);
-		No1.occupied(1, cbm, true);
-		No1.move(4, cbm);
-		No1.occupied(1, cbm, true);
-		No1.move(4, cbm);
-		No1.occupied(1, cbm, true);
 		System.out.println("p2");
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
@@ -60,46 +54,52 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
-	public SamuraiPO(int number, int player, int weapon, int length, ChessBoardModel cbm) {
+	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor) {
 		this.number = number;
 		this.player = player;
 		this.weapon = weapon;
+		this.armor = armor;
 		this.length = length;
+		this.criticalHitChance = 1;
+		this.dodgeChance = 1;
+		this.attackValue = 5;
+		this.armorValue = 10;
 		this.coldRound = 0;
+		this.healthPoint = 60;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			home=pos.clone();
+			home = pos.clone();
 		} else if (number == 2 && player == 0) {
 			pos = new Position(length / 2, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			home=pos.clone();
+			home = pos.clone();
 		} else if (number == 3 && player == 0) {
 			pos = new Position(length, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			home=pos.clone();
+			home = pos.clone();
 		} else if (number == 4 && player == 1) {
 			pos = new Position(0, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			home=pos.clone();
+			home = pos.clone();
 		} else if (number == 5 && player == 1) {
 			pos = new Position(length / 2, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			home=pos.clone();
+			home = pos.clone();
 		} else if (number == 6 && player == 1) {
 			pos = new Position(length, length);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			home=pos.clone();
+			home = pos.clone();
 		}
 	}
 
-	public SamuraiPO(int number, int player, int weapon, int length, Position position,Position home) {
+	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor) {
 		this.number = number;
 		this.player = player;
 		this.weapon = weapon;
@@ -116,7 +116,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.coldRound = coldRound;
 	}
 
-	public int getNumber(){
+	public int getNumber() {
 		return this.number;
 	}
 
@@ -141,27 +141,27 @@ public class SamuraiPO implements Serializable, Cloneable {
 		Position tmpPos = pos;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 2 && player == 0) {
 			pos = new Position(length / 2, 0);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 3 && player == 0) {
 			pos = new Position(length, 0);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 4 && player == 1) {
 			pos = new Position(0, length);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 5 && player == 1) {
 			pos = new Position(length / 2, length);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		} else if (number == 6 && player == 1) {
 			pos = new Position(length, length);
-//			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
+			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 		}
 		if (!hide) {
@@ -453,7 +453,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public ArrayList<Position> occupied(int direction, ChessBoardModel cbm, boolean real) {
 		ArrayList<Position> positions = new ArrayList<Position>();
-		switch (weapon) {
+		switch (weapon.getGenre()) {
 		// weapon 0
 		case 0:
 			switch (direction) {
@@ -945,12 +945,73 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	private void upLevel() {
+		this.criticalHitChance += 1;
+		this.dodgeChance += 1;
+		this.armorValue += 5;
+		this.attackValue += 3;
+		this.healthPoint += 20;
 		level++;
+	}
+
+	public void changeWeapon(Weapon weapon) {
+		this.weapon = weapon;
+	}
+
+	public void changeArmor(Armor armor) {
+		this.armor = armor;
+	}
+
+	// 返回伤害降低比率*100
+	public int getArmorRate() {
+		double doubleArmorValue = armorValue + armor.getArmorValue();
+		double cache = doubleArmorValue / (doubleArmorValue + 100);
+		return (int) (cache * 100);
+	}
+
+	// 返回是否MISS
+	public boolean checkMiss() {
+		int missRate = dodgeChance + armor.getDodgeRate();
+		Random random = new Random();
+		if ((random.nextInt(99) + 1) <= missRate) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	// 返回一个暴击率考虑进去的伤害值(没有减护甲)
+	public int getAttackPoint() {
+		int criticalHitRate = criticalHitChance + weapon.getCriticalRate();
+		Random random = new Random();
+		if (random.nextInt(99) + 1 <= criticalHitRate) {
+			return weapon.getAttackPoint() * 2;
+		} else {
+			return weapon.getAttackPoint();
+		}
+	}
+
+	public Weapon getWeapon() {
+		return weapon;
+	}
+
+	public int getHealthPoint() {
+		return healthPoint;
+	}
+
+	// 复活
+	public void revive() {
+		healthPoint = 60 + (level - 1) * 20;
+	}
+
+	// 造成伤害 传入造成的伤害点数
+	public void injure(int injurePonit) {
+		healthPoint = healthPoint - injurePonit;
 	}
 
 	public SamuraiPO clone() {
 		try {
-			SamuraiPO samuraiPO = new SamuraiPO(number, player, weapon, length, pos.clone(),home.clone());
+			SamuraiPO samuraiPO = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
+					armor.clone());
 			return samuraiPO;
 		} catch (Exception ex) {
 			ex.printStackTrace();
