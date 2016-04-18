@@ -24,6 +24,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import view.GamePanelOL;
 
 
 public class Main extends Application {
@@ -32,17 +33,47 @@ public class Main extends Application {
 	private GameModel gameModel;
 	@Override
 	public void start(Stage primaryStage) {
-		
-		this.gamePanel = new GamePanel(15);
+
+		//下面开始为联机测试方法 勿动 KrayC
+		System.out.println("Are you a server(0) or a client(1) or alone(2)?");
+		Scanner s = new Scanner(System.in);
+		int i = s.nextInt();
+		if(i == 0) {
+			this.gamePanel = new GamePanelOL(15);
+
+			this.initPanel(primaryStage);
+
+			System.out.println("Waiting for client...");
+			HostController hostController = new HostController();
+			hostController.serviceSetupHost(this);
+		}else if(i == 1){
+			this.gamePanel = new GamePanelOL(15);
+
+			this.initPanel(primaryStage);
+
+			ClientController clientController = new ClientController();
+			clientController.setupClient("127.0.0.1");
+		}else{
+			this.gamePanel = new GamePanel(15);
+
+			this.initPanel(primaryStage);
+
+			MenuController menuController = new MenuController();
+			menuController.startGame();
+		}
+
+	}
+
+	public void initPanel(Stage primaryStage){
 		Button exitBtn = new Button("Exit");
 		exitBtn.setLayoutX(1100);
 		exitBtn.setLayoutY(100);
 		exitBtn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
-			  @Override
-			  public void handle(ActionEvent e) {
-				  System.exit(0);
-			  }
-		   });
+			@Override
+			public void handle(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		gamePanel.getChildren().add(exitBtn);
 		Scene scene = new Scene(gamePanel);
 //		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -53,30 +84,13 @@ public class Main extends Application {
 		gameModel = new GameModel(24, 14, this, 0);
 		gameModel.addObserver(gamePanel);
 		gameModel.getChessBoardModel().addObserver(gamePanel);
-		MenuController menuController = new MenuController();
 		GameController gameController = new GameController();
 
 		OperationQueue operationQueue = new OperationQueue(gameModel);
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();
-
-		//下面开始为联机测试方法 勿动 KrayC
-		System.out.println("Are you a server(0) or a client(1) or alone(2)?");
-		Scanner s = new Scanner(System.in);
-		int i = s.nextInt();
-		if(i == 0) {
-			System.out.println("Waiting for client...");
-			HostController hostController = new HostController();
-			hostController.serviceSetupHost(this);
-		}else if(i == 1){
-			ClientController clientController = new ClientController();
-			clientController.setupClient("127.0.0.1");
-		}else{
-			menuController.startGame();
-		}
-
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

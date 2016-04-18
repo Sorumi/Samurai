@@ -16,77 +16,72 @@ import view.eventhandler.ActionHandler;
 
 
 public class GamePanel extends Pane implements Observer{
-	
-    private final int WINDOW_WIDTH = 1200;
-	private final int WINDOW_HEIGHT = 800;
-	private final int FIELD_WIDTH = 1050;
-	private final int FIELD_HEIGHT = 600;
-	private final int FIELD_FIX = 20;
-	
-	private int size;
-	private int blockWidth;
-	private int blockHeight;
-	
+
+    protected final int WINDOW_WIDTH = 1200;
+	protected final int WINDOW_HEIGHT = 800;
+	protected final int FIELD_WIDTH = 1050;
+	protected final int FIELD_HEIGHT = 600;
+	protected final int FIELD_FIX = 20;
+
+	protected int size;
+	protected int blockWidth;
+	protected int blockHeight;
+
 	public ChessBoardPanel chessBoard;
 	//TODO
-	private int timeTotal = 30;
-	private int roundTotal = 12;
+	protected int timeTotal = 30;
+	protected int roundTotal = 12;
 
-//	private JLabel playerLabel;
-//	private JLabel roundLabel;
-//	private JLabel timeLabel;
-//	private JLabel actionPointLabel;
-	
-	private SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
-	
-	private SamuraiView A1;
-	private SamuraiView A2;
-	private SamuraiView A3;
-	private SamuraiView B1;
-	private SamuraiView B2;
-	private SamuraiView B3;
-	
-	private PlayerPanel currentPlayer;
-	private PlayerPanel playerA;
-	private PlayerPanel playerB;
-	
+	protected SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
+
+	protected SamuraiView A1;
+	protected SamuraiView A2;
+	protected SamuraiView A3;
+	protected SamuraiView B1;
+	protected SamuraiView B2;
+	protected SamuraiView B3;
+
+	protected PlayerPanel currentPlayer;
+	protected PlayerPanel playerA;
+	protected PlayerPanel playerB;
+
 	public Arrow arrow;
 	public ActionPanel actionPanel;
-	private ActionHandler actionHandler;
-	
-	private String bgImagePath = Images.BG_0;
-		
+	protected ActionHandler actionHandler;
+
+	protected String bgImagePath = Images.BG_0;
+
 	public GamePanel(int size){
 		this.size = size;
-		
+
 		//bounds
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		
+
 		//background
 		this.setStyle("-fx-background-image: url("+bgImagePath+");"
 				+ "-fx-background-size: 100% 100%; ");
-		
+
 		//chessboard
 		chessBoard = new ChessBoardPanel(size);
 		this.getChildren().add(chessBoard);
-		
+
 		//player
 		playerA = new PlayerPanel(0, timeTotal);
 		playerB = new PlayerPanel(1, timeTotal);
 		this.getChildren().add(playerA);
 		this.getChildren().add(playerB);
-		
+
 		//arrow
 		arrow = new Arrow();
 		this.getChildren().add(arrow);
-		
+
 		//actionHandler
 		actionHandler = new ActionHandler(this);
-		
+
 		//actionpanel
 		actionPanel = new ActionPanel(actionHandler);
 		this.getChildren().add(actionPanel);
-		
+
 		//samurai
 		A1 = new SamuraiView(1, size);
 		A2 = new SamuraiView(2, size);
@@ -100,11 +95,11 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().add(B1);
 		this.getChildren().add(B2);
 		this.getChildren().add(B3);
-		
+
 		//TODO
 		A1.setActualLocation(0, 0);
 	}
-	
+
 	public void setCurrentSamurai(int i){
 		if(currentSamurai != null){
 			currentSamurai.setOnMouseClicked(null);
@@ -135,7 +130,7 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setCurrentSamurai(currentSamurai.getNum());
 		playerB.setCurrentSamurai(currentSamurai.getNum());
 	}
-	
+
 	public void setCurrentPlayer(int player){
 		switch(player){
 			case 0:
@@ -150,7 +145,7 @@ public class GamePanel extends Pane implements Observer{
 				break;
 		}
 	}
-	
+
 	public void setCurrentRound(int round){
 		if(this.currentPlayer == playerA){
 			playerA.circlePanel.setNewTime(true);
@@ -178,7 +173,12 @@ public class GamePanel extends Pane implements Observer{
 			this.setCurrentRound((int)notifingObject.getValue());
 
 		}else if(key.equals("time")){
-			this.currentPlayer.circlePanel.setTimeRest((int)notifingObject.getValue());
+			if(!GameModel.isServer() && !GameModel.isClient()) {
+				this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
+			}else{
+				playerA.circlePanel.setTimeRest((int) notifingObject.getValue());
+				playerB.circlePanel.setTimeRest((int) notifingObject.getValue());
+			}
 
 		}else if(key.equals("actionPoint")){
 			this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
@@ -200,82 +200,7 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("samuraiKilled")){
 
 		}else if(key.equals("visible")) {
-			if(!GameModel.isClient() && !GameModel.isServer()) {
-				if (this.currentPlayer.getPlayer() == 0) {
-					this.A1.setVisible(true);
-					this.A2.setVisible(true);
-					this.A3.setVisible(true);
-					this.B1.setVisible(false);
-					this.B2.setVisible(false);
-					this.B3.setVisible(false);
-					for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
-						if (block.getX() == this.B1.x && block.getY() == this.B1.y) {
-							if (!this.B1.isHide()) {
-								this.B1.setVisible(true);
-							}
-						}
-						if (block.getX() == this.B2.x && block.getY() == this.B2.y) {
-							if (!this.B2.isHide()) {
-								this.B2.setVisible(true);
-							}
-						}
-						if (block.getX() == this.B3.x && block.getY() == this.B3.y) {
-							if (!this.B3.isHide()) {
-								this.B3.setVisible(true);
-							}
-						}
-					}
-
-				} else {
-					this.B1.setVisible(true);
-					this.B2.setVisible(true);
-					this.B3.setVisible(true);
-					this.A1.setVisible(false);
-					this.A2.setVisible(false);
-					this.A3.setVisible(false);
-					for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
-						if (block.getX() == this.A1.x && block.getY() == this.A1.y) {
-							if (!this.A1.isHide()) {
-								this.A1.setVisible(true);
-							}
-						}
-						if (block.getX() == this.A2.x && block.getY() == this.A2.y) {
-							if (!this.A2.isHide()) {
-								this.A2.setVisible(true);
-							}
-						}
-						if (block.getX() == this.A3.x && block.getY() == this.A3.y) {
-							if (!this.A3.isHide()) {
-								this.A3.setVisible(true);
-							}
-						}
-					}
-				}
-			}else if(GameModel.isClient() && !GameModel.isServer()) {
-				this.B1.setVisible(true);
-				this.B2.setVisible(true);
-				this.B3.setVisible(true);
-				this.A1.setVisible(false);
-				this.A2.setVisible(false);
-				this.A3.setVisible(false);
-				for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
-					if (block.getX() == this.A1.x && block.getY() == this.A1.y) {
-						if (!this.A1.isHide()) {
-							this.A1.setVisible(true);
-						}
-					}
-					if (block.getX() == this.A2.x && block.getY() == this.A2.y) {
-						if (!this.A2.isHide()) {
-							this.A2.setVisible(true);
-						}
-					}
-					if (block.getX() == this.A3.x && block.getY() == this.A3.y) {
-						if (!this.A3.isHide()) {
-							this.A3.setVisible(true);
-						}
-					}
-				}
-			}else if(!GameModel.isClient() && GameModel.isServer()) {
+			if (this.currentPlayer.getPlayer() == 0) {
 				this.A1.setVisible(true);
 				this.A2.setVisible(true);
 				this.A3.setVisible(true);
@@ -296,6 +221,31 @@ public class GamePanel extends Pane implements Observer{
 					if (block.getX() == this.B3.x && block.getY() == this.B3.y) {
 						if (!this.B3.isHide()) {
 							this.B3.setVisible(true);
+						}
+					}
+				}
+
+			} else {
+				this.B1.setVisible(true);
+				this.B2.setVisible(true);
+				this.B3.setVisible(true);
+				this.A1.setVisible(false);
+				this.A2.setVisible(false);
+				this.A3.setVisible(false);
+				for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
+					if (block.getX() == this.A1.x && block.getY() == this.A1.y) {
+						if (!this.A1.isHide()) {
+							this.A1.setVisible(true);
+						}
+					}
+					if (block.getX() == this.A2.x && block.getY() == this.A2.y) {
+						if (!this.A2.isHide()) {
+							this.A2.setVisible(true);
+						}
+					}
+					if (block.getX() == this.A3.x && block.getY() == this.A3.y) {
+						if (!this.A3.isHide()) {
+							this.A3.setVisible(true);
 						}
 					}
 				}

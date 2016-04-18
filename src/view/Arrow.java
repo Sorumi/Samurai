@@ -19,6 +19,10 @@ public class Arrow extends Pane{
 		this.setVisible(true);
 		this.setActualLocation();
 	}
+
+	public void setInvisible(){
+		this.setVisible(false);
+	}
 	
 	public void setActualLocation(){
 		this.setLayoutX(currentSamurai.getLayoutX() +34 -this.getBoundsInParent().getWidth()/2);
