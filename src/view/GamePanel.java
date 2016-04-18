@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import background.BackgroundPanel;
+import background.BackgroundPanel0;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -49,7 +51,7 @@ public class GamePanel extends Pane implements Observer{
 	public ActionPanel actionPanel;
 	protected ActionHandler actionHandler;
 
-	protected String bgImagePath = Images.BG_0;
+	protected BackgroundPanel backgroundPanel;
 
 	public GamePanel(int size){
 		this.size = size;
@@ -58,8 +60,10 @@ public class GamePanel extends Pane implements Observer{
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 		//background
-		this.setStyle("-fx-background-image: url("+bgImagePath+");"
-				+ "-fx-background-size: 100% 100%; ");
+//		this.setStyle("-fx-background-image: url("+bgImagePath+");"
+//				+ "-fx-background-size: 100% 100%; ");
+		backgroundPanel = new BackgroundPanel0();
+		this.getChildren().add(backgroundPanel);
 
 		//chessboard
 		chessBoard = new ChessBoardPanel(size);

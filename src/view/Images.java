@@ -5,8 +5,12 @@ import javafx.scene.image.Image;
 public class Images {
 
 	//BG
-	public static String BG_0 = Images.class.getResource("/./images/bg_0.png").toExternalForm();
-	
+//	public static String BG_0 = Images.class.getResource("/./images/bg_0.png").toExternalForm();
+	public static Image BG_0 = new Image("/./images/bg_0.png");
+	//cloud 
+	public static Image CLOUD_0 = new Image("/./images/cloud_0.png",true);
+	public static Image CLOUD_1 = new Image("/./images/cloud_1.png",true);
+	public static Image CLOUD_2 = new Image("/./images/cloud_2.png",true);
 	//samurai
 	public static Image SAMURAI_A1 = new Image("/./images/samurai_A1.png",true);
 	public static Image SAMURAI_A2 = new Image("/./images/samurai_A2.png",true);
