@@ -1,5 +1,7 @@
 package network.client;
 
+import network.Configure;
+
 import java.io.IOException;
 import java.net.UnknownHostException;
 

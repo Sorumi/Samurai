@@ -6,6 +6,7 @@ import java.util.Observer;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
+import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 
@@ -56,9 +57,11 @@ public class ChessBoardPanel extends Pane implements Observer{
 		//如果听到的消息是‘block’时
 		if(key.equals("block")){
 			ActualBlock block = (ActualBlock)notifingObject.getValue();
-			int x = block.getX();
-			int y = block.getY();
-			blocks[x][y].setInvision(block.getState());
+			if((!GameModel.isClient() && !GameModel.isServer()) || this.tmpBlocks.contains(block)) {
+				int x = block.getX();
+				int y = block.getY();
+				blocks[x][y].setInvision(block.getState());
+			}
 		}
 	}
 	
