@@ -36,14 +36,14 @@ public class GamePanel extends Pane implements Observer{
 	protected int timeTotal = 30;
 	protected int roundTotal = 12;
 
-	protected SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
+	protected SamuraiPanel currentSamurai; //0：无 1 2 3 4 5 6
 
-	protected SamuraiView A1;
-	protected SamuraiView A2;
-	protected SamuraiView A3;
-	protected SamuraiView B1;
-	protected SamuraiView B2;
-	protected SamuraiView B3;
+	protected SamuraiPanel A1;
+	protected SamuraiPanel A2;
+	protected SamuraiPanel A3;
+	protected SamuraiPanel B1;
+	protected SamuraiPanel B2;
+	protected SamuraiPanel B3;
 
 	protected PlayerPanel currentPlayer;
 	protected PlayerPanel playerA;
@@ -100,12 +100,12 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().add(actionPanel);
 
 		//samurai
-		A1 = new SamuraiView(1, size);
-		A2 = new SamuraiView(2, size);
-		A3 = new SamuraiView(3, size);
-		B1 = new SamuraiView(4, size);
-		B2 = new SamuraiView(5, size);
-		B3 = new SamuraiView(6, size);
+		A1 = new SamuraiPanel(1, size);
+		A2 = new SamuraiPanel(2, size);
+		A3 = new SamuraiPanel(3, size);
+		B1 = new SamuraiPanel(4, size);
+		B2 = new SamuraiPanel(5, size);
+		B3 = new SamuraiPanel(6, size);
 		this.getChildren().add(A1);
 		this.getChildren().add(A2);
 		this.getChildren().add(A3);
@@ -269,7 +269,7 @@ public class GamePanel extends Pane implements Observer{
 			
 		}else if(key.equals("home")){
 			SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
-			SamuraiView tmpView = null;
+			SamuraiPanel tmpView = null;
 			switch (samuraiPO.getNumber()){
 				case 1:
 					tmpView = this.A1;

@@ -66,8 +66,6 @@ public class Main extends Application {
 //		}
 		
 		menuPanel = new MenuPanel(this);
-
-
 		menuPanel.setPrefWidth(1200);
 		menuPanel.setPrefHeight(800);
 		
@@ -90,7 +88,6 @@ public class Main extends Application {
 		OperationQueue operationQueue = new OperationQueue(gameModel);
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();
-		
 	}
 
 	public static void main(String[] args) {
