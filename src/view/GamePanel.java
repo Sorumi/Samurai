@@ -114,7 +114,7 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().add(B3);
 
 		//TODO
-		A1.setActualLocation(0, 0);
+//		A1.setActualLocation(0, 0);
 	}
 
 	public void setCurrentSamurai(int i){
@@ -177,6 +177,12 @@ public class GamePanel extends Pane implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		
+		//待添加
+		//每个武士占领的block数
+		//点move或者occupy之后的方向选择信息
+		//点方向之后的block高亮信息
+		
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
 
@@ -194,6 +200,7 @@ public class GamePanel extends Pane implements Observer{
 
 		}else if(key.equals("actionPoint")){
 			this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
+			this.actionPanel.setPointsRest((int)notifingObject.getValue());
 
 		}else if(key.equals("pointsTotal")){
 			this.currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
@@ -208,6 +215,7 @@ public class GamePanel extends Pane implements Observer{
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			
 		}else if(key.equals("samuraiOccupy")){
+			this.currentSamurai.occupy((int)notifingObject.getValue());
 
 		}else if(key.equals("samuraiKilled")){
 

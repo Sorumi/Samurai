@@ -6,6 +6,7 @@ import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -170,6 +171,152 @@ public class SamuraiView extends Pane{
 		this.setDirection(direction);//初始方向
 	}
 	
+	
+	public void setWeapon(int number){
+		this.weaponNum = number;
+		group.getChildren().remove(weapon);
+		orderList.remove(weapon);
+		this.weapon = new WeaponView(number);
+		group.getChildren().add(weapon);
+		orderList.add(weapon);
+
+		weapon.getTransforms().add(weaponRo);
+		resetWeapon();
+		
+		int x = this.group.getChildren().indexOf(weapon);
+	}
+	
+	public void setDirection(int direction){
+		switch(direction){
+		case 0:
+			setflip(-1);
+			setBack(-1);
+			break;
+		case 1:
+			setflip(1);
+			setBack(-1);
+			break;
+		case 2:
+			setflip(1);
+			setBack(1);
+			break;
+		case 3:
+			setflip(-1);
+			setBack(1);
+			break;
+		}
+		
+		//reset
+		this.setInjured(false);
+		//所有旋转角度至为0
+		if (weapon != null){
+			this.resetWeapon();
+		}
+	}
+	
+	private void resetWeapon(){
+		int[] layout;
+		int[] rotatePivot;
+		//rotatepivot & layout & angle     zorder scale
+		if (back == 1){
+			layout = weapon.frontLayout;
+			rotatePivot = weapon.frontRotatePivot;
+			weaponRo.setAngle(weapon.frontAngle[0]);
+			rightArmRo.setAngle(weapon.armAngle[0]);
+			weapon.setScaleX(1);
+			weapon.zOrder = weapon.frontZOrder;
+		}else{
+			layout = weapon.backLayout;
+			rotatePivot = weapon.backRotatePivot;
+			weaponRo.setAngle(weapon.backAngle[0]);
+			leftArmRo.setAngle(weapon.armAngle[1]);
+			weapon.setScaleX(-1);
+			weapon.zOrder = weapon.backZOrder;
+		}
+		weapon.setLayoutX(layout[0]);
+		weapon.setLayoutY(layout[1]);
+		weaponRo.pivotXProperty().bind(weapon.xProperty().add(rotatePivot[0]));
+		weaponRo.pivotYProperty().bind(weapon.yProperty().add(rotatePivot[1]));
+		//move的初始角度
+		this.setOrder();
+	}
+	
+	//zOrder重排
+	private void setOrder(){
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Collections.sort(orderList);
+				group.getChildren().setAll(orderList);
+			}
+		});
+	}
+
+	private void setBack(int back){
+		this.back = back;
+		if(back == 1){
+			leftArmAngle = new double[]{-40,25};
+			leftLegAngle = new double[]{35,-30};
+			rightLegAngle = new double[]{-30,40};
+			
+			leftArm.setScaleX(1);
+			leftArm.setLayoutX(BODY_X-8);
+			leftArm.setLayoutY(BODY_Y+5);
+			
+			this.helmetBack.setVisible(false);
+		}else{
+			rightArmAngle = new double[]{-25,35};
+			leftLegAngle = new double[]{-30,35};
+			rightLegAngle = new double[]{40,-30};
+			
+			leftArm.setScaleX(-1);
+			leftArm.setLayoutX(BODY_X);
+			leftArm.setLayoutY(BODY_Y+4);
+			
+			this.helmetBack.setVisible(true);
+		}
+	}
+	
+	private void setflip(int flip){
+		this.flip = flip;
+		this.setScaleX(flip);
+	}
+	
+	public void move(int direction){
+		this.setDirection(direction);
+		
+		if (back == 1){
+			Timeline leftArmTL= new Timeline(
+					new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
+					new KeyFrame(Duration.millis(500), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[0])),
+					new KeyFrame(Duration.millis(1500), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[1])),
+					new KeyFrame(Duration.millis(2000), new KeyValue(leftArmRo.angleProperty(), 0))
+					);
+			leftArmTL.play();
+		}else{
+			Timeline rightArmTL= new Timeline(
+					new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
+					new KeyFrame(Duration.millis(500), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[0])),
+					new KeyFrame(Duration.millis(1500), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[1])),
+					new KeyFrame(Duration.millis(2000), new KeyValue(rightArmRo.angleProperty(), 0)));
+			rightArmTL.play();
+		}
+		
+		Timeline LegTL= new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[0])),
+				new KeyFrame(Duration.millis(1500), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[1])),
+				new KeyFrame(Duration.millis(2000), new KeyValue(leftLegRo.angleProperty(), 0)),
+				
+				new KeyFrame(Duration.ZERO, new KeyValue(rightLegRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[0])),
+				new KeyFrame(Duration.millis(1500), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[1])),
+				new KeyFrame(Duration.millis(2000), new KeyValue(rightLegRo.angleProperty(), 0)));
+		LegTL.play();
+		
+	}
+	
 	public boolean occupy(int direction){
 		this.setDirection(direction);
 		int[] angle;
@@ -258,145 +405,6 @@ public class SamuraiView extends Pane{
 			occupyTL.play();
 		}
 		return true;		
-	}
-	
-	public void setWeapon(int number){
-		this.weaponNum = number;
-		group.getChildren().remove(weapon);
-		orderList.remove(weapon);
-		this.weapon = new WeaponView(number);
-		group.getChildren().add(weapon);
-		orderList.add(weapon);
-
-		weapon.getTransforms().add(weaponRo);
-		resetWeapon();
-		
-		int x = this.group.getChildren().indexOf(weapon);
-	}
-	
-	private void setDirection(int direction){
-		switch(direction){
-		case 0:
-			setflip(-1);
-			setBack(-1);
-			break;
-		case 1:
-			setflip(1);
-			setBack(-1);
-			break;
-		case 2:
-			setflip(1);
-			setBack(1);
-			break;
-		case 3:
-			setflip(-1);
-			setBack(1);
-			break;
-		}
-		
-		//reset
-		this.setInjured(false);
-		//所有旋转角度至为0
-		if (weapon != null){
-			this.resetWeapon();
-		}
-	}
-	
-	private void resetWeapon(){
-		int[] layout;
-		int[] rotatePivot;
-		//rotatepivot & layout & angle     zorder scale
-		if (back == 1){
-			layout = weapon.frontLayout;
-			rotatePivot = weapon.frontRotatePivot;
-			weaponRo.setAngle(weapon.frontAngle[0]);
-			rightArmRo.setAngle(weapon.armAngle[0]);
-			weapon.setScaleX(1);
-			weapon.zOrder = weapon.frontZOrder;
-		}else{
-			layout = weapon.backLayout;
-			rotatePivot = weapon.backRotatePivot;
-			weaponRo.setAngle(weapon.backAngle[0]);
-			leftArmRo.setAngle(weapon.armAngle[1]);
-			weapon.setScaleX(-1);
-			weapon.zOrder = weapon.backZOrder;
-		}
-		weapon.setLayoutX(layout[0]);
-		weapon.setLayoutY(layout[1]);
-		weaponRo.pivotXProperty().bind(weapon.xProperty().add(rotatePivot[0]));
-		weaponRo.pivotYProperty().bind(weapon.yProperty().add(rotatePivot[1]));
-		//move的初始角度
-		this.setOrder();
-	}
-	
-	//zOrder重排
-	private void setOrder(){
-		Collections.sort(orderList);
-		group.getChildren().setAll(orderList);
-	}
-
-	private void setBack(int back){
-		this.back = back;
-		if(back == 1){
-			leftArmAngle = new double[]{-40,25};
-			leftLegAngle = new double[]{35,-30};
-			rightLegAngle = new double[]{-30,40};
-			
-			leftArm.setScaleX(1);
-			leftArm.setLayoutX(BODY_X-8);
-			leftArm.setLayoutY(BODY_Y+5);
-			
-			this.helmetBack.setVisible(false);
-		}else{
-			rightArmAngle = new double[]{-25,35};
-			leftLegAngle = new double[]{-30,35};
-			rightLegAngle = new double[]{40,-30};
-			
-			leftArm.setScaleX(-1);
-			leftArm.setLayoutX(BODY_X);
-			leftArm.setLayoutY(BODY_Y+4);
-			
-			this.helmetBack.setVisible(true);
-		}
-	}
-	
-	private void setflip(int flip){
-		this.flip = flip;
-		this.setScaleX(flip);
-	}
-	
-	public void move(int direction){
-		this.setDirection(direction);
-		
-		if (back == 1){
-			Timeline leftArmTL= new Timeline(
-					new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
-					new KeyFrame(Duration.millis(500), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[0])),
-					new KeyFrame(Duration.millis(1500), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[1])),
-					new KeyFrame(Duration.millis(2000), new KeyValue(leftArmRo.angleProperty(), 0))
-					);
-			leftArmTL.play();
-		}else{
-			Timeline rightArmTL= new Timeline(
-					new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
-					new KeyFrame(Duration.millis(500), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[0])),
-					new KeyFrame(Duration.millis(1500), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[1])),
-					new KeyFrame(Duration.millis(2000), new KeyValue(rightArmRo.angleProperty(), 0)));
-			rightArmTL.play();
-		}
-		
-		Timeline LegTL= new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
-				new KeyFrame(Duration.millis(500), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[0])),
-				new KeyFrame(Duration.millis(1500), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[1])),
-				new KeyFrame(Duration.millis(2000), new KeyValue(leftLegRo.angleProperty(), 0)),
-				
-				new KeyFrame(Duration.ZERO, new KeyValue(rightLegRo.angleProperty(), 0)),
-				new KeyFrame(Duration.millis(500), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[0])),
-				new KeyFrame(Duration.millis(1500), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[1])),
-				new KeyFrame(Duration.millis(2000), new KeyValue(rightLegRo.angleProperty(), 0)));
-		LegTL.play();
-		
 	}
 	
 	public void setInjured(boolean isInjured){

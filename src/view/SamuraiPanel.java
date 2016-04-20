@@ -47,9 +47,32 @@ public class SamuraiPanel extends Pane {
 		blockHeightOffset = FIELD_HEIGHT / size / 2;
 		
 		
-//		this.setSize(imageV.getFitWidth(), image.getHeight());
+		if(number < 4){
+			samuraiV.setDirection(2);
+		}else{
+			samuraiV.setDirection(1);
+		}
+		
+		//TODO
+		switch(number){
+		case 1:
+		case 4:
+			samuraiV.setWeapon(100);
+			break;
+		case 2:
+		case 5:
+			samuraiV.setWeapon(200);
+			break;
+		case 3:
+		case 6:
+			samuraiV.setWeapon(300);
+			break;
+		}
 	}
 	
+	public void move(int x, int y){
+		
+	}
 	public void setActualLocation(int x, int y){
 		this.x = x;
 		this.y = y;
@@ -79,6 +102,14 @@ public class SamuraiPanel extends Pane {
 
 	public boolean isHide() {
 		return isHide;
+	}
+
+	public void occupy(int direction){
+		samuraiV.occupy(direction);
+	}
+	
+	public void move(int position){
+		
 	}
 
 }

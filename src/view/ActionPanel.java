@@ -4,6 +4,7 @@ import controller.msgqueue.ActionOperation;
 import controller.msgqueue.NextOperation;
 import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
+import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -16,12 +17,11 @@ import view.eventhandler.ActionHandler;
 public class ActionPanel extends Pane {
 	private final int BUTTONPANEL_WIDTH = 208;
 	private final int BUTTONPANEL_HEIGHT = 300;
-	
 	private final int BUTTON_WIDTH = 58;
 	private final int BUTTON_Y = 120;
-	
 	private final int SAMURAI_WIDTH = 60;
 	
+	private int pointsRest;
 	private boolean isAppear;
 
 	private ActionButton moveButton;
@@ -55,7 +55,7 @@ public class ActionPanel extends Pane {
 		
 		directionPanel = new DirectionPanel(actionHandler);
 		directionPanel.setLayoutX((BUTTONPANEL_WIDTH-directionPanel.getBoundsInParent().getWidth())/2);
-		directionPanel.setLayoutY(130);
+		directionPanel.setLayoutY(143);
 		directionPanel.setVisible(false);
 		
 		moveButton.setOnMouseClicked(actionHandler.secondaryEvent);
@@ -75,8 +75,8 @@ public class ActionPanel extends Pane {
 	
 	public void setCurrentSamurai(SamuraiPanel samurai){
 		this.currentSamurai = samurai;
-		this.setAppear(false);
-		this.setSecondary(false);
+		this.setAppear(false, false);
+		this.closeSecondary();
 		this.setActualLocation();
 		
 	}
@@ -86,16 +86,39 @@ public class ActionPanel extends Pane {
 		this.setLayoutY(currentSamurai.getLayoutY()-70);
 	}
 	
-	public void setSecondary(boolean isVisible){
-		backButton.setVisible(isVisible);
-		exitButton.setVisible(!isVisible);
-		moveButton.setVisible(!isVisible);
-		occupyButton.setVisible(!isVisible);
-		hideButton.setVisible(!isVisible);
-		directionPanel.setVisible(isVisible);
+	public void setSecondary(boolean[] directions){
+		backButton.setVisible(true);
+		exitButton.setVisible(false);
+		moveButton.setVisible(false);
+		occupyButton.setVisible(false);
+		hideButton.setVisible(false);
+		directionPanel.setVisible(true);
+		directionPanel.setVisible(directions);
+
+	}
+	public void closeSecondary(){
+		backButton.setVisible(false);
+		exitButton.setVisible(true);
+		moveButton.setVisible(true);
+		occupyButton.setVisible(true);
+		hideButton.setVisible(true);
+		directionPanel.setVisible(false);
 	}
 	
-	public void setAppear(boolean isAppear){
+	
+	public void setAppear(boolean isAppear, boolean animation){
+		if(isAppear == this.isAppear){
+			return;
+		}
+		if(animation){
+			setAppearAnimation(isAppear);
+		}else{
+			this.setVisible(isAppear);
+		}
+		this.isAppear = isAppear;
+	}
+	
+	public void setAppearAnimation(boolean isAppear){
 		
 		if(isAppear == this.isAppear){
 			return;
@@ -107,6 +130,7 @@ public class ActionPanel extends Pane {
 			tt1.setFromY(BUTTON_Y);
 	        tt1.setToX(0);
 	        tt1.setToY(60);
+	        tt1.setInterpolator(Interpolator.EASE_BOTH);
 	        tt1.play();
 	        
 			TranslateTransition tt2 = new TranslateTransition(Duration.millis(500), moveButton);
@@ -182,7 +206,31 @@ public class ActionPanel extends Pane {
 	        });
 			
 		} 
-        this.isAppear = isAppear;
 	}
-	
+	private void setStartLocation(){
+		occupyButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+		occupyButton.setLayoutY(BUTTON_Y);
+		moveButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+		moveButton.setLayoutY(BUTTON_Y);
+		hideButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+		hideButton.setLayoutY(BUTTON_Y);
+		exitButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+		exitButton.setLayoutY(BUTTON_Y);
+		backButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
+		backButton.setLayoutY(BUTTON_Y);
+
+	}
+
+	public void setPointsRest(int pointsRest) {
+		this.pointsRest = pointsRest;
+		if(pointsRest < occupyButton.pointsCost){
+			occupyButton.setGray();
+		}
+		if(pointsRest < moveButton.pointsCost){
+			moveButton.setGray();
+		}
+		if(pointsRest < hideButton.pointsCost){
+			hideButton.setGray();
+		}
+	}
 }
