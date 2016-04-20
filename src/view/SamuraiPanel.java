@@ -1,6 +1,13 @@
 package view;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -30,6 +37,7 @@ public class SamuraiPanel extends Pane {
 	public int x;
 	public int y;
 	private boolean isHide;
+	private BooleanProperty canAction;
 	
 	public SamuraiPanel(int number, int size){
 		this.number = number;
@@ -40,6 +48,7 @@ public class SamuraiPanel extends Pane {
 //		this.setStyle("-fx-background-color: rgba(255,0,0,0.5)");
 		this.samuraiV = new SamuraiView(number);
 		this.isHide = false;
+		this.canAction = new SimpleBooleanProperty(true);
 		
 		this.getChildren().add(samuraiV);
 		
@@ -57,22 +66,19 @@ public class SamuraiPanel extends Pane {
 		switch(number){
 		case 1:
 		case 4:
-			samuraiV.setWeapon(100);
+			samuraiV.setWeapon(000);
 			break;
 		case 2:
 		case 5:
-			samuraiV.setWeapon(200);
+			samuraiV.setWeapon(100);
 			break;
 		case 3:
 		case 6:
-			samuraiV.setWeapon(300);
+			samuraiV.setWeapon(200);
 			break;
 		}
 	}
 	
-	public void move(int x, int y){
-		
-	}
 	public void setActualLocation(int x, int y){
 		this.x = x;
 		this.y = y;
@@ -108,8 +114,29 @@ public class SamuraiPanel extends Pane {
 		samuraiV.occupy(direction);
 	}
 	
-	public void move(int position){
-		
+	public void move(int x, int y){
+		canAction.setValue(false);
+		samuraiV.move(2);
+		Timeline timeline = new Timeline(
+				new KeyFrame(Duration.millis(1200), new KeyValue(this.layoutXProperty(), chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset +selfWidthOffset)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(this.layoutYProperty(), chessBoardHeightOffset+(x+y)*blockHeightOffset +selfHeightOffset))
+				);
+		timeline.play();
+		this.x = x;
+		this.y = y;
+
+		timeline.setOnFinished(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				canAction.setValue(true);
+			}
+			
+		});
+	}
+	
+	public BooleanProperty canActionProperty(){
+		return this.canAction;
 	}
 
 }

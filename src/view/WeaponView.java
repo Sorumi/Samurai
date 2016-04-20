@@ -40,7 +40,7 @@ public class WeaponView extends OrderImageView {
 	private void setInit(){
 		
 		switch(number){
-		case 100:
+		case 000:
 			this.setFitWidth(6);
 			frontZOrder = 6;
 			backZOrder = 15;
@@ -59,7 +59,7 @@ public class WeaponView extends OrderImageView {
 					-75, -75, -35, -85,
 					-25, 35, -10, 30};
 			break;
-		case 200:
+		case 100:
 			this.setFitWidth(14);
 			frontZOrder = 17;
 			backZOrder = 21;
@@ -78,7 +78,7 @@ public class WeaponView extends OrderImageView {
 					-75, -75, -10, -75,
 					-25, 35, 0, -25};
 			break;
-		case 300:
+		case 200:
 			this.setFitWidth(18);
 			frontZOrder = 17;
 			backZOrder = 21;

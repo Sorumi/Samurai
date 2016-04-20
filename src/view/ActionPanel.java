@@ -75,10 +75,13 @@ public class ActionPanel extends Pane {
 	
 	public void setCurrentSamurai(SamuraiPanel samurai){
 		this.currentSamurai = samurai;
+		this.reset();
+	}
+	
+	public void reset(){
 		this.setAppear(false, false);
 		this.closeSecondary();
 		this.setActualLocation();
-		
 	}
 	
 	public void setActualLocation(){
@@ -110,6 +113,7 @@ public class ActionPanel extends Pane {
 		if(isAppear == this.isAppear){
 			return;
 		}
+		this.setActualLocation();
 		if(animation){
 			setAppearAnimation(isAppear);
 		}else{

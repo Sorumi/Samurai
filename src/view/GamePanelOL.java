@@ -75,11 +75,8 @@ public class GamePanelOL extends GamePanel{
         }else if(key.equals("time")){
             System.out.println("time" + (int) notifingObject.getValue());
             int i = this.currentSamurai.getNum();
-            if((GameModel.isServer() && (i / 4) == 0)){
-                playerA.circlePanel.setTimeRest((int) notifingObject.getValue());
-            }
-            if((GameModel.isClient() && (i / 4) == 1)){
-                playerB.circlePanel.setTimeRest((int) notifingObject.getValue());
+            if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)){
+                this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
             }
 
         }else if(key.equals("actionPoint")){
@@ -101,7 +98,8 @@ public class GamePanelOL extends GamePanel{
             this.currentSamurai.setHide((boolean)notifingObject.getValue());
 
         }else if(key.equals("samuraiOccupy")){
-
+			this.currentSamurai.occupy((int)notifingObject.getValue());
+			
         }else if(key.equals("samuraiKilled")){
 
         }else if(key.equals("visible")) {

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import controller.MenuController;
+import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -153,6 +158,23 @@ public class GamePanel extends Pane implements Observer{
 		actionPanel.setCurrentSamurai(currentSamurai);
 		playerA.setCurrentSamurai(currentSamurai.getNum());
 		playerB.setCurrentSamurai(currentSamurai.getNum());
+		
+		//add
+		currentSamurai.canActionProperty().addListener(new ChangeListener(){
+	         public void changed(ObservableValue o,Object oldVal,Object newVal){
+	        	 Platform.runLater(new Runnable(){
+	 	  			@Override
+	 	  			public void run() {
+	 	  				// TODO Auto-generated method stub
+	 		            boolean canAction= (boolean) newVal;
+	 		            if(canAction){
+	 		            	arrow.setActualLocation();
+	 		            	arrow.setVisible(true);
+	 		            }
+	 	  			}
+	 	  		});
+	         }
+	      });
 	}
 
 	public void setCurrentPlayer(int player){
@@ -214,15 +236,18 @@ public class GamePanel extends Pane implements Observer{
 
 		}else if(key.equals("samuraiMove")){
 			Position position = (Position)notifingObject.getValue();
-			this.currentSamurai.setActualLocation(position.getX(), position.getY());
-			this.actionPanel.setActualLocation();
-			this.arrow.setActualLocation();
+//			this.currentSamurai.setActualLocation(position.getX(), position.getY());
+			this.currentSamurai.move(position.getX(), position.getY());
+			this.actionPanel.reset();
+
 
 		}else if(key.equals("samuraiHide")){
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			
 		}else if(key.equals("samuraiOccupy")){
 			this.currentSamurai.occupy((int)notifingObject.getValue());
+			this.actionPanel.reset();
+			this.arrow.setVisible(true);
 
 		}else if(key.equals("samuraiKilled")){
 

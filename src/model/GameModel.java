@@ -1,9 +1,6 @@
 package model;
 
-import controller.msgqueue.ActionOperation;
-import controller.msgqueue.NextOperation;
-import controller.msgqueue.Operation;
-import controller.msgqueue.OperationQueue;
+import controller.msgqueue.*;
 import main.Main;
 import model.po.*;
 import model.state.GameResultState;
@@ -41,7 +38,7 @@ public class GameModel extends BaseModel implements Observer {
 
     //level:
     //1~9   : Regular Mode, AI Level from 0 ~ 9
-    //11~20 : Adventure Mode, Level from 1 ~7
+    //11~20 : Adventure Mode, Level from 1 ~ 7
     //99    : Online Mode, No AI.
     public GameModel(int round, int length, Main mainFrame, int level){
         this.level = level;
@@ -104,8 +101,12 @@ public class GameModel extends BaseModel implements Observer {
             default:
                 break;
         }
-        this.timer = new Timer();
-        timer.schedule(new countDownTask(),0,1000);
+
+        if(!isServer && !isClient){
+            this.timer = new Timer();
+            this.timer.schedule(new countDownTask(), 0, 1000);
+        }
+
         return true;
     }
 
@@ -371,14 +372,19 @@ public class GameModel extends BaseModel implements Observer {
 
     public class countDownTask extends java.util.TimerTask{
         public void run() {
-            if(currentTime > 0){
-                if(!isClient && !isServer) {
-                    updateChange(new UpdateMessage("time",currentTime));
-                    currentTime--;
-                }
-            }else{
-                actionDone();
+            if(!isServer && !isClient) {
+                OperationQueue.addOperation(new TimeOperation());
             }
+        }
+    }
+
+    public void countDown(){
+
+        if(this.currentTime > 0) {
+            super.updateChange(new UpdateMessage("time", this.currentTime));
+            this.currentTime--;
+        }else{
+            this.actionDone();
         }
     }
 

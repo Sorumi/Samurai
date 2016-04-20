@@ -10,8 +10,7 @@ import java.util.Observer;
 public abstract class HostService implements Observer {
 
     public boolean init(HostHandler handler){
-        boolean succeed = ServerAdapter.init(handler);
-        return succeed;
+        return ServerAdapter.init(handler);
     }
 
     public void close(){

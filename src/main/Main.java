@@ -17,6 +17,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import model.GameModel;
 import view.GamePanel;
@@ -72,6 +73,7 @@ public class Main extends Application {
 		scene = new Scene(menuPanel);
 		
 		primaryStage.setScene(scene);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 		
 		

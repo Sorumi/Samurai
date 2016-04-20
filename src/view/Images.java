@@ -114,13 +114,13 @@ public class Images {
 	public static Image[][] SAMURAI = {null, SAMURAI_1, SAMURAI_2, SAMURAI_3, SAMURAI_4, SAMURAI_5, SAMURAI_6};
 
 	//weapon
-	public static Image WEAPON_100 = new Image("/./images/weapon_100_spear.png",true);
-	public static Image WEAPON_200 = new Image("/./images/weapon_200_sword.png",true);
-	public static Image WEAPON_300 = new Image("/./images/weapon_300_battleax.png",true);
+	public static Image WEAPON_000 = new Image("/./images/weapon_000_spear.png",true);
+	public static Image WEAPON_100 = new Image("/./images/weapon_100_sword.png",true);
+	public static Image WEAPON_200 = new Image("/./images/weapon_200_battleax.png",true);
 	
+	public static Image[] WEAPON_0 = {WEAPON_000};
 	public static Image[] WEAPON_1 = {WEAPON_100};
 	public static Image[] WEAPON_2 = {WEAPON_200};
-	public static Image[] WEAPON_3 = {WEAPON_300};
 	
-	public static Image[][] WEAPON = {null, WEAPON_1, WEAPON_2, WEAPON_3};
+	public static Image[][] WEAPON = {WEAPON_0, WEAPON_1, WEAPON_2};
 }

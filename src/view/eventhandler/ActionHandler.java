@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import view.ActionButton;
 import view.DirectionButton;
 import view.GamePanel;
+import view.SamuraiPanel;
 
 public class ActionHandler {
 	
@@ -24,8 +25,11 @@ public class ActionHandler {
 	
 	public EventHandler<MouseEvent> samuraiEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  gamePanel.actionPanel.setAppear(true, true);
-	    	  gamePanel.arrow.setVisible(false);
+	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();
+	    	  if(currentSamurai.canActionProperty().get()){
+	    		  gamePanel.actionPanel.setAppear(true, true);
+	    		  gamePanel.arrow.setVisible(false);
+	    	  }
 	      }
 	};
 	
