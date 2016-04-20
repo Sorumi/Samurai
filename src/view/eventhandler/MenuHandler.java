@@ -38,8 +38,6 @@ public class MenuHandler {
 		    	  menuController.startGame();
 	  			}
 	  		});
-	    	  
-
 	  		
 	      }
 	};

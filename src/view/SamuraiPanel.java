@@ -4,6 +4,8 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
@@ -35,6 +37,7 @@ public class SamuraiPanel extends Pane {
 	public int x;
 	public int y;
 	private boolean isHide;
+	private BooleanProperty canAction;
 	
 	public SamuraiPanel(int number, int size){
 		this.number = number;
@@ -45,6 +48,7 @@ public class SamuraiPanel extends Pane {
 //		this.setStyle("-fx-background-color: rgba(255,0,0,0.5)");
 		this.samuraiV = new SamuraiView(number);
 		this.isHide = false;
+		this.canAction = new SimpleBooleanProperty(true);
 		
 		this.getChildren().add(samuraiV);
 		
@@ -62,15 +66,15 @@ public class SamuraiPanel extends Pane {
 		switch(number){
 		case 1:
 		case 4:
-			samuraiV.setWeapon(100);
+			samuraiV.setWeapon(000);
 			break;
 		case 2:
 		case 5:
-			samuraiV.setWeapon(200);
+			samuraiV.setWeapon(100);
 			break;
 		case 3:
 		case 6:
-			samuraiV.setWeapon(300);
+			samuraiV.setWeapon(200);
 			break;
 		}
 	}
@@ -111,29 +115,28 @@ public class SamuraiPanel extends Pane {
 	}
 	
 	public void move(int x, int y){
+		canAction.setValue(false);
 		samuraiV.move(2);
 		Timeline timeline = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(samuraiV.layoutXProperty(), 0)),
-				new KeyFrame(Duration.ZERO, new KeyValue(samuraiV.layoutYProperty(), 0)),
-				new KeyFrame(Duration.millis(2000), new KeyValue(samuraiV.layoutXProperty(), blockWidthOffset)),
-				new KeyFrame(Duration.millis(2000), new KeyValue(samuraiV.layoutYProperty(), blockHeightOffset))
+				new KeyFrame(Duration.millis(1200), new KeyValue(this.layoutXProperty(), chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset +selfWidthOffset)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(this.layoutYProperty(), chessBoardHeightOffset+(x+y)*blockHeightOffset +selfHeightOffset))
 				);
 		timeline.play();
-		timeline.setOnFinished(new EventHandler<ActionEvent>(){
+		this.x = x;
+		this.y = y;
 
+		timeline.setOnFinished(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-//				SamuraiPanel.this.setActualLocation(x, y);
-
-				SamuraiPanel.this.x = x;
-				SamuraiPanel.this.y = y;
-//				System.out.println(SamuraiPanel.this.x + " " + SamuraiPanel.this.y);
-				SamuraiPanel.this.setLayoutX(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset +selfWidthOffset);
-				SamuraiPanel.this.setLayoutY(chessBoardHeightOffset+(x+y)*blockHeightOffset +selfHeightOffset);
+				canAction.setValue(true);
 			}
 			
 		});
+	}
+	
+	public BooleanProperty canActionProperty(){
+		return this.canAction;
 	}
 
 }

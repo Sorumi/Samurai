@@ -285,35 +285,30 @@ public class SamuraiView extends Pane{
 	
 	public void move(int direction){
 		this.setDirection(direction);
-		
-		if (back == 1){
-			Timeline leftArmTL= new Timeline(
-					new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
-					new KeyFrame(Duration.millis(500), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[0])),
-					new KeyFrame(Duration.millis(1500), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[1])),
-					new KeyFrame(Duration.millis(2000), new KeyValue(leftArmRo.angleProperty(), 0))
-					);
-			leftArmTL.play();
-		}else{
-			Timeline rightArmTL= new Timeline(
-					new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
-					new KeyFrame(Duration.millis(500), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[0])),
-					new KeyFrame(Duration.millis(1500), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[1])),
-					new KeyFrame(Duration.millis(2000), new KeyValue(rightArmRo.angleProperty(), 0)));
-			rightArmTL.play();
-		}
-		
-		Timeline LegTL= new Timeline(
+		Timeline moveTL = new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
-				new KeyFrame(Duration.millis(500), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[0])),
-				new KeyFrame(Duration.millis(1500), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[1])),
-				new KeyFrame(Duration.millis(2000), new KeyValue(leftLegRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(300), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[0])),
+				new KeyFrame(Duration.millis(900), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[1])),
+				new KeyFrame(Duration.millis(1200), new KeyValue(leftLegRo.angleProperty(), 0)),
 				
 				new KeyFrame(Duration.ZERO, new KeyValue(rightLegRo.angleProperty(), 0)),
-				new KeyFrame(Duration.millis(500), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[0])),
-				new KeyFrame(Duration.millis(1500), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[1])),
-				new KeyFrame(Duration.millis(2000), new KeyValue(rightLegRo.angleProperty(), 0)));
-		LegTL.play();
+				new KeyFrame(Duration.millis(300), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[0])),
+				new KeyFrame(Duration.millis(900), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[1])),
+				new KeyFrame(Duration.millis(1200), new KeyValue(rightLegRo.angleProperty(), 0)));
+		
+		if (back == 1){
+			moveTL.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
+					new KeyFrame(Duration.millis(300), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[0])),
+					new KeyFrame(Duration.millis(900), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[1])),
+					new KeyFrame(Duration.millis(1200), new KeyValue(leftArmRo.angleProperty(), 0)));
+		}else{
+			moveTL.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
+					new KeyFrame(Duration.millis(300), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[0])),
+					new KeyFrame(Duration.millis(900), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[1])),
+					new KeyFrame(Duration.millis(1200), new KeyValue(rightArmRo.angleProperty(), 0)));
+		}
+		
+		moveTL.play();
 		
 	}
 	
