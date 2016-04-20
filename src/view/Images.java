@@ -7,10 +7,21 @@ public class Images {
 	//BG
 //	public static String BG_0 = Images.class.getResource("/./images/bg_0.png").toExternalForm();
 	public static Image BG_0 = new Image("/./images/bg_0.png");
+	public static Image BG_3 = new Image("/./images/bg_3.png");
 	//cloud 
 	public static Image CLOUD_0 = new Image("/./images/cloud_0.png",true);
 	public static Image CLOUD_1 = new Image("/./images/cloud_1.png",true);
 	public static Image CLOUD_2 = new Image("/./images/cloud_2.png",true);
+	//fish
+	public static Image FISH_0 = new Image("/./images/fish_0.png",true);
+	public static Image FISH_1 = new Image("/./images/fish_1.png",true);
+	public static Image FISH_2 = new Image("/./images/fish_2.png",true);
+	public static Image FISH_3 = new Image("/./images/fish_3.png",true);
+	//leaf
+	public static Image LEAF_0 = new Image("/./images/leaf_0.png",true);
+	public static Image LEAF_1 = new Image("/./images/leaf_1.png",true);
+	//lotus
+	public static Image LOTUS_0 = new Image("/./images/lotus_0.png",true);
 
 	//player
 	public static final Image PLAYER_LOGO_A = new Image("/./images/PLAYER_LOGO_A.png");

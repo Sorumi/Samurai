@@ -33,7 +33,7 @@ public class Main extends Application {
 	
 	private Scene scene;
 	
-	public GamePanel gamePanel;
+	public GamePanel gamePanel; 
 	public GameModel gameModel;
 	
 	public MenuPanel menuPanel;

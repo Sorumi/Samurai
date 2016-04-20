@@ -7,6 +7,7 @@ import java.util.Observer;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.GameModel;
@@ -16,6 +17,7 @@ import model.po.Position;
 import model.po.SamuraiPO;
 import view.background.BackgroundPanel;
 import view.background.BackgroundPanel0;
+import view.background.BackgroundPanel3;
 import view.eventhandler.ActionHandler;
 
 
@@ -64,8 +66,13 @@ public class GamePanel extends Pane implements Observer{
 		//background
 //		this.setStyle("-fx-background-image: url("+bgImagePath+");"
 //				+ "-fx-background-size: 100% 100%; ");
-		backgroundPanel = new BackgroundPanel0();
+		Image backgroundPanel0 = Images.BG_0;
+		Image backgroundPanel3 = Images.BG_3;
+		backgroundPanel = new BackgroundPanel0(backgroundPanel0);
 		this.getChildren().add(backgroundPanel);
+//		backgroundPanel.setVisible(false);
+//		backgroundPanel = new BackgroundPanel3(backgroundPanel3);
+//		this.getChildren().add(backgroundPanel);
 
 		Button exitBtn = new Button("Exit");
 		exitBtn.setLayoutX(1100);

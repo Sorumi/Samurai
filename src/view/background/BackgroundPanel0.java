@@ -3,6 +3,7 @@ package view.background;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
@@ -14,8 +15,8 @@ public class BackgroundPanel0 extends BackgroundPanel{
 	private ImageView cloud1;
 	private ImageView cloud2;
 	
-	public BackgroundPanel0(){
-		super();
+	public BackgroundPanel0(Image image){
+		super(image);
 
 		this.cloud0 = new ImageView(Images.CLOUD_0);
 		this.cloud1 = new ImageView(Images.CLOUD_1);
