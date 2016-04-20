@@ -46,28 +46,33 @@ public class MenuHandler {
 	
 	public EventHandler<MouseEvent> serverEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  
-	    	  mainFrame.gamePanel = new GamePanelOL(15);
-	    	  mainFrame.startGame();
-	    	  
-	    	  System.out.println("Waiting for client...");
-	    	  HostController hostController = new HostController();
-	    	  hostController.serviceSetupHost(mainFrame);
-
+	    	  Platform.runLater(new Runnable(){
+		  			@Override
+		  			public void run() {
+		  	    	  mainFrame.gamePanel = new GamePanelOL(15);
+			    	  mainFrame.startGame();
+			    	  
+			    	  System.out.println("Waiting for client...");
+			    	  HostController hostController = new HostController();
+			    	  hostController.serviceSetupHost(mainFrame);
+		  			}
+	    	  });
 	    	 
 	      }
 	};
 	
 	public EventHandler<MouseEvent> clientEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  
-	    	  mainFrame.gamePanel = new GamePanelOL(15);
-	    	  mainFrame.startGame();
-	    	  
-	    	  ClientController clientController = new ClientController();
-	    	  clientController.setupClient(Configure.SERVER_ADDRESS);
-	    	  
-	    	  
+	    	  Platform.runLater(new Runnable(){
+		  			@Override
+		  			public void run() {
+		  	    	  mainFrame.gamePanel = new GamePanelOL(15);
+			    	  mainFrame.startGame();
+			    	  
+			    	  ClientController clientController = new ClientController();
+			    	  clientController.setupClient(Configure.SERVER_ADDRESS);
+		  			}
+	    	  });
 	      }
 	};
 	

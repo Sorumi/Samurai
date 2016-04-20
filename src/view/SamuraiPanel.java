@@ -128,7 +128,7 @@ public class SamuraiPanel extends Pane {
 
 				SamuraiPanel.this.x = x;
 				SamuraiPanel.this.y = y;
-				System.out.println(SamuraiPanel.this.x + " " + SamuraiPanel.this.y);
+//				System.out.println(SamuraiPanel.this.x + " " + SamuraiPanel.this.y);
 				SamuraiPanel.this.setLayoutX(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset +selfWidthOffset);
 				SamuraiPanel.this.setLayoutY(chessBoardHeightOffset+(x+y)*blockHeightOffset +selfHeightOffset);
 			}
