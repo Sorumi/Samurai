@@ -26,6 +26,7 @@ public class ActionHandler {
 	      public void handle(MouseEvent event) {
 	    	  gamePanel.actionPanel.setAppear(true, true);
 	    	  gamePanel.arrow.setVisible(false);
+	    	  
 	      }
 	};
 	

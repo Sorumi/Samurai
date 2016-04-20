@@ -101,7 +101,8 @@ public class GamePanelOL extends GamePanel{
             this.currentSamurai.setHide((boolean)notifingObject.getValue());
 
         }else if(key.equals("samuraiOccupy")){
-
+			this.currentSamurai.occupy((int)notifingObject.getValue());
+			
         }else if(key.equals("samuraiKilled")){
 
         }else if(key.equals("visible")) {

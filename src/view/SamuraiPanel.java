@@ -1,6 +1,11 @@
 package view;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -70,9 +75,6 @@ public class SamuraiPanel extends Pane {
 		}
 	}
 	
-	public void move(int x, int y){
-		
-	}
 	public void setActualLocation(int x, int y){
 		this.x = x;
 		this.y = y;
@@ -108,8 +110,30 @@ public class SamuraiPanel extends Pane {
 		samuraiV.occupy(direction);
 	}
 	
-	public void move(int position){
-		
+	public void move(int x, int y){
+		samuraiV.move(2);
+		Timeline timeline = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(samuraiV.layoutXProperty(), 0)),
+				new KeyFrame(Duration.ZERO, new KeyValue(samuraiV.layoutYProperty(), 0)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(samuraiV.layoutXProperty(), blockWidthOffset)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(samuraiV.layoutYProperty(), blockHeightOffset))
+				);
+		timeline.play();
+		timeline.setOnFinished(new EventHandler<ActionEvent>(){
+
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+//				SamuraiPanel.this.setActualLocation(x, y);
+
+				SamuraiPanel.this.x = x;
+				SamuraiPanel.this.y = y;
+				System.out.println(SamuraiPanel.this.x + " " + SamuraiPanel.this.y);
+				SamuraiPanel.this.setLayoutX(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset +selfWidthOffset);
+				SamuraiPanel.this.setLayoutY(chessBoardHeightOffset+(x+y)*blockHeightOffset +selfHeightOffset);
+			}
+			
+		});
 	}
 
 }

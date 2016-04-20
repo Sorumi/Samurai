@@ -1,9 +1,12 @@
 package view.eventhandler;
 
+import java.util.Collections;
+
 import controller.ClientController;
 import controller.GameController;
 import controller.HostController;
 import controller.MenuController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -24,12 +27,19 @@ public class MenuHandler {
 	
 	public EventHandler<MouseEvent> classicEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  Platform.runLater(new Runnable(){
+	  			@Override
+	  			public void run() {
+	  				// TODO Auto-generated method stub
+	  	    	  mainFrame.gamePanel = new GamePanel(15);
+		    	  mainFrame.startGame();
+		    	  
+		    	  MenuController menuController = new MenuController();
+		    	  menuController.startGame();
+	  			}
+	  		});
 	    	  
-	    	  mainFrame.gamePanel = new GamePanel(15);
-	    	  mainFrame.startGame();
-	    	  
-	    	  MenuController menuController = new MenuController();
-	    	  menuController.startGame();
+
 	  		
 	      }
 	};

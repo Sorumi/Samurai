@@ -208,6 +208,7 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("samuraiMove")){
 			Position position = (Position)notifingObject.getValue();
 			this.currentSamurai.setActualLocation(position.getX(), position.getY());
+//			this.currentSamurai.move(position.getX(), position.getY());
 			this.actionPanel.setActualLocation();
 			this.arrow.setActualLocation();
 
