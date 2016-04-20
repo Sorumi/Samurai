@@ -1,9 +1,12 @@
 package view.eventhandler;
 
+import java.util.Collections;
+
 import controller.ClientController;
 import controller.GameController;
 import controller.HostController;
 import controller.MenuController;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -24,40 +27,52 @@ public class MenuHandler {
 	
 	public EventHandler<MouseEvent> classicEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  Platform.runLater(new Runnable(){
+	  			@Override
+	  			public void run() {
+	  				// TODO Auto-generated method stub
+	  	    	  mainFrame.gamePanel = new GamePanel(15);
+		    	  mainFrame.startGame();
+		    	  
+		    	  MenuController menuController = new MenuController();
+		    	  menuController.startGame();
+	  			}
+	  		});
 	    	  
-	    	  mainFrame.gamePanel = new GamePanel(15);
-	    	  mainFrame.startGame();
-	    	  
-	    	  MenuController menuController = new MenuController();
-	    	  menuController.startGame();
+
 	  		
 	      }
 	};
 	
 	public EventHandler<MouseEvent> serverEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  
-	    	  mainFrame.gamePanel = new GamePanelOL(15);
-	    	  mainFrame.startGame();
-	    	  
-	    	  System.out.println("Waiting for client...");
-	    	  HostController hostController = new HostController();
-	    	  hostController.serviceSetupHost(mainFrame);
-
+	    	  Platform.runLater(new Runnable(){
+		  			@Override
+		  			public void run() {
+		  	    	  mainFrame.gamePanel = new GamePanelOL(15);
+			    	  mainFrame.startGame();
+			    	  
+			    	  System.out.println("Waiting for client...");
+			    	  HostController hostController = new HostController();
+			    	  hostController.serviceSetupHost(mainFrame);
+		  			}
+	    	  });
 	    	 
 	      }
 	};
 	
 	public EventHandler<MouseEvent> clientEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  
-	    	  mainFrame.gamePanel = new GamePanelOL(15);
-	    	  mainFrame.startGame();
-	    	  
-	    	  ClientController clientController = new ClientController();
-	    	  clientController.setupClient(Configure.SERVER_ADDRESS);
-	    	  
-	    	  
+	    	  Platform.runLater(new Runnable(){
+		  			@Override
+		  			public void run() {
+		  	    	  mainFrame.gamePanel = new GamePanelOL(15);
+			    	  mainFrame.startGame();
+			    	  
+			    	  ClientController clientController = new ClientController();
+			    	  clientController.setupClient(Configure.SERVER_ADDRESS);
+		  			}
+	    	  });
 	      }
 	};
 	

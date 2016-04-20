@@ -24,15 +24,16 @@ public class ActionHandler {
 	
 	public EventHandler<MouseEvent> samuraiEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  gamePanel.actionPanel.setAppear(true);
+	    	  gamePanel.actionPanel.setAppear(true, true);
 	    	  gamePanel.arrow.setVisible(false);
+	    	  
 	      }
 	};
 	
 	public EventHandler<MouseEvent> actionPanelDisappearEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  if (event.getButton() == MouseButton.SECONDARY) {
-	    	  gamePanel.actionPanel.setAppear(false);
+	    	  gamePanel.actionPanel.setAppear(false, true);
 	    	  gamePanel.arrow.setVisible(true);
 	    	  }
 	      }
@@ -42,7 +43,8 @@ public class ActionHandler {
 	      public void handle(MouseEvent event) {
 	    	  ActionButton btn = (ActionButton)event.getSource();
 	    	  action = btn.action;
-	    	  gamePanel.actionPanel.setSecondary(true);
+	    	  //分move occupy两种情况
+	    	  gamePanel.actionPanel.setSecondary(new boolean[]{true, true, true, true});//TODO
 	      }
 	};
 	
@@ -59,7 +61,7 @@ public class ActionHandler {
 	      public void handle(MouseEvent event) {
 	    	  ActionButton btn = (ActionButton)event.getSource();
 	    	  action = btn.action;
-	    	  gamePanel.actionPanel.setSecondary(false);
+	    	  gamePanel.actionPanel.closeSecondary();
 	      }
 	};
 	
@@ -67,7 +69,7 @@ public class ActionHandler {
 	      public void handle(MouseEvent event) {
 	    	  ActionButton btn = (ActionButton)event.getSource();
 	    	  action = btn.action;
-	    	  gamePanel.actionPanel.setSecondary(false);
+	    	  gamePanel.actionPanel.closeSecondary();
 	    	  Operation op = new NextOperation();
 	    	  OperationQueue.addOperation(op);
 	      }
@@ -79,6 +81,19 @@ public class ActionHandler {
 	    	  direction = btn.direction;
 	    	  Operation op = new ActionOperation(action, direction);
 	    	  OperationQueue.addOperation(op);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> directionEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  DirectionButton btn = (DirectionButton)event.getSource();
+	    	  btn.setHighLight(true);
+	      }
+	};
+	public EventHandler<MouseEvent> directionExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  DirectionButton btn = (DirectionButton)event.getSource();
+	    	  btn.setHighLight(false);
 	      }
 	};
 	

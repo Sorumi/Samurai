@@ -12,8 +12,8 @@ public class DirectionPanel extends Pane {
 	
 	private final int DIRECTION_WIDTH = 49;
 	private final int DIRECTION_HEIGHT = 35;
-	private final int WIDTH_FIX = 18;
-	private final int HEIGHT_FIX = 8;
+	private final int WIDTH_FIX = 20;
+	private final int HEIGHT_FIX = 10;
 
 	
 	private boolean canUp;
@@ -53,6 +53,16 @@ public class DirectionPanel extends Pane {
 		rightButton.setOnMouseClicked(actionHandler.directionEvent);
 		downButton.setOnMouseClicked(actionHandler.directionEvent);
 		
+		upButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		leftButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		rightButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		downButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		
+		upButton.setOnMouseExited(actionHandler.directionExitEvent);
+		leftButton.setOnMouseExited(actionHandler.directionExitEvent);
+		rightButton.setOnMouseExited(actionHandler.directionExitEvent);
+		downButton.setOnMouseExited(actionHandler.directionExitEvent);
+		
 		this.getChildren().add(upButton);
 		this.getChildren().add(leftButton);
 		this.getChildren().add(rightButton);
@@ -62,6 +72,15 @@ public class DirectionPanel extends Pane {
 
 	public void setHighLight(int direction, boolean isHL){
 		buttons[direction].setHighLight(isHL);
+	}
+
+
+	public void setVisible(boolean[] directions) {
+
+		upButton.setVisible(directions[0]);
+		leftButton.setVisible(directions[1]);
+		rightButton.setVisible(directions[2]);
+		downButton.setVisible(directions[3]);
 	}
 
 }
