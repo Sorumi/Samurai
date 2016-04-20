@@ -66,17 +66,6 @@ public class Main extends Application {
 //		}
 		
 		menuPanel = new MenuPanel(this);
-
-//		Button exitBtn = new Button("Exit");
-//		exitBtn.setLayoutX(1100);
-//		exitBtn.setLayoutY(100);
-//		exitBtn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
-//			@Override
-//			public void handle(ActionEvent e) {
-//				System.exit(0);
-//			}
-//		});
-//		menuPanel.getChildren().add(exitBtn);
 		menuPanel.setPrefWidth(1200);
 		menuPanel.setPrefHeight(800);
 		
@@ -99,7 +88,6 @@ public class Main extends Application {
 		OperationQueue operationQueue = new OperationQueue(gameModel);
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();
-		
 	}
 
 	public static void main(String[] args) {

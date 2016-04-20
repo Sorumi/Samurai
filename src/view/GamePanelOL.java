@@ -160,7 +160,7 @@ public class GamePanelOL extends GamePanel{
             this.chessBoard.setTmpBlocks((ArrayList<ActualBlock>)notifingObject.getValue());
         }else if(key.equals("home")){
             SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
-            SamuraiView tmpView = null;
+            SamuraiPanel tmpView = null;
             switch (samuraiPO.getNumber()){
                 case 1:
                     tmpView = this.A1;

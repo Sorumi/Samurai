@@ -136,6 +136,7 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
+        //position和direction能都返回吗，，
     }
 
     public void updateOccupy(int direction){

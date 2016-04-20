@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import background.BackgroundPanel;
-import background.BackgroundPanel0;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.GameModel;
@@ -14,6 +14,8 @@ import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
 import model.po.SamuraiPO;
+import view.background.BackgroundPanel;
+import view.background.BackgroundPanel0;
 import view.eventhandler.ActionHandler;
 
 
@@ -34,14 +36,14 @@ public class GamePanel extends Pane implements Observer{
 	protected int timeTotal = 30;
 	protected int roundTotal = 12;
 
-	protected SamuraiView currentSamurai; //0：无 1 2 3 4 5 6
+	protected SamuraiPanel currentSamurai; //0：无 1 2 3 4 5 6
 
-	protected SamuraiView A1;
-	protected SamuraiView A2;
-	protected SamuraiView A3;
-	protected SamuraiView B1;
-	protected SamuraiView B2;
-	protected SamuraiView B3;
+	protected SamuraiPanel A1;
+	protected SamuraiPanel A2;
+	protected SamuraiPanel A3;
+	protected SamuraiPanel B1;
+	protected SamuraiPanel B2;
+	protected SamuraiPanel B3;
 
 	protected PlayerPanel currentPlayer;
 	protected PlayerPanel playerA;
@@ -65,6 +67,17 @@ public class GamePanel extends Pane implements Observer{
 		backgroundPanel = new BackgroundPanel0();
 		this.getChildren().add(backgroundPanel);
 
+		Button exitBtn = new Button("Exit");
+		exitBtn.setLayoutX(1100);
+		exitBtn.setLayoutY(100);
+		exitBtn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
+			@Override
+			public void handle(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		this.getChildren().add(exitBtn);
+		
 		//chessboard
 		chessBoard = new ChessBoardPanel(size);
 		this.getChildren().add(chessBoard);
@@ -81,18 +94,18 @@ public class GamePanel extends Pane implements Observer{
 
 		//actionHandler
 		actionHandler = new ActionHandler(this);
-
+		this.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
 		//actionpanel
 		actionPanel = new ActionPanel(actionHandler);
 		this.getChildren().add(actionPanel);
 
 		//samurai
-		A1 = new SamuraiView(1, size);
-		A2 = new SamuraiView(2, size);
-		A3 = new SamuraiView(3, size);
-		B1 = new SamuraiView(4, size);
-		B2 = new SamuraiView(5, size);
-		B3 = new SamuraiView(6, size);
+		A1 = new SamuraiPanel(1, size);
+		A2 = new SamuraiPanel(2, size);
+		A3 = new SamuraiPanel(3, size);
+		B1 = new SamuraiPanel(4, size);
+		B2 = new SamuraiPanel(5, size);
+		B3 = new SamuraiPanel(6, size);
 		this.getChildren().add(A1);
 		this.getChildren().add(A2);
 		this.getChildren().add(A3);
@@ -101,7 +114,7 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().add(B3);
 
 		//TODO
-		A1.setActualLocation(0, 0);
+//		A1.setActualLocation(0, 0);
 	}
 
 	public void setCurrentSamurai(int i){
@@ -164,6 +177,12 @@ public class GamePanel extends Pane implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
+		
+		//待添加
+		//每个武士占领的block数
+		//点move或者occupy之后的方向选择信息
+		//点方向之后的block高亮信息
+		
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
 
@@ -181,6 +200,7 @@ public class GamePanel extends Pane implements Observer{
 
 		}else if(key.equals("actionPoint")){
 			this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
+			this.actionPanel.setPointsRest((int)notifingObject.getValue());
 
 		}else if(key.equals("pointsTotal")){
 			this.currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
@@ -195,6 +215,7 @@ public class GamePanel extends Pane implements Observer{
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			
 		}else if(key.equals("samuraiOccupy")){
+			this.currentSamurai.occupy((int)notifingObject.getValue());
 
 		}else if(key.equals("samuraiKilled")){
 
@@ -256,7 +277,7 @@ public class GamePanel extends Pane implements Observer{
 			
 		}else if(key.equals("home")){
 			SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
-			SamuraiView tmpView = null;
+			SamuraiPanel tmpView = null;
 			switch (samuraiPO.getNumber()){
 				case 1:
 					tmpView = this.A1;

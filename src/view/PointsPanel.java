@@ -1,6 +1,10 @@
 package view;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
 import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,10 +20,12 @@ public class PointsPanel extends Pane {
 //	private int labelX;
 
 	private int player;
-	private int pointsTotal = 7;
-	private int pointsRest = 6;
-	private int currentSamurai = 2;
+	private int pointsTotal;
+	private int pointsRest;
+	private int currentSamurai;
 	private boolean isShow;
+	
+	private Rectangle fillRect;
 	
 	public PointsPanel(int player) {
 		this.player = player;
@@ -43,24 +49,19 @@ public class PointsPanel extends Pane {
 		bgRect.setFill(Color.WHITE);
 		this.getChildren().add(bgRect);
 		
-		//fill
-		Rectangle fillRect = new Rectangle();
+		//fill		
+		fillRect = new Rectangle();
 		fillRect.setX(strokeSize);
 		fillRect.setY(strokeSize);
-		fillRect.setWidth(PANEL_WIDTH/pointsTotal*pointsRest);
+		fillRect.setWidth(PANEL_WIDTH);
 		fillRect.setHeight(PANEL_HEIGHT);
+		fillRect.setArcWidth(PANEL_HEIGHT);
+		fillRect.setArcHeight(PANEL_HEIGHT);
+		this.getChildren().add(fillRect);
 		
-		Rectangle clipRect = new Rectangle();
-		clipRect.setX(strokeSize);
-		clipRect.setY(strokeSize);
-		clipRect.setWidth(PANEL_WIDTH);
-		clipRect.setHeight(PANEL_HEIGHT);
-		clipRect.setArcWidth(PANEL_HEIGHT);
-		clipRect.setArcHeight(PANEL_HEIGHT);
-
-		Shape fillShape = Shape.intersect(clipRect, fillRect);
-		fillShape.setFill(GameColor.getBlockColor(currentSamurai));
-		this.getChildren().add(fillShape);
+		//string
+		
+		
 	}
 	
 	public void setIsShow(boolean isShow){
@@ -79,17 +80,26 @@ public class PointsPanel extends Pane {
 	
 	public void setCurrentSamurai(int currentSamurai){
 		this.currentSamurai = currentSamurai;
-		//TODO
+		fillRect.setFill(GameColor.getBlockColor(currentSamurai));
 	}
 
-	public void setPointsRest(int value) {
-		// TODO Auto-generated method stub
+	public void setPointsRest(int pointsRest) {
+		this.pointsRest = pointsRest;
+		double width = (float)PANEL_WIDTH/pointsTotal*pointsRest;
+
+		Timeline timeline = new Timeline(
+				new KeyFrame(Duration.millis(500), new KeyValue(fillRect.widthProperty(),width,Interpolator.EASE_BOTH)));
+		if (player == 1){
+			KeyValue kv = new KeyValue(fillRect.xProperty(), strokeSize+(float)PANEL_WIDTH-width, Interpolator.EASE_BOTH);
+			KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+			timeline.getKeyFrames().add(kf);
+		}
+		timeline.play();
 		
 	}
 
-	public void setPointsTotal(int value) {
-		// TODO Auto-generated method stub
-		
+	public void setPointsTotal(int pointsTotal) {
+		this.pointsTotal = pointsTotal;
 	}
 
 }

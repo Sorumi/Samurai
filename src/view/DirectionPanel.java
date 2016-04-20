@@ -53,6 +53,16 @@ public class DirectionPanel extends Pane {
 		rightButton.setOnMouseClicked(actionHandler.directionEvent);
 		downButton.setOnMouseClicked(actionHandler.directionEvent);
 		
+		upButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		leftButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		rightButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		downButton.setOnMouseEntered(actionHandler.directionEnterEvent);
+		
+		upButton.setOnMouseExited(actionHandler.directionExitEvent);
+		leftButton.setOnMouseExited(actionHandler.directionExitEvent);
+		rightButton.setOnMouseExited(actionHandler.directionExitEvent);
+		downButton.setOnMouseExited(actionHandler.directionExitEvent);
+		
 		this.getChildren().add(upButton);
 		this.getChildren().add(leftButton);
 		this.getChildren().add(rightButton);
@@ -62,6 +72,15 @@ public class DirectionPanel extends Pane {
 
 	public void setHighLight(int direction, boolean isHL){
 		buttons[direction].setHighLight(isHL);
+	}
+
+
+	public void setVisible(boolean[] directions) {
+
+		upButton.setVisible(directions[0]);
+		leftButton.setVisible(directions[1]);
+		rightButton.setVisible(directions[2]);
+		downButton.setVisible(directions[3]);
 	}
 
 }
