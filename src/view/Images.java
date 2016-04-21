@@ -5,9 +5,9 @@ import javafx.scene.image.Image;
 public class Images {
 
 	//BG
-//	public static String BG_0 = Images.class.getResource("/./images/bg_0.png").toExternalForm();
 	public static Image BG_0 = new Image("/./images/bg_0.png");
 	public static Image BG_3 = new Image("/./images/bg_3.png");
+	public static Image[] BG = {BG_0, null, null, BG_3, null};
 	//cloud 
 	public static Image CLOUD_0 = new Image("/./images/cloud_0.png",true);
 	public static Image CLOUD_1 = new Image("/./images/cloud_1.png",true);

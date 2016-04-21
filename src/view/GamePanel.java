@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -9,13 +10,13 @@ import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
@@ -38,6 +39,7 @@ public class GamePanel extends Pane implements Observer{
 	protected int blockWidth;
 	protected int blockHeight;
 
+	protected BackgroundPanel backgroundPanel;
 	public ChessBoardPanel chessBoard;
 	//TODO
 	protected int timeTotal = 30;
@@ -60,7 +62,7 @@ public class GamePanel extends Pane implements Observer{
 	public ActionPanel actionPanel;
 	protected ActionHandler actionHandler;
 
-	protected BackgroundPanel backgroundPanel;
+	protected  ObservableList<OrderPanel>  orderList;
 
 	public GamePanel(int size){
 		this.size = size;
@@ -69,26 +71,14 @@ public class GamePanel extends Pane implements Observer{
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 		//background
-//		this.setStyle("-fx-background-image: url("+bgImagePath+");"
-//				+ "-fx-background-size: 100% 100%; ");
-		Image backgroundPanel0 = Images.BG_0;
-		Image backgroundPanel3 = Images.BG_3;
-		backgroundPanel = new BackgroundPanel0(backgroundPanel0);
-		this.getChildren().add(backgroundPanel);
-//		backgroundPanel.setVisible(false);
-//		backgroundPanel = new BackgroundPanel3(backgroundPanel3);
-//		this.getChildren().add(backgroundPanel);
 
-		Button exitBtn = new Button("Exit");
-		exitBtn.setLayoutX(1100);
-		exitBtn.setLayoutY(100);
-		exitBtn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
-			@Override
-			public void handle(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		this.getChildren().add(exitBtn);
+		backgroundPanel = new BackgroundPanel0();
+//		backgroundPanel = new BackgroundPanel3();
+		this.getChildren().add(backgroundPanel);
+
+		//systembutton
+		SystemButtonPanel systemButtonPanel = new SystemButtonPanel();
+		this.getChildren().add(systemButtonPanel);
 		
 		//chessboard
 		chessBoard = new ChessBoardPanel(size);
@@ -125,10 +115,29 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().add(B2);
 		this.getChildren().add(B3);
 
-		//TODO
-//		A1.setActualLocation(0, 0);
+		//add
+		backgroundPanel.setZOrder(-999);
+		chessBoard.setZOrder(-2);
+		arrow.setZOrder(-1);
+		actionPanel.setZOrder(-1);
+		playerA.setZOrder(999);
+		playerB.setZOrder(999);
+		systemButtonPanel.setZOrder(-3);
+		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, systemButtonPanel);
+		
 	}
-
+	
+	public void setOrder(){
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				Collections.sort(orderList);
+				GamePanel.this.getChildren().setAll(orderList);
+			}
+		});
+	}
+	
 	public void setCurrentSamurai(int i){
 		if(currentSamurai != null){
 			currentSamurai.setOnMouseClicked(null);
@@ -153,6 +162,7 @@ public class GamePanel extends Pane implements Observer{
 				this.currentSamurai = B3;
 				break;
 		}
+		currentSamurai.setCanActionProperty(true);
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		arrow.setCurrentSamurai(currentSamurai);
 		actionPanel.setCurrentSamurai(currentSamurai);
@@ -239,8 +249,8 @@ public class GamePanel extends Pane implements Observer{
 //			this.currentSamurai.setActualLocation(position.getX(), position.getY());
 			this.currentSamurai.move(position.getX(), position.getY());
 			this.actionPanel.reset();
-
-
+			this.setOrder();
+			
 		}else if(key.equals("samuraiHide")){
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			

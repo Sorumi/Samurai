@@ -15,8 +15,8 @@ public class BackgroundPanel0 extends BackgroundPanel{
 	private ImageView cloud1;
 	private ImageView cloud2;
 	
-	public BackgroundPanel0(Image image){
-		super(image);
+	public BackgroundPanel0(){
+		super(0);
 
 		this.cloud0 = new ImageView(Images.CLOUD_0);
 		this.cloud1 = new ImageView(Images.CLOUD_1);

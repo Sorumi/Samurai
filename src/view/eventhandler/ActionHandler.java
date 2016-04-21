@@ -28,7 +28,8 @@ public class ActionHandler {
 	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();
 	    	  if(currentSamurai.canActionProperty().get()){
 	    		  gamePanel.actionPanel.setAppear(true, true);
-	    		  gamePanel.arrow.setVisible(false);
+	    		  gamePanel.arrow.setAppear(false);
+	    		  gamePanel.setOrder();
 	    	  }
 	      }
 	};
@@ -36,9 +37,10 @@ public class ActionHandler {
 	public EventHandler<MouseEvent> actionPanelDisappearEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  if (event.getButton() == MouseButton.SECONDARY) {
-	    	  gamePanel.actionPanel.setAppear(false, true);
-	    	  gamePanel.arrow.setVisible(true);
-	    	  }
+	    		  gamePanel.actionPanel.setAppear(false, true);
+	    		  gamePanel.arrow.setAppear(true);
+	    		  gamePanel.setOrder();
+	    	  }  
 	      }
 	};
 

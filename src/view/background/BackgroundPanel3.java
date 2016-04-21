@@ -28,8 +28,8 @@ public class BackgroundPanel3 extends BackgroundPanel {
 	
 	private Arc arc1,arc2,arc3,arc4;
 	
-	public BackgroundPanel3(Image image){
-		super(image);
+	public BackgroundPanel3(){
+		super(3);
 
 		this.fish0 = new ImageView(Images.FISH_0);
 		this.fish1 = new ImageView(Images.FISH_1);

@@ -10,7 +10,7 @@ import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 
-public class ChessBoardPanel extends Pane implements Observer{
+public class ChessBoardPanel extends OrderPanel implements Observer{
 
 	BlockView[][] blocks;
 	

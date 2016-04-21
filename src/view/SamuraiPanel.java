@@ -8,12 +8,10 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class SamuraiPanel extends Pane {
+public class SamuraiPanel extends OrderPanel {
 
 	private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
@@ -84,6 +82,7 @@ public class SamuraiPanel extends Pane {
 		this.y = y;
 		this.setLayoutX(chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset +selfWidthOffset);
 		this.setLayoutY(chessBoardHeightOffset+(x+y)*blockHeightOffset +selfHeightOffset);
+		this.zOrder = x + y;
 	}
 
 	public void setHide(boolean isHide) {
@@ -124,7 +123,8 @@ public class SamuraiPanel extends Pane {
 		timeline.play();
 		this.x = x;
 		this.y = y;
-
+		this.zOrder = x + y;
+		
 		timeline.setOnFinished(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
@@ -137,6 +137,10 @@ public class SamuraiPanel extends Pane {
 	
 	public BooleanProperty canActionProperty(){
 		return this.canAction;
+	}
+	
+	public void setCanActionProperty(boolean canAction){
+		this.canAction.set(canAction);
 	}
 
 }

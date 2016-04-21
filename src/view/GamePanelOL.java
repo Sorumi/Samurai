@@ -52,7 +52,7 @@ public class GamePanelOL extends GamePanel{
             arrow.setCurrentSamurai(currentSamurai);
             actionPanel.setCurrentSamurai(currentSamurai);
         }else{
-            arrow.setInvisible();
+            arrow.setVisible(false);
             actionPanel.setVisible(false);
         }
     }

@@ -12,8 +12,8 @@ public class DirectionPanel extends Pane {
 	
 	private final int DIRECTION_WIDTH = 49;
 	private final int DIRECTION_HEIGHT = 35;
-	private final int WIDTH_FIX = 20;
-	private final int HEIGHT_FIX = 10;
+	private final int WIDTH_FIX = 24;
+	private final int HEIGHT_FIX = 12;
 
 	
 	private boolean canUp;

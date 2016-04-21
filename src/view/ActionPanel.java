@@ -1,20 +1,14 @@
 package view;
 
-import controller.msgqueue.ActionOperation;
-import controller.msgqueue.NextOperation;
-import controller.msgqueue.Operation;
-import controller.msgqueue.OperationQueue;
 import javafx.animation.Interpolator;
-import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import view.eventhandler.ActionHandler;
 
-public class ActionPanel extends Pane {
+public class ActionPanel extends OrderPanel {
 	private final int BUTTONPANEL_WIDTH = 208;
 	private final int BUTTONPANEL_HEIGHT = 300;
 	private final int BUTTON_WIDTH = 58;
@@ -112,6 +106,11 @@ public class ActionPanel extends Pane {
 	public void setAppear(boolean isAppear, boolean animation){
 		if(isAppear == this.isAppear){
 			return;
+		}
+		if(isAppear){
+			this.setZOrder(900);
+		}else{
+			this.setZOrder(-1);
 		}
 		this.setActualLocation();
 		if(animation){

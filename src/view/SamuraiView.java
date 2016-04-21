@@ -13,12 +13,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
-import javafx.scene.transform.Scale;
 import javafx.util.Duration;
 
 public class SamuraiView extends Pane{
@@ -169,6 +165,13 @@ public class SamuraiView extends Pane{
 //		weapon.getTransforms().add(weaponRo);
 		
 		this.setDirection(direction);//初始方向
+		
+		orderList.addListener(new ListChangeListener() {
+            @Override
+            public void onChanged(ListChangeListener.Change change) {
+                group.getChildren().setAll(orderList);
+            }
+        });
 	}
 	
 	
@@ -248,7 +251,6 @@ public class SamuraiView extends Pane{
 			public void run() {
 				// TODO Auto-generated method stub
 				Collections.sort(orderList);
-				group.getChildren().setAll(orderList);
 			}
 		});
 	}

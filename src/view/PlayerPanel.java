@@ -2,7 +2,7 @@ package view;
 
 import javafx.scene.layout.Pane;
 
-public class PlayerPanel extends Pane {
+public class PlayerPanel extends OrderPanel {
 	
 
 	private int panelWidth;
