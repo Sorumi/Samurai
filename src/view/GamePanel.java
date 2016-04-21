@@ -5,17 +5,11 @@ import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
-import controller.MenuController;
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import model.UpdateMessage;
 import model.po.ActualBlock;
@@ -57,6 +51,8 @@ public class GamePanel extends Pane implements Observer{
 	protected PlayerPanel currentPlayer;
 	protected PlayerPanel playerA;
 	protected PlayerPanel playerB;
+	
+	protected RoundPanel roundPanel;
 
 	public Arrow arrow;
 	public ActionPanel actionPanel;
@@ -84,6 +80,10 @@ public class GamePanel extends Pane implements Observer{
 		chessBoard = new ChessBoardPanel(size);
 		this.getChildren().add(chessBoard);
 
+		//round
+		roundPanel = new RoundPanel(roundTotal);
+		this.getChildren().add(roundPanel);
+		
 		//player
 		playerA = new PlayerPanel(0, timeTotal);
 		playerB = new PlayerPanel(1, timeTotal);
@@ -203,6 +203,7 @@ public class GamePanel extends Pane implements Observer{
 	}
 
 	public void setCurrentRound(int round){
+		roundPanel.setRoundCurrent(round);
 		if(this.currentPlayer == playerA){
 			playerA.circlePanel.setNewTime(true);
 			playerB.circlePanel.setNewTime(false);
@@ -246,7 +247,6 @@ public class GamePanel extends Pane implements Observer{
 
 		}else if(key.equals("samuraiMove")){
 			Position position = (Position)notifingObject.getValue();
-//			this.currentSamurai.setActualLocation(position.getX(), position.getY());
 			this.currentSamurai.move(position.getX(), position.getY());
 			this.actionPanel.reset();
 			this.setOrder();

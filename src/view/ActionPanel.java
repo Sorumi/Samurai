@@ -76,6 +76,9 @@ public class ActionPanel extends OrderPanel {
 		this.setAppear(false, false);
 		this.closeSecondary();
 		this.setActualLocation();
+		moveButton.setTrue();
+		occupyButton.setTrue();
+		hideButton.setTrue();
 	}
 	
 	public void setActualLocation(){
@@ -227,13 +230,13 @@ public class ActionPanel extends OrderPanel {
 	public void setPointsRest(int pointsRest) {
 		this.pointsRest = pointsRest;
 		if(pointsRest < occupyButton.pointsCost){
-			occupyButton.setGray();
+			occupyButton.setFalse();
 		}
 		if(pointsRest < moveButton.pointsCost){
-			moveButton.setGray();
+			moveButton.setFalse();
 		}
 		if(pointsRest < hideButton.pointsCost){
-			hideButton.setGray();
+			hideButton.setFalse();
 		}
 	}
 }
