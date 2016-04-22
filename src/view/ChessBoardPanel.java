@@ -60,7 +60,7 @@ public class ChessBoardPanel extends OrderPanel implements Observer{
 			if((!GameModel.isClient() && !GameModel.isServer()) || this.tmpBlocks.contains(block)) {
 				int x = block.getX();
 				int y = block.getY();
-				blocks[x][y].setInvision(block.getState());
+				blocks[x][y].changeState(block.getState());
 			}
 		}
 	}

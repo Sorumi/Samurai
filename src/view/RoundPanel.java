@@ -1,5 +1,10 @@
 package view;
 
+import javafx.animation.FillTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
@@ -7,12 +12,14 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
+import javafx.util.Duration;
 
 public class RoundPanel extends OrderPanel{
 	
 	private Label roundTotal;
 	private Label roundCurrent;
 	private Circle currentRing;
+	private int currentSamurai;
 
 	public RoundPanel(int total){
 		//bounds
@@ -20,7 +27,7 @@ public class RoundPanel extends OrderPanel{
 		this.setLayoutY(30);
 		this.setPrefWidth(137);
 		this.setPrefHeight(72);
-		this.setStyle("-fx-background-color: #DDDDDD");
+//		this.setStyle("-fx-background-color: #DDDDDD");
 		
 		Rectangle totalCircle = new Rectangle();
 		totalCircle.setWidth(100);
@@ -61,7 +68,6 @@ public class RoundPanel extends OrderPanel{
 		roundTotal.setLayoutX(70);
 		roundTotal.setLayoutY(23);
 		roundTotal.setPrefWidth(50);
-//		roundTotal.setStyle("-fx-background-color: #DDDDDD");
 		this.getChildren().add(roundTotal);
 		
 		roundCurrent = new Label("30");
@@ -71,18 +77,33 @@ public class RoundPanel extends OrderPanel{
 		roundCurrent.setLayoutX(2);
 		roundCurrent.setLayoutY(22);
 		roundCurrent.setPrefWidth(70);
-//		roundCurrent.setStyle("-fx-background-color: #DDDDDD");
 		this.getChildren().add(roundCurrent);
 		
 	}
 	
 	public void setRoundTotal(int total){
-		roundTotal.setText(total + "");
+		 Platform.runLater(new Runnable(){
+	  			@Override
+	  			public void run() {
+	  				roundTotal.setText(total + "");
+	  			}
+		 });
 	}
 	
 	public void setRoundCurrent(int current){
-		roundCurrent.setText(current + "");
-		currentRing.setStroke(GameColor.getBlockColor(current%6));
+		 Platform.runLater(new Runnable(){
+	  			@Override
+	  			public void run() {
+	  				roundCurrent.setText(current + "");
+	  			}
+		 });
+		
+	}
+
+	public void setCurrentSamurai(int num) {
+
+		Timeline tl = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(currentRing.strokeProperty(), GameColor.getBlockColor(num))));
+		tl.play();
 	}
 	
 }

@@ -2,6 +2,9 @@ package view;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.FillTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.StrokeType;
@@ -44,20 +47,26 @@ public class BlockView extends Polygon {
 		this.setLayoutY((x+y)*height/2);
 	}
 	
+	public void changeState(int state){
+		Color newColor = GameColor.getBlockColor(state);
+		if(!newColor.equals(color)){
+				Timeline tl = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.fillProperty(), newColor)));
+				tl.play();
+		}
+	}
 	public void setInvision(int state){
 		currentStrokeSize = stateStrokeSize;
 		Color newColor = GameColor.getBlockColor(state);
-//		FillTransition ft = new FillTransition(Duration.millis(800), this, this.color, newColor);
-//		ft.play();
 		this.color = newColor;
 		this.setFill(newColor);
-		
+		this.setStrokeWidth(currentStrokeSize);
 	}
 	
 	public void setOutvision(){
-		currentStrokeSize = 0;//TODO
+		currentStrokeSize = 0;
 		Color newColor = GameColor.getBlockColor(99);
 		this.setFill(newColor);
+		this.setStrokeWidth(currentStrokeSize);
 	}
 
 	public void setHome() {
