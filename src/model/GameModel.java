@@ -95,7 +95,7 @@ public class GameModel extends BaseModel implements Observer {
             case 0:
                 this.assignNext();
                 break;
-            case 1:
+            case 99:
                 this.assignNextWithAI();
                 break;
             default:
@@ -377,7 +377,7 @@ public class GameModel extends BaseModel implements Observer {
                 case 0:
                     this.assignNext();
                     break;
-                case 1:
+                case 99:
                     this.assignNextWithAI();
                     break;
                 default:
