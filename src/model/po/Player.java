@@ -209,6 +209,11 @@ public class Player {
             this.gameModel.actionPerformed(actionNum);
         }
         if(this.actionPoint == 0){
+            try{
+                Thread.sleep(2000);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             this.actionDone();
         }
     }
