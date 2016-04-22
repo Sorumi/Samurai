@@ -102,8 +102,8 @@ public class GameModel extends BaseModel implements Observer {
                 break;
         }
 
-//        if(!isServer && !isClient){
-        if(!isServer){
+        if(!isServer && !isClient){
+//        if(!isServer){
             this.timer = new Timer();
             this.timer.schedule(new countDownTask(), 0, 1000);
         }
@@ -170,7 +170,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void attackSamurai(int samurai, int attackPoint, int armorPuncture){
-    	    double attackPointDouble=attackPoint;
+        double attackPointDouble=attackPoint;
         switch (samurai){
             case 1:
                 if(!this.players[0].getSamuraiOfNum(1).checkMiss()){
@@ -445,8 +445,8 @@ public class GameModel extends BaseModel implements Observer {
 
     public class countDownTask extends java.util.TimerTask{
         public void run() {
-//            if(!isServer && !isClient) {
-            if(!isServer) {
+            if(!isServer && !isClient) {
+//            if(!isServer) {
 //                Thread.sleep(1000);
                 OperationQueue.addOperation(new TimeOperation());
             }
