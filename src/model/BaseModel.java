@@ -16,13 +16,7 @@ public class BaseModel extends Observable {
 	 * @param data
 	 */
 	protected void updateChange(UpdateMessage message){
-		Platform.runLater(new Runnable(){
-  			@Override
-  			public void run() {
-  				BaseModel.super.setChanged();
-  				BaseModel.super.notifyObservers(message);
-  			}
-  		});
-
+  		BaseModel.super.setChanged();
+  		BaseModel.super.notifyObservers(message);
 	}
 }

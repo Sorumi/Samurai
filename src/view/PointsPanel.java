@@ -99,7 +99,12 @@ public class PointsPanel extends Pane {
 
 	public void setPointsRest(int pointsRest) {
 		this.pointsRest = pointsRest;
-		pointsLabel.setText(pointsRest + "");
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				pointsLabel.setText(pointsRest + "");
+			}
+		});
 
 		double width = (float)PANEL_WIDTH/pointsTotal*pointsRest;
 
