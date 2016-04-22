@@ -115,7 +115,16 @@ public class SamuraiPanel extends OrderPanel {
 	
 	public void move(int x, int y){
 		canAction.setValue(false);
-		samuraiV.move(2);
+		if( x < this.x ){
+			samuraiV.move(0);
+		}else if( x > this.x ){
+			samuraiV.move(3);
+		}else if( y < this.y ){
+			samuraiV.move(1);
+		}else if( y > this.y ){
+			samuraiV.move(2);
+		}
+
 		Timeline timeline = new Timeline(
 				new KeyFrame(Duration.millis(1200), new KeyValue(this.layoutXProperty(), chessBoardWidthOffset+FIELD_WIDTH/2+(y-x)*blockWidthOffset +selfWidthOffset)),
 				new KeyFrame(Duration.millis(1200), new KeyValue(this.layoutYProperty(), chessBoardHeightOffset+(x+y)*blockHeightOffset +selfHeightOffset))

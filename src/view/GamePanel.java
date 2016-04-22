@@ -33,6 +33,7 @@ public class GamePanel extends Pane implements Observer{
 	protected int blockWidth;
 	protected int blockHeight;
 
+	protected SystemButtonPanel systemButtonPanel;
 	protected BackgroundPanel backgroundPanel;
 	public ChessBoardPanel chessBoard;
 	//TODO
@@ -73,7 +74,7 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().add(backgroundPanel);
 
 		//systembutton
-		SystemButtonPanel systemButtonPanel = new SystemButtonPanel();
+		systemButtonPanel = new SystemButtonPanel();
 		this.getChildren().add(systemButtonPanel);
 		
 		//chessboard
@@ -117,13 +118,15 @@ public class GamePanel extends Pane implements Observer{
 
 		//add
 		backgroundPanel.setZOrder(-999);
+		systemButtonPanel.setZOrder(-3);
 		chessBoard.setZOrder(-2);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
-		systemButtonPanel.setZOrder(-3);
-		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, systemButtonPanel);
+		roundPanel.setZOrder(999);
+
+		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemButtonPanel);
 		
 	}
 	
@@ -168,6 +171,7 @@ public class GamePanel extends Pane implements Observer{
 		actionPanel.setCurrentSamurai(currentSamurai);
 		playerA.setCurrentSamurai(currentSamurai.getNum());
 		playerB.setCurrentSamurai(currentSamurai.getNum());
+		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		
 		//add
 		currentSamurai.canActionProperty().addListener(new ChangeListener(){
@@ -204,6 +208,7 @@ public class GamePanel extends Pane implements Observer{
 
 	public void setCurrentRound(int round){
 		roundPanel.setRoundCurrent(round);
+//		System.out.println(round);
 		if(this.currentPlayer == playerA){
 			playerA.circlePanel.setNewTime(true);
 			playerB.circlePanel.setNewTime(false);
