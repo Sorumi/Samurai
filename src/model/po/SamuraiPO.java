@@ -12,6 +12,8 @@ import model.ChessBoardModel;
  * @author SilverNarcissus
  *
  */
+// cheers!
+// 4.18 code lines reached 1000 lines!
 
 public class SamuraiPO implements Serializable, Cloneable {
 	private int experience;
@@ -961,11 +963,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.armor = armor;
 	}
 
-	// 返回伤害降低比率*100
+	// 返回人物的总护甲值
 	public int getArmorRate() {
-		double doubleArmorValue = armorValue + armor.getArmorValue();
-		double cache = doubleArmorValue / (doubleArmorValue + 100);
-		return (int) (cache * 100);
+		return (armorValue + armor.getArmorValue());
 	}
 
 	// 返回是否MISS
@@ -979,15 +979,21 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
-	// 返回一个暴击率考虑进去的伤害值(没有减护甲)
-	public int getAttackPoint() {
+	// 返回一个数组
+	// 第一位是暴击率考虑进去的伤害值
+	// 第二位是武器的护甲穿透
+	public int[] getAttackPoint() {
 		int criticalHitRate = criticalHitChance + weapon.getCriticalRate();
+		int armorPenetration = weapon.getArmorPenetration();
+		int[] result = new int[2];
 		Random random = new Random();
 		if (random.nextInt(99) + 1 <= criticalHitRate) {
-			return weapon.getAttackPoint() * 2;
+			result[0] = (weapon.getAttackPoint() + attackValue) * 2;
 		} else {
-			return weapon.getAttackPoint();
+			result[0] = weapon.getAttackPoint() + attackValue;
 		}
+		result[1] = armorPenetration;
+		return result;
 	}
 
 	public Weapon getWeapon() {
