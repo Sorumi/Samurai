@@ -88,15 +88,6 @@ public class PointsPanel extends Pane {
 	}
 	
 	public void setIsShow(boolean isShow){
-//		if (isShow != this.isShow){
-//			ScaleTransition st = new ScaleTransition(Duration.millis(1000), this);
-//			if(isShow){
-//				st.setToX(10f);
-//			}else{
-//				st.setToX(0.1f);
-//			}
-//			st.play();
-//		}
 		this.isShow = isShow;
 		this.setVisible(isShow);
 	}
@@ -108,12 +99,7 @@ public class PointsPanel extends Pane {
 
 	public void setPointsRest(int pointsRest) {
 		this.pointsRest = pointsRest;
-		Platform.runLater(new Runnable(){
-  			@Override
-  			public void run() {
-  				pointsLabel.setText(pointsRest + "");
-  			}
-  		});
+		pointsLabel.setText(pointsRest + "");
 
 		double width = (float)PANEL_WIDTH/pointsTotal*pointsRest;
 
