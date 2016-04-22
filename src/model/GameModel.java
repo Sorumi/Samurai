@@ -102,7 +102,8 @@ public class GameModel extends BaseModel implements Observer {
                 break;
         }
 
-        if(!isServer && !isClient){
+//        if(!isServer && !isClient){
+        if(!isServer){
             this.timer = new Timer();
             this.timer.schedule(new countDownTask(), 0, 1000);
         }
@@ -166,6 +167,78 @@ public class GameModel extends BaseModel implements Observer {
                 break;
         }
         super.updateChange(new UpdateMessage("samuraiKilled",i));
+    }
+
+    public void attackSamurai(int samurai, int attackPoint, int armorPuncture){
+    	    double attackPointDouble=attackPoint;
+        switch (samurai){
+            case 1:
+                if(!this.players[0].getSamuraiOfNum(1).checkMiss()){
+                    double ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
+                    if(ta > 0){
+                    	attackPointDouble *= (ta / (ta + 100));
+                    }else{
+                    	attackPointDouble *= 1.5;
+                    }
+                    this.players[0].getSamuraiOfNum(1).injure((int)attackPointDouble);
+                }
+                break;
+            case 2:
+                if(!this.players[0].getSamuraiOfNum(2).checkMiss()){
+                    double ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
+                    if(ta > 0){
+                    	attackPointDouble *= (ta / (ta + 100));
+                    }else{
+                    	attackPointDouble *= 1.5;
+                    }
+                    this.players[0].getSamuraiOfNum(2).injure((int)attackPointDouble);
+                }
+                break;
+            case 3:
+                if(!this.players[0].getSamuraiOfNum(3).checkMiss()){
+                    double ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
+                    if(ta > 0){
+                    	attackPointDouble *= (ta / (ta + 100));
+                    }else{
+                    	attackPointDouble *= 1.5;
+                    }
+                    this.players[0].getSamuraiOfNum(3).injure((int)attackPointDouble);
+                }
+                break;
+            case 4:
+                if(!this.players[1].getSamuraiOfNum(1).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
+                    if(ta > 0){
+                    	attackPointDouble *= (ta / (ta + 100));
+                    }else{
+                    	attackPointDouble *= 1.5;
+                    }
+                    this.players[1].getSamuraiOfNum(1).injure((int)attackPointDouble);
+                }
+                break;
+            case 5:
+                if(!this.players[1].getSamuraiOfNum(2).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
+                    if(ta > 0){
+                    	attackPointDouble *= (ta / (ta + 100));
+                    }else{
+                    	attackPointDouble *= 1.5;
+                    }
+                    this.players[1].getSamuraiOfNum(2).injure((int)attackPointDouble);
+                }
+                break;
+            case 6:
+                if(!this.players[1].getSamuraiOfNum(3).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
+                    if(ta > 0){
+                    	attackPointDouble *= (ta / (ta + 100));
+                    }else{
+                    	attackPointDouble *= 1.5;
+                    }
+                    this.players[1].getSamuraiOfNum(3).injure((int)attackPoint);
+                }
+                break;
+        }
     }
 
     public void updateHide(boolean isHide){
@@ -372,15 +445,24 @@ public class GameModel extends BaseModel implements Observer {
 
     public class countDownTask extends java.util.TimerTask{
         public void run() {
-            if(!isServer && !isClient) {
+//            if(!isServer && !isClient) {
+            if(!isServer) {
+//                Thread.sleep(1000);
                 OperationQueue.addOperation(new TimeOperation());
             }
         }
     }
 
     public void countDown(){
-
+        System.out.println("COUNT DOWN!");
         if(this.currentTime > 0) {
+
+//            if(this.playerSeq[this.currentPlayer - 1] == 0){
+//                Operation.setServer(true);
+//            }else{
+//                Operation.setServer(false);
+//            }
+
             super.updateChange(new UpdateMessage("time", this.currentTime));
             this.currentTime--;
         }else{
