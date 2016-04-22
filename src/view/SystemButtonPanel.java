@@ -13,7 +13,7 @@ public class SystemButtonPanel extends OrderPanel{
 		this.setPrefWidth(1200);
 		
 		this.exitBtn = new Button("Exit");
-		exitBtn.setLayoutX(1100);
+		exitBtn.setLayoutX(100);
 		exitBtn.setLayoutY(50);
 		exitBtn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
 			@Override

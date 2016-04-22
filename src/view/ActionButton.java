@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.control.Button;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -10,6 +11,7 @@ public class ActionButton extends Pane {
 	private ImageView imageFront;
 	public int pointsCost;
 	public int action;
+	public boolean canAction;
 	
 	public ActionButton(int action){
 		this.action = action;
@@ -28,11 +30,21 @@ public class ActionButton extends Pane {
 		case 3:
 			pointsCost = 0;break;
 		}
+		this.canAction = true;
 	}
 
-	public void setGray() {
+	public void setFalse() {
 		// TODO Auto-generated method stub
-		
+
+		 ColorAdjust grayColor = new ColorAdjust();
+		 grayColor.setSaturation(-0.9);
+		 
+		 imageFront.setEffect(grayColor);
+		 this.canAction = false;
 	}
 	
+	public void setTrue(){
+		imageFront.setEffect(null);
+		this.canAction = true;
+	}
 }
