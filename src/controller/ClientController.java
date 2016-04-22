@@ -19,6 +19,7 @@ public class ClientController {
 
         GameModel gameModel = new GameModel(client);
         clientH.addObserver(gameModel);
+        GameModel.setServer(false);
 
         Operation.setServer(false);
 

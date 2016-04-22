@@ -162,6 +162,13 @@ public class Player {
                                     true);
                             for(Integer integer : killedSamurais){
                                 this.gameModel.updateKilled(integer);
+
+                                if(this.gameModel.getLevel() >= 11 && this.gameModel.getLevel() <= 20){
+                                    this.gameModel.attackSamurai(integer,
+                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[0],
+                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[1]);
+                                }
+
                             }
                         }
                     }
