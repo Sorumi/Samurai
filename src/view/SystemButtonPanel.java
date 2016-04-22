@@ -1,8 +1,11 @@
 package view;
 
+import controller.msgqueue.EndOperation;
+import controller.msgqueue.OperationQueue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import model.GameModel;
 
 public class SystemButtonPanel extends OrderPanel{
 
@@ -18,7 +21,9 @@ public class SystemButtonPanel extends OrderPanel{
 		exitBtn.setOnAction(new EventHandler<ActionEvent>() {//注册事件handler
 			@Override
 			public void handle(ActionEvent e) {
-				System.exit(0);
+				OperationQueue.addOperation(new EndOperation());
+
+//				System.exit(0);
 			}
 		});
 		this.getChildren().add(exitBtn);

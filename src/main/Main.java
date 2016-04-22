@@ -42,30 +42,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		
-		//下面开始为联机测试方法 勿动 KrayC
-//		System.out.println("Are you a server(0) or a client(1) or alone(2)?");
-//		Scanner s = new Scanner(System.in);
-//		int i = s.nextInt();
-//		if(i == 0) {
-//			this.gamePanel = new GamePanelOL(15);
-//
-//			this.initPanel(primaryStage);
-//
-//			System.out.println("Waiting for client...");
-//			HostController hostController = new HostController();
-//			hostController.serviceSetupHost(this);
-//		}else if(i == 1){
-//
-//		}else{
-//			this.gamePanel = new GamePanel(15);
-//
-//			this.initPanel(primaryStage);
-//
-//			MenuController menuController = new MenuController();
-//			menuController.startGame();
-//		}
-		
 		menuPanel = new MenuPanel(this);
 		menuPanel.setPrefWidth(1200);
 		menuPanel.setPrefHeight(800);
@@ -76,12 +52,11 @@ public class Main extends Application {
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 		
-		
 	}
 
 	public void startGame(){
 		scene.setRoot(gamePanel);
-		this.gameModel = new GameModel(24, 14, this, 99);
+		this.gameModel = new GameModel(24, 14, this, 0);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		

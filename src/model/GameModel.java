@@ -384,14 +384,20 @@ public class GameModel extends BaseModel implements Observer {
                     break;
             }
         }else{
-            this.gameOver();
+            OperationQueue.addOperation(new EndOperation());
         }
     }
 
     public boolean gameOver(){
         this.gameState = GameState.OVER;
-        this.timer.cancel();
+        if(this.timer != null) {
+            this.timer.cancel();
+        }
         super.updateChange(new UpdateMessage("over",this.chessBoardModel));
+
+        //暂时先exit(0)
+        System.exit(0);
+
         return true;
     }
 
