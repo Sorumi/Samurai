@@ -170,71 +170,72 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void attackSamurai(int samurai, int attackPoint, int armorPuncture){
+    	    double attackPointDouble=attackPoint;
         switch (samurai){
             case 1:
                 if(!this.players[0].getSamuraiOfNum(1).checkMiss()){
-                    int ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
+                    double ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPoint *= (ta / (ta + 100));
+                    	attackPointDouble *= (ta / (ta + 100));
                     }else{
-                        attackPoint *= 1.5;
+                    	attackPointDouble *= 1.5;
                     }
-                    this.players[0].getSamuraiOfNum(1).injure(attackPoint);
+                    this.players[0].getSamuraiOfNum(1).injure((int)attackPointDouble);
                 }
                 break;
             case 2:
                 if(!this.players[0].getSamuraiOfNum(2).checkMiss()){
-                    int ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
+                    double ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPoint *= (ta / (ta + 100));
+                    	attackPointDouble *= (ta / (ta + 100));
                     }else{
-                        attackPoint *= 1.5;
+                    	attackPointDouble *= 1.5;
                     }
-                    this.players[0].getSamuraiOfNum(2).injure(attackPoint);
+                    this.players[0].getSamuraiOfNum(2).injure((int)attackPointDouble);
                 }
                 break;
             case 3:
                 if(!this.players[0].getSamuraiOfNum(3).checkMiss()){
-                    int ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
+                    double ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPoint *= (ta / (ta + 100));
+                    	attackPointDouble *= (ta / (ta + 100));
                     }else{
-                        attackPoint *= 1.5;
+                    	attackPointDouble *= 1.5;
                     }
-                    this.players[0].getSamuraiOfNum(3).injure(attackPoint);
+                    this.players[0].getSamuraiOfNum(3).injure((int)attackPointDouble);
                 }
                 break;
             case 4:
                 if(!this.players[1].getSamuraiOfNum(1).checkMiss()){
-                    int ta = this.players[1].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
+                    double ta = this.players[1].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPoint *= (ta / (ta + 100));
+                    	attackPointDouble *= (ta / (ta + 100));
                     }else{
-                        attackPoint *= 1.5;
+                    	attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(1).injure(attackPoint);
+                    this.players[1].getSamuraiOfNum(1).injure((int)attackPointDouble);
                 }
                 break;
             case 5:
                 if(!this.players[1].getSamuraiOfNum(2).checkMiss()){
-                    int ta = this.players[1].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
+                    double ta = this.players[1].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPoint *= (ta / (ta + 100));
+                    	attackPointDouble *= (ta / (ta + 100));
                     }else{
-                        attackPoint *= 1.5;
+                    	attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(2).injure(attackPoint);
+                    this.players[1].getSamuraiOfNum(2).injure((int)attackPointDouble);
                 }
                 break;
             case 6:
                 if(!this.players[1].getSamuraiOfNum(3).checkMiss()){
-                    int ta = this.players[1].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
+                    double ta = this.players[1].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPoint *= (ta / (ta + 100));
+                    	attackPointDouble *= (ta / (ta + 100));
                     }else{
-                        attackPoint *= 1.5;
+                    	attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(3).injure(attackPoint);
+                    this.players[1].getSamuraiOfNum(3).injure((int)attackPoint);
                 }
                 break;
         }
