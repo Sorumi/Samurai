@@ -235,7 +235,7 @@ public class GameModel extends BaseModel implements Observer {
                     }else{
                     	attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(3).injure((int)attackPoint);
+                    this.players[1].getSamuraiOfNum(3).injure((int)attackPointDouble);
                 }
                 break;
         }
@@ -277,6 +277,10 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
         super.updateChange(new UpdateMessage("visible", blocks));
+    }
+
+    public void updateOccupiedBlocks(){
+        super.updateChange(new UpdateMessage("occupiedBlocks",this.chessBoardModel.getStatesOfAllBlocks()));
     }
 
     //Assign next samurai

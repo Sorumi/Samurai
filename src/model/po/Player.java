@@ -73,6 +73,7 @@ public class Player {
                             = this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,true);
                     if(!positions.isEmpty()) {
                         this.gameModel.updateOccupy(direction);
+                        this.gameModel.updateOccupiedBlocks();
                         done = true;
                         this.actionPoint -= 4;
                         //检测需不需要把别人踢回去
@@ -209,12 +210,12 @@ public class Player {
             this.gameModel.actionPerformed(actionNum);
         }
         if(this.actionPoint == 0){
+            this.actionDone();
             try{
-                Thread.sleep(2000);
+                Thread.sleep(1200);
             }catch (Exception e){
                 e.printStackTrace();
             }
-            this.actionDone();
         }
     }
 
