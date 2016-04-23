@@ -3,8 +3,11 @@ package view;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -14,6 +17,7 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 public class CirclePanel extends Pane {
@@ -28,14 +32,22 @@ public class CirclePanel extends Pane {
 	private int timeRest;
 	private int direction;
 
-	private int[] blockNum = {0,0,0,0,0,0,0};
+	private int blocksNum;
 	
 	private ImageView logo;
-	private Arc[] arcs;
+	private BlockArc[] arcs;
 	private Arc timeArc;
+	private Label blockLabel;
 	
 	Timeline timeline;
 
+	private class BlockArc extends Arc{
+		private int blockNum;
+		
+		BlockArc(){
+			blockNum = 1;
+		}
+	}
 	
 	public CirclePanel(int player, int timeTotal) {
 		this.player = player;
@@ -51,14 +63,35 @@ public class CirclePanel extends Pane {
 		timeline = new Timeline();
 		//TODO
 		size = 15;
-		blockNum[0] = 52;
-		blockNum[1] = 38;
-		blockNum[2] = 27;
-		blockNum[3] = 32;
-		blockNum[4] = 49;
-		blockNum[5] = 23;
 		
 		//Circle
+		Circle blockCircle = new Circle();
+		if (player == 0){
+			blockCircle.setCenterX(23);
+		}else{
+			blockCircle.setCenterX(CIRCLE_RADIUS*2+strokeSize*2-23);
+		}
+		blockCircle.setCenterY(23);
+		blockCircle.setRadius(23);
+		blockCircle.setFill(Color.WHITE);
+		this.getChildren().add(blockCircle);
+		
+		Font font = Font.font("Tsukushi B Round Gothic", 14);
+		blockLabel = new Label("");
+//		blockLabel.setStyle("-fx-background-color: #eeeeee");
+		blockLabel.setFont(font);
+		blockLabel.setTextFill(GameColor.getOtherColor(2));
+		blockLabel.setPrefWidth(30);
+		if (player == 0){
+			blockLabel.setLayoutX(6);
+		}else{
+			blockLabel.setLayoutX(CIRCLE_RADIUS*2+strokeSize*2-38);
+		}
+		
+		blockLabel.setLayoutY(14);
+		blockLabel.setAlignment(Pos.CENTER);
+		this.getChildren().add(blockLabel);
+		
 		Circle bgCircle = new Circle();
 		bgCircle.setCenterX(CIRCLE_RADIUS+strokeSize);
 		bgCircle.setCenterY(CIRCLE_RADIUS+strokeSize);
@@ -70,45 +103,59 @@ public class CirclePanel extends Pane {
 		this.getChildren().add(bgCircle);
 		
 		//block Arc
-		arcs = new Arc[6];
-		double startAngle = 90.0;
-		double preAngle = -180.0*direction / (size*size);
-		for (int i=0; i<arcs.length/2; i++){
-			arcs[i] = new Arc();
-			Arc tmpArc = arcs[i];
-			tmpArc.setCenterX(CIRCLE_RADIUS+strokeSize);
-			tmpArc.setCenterY(CIRCLE_RADIUS+strokeSize);
-			tmpArc.setRadiusX(CIRCLE_RADIUS);
-			tmpArc.setRadiusY(CIRCLE_RADIUS);
-			tmpArc.setStartAngle(startAngle);
-			tmpArc.setLength(preAngle * blockNum[i]);
-			tmpArc.setType(ArcType.ROUND);
-			tmpArc.setFill(GameColor.getBlockColor(i+1));
-			this.getChildren().add(tmpArc);
-			startAngle += preAngle * blockNum[i];
+		arcs = new BlockArc[3];
+		if(player == 0){
+			double startAngle = 90.0;
+			double preAngle = -180.0 / (size*size);
+			for (int i=0; i<arcs.length; i++){
+				arcs[i] = new BlockArc();
+				BlockArc tmpArc = arcs[i];
+				tmpArc.setCenterX(CIRCLE_RADIUS+strokeSize);
+				tmpArc.setCenterY(CIRCLE_RADIUS+strokeSize);
+				tmpArc.setRadiusX(CIRCLE_RADIUS);
+				tmpArc.setRadiusY(CIRCLE_RADIUS);
+				tmpArc.setStartAngle(startAngle);
+				tmpArc.setLength(preAngle * tmpArc.blockNum);
+				tmpArc.setType(ArcType.ROUND);
+				tmpArc.setFill(GameColor.getBlockColor(i+1));
+				this.getChildren().add(tmpArc);
+				startAngle += preAngle * tmpArc.blockNum;
+			}
+		}else{
+			double startAngle = 90.0;
+			double preAngle = 180.0 / (size*size);
+			for (int i=0; i<arcs.length; i++){
+				arcs[i] = new BlockArc();
+				BlockArc tmpArc = arcs[i];
+				tmpArc.setCenterX(CIRCLE_RADIUS+strokeSize);
+				tmpArc.setCenterY(CIRCLE_RADIUS+strokeSize);
+				tmpArc.setRadiusX(CIRCLE_RADIUS);
+				tmpArc.setRadiusY(CIRCLE_RADIUS);
+				tmpArc.setStartAngle(startAngle);
+				tmpArc.setLength(preAngle * tmpArc.blockNum);
+				tmpArc.setType(ArcType.ROUND);
+				tmpArc.setFill(GameColor.getBlockColor(i+4));
+				this.getChildren().add(tmpArc);
+				startAngle += preAngle * tmpArc.blockNum;
+			}
 		}
-		startAngle = -90.0;
-		preAngle = 180.0*direction / (size*size);
-		for (int i=arcs.length/2; i<arcs.length; i++){
-			arcs[i] = new Arc();
-			Arc tmpArc = arcs[i];
-			tmpArc.setCenterX(CIRCLE_RADIUS+strokeSize);
-			tmpArc.setCenterY(CIRCLE_RADIUS+strokeSize);
-			tmpArc.setRadiusX(CIRCLE_RADIUS);
-			tmpArc.setRadiusY(CIRCLE_RADIUS);
-			tmpArc.setStartAngle(startAngle);
-			tmpArc.setLength(preAngle * blockNum[i]);
-			tmpArc.setType(ArcType.ROUND);
-			tmpArc.setFill(GameColor.getBlockColor(i+1));
-			this.getChildren().add(tmpArc);
-			startAngle += preAngle * blockNum[i];
-		}
+		
+		
 		for (int i=0; i<arcs.length; i++){
 			Arc tmpArc = arcs[i];
 			tmpArc.setOnMouseEntered(new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
 					// TODO Auto-generated method stub
+					BlockArc arc = (BlockArc) event.getSource();
+					Platform.runLater(new Runnable(){
+						@Override
+						public void run() {
+							blockLabel.setText(arc.blockNum + "");
+							blockLabel.setTextFill(arc.getFill());
+						}
+					});
+
 					Timeline timeline = new Timeline();
 					KeyValue kv1 = new KeyValue(tmpArc.radiusXProperty(), 110);
 					KeyFrame kf1 = new KeyFrame(Duration.millis(100), kv1);
@@ -123,6 +170,13 @@ public class CirclePanel extends Pane {
 				@Override
 				public void handle(MouseEvent event) {
 					// TODO Auto-generated method stub
+					Platform.runLater(new Runnable(){
+						@Override
+						public void run() {
+							blockLabel.setText(blocksNum + "");
+							blockLabel.setTextFill(GameColor.getOtherColor(2));
+						}
+					});
 					Timeline timeline = new Timeline();
 					KeyValue kv1 = new KeyValue(tmpArc.radiusXProperty(), 100);
 					KeyFrame kf1 = new KeyFrame(Duration.millis(100), kv1);
@@ -134,10 +188,13 @@ public class CirclePanel extends Pane {
 				}
 	        });
 		}
+		//blockLabel
+		blocksNum = arcs[0].blockNum + arcs[1].blockNum + arcs[2].blockNum;
+		blockLabel.setText(blocksNum + "");
 		
 		//time Arc
-		startAngle = 90.0;
-		preAngle = 180.0*direction / timeTotal;
+		double startAngle = 90.0;
+		double preAngle = 180.0*direction / timeTotal;
 		timeArc = new Arc();
 		timeArc.setCenterX(CIRCLE_RADIUS+strokeSize);
 		timeArc.setCenterY(CIRCLE_RADIUS+strokeSize);
@@ -174,6 +231,45 @@ public class CirclePanel extends Pane {
 			timeline.stop();
 			this.timeRest = 0;
 			timeArc.setLength(0);
+		}
+	}
+
+	public void setBlocks(int[] blockNum) {
+		for(int i=0; i<blockNum.length; i++){
+			arcs[i].blockNum = blockNum[i];
+		}
+		this.blocksNum = arcs[0].blockNum + arcs[1].blockNum + arcs[2].blockNum;
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				blockLabel.setText(blocksNum + "");
+//				blockLabel.setTextFill(GameColor.getOtherColor(2));
+			}
+		});
+		
+		if (player == 0){
+			double startAngle = 90.0;
+			double preAngle = -180.0 / (size*size);
+			timeline = new Timeline(
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[0].lengthProperty(), preAngle*blockNum[0])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].startAngleProperty(), startAngle+preAngle*blockNum[0])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].lengthProperty(), preAngle*blockNum[1])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].startAngleProperty(), startAngle+preAngle*blockNum[0]+preAngle*blockNum[1])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].lengthProperty(), preAngle*blockNum[2]))
+					);
+			timeline.play();
+		}else{
+			double startAngle = 90.0;
+			double preAngle = 180.0 / (size*size);
+			timeline = new Timeline(
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[0].lengthProperty(), preAngle*blockNum[0])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].startAngleProperty(), startAngle+preAngle*blockNum[0])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].lengthProperty(), preAngle*blockNum[1])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].startAngleProperty(), startAngle+preAngle*blockNum[0]+preAngle*blockNum[1])),
+					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].lengthProperty(), preAngle*blockNum[2]))
+					);
+			timeline.play();
+		
 		}
 	}
 

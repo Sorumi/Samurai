@@ -48,4 +48,5 @@ public class PlayerPanel extends OrderPanel {
 	public int getPlayer(){
 		return this.player;
 	}
+
 }

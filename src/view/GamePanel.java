@@ -350,11 +350,14 @@ public class GamePanel extends Pane implements Observer{
 			}
 			tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
 			chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
+			
 		}else if(key.equals("occupiedBlocks")){
 			int[] n = (int [])notifingObject.getValue();
-			for(int i : n){
-				System.out.println(i);
-			}
+//			for(int i : n){
+//				System.out.println(i);
+//			}
+			this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
+			this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
 		}
 	}
 	
