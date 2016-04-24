@@ -972,7 +972,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public boolean checkMiss() {
 		int missRate = dodgeChance + armor.getDodgeRate();
 		Random random = new Random();
-		if ((random.nextInt(99) + 1) <= missRate) {
+		if ((random.nextInt(100) + 1) <= missRate) {
 			return true;
 		} else {
 			return false;
@@ -987,7 +987,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		int armorPenetration = weapon.getArmorPenetration();
 		int[] result = new int[2];
 		Random random = new Random();
-		if (random.nextInt(99) + 1 <= criticalHitRate) {
+		if (random.nextInt(100) + 1 <= criticalHitRate) {
 			result[0] = (weapon.getAttackPoint() + attackValue) * 2;
 		} else {
 			result[0] = weapon.getAttackPoint() + attackValue;

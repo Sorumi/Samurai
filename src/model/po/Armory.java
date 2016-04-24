@@ -17,7 +17,7 @@ public class Armory {
 		int[] nextWeapon = { 112 };
 		swordList.add(new Weapon(1, 111, 15, 19, 0, 0, materialTag, materialItem, materialNumber, true, nextWeapon, 1));
 		materialTag = new int[] { 1, 2, 2 };
-		materialItem = new int[] { 1, 1, 2 };
+		materialItem = new int[] { 0, 0, 1 };
 		materialNumber = new int[] { 3, 2, 2 };
 		nextWeapon = new int[] { 113 };
 		swordList.add(new Weapon(1, 112, 27, 31, 0, 8, materialTag, materialItem, materialNumber, true, nextWeapon, 0));
