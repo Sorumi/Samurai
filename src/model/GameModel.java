@@ -95,7 +95,7 @@ public class GameModel extends BaseModel implements Observer {
             case 0:
                 this.assignNext();
                 break;
-            case 1:
+            case 99:
                 this.assignNextWithAI();
                 break;
             default:
@@ -235,7 +235,7 @@ public class GameModel extends BaseModel implements Observer {
                     }else{
                     	attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(3).injure((int)attackPoint);
+                    this.players[1].getSamuraiOfNum(3).injure((int)attackPointDouble);
                 }
                 break;
         }
@@ -277,6 +277,10 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
         super.updateChange(new UpdateMessage("visible", blocks));
+    }
+
+    public void updateOccupiedBlocks(){
+        super.updateChange(new UpdateMessage("occupiedBlocks",this.chessBoardModel.getStatesOfAllBlocks()));
     }
 
     //Assign next samurai
@@ -373,21 +377,27 @@ public class GameModel extends BaseModel implements Observer {
                 case 0:
                     this.assignNext();
                     break;
-                case 1:
+                case 99:
                     this.assignNextWithAI();
                     break;
                 default:
                     break;
             }
         }else{
-            this.gameOver();
+            OperationQueue.addOperation(new EndOperation());
         }
     }
 
     public boolean gameOver(){
         this.gameState = GameState.OVER;
-        this.timer.cancel();
+        if(this.timer != null) {
+            this.timer.cancel();
+        }
         super.updateChange(new UpdateMessage("over",this.chessBoardModel));
+
+        //暂时先exit(0)
+        System.exit(0);
+
         return true;
     }
 

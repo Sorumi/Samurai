@@ -82,11 +82,21 @@ public class RoundPanel extends OrderPanel{
 	}
 	
 	public void setRoundTotal(int total){
-		roundTotal.setText(total + "");
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				roundTotal.setText(total + "");
+			}
+		});
 	}
 	
 	public void setRoundCurrent(int current){
-		roundCurrent.setText(current + "");
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				roundCurrent.setText(current + "");
+			}
+		});
 	}
 
 	public void setCurrentSamurai(int num) {

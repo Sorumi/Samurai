@@ -35,6 +35,7 @@ public class GameColor {
 		case 0: color = Color.rgb(205,223,203);break;//PlayerA
 		case 1: color = Color.rgb(196,187,216);break;//PlayerB
 		case 2: color = Color.rgb(128,128,128);break;//Font
+		case 3: color = Color.rgb(247, 166, 166);break;//bloodArc
 		default: color = Color.rgb(200,200,200,0.1);//grey
 		}
 		
