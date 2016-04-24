@@ -81,7 +81,7 @@ public class Main extends Application {
 
 	public void startGame(){
 		scene.setRoot(gamePanel);
-		this.gameModel = new GameModel(24, 14, this, 0);
+		this.gameModel = new GameModel(24, 14, this, 99);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		
