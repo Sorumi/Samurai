@@ -1,6 +1,12 @@
 package model.po;
 
-public class Armor {
+import java.io.Serializable;
+
+public class Armor implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int type;
 	private int armorValue;
 	private int dodgeRate;
@@ -17,6 +23,9 @@ public class Armor {
 	}
 	public int getDodgeRate(){
 		return dodgeRate;
+	}
+	public int getType(){
+		return type;
 	}
 	public Armor clone() {
 		try {

@@ -16,6 +16,10 @@ import model.ChessBoardModel;
 // 4.18 code lines reached 1000 lines!
 
 public class SamuraiPO implements Serializable, Cloneable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int experience;
 	private int level;
 	private int length;
@@ -1017,7 +1021,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public SamuraiPO clone() {
 		try {
 			SamuraiPO samuraiPO = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
-					armor.clone());
+					armor);
 			return samuraiPO;
 		} catch (Exception ex) {
 			ex.printStackTrace();

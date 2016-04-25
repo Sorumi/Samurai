@@ -1,6 +1,12 @@
 package model.po;
 
-public class MaterialLibrary {
+import java.io.Serializable;
+
+public class MaterialLibrary implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int[] cloth = new int[4];
 	private int[] wood = new int[4];
 	private int[] stone = new int[4];
