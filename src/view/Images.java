@@ -22,6 +22,13 @@ public class Images {
 	public static Image LEAF_1 = new Image("/./images/leaf_1.png",true);
 	//lotus
 	public static Image LOTUS_0 = new Image("/./images/lotus_0.png",true);
+	//statepanel
+	public static Image STATE_ICON_1 = new Image("/./images/state_icon_1.png",true);
+	public static Image STATE_ICON_2 = new Image("/./images/state_icon_2.png",true);
+	public static Image STATE_ICON_3 = new Image("/./images/state_icon_3.png",true);
+	public static Image STATE_ICON_4 = new Image("/./images/state_icon_4.png",true);
+	public static Image STATE_ICON_5 = new Image("/./images/state_icon_5.png",true);
+	public static Image STATE_ICON_6 = new Image("/./images/state_icon_6.png",true);
 
 	//player
 	public static final Image PLAYER_LOGO_A = new Image("/./images/PLAYER_LOGO_A.png");
