@@ -1,8 +1,13 @@
 package model.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Armory {
+public class Armory implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Weapon> swordList = new ArrayList<Weapon>();
 	private ArrayList<Weapon> spearList = new ArrayList<Weapon>();
 	private ArrayList<Weapon> axeList = new ArrayList<Weapon>();

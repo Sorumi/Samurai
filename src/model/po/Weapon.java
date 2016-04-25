@@ -1,9 +1,14 @@
 package model.po;
 
-import java.nio.file.attribute.AclEntry.Builder;
+
+import java.io.Serializable;
 import java.util.Random;
 
-public class Weapon implements Cloneable {
+public class Weapon implements Cloneable,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int genre;
 	private int type;
 	private int lowAttackPoint;
