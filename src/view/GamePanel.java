@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,7 +20,8 @@ import view.background.BackgroundPanel;
 import view.background.BackgroundPanel0;
 import view.background.BackgroundPanel3;
 import view.eventhandler.ActionHandler;
-
+import view.eventhandler.StateHandler;
+import view.StatePanel; 
 
 public class GamePanel extends Pane implements Observer{
 
@@ -36,6 +38,7 @@ public class GamePanel extends Pane implements Observer{
 	protected SystemButtonPanel systemButtonPanel;
 	protected BackgroundPanel backgroundPanel;
 	public ChessBoardPanel chessBoard;
+	
 	//TODO
 	protected int timeTotal = 30;
 	protected int roundTotal = 12;
@@ -58,7 +61,8 @@ public class GamePanel extends Pane implements Observer{
 	public Arrow arrow;
 	public ActionPanel actionPanel;
 	protected ActionHandler actionHandler;
-
+	public StatePanel statePanel; 
+	protected StateHandler stateHandler; 
 	protected  ObservableList<OrderPanel>  orderList;
 
 	public GamePanel(int size){
@@ -72,6 +76,7 @@ public class GamePanel extends Pane implements Observer{
 		backgroundPanel = new BackgroundPanel0();
 //		backgroundPanel = new BackgroundPanel3();
 		this.getChildren().add(backgroundPanel);
+				
 
 		//systembutton
 		systemButtonPanel = new SystemButtonPanel();
@@ -101,6 +106,11 @@ public class GamePanel extends Pane implements Observer{
 		//actionpanel
 		actionPanel = new ActionPanel(actionHandler);
 		this.getChildren().add(actionPanel);
+		//stateHandler
+		stateHandler = new StateHandler(this);
+		//statepanel 
+		statePanel = new StatePanel(stateHandler);
+		this.getChildren().add(statePanel);
 
 		//samurai
 		A1 = new SamuraiPanel(1, size);
@@ -122,16 +132,17 @@ public class GamePanel extends Pane implements Observer{
 		chessBoard.setZOrder(-2);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
+		statePanel.setZOrder(-1);
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
 
-		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemButtonPanel);
+		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemButtonPanel,statePanel);
 		
 	}
 	
 	public void setOrder(){
-		Platform.runLater(new Runnable(){
+		Platform.runLater(new Runnable(){ 
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
@@ -167,8 +178,11 @@ public class GamePanel extends Pane implements Observer{
 		}
 		currentSamurai.setCanActionProperty(true);
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
+		currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
+		currentSamurai.setOnMouseExited(stateHandler.closeStatePanel);
 		arrow.setCurrentSamurai(currentSamurai);
-		actionPanel.setCurrentSamurai(currentSamurai);
+		actionPanel.setCurrentSamurai(currentSamurai); 
+		statePanel.setCurrentSamurai(currentSamurai); 
 		playerA.setCurrentSamurai(currentSamurai.getNum());
 		playerB.setCurrentSamurai(currentSamurai.getNum());
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
@@ -243,6 +257,8 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("time")){
 			this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
 
+		}else if(key.equals("state")){
+			
 		}else if(key.equals("actionPoint")){
 			this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
 			this.actionPanel.setPointsRest((int)notifingObject.getValue());

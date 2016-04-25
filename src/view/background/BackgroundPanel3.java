@@ -88,7 +88,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		
 		Arc arc1 = new Arc();
 		arc1.setCenterX(1035);
-		arc1.setCenterY(250);
+		arc1.setCenterY(246);
 		arc1.setRadiusX(35.5);
 		arc1.setRadiusY(21);
 		arc1.setStartAngle(0);
@@ -101,7 +101,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		
 		Arc arc2 = new Arc();
 		arc2.setCenterX(1035);
-		arc2.setCenterY(250);
+		arc2.setCenterY(246);
 		arc2.setRadiusX(35.5);
 		arc2.setRadiusY(21);
 		arc2.setStartAngle(0);
@@ -114,7 +114,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		
 		Arc arc3 = new Arc();
 		arc3.setCenterX(1035);
-		arc3.setCenterY(250);
+		arc3.setCenterY(246);
 		arc3.setRadiusX(35.5);
 		arc3.setRadiusY(21);
 		arc3.setStartAngle(0);
@@ -127,7 +127,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		
 		Arc arc4 = new Arc();
 		arc4.setCenterX(1035);
-		arc4.setCenterY(250);
+		arc4.setCenterY(246);
 		arc4.setRadiusX(35.5);
 		arc4.setRadiusY(21);
 		arc4.setStartAngle(0);
@@ -179,7 +179,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 				ft4.setToValue(0.0);
 				ft4.play();
 				
-				System.out.println("a");
+				
 			}
         });
 		
