@@ -50,7 +50,7 @@ public class BlockView extends Polygon {
 	public void changeState(int state){
 		Color newColor = GameColor.getBlockColor(state);
 		if(!newColor.equals(color)){
-				Timeline tl = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.fillProperty(), newColor)));
+				Timeline tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
 				tl.play();
 		}
 	}

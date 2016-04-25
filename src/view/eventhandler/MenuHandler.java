@@ -74,6 +74,17 @@ public class MenuHandler {
 	      }
 	};
 	
+	public EventHandler<MouseEvent> storyEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  Platform.runLater(new Runnable(){
+		  			@Override
+		  			public void run() {
+			    	  mainFrame.startStory();
+		  			}
+	    	  });
+	      }
+	};
+	
 	public EventHandler<ActionEvent> exitEvent = new EventHandler<ActionEvent>() {//注册事件handler
 		@Override
 		public void handle(ActionEvent e) {

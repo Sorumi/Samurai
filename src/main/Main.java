@@ -27,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import view.GamePanelOL;
 import view.MenuPanel;
+import view.StoryPanel;
 import view.eventhandler.MenuHandler;
 
 
@@ -34,10 +35,12 @@ public class Main extends Application {
 	
 	private Scene scene;
 	
+	public MenuPanel menuPanel;
+	
 	public GamePanel gamePanel; 
 	public GameModel gameModel;
 	
-	public MenuPanel menuPanel;
+	public StoryPanel storyPanel;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -47,6 +50,7 @@ public class Main extends Application {
 		menuPanel.setPrefHeight(800);
 		
 		scene = new Scene(menuPanel);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -65,6 +69,11 @@ public class Main extends Application {
 		OperationQueue operationQueue = new OperationQueue(gameModel);
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();
+	}
+	
+	public void startStory(){
+		this.storyPanel = new StoryPanel();
+		scene.setRoot(storyPanel);
 	}
 
 	public static void main(String[] args) {

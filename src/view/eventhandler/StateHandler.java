@@ -14,9 +14,10 @@ public class StateHandler {
 	
 	public EventHandler<MouseEvent> showStatePanel = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	    	  
-	    		  gamePanel.statePanel.setAppear(true);
-//	    		  gamePanel.setOrder();
+	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	 
+	    	  gamePanel.statePanel.setCurrentSamurai(currentSamurai);
+	    	  gamePanel.statePanel.setAppear(true);
+//	    		gamePanel.setOrder();
 	    	  
 	      }
 	};
@@ -24,7 +25,7 @@ public class StateHandler {
 	public EventHandler<MouseEvent> closeStatePanel = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	    	  
-	    		  gamePanel.statePanel.setAppear(false);
+	    	  gamePanel.statePanel.setAppear(false);
 //	    		  gamePanel.setOrder();
 	    	  
 	      }

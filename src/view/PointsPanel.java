@@ -64,11 +64,9 @@ public class PointsPanel extends Pane {
 		fillRect.setArcHeight(PANEL_HEIGHT);
 		this.getChildren().add(fillRect);
 		
-		//label
-		Font font = Font.font("Tsukushi B Round Gothic", 20);
-		
+		//label		
 		pointsLabel = new Label("10");
-		pointsLabel.setFont(font);
+		pointsLabel.setFont(GameFont.F20);
 		pointsLabel.setTextFill(Color.WHITE);
 		
 		

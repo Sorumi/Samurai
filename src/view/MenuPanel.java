@@ -46,6 +46,7 @@ public class MenuPanel extends Pane {
 		classicBtn.setOnMouseClicked(menuHandler.classicEvent);
 		serverBtn.setOnMouseClicked(menuHandler.serverEvent);
 		clientBtn.setOnMouseClicked(menuHandler.clientEvent);
+		storyBtn.setOnMouseClicked(menuHandler.storyEvent);
 		exitBtn.setOnAction(menuHandler.exitEvent);
 	}
 }

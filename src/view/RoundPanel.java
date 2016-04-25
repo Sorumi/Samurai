@@ -58,11 +58,8 @@ public class RoundPanel extends OrderPanel{
 		currentRing.setFill(Color.WHITE);
 		this.getChildren().add(currentRing);
 		
-		Font fontBig = Font.font("Tsukushi B Round Gothic", 26);
-		Font fontSmall = Font.font("Tsukushi B Round Gothic", 22);
-		
 		roundTotal = new Label(total + "");
-		roundTotal.setFont(fontSmall);
+		roundTotal.setFont(GameFont.F22);
 		roundTotal.setTextFill(GameColor.getOtherColor(2));
 		roundTotal.setAlignment(Pos.CENTER);
 		roundTotal.setLayoutX(70);
@@ -71,7 +68,7 @@ public class RoundPanel extends OrderPanel{
 		this.getChildren().add(roundTotal);
 		
 		roundCurrent = new Label("30");
-		roundCurrent.setFont(fontBig);
+		roundCurrent.setFont(GameFont.F26);
 		roundCurrent.setTextFill(GameColor.getOtherColor(2));
 		roundCurrent.setAlignment(Pos.CENTER);
 		roundCurrent.setLayoutX(2);

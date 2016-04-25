@@ -29,7 +29,7 @@ public class GamePanel extends Pane implements Observer{
 	protected final int WINDOW_HEIGHT = 800;
 	protected final int FIELD_WIDTH = 1050;
 	protected final int FIELD_HEIGHT = 600;
-	protected final int FIELD_FIX = 20;
+//	protected final int FIELD_FIX = 20;
 
 	protected int size;
 	protected int blockWidth;
@@ -125,6 +125,19 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().add(B1);
 		this.getChildren().add(B2);
 		this.getChildren().add(B3);
+		
+		A1.setOnMouseEntered(stateHandler.showStatePanel);
+		A1.setOnMouseExited(stateHandler.closeStatePanel);
+		A2.setOnMouseEntered(stateHandler.showStatePanel);
+		A2.setOnMouseExited(stateHandler.closeStatePanel);
+		A3.setOnMouseEntered(stateHandler.showStatePanel);
+		A3.setOnMouseExited(stateHandler.closeStatePanel);
+		B1.setOnMouseEntered(stateHandler.showStatePanel);
+		B1.setOnMouseExited(stateHandler.closeStatePanel);
+		B2.setOnMouseEntered(stateHandler.showStatePanel);
+		B2.setOnMouseExited(stateHandler.closeStatePanel);
+		B3.setOnMouseEntered(stateHandler.showStatePanel);
+		B3.setOnMouseExited(stateHandler.closeStatePanel);
 
 		//add
 		backgroundPanel.setZOrder(-999);
@@ -137,7 +150,7 @@ public class GamePanel extends Pane implements Observer{
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
 
-		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemButtonPanel,statePanel);
+		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemButtonPanel);
 		
 	}
 	
@@ -178,11 +191,8 @@ public class GamePanel extends Pane implements Observer{
 		}
 		currentSamurai.setCanActionProperty(true);
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
-		currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
-		currentSamurai.setOnMouseExited(stateHandler.closeStatePanel);
 		arrow.setCurrentSamurai(currentSamurai);
 		actionPanel.setCurrentSamurai(currentSamurai); 
-		statePanel.setCurrentSamurai(currentSamurai); 
 		playerA.setCurrentSamurai(currentSamurai.getNum());
 		playerB.setCurrentSamurai(currentSamurai.getNum());
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
@@ -276,6 +286,7 @@ public class GamePanel extends Pane implements Observer{
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			
 		}else if(key.equals("samuraiOccupy")){
+			System.out.println("occupy");
 			this.currentSamurai.occupy((int)notifingObject.getValue());
 			this.actionPanel.reset();
 			this.arrow.setVisible(true);

@@ -76,10 +76,9 @@ public class CirclePanel extends Pane {
 		blockCircle.setFill(Color.WHITE);
 		this.getChildren().add(blockCircle);
 		
-		Font font = Font.font("Tsukushi B Round Gothic", 14);
 		blockLabel = new Label("");
 //		blockLabel.setStyle("-fx-background-color: #eeeeee");
-		blockLabel.setFont(font);
+		blockLabel.setFont(GameFont.F14);
 		blockLabel.setTextFill(GameColor.getOtherColor(2));
 		blockLabel.setPrefWidth(30);
 		if (player == 0){

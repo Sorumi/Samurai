@@ -17,8 +17,8 @@ import view.eventhandler.StateHandler;
 
 public class StatePanel extends OrderPanel { 
 	private final int SAMURAI_WIDTH = 60;
-	private int preWidth = 200;
-	private int preHeight = 157;
+	private int prefWidth = 200;
+	private int prefHeight = 157;
 	private int strokeWidth = 2;
 	
 	private boolean isAppear;
@@ -39,11 +39,8 @@ public class StatePanel extends OrderPanel {
 		
 		this.isAppear = false;
 		this.stateHandler = stateHandler;
-		this.setPrefWidth(preWidth);
-		this.setPrefHeight(preHeight);
-
-		
-
+		this.setPrefWidth(prefWidth);
+		this.setPrefHeight(prefHeight);
 		
 		this.stateIcon1 = new ImageView(Images.STATE_ICON_1);
 		this.stateIcon2 = new ImageView(Images.STATE_ICON_2);
@@ -95,7 +92,6 @@ public class StatePanel extends OrderPanel {
 		centralCircle.setRadius(22);
 		centralCircle.setFill(Color.WHITE);
 		
-		
 		stateIcon1.setFitWidth(25);
 		stateIcon2.setFitWidth(25);
 		stateIcon3.setFitWidth(25);
@@ -142,9 +138,7 @@ public class StatePanel extends OrderPanel {
 	public void setAppear(boolean isAppear) {
 		// TODO Auto-generated method stub
 		this.isAppear = isAppear;
-		this.setVisible(isAppear); 
-		
-
+		this.setVisible(isAppear);
 	}
 
 	public void setCurrentSamurai(SamuraiPanel samurai) {
@@ -152,16 +146,11 @@ public class StatePanel extends OrderPanel {
 		this.currentSamurai = samurai;
 		this.setActualLocation();
 		
-
-		
 	}
 	
 	public void setActualLocation(){
-		this.setLayoutX(currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-preWidth/2);
-		this.setLayoutY(currentSamurai.getLayoutY()-preHeight+10);
+		this.setLayoutX(currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2);
+		this.setLayoutY(currentSamurai.getLayoutY()-prefHeight+10);
 	}
-
-
-
 
 }
