@@ -7,6 +7,7 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -75,6 +76,14 @@ public class RoundPanel extends OrderPanel{
 		roundCurrent.setLayoutY(22);
 		roundCurrent.setPrefWidth(70);
 		this.getChildren().add(roundCurrent);
+		
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setRadius(2.0);
+		dropShadow.setOffsetX(0.0);
+		dropShadow.setOffsetY(1.0);
+		dropShadow.setColor(Color.rgb(0,0,0,0.5));
+		
+		this.setEffect(dropShadow);
 		
 	}
 	

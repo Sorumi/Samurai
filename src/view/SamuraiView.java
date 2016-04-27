@@ -19,10 +19,11 @@ import javafx.util.Duration;
 
 public class SamuraiView extends Pane{
 	
-	private final int WIDTH = 60;
-	private final int HEIGHT = 120;
-	private final int BODY_X = WIDTH/2-10;
-	private final int BODY_Y = 60;
+	private int SCALE;
+	private int WIDTH = 60*SCALE;
+	private int HEIGHT = 120*SCALE;
+	private int BODY_X = WIDTH/2-10*SCALE;
+	private int BODY_Y = 60*SCALE;
 
 	private int number;
 	private int weaponNum;
@@ -40,12 +41,14 @@ public class SamuraiView extends Pane{
 	private OrderImageView helmet;
 	
 	private WeaponView weapon;
+	private WeaponView weaponExtra;
 	
 	Rotate leftArmRo;
 	Rotate rightArmRo;
 	Rotate leftLegRo;
 	Rotate rightLegRo;
 	Rotate weaponRo;
+	Rotate weaponExtraRo;
 	
 	private Group group;
 	
@@ -63,13 +66,18 @@ public class SamuraiView extends Pane{
 
 
 	
-	public SamuraiView(int number){
+	public SamuraiView(int number, int scale){
 		this.number = number;
+		this.SCALE = scale;
+		this.WIDTH = 60*SCALE;
+		this.HEIGHT = 120*SCALE;
+		this.BODY_X = WIDTH/2-10*SCALE;
+		this.BODY_Y = 60*SCALE;
 		
 		//bounds
 		this.setPrefWidth(WIDTH);
 		this.setPrefHeight(HEIGHT);
-//		this.setStyle("-fx-background-color: rgba(0,0,0,0.1)");
+//		this.setStyle("-fx-background-color: #AAAAAA");
 
 		this.direction = 2;
 		
@@ -91,17 +99,17 @@ public class SamuraiView extends Pane{
 		
 		orderList = FXCollections.observableArrayList(helmetBack, leftShoulder, leftArm, headInjured, head, body, leftLeg, rightLeg, rightShoulder, rightArm, helmet);
 		//fitSize
-		helmetBack.setFitWidth(53);
-		leftShoulder.setFitWidth(14);
-		leftArm.setFitWidth(17);
-		headInjured.setFitWidth(32);
-		head.setFitWidth(32);
-		body.setFitWidth(29);
-		leftLeg.setFitWidth(12);
-		rightLeg.setFitWidth(10);
-		rightShoulder.setFitWidth(12);
-		rightArm.setFitWidth(18);
-		helmet.setFitWidth(55);
+		helmetBack.setFitWidth(53*SCALE);
+		leftShoulder.setFitWidth(14*SCALE);
+		leftArm.setFitWidth(17*SCALE);
+		headInjured.setFitWidth(32*SCALE);
+		head.setFitWidth(32*SCALE);
+		body.setFitWidth(29*SCALE);
+		leftLeg.setFitWidth(12*SCALE);
+		rightLeg.setFitWidth(10*SCALE);
+		rightShoulder.setFitWidth(12*SCALE);
+		rightArm.setFitWidth(18*SCALE);
+		helmet.setFitWidth(55*SCALE);
 		
 		for(int i=orderList.size()-1; i>=0; i--){
 			OrderImageView tmpImg = orderList.get(i);
@@ -119,74 +127,79 @@ public class SamuraiView extends Pane{
 		//layout
 		body.setLayoutX(BODY_X);
 		body.setLayoutY(BODY_Y);
-		helmet.setLayoutX(BODY_X-16);
-		helmet.setLayoutY(BODY_Y-53);
-		helmetBack.setLayoutX(BODY_X-16);
-		helmetBack.setLayoutY(BODY_Y-41);
-		headInjured.setLayoutX(BODY_X-3);
-		headInjured.setLayoutY(BODY_Y-26);
-		head.setLayoutX(BODY_X-3);
-		head.setLayoutY(BODY_Y-26);
-		leftShoulder.setLayoutX(BODY_X-3);
-		leftShoulder.setLayoutY(BODY_Y+3);
-		leftArm.setLayoutX(BODY_X-8);
-		leftArm.setLayoutY(BODY_Y+5);
-		leftLeg.setLayoutX(BODY_X+1);
-		leftLeg.setLayoutY(BODY_Y+29);
-		rightShoulder.setLayoutX(BODY_X+17);
-		rightShoulder.setLayoutY(BODY_Y+2);
-		rightArm.setLayoutX(BODY_X+18);
-		rightArm.setLayoutY(BODY_Y+3);
-		rightLeg.setLayoutX(BODY_X+17);
-		rightLeg.setLayoutY(BODY_Y+28);
+		helmet.setLayoutX(BODY_X-16*SCALE);
+		helmet.setLayoutY(BODY_Y-53*SCALE);
+		helmetBack.setLayoutX(BODY_X-16*SCALE);
+		helmetBack.setLayoutY(BODY_Y-41*SCALE);
+		headInjured.setLayoutX(BODY_X-3*SCALE);
+		headInjured.setLayoutY(BODY_Y-26*SCALE);
+		head.setLayoutX(BODY_X-3*SCALE);
+		head.setLayoutY(BODY_Y-26*SCALE);
+		leftShoulder.setLayoutX(BODY_X-3*SCALE);
+		leftShoulder.setLayoutY(BODY_Y+3*SCALE);
+		leftArm.setLayoutX(BODY_X-8*SCALE);
+		leftArm.setLayoutY(BODY_Y+5*SCALE);
+		leftLeg.setLayoutX(BODY_X+1*SCALE);
+		leftLeg.setLayoutY(BODY_Y+29*SCALE);
+		rightShoulder.setLayoutX(BODY_X+17*SCALE);
+		rightShoulder.setLayoutY(BODY_Y+2*SCALE);
+		rightArm.setLayoutX(BODY_X+18*SCALE);
+		rightArm.setLayoutY(BODY_Y+3*SCALE);
+		rightLeg.setLayoutX(BODY_X+17*SCALE);
+		rightLeg.setLayoutY(BODY_Y+28*SCALE);
 		
 		//rotation
 		leftArmRo = new Rotate();
-		leftArmRo.pivotXProperty().bind(leftArm.xProperty().add(14));
-		leftArmRo.pivotYProperty().bind(leftArm.yProperty().add(3));
+		leftArmRo.pivotXProperty().bind(leftArm.xProperty().add(14*SCALE));
+		leftArmRo.pivotYProperty().bind(leftArm.yProperty().add(3*SCALE));
 		leftArm.getTransforms().add(leftArmRo);
 		
 		rightArmRo = new Rotate();
-		rightArmRo.pivotXProperty().bind(rightArm.xProperty().add(3));
-		rightArmRo.pivotYProperty().bind(rightArm.yProperty().add(3));
+		rightArmRo.pivotXProperty().bind(rightArm.xProperty().add(3*SCALE));
+		rightArmRo.pivotYProperty().bind(rightArm.yProperty().add(3*SCALE));
 		rightArm.getTransforms().add(rightArmRo);
 		
 		leftLegRo = new Rotate();
-		leftLegRo.pivotXProperty().bind(leftLeg.xProperty().add(9));
-		leftLegRo.pivotYProperty().bind(leftLeg.yProperty().add(4));
+		leftLegRo.pivotXProperty().bind(leftLeg.xProperty().add(9*SCALE));
+		leftLegRo.pivotYProperty().bind(leftLeg.yProperty().add(4*SCALE));
 		leftLeg.getTransforms().add(leftLegRo);
 		
 		rightLegRo = new Rotate();
-		rightLegRo.pivotXProperty().bind(rightLeg.xProperty().add(3));
-		rightLegRo.pivotYProperty().bind(rightLeg.yProperty().add(4));
+		rightLegRo.pivotXProperty().bind(rightLeg.xProperty().add(3*SCALE));
+		rightLegRo.pivotYProperty().bind(rightLeg.yProperty().add(4*SCALE));
 		rightLeg.getTransforms().add(rightLegRo);
 		
 		weaponRo = new Rotate();
+		weaponExtraRo = new Rotate();
 //		weapon.getTransforms().add(weaponRo);
 		
 		this.setDirection(direction);//初始方向
-		
-		orderList.addListener(new ListChangeListener() {
-            @Override
-            public void onChanged(ListChangeListener.Change change) {
-                group.getChildren().setAll(orderList);
-            }
-        });
 	}
-	
-	
+
 	public void setWeapon(int number){
 		this.weaponNum = number;
 		group.getChildren().remove(weapon);
 		orderList.remove(weapon);
-		this.weapon = new WeaponView(number);
+		if(weaponExtra != null){
+			group.getChildren().remove(weaponExtra);
+			orderList.remove(weaponExtra);
+		}
+		
+		this.weapon = new WeaponView(number, SCALE);
 		group.getChildren().add(weapon);
 		orderList.add(weapon);
 
 		weapon.getTransforms().add(weaponRo);
+		
+		//ADD 400
+		if(number/100 == 4){
+			weaponExtra = new WeaponView(number+100, SCALE);
+			group.getChildren().add(weaponExtra);
+			orderList.add(weaponExtra);
+			weaponExtra.getTransforms().add(weaponExtraRo);
+		}
 		resetWeapon();
 		
-		int x = this.group.getChildren().indexOf(weapon);
 	}
 	
 	public void setDirection(int direction){
@@ -241,40 +254,82 @@ public class SamuraiView extends Pane{
 		weaponRo.pivotXProperty().bind(weapon.xProperty().add(rotatePivot[0]));
 		weaponRo.pivotYProperty().bind(weapon.yProperty().add(rotatePivot[1]));
 		//move的初始角度
-		this.setOrder();
+		if(weaponExtra != null){
+			resetWeaponExtra();
+		}
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				SamuraiView.this.setOrder();
+			}
+		});
+		
+	}
+	
+	private void resetWeaponExtra(){
+		int[] layout;
+		int[] rotatePivot;
+		//rotatepivot & layout & angle     zorder scale
+		if (back == 1){
+			layout = weaponExtra.frontLayout;
+			rotatePivot = weaponExtra.frontRotatePivot;
+			weaponExtraRo.setAngle(weaponExtra.frontAngle[0]);
+			weaponExtra.setScaleX(1);
+			weaponExtra.zOrder = weaponExtra.frontZOrder;
+		}else{
+			layout = weaponExtra.backLayout;
+			rotatePivot = weaponExtra.backRotatePivot;
+			weaponExtraRo.setAngle(weaponExtra.backAngle[0]);
+			weaponExtra.setScaleX(-1);
+			weaponExtra.zOrder = weaponExtra.backZOrder;
+		}
+		weaponExtra.setLayoutX(layout[0]);
+		weaponExtra.setLayoutY(layout[1]);
+		weaponExtraRo.pivotXProperty().bind(weaponExtra.xProperty().add(rotatePivot[0]));
+		weaponExtraRo.pivotYProperty().bind(weaponExtra.yProperty().add(rotatePivot[1]));
+		//move的初始角度
 	}
 	
 	//zOrder重排
 	private void setOrder(){
-		Platform.runLater(new Runnable(){
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				Collections.sort(orderList);
-			}
-		});
+		Collections.sort(orderList);
+		group.getChildren().setAll(orderList);
 	}
 
 	private void setBack(int back){
 		this.back = back;
 		if(back == 1){
-			leftArmAngle = new double[]{-40,25};
+			
 			leftLegAngle = new double[]{35,-30};
 			rightLegAngle = new double[]{-30,40};
+			if( weapon!=null ){
+				leftArmAngle = new double[]{weapon.frontAngle[3],weapon.frontAngle[4]};
+				rightArmAngle = new double[]{weapon.frontAngle[7],weapon.frontAngle[8]};
+			}else{
+				leftArmAngle = new double[]{-40,25};
+				rightArmAngle = new double[]{35,-25};
+			}
 			
 			leftArm.setScaleX(1);
-			leftArm.setLayoutX(BODY_X-8);
-			leftArm.setLayoutY(BODY_Y+5);
+			leftArm.setLayoutX(BODY_X-8*SCALE);
+			leftArm.setLayoutY(BODY_Y+5*SCALE);
 			
 			this.helmetBack.setVisible(false);
 		}else{
-			rightArmAngle = new double[]{-25,35};
+			
 			leftLegAngle = new double[]{-30,35};
 			rightLegAngle = new double[]{40,-30};
+			if( weapon!=null ){
+				leftArmAngle = new double[]{weapon.backAngle[3],weapon.backAngle[4]};
+				rightArmAngle = new double[]{weapon.backAngle[7],weapon.backAngle[8]};
+			}else{
+				leftArmAngle = new double[]{-60,5};
+				rightArmAngle = new double[]{-25,35};
+			}
 			
 			leftArm.setScaleX(-1);
 			leftArm.setLayoutX(BODY_X);
-			leftArm.setLayoutY(BODY_Y+4);
+			leftArm.setLayoutY(BODY_Y+4*SCALE);
 			
 			this.helmetBack.setVisible(true);
 		}
@@ -288,30 +343,32 @@ public class SamuraiView extends Pane{
 	public void move(int direction){
 		this.setDirection(direction);
 		Timeline moveTL = new Timeline(
+				//leftLeg
 				new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
 				new KeyFrame(Duration.millis(300), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[0])),
 				new KeyFrame(Duration.millis(900), new KeyValue(leftLegRo.angleProperty(), leftLegAngle[1])),
 				new KeyFrame(Duration.millis(1200), new KeyValue(leftLegRo.angleProperty(), 0)),
-				
+				//rightLeg
 				new KeyFrame(Duration.ZERO, new KeyValue(rightLegRo.angleProperty(), 0)),
 				new KeyFrame(Duration.millis(300), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[0])),
 				new KeyFrame(Duration.millis(900), new KeyValue(rightLegRo.angleProperty(), rightLegAngle[1])),
 				new KeyFrame(Duration.millis(1200), new KeyValue(rightLegRo.angleProperty(), 0)));
 		
-		if (back == 1){
-			moveTL.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
+		if(back == 1){
+			moveTL.getKeyFrames().addAll(
+					new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
 					new KeyFrame(Duration.millis(300), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[0])),
 					new KeyFrame(Duration.millis(900), new KeyValue(leftArmRo.angleProperty(), leftArmAngle[1])),
 					new KeyFrame(Duration.millis(1200), new KeyValue(leftArmRo.angleProperty(), 0)));
 		}else{
-			moveTL.getKeyFrames().addAll(new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
+			moveTL.getKeyFrames().addAll(
+					new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
 					new KeyFrame(Duration.millis(300), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[0])),
 					new KeyFrame(Duration.millis(900), new KeyValue(rightArmRo.angleProperty(), rightArmAngle[1])),
 					new KeyFrame(Duration.millis(1200), new KeyValue(rightArmRo.angleProperty(), 0)));
 		}
-		
+
 		moveTL.play();
-		
 	}
 	
 	public boolean occupy(int direction){
@@ -364,6 +421,26 @@ public class SamuraiView extends Pane{
 					new KeyFrame(Duration.millis(800), new KeyValue(rightArmRo.angleProperty(), angle[9])),
 					new KeyFrame(Duration.millis(1200), new KeyValue(rightArmRo.angleProperty(), angle[8]))
 					);
+			//ADD 300
+			if(weaponNum/100 == 3){
+				occupyTL.getKeyFrames().addAll(
+						new KeyFrame(Duration.ZERO, new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue())),
+						new KeyFrame(Duration.millis(400), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()-5)),
+						new KeyFrame(Duration.millis(600), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()+80)),
+						new KeyFrame(Duration.millis(800), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()-5)),
+						new KeyFrame(Duration.millis(1200), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()))
+						);
+			}
+			//ADD 400
+			if(weaponExtra != null){
+				occupyTL.getKeyFrames().addAll(
+						new KeyFrame(Duration.ZERO, new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.frontAngle[0])),
+						new KeyFrame(Duration.millis(400), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.frontAngle[1])),
+						new KeyFrame(Duration.millis(600), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.frontAngle[2])),
+						new KeyFrame(Duration.millis(800), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.frontAngle[1])),
+						new KeyFrame(Duration.millis(1200), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.frontAngle[0]))
+						);
+			}
 			occupyTL.play();
 			
 		}else{
@@ -399,6 +476,26 @@ public class SamuraiView extends Pane{
 					new KeyFrame(Duration.millis(600), new KeyValue(rightArmRo.angleProperty(), angle[10])),
 					new KeyFrame(Duration.millis(1200), new KeyValue(rightArmRo.angleProperty(), angle[9]))
 					);
+			//ADD 300
+			if(weaponNum/100 == 3){
+				occupyTL.getKeyFrames().addAll(
+						new KeyFrame(Duration.ZERO, new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue())),
+						new KeyFrame(Duration.millis(400), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()+5)),
+						new KeyFrame(Duration.millis(600), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()-80)),
+						new KeyFrame(Duration.millis(800), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()+5)),
+						new KeyFrame(Duration.millis(1200), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()))
+						);
+			}
+			//ADD 400
+			if(weaponExtra != null){
+				occupyTL.getKeyFrames().addAll(
+						new KeyFrame(Duration.ZERO, new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.backAngle[0])),
+						new KeyFrame(Duration.millis(400), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.backAngle[1])),
+						new KeyFrame(Duration.millis(600), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.backAngle[2])),
+						new KeyFrame(Duration.millis(800), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.backAngle[1])),
+						new KeyFrame(Duration.millis(1200), new KeyValue(weaponExtraRo.angleProperty(), weaponExtra.backAngle[0]))
+						);
+			}
 			occupyTL.play();
 		}
 		return true;		
@@ -409,8 +506,8 @@ public class SamuraiView extends Pane{
 		this.headInjured.setVisible(isInjured);
 		if(isInjured){
 			Rotate injuredRo = new Rotate();
-			injuredRo.pivotXProperty().bind(group.layoutXProperty().add(BODY_X+14));
-			injuredRo.pivotYProperty().bind(group.layoutYProperty().add(BODY_Y+40));
+			injuredRo.pivotXProperty().bind(group.layoutXProperty().add(BODY_X+14*SCALE));
+			injuredRo.pivotYProperty().bind(group.layoutYProperty().add(BODY_Y+40*SCALE));
 			group.getTransforms().add(injuredRo);
 			Timeline injuredTL= new Timeline(
 					new KeyFrame(Duration.ZERO, new KeyValue(injuredRo.angleProperty(), 0)),

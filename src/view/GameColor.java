@@ -7,7 +7,7 @@ public class GameColor {
 		Color color;
 		
 		switch(x) {
-			case 0: color = Color.rgb(200,200,200,0.7);break;//grey
+			case 0: color = Color.rgb(200,200,200,0.7);break;//gray
 			case 1: color = Color.rgb(194,90,62);break;
 			case 2: color = Color.rgb(211,131,63);break;
 			case 3: color = Color.rgb(206,174,60);break;
@@ -70,7 +70,7 @@ public class GameColor {
 			case 1: color = Color.rgb(196,187,216);break;//PlayerB
 			case 2: color = Color.rgb(128,128,128);break;//Font
 			case 3: color = Color.rgb(247, 166, 166);break;//bloodArc
-			default: color = Color.rgb(200,200,200,0.1);//grey
+			default: color = Color.rgb(200,200,200,0.1);//gray
 		}
 		
 		return color;

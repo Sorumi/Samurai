@@ -1,15 +1,12 @@
 package view;
 
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class PlayerPanel extends OrderPanel {
 	
-
-	private int panelWidth;
-	private int panelHeight;
 	private int player;//0,1
-	private int currentSamurai;
-	private int pointsTotal;
 	public CirclePanel circlePanel;
 	public PointsPanel pointsPanel;
 	
@@ -22,29 +19,33 @@ public class PlayerPanel extends OrderPanel {
 		this.getChildren().add(pointsPanel);
 		this.getChildren().add(circlePanel);
 		
+
+		DropShadow dropShadow = new DropShadow();
+		dropShadow.setRadius(2.0);
+		dropShadow.setOffsetX(0.0);
+		dropShadow.setOffsetY(1.0);
+		dropShadow.setColor(Color.rgb(0,0,0,0.5));
+		
+		this.setEffect(dropShadow);
+		
 		//bounds
 		if(player == 0){
 			circlePanel.setLayoutX(0);
 			circlePanel.setLayoutY(0);
-			pointsPanel.setLayoutX(circlePanel.getBoundsInParent().getWidth()/2);
+			pointsPanel.setLayoutX(circlePanel.getBoundsInParent().getWidth()/2+15);
 			pointsPanel.setLayoutY(circlePanel.getBoundsInParent().getHeight()-pointsPanel.getBoundsInParent().getHeight());
 			this.setLayoutX(0);
 			this.setLayoutY(800-circlePanel.getBoundsInParent().getHeight());
 		}else{
 			circlePanel.setLayoutX(pointsPanel.getBoundsInParent().getWidth()-circlePanel.getBoundsInParent().getWidth()/2);
 			circlePanel.setLayoutY(0);
-			pointsPanel.setLayoutX(0);
+			pointsPanel.setLayoutX(-15);
 			pointsPanel.setLayoutY(circlePanel.getBoundsInParent().getHeight()-pointsPanel.getBoundsInParent().getHeight());
 			this.setLayoutX(1200-this.getBoundsInParent().getWidth());
 			this.setLayoutY(800-circlePanel.getBoundsInParent().getHeight());
 		}
 	}
 
-	public void setCurrentSamurai(int currentSamurai){
-		this.currentSamurai = currentSamurai;
-		pointsPanel.setCurrentSamurai(currentSamurai);
-	}
-	
 	public int getPlayer(){
 		return this.player;
 	}

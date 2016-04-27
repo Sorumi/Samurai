@@ -46,8 +46,8 @@ public class GamePanelOL extends GamePanel{
                 break;
         }
         currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
-        playerA.setCurrentSamurai(currentSamurai.getNum());
-        playerB.setCurrentSamurai(currentSamurai.getNum());
+        playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
+        playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
         if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)){
             arrow.setCurrentSamurai(currentSamurai);
             actionPanel.setCurrentSamurai(currentSamurai);
