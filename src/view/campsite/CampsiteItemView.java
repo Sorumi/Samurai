@@ -21,11 +21,11 @@ public class CampsiteItemView extends Pane {
 		bgCircle.setRadius(RADIUS);
 		bgCircle.setFill(GameColor.getArmorColor(itemNum/100));
 		bgCircle.setStroke(GameColor.getArmorColor(itemNum/100+10));
-		bgCircle.setStrokeType(StrokeType.OUTSIDE);
+		bgCircle.setStrokeType(StrokeType.INSIDE);
 		bgCircle.setStrokeWidth(0);
 		this.getChildren().add(bgCircle);
 		
-//		this.setOnMouseEntered(CampsiteHandler.itemEnterEvent);
+//		this.setOnMouseEntered(campsiteHandler.itemEnterEvent);
 	}
 
 	public void setHighlight() {

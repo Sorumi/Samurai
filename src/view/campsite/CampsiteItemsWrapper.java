@@ -7,11 +7,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import view.eventhandler.CampsiteHandler;
 
 public class CampsiteItemsWrapper extends Pane{
 	
-	public CampsiteItemsWrapper(){
+	public CampsiteItemsWrapper(CampsiteHandler campsiteHandler){
 		this.setPrefSize(560, 700);
+		this.setLayoutX(0);
+		this.setLayoutY(0);
 		
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setRadius(2.0);
@@ -19,7 +22,7 @@ public class CampsiteItemsWrapper extends Pane{
 		dropShadow.setOffsetY(1.0);
 		dropShadow.setColor(Color.rgb(0,0,0,0.5));
 		 
-		this.setId("campsite-items-wrapper");
+//		this.setId("campsite-items-wrapper");
 		Rectangle bgRect = new Rectangle();
 		bgRect.setWidth(560);
 		bgRect.setHeight(700);
@@ -37,6 +40,8 @@ public class CampsiteItemsWrapper extends Pane{
 		for (int i=0; i<=4; i++){
 			for(int j=0; j<=8; j++){
 				CampsiteItemView item = new CampsiteItemView(i*100);
+				item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
+				item.setOnMouseExited(campsiteHandler.itemExitEvent);
 				tile.getChildren().add(item);
 			}
 		}

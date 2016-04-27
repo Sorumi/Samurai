@@ -193,8 +193,8 @@ public class GamePanel extends Pane implements Observer{
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		arrow.setCurrentSamurai(currentSamurai);
 		actionPanel.setCurrentSamurai(currentSamurai); 
-		playerA.setCurrentSamurai(currentSamurai.getNum());
-		playerB.setCurrentSamurai(currentSamurai.getNum());
+		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
+		playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		
 		//add

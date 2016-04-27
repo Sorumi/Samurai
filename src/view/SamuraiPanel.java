@@ -44,7 +44,7 @@ public class SamuraiPanel extends OrderPanel {
 		this.setPrefHeight(SAMURAI_HEIGHT);
 		
 //		this.setStyle("-fx-background-color: rgba(255,0,0,0.5)");
-		this.samuraiV = new SamuraiView(number);
+		this.samuraiV = new SamuraiView(number, 1);
 		this.isHide = false;
 		this.canAction = new SimpleBooleanProperty(true);
 		
