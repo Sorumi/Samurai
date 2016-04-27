@@ -23,6 +23,12 @@ public class StatePanel extends OrderPanel {
 	
 	private boolean isAppear;
 	
+	private Rectangle bgRect;
+	private Polygon triangle;
+	private Circle bgCircle;
+	private Arc bloodArc;
+	private Circle centralCircle;
+
 	private ImageView stateIcon1;
 	private ImageView stateIcon2;
 	private ImageView stateIcon3;
@@ -49,9 +55,8 @@ public class StatePanel extends OrderPanel {
 		this.stateIcon5 = new ImageView(Images.STATE_ICON_5);
 		this.stateIcon6 = new ImageView(Images.STATE_ICON_6);
 		
-		Rectangle bgRect = new Rectangle();
+		bgRect = new Rectangle();
 		bgRect.setX(0);
-		bgRect.setY(25+strokeWidth);
 		bgRect.setWidth(200);
 		bgRect.setHeight(120);
 		bgRect.setArcWidth(10);
@@ -59,26 +64,19 @@ public class StatePanel extends OrderPanel {
 		bgRect.setFill(Color.WHITE);
 		
 		
-		Polygon triangle = new Polygon();
-		triangle.getPoints().addAll(new Double[]{
-		    95.0, 147.0,
-		    105.0, 147.0,
-		    100.0, 157.0 });
+		triangle = new Polygon();
 		triangle.setFill(Color.WHITE);
 		
-		
-		Circle bgCircle = new Circle();
+		bgCircle = new Circle();
 		bgCircle.setCenterX(100.0);
-		bgCircle.setCenterY(25+strokeWidth);
 		bgCircle.setRadius(25);
 		bgCircle.setStroke(Color.WHITE);
 		bgCircle.setStrokeWidth(strokeWidth);
 		bgCircle.setStrokeType(StrokeType.OUTSIDE);
 		bgCircle.setFill(Color.WHITE);
 		
-		Arc bloodArc = new Arc();
+		bloodArc = new Arc();
 		bloodArc.setCenterX(100.0);
-		bloodArc.setCenterY(25+strokeWidth);
 		bloodArc.setRadiusX(25);
 		bloodArc.setRadiusY(25);
 		bloodArc.setStartAngle(0);
@@ -86,9 +84,8 @@ public class StatePanel extends OrderPanel {
 		bloodArc.setType(ArcType.ROUND);
 		bloodArc.setFill(GameColor.getOtherColor(3));
 		//这个圆以后换成图片
-		Circle centralCircle = new Circle();
+		centralCircle = new Circle();
 		centralCircle.setCenterX(100.0);
-		centralCircle.setCenterY(25+strokeWidth);
 		centralCircle.setRadius(22);
 		centralCircle.setFill(Color.WHITE);
 		
@@ -106,19 +103,6 @@ public class StatePanel extends OrderPanel {
 		stateIcon5.setPreserveRatio(true);
 		stateIcon6.setPreserveRatio(true);
 		
-		stateIcon1.setLayoutX(15);
-		stateIcon1.setLayoutY(62);
-		stateIcon2.setLayoutX(76);
-		stateIcon2.setLayoutY(62);
-		stateIcon3.setLayoutX(135);
-		stateIcon3.setLayoutY(62);
-		stateIcon4.setLayoutX(13);
-		stateIcon4.setLayoutY(107);
-		stateIcon5.setLayoutX(75);
-		stateIcon5.setLayoutY(104);
-		stateIcon6.setLayoutX(135);
-		stateIcon6.setLayoutY(107);
-		
 		this.getChildren().add(bgRect);
 		this.getChildren().add(triangle);
 		this.getChildren().add(bgCircle);		
@@ -133,13 +117,70 @@ public class StatePanel extends OrderPanel {
 		
 		this.setVisible(false);
 		
-	}	
-	
-	public void setAppear(boolean isAppear) {
-		// TODO Auto-generated method stub
-		this.isAppear = isAppear;
-		this.setVisible(isAppear);
 	}
+	
+	public void setUpLocation(){
+		bgRect.setY(25+strokeWidth); 
+		
+
+		triangle.getPoints().addAll(new Double[]{
+		    95.0, 147.0,
+		    105.0, 147.0,
+		    100.0, 157.0 });
+		
+		bgCircle.setCenterY(25+strokeWidth);
+		
+		bloodArc.setCenterY(25+strokeWidth);
+		
+		centralCircle.setCenterY(25+strokeWidth);
+		
+		stateIcon1.setLayoutX(15);
+		stateIcon1.setLayoutY(62);
+		stateIcon2.setLayoutX(76);
+		stateIcon2.setLayoutY(62);
+		stateIcon3.setLayoutX(135);
+		stateIcon3.setLayoutY(62);
+		stateIcon4.setLayoutX(13);
+		stateIcon4.setLayoutY(107);
+		stateIcon5.setLayoutX(75);
+		stateIcon5.setLayoutY(104);
+		stateIcon6.setLayoutX(135);
+		stateIcon6.setLayoutY(107);
+		
+		
+	}
+	
+	public void setDownLocation(){
+		bgRect.setY(10);
+		
+
+		triangle.getPoints().addAll(new Double[]{
+		    95.0, 10.0,
+		    105.0, 10.0,
+		    100.0, 0.0 });
+
+		
+		bgCircle.setCenterY(prefHeight-25-strokeWidth);
+		
+		bloodArc.setCenterY(prefHeight-25-strokeWidth);
+		
+		centralCircle.setCenterY(prefHeight-25-strokeWidth);
+		
+		stateIcon1.setLayoutX(15);
+		stateIcon1.setLayoutY(32);
+		stateIcon2.setLayoutX(76);
+		stateIcon2.setLayoutY(32);
+		stateIcon3.setLayoutX(135);
+		stateIcon3.setLayoutY(32);
+		stateIcon4.setLayoutX(13);
+		stateIcon4.setLayoutY(77);
+		stateIcon5.setLayoutX(75);
+		stateIcon5.setLayoutY(74);
+		stateIcon6.setLayoutX(135);
+		stateIcon6.setLayoutY(77);
+	}
+	
+
 
 	public void setCurrentSamurai(SamuraiPanel samurai) {
 		// TODO Auto-generated method stub
@@ -150,7 +191,17 @@ public class StatePanel extends OrderPanel {
 	
 	public void setActualLocation(){
 		this.setLayoutX(currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2);
+		if(currentSamurai.getLayoutY()-prefHeight+10>0){		
 		this.setLayoutY(currentSamurai.getLayoutY()-prefHeight+10);
+		this.setUpLocation();
+		}else{
+			this.setLayoutY(currentSamurai.getLayoutY()+currentSamurai.getHeight());
+			this.setDownLocation();
+		}
 	}
-
+	public void setAppear(boolean isAppear) {
+		// TODO Auto-generated method stub
+		this.isAppear = isAppear;
+		this.setVisible(isAppear);
+	}
 }
