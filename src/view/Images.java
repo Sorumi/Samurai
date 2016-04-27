@@ -37,6 +37,11 @@ public class Images {
 	public static Image WEAPON_STATE_2 = new Image("/./images/weapon_state_2.png",true);
 	public static Image WEAPON_STATE_3 = new Image("/./images/weapon_state_3.png",true);
 	
+	//samurai btn
+	public static Image SAMURAI_BTN_1 = new Image("/./images/samurai_btn_1.png",true);
+	public static Image SAMURAI_BTN_2 = new Image("/./images/samurai_btn_2.png",true);
+	public static Image SAMURAI_BTN_3 = new Image("/./images/samurai_btn_3.png",true);
+	
 	//player
 	public static final Image PLAYER_LOGO_A = new Image("/./images/PLAYER_LOGO_A.png");
 	public static final Image PLAYER_LOGO_B = new Image("/./images/PLAYER_LOGO_B.png");

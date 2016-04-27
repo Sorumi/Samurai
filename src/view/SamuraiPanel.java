@@ -8,7 +8,9 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class SamuraiPanel extends OrderPanel {
@@ -75,6 +77,14 @@ public class SamuraiPanel extends OrderPanel {
 			samuraiV.setWeapon(200);
 			break;
 		}
+		
+		//add
+//		DropShadow dropShadow = new DropShadow();
+//		dropShadow.setRadius(2.0);
+//		dropShadow.setOffsetX(0.0);
+//		dropShadow.setOffsetY(1.0);
+//		dropShadow.setColor(Color.rgb(0,0,0,0.5));
+//		samuraiV.setEffect(dropShadow);
 	}
 	
 	public void setActualLocation(int x, int y){

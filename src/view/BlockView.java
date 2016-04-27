@@ -24,6 +24,8 @@ public class BlockView extends Polygon {
 	private int stateStrokeSize;
 	private int currentStrokeSize;
 	
+	private Timeline tl;
+	
 	public BlockView(int x, int y, int size){
 		this.x = x;
 		this.y = y;
@@ -50,7 +52,7 @@ public class BlockView extends Polygon {
 	public void changeState(int state){
 		Color newColor = GameColor.getBlockColor(state);
 		if(!newColor.equals(color)){
-				Timeline tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
+				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
 				tl.play();
 		}
 	}
@@ -63,6 +65,10 @@ public class BlockView extends Polygon {
 	}
 	
 	public void setOutvision(){
+		if(tl!=null){
+			tl.stop();
+		}
+
 		currentStrokeSize = 0;
 		Color newColor = GameColor.getBlockColor(99);
 		this.setFill(newColor);

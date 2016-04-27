@@ -24,6 +24,8 @@ public class TerritoryPanel extends Pane {
 		this.setStyle("-fx-background-color: #eeeeee");
 		territoryHandler = new TerritoryHandler(this);
 		campsiteBtn = new Button("营地：用来查看武器，换装备");
+		campsiteBtn.setLayoutX(300);
+		campsiteBtn.setLayoutY(300);
 		campsiteBtn.setOnMouseClicked(territoryHandler.CampsiteEvent);
 		this.getChildren().add(campsiteBtn);
 	}

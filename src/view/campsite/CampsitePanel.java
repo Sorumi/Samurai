@@ -9,7 +9,7 @@ public class CampsitePanel extends Pane{
 	
 	private CampsiteItemsWrapper itemsPanel;
 	private CampsiteItemInfo infoPanel;
-	
+	private CampsiteSamuraiWrapper samuraiPanel;
 	
 	public CampsitePanel(){
 		this.setLayoutX(50);
@@ -22,5 +22,7 @@ public class CampsitePanel extends Pane{
 		infoPanel = new CampsiteItemInfo();
 		this.getChildren().add(infoPanel);
 		
+		samuraiPanel = new CampsiteSamuraiWrapper();
+		this.getChildren().add(samuraiPanel);
 	}
 }

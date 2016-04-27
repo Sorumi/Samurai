@@ -76,7 +76,7 @@ public class CampsiteItemInfo extends Pane {
 		
 		weaponStateIcon1.setLayoutX(50);
 		weaponStateIcon1.setLayoutY(145);
-		weaponStateIcon2.setLayoutX(187);
+		weaponStateIcon2.setLayoutX(185);
 		weaponStateIcon2.setLayoutY(141);
 		weaponStateIcon3.setLayoutX(330);
 		weaponStateIcon3.setLayoutY(146);

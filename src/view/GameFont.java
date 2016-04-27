@@ -11,6 +11,6 @@ public class GameFont {
 	public static Font F22 = Font.font("Tsukushi B Round Gothic", 22);
 	public static Font F26 = Font.font("Tsukushi B Round Gothic", 26);
 	
-	public static Font C18L = Font.font("PingFang TC", FontWeight.LIGHT, 18);
+	public static Font C18L = Font.font("PingFang TC", FontWeight.THIN, 18);
 	public static Font C20R = Font.font("PingFang TC", FontWeight.NORMAL, 20);
 }
