@@ -69,8 +69,8 @@ public class CampsiteSamuraiWrapper extends Pane {
 		
 		samuraiBtn3 = new Button();
 		samuraiBtn3.setGraphic(btnV3);
-		samuraiBtn3.setLayoutX(0);
-		samuraiBtn3.setLayoutY(140);
+		samuraiBtn3.setLayoutX(140);
+		samuraiBtn3.setLayoutY(0);
 		
 		samuraiBtns.getChildren().addAll(samuraiBtn1, samuraiBtn2, samuraiBtn3);
 		this.getChildren().add(samuraiBtns);

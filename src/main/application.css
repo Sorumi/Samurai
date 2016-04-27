@@ -1,4 +1,13 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+
+.button{
+	-fx-background-color: transparent;
+	-fx-border-color: transparent;
+    -fx-border-radius: 0;
+    -fx-padding: 0;
+}
+
 .scroll-pane {
 	-fx-background: transparent; 
     -fx-background-insets: 0;
@@ -18,7 +27,7 @@
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track{
 	-fx-background-color: #ffffff;
-	-fx-border-color:transparent;
+	-fx-border-color: transparent;
 	-fx-background-radius: 0em;
 	-fx-border-radius:2em;
 }
