@@ -8,6 +8,10 @@ public class Weapon implements Cloneable,Serializable {
 	/**
 	 * 
 	 */
+	//canCreate  表示这个武器可以被制造
+	//nextWeapon 指示这个武器之后可以解锁的武器
+	//number 指这个武器的数量
+	//Tag Item 的意思参见材料库
 	private static final long serialVersionUID = 1L;
 	private int genre;
 	private int type;

@@ -3,7 +3,7 @@ package model.po;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Armory implements Serializable{
+public class Armory implements Serializable {
 	/**
 	 * 
 	 */
@@ -144,30 +144,29 @@ public class Armory implements Serializable{
 		return null;
 	}
 
+	// 制造武器的方法 如果制造成功 返回true 否则返回false
 	public boolean buildWeapon(int type, MaterialLibrary materialLibrary) {
 		Weapon weapon = getWeapon(type);
 		if (weapon.canCreate()) {
 			if (materialLibrary.checkEnough(weapon.getMaterialTag(), weapon.getMaterialItem(),
 					weapon.getMaterialNumber())) {
-				//材料够，开始制造
+				// 材料够，开始制造
 				for (int i = 0; i < weapon.getMaterialTag().length; i++) {
 					materialLibrary.changeItem(weapon.getMaterialTag()[i], weapon.getMaterialItem()[i],
 							weapon.getMaterialNumber()[i]);
 				}
-				//减材料
+				// 减材料
 				if (weapon.create()) {
 					for (int nextWeapon : weapon.getNextWeapon()) {
 						getWeapon(nextWeapon).unlock();
 					}
-				} 
+				}
 				return true;
-				//判断是否要解锁
-			}
-			else {
+				// 判断是否要解锁
+			} else {
 				return false;
 			}
-		}
-		else {
+		} else {
 			return false;
 		}
 	}

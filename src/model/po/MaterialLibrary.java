@@ -2,7 +2,9 @@ package model.po;
 
 import java.io.Serializable;
 
-public class MaterialLibrary implements Serializable{
+//Tag 指的是材料的种类 0布料 1木头。。。。。
+//Item 指的是材料的等级 0 1 2 3
+public class MaterialLibrary implements Serializable {
 	/**
 	 * 
 	 */
@@ -13,6 +15,8 @@ public class MaterialLibrary implements Serializable{
 	private int[] metal = new int[4];
 	private int[] crystal = new int[4];
 
+	// 传入材料的种类、等级
+	// 返回该材料的数量
 	public int getNumber(int tag, int item) {
 		switch (tag) {
 		case 0:
@@ -31,6 +35,8 @@ public class MaterialLibrary implements Serializable{
 		}
 	}
 
+	// 这个方法是制造武器时候所要调用的方法
+	// 传入的参数是一组材料的种类、等级、数量 查看是否够
 	public boolean checkEnough(int[] tag, int[] item, int[] number) {
 		for (int i = 0; i < tag.length; i++) {
 			switch (tag[i]) {
@@ -78,6 +84,8 @@ public class MaterialLibrary implements Serializable{
 		return true;
 	}
 
+	// 参数表征着材料的种类、等级 更改的数量
+	// 如果减少 传入负数即可
 	public boolean changeItem(int tag, int item, int number) {
 		switch (tag) {
 		case 0:
