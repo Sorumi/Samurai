@@ -16,6 +16,7 @@ public class TerritoryPanel extends Pane {
 	private final int WINDOW_HEIGHT = 800;
 	 
 	private TerritoryHandler territoryHandler;
+	
 	private Button campsiteBtn;
 	public CampsitePanel campsitePanel;
 	

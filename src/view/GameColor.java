@@ -29,7 +29,7 @@ public class GameColor {
 		return color;
 	}
 	
-	public static Color getArmorColor(int x) {
+	public static Color getWeaponColor(int x) {
 		Color color;
 		switch(x) {
 		//fill
@@ -51,11 +51,11 @@ public class GameColor {
 			case 13: color = Color.web("#84BFC9");break;//shuriken
 			case 14: color = Color.web("#927EB9");break;//bow and arrow
 			//background
-//			case 15: color = Color.web(colorString);break;//spear
-//			case 16: color = Color.web(colorString);break;//sword
-//			case 17: color = Color.web(colorString);break;//battleax
-//			case 18: color = Color.web(colorString);break;//shuriken
-//			case 19: color = Color.web(colorString);break;//bow and arrow
+			case 15: color = Color.web("#E2B2B0");break;//spear
+			case 16: color = Color.web("#EEE0AE");break;//sword
+			case 17: color = Color.web("#DCE2C8");break;//battleax
+			case 18: color = Color.web("#D2E0ED");break;//shuriken
+			case 19: color = Color.web("#DCD5E6");break;//bow and arrow
 		
 		default: color = Color.web("#EEEEEE");
 		}

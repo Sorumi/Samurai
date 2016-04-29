@@ -15,23 +15,8 @@ public class CampsiteItemsWrapper extends Pane{
 		this.setPrefSize(560, 700);
 		this.setLayoutX(0);
 		this.setLayoutY(0);
-		
-		DropShadow dropShadow = new DropShadow();
-		dropShadow.setRadius(2.0);
-		dropShadow.setOffsetX(0.0);
-		dropShadow.setOffsetY(1.0);
-		dropShadow.setColor(Color.rgb(0,0,0,0.5));
-		 
-//		this.setId("campsite-items-wrapper");
-		Rectangle bgRect = new Rectangle();
-		bgRect.setWidth(560);
-		bgRect.setHeight(700);
-		bgRect.setArcWidth(10);
-		bgRect.setArcHeight(10);
-		bgRect.setFill(Color.WHITE);
-		bgRect.setEffect(dropShadow);
-		this.getChildren().add(bgRect);
-		
+		this.setId("campsite-wrapper");
+
 		TilePane tile = new TilePane();
 		tile.setVgap(20);
 		tile.setHgap(20);

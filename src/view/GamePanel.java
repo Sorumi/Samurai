@@ -31,6 +31,7 @@ public class GamePanel extends Pane implements Observer{
 	protected final int FIELD_HEIGHT = 600;
 //	protected final int FIELD_FIX = 20;
 
+	protected int level;
 	protected int size;
 	protected int blockWidth;
 	protected int blockHeight;
@@ -65,8 +66,16 @@ public class GamePanel extends Pane implements Observer{
 	protected StateHandler stateHandler; 
 	protected  ObservableList<OrderPanel>  orderList;
 
-	public GamePanel(int size){
+	/*
+	 * level:
+	 * 0: 经典模式
+	 * 1-9：剧情模式的level
+	 * 10：双人模式
+	 * 99：测试模式： 红蓝双方都可见
+	 */
+	public GamePanel(int size, int level){
 		this.size = size;
+		this.level = level;
 
 		//bounds
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);

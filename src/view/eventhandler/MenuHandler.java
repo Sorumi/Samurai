@@ -31,7 +31,7 @@ public class MenuHandler {
 	  			@Override
 	  			public void run() {
 	  				// TODO Auto-generated method stub
-	  	    	  mainFrame.gamePanel = new GamePanel(15);
+	  	    	  mainFrame.gamePanel = new GamePanel(15, 0);
 		    	  mainFrame.startGame();
 		    	  
 		    	  MenuController menuController = new MenuController();
@@ -47,7 +47,7 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-		  	    	  mainFrame.gamePanel = new GamePanelOL(15);
+		  	    	  mainFrame.gamePanel = new GamePanelOL(15, 10);
 			    	  mainFrame.startGame();
 			    	  
 			    	  System.out.println("Waiting for client...");
@@ -64,7 +64,7 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-		  	    	  mainFrame.gamePanel = new GamePanelOL(15);
+		  	    	  mainFrame.gamePanel = new GamePanelOL(15, 10);
 			    	  mainFrame.startGame();
 			    	  
 			    	  ClientController clientController = new ClientController();

@@ -17,8 +17,8 @@ import java.util.Observer;
 public class GamePanelOL extends GamePanel{
 
 
-    public GamePanelOL(int size){
-        super(size);
+    public GamePanelOL(int size, int level){
+        super(size, 10);
     }
 
     public void setCurrentSamurai(int i){
