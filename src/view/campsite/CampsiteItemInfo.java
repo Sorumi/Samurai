@@ -24,40 +24,22 @@ public class CampsiteItemInfo extends Pane {
 	
 	public CampsiteItemInfo(){
 		this.setPrefSize(500, 230);
-		this.setLayoutX(600);
-		this.setLayoutY(0);
-		
-		DropShadow dropShadow = new DropShadow();
-		dropShadow.setRadius(2.0);
-		dropShadow.setOffsetX(0.0);
-		dropShadow.setOffsetY(1.0);
-		dropShadow.setColor(Color.rgb(0,0,0,0.5));
-		
-		Rectangle bgRect = new Rectangle();
-		bgRect.setWidth(500);
-		bgRect.setHeight(230);
-		bgRect.setArcWidth(10);
-		bgRect.setArcHeight(10);
-		bgRect.setFill(Color.WHITE);
-		bgRect.setEffect(dropShadow);
-		this.getChildren().add(bgRect);
+		this.setLayoutX(650);
+		this.setLayoutY(50);
+		this.setId("campsite-wrapper");
 		
 		itemName = new Label("正义裁决");
-		itemName.setTextFill(GameColor.getOtherColor(2));
 		itemName.setLayoutX(50);
 		itemName.setLayoutY(50);
-		itemName.setFont(GameFont.C20R);
-		itemName.setAlignment(Pos.CENTER_LEFT);
+		itemName.setId("item-name");
 		this.getChildren().add(itemName);
 		
-		itemDescription = new Label("这是描述的部分");
-		itemDescription.setWrapText(true);
-		itemDescription.setTextFill(GameColor.getOtherColor(2));
+		itemDescription = new Label("这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分");
 		itemDescription.setLayoutX(50);
 		itemDescription.setLayoutY(80);
 		itemDescription.setMaxWidth(400);
-		itemDescription.setFont(GameFont.C18L);
-		itemDescription.setAlignment(Pos.CENTER_LEFT);
+		itemDescription.setMaxHeight(60);
+		itemDescription.setId("item-description");
 		this.getChildren().add(itemDescription);
 		
 		//stateIcon
@@ -76,35 +58,25 @@ public class CampsiteItemInfo extends Pane {
 		
 		weaponStateIcon1.setLayoutX(50);
 		weaponStateIcon1.setLayoutY(145);
-		weaponStateIcon2.setLayoutX(185);
+		weaponStateIcon2.setLayoutX(184);
 		weaponStateIcon2.setLayoutY(141);
 		weaponStateIcon3.setLayoutX(330);
 		weaponStateIcon3.setLayoutY(146);
 		
 		Label weaponState1 = new Label("100");
-		weaponState1.setStyle("-fx-background-color: #dddddd");
-		weaponState1.setFont(GameFont.F18);
-		weaponState1.setTextFill(GameColor.getOtherColor(2));
-		weaponState1.setAlignment(Pos.CENTER_LEFT);
 		weaponState1.setLayoutX(100);
 		weaponState1.setLayoutY(158);
+		weaponState1.setId("item-state");
 		
 		Label weaponState2 = new Label("100");
-		weaponState2.setStyle("-fx-background-color: #dddddd");
-		weaponState2.setFont(GameFont.F18);
-		weaponState2.setTextFill(GameColor.getOtherColor(2));
-		weaponState2.setAlignment(Pos.CENTER_LEFT);
 		weaponState2.setLayoutX(240);
 		weaponState2.setLayoutY(158);
+		weaponState2.setId("item-state");
 		
 		Label weaponState3 = new Label("100");
-		weaponState3.setStyle("-fx-background-color: #dddddd");
-		weaponState3.setFont(GameFont.F18);
-		weaponState3.setTextFill(GameColor.getOtherColor(2));
-		weaponState3.setAlignment(Pos.CENTER_LEFT);
 		weaponState3.setLayoutX(380);
 		weaponState3.setLayoutY(158);
-		
+		weaponState3.setId("item-state");
 		
 		weaponState.getChildren().addAll(weaponStateIcon1, weaponStateIcon2, weaponStateIcon3, weaponState1, weaponState2, weaponState3);
 		this.getChildren().add(weaponState);

@@ -1,11 +1,51 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
-
 .button{
 	-fx-background-color: transparent;
 	-fx-border-color: transparent;
     -fx-border-radius: 0;
     -fx-padding: 0;
+}
+
+/* Campsite */
+#campsite-wrapper{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#item-name{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 400;
+	-fx-font-size: 20;
+	-fx-alignment: center-left;
+}
+#item-description{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 100;
+	-fx-font-size: 16;
+	-fx-alignment: center-left;
+	-fx-wrap-text: true;
+}
+#item-state{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 16;
+	-fx-alignment: center-left;
+}
+
+/* Smithy */
+#smithy-wrapper{
+	-fx-background-radius: 0 10 10 10;
+	-fx-border-radius: 0 10 10 10;
+	
+}
+
+#smithy-btn{
+	-fx-background-radius: 10 0 0 10;
+	-fx-border-radius: 10 0 0 10;
 }
 
 .scroll-pane {

@@ -20,23 +20,9 @@ public class CampsiteSamuraiWrapper extends Pane {
 	
 	public CampsiteSamuraiWrapper(){
 		this.setPrefSize(500, 430);
-		this.setLayoutX(600);
-		this.setLayoutY(270);
-		
-		DropShadow dropShadow = new DropShadow();
-		dropShadow.setRadius(2.0);
-		dropShadow.setOffsetX(0.0);
-		dropShadow.setOffsetY(1.0);
-		dropShadow.setColor(Color.rgb(0,0,0,0.5));
-		
-		Rectangle bgRect = new Rectangle();
-		bgRect.setWidth(500);
-		bgRect.setHeight(430);
-		bgRect.setArcWidth(10);
-		bgRect.setArcHeight(10);
-		bgRect.setFill(Color.WHITE);
-		bgRect.setEffect(dropShadow);
-		this.getChildren().add(bgRect);
+		this.setLayoutX(650);
+		this.setLayoutY(320);
+		this.setId("campsite-wrapper");
 		
 		samurai = new SamuraiView(1, 3);//TODO default
 		samurai.setLayoutX(40);
