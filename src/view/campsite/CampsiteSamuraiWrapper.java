@@ -20,8 +20,8 @@ public class CampsiteSamuraiWrapper extends Pane {
 	
 	public CampsiteSamuraiWrapper(){
 		this.setPrefSize(500, 430);
-		this.setLayoutX(600);
-		this.setLayoutY(270);
+		this.setLayoutX(650);
+		this.setLayoutY(320);
 		this.setId("campsite-wrapper");
 		
 		samurai = new SamuraiView(1, 3);//TODO default

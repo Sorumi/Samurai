@@ -13,8 +13,8 @@ public class CampsiteItemsWrapper extends Pane{
 	
 	public CampsiteItemsWrapper(CampsiteHandler campsiteHandler){
 		this.setPrefSize(560, 700);
-		this.setLayoutX(0);
-		this.setLayoutY(0);
+		this.setLayoutX(50);
+		this.setLayoutY(50);
 		this.setId("campsite-wrapper");
 
 		TilePane tile = new TilePane();

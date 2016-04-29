@@ -12,8 +12,7 @@ public class CampsitePanel extends Pane{
 	private CampsiteSamuraiWrapper samuraiPanel;
 	
 	public CampsitePanel(){
-		this.setLayoutX(50);
-		this.setLayoutY(50);
+		this.setPrefSize(1200, 800);
 		campsiteHandler = new CampsiteHandler();
 		
 		itemsPanel = new CampsiteItemsWrapper(campsiteHandler);

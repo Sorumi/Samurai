@@ -24,8 +24,8 @@ public class CampsiteItemInfo extends Pane {
 	
 	public CampsiteItemInfo(){
 		this.setPrefSize(500, 230);
-		this.setLayoutX(600);
-		this.setLayoutY(0);
+		this.setLayoutX(650);
+		this.setLayoutY(50);
 		this.setId("campsite-wrapper");
 		
 		itemName = new Label("正义裁决");

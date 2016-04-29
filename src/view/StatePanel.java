@@ -1,7 +1,5 @@
 package view;
 
-
-
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -13,7 +11,6 @@ import javafx.scene.shape.StrokeType;
 import view.Images;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.StateHandler;
-
 
 public class StatePanel extends OrderPanel { 
 	private final int SAMURAI_WIDTH = 60;
