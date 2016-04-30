@@ -32,8 +32,8 @@ public class MenuHandler {
 	  			public void run() {
 	  				// TODO Auto-generated method stub
 	  	    	  mainFrame.gamePanel = new GamePanel(15, 0);
-		    	  mainFrame.startGame();
-		    	  
+		    	  mainFrame.startClassicGame();
+
 		    	  MenuController menuController = new MenuController();
 		    	  menuController.startGame();
 	  			}

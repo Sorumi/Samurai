@@ -210,13 +210,14 @@ public class Player {
             this.gameModel.actionPerformed(actionNum);
         }
         if(this.actionPoint == 0){
-            
+            //这是为了点数没了的时候可以播放完动画
             try{
                 Thread.sleep(1200);
             }catch (Exception e){
                 e.printStackTrace();
             }
             this.actionDone();
+
         }
     }
 

@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import model.po.Position;
 import view.eventhandler.ActionHandler;
 
 public class ActionPanel extends OrderPanel {
@@ -17,6 +18,8 @@ public class ActionPanel extends OrderPanel {
 	
 	private int pointsRest;
 	private boolean isAppear;
+
+	private int size;
 
 	private ActionButton moveButton;
 	private ActionButton occupyButton;
@@ -71,6 +74,10 @@ public class ActionPanel extends OrderPanel {
 		this.currentSamurai = samurai;
 		this.reset();
 	}
+
+	public void setSize(int size){
+		this.size = size;
+	}
 	
 	public void reset(){
 		this.setAppear(false, false);
@@ -93,9 +100,26 @@ public class ActionPanel extends OrderPanel {
 		occupyButton.setVisible(false);
 		hideButton.setVisible(false);
 		directionPanel.setVisible(true);
+
+		//决定显示哪些箭头
+		Position position = this.currentSamurai.getPos();
+		System.out.println(this.size);
+		if(position.getX() == 0){
+			directions[0] = false;
+		}
+		if(position.getY() == 0){
+			directions[1] = false;
+		}
+		if(position.getX() == this.size - 1){
+			directions[3] = false;
+		}
+		if(position.getY() == this.size - 1){
+			directions[2] = false;
+		}
 		directionPanel.setVisible(directions);
 
 	}
+
 	public void closeSecondary(){
 		backButton.setVisible(false);
 		exitButton.setVisible(true);
@@ -104,8 +128,7 @@ public class ActionPanel extends OrderPanel {
 		hideButton.setVisible(true);
 		directionPanel.setVisible(false);
 	}
-	
-	
+
 	public void setAppear(boolean isAppear, boolean animation){
 		if(isAppear == this.isAppear){
 			return;
@@ -213,6 +236,7 @@ public class ActionPanel extends OrderPanel {
 			
 		} 
 	}
+
 	private void setStartLocation(){
 		occupyButton.setLayoutX((BUTTONPANEL_WIDTH-BUTTON_WIDTH)/2);
 		occupyButton.setLayoutY(BUTTON_Y);

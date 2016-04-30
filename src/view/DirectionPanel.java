@@ -15,7 +15,6 @@ public class DirectionPanel extends Pane {
 	private final int WIDTH_FIX = 24;
 	private final int HEIGHT_FIX = 12;
 
-	
 	private boolean canUp;
 	private boolean canLeft;
 	private boolean canRight;
@@ -68,15 +67,12 @@ public class DirectionPanel extends Pane {
 		this.getChildren().add(rightButton);
 		this.getChildren().add(downButton);
 	}
-	
 
 	public void setHighLight(int direction, boolean isHL){
 		buttons[direction].setHighLight(isHL);
 	}
 
-
 	public void setVisible(boolean[] directions) {
-
 		upButton.setVisible(directions[0]);
 		leftButton.setVisible(directions[1]);
 		rightButton.setVisible(directions[2]);
