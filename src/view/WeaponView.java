@@ -26,6 +26,8 @@ public class WeaponView extends StackPane{
 				imgV.setRotate(45);
 			}else{
 				imgV.setRotate(-45);
+				imgV.setTranslateX(5);
+				imgV.setTranslateY(-5);
 				imgVExtra = new ImageView(Images.WEAPON[number/100+1][number%100/10][number%10]);
 				imgVExtra.setFitWidth(Images.WEAPON[number/100+1][number%100/10][number%10].getWidth()/6*SCALE);
 				imgVExtra.setPreserveRatio(true);
