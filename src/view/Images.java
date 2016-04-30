@@ -23,7 +23,10 @@ public class Images {
 	//lotus
 	public static Image LOTUS_0 = new Image("/./images/lotus_0.png",true);
 	
-	
+	//system
+	public static Image SYSTEM_BACK_BTN = new Image("/./images/system_back_button.png",true);
+	public static Image SYSTEM_CLOSE_BTN = new Image("/./images/system_close_button.png",true);
+
 	//samurai state
 	public static Image STATE_ICON_1 = new Image("/./images/state_icon_1.png",true);
 	public static Image STATE_ICON_2 = new Image("/./images/state_icon_2.png",true);

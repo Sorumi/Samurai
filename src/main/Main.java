@@ -1,33 +1,15 @@
 package main;
-	
-import java.util.Collections;
-import java.util.Scanner;
 
-import controller.ClientController;
-import controller.HostController;
-import controller.MenuController;
 import controller.msgqueue.OperationQueue;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import model.GameModel;
 import view.GamePanel;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import view.GamePanelOL;
 import view.MenuPanel;
 import view.StoryPanel;
-import view.eventhandler.MenuHandler;
+
 
 
 public class Main extends Application {
