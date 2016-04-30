@@ -42,7 +42,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
-		SamuraiPO samuraiPO = new SamuraiPO(1, 0, new Weapon(4), 14, cbm, new Armor());
+		SamuraiPO samuraiPO = new SamuraiPO(1, 0, new Weapon(2), 14, cbm, new Armor());
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
 			for (int x = 0; x <= 14; x++) {
@@ -50,7 +50,8 @@ public class SamuraiPO implements Serializable, Cloneable {
 			}
 			System.out.println();
 		}
-		samuraiPO.occupied(2, cbm, true);
+		samuraiPO.move(2, cbm);
+		samuraiPO.occupied(3, cbm, true);
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
 			for (int x = 0; x <= 14; x++) {
@@ -838,6 +839,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				}
 				break;
 			}
+			break;
 		case 3:
 			switch (direction) {
 			case 0:
