@@ -42,6 +42,26 @@ public class OperationQueue implements Runnable, Serializable {
 			}else if(GameModel.isServer() && Operation.isServer()){
 				hostService.update(gameModel, updateMessage);
 			}
+
+			TimeOperation t = new TimeOperation();
+			if(operation.getClass() != t.getClass()) {
+				System.out.println(operation.toString());
+			}
+
+			//迫不得已才加在这里...难过 T^T
+			if(gameModel.getLevel() == 99 && gameModel.getCurrentSamurai() >= 4){
+				ActionOperation ao = new ActionOperation(100,100);
+				NextOperation po = new NextOperation();
+				if(operation.getClass() == ao.getClass()
+						|| operation.getClass() == po.getClass()) {
+					try {
+						Thread.sleep(2400);
+					} catch (Exception E) {
+						E.printStackTrace();
+					}
+				}
+			}
+
 			operation.execute();
 		}
 	}

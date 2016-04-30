@@ -13,6 +13,5 @@ public class HostHandlerImpl  implements HostHandler{
     public void inputHandle(Object data) {
         Operation op = (Operation) data;
         OperationQueue.addOperation(op);
-        System.out.println(op.toString());
     }
 }

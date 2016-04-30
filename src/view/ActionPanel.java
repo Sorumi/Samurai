@@ -103,7 +103,6 @@ public class ActionPanel extends OrderPanel {
 
 		//决定显示哪些箭头
 		Position position = this.currentSamurai.getPos();
-		System.out.println(this.size);
 		if(position.getX() == 0){
 			directions[0] = false;
 		}
