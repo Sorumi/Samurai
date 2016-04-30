@@ -40,8 +40,8 @@ public class SamuraiView extends Pane{
 	private OrderImageView rightArm;
 	private OrderImageView helmet;
 	
-	private WeaponView weapon;
-	private WeaponView weaponExtra;
+	private SamuraiWeaponView weapon;
+	private SamuraiWeaponView weaponExtra;
 	
 	Rotate leftArmRo;
 	Rotate rightArmRo;
@@ -185,7 +185,7 @@ public class SamuraiView extends Pane{
 			orderList.remove(weaponExtra);
 		}
 		
-		this.weapon = new WeaponView(number, SCALE);
+		this.weapon = new SamuraiWeaponView(number, SCALE);
 		group.getChildren().add(weapon);
 		orderList.add(weapon);
 
@@ -193,7 +193,7 @@ public class SamuraiView extends Pane{
 		
 		//ADD 400
 		if(number/100 == 4){
-			weaponExtra = new WeaponView(number+100, SCALE);
+			weaponExtra = new SamuraiWeaponView(number+100, SCALE);
 			group.getChildren().add(weaponExtra);
 			orderList.add(weaponExtra);
 			weaponExtra.getTransforms().add(weaponExtraRo);

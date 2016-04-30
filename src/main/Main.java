@@ -64,7 +64,7 @@ public class Main extends Application {
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		
-//		GameController gameController = new GameController();
+		GameController gameController = new GameController();
 		
 		OperationQueue operationQueue = new OperationQueue(gameModel);
 		Thread operationThread = new Thread(operationQueue);

@@ -19,12 +19,16 @@ public class TerritoryHandler {
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.campsitePanel = new CampsitePanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.campsitePanel);
+	    	  territoryPanel.systemCloseBtn.toFront();
+	    	  territoryPanel.systemCloseBtn.setVisible(true);
 	      }
 	};
 	public EventHandler<MouseEvent> smithyEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.smithyPanel = new SmithyPanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.smithyPanel);
+	    	  territoryPanel.systemCloseBtn.toFront();
+	    	  territoryPanel.systemCloseBtn.setVisible(true);
 	      }
 	};
 }

@@ -1,10 +1,17 @@
 package view.smithy;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import view.SystemCloseButton;
+import view.eventhandler.SmithyHandler;
 
 public class SmithyPanel extends Pane {
+	
+	private SmithyHandler smithyHandler;
 	
 	private Button spearBtn;
 	private Button swordBtn;
@@ -18,9 +25,10 @@ public class SmithyPanel extends Pane {
 	private SmithyItemWrapper3 shurikenPanel;
 	private SmithyItemWrapper4 bowPanel;
 	
-	
 	public SmithyPanel(){
 		this.setPrefSize(1200, 800);
+		
+		smithyHandler = new SmithyHandler(this);
 
 		SmithyGroup spearGroup = new SmithyGroup();
 		SmithyGroup swordGroup = new SmithyGroup();
@@ -29,39 +37,37 @@ public class SmithyPanel extends Pane {
 		SmithyGroup bowGroup = new SmithyGroup();
 		
 		spearBtn = new SmithyButton(0);
-		spearGroup.getChildren().add(spearBtn);
 		spearPanel = new SmithyItemWrapper0();
-		spearGroup.getChildren().add(spearPanel);
+		spearGroup.getChildren().addAll(spearBtn, spearPanel);
 		
 		swordBtn = new SmithyButton(1);
-		swordGroup.getChildren().add(swordBtn);
 		swordPanel = new SmithyItemWrapper1();
-		swordGroup.getChildren().add(swordPanel);
+		swordGroup.getChildren().addAll(swordBtn, swordPanel);
 		
 		battleaxBtn = new SmithyButton(2);
-		battleaxGroup.getChildren().add(battleaxBtn);
 		battleaxPanel = new SmithyItemWrapper2();
-		battleaxGroup.getChildren().add(battleaxPanel);
+		battleaxGroup.getChildren().addAll(battleaxBtn, battleaxPanel);
 		
 		shurikenBtn = new SmithyButton(3);
-		shurikenGroup.getChildren().add(shurikenBtn);
 		shurikenPanel = new SmithyItemWrapper3();
-		shurikenGroup.getChildren().add(shurikenPanel);
+		shurikenGroup.getChildren().addAll(shurikenBtn, shurikenPanel);
 		
 		bowBtn = new SmithyButton(4);
-		bowGroup.getChildren().add(bowBtn);
 		bowPanel = new SmithyItemWrapper4();
-		bowGroup.getChildren().add(bowPanel);
+		bowGroup.getChildren().addAll(bowBtn, bowPanel);
 		
-		this.getChildren().add(bowGroup);
-		this.getChildren().add(shurikenGroup);
-		this.getChildren().add(battleaxGroup);
-		this.getChildren().add(swordGroup);
-		this.getChildren().add(spearGroup);
+		spearBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
+		swordBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
+		battleaxBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
+		shurikenBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
+		bowBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
+		
+		this.getChildren().addAll(bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup);
+		
 	}
 	
 	//内部类
-	private class SmithyGroup extends Group {
+	public class SmithyGroup extends Group {
 		public SmithyGroup(){
 			this.setStyle("-fx-effect: dropshadow(gaussian, rgb(128,128,128), 2, 0, 0, 1)");
 		}
