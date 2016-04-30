@@ -1,5 +1,7 @@
 package view;
 
+import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
 import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
@@ -7,6 +9,7 @@ import model.po.Position;
 import model.po.SamuraiPO;
 import view.eventhandler.ActionHandler;
 
+import javafx.beans.value.ChangeListener;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -46,11 +49,28 @@ public class GamePanelOL extends GamePanel{
                 break;
         }
         currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
+        currentSamurai.setCanActionProperty(true);
         playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
         playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
         if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)){
             arrow.setCurrentSamurai(currentSamurai);
             actionPanel.setCurrentSamurai(currentSamurai);
+            roundPanel.setCurrentSamurai(currentSamurai.getNum());
+            currentSamurai.canActionProperty().addListener(new ChangeListener(){
+                public void changed(ObservableValue o, Object oldVal, Object newVal){
+                    Platform.runLater(new Runnable(){
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            boolean canAction= (boolean) newVal;
+                            if(canAction){
+                                arrow.setActualLocation();
+                                arrow.setVisible(true);
+                            }
+                        }
+                    });
+                }
+            });
         }else{
             arrow.setVisible(false);
             actionPanel.setVisible(false);
@@ -80,25 +100,43 @@ public class GamePanelOL extends GamePanel{
             }
 
         }else if(key.equals("actionPoint")){
-            this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
+
+            int i = this.currentSamurai.getNum();
+            if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
+                this.currentPlayer.pointsPanel.setPointsRest((int) notifingObject.getValue());
+                this.actionPanel.setPointsRest((int) notifingObject.getValue());
+            }
 
         }else if(key.equals("pointsTotal")){
-            this.currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
+
+            int i = this.currentSamurai.getNum();
+            if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
+                this.currentPlayer.pointsPanel.setPointsTotal((int) notifingObject.getValue());
+            }
 
         }else if(key.equals("samuraiMove")){
             Position position = (Position)notifingObject.getValue();
             int i = this.currentSamurai.getNum();
-            this.currentSamurai.setActualLocation(position.getX(), position.getY());
+//            this.currentSamurai.setActualLocation(position.getX(), position.getY());
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
-                this.actionPanel.setActualLocation();
-                this.arrow.setActualLocation();
+                this.currentSamurai.move(position.getX(), position.getY());
+                this.actionPanel.reset();
+                this.setOrder();
             }
 
         }else if(key.equals("samuraiHide")){
-            this.currentSamurai.setHide((boolean)notifingObject.getValue());
 
+            int i = this.currentSamurai.getNum();
+            if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
+                this.currentSamurai.setHide((boolean) notifingObject.getValue());
+            }
         }else if(key.equals("samuraiOccupy")){
 			this.currentSamurai.occupy((int)notifingObject.getValue());
+            int i = this.currentSamurai.getNum();
+            if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
+                this.actionPanel.reset();
+                this.arrow.setVisible(true);
+            }
 			
         }else if(key.equals("samuraiKilled")){
 
@@ -183,6 +221,10 @@ public class GamePanelOL extends GamePanel{
             }
             tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
             chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
+        }else if(key.equals("occupiedBlocks")){
+            int[] n = (int [])notifingObject.getValue();
+            this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
+            this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
         }
     }
 

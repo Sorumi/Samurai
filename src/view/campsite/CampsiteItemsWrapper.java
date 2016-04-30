@@ -23,7 +23,7 @@ public class CampsiteItemsWrapper extends Pane{
 		tile.setPrefColumns(4);
 		
 		for (int i=0; i<=4; i++){
-			for(int j=0; j<=6; j++){
+			for(int j=0; j<=8; j++){
 				CampsiteItemView item = new CampsiteItemView(i*100);
 				item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
 				item.setOnMouseExited(campsiteHandler.itemExitEvent);

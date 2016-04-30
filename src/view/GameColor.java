@@ -32,24 +32,24 @@ public class GameColor {
 	public static Color getWeaponColor(int x) {
 		Color color;
 		switch(x) {
-			//fill
+		//fill
 			case 0: color = Color.web("#FFB3B3");break;//spear
 			case 1: color = Color.web("#FFF3BB");break;//sword
-			case 2: color = Color.web("#E1E6C3");break;//battleax
-			case 3: color = Color.web("#CBE5E9");break;//shuriken
-			case 4: color = Color.web("#E3DBF2");break;//bow and arrow
+			case 2: color = Color.web("#E0ED99");break;//battleax
+			case 3: color = Color.web("#BBECF4");break;//shuriken
+			case 4: color = Color.web("#D7C3FF");break;//bow and arrow
 			//highlight
 			case 5: color = Color.web("#E46767");break;//spear
 			case 6: color = Color.web("#F7E07B");break;//sword
-			case 7: color = Color.web("#C3D26D");break;//battleax
+			case 7: color = Color.web("#C0D25C");break;//battleax
 			case 8: color = Color.web("#A1E0EB");break;//shuriken
-			case 9: color = Color.web("#C2ABEE");break;//bow and arrow
+			case 9: color = Color.web("#B19BDC");break;//bow and arrow
 			//stroke
 			case 10: color = Color.web("#C35050");break;//spear
 			case 11: color = Color.web("#DDC766");break;//sword
 			case 12: color = Color.web("#A4B44B");break;//battleax
 			case 13: color = Color.web("#84BFC9");break;//shuriken
-			case 14: color = Color.web("#A592C9");break;//bow and arrow
+			case 14: color = Color.web("#927EB9");break;//bow and arrow
 			//background
 			case 15: color = Color.web("#E2B2B0");break;//spear
 			case 16: color = Color.web("#EEE0AE");break;//sword

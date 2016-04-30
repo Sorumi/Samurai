@@ -120,7 +120,7 @@ public class SamuraiView extends Pane{
 			
 		}
 		//weapon default
-//		weapon = new WeaponView(300);//TODO
+//		weapon = new SamuraiWeaponView(300);//TODO
 //		orderList.add(weapon);
 //		group.getChildren().add(weapon);
 		

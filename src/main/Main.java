@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Scanner;
 
 import controller.ClientController;
-import controller.GameController;
 import controller.HostController;
 import controller.MenuController;
 import controller.msgqueue.OperationQueue;
@@ -60,12 +59,19 @@ public class Main extends Application {
 
 	public void startGame(){
 		scene.setRoot(gamePanel);
+		this.gameModel = new GameModel(24, 14, this, 0);
+		this.gameModel.addObserver(this.gamePanel);
+		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
+		OperationQueue operationQueue = new OperationQueue(gameModel);
+		Thread operationThread = new Thread(operationQueue);
+		operationThread.start();
+	}
+
+	public void startClassicGame(){
+		scene.setRoot(gamePanel);
 		this.gameModel = new GameModel(24, 14, this, 99);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
-		
-		GameController gameController = new GameController();
-		
 		OperationQueue operationQueue = new OperationQueue(gameModel);
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();

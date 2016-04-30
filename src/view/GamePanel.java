@@ -114,6 +114,7 @@ public class GamePanel extends Pane implements Observer{
 		this.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
 		//actionpanel
 		actionPanel = new ActionPanel(actionHandler);
+		actionPanel.setSize(this.size);
 		this.getChildren().add(actionPanel);
 		//stateHandler
 		stateHandler = new StateHandler(this);
@@ -295,7 +296,6 @@ public class GamePanel extends Pane implements Observer{
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 			
 		}else if(key.equals("samuraiOccupy")){
-			System.out.println("occupy");
 			this.currentSamurai.occupy((int)notifingObject.getValue());
 			this.actionPanel.reset();
 			this.arrow.setVisible(true);
@@ -389,9 +389,6 @@ public class GamePanel extends Pane implements Observer{
 			
 		}else if(key.equals("occupiedBlocks")){
 			int[] n = (int [])notifingObject.getValue();
-//			for(int i : n){
-//				System.out.println(i);
-//			}
 			this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
 			this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
 		}

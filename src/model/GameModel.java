@@ -340,16 +340,11 @@ public class GameModel extends BaseModel implements Observer {
                         }
                         break;
                 }
-                try {
-                    Thread.sleep(2000);
-                } catch (Exception E) {
-                    E.printStackTrace();
-                }
                 this.skip1Round();
             }
         } else {
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
-                this.skip1Round();
+            this.skip1Round();
         }
     }
 
@@ -464,7 +459,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void countDown(){
-        System.out.println("COUNT DOWN!");
+//        System.out.println("COUNT DOWN!");
         if(this.currentTime > 0) {
 
 //            if(this.playerSeq[this.currentPlayer - 1] == 0){

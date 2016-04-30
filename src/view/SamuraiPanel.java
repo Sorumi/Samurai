@@ -12,6 +12,7 @@ import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import model.po.Position;
 
 public class SamuraiPanel extends OrderPanel {
 
@@ -117,6 +118,10 @@ public class SamuraiPanel extends OrderPanel {
 
 	public boolean isHide() {
 		return isHide;
+	}
+
+	public Position getPos(){
+		return new Position(x, y);
 	}
 
 	public void occupy(int direction){

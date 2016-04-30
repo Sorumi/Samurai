@@ -12,6 +12,5 @@ public class ClientHandlerImpl extends Observable implements ClientHandler {
         TransformObject obj = (TransformObject) data;
         this.setChanged();
         this.notifyObservers(obj);
-        System.out.println(obj.getSource() + obj.getMsg().getValue());
     }
 }

@@ -1,14 +1,12 @@
 package view.campsite;
 
-import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import view.GameColor;
-import view.WeaponView;
+import view.eventhandler.CampsiteHandler;
 
-public class CampsiteItemView extends StackPane {
+public class CampsiteItemView extends Pane {
 
 	private final int RADIUS = 50;
 	private int itemNum;
@@ -29,9 +27,7 @@ public class CampsiteItemView extends StackPane {
 		bgCircle.setStrokeWidth(0);
 		this.getChildren().add(bgCircle);
 		
-		WeaponView weapon = new WeaponView(itemNum);
-		this.getChildren().add(weapon);
-		StackPane.setAlignment(weapon,Pos.CENTER);
+//		this.setOnMouseEntered(campsiteHandler.itemEnterEvent);
 	}
 
 	public void setHighlight() {
