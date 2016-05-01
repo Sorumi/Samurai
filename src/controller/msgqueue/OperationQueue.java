@@ -35,6 +35,7 @@ public class OperationQueue implements Runnable, Serializable {
 
 	public void run() {
 		while(isRunning){
+			System.out.println("execute Operation");
 			Operation operation = getNewOperation();
 			UpdateMessage updateMessage = new UpdateMessage("execute",operation);
 			if(GameModel.isClient() && !Operation.isServer()){
@@ -43,12 +44,7 @@ public class OperationQueue implements Runnable, Serializable {
 				hostService.update(gameModel, updateMessage);
 			}
 
-			TimeOperation t = new TimeOperation();
-			if(operation.getClass() != t.getClass()) {
-				System.out.println(operation.toString());
-			}
-
-			//迫不得已才加在这里...难过 T^T
+			//迫不得已才加在这里..
 			if(gameModel.getLevel() == 99 && gameModel.getCurrentSamurai() >= 4){
 				ActionOperation ao = new ActionOperation(100,100);
 				NextOperation po = new NextOperation();
