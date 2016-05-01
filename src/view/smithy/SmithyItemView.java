@@ -69,12 +69,12 @@ public class SmithyItemView extends Pane{
 	
 	
 	//解锁
-	public void setUnlocked(boolean isUnlocked){
-		this.isUnlocked = isUnlocked;
-		if(isUnlocked){
-			this.setOpacity(1);
-		}else{
-			this.setOpacity(0.5);
-		}
-	}
+//	public void setUnlocked(boolean isUnlocked){
+//		this.isUnlocked = isUnlocked;
+//		if(isUnlocked){
+//			this.setOpacity(1);
+//		}else{
+//			this.setOpacity(0.5);
+//		}
+//	}
 }

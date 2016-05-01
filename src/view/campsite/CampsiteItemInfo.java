@@ -63,17 +63,17 @@ public class CampsiteItemInfo extends Pane {
 		weaponStateIcon3.setLayoutX(330);
 		weaponStateIcon3.setLayoutY(146);
 		
-		Label weaponState1 = new Label("100");
+		weaponState1 = new Label("100");
 		weaponState1.setLayoutX(100);
 		weaponState1.setLayoutY(158);
 		weaponState1.setId("item-state");
 		
-		Label weaponState2 = new Label("100");
+		weaponState2 = new Label("100");
 		weaponState2.setLayoutX(240);
 		weaponState2.setLayoutY(158);
 		weaponState2.setId("item-state");
 		
-		Label weaponState3 = new Label("100");
+		weaponState3 = new Label("100");
 		weaponState3.setLayoutX(380);
 		weaponState3.setLayoutY(158);
 		weaponState3.setId("item-state");

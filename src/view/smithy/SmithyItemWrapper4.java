@@ -4,7 +4,9 @@ import view.GameColor;
 
 public class SmithyItemWrapper4 extends SmithyItemWrapper {
 
-	//spear
+	//lockGroup
+	
+	//bow and arrow
 	public SmithyItemWrapper4() {
 		super(4);
 	}

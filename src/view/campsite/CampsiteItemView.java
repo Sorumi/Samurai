@@ -1,7 +1,9 @@
 package view.campsite;
 
 import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import view.GameColor;
@@ -12,6 +14,7 @@ public class CampsiteItemView extends StackPane {
 	private final int RADIUS = 50;
 	private int itemNum;
 	private Circle bgCircle;
+	private Label quantityLabel;
 	
 	public CampsiteItemView(int itemNum){
 		this.itemNum = itemNum;
@@ -27,6 +30,12 @@ public class CampsiteItemView extends StackPane {
 		bgCircle.setStrokeType(StrokeType.INSIDE);
 		bgCircle.setStrokeWidth(0);
 		this.getChildren().add(bgCircle);
+		
+		quantityLabel = new Label("1");
+		quantityLabel.setPrefSize(30, 30);
+		quantityLabel.setId("item-quantity");
+		this.getChildren().add(quantityLabel);
+		StackPane.setAlignment(quantityLabel,Pos.BOTTOM_RIGHT);
 		
 		WeaponView weapon = new WeaponView(itemNum);
 		this.getChildren().add(weapon);

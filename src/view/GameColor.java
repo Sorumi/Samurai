@@ -15,12 +15,13 @@ public class GameColor {
 			case 5: color = Color.web("#6AA0D5");break;
 			case 6: color = Color.web("#6ABEDD");break;
 			//highlight
-			case 7: color = Color.web("#FF8A7D");break;
-			case 8: color = Color.web("#FFB27F");break;
-			case 9: color = Color.web("#FFCE7B");break;
-			case 10: color = Color.web("#81A0FF");break;
-			case 11: color = Color.web("#7EC0FF");break;
-			case 12: color = Color.web("#7EDCFF");break;
+			case 7: color = Color.rgb(230,230,230,0.7);break;
+			case 8: color = Color.web("#FF8A7D");break;
+			case 9: color = Color.web("#FFB27F");break;
+			case 10: color = Color.web("#FFCE7B");break;
+			case 11: color = Color.web("#81A0FF");break;
+			case 12: color = Color.web("#7EC0FF");break;
+			case 13: color = Color.web("#7EDCFF");break;
 			//alpha
 			case 99:color = new Color(0,0,0,0);break;
 			default: color = new Color(0,0,0,0);//alpha
