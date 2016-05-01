@@ -43,8 +43,6 @@ public class SmithyItemWrapper0 extends SmithyItemWrapper {
 		item016.setUnlocked(false);
 		this.getChildren().add(item016);
 		
-		
-		
 		SmithyItemView item023 = new SmithyItemView(23, 0);
 		item023.setLayoutY(300);
 		//TODO

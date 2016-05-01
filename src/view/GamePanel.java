@@ -102,8 +102,7 @@ public class GamePanel extends Pane implements Observer{
 		//player
 		playerA = new PlayerPanel(0, timeTotal);
 		playerB = new PlayerPanel(1, timeTotal);
-		this.getChildren().add(playerA);
-		this.getChildren().add(playerB);
+		this.getChildren().addAll(playerA, playerB);
 
 		//arrow
 		arrow = new Arrow();
@@ -129,12 +128,7 @@ public class GamePanel extends Pane implements Observer{
 		B1 = new SamuraiPanel(4, size);
 		B2 = new SamuraiPanel(5, size);
 		B3 = new SamuraiPanel(6, size);
-		this.getChildren().add(A1);
-		this.getChildren().add(A2);
-		this.getChildren().add(A3);
-		this.getChildren().add(B1);
-		this.getChildren().add(B2);
-		this.getChildren().add(B3);
+		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
 		
 		A1.setOnMouseEntered(stateHandler.showStatePanel);
 		A1.setOnMouseExited(stateHandler.closeStatePanel);
@@ -258,7 +252,6 @@ public class GamePanel extends Pane implements Observer{
 		// TODO Auto-generated method stub
 		
 		//待添加
-		//每个武士占领的block数
 		//点move或者occupy之后的方向选择信息
 		//点方向之后的block高亮信息
 		

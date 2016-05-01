@@ -62,10 +62,7 @@ public class DirectionPanel extends Pane {
 		rightButton.setOnMouseExited(actionHandler.directionExitEvent);
 		downButton.setOnMouseExited(actionHandler.directionExitEvent);
 		
-		this.getChildren().add(upButton);
-		this.getChildren().add(leftButton);
-		this.getChildren().add(rightButton);
-		this.getChildren().add(downButton);
+		this.getChildren().addAll(upButton, leftButton, rightButton, downButton);
 	}
 
 	public void setHighLight(int direction, boolean isHL){

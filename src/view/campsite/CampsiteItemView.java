@@ -1,13 +1,11 @@
 package view.campsite;
 
 import javafx.geometry.Pos;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import view.GameColor;
 import view.WeaponView;
-import view.eventhandler.CampsiteHandler;
 
 public class CampsiteItemView extends StackPane {
 

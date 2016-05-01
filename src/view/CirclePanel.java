@@ -77,7 +77,6 @@ public class CirclePanel extends Pane {
 		this.getChildren().add(blockCircle);
 		
 		blockLabel = new Label("");
-//		blockLabel.setStyle("-fx-background-color: #eeeeee");
 		blockLabel.setFont(GameFont.F14);
 		blockLabel.setTextFill(GameColor.getOtherColor(2));
 		blockLabel.setPrefWidth(30);
@@ -218,7 +217,6 @@ public class CirclePanel extends Pane {
 		KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
 		timeline.getKeyFrames().add(kf);
 		timeline.play();
-		
 	}
 
 	public void setNewTime(boolean isCurrent) {
@@ -242,7 +240,6 @@ public class CirclePanel extends Pane {
 			@Override
 			public void run() {
 				blockLabel.setText(blocksNum + "");
-//				blockLabel.setTextFill(GameColor.getOtherColor(2));
 			}
 		});
 		

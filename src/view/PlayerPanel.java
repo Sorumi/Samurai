@@ -16,9 +16,7 @@ public class PlayerPanel extends OrderPanel {
 		circlePanel = new CirclePanel(player, timeTotal);
 		pointsPanel = new PointsPanel(player);
 		
-		this.getChildren().add(pointsPanel);
-		this.getChildren().add(circlePanel);
-		
+		this.getChildren().addAll(pointsPanel, circlePanel);	
 
 		DropShadow dropShadow = new DropShadow();
 		dropShadow.setRadius(2.0);

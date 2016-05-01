@@ -1,9 +1,12 @@
 package view.smithy;
 
+import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import view.WeaponView;
 
 public class SmithyItemView extends Pane{
 
@@ -41,6 +44,11 @@ public class SmithyItemView extends Pane{
 		fillCircle.setRadius(RADIUS-10);
 		fillCircle.setFill(Color.WHITE);
 		this.getChildren().add(fillCircle);
+		
+		WeaponView weapon = new WeaponView(itemNum);
+		this.getChildren().add(weapon);
+		StackPane.setAlignment(weapon,Pos.CENTER);
+		
 	}
 	public SmithyItemView(int itemNum, int lineHeight){
 		this(itemNum);

@@ -61,12 +61,7 @@ public class ActionPanel extends OrderPanel {
 		exitButton.setOnMouseClicked(actionHandler.exitEvent);
 		backButton.setOnMouseClicked(actionHandler.backEvent);
 		
-		this.getChildren().add(moveButton);
-		this.getChildren().add(occupyButton);
-		this.getChildren().add(hideButton);
-		this.getChildren().add(exitButton);
-		this.getChildren().add(backButton);
-		this.getChildren().add(directionPanel);
+		this.getChildren().addAll(moveButton, occupyButton, hideButton, exitButton, backButton, directionPanel);
 		
 	}
 	
