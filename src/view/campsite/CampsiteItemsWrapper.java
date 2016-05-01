@@ -44,6 +44,7 @@ public class CampsiteItemsWrapper extends Pane{
 											CampsiteItemView item = new CampsiteItemView(i*100+j*10+k);
 					item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
 					item.setOnMouseExited(campsiteHandler.itemExitEvent);
+					item.setOnMouseClicked(campsiteHandler.itemClickEvent);
 					tile.getChildren().add(item);
 					}
 				}
@@ -54,6 +55,7 @@ public class CampsiteItemsWrapper extends Pane{
 			CampsiteItemView item = new CampsiteItemView(i*100);
 			item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
 			item.setOnMouseExited(campsiteHandler.itemExitEvent);
+			item.setOnMouseClicked(campsiteHandler.itemClickEvent);
 			tile.getChildren().add(item);
 		}
 	}

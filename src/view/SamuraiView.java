@@ -43,12 +43,12 @@ public class SamuraiView extends Pane{
 	private SamuraiWeaponView weapon;
 	private SamuraiWeaponView weaponExtra;
 	
-	Rotate leftArmRo;
-	Rotate rightArmRo;
-	Rotate leftLegRo;
-	Rotate rightLegRo;
-	Rotate weaponRo;
-	Rotate weaponExtraRo;
+	private Rotate leftArmRo;
+	private Rotate rightArmRo;
+	private Rotate leftLegRo;
+	private Rotate rightLegRo;
+	private Rotate weaponRo;
+	private Rotate weaponExtraRo;
 	
 	private Group group;
 	
@@ -63,8 +63,6 @@ public class SamuraiView extends Pane{
 	private double[] rightArmAngle;
 	private double[] leftLegAngle;
 	private double[] rightLegAngle;
-
-
 	
 	public SamuraiView(int number, int scale){
 		this.number = number;
@@ -77,12 +75,27 @@ public class SamuraiView extends Pane{
 		//bounds
 		this.setPrefWidth(WIDTH);
 		this.setPrefHeight(HEIGHT);
-//		this.setStyle("-fx-background-color: #AAAAAA");
+//		this.setStyle("-fx-background-color: #dddddd");
 
 		this.direction = 2;
 		
 		group = new Group();
 		this.getChildren().add(group);
+		
+		//rotation
+		leftArmRo = new Rotate();
+		rightArmRo = new Rotate();
+		leftLegRo = new Rotate();
+		rightLegRo = new Rotate();
+		weaponRo = new Rotate();
+		weaponExtraRo = new Rotate();
+		
+		this.setSamurai(number);
+	}
+
+	public void setSamurai(int number){
+		this.number = number;
+		group.getChildren().remove(0, group.getChildren().size());
 		
 		//images
 		helmetBack = new OrderImageView(Images.SAMURAI[number][1]);
@@ -97,8 +110,7 @@ public class SamuraiView extends Pane{
 		rightArm = new OrderImageView(Images.SAMURAI[number][10]);
 		helmet = new OrderImageView(Images.SAMURAI[number][11]);
 		
-		orderList = FXCollections.observableArrayList(helmetBack, leftShoulder, leftArm, headInjured, head, body, leftLeg, rightLeg, rightShoulder, rightArm, helmet);
-		//fitSize
+		//fitsize
 		helmetBack.setFitWidth(53*SCALE);
 		leftShoulder.setFitWidth(14*SCALE);
 		leftArm.setFitWidth(17*SCALE);
@@ -111,26 +123,13 @@ public class SamuraiView extends Pane{
 		rightArm.setFitWidth(18*SCALE);
 		helmet.setFitWidth(55*SCALE);
 		
-		for(int i=orderList.size()-1; i>=0; i--){
-			OrderImageView tmpImg = orderList.get(i);
-			tmpImg.setSmooth(true);
-			tmpImg.setPreserveRatio(true);
-			tmpImg.setZOrder(2*i);
-			group.getChildren().add(tmpImg);
-			
-		}
-		//weapon default
-//		weapon = new SamuraiWeaponView(300);//TODO
-//		orderList.add(weapon);
-//		group.getChildren().add(weapon);
-		
 		//layout
 		body.setLayoutX(BODY_X);
 		body.setLayoutY(BODY_Y);
 		helmet.setLayoutX(BODY_X-16*SCALE);
 		helmet.setLayoutY(BODY_Y-53*SCALE);
 		helmetBack.setLayoutX(BODY_X-16*SCALE);
-		helmetBack.setLayoutY(BODY_Y-41*SCALE);
+		helmetBack.setLayoutY(BODY_Y-40*SCALE);
 		headInjured.setLayoutX(BODY_X-3*SCALE);
 		headInjured.setLayoutY(BODY_Y-26*SCALE);
 		head.setLayoutX(BODY_X-3*SCALE);
@@ -148,34 +147,43 @@ public class SamuraiView extends Pane{
 		rightLeg.setLayoutX(BODY_X+17*SCALE);
 		rightLeg.setLayoutY(BODY_Y+28*SCALE);
 		
+		orderList = FXCollections.observableArrayList(helmetBack, leftShoulder, leftArm, headInjured, head, body, leftLeg, rightLeg, rightShoulder, rightArm, helmet);
+		
+		for(int i=orderList.size()-1; i>=0; i--){
+			OrderImageView tmpImg = orderList.get(i);
+			tmpImg.setSmooth(true);
+			tmpImg.setPreserveRatio(true);
+			tmpImg.setZOrder(2*i);
+			group.getChildren().add(tmpImg);
+		}
+		
 		//rotation
-		leftArmRo = new Rotate();
 		leftArmRo.pivotXProperty().bind(leftArm.xProperty().add(14*SCALE));
 		leftArmRo.pivotYProperty().bind(leftArm.yProperty().add(3*SCALE));
+		leftArmRo.setAngle(0);
 		leftArm.getTransforms().add(leftArmRo);
 		
-		rightArmRo = new Rotate();
 		rightArmRo.pivotXProperty().bind(rightArm.xProperty().add(3*SCALE));
 		rightArmRo.pivotYProperty().bind(rightArm.yProperty().add(3*SCALE));
+		rightArmRo.setAngle(0);
 		rightArm.getTransforms().add(rightArmRo);
 		
-		leftLegRo = new Rotate();
 		leftLegRo.pivotXProperty().bind(leftLeg.xProperty().add(9*SCALE));
 		leftLegRo.pivotYProperty().bind(leftLeg.yProperty().add(4*SCALE));
+		leftLegRo.setAngle(0);
 		leftLeg.getTransforms().add(leftLegRo);
 		
-		rightLegRo = new Rotate();
 		rightLegRo.pivotXProperty().bind(rightLeg.xProperty().add(3*SCALE));
 		rightLegRo.pivotYProperty().bind(rightLeg.yProperty().add(4*SCALE));
+		rightLegRo.setAngle(0);
 		rightLeg.getTransforms().add(rightLegRo);
 		
-		weaponRo = new Rotate();
-		weaponExtraRo = new Rotate();
-//		weapon.getTransforms().add(weaponRo);
+		this.weapon = null;
+		this.weaponExtra = null;
 		
 		this.setDirection(direction);//初始方向
 	}
-
+	
 	public void setWeapon(int number){
 		this.weaponNum = number;
 		group.getChildren().remove(weapon);
@@ -425,9 +433,9 @@ public class SamuraiView extends Pane{
 			if(weaponNum/100 == 3){
 				occupyTL.getKeyFrames().addAll(
 						new KeyFrame(Duration.ZERO, new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue())),
-						new KeyFrame(Duration.millis(400), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()-5)),
-						new KeyFrame(Duration.millis(600), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()+80)),
-						new KeyFrame(Duration.millis(800), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()-5)),
+						new KeyFrame(Duration.millis(400), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()-5*SCALE)),
+						new KeyFrame(Duration.millis(600), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()+80*SCALE)),
+						new KeyFrame(Duration.millis(800), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()-5*SCALE)),
 						new KeyFrame(Duration.millis(1200), new KeyValue(weapon.layoutXProperty(), weapon.layoutXProperty().intValue()))
 						);
 			}

@@ -44,4 +44,7 @@ public class CampsiteItemView extends StackPane {
 		bgCircle.setStrokeWidth(0);
 	}
 	
+	public int getNum(){
+		return this.itemNum;
+	}
 }

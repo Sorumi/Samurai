@@ -9,19 +9,16 @@ public class CampsitePanel extends Pane{
 	
 	private CampsiteItemsWrapper itemsPanel;
 	private CampsiteItemInfo infoPanel;
-	private CampsiteSamuraiWrapper samuraiPanel;
+	public CampsiteSamuraiWrapper samuraiPanel;
 	
 	public CampsitePanel(){
 		this.setPrefSize(1200, 800);
-		campsiteHandler = new CampsiteHandler();
+		campsiteHandler = new CampsiteHandler(this);
 		
-		itemsPanel = new CampsiteItemsWrapper(campsiteHandler);
-		this.getChildren().add(itemsPanel);
-		
+		itemsPanel = new CampsiteItemsWrapper(campsiteHandler);		
 		infoPanel = new CampsiteItemInfo();
-		this.getChildren().add(infoPanel);
-		
-		samuraiPanel = new CampsiteSamuraiWrapper();
-		this.getChildren().add(samuraiPanel);
+		samuraiPanel = new CampsiteSamuraiWrapper(campsiteHandler);
+
+		this.getChildren().addAll(itemsPanel, infoPanel, samuraiPanel);
 	}
 }
