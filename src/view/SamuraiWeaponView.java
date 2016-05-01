@@ -188,7 +188,7 @@ public class SamuraiWeaponView extends OrderImageView {
 					-25, -25, 15, -15};
 			backAngle = new int[]{0, 90, 50,
 					-75, -75, -35, -85,
-					-25, 35, -10, 30};
+					-25, 35, 0, 40};
 			break;
 		case 1:
 			centerX = 7*SCALE;
@@ -196,9 +196,9 @@ public class SamuraiWeaponView extends OrderImageView {
 			frontZOrder = 17;
 			backZOrder = 21;
 
-			frontLayout = new int[]{BODY_X+30*SCALE+offsetX, BODY_Y-56*SCALE+height_fix};
+			frontLayout = new int[]{BODY_X+30*SCALE+offsetX, BODY_Y-54*SCALE+height_fix};
 			backLayout = new int[]{BODY_X-22*SCALE+offsetX, BODY_Y-52*SCALE+height_fix};
-			frontRotatePivot = new int[]{-8*SCALE-offsetX, 61*SCALE-height_fix};
+			frontRotatePivot = new int[]{-8*SCALE-offsetX, 59*SCALE-height_fix};
 			backRotatePivot = new int[]{-11*SCALE-offsetX, 59*SCALE-height_fix};
 			//
 			//front right: -15 # 40
@@ -222,12 +222,12 @@ public class SamuraiWeaponView extends OrderImageView {
 			//
 			//front right: -50 # 30
 			//back left: -60 # 30
-			armAngle = new int[]{-40, -50};
-			frontAngle = new int[]{40, 10, 80,
+			armAngle = new int[]{-30, -40};
+			frontAngle = new int[]{50, 10, 80,
 					-40, 25, 0, 25,
-					-40, -40, -70, 0};
-			backAngle = new int[]{40, 10, 80,
-					-50, -50, -80, -10,
+					-30, -30, -70, 0};
+			backAngle = new int[]{50, 10, 80,
+					-40, -40, -80, -10,
 					-25, 35, 0, -25};
 			break;
 		case 3:
@@ -257,12 +257,12 @@ public class SamuraiWeaponView extends OrderImageView {
 			backLayout = new int[]{BODY_X-15*SCALE, BODY_Y-20*SCALE};
 			frontRotatePivot = new int[]{-6*SCALE, 23*SCALE};
 			backRotatePivot = new int[]{-1*SCALE, 27*SCALE};
-			//front right: -10 # 0
+			//front right: -20 # 0
 			//back left: -75 # 0
-			armAngle = new int[]{-10, -75};
+			armAngle = new int[]{-20, -75};
 			frontAngle = new int[]{0, -25, -25,
 					0, 0, 0, -130,
-					-10, -10, -35, -35};
+					-20, -20, -45, -45};
 			backAngle = new int[]{0, -25, -25,
 					-75, -75, -100, -100,
 					0, 0, 0, 60};
@@ -276,10 +276,9 @@ public class SamuraiWeaponView extends OrderImageView {
 			frontRotatePivot = new int[]{-5*SCALE, -58*SCALE};
 			backRotatePivot = new int[]{13*SCALE, -60*SCALE};
 
-//			armAngle = new int[]{0, -0};
 			frontAngle = new int[]{0, -25, -25};
 			backAngle = new int[]{0, -25, -25};
-			
+			break;
 		}
 		
 		/*

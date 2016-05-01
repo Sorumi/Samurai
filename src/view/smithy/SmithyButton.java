@@ -10,7 +10,7 @@ public class SmithyButton extends Button {
 	public SmithyButton(int num){
 		this.num = num;
 		
-		this.setStyle("-fx-background-color: " + GameColor.getColorString(num));
+		this.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(num));
 		this.setId("smithy-btn");
 		this.setPrefSize(100, 100);
 		this.setLayoutX(50);

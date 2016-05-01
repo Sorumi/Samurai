@@ -43,4 +43,16 @@ public class CampsiteHandler {
 	    	  campsitePanel.samuraiPanel.setSamurai(samurai.num);
 	      }
 	};
+	
+	public EventHandler<MouseEvent> setItemEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  campsitePanel.samuraiPanel.setItemBtnPressed();
+	      }
+	};
+	
+	public EventHandler<MouseEvent> setItemExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  campsitePanel.samuraiPanel.setItemBtnNormal();
+	      }
+	};
 }

@@ -4,6 +4,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import view.GameColor;
 import view.Images;
 import view.SamuraiView;
 import view.eventhandler.CampsiteHandler;
@@ -13,10 +14,15 @@ public class CampsiteSamuraiWrapper extends Pane {
 	private CampsiteHandler campsiteHandler;
 	
 	private SamuraiView samurai;
+	
 	private Group samuraiBtns;
 	private SamuraiButton samuraiBtn1;
 	private SamuraiButton samuraiBtn2;
 	private SamuraiButton samuraiBtn3;
+	
+	private Button setItemBtn;
+	
+	private int samuraiNum;
 	
 	public CampsiteSamuraiWrapper(CampsiteHandler campsiteHandler){
 		this.campsiteHandler = campsiteHandler;
@@ -26,10 +32,9 @@ public class CampsiteSamuraiWrapper extends Pane {
 		this.setLayoutY(320);
 		this.setId("campsite-wrapper");
 		
-		samurai = new SamuraiView(1, 3);//TODO default
+		samurai = new SamuraiView(3);
 		samurai.setLayoutX(30);
 		samurai.setLayoutY(60);
-		this.getChildren().add(samurai);
 		
 		samuraiBtns = new Group();
 		samuraiBtns.setLayoutX(280);
@@ -41,6 +46,19 @@ public class CampsiteSamuraiWrapper extends Pane {
 		
 		samuraiBtns.getChildren().addAll(samuraiBtn1, samuraiBtn2, samuraiBtn3);
 		this.getChildren().add(samuraiBtns);
+		
+		setItemBtn = new Button("确 定");
+		setItemBtn.setPrefSize(100, 40);
+		setItemBtn.setLayoutX(370);
+		setItemBtn.setLayoutY(360);
+		setItemBtn.setId("set-item-btn");
+		setItemBtn.setOnMouseEntered(campsiteHandler.setItemEnterEvent);
+		setItemBtn.setOnMouseExited(campsiteHandler.setItemExitEvent);
+		this.getChildren().add(setItemBtn);
+		
+		//TODO default
+		this.setSamurai(1);
+		this.getChildren().add(samurai);
 	}
 	
 	public class SamuraiButton extends Button{
@@ -63,8 +81,21 @@ public class CampsiteSamuraiWrapper extends Pane {
 	}
 
 	public void setSamurai(int num) {
-		samurai.setSamurai(num);
+		this.samuraiNum = num;
+		samurai.setSamurai(samuraiNum);
+		this.setItemBtnNormal();
 		//TODO
 		//武器
+	}
+
+	public void setItemBtnPressed() {
+		setItemBtn.setLayoutY(364);
+		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
+				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 4);");
+	}
+	public void setItemBtnNormal() {
+		setItemBtn.setLayoutY(360);
+		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
+				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 8);");
 	}
 }

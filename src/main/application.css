@@ -5,6 +5,7 @@
 	-fx-border-color: transparent;
     -fx-border-radius: 0;
     -fx-padding: 0;
+    -fx-border-insets: 0;
 }
 
 #close-btn{
@@ -45,12 +46,21 @@
 	-fx-font-size: 16;
 	-fx-alignment: center-left;
 }
+#set-item-btn{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 6);
+}
 
 /* Smithy */
 #smithy-wrapper{
 	-fx-background-radius: 0 10 10 10;
 	-fx-border-radius: 0 10 10 10;
-	
 }
 
 #smithy-btn{

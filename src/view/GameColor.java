@@ -76,7 +76,29 @@ public class GameColor {
 		return color;
 	}
 	
-	public static String getColorString(int x) {
+	public static String getSamuraiColorString(int x) {
+		String color;
+		switch(x){
+			case 0: color = "#ffffff";break;//null
+			case 1: color = "#C25A3E";break;
+			case 2: color = "#D3833F";break;
+			case 3: color = "#CEAE3C";break;
+			case 4: color = "#4372C7";break;
+			case 5: color = "#4896C6";break;
+			case 6: color = "#4AC0D2";break;
+			//shadow
+			case 7: color = "#9E3B20";break;
+			case 8: color = "#B06423";break;
+			case 9: color = "#AD8E22";break;
+			case 10: color = "#2854A5";break;
+			case 11: color = "#2B75A3";break;
+			case 12: color = "#2EA1B3";break;
+			default: color = "#000000";
+		}
+		return color;
+	}
+	
+	public static String getWeaponColorString(int x) {
 		String color;
 		switch(x){
 			case 0: color = "#E2B2B0";break;//spear

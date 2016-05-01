@@ -64,8 +64,7 @@ public class SamuraiView extends Pane{
 	private double[] leftLegAngle;
 	private double[] rightLegAngle;
 	
-	public SamuraiView(int number, int scale){
-		this.number = number;
+	public SamuraiView(int scale){
 		this.SCALE = scale;
 		this.WIDTH = 60*SCALE;
 		this.HEIGHT = 120*SCALE;
@@ -88,8 +87,12 @@ public class SamuraiView extends Pane{
 		leftLegRo = new Rotate();
 		rightLegRo = new Rotate();
 		weaponRo = new Rotate();
-		weaponExtraRo = new Rotate();
-		
+		weaponExtraRo = new Rotate();		
+	}
+	
+	public SamuraiView(int number, int scale){
+		this(scale);
+		this.number = number;
 		this.setSamurai(number);
 	}
 

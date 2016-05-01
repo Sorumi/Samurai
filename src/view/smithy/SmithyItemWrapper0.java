@@ -6,9 +6,7 @@ public class SmithyItemWrapper0 extends SmithyItemWrapper {
 
 	//spear
 	public SmithyItemWrapper0() {
-		super();
-		this.setStyle("-fx-background-color: " + GameColor.getColorString(0));
-		
+		super(0);
 		
 		SmithyItemView item011 = new SmithyItemView(11, -1);
 		item011.setLayoutY(300);
