@@ -7,7 +7,7 @@ import javafx.scene.layout.StackPane;
 
 public class WeaponView extends StackPane{
 
-	private double SCALE = 0.8;
+	private double SCALE = 1;
 	private ImageView imgV;
 	private ImageView imgVExtra;
 	
@@ -20,12 +20,12 @@ public class WeaponView extends StackPane{
 			imgV.setPreserveRatio(true);
 			imgV.setSmooth(true);
 			
-			if(number/100 == 0){
+			if(Images.WEAPON[number/100][number%100/10][number%10].getHeight()/6*SCALE > 100){
+				imgV.setScaleX(1.2);
+				imgV.setScaleY(1.2);
+			}else{
 				imgV.setScaleX(1.5);
 				imgV.setScaleY(1.5);
-			}else{
-				imgV.setScaleX(1.8);
-				imgV.setScaleY(1.8);
 			}
 			
 			if(number/100 != 4){

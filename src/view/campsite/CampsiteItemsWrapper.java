@@ -37,7 +37,7 @@ public class CampsiteItemsWrapper extends Pane{
 		
 		//TODO
 		//增加武器
-		for (int i=0; i<=1; i++){
+		for (int i=0; i<=2; i++){
 			for (int j=1; j<=3; j++){
 				for (int k=1; k<=6; k++){
 					if(Images.WEAPON[i][j][k] != null){
@@ -51,7 +51,7 @@ public class CampsiteItemsWrapper extends Pane{
 				
 			}
 		}
-		for (int i=2; i<=4; i++){
+		for (int i=3; i<=4; i++){
 			CampsiteItemView item = new CampsiteItemView(i*100);
 			item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
 			item.setOnMouseExited(campsiteHandler.itemExitEvent);

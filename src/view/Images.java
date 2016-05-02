@@ -137,6 +137,8 @@ public class Images {
 	public static Image[][] SAMURAI = {null, SAMURAI_1, SAMURAI_2, SAMURAI_3, SAMURAI_4, SAMURAI_5, SAMURAI_6};
 
 	//weapon
+	
+		//spear
 		public static Image WEAPON_000 = new Image("/./images/weapon/weapon_000_spear.png",true);
 
 		public static Image WEAPON_011 = new Image("/./images/weapon/weapon_011_spear.png",true);
@@ -155,6 +157,7 @@ public class Images {
 		public static Image WEAPON_035 = new Image("/./images/weapon/weapon_035_spear.png",true);
 		public static Image WEAPON_036 = new Image("/./images/weapon/weapon_036_spear.png",true);
 		
+		//sword
 		public static Image WEAPON_100 = new Image("/./images/weapon/weapon_100_sword.png",true);
 		
 		public static Image WEAPON_111 = new Image("/./images/weapon/weapon_111_sword.png",true);
@@ -174,8 +177,25 @@ public class Images {
 		public static Image WEAPON_135 = new Image("/./images/weapon/weapon_135_sword.png",true);
 		public static Image WEAPON_136 = new Image("/./images/weapon/weapon_136_sword.png",true);
 		
+		//battleax
 		public static Image WEAPON_200 = new Image("/./images/weapon/weapon_200_battleax.png",true);
 		
+		public static Image WEAPON_211 = new Image("/./images/weapon/weapon_211_battleax.png",true);
+		public static Image WEAPON_212 = new Image("/./images/weapon/weapon_212_battleax.png",true);
+		public static Image WEAPON_213 = new Image("/./images/weapon/weapon_213_battleax.png",true);
+		public static Image WEAPON_214 = new Image("/./images/weapon/weapon_214_battleax.png",true);
+		public static Image WEAPON_215 = new Image("/./images/weapon/weapon_215_battleax.png",true);
+		public static Image WEAPON_216 = new Image("/./images/weapon/weapon_216_battleax.png",true);
+		
+		public static Image WEAPON_225 = new Image("/./images/weapon/weapon_225_battleax.png",true);
+		public static Image WEAPON_226 = new Image("/./images/weapon/weapon_226_battleax.png",true);
+		
+		public static Image WEAPON_233 = new Image("/./images/weapon/weapon_233_battleax.png",true);
+		public static Image WEAPON_234 = new Image("/./images/weapon/weapon_234_battleax.png",true);
+		public static Image WEAPON_235 = new Image("/./images/weapon/weapon_235_battleax.png",true);
+		public static Image WEAPON_236 = new Image("/./images/weapon/weapon_236_battleax.png",true);
+
+		//shuriken
 		public static Image WEAPON_300 = new Image("/./images/weapon/weapon_300_shuriken.png",true);
 		
 		public static Image WEAPON_400 = new Image("/./images/weapon/weapon_400_bow.png",true);
@@ -193,6 +213,9 @@ public class Images {
 		public static Image[] WEAPON_13 = {null, null, WEAPON_132, WEAPON_133, WEAPON_134, WEAPON_135, WEAPON_136};
 		
 		public static Image[] WEAPON_20 = {WEAPON_200};
+		public static Image[] WEAPON_21 = {null, WEAPON_211, WEAPON_212, WEAPON_213, WEAPON_214, WEAPON_215, WEAPON_216};
+		public static Image[] WEAPON_22 = {null, null, null, null, null,  WEAPON_225, WEAPON_226};
+		public static Image[] WEAPON_23 = {null, null, null, WEAPON_233, WEAPON_234, WEAPON_235, WEAPON_236};
 		
 		public static Image[] WEAPON_30 = {WEAPON_300};
 		
@@ -202,12 +225,12 @@ public class Images {
 		
 		public static Image[][] WEAPON_0 = {WEAPON_00, WEAPON_01, WEAPON_02, WEAPON_03};
 		public static Image[][] WEAPON_1 = {WEAPON_10, WEAPON_11, WEAPON_12, WEAPON_13};
-		public static Image[][] WEAPON_2 = {WEAPON_20};
+		public static Image[][] WEAPON_2 = {WEAPON_20, WEAPON_21, WEAPON_22, WEAPON_23};
 		public static Image[][] WEAPON_3 = {WEAPON_30};
 		public static Image[][] WEAPON_4 = {WEAPON_40};
 		public static Image[][] WEAPON_5 = {WEAPON_50};
 		
 		
 		public static Image[][][] WEAPON = {WEAPON_0, WEAPON_1, WEAPON_2, WEAPON_3, WEAPON_4, WEAPON_5};
-		
+
 }

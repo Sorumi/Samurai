@@ -3,6 +3,7 @@ package view;
 import java.util.Collections;
 import java.util.List;
 
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -532,6 +533,45 @@ public class SamuraiView extends Pane{
 				}
 			});
 		}
+	}
+	
+	public void setMiss(int direction){
+		Timeline missTL= new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(group.layoutXProperty(), 0)),
+				new KeyFrame(Duration.millis(300), new KeyValue(group.layoutXProperty(), -30*flip*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(600), new KeyValue(group.layoutXProperty(), 0, Interpolator.EASE_IN))
+				);
+		missTL.play();
+		missTL.setOnFinished(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				group.setLayoutX(0);
+				group.setLayoutY(0);
+			}
+		});
+	}
+	
+	public void setAttacked(){
+		Timeline attackTL= new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(group.layoutXProperty(), 0)),
+				new KeyFrame(Duration.millis(100), new KeyValue(group.layoutXProperty(), 15*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(group.layoutXProperty(), -15*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(400), new KeyValue(group.layoutXProperty(), 0, Interpolator.EASE_IN))
+				);
+		attackTL.play();
+	}
+
+	public void setDoubleAttacked(){
+		Timeline attackTL= new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(group.layoutXProperty(), 0)),
+				new KeyFrame(Duration.millis(100), new KeyValue(group.layoutXProperty(), 15*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(group.layoutXProperty(), -15*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(400), new KeyValue(group.layoutXProperty(), 0, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(450), new KeyValue(group.layoutXProperty(), 10*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(550), new KeyValue(group.layoutXProperty(), -10*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(600), new KeyValue(group.layoutXProperty(), 0, Interpolator.EASE_IN))
+				);
+		attackTL.play();
 	}
 
 }

@@ -92,6 +92,7 @@ public class SamuraiWeaponView extends OrderImageView {
 				this.setFitWidth(16*SCALE);
 				height_fix = 8*SCALE;
 				break;
+				
 			//sword
 			case 100:
 			case 113:
@@ -148,10 +149,68 @@ public class SamuraiWeaponView extends OrderImageView {
 				this.setFitWidth(8*SCALE);
 				height_fix = 29*SCALE;
 				break;
-				
+			
+			//battleax
 			case 200:
+			case 212:
 				this.setFitWidth(18*SCALE);
+				width_fix = 5*SCALE;
 				break;
+			case 211:
+				this.setFitWidth(23*SCALE);
+				width_fix = 5*SCALE;
+				height_fix = 2*SCALE;
+				break;
+			case 213:
+				this.setFitWidth(31*SCALE);
+				width_fix = 11*SCALE;
+				height_fix = -29*SCALE;
+				break;
+			case 214:
+				this.setFitWidth(32*SCALE);
+				width_fix = 14*SCALE;
+				height_fix = -27*SCALE;
+				break;
+			case 215:
+				this.setFitWidth(37*SCALE);
+				width_fix = 18*SCALE;
+				height_fix = -31*SCALE;
+				break;
+			case 216:
+				this.setFitWidth(25*SCALE);
+				width_fix = 5*SCALE;
+				height_fix = -27*SCALE;
+				break;
+			case 225:
+				this.setFitWidth(38*SCALE);
+				width_fix = 19*SCALE;
+				height_fix = -5*SCALE;
+				break;
+			case 226:
+				this.setFitWidth(36*SCALE);
+				width_fix = 18*SCALE;
+				height_fix = -16*SCALE;
+				break;
+			case 233:
+				this.setFitWidth(27*SCALE);
+				width_fix = 8*SCALE;
+				break;
+			case 234:
+				this.setFitWidth(34*SCALE);
+				width_fix = 17*SCALE;
+				height_fix = -2*SCALE;
+				break;
+			case 235:
+				this.setFitWidth(28*SCALE);
+				width_fix = 12*SCALE;
+				height_fix = -14*SCALE;
+				break;
+			case 236:
+				this.setFitWidth(36*SCALE);
+				width_fix = 16*SCALE;
+				height_fix = -2*SCALE;
+				break;
+				
 			case 300:
 				this.setFitWidth(16*SCALE);
 				break;			
@@ -166,23 +225,25 @@ public class SamuraiWeaponView extends OrderImageView {
 		
 		int centerX;
 		int offsetX;
+		int offsetXOther;
 		
 		switch(number/100){
 		case 0:
 			centerX = 3*SCALE;
 			offsetX = centerX-this.fitWidthProperty().intValue()/2-width_fix;
+			offsetXOther = centerX-this.fitWidthProperty().intValue()/2+width_fix;
 			
 			frontZOrder = 6;
 			backZOrder = 15;
 			
 			frontLayout = new int[]{BODY_X+30*SCALE+offsetX, BODY_Y-45*SCALE+height_fix};
-			backLayout = new int[]{BODY_X-10*SCALE+offsetX, BODY_Y-45*SCALE+height_fix};
+			backLayout = new int[]{BODY_X-14*SCALE+offsetXOther, BODY_Y-45*SCALE+height_fix};
 			frontRotatePivot = new int[]{-8*SCALE-offsetX, 52*SCALE-height_fix};
-			backRotatePivot = new int[]{-9*SCALE-offsetX, 52*SCALE-height_fix};
+			backRotatePivot = new int[]{-13*SCALE-offsetX, 52*SCALE-height_fix};
 			//
 			//front left: -20 # 50      right: -15 # 50
 			//back  left: -85 # 50     right: 30 # 50
-			armAngle = new int[]{-20, -60};
+			armAngle = new int[]{-25, -75};
 			frontAngle = new int[]{0, 90, 50,
 					-40, 25, 0, -30,
 					-25, -25, 15, -15};
@@ -192,14 +253,14 @@ public class SamuraiWeaponView extends OrderImageView {
 			break;
 		case 1:
 			centerX = 7*SCALE;
-			offsetX = centerX-this.fitWidthProperty().intValue()/2;
+			offsetX = offsetXOther = centerX-this.fitWidthProperty().intValue()/2-width_fix;
 			frontZOrder = 17;
-			backZOrder = 21;
+			backZOrder = 7;
 
 			frontLayout = new int[]{BODY_X+30*SCALE+offsetX, BODY_Y-54*SCALE+height_fix};
-			backLayout = new int[]{BODY_X-22*SCALE+offsetX, BODY_Y-52*SCALE+height_fix};
+			backLayout = new int[]{BODY_X-22*SCALE+offsetXOther, BODY_Y-52*SCALE+height_fix};
 			frontRotatePivot = new int[]{-8*SCALE-offsetX, 59*SCALE-height_fix};
-			backRotatePivot = new int[]{-11*SCALE-offsetX, 59*SCALE-height_fix};
+			backRotatePivot = new int[]{-11*SCALE-offsetXOther, 59*SCALE-height_fix};
 			//
 			//front right: -15 # 40
 			//back left: -65 # 40
@@ -212,13 +273,16 @@ public class SamuraiWeaponView extends OrderImageView {
 					-25, 35, 0, -25};
 			break;
 		case 2:
+			centerX = 5*SCALE;
+			offsetX = centerX-width_fix;
+			offsetXOther = 18*SCALE-this.fitWidthProperty().intValue()+width_fix+-centerX;
 			frontZOrder = 17;
-			backZOrder = 21;
+			backZOrder = 7;
 			
-			frontLayout = new int[]{BODY_X+28*SCALE, BODY_Y-48*SCALE};
-			backLayout = new int[]{BODY_X-25*SCALE, BODY_Y-35*SCALE};
-			frontRotatePivot = new int[]{-8*SCALE, 54*SCALE};
-			backRotatePivot = new int[]{-9*SCALE, 42*SCALE};
+			frontLayout = new int[]{BODY_X+28*SCALE+offsetX, BODY_Y-48*SCALE+height_fix};
+			backLayout = new int[]{BODY_X-25*SCALE+offsetXOther, BODY_Y-35*SCALE+height_fix};
+			frontRotatePivot = new int[]{-8*SCALE-offsetX, 54*SCALE-height_fix};
+			backRotatePivot = new int[]{-10*SCALE-offsetX, 42*SCALE-height_fix};
 			//
 			//front right: -50 # 30
 			//back left: -60 # 30
