@@ -32,7 +32,7 @@ public class GameModel extends BaseModel implements Observer {
 
     protected ClientService net;
 
-    private static boolean isServer = true;
+    private static boolean isServer = false;
     private static boolean isClient = false;
 
 
@@ -78,7 +78,8 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public boolean gameStart(){
-        System.out.println("I'm " + isServer + " a server.");
+        System.out.println("I'm " + isServer() + " a server.");
+        System.out.println("I'm " + isClient() + " a client.");
         ArrayList<ActualBlock> blocks = new ArrayList<>();
         for(int x = 0; x <= this.length; x++){
             for (int y = 0; y <= this.length; y++) {
@@ -91,6 +92,7 @@ public class GameModel extends BaseModel implements Observer {
         for (int i = 1; i <= 6; i++) {
             this.updateHome(i);
         }
+
         switch (this.level){
             case 0:
                 this.assignNext();
@@ -138,6 +140,7 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
+        //position和direction能都返回吗，，
     }
 
     public void updateOccupy(int direction){
@@ -175,9 +178,9 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(1).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                    	attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (ta / (ta + 100));
                     }else{
-                    	attackPointDouble *= 1.5;
+                        attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(1).injure((int)attackPointDouble);
                 }
@@ -186,9 +189,9 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(2).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                    	attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (ta / (ta + 100));
                     }else{
-                    	attackPointDouble *= 1.5;
+                        attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(2).injure((int)attackPointDouble);
                 }
@@ -197,9 +200,9 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(3).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                    	attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (ta / (ta + 100));
                     }else{
-                    	attackPointDouble *= 1.5;
+                        attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(3).injure((int)attackPointDouble);
                 }
@@ -208,9 +211,9 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(1).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                    	attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (ta / (ta + 100));
                     }else{
-                    	attackPointDouble *= 1.5;
+                        attackPointDouble *= 1.5;
                     }
                     this.players[1].getSamuraiOfNum(1).injure((int)attackPointDouble);
                 }
@@ -219,9 +222,9 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(2).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                    	attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (ta / (ta + 100));
                     }else{
-                    	attackPointDouble *= 1.5;
+                        attackPointDouble *= 1.5;
                     }
                     this.players[1].getSamuraiOfNum(2).injure((int)attackPointDouble);
                 }
@@ -230,9 +233,9 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(3).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                    	attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (ta / (ta + 100));
                     }else{
-                    	attackPointDouble *= 1.5;
+                        attackPointDouble *= 1.5;
                     }
                     this.players[1].getSamuraiOfNum(3).injure((int)attackPointDouble);
                 }
@@ -255,22 +258,17 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("actionPoint",this.players[this.playerSeq[this.currentPlayer - 1]].getActionPoint()));
     }
 
+    //单机模式也是只能看见自己这方的 block
     public ArrayList<ActualBlock> updateVision(){
         ArrayList<ActualBlock> blocks;
-        if(!GameModel.isClient() && !GameModel.isServer()) {
-            blocks = this.players[this.playerSeq[this.currentPlayer - 1]].showVision();
-            super.updateChange(new UpdateMessage("vision", blocks));
-            return blocks;
-        }else if(GameModel.isClient() && !GameModel.isServer()){
+        if(GameModel.isClient() && !GameModel.isServer()){
             blocks = this.players[1].showVision();
             super.updateChange(new UpdateMessage("vision", blocks));
             return blocks;
-        }else if(!GameModel.isClient() && GameModel.isServer()){
+        }else{
             blocks = this.players[0].showVision();
             super.updateChange(new UpdateMessage("vision", blocks));
             return blocks;
-        }else {
-            return null;
         }
     }
 
@@ -301,7 +299,7 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
-//        this.updateVisible(this.updateVision());
+        this.updateVisible(this.updateVision());
         if(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0){
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
         }else{
@@ -391,6 +389,7 @@ public class GameModel extends BaseModel implements Observer {
 
         //暂时先exit(0)
         System.exit(0);
+        //用来保存信息的部分
 
         return true;
     }
