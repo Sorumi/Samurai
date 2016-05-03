@@ -19,7 +19,7 @@ public class Player {
     private int pointsTotal;
 
     public Player(GameModel model,int playerNum){
-        this.pointsTotal = 10;
+        this.pointsTotal = 30;
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();

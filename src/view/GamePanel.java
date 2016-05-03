@@ -42,7 +42,7 @@ public class GamePanel extends Pane implements Observer{
 	
 	//TODO
 	protected int timeTotal = 30;
-	protected int roundTotal = 12;
+	protected int roundTotal = 24;
 
 	protected SamuraiPanel currentSamurai; //0：无 1 2 3 4 5 6
 
@@ -212,6 +212,10 @@ public class GamePanel extends Pane implements Observer{
 	 		            if(canAction){
 	 		            	arrow.setActualLocation();
 	 		            	arrow.setVisible(true);
+	 		            	currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
+	 		            }else{
+	 		            	arrow.setVisible(false);
+	 		            	currentSamurai.setOnMouseEntered(null);
 	 		            }
 	 	  			}
 	 	  		});

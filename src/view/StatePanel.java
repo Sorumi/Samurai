@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -26,6 +27,7 @@ public class StatePanel extends OrderPanel {
 	private Arc bloodArc;
 	private Circle centralCircle;
 
+	private Group iconGroup;
 	private ImageView stateIcon1;
 	private ImageView stateIcon2;
 	private ImageView stateIcon3;
@@ -86,6 +88,9 @@ public class StatePanel extends OrderPanel {
 		centralCircle.setRadius(22);
 		centralCircle.setFill(Color.WHITE);
 		
+		//icon
+		iconGroup = new Group();
+		
 		stateIcon1.setFitWidth(25);
 		stateIcon2.setFitWidth(25);
 		stateIcon3.setFitWidth(25);
@@ -100,18 +105,21 @@ public class StatePanel extends OrderPanel {
 		stateIcon5.setPreserveRatio(true);
 		stateIcon6.setPreserveRatio(true);
 		
-		this.getChildren().add(bgRect);
-		this.getChildren().add(triangle);
-		this.getChildren().add(bgCircle);		
-		this.getChildren().add(bloodArc);
-		this.getChildren().add(centralCircle);
-		this.getChildren().add(stateIcon1);
-		this.getChildren().add(stateIcon2);
-		this.getChildren().add(stateIcon3);
-		this.getChildren().add(stateIcon4);
-		this.getChildren().add(stateIcon5);
-		this.getChildren().add(stateIcon6);
+		stateIcon1.setLayoutX(0);
+		stateIcon1.setLayoutY(0);
+		stateIcon2.setLayoutX(61);
+		stateIcon2.setLayoutY(0);
+		stateIcon3.setLayoutX(120);
+		stateIcon3.setLayoutY(0);
+		stateIcon4.setLayoutX(-2);
+		stateIcon4.setLayoutY(45);
+		stateIcon5.setLayoutX(60);
+		stateIcon5.setLayoutY(42);
+		stateIcon6.setLayoutX(120);
+		stateIcon6.setLayoutY(43);
 		
+		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6);
+		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, centralCircle, iconGroup);
 		this.setVisible(false);
 		
 	}
@@ -119,38 +127,21 @@ public class StatePanel extends OrderPanel {
 	public void setUpLocation(){
 		bgRect.setY(25+strokeWidth); 
 		
-
 		triangle.getPoints().addAll(new Double[]{
 		    95.0, 147.0,
 		    105.0, 147.0,
 		    100.0, 157.0 });
 		
 		bgCircle.setCenterY(25+strokeWidth);
-		
 		bloodArc.setCenterY(25+strokeWidth);
-		
 		centralCircle.setCenterY(25+strokeWidth);
-		
-		stateIcon1.setLayoutX(15);
-		stateIcon1.setLayoutY(62);
-		stateIcon2.setLayoutX(76);
-		stateIcon2.setLayoutY(62);
-		stateIcon3.setLayoutX(135);
-		stateIcon3.setLayoutY(62);
-		stateIcon4.setLayoutX(13);
-		stateIcon4.setLayoutY(107);
-		stateIcon5.setLayoutX(75);
-		stateIcon5.setLayoutY(104);
-		stateIcon6.setLayoutX(135);
-		stateIcon6.setLayoutY(107);
-		
-		
+		iconGroup.setLayoutX(25);
+		iconGroup.setLayoutY(62);		
 	}
 	
 	public void setDownLocation(){
 		bgRect.setY(10);
 		
-
 		triangle.getPoints().addAll(new Double[]{
 		    95.0, 10.0,
 		    105.0, 10.0,
@@ -158,23 +149,11 @@ public class StatePanel extends OrderPanel {
 
 		
 		bgCircle.setCenterY(prefHeight-25-strokeWidth);
-		
 		bloodArc.setCenterY(prefHeight-25-strokeWidth);
-		
 		centralCircle.setCenterY(prefHeight-25-strokeWidth);
 		
-		stateIcon1.setLayoutX(15);
-		stateIcon1.setLayoutY(32);
-		stateIcon2.setLayoutX(76);
-		stateIcon2.setLayoutY(32);
-		stateIcon3.setLayoutX(135);
-		stateIcon3.setLayoutY(32);
-		stateIcon4.setLayoutX(13);
-		stateIcon4.setLayoutY(77);
-		stateIcon5.setLayoutX(75);
-		stateIcon5.setLayoutY(74);
-		stateIcon6.setLayoutX(135);
-		stateIcon6.setLayoutY(77);
+		iconGroup.setLayoutX(25);
+		iconGroup.setLayoutY(26);
 	}
 	
 
@@ -188,9 +167,9 @@ public class StatePanel extends OrderPanel {
 	
 	public void setActualLocation(){
 		this.setLayoutX(currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2);
-		if(currentSamurai.getLayoutY()-prefHeight+10>0){		
-		this.setLayoutY(currentSamurai.getLayoutY()-prefHeight+10);
-		this.setUpLocation();
+		if (currentSamurai.getLayoutY()-prefHeight+10>0) {		
+			this.setLayoutY(currentSamurai.getLayoutY()-prefHeight+10);
+			this.setUpLocation();
 		}else{
 			this.setLayoutY(currentSamurai.getLayoutY()+currentSamurai.getHeight());
 			this.setDownLocation();

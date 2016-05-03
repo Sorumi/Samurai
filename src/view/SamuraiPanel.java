@@ -79,13 +79,6 @@ public class SamuraiPanel extends OrderPanel {
 			break;
 		}
 		
-		//add
-//		DropShadow dropShadow = new DropShadow();
-//		dropShadow.setRadius(2.0);
-//		dropShadow.setOffsetX(0.0);
-//		dropShadow.setOffsetY(1.0);
-//		dropShadow.setColor(Color.rgb(0,0,0,0.5));
-//		samuraiV.setEffect(dropShadow);
 	}
 	
 	public void setActualLocation(int x, int y){
