@@ -1,6 +1,7 @@
 package view.smithy;
 
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -12,8 +13,9 @@ public class SmithyItemView extends Pane{
 
 	private final int RADIUS = 50;
 	private int itemNum;
-	private boolean isUnlocked;
 	
+	public WeaponView weapon;
+	public Group weaponGroup;
 	private SmithyItemLine line;
 	
 	/*
@@ -36,19 +38,19 @@ public class SmithyItemView extends Pane{
 		strokeCircle.setStroke(Color.WHITE);
 		strokeCircle.setStrokeWidth(5);
 		strokeCircle.setStrokeType(StrokeType.INSIDE);
-		this.getChildren().add(strokeCircle);
 		
 		Circle fillCircle = new Circle();
 		fillCircle.setCenterX(RADIUS);
 		fillCircle.setCenterY(RADIUS);
 		fillCircle.setRadius(RADIUS-10);
 		fillCircle.setFill(Color.WHITE);
-		this.getChildren().add(fillCircle);
 		
-		//TODO
-//		WeaponView weapon = new WeaponView(itemNum);
-//		this.getChildren().add(weapon);
-//		StackPane.setAlignment(weapon,Pos.CENTER);
+		weapon = new WeaponView(itemNum);
+		StackPane.setAlignment(weapon,Pos.CENTER);
+		
+		weaponGroup = new Group();
+		weaponGroup.getChildren().addAll(strokeCircle, fillCircle, weapon);
+		this.getChildren().add(weaponGroup);
 		
 	}
 	public SmithyItemView(int itemNum, int lineHeight){
@@ -72,13 +74,4 @@ public class SmithyItemView extends Pane{
 		return this.itemNum;
 	}
 	
-	//解锁
-//	public void setUnlocked(boolean isUnlocked){
-//		this.isUnlocked = isUnlocked;
-//		if(isUnlocked){
-//			this.setOpacity(1);
-//		}else{
-//			this.setOpacity(0.5);
-//		}
-//	}
 }

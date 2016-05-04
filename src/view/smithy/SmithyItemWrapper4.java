@@ -47,7 +47,7 @@ public class SmithyItemWrapper4 extends SmithyItemWrapper {
 		this.buildGroup.getChildren().addAll(item411, item412,item422);
 		this.lockGroup.getChildren().addAll(item413, item414, item415, item416,item423, item424, item425, item426);
 		
-		this.addClickEvent();
+		this.initWeaponView();
 	}
 
 }

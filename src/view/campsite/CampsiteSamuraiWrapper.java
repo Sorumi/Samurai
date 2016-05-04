@@ -86,7 +86,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	public void setSamurai(int num) {
 		this.samuraiNum = num;
 		samurai.setSamurai(samuraiNum);
-		this.setItemBtnNormal();
+		this.setItemBtnAbled();
 		//TODO
 		//武器
 	}
@@ -100,9 +100,10 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 4);");
 	}
-	public void setItemBtnNormal() {
+	public void setItemBtnAbled() {
 		setItemBtn.setLayoutY(360);
 		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 8);");
+	  	  System.out.println(setItemBtn.layoutYProperty().doubleValue());
 	}
 }
