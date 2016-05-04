@@ -39,6 +39,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	private Weapon weapon;
 	private Armor armor;
 	private int healthPoint;
+	private int actionPoint=10;
 
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
@@ -68,11 +69,13 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.armor = armor;
 		this.length = length;
 		this.criticalHitChance = 1;
+		this.level=1;
 		this.dodgeChance = 1;
 		this.attackValue = 5;
 		this.armorValue = 10;
 		this.coldRound = 0;
 		this.healthPoint = 60;
+		this.criticalHitChance=1;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
@@ -106,13 +109,27 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
-	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor) {
+	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,int level,int armorValue,int attackValue,int dodgeChance,int healthPonit,int criticalHitRate) {
 		this.number = number;
 		this.player = player;
 		this.weapon = weapon;
 		this.length = length;
 		this.pos = position;
 		this.home = home;
+		this.level=level;
+		this.dodgeChance=dodgeChance;
+		this.armorValue=armorValue;
+		this.attackValue=attackValue;
+		this.criticalHitChance=criticalHitRate;
+		this.healthPoint=healthPonit;
+	}
+
+	public int getActionPoint() {
+		return actionPoint;
+	}
+
+	public void changeActionPoint(int i) {
+		actionPoint = actionPoint - i;
 	}
 
 	public int getColdRound() {
@@ -1159,7 +1176,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public SamuraiPO clone() {
 		try {
 			SamuraiPO samuraiPO = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
-					armor);
+					armor,level,armorValue,attackValue,dodgeChance,healthPoint,criticalHitChance);
 			return samuraiPO;
 		} catch (Exception ex) {
 			ex.printStackTrace();
