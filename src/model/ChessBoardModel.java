@@ -59,6 +59,7 @@ public class ChessBoardModel extends BaseModel implements Cloneable {
 		}
 		return statesCount;
 	}
+
 	public ChessBoardModel clone() {
 		try{
 			ChessBoardModel chessBoardModel=new ChessBoardModel(length, new ActualBlock[length+1][length+1]);

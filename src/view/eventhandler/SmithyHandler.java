@@ -1,9 +1,11 @@
 package view.eventhandler;
 
+import controller.SmithyController;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import model.StoryModel;
 import view.smithy.SmithyBuilder;
 import view.smithy.SmithyItemView;
 import view.smithy.SmithyPanel;
@@ -11,9 +13,13 @@ import view.smithy.SmithyPanel;
 public class SmithyHandler {
 	
 	private SmithyPanel smithyPanel;
+	private SmithyController smithyController;
 	
 	public SmithyHandler(SmithyPanel smithyPanel){
 		this.smithyPanel = smithyPanel;
+		this.smithyController = new SmithyController();
+
+		this.smithyController.setStoryModel(StoryModel.getStoryModel());
 	}
 
 	public EventHandler<MouseEvent> wrapperToFrontEvent = new EventHandler<MouseEvent>() {  
@@ -55,4 +61,10 @@ public class SmithyHandler {
 	    	  smithyPanel.buildPanel.buildBtnAbled();
 	      }
 	};
+
+	public SmithyController getSmithyController(){
+		return this.smithyController;
+	}
+
+	//缺少smithy 调用smithyContoller 的 createWeapon
 }

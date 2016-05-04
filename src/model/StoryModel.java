@@ -3,26 +3,29 @@ package model;
 import main.Main;
 import model.po.*;
 
-import java.io.Serializable;
+import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Kray on 16/4/22.
  */
 public class StoryModel implements Serializable{
 
+    private static StoryModel storyModel;
+
     private static final long serialVersionUID = 1L;
     private SamuraiPO samuraiPO_1;
     private SamuraiPO samuraiPO_2;
     private SamuraiPO samuraiPO_3;
-    private GameModel gameModel;
+    private transient GameModel gameModel;
     private Armory armory;
     private MaterialLibrary materialLibrary;
-    //只要有一个gamemodel就好啦
 
-    //考虑是否要写成单例?
-    public StoryModel(){
+    //用来测试有没有序列化成功 不用管它
+    private Date time;
 
-//        getStoryModel();
+    private StoryModel(){
         gameModel = new GameModel();
 
         this.armory = new Armory();
@@ -34,6 +37,11 @@ public class StoryModel implements Serializable{
         this.samuraiPO_2 = new SamuraiPO(1,0,this.armory.getWeapon(111),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
         this.samuraiPO_3 = new SamuraiPO(2,0,this.armory.getWeapon(211),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
 
+        this.time = new Date();
+    }
+
+    public Date getTime(){
+        return this.time;
     }
 
     public void startLevel(int level){
@@ -47,7 +55,7 @@ public class StoryModel implements Serializable{
     }
 
     public void changeWeapon(int samuraiNum, int weaponNum){
-        System.out.println("Samurai " + samuraiNum + " is changing to " + weaponNum);
+        System.out.println("Samurai " + samuraiNum + " is changing to weapon " + weaponNum);
         switch (samuraiNum){
             case 1:
                 this.samuraiPO_1.changeWeapon(this.armory.getWeapon(weaponNum));
@@ -71,24 +79,53 @@ public class StoryModel implements Serializable{
         return this.armory;
     }
 
-    public MaterialLibrary materialLibrary(){
+    public MaterialLibrary getMaterialLibrary(){
         return this.materialLibrary;
     }
 
-    //用序列化保存整个StoryModel
-    public void save(){
+    //用序列化保存storyModel的对象
+    public void saveStoryModel(){
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream("Samurai_StoryModel.ser");
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(this);
 
+            this.time = new Date();
+            System.out.println(this.time.toString());
+
+            objectOutputStream.close();
+
+            System.out.println("save successfully");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     //用序列化读取整个StoryModel
-    public static StoryModel getStoryModel(){
-//        if(){
-//            如果没有就 new 一个
+    public static StoryModel loadStoryModel(){
+        try{
+            FileInputStream fileInputStream = new FileInputStream("Samurai_StoryModel.ser");
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            Object thisObject = objectInputStream.readObject();
+            objectInputStream.close();
 
-//        }else{
-//            如果有了就读一个
-//        }
+            StoryModel s = (StoryModel) thisObject;
+            System.out.println(s.getTime());
+            System.out.println("load successfully");
+
+            return (StoryModel) thisObject;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return new StoryModel();
+    }
+
+    //单例模式用于取唯一的storyModel
+    public static StoryModel getStoryModel(){
+        if(storyModel == null){
+            storyModel = StoryModel.loadStoryModel();
+        }
+        return storyModel;
     }
 
 }

@@ -2,6 +2,8 @@ package model.po;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
+
 import controller.msgqueue.ActionOperation;
 import model.ChessBoardModel;
 
@@ -9,19 +11,19 @@ public class SamuraiAI {
 	// test
 	/*public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
-		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
-		SamuraiPO No2 = new SamuraiPO(2, 0, 1, 14, cbm);
-		SamuraiPO No3 = new SamuraiPO(3, 0, 2, 14, cbm);
-		SamuraiPO No4 = new SamuraiPO(4, 1, 0, 14, cbm);
-		SamuraiPO No5 = new SamuraiPO(5, 1, 1, 14, cbm);
-		SamuraiPO No6 = new SamuraiPO(6, 1, 2, 14, cbm);
-		SamuraiAI mine1 = new SamuraiAI(No1, 1, cbm, 0);
-		SamuraiAI mine2 = new SamuraiAI(No2, 1, cbm, 0);
-		SamuraiAI mine3 = new SamuraiAI(No3, 1, cbm, 0);
+		SamuraiPO No1 = new SamuraiPO(1, 0, new Weapon(0), 14, cbm, new Armor());
+		SamuraiPO No2 = new SamuraiPO(2, 0, new Weapon(1), 14, cbm, new Armor());
+		SamuraiPO No3 = new SamuraiPO(3, 0, new Weapon(2), 14, cbm, new Armor());
+		SamuraiPO No4 = new SamuraiPO(4, 1, new Weapon(0), 14, cbm, new Armor());
+		SamuraiPO No5 = new SamuraiPO(5, 1, new Weapon(1), 14, cbm, new Armor());
+		SamuraiPO No6 = new SamuraiPO(6, 1, new Weapon(2), 14, cbm, new Armor());
+		SamuraiAI mine1 = new SamuraiAI(No1, 0, cbm, 0);
+		SamuraiAI mine2 = new SamuraiAI(No2, 0, cbm, 0);
+		SamuraiAI mine3 = new SamuraiAI(No3, 0, cbm, 0);
 		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 1);
 		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 1);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 20; i++) {
 			mine1.calculate();
 			print(cbm);
 			mine4.calculate();
@@ -81,12 +83,34 @@ public class SamuraiAI {
 		return type;
 	}
 
+	public void storyCalculate() {
+
+	}
+
 	public ActionOperation[] calculate() {
+		Random random = new Random();
 		ArrayList<SaveCache> saveCaches = new ArrayList<SaveCache>();
 		ActionOperation[] actionOperations = new ActionOperation[2];
 		boolean[] check = samuraiPO.checkMove(chessBoardModel);
 		switch (type) {
 		case 0:
+			int moveDirection;
+			int occupyDirection;
+			SamuraiPO samuraiPOClone1 = samuraiPO.clone();
+			ChessBoardModel cbm1 = chessBoardModel.clone();
+			do {
+				moveDirection = random.nextInt(4);
+			} while (!samuraiPOClone1.move(moveDirection, cbm1));
+			do {
+				occupyDirection = random.nextInt(4);
+			} while (!samuraiPOClone1.checkOccupy()[occupyDirection]);
+			//
+			//System.out.println(occupyDirection);
+			//samuraiPO.move(moveDirection, chessBoardModel);
+			//samuraiPO.occupied(occupyDirection, chessBoardModel, true);
+			//
+			actionOperations[0] = new ActionOperation(1, moveDirection);
+			actionOperations[1] = new ActionOperation(0, occupyDirection);
 			return null;
 		case 1:
 			//
@@ -105,8 +129,10 @@ public class SamuraiAI {
 			}
 			Collections.sort(saveCaches);
 			//
-//			samuraiPO.move(saveCaches.get(0).getLocation() / 4, chessBoardModel);
-//			samuraiPO.occupied(saveCaches.get(0).getLocation() % 4, chessBoardModel, true);
+		    //samuraiPO.move(saveCaches.get(0).getLocation() / 4,
+			//chessBoardModel);
+			//samuraiPO.occupied(saveCaches.get(0).getLocation() % 4,
+			//chessBoardModel, true);
 			//
 			actionOperations[0] = new ActionOperation(1, saveCaches.get(0).getLocation() / 4);
 			actionOperations[1] = new ActionOperation(0, saveCaches.get(0).getLocation() % 4);

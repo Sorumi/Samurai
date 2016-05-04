@@ -72,6 +72,8 @@ public class SmithyPanel extends Pane {
 				// TODO Auto-generated method stub
 				TerritoryPanel parent =  (TerritoryPanel) SmithyPanel.this.getParent();
 				parent.getChildren().remove(SmithyPanel.this);
+				//退出时候保存StoryModel
+				smithyHandler.getSmithyController().save();
 			}
 		});
 		

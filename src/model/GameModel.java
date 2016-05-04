@@ -46,7 +46,7 @@ public class GameModel extends BaseModel implements Observer {
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
         this.gameState = GameState.RUN;
-        this.timeTotal = 30;
+        this.timeTotal = 5;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
         this.currentRound = 1;
@@ -313,13 +313,11 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void assignNextWithAI() {
-
-        if(this.playerSeq[this.currentPlayer - 1] == 0){
-//            Operation.setServer(true);
+        if(this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4){
             this.timer = new Timer();
             this.timer.schedule(new countDownTask(), 0, 1000);
-        }else{
-//            Operation.setServer(false);
+        }
+        if(this.currentPlayer == 2 || this.currentPlayer == 3 || this.currentPlayer == 6){
             this.timer.cancel();
         }
 
@@ -346,6 +344,17 @@ public class GameModel extends BaseModel implements Observer {
                         }
                         break;
                     case 6:
+                        //假设他是攻击型AI
+//                        int i = 99;
+//                        ArrayList<Position> positions = this.players[this.playerSeq[this.currentPlayer - 1]].getSamuraiOfNum(6).see();
+//                        if(positions.contains(this.players[0].getSamuraiOfNum(0).getPos())){
+//                            i = 0;
+//                        }else if(positions.contains(this.players[0].getSamuraiOfNum(1).getPos())){
+//                            i = 1;
+//                        }else if(positions.contains(this.players[0].getSamuraiOfNum(2).getPos())){
+//                            i = 2;
+//                        }
+                        //告诉这个AI视野内有谁
                         for (ActionOperation operation : samuraiAI[2].calculate()) {
                             OperationQueue.addOperation(operation);
                         }
