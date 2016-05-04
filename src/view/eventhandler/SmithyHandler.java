@@ -47,6 +47,7 @@ public class SmithyHandler {
 	    	  //合成武器！
 	    	  //TODO
 	    	  smithyPanel.buildPanel.build();
+			  smithyController.createWeapon(smithyPanel.buildPanel.getItemNum());
 	      }
 	};
 	

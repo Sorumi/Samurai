@@ -107,6 +107,10 @@ public class SmithyBuilder extends Pane {
 			buildBtnUnabled();
 		}
 	}
+
+	public int getItemNum(){
+		return this.itemNum;
+	}
 	
 	//内部类
 	public class MaterialCircle extends Circle{
@@ -117,6 +121,9 @@ public class SmithyBuilder extends Pane {
 			this.setCenterY(50);
 		}
 	}
+
+
+
 	//造武器成功调用此方法
 	public void build(){
 		weapon.setColored();

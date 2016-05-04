@@ -82,6 +82,10 @@ public class SmithyPanel extends Pane {
 		this.getChildren().add(routeGroup);
 
 	}
+
+	public int weaponNum(){
+		return this.buildPanel.getItemNum();
+	}
 	
 	//内部类
 	private class SmithyGroup extends Group {
