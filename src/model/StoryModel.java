@@ -22,7 +22,8 @@ public class StoryModel implements Serializable{
     //考虑是否要写成单例?
     public StoryModel(){
 
-        getStoryModel();
+//        getStoryModel();
+        gameModel = new GameModel();
 
         this.armory = new Armory();
         this.armory.initialize();
@@ -46,6 +47,7 @@ public class StoryModel implements Serializable{
     }
 
     public void changeWeapon(int samuraiNum, int weaponNum){
+        System.out.println("Samurai " + samuraiNum + " is changing to " + weaponNum);
         switch (samuraiNum){
             case 1:
                 this.samuraiPO_1.changeWeapon(this.armory.getWeapon(weaponNum));

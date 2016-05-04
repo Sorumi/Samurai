@@ -19,7 +19,7 @@ public class CampsiteHandler {
 		this.campsiteController = new CampsiteController();
 
 		//这个 StoryModel 需要改变
-		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
+		this.campsiteController.setStoryModel(new StoryModel());
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  

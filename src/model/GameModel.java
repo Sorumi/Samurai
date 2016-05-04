@@ -72,6 +72,29 @@ public class GameModel extends BaseModel implements Observer {
         isClient = false;
     }
 
+    public GameModel(){
+        this.level = 9999;
+        this.length = 15;
+        this.chessBoardModel = new ChessBoardModel(this.length);
+        this.gameState = GameState.RUN;
+        this.timeTotal = 30;
+        this.coldRoundNum = 1;
+        this.currentTime = this.timeTotal;
+        this.currentRound = 1;
+        this.totalRound = 24;
+        this.currentSamurai = 1;//1,2,3,4,5,6
+        this.samuraiSeq = new int[]{1,4,5,2,3,6};
+        this.currentPlayer = 1;//1,2,3,4,5,6
+        this.playerSeq = new int[]{0,1,1,0,0,1};
+        this.players = new Player[2];
+        players[0] = new Player(this,0);
+        players[1] = new Player(this,1);
+    }
+
+    public void cbmAddObserver(Main mainFrame){
+        this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
+    }
+
     public GameModel(ClientService client) {
         this.net = client;
         isClient = true;
@@ -134,7 +157,6 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
-        //position和direction能都返回吗，，
     }
 
     public void updateOccupy(int direction){
