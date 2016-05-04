@@ -217,18 +217,28 @@ public class Images {
 		public static Image[] WEAPON_22 = {null, null, null, null, null,  WEAPON_225, WEAPON_226};
 		public static Image[] WEAPON_23 = {null, null, null, WEAPON_233, WEAPON_234, WEAPON_235, WEAPON_236};
 		
+		//TODO
 		public static Image[] WEAPON_30 = {WEAPON_300};
+		public static Image[] WEAPON_31 = {WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300};
+		public static Image[] WEAPON_32 = {WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300};
+		public static Image[] WEAPON_33 = {WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300, WEAPON_300};
 		
 		public static Image[] WEAPON_40 = {WEAPON_400};
+		public static Image[] WEAPON_41 = {WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400};
+		public static Image[] WEAPON_42 = {WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400};
+		public static Image[] WEAPON_43 = {WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400};
 		public static Image[] WEAPON_50 = {WEAPON_500};
+		public static Image[] WEAPON_51 = {WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500};
+		public static Image[] WEAPON_52 = {WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500};
+		public static Image[] WEAPON_53 = {WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500};
 		
 		
 		public static Image[][] WEAPON_0 = {WEAPON_00, WEAPON_01, WEAPON_02, WEAPON_03};
 		public static Image[][] WEAPON_1 = {WEAPON_10, WEAPON_11, WEAPON_12, WEAPON_13};
 		public static Image[][] WEAPON_2 = {WEAPON_20, WEAPON_21, WEAPON_22, WEAPON_23};
-		public static Image[][] WEAPON_3 = {WEAPON_30};
-		public static Image[][] WEAPON_4 = {WEAPON_40};
-		public static Image[][] WEAPON_5 = {WEAPON_50};
+		public static Image[][] WEAPON_3 = {WEAPON_30, WEAPON_31, WEAPON_32, WEAPON_33};
+		public static Image[][] WEAPON_4 = {WEAPON_40, WEAPON_41, WEAPON_42, WEAPON_43};
+		public static Image[][] WEAPON_5 = {WEAPON_50, WEAPON_51, WEAPON_52, WEAPON_53};
 		
 		
 		public static Image[][][] WEAPON = {WEAPON_0, WEAPON_1, WEAPON_2, WEAPON_3, WEAPON_4, WEAPON_5};

@@ -50,10 +50,12 @@ public class CampsiteHandler {
 	      }
 	};
 	
+	//设置武器按钮
 	public EventHandler<MouseEvent> setItemClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //用 controller 换武器
 	    	  //点击确定才换武器~
+//	    	  campsitePanel.samuraiPanel.setItemBtnPressed();
 	    	  campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(), campsitePanel.samuraiPanel.currentWeapon);
 	      }
 	};
@@ -66,7 +68,7 @@ public class CampsiteHandler {
 	
 	public EventHandler<MouseEvent> setItemExitEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  campsitePanel.samuraiPanel.setItemBtnNormal();
+	    	  campsitePanel.samuraiPanel.setItemBtnAbled();
 	      }
 	};
 

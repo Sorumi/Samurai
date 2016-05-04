@@ -2,6 +2,7 @@ package view.eventhandler;
 
 import controller.SmithyController;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
@@ -31,11 +32,34 @@ public class SmithyHandler {
 	
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  SmithyItemView item = (SmithyItemView) event.getSource();
+	    	  Group weaponGroup = (Group) event.getSource();
+	    	  SmithyItemView item = (SmithyItemView) weaponGroup.getParent();
 	    	  smithyPanel.routeGroup.setVisible(false);
-	    	  smithyPanel.buildPanel = new SmithyBuilder(item.getItemNum());
+	    	  smithyPanel.buildPanel = new SmithyBuilder(item.getItemNum(), SmithyHandler.this);
 	    	  smithyPanel.getChildren().add(smithyPanel.buildPanel);
 	    	  
+	      }
+	};
+
+	//合成按钮
+	public EventHandler<MouseEvent> buildBtnClickEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  //合成武器！
+	    	  //TODO
+	    	  smithyPanel.buildPanel.build();
+			  smithyController.createWeapon(smithyPanel.buildPanel.getItemNum());
+	      }
+	};
+	
+	public EventHandler<MouseEvent> buildBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  smithyPanel.buildPanel.buildBtnPressed();
+	      }
+	};
+	
+	public EventHandler<MouseEvent> buildBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  smithyPanel.buildPanel.buildBtnAbled();
 	      }
 	};
 
@@ -44,5 +68,4 @@ public class SmithyHandler {
 	}
 
 	//缺少smithy 调用smithyContoller 的 createWeapon
-
 }

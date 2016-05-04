@@ -103,13 +103,30 @@ public class GameColor {
 		String color;
 		switch(x){
 			case 0: color = "#E2B2B0";break;//spear
-			case 1: color = "#EEE0AE";break;//sword
+			case 1: color = "#F0E8CD";break;//sword
 			case 2: color = "#DCE2C8";break;//battleax
 			case 3: color = "#D2E0ED";break;//shuriken
 			case 4: color = "#DCD5E6";break;//bow and arrow
 			
+			//button
+			case 5: color = "#975C5A";break;//spear
+			case 6: color = "#C9B881";break;//sword
+			case 7: color = "#919B6E";break;//battleax
+			case 8: color = "#6183A2";break;//shuriken
+			case 9: color = "#A593BE";break;//bow and arrow
+			//button shadow
+			case 10: color = "#74403E";break;//spear
+			case 11: color = "#AF9F6B";break;//sword
+			case 12: color = "#798453";break;//battleax
+			case 13: color = "#4A6B8A";break;//shuriken
+			case 14: color = "#846FA1";break;//bow and arrow
+			
+			//button unabled
+			case -1: color = "#b4b4b4";break;
+			case -2: color = "#9b9b9b";break;
 			default: color = "#000000";
 		}
 		return color;
 	}
+
 }
