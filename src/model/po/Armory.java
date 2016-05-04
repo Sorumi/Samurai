@@ -13,6 +13,7 @@ public class Armory implements Serializable {
 	private ArrayList<Weapon> axeList = new ArrayList<Weapon>();
 	private ArrayList<Weapon> bowList = new ArrayList<Weapon>();
 	private ArrayList<Weapon> shurikenList = new ArrayList<Weapon>();
+	private ArrayList<Armor> armorList = new ArrayList<Armor>();
 
 	// 这个方法仅在进入故事模式时调用一次
 	public void initialize() {
@@ -21,6 +22,16 @@ public class Armory implements Serializable {
 		int[] materialNumber = {};
 		int[] nextWeapon = { 112 };
 		swordList.add(new Weapon(1, 111, 15, 19, 0, 0, materialTag, materialItem, materialNumber, true, nextWeapon, 1));
+		nextWeapon = new int[] { 12 };
+		spearList.add(new Weapon(0, 11, 18, 22, 0, 0, materialTag, materialItem, materialNumber, true, nextWeapon, 1));
+		nextWeapon = new int[] { 212 };
+		axeList.add(new Weapon(2, 211, 14, 19, 0, 0, materialTag, materialItem, materialNumber, true, nextWeapon, 1));
+		nextWeapon = new int[] { 312 };
+		shurikenList
+				.add(new Weapon(3, 311, 20, 25, 5, 0, materialTag, materialItem, materialNumber, true, nextWeapon, 1));
+		nextWeapon = new int[] { 412, 422 };
+		bowList.add(new Weapon(4, 411, 19, 24, 0, 5, materialTag, materialItem, materialNumber, true, nextWeapon, 1));
+		//
 		materialTag = new int[] { 1, 2, 2 };
 		materialItem = new int[] { 0, 0, 1 };
 		materialNumber = new int[] { 3, 2, 2 };
@@ -97,6 +108,12 @@ public class Armory implements Serializable {
 		nextWeapon = new int[] {};
 		swordList.add(
 				new Weapon(1, 136, 105, 111, 45, 22, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+       //护甲初始化
+		materialTag = new int[]{};
+		materialItem = new int[]{};
+		materialNumber = new int[]{};
+		int[] nextArmor = { 912 };
+		armorList.add(new Armor(911, 5, 2, materialTag, materialItem, materialNumber, true, nextArmor, 3));
 	}
 
 	public Weapon getWeapon(int type) {
@@ -143,6 +160,14 @@ public class Armory implements Serializable {
 		System.out.println("No such weapon!");
 		return null;
 	}
+	public Armor getArmor(int type) {
+		for(Armor armor:armorList){
+			if(armor.getType()==type){
+				return armor;
+			}
+		}
+		return null;
+	}
 
 	// 制造武器的方法 如果制造成功 返回true 否则返回false
 	public boolean buildWeapon(int type, MaterialLibrary materialLibrary) {
@@ -153,12 +178,37 @@ public class Armory implements Serializable {
 				// 材料够，开始制造
 				for (int i = 0; i < weapon.getMaterialTag().length; i++) {
 					materialLibrary.changeItem(weapon.getMaterialTag()[i], weapon.getMaterialItem()[i],
-							weapon.getMaterialNumber()[i]);
+							-weapon.getMaterialNumber()[i]);
 				}
 				// 减材料
 				if (weapon.create()) {
 					for (int nextWeapon : weapon.getNextWeapon()) {
 						getWeapon(nextWeapon).unlock();
+					}
+				}
+				return true;
+				// 判断是否要解锁
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	public boolean buildArmor(int type, MaterialLibrary materialLibrary) {
+		Armor armor = getArmor(type);
+		if (armor.canCreate()) {
+			if (materialLibrary.checkEnough(armor.getMaterialTag(), armor.getMaterialItem(),
+					armor.getMaterialNumber())) {
+				// 材料够，开始制造
+				for (int i = 0; i < armor.getMaterialTag().length; i++) {
+					materialLibrary.changeItem(armor.getMaterialTag()[i], armor.getMaterialItem()[i],
+							-armor.getMaterialNumber()[i]);
+				}
+				// 减材料
+				if (armor.create()) {
+					for (int nextArmor : armor.getNextArmor()) {
+						getArmor(nextArmor).unlock();
 					}
 				}
 				return true;
