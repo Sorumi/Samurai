@@ -95,6 +95,7 @@ public class ActionHandler {
 	    	  btn.setHighLight(true);
 	      }
 	};
+
 	public EventHandler<MouseEvent> directionExitEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  DirectionButton btn = (DirectionButton)event.getSource();

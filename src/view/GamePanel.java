@@ -210,13 +210,15 @@ public class GamePanel extends Pane implements Observer{
 					public void run() {
 						// TODO Auto-generated method stub
 						boolean canAction= (boolean) newVal;
-						if(canAction){
-							arrow.setActualLocation();
-							arrow.setVisible(true);
-							currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
-						}else{
-							arrow.setVisible(false);
-							currentSamurai.setOnMouseEntered(null);
+						if(currentPlayer.getPlayer() == 0) {
+							if (canAction) {
+								arrow.setActualLocation();
+								arrow.setVisible(true);
+								currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
+							} else {
+								arrow.setVisible(false);
+								currentSamurai.setOnMouseEntered(null);
+							}
 						}
 					}
 				});
@@ -241,7 +243,6 @@ public class GamePanel extends Pane implements Observer{
 
 	public void setCurrentRound(int round){
 		roundPanel.setRoundCurrent(round);
-//		System.out.println(round);
 		if(this.currentPlayer == playerA){
 			playerA.circlePanel.setNewTime(true);
 			playerB.circlePanel.setNewTime(false);
@@ -264,15 +265,17 @@ public class GamePanel extends Pane implements Observer{
 		String key = notifingObject.getKey();
 
 		if(key.equals("samurai")){
-			this.setCurrentSamurai((int)notifingObject.getValue());
+
+			this.setCurrentSamurai((int) notifingObject.getValue());
 
 		}else if(key.equals("player")){
-			this.setCurrentPlayer((int)notifingObject.getValue());
+			this.setCurrentPlayer((int) notifingObject.getValue());
 
 		}else if(key.equals("round")){
 			this.setCurrentRound((int)notifingObject.getValue());
 
 		}else if(key.equals("time")){
+
 			this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
 
 		}else if(key.equals("state")){
@@ -287,16 +290,22 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("samuraiMove")){
 			Position position = (Position)notifingObject.getValue();
 			this.currentSamurai.move(position.getX(), position.getY());
-			this.actionPanel.reset();
-			this.setOrder();
+
+			if (this.currentPlayer.getPlayer() == 0) {
+				this.actionPanel.reset();
+				this.setOrder();
+			}
 
 		}else if(key.equals("samuraiHide")){
 			this.currentSamurai.setHide((boolean)notifingObject.getValue());
 
 		}else if(key.equals("samuraiOccupy")){
 			this.currentSamurai.occupy((int)notifingObject.getValue());
-			this.actionPanel.reset();
-			this.arrow.setVisible(true);
+
+			if (this.currentPlayer.getPlayer() == 0) {
+				this.actionPanel.reset();
+				this.arrow.setVisible(true);
+			}
 
 		}else if(key.equals("samuraiKilled")){
 

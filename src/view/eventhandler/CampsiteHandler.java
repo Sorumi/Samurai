@@ -1,7 +1,9 @@
 package view.eventhandler;
 
+import controller.CampsiteController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import model.StoryModel;
 import view.campsite.CampsiteItemView;
 import view.campsite.CampsitePanel;
 import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
@@ -9,9 +11,15 @@ import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
 public class CampsiteHandler {
 	
 	private CampsitePanel campsitePanel;
+
+	private CampsiteController campsiteController;
 	
 	public CampsiteHandler(CampsitePanel campsitePanel){
 		this.campsitePanel = campsitePanel;
+		this.campsiteController = new CampsiteController();
+
+		//这个 StoryModel 需要改变
+		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  
@@ -33,6 +41,8 @@ public class CampsiteHandler {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
 	    	  //换装备 显示名字描述属性
 	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());
+			  //用 controller 换武器
+			  campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(),item.getNum());
 	      }
 	};
 	

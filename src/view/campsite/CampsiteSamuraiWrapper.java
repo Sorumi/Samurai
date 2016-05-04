@@ -88,6 +88,10 @@ public class CampsiteSamuraiWrapper extends Pane {
 		//武器
 	}
 
+	public int getSamuraiNum(){
+		return this.samuraiNum;
+	}
+
 	public void setItemBtnPressed() {
 		setItemBtn.setLayoutY(364);
 		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"

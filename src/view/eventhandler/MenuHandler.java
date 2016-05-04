@@ -26,18 +26,17 @@ public class MenuHandler {
 	
 	public EventHandler<MouseEvent> classicEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  Platform.runLater(new Runnable(){
-	  			@Override
-	  			public void run() {
-	  				// TODO Auto-generated method stub
-	  	    	  mainFrame.gamePanel = new GamePanel(15, 0);
-		    	  mainFrame.startClassicGame();
+	    	  	Platform.runLater(new Runnable(){
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					mainFrame.gamePanel = new GamePanel(15, 0);
+					mainFrame.startClassicGame();
 
-		    	  MenuController menuController = new MenuController();
-		    	  menuController.startGame();
-	  			}
-	  		});
-	  		
+					MenuController menuController = new MenuController();
+					menuController.startGame();
+				}
+				});
 	      }
 	};
 	
@@ -46,12 +45,12 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-		  	    	  mainFrame.gamePanel = new GamePanelOL(15, 10);
-			    	  mainFrame.startGame();
-			    	  
-			    	  System.out.println("Waiting for client...");
-			    	  HostController hostController = new HostController();
-			    	  hostController.serviceSetupHost(mainFrame);
+						mainFrame.gamePanel = new GamePanelOL(15, 10);
+						mainFrame.startGame();
+
+						System.out.println("Waiting for client...");
+						HostController hostController = new HostController();
+						hostController.serviceSetupHost(mainFrame);
 		  			}
 	    	  });
 	    	 
@@ -63,11 +62,11 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-		  	    	  mainFrame.gamePanel = new GamePanelOL(15, 10);
-			    	  mainFrame.startGame();
-			    	  
-			    	  ClientController clientController = new ClientController();
-			    	  clientController.setupClient(Configure.SERVER_ADDRESS);
+						mainFrame.gamePanel = new GamePanelOL(15, 10);
+						mainFrame.startGame();
+
+						ClientController clientController = new ClientController();
+						clientController.setupClient(Configure.SERVER_ADDRESS);
 		  			}
 	    	  });
 	      }
@@ -78,7 +77,8 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-			    	  mainFrame.startStory();
+						mainFrame.gamePanel = new GamePanel(15,0);
+						mainFrame.startStory();
 		  			}
 	    	  });
 	      }

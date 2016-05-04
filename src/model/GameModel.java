@@ -104,12 +104,6 @@ public class GameModel extends BaseModel implements Observer {
                 break;
         }
 
-        if(!isServer && !isClient){
-//        if(!isServer){
-            this.timer = new Timer();
-            this.timer.schedule(new countDownTask(), 0, 1000);
-        }
-
         return true;
     }
 
@@ -282,18 +276,6 @@ public class GameModel extends BaseModel implements Observer {
 
     //Assign next samurai
     public void assignNext(){
-        //全部设为不可见
-//        for(int i = 0; i < length; i++){
-//            for (int j = 0; j < length; j++){
-//                this.chessBoardModel.setActualBlockVisible(i,j,false);
-//            }
-//        }
-
-        if(this.playerSeq[this.currentPlayer - 1] == 0){
-            Operation.setServer(true);
-        }else{
-            Operation.setServer(false);
-        }
 
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
@@ -309,6 +291,16 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void assignNextWithAI() {
+
+        if(this.playerSeq[this.currentPlayer - 1] == 0){
+//            Operation.setServer(true);
+            this.timer = new Timer();
+            this.timer.schedule(new countDownTask(), 0, 1000);
+        }else{
+//            Operation.setServer(false);
+            this.timer.cancel();
+        }
+
         super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round", this.currentRound));
@@ -449,24 +441,15 @@ public class GameModel extends BaseModel implements Observer {
     public class countDownTask extends java.util.TimerTask{
         public void run() {
             if(!isServer && !isClient) {
-//            if(!isServer) {
-//                Thread.sleep(1000);
                 OperationQueue.addOperation(new TimeOperation());
             }
         }
     }
 
     public void countDown(){
-//        System.out.println("COUNT DOWN!");
         if(this.currentTime > 0) {
-
-//            if(this.playerSeq[this.currentPlayer - 1] == 0){
-//                Operation.setServer(true);
-//            }else{
-//                Operation.setServer(false);
-//            }
-
             super.updateChange(new UpdateMessage("time", this.currentTime));
+            System.out.println("Time:" + this.currentTime);
             this.currentTime--;
         }else{
             this.actionDone();
