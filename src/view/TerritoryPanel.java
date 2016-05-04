@@ -20,8 +20,6 @@ public class TerritoryPanel extends Pane {
 	private final int WINDOW_HEIGHT = 800;
 	 
 	private TerritoryHandler territoryHandler;
-	public SystemCloseButton systemCloseBtn;
-
 	
 	private Button campsiteBtn;
 	private Button smithyBtn;
@@ -35,21 +33,6 @@ public class TerritoryPanel extends Pane {
 		
 		territoryHandler = new TerritoryHandler(this);
 		
-		systemCloseBtn = new SystemCloseButton();
-		systemCloseBtn.setLayoutX(1125);
-		systemCloseBtn.setLayoutY(25);
-		systemCloseBtn.setVisible(false);
-		systemCloseBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				TerritoryPanel.this.getChildren().removeAll(campsitePanel, smithyPanel);
-				campsitePanel = null;
-				smithyPanel = null;
-				systemCloseBtn.setVisible(false);
-			}
-		});
-
 		campsiteBtn = new Button("营地：用来查看武器，换装备");
 		campsiteBtn.setLayoutX(300);
 		campsiteBtn.setLayoutY(300);
@@ -60,7 +43,7 @@ public class TerritoryPanel extends Pane {
 		smithyBtn.setLayoutY(400);
 		smithyBtn.setOnMouseClicked(territoryHandler.smithyEvent);
 		
-		this.getChildren().addAll(campsiteBtn, smithyBtn, systemCloseBtn);
+		this.getChildren().addAll(campsiteBtn, smithyBtn);
 
 	}
 	

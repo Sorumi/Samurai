@@ -77,6 +77,13 @@
 	-fx-border-radius: 10 0 0 10;
 }
 
+#smithy-builder{
+	-fx-background-color: #dddddd;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+
 .scroll-pane {
 	-fx-background: transparent; 
     -fx-background-insets: 0;

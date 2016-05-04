@@ -11,7 +11,6 @@ import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
 public class CampsiteHandler {
 	
 	private CampsitePanel campsitePanel;
-
 	private CampsiteController campsiteController;
 	
 	public CampsiteHandler(CampsitePanel campsitePanel){
@@ -40,9 +39,7 @@ public class CampsiteHandler {
 	      public void handle(MouseEvent event) {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
 	    	  //换装备 显示名字描述属性
-	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());
-			  //用 controller 换武器
-			  campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(),item.getNum());
+	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());			 
 	      }
 	};
 	
@@ -51,6 +48,14 @@ public class CampsiteHandler {
 	    	  SamuraiButton samurai = (SamuraiButton) event.getSource();
 	    	  //换装备 显示名字描述属性
 	    	  campsitePanel.samuraiPanel.setSamurai(samurai.num);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> setItemClickEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+			  //用 controller 换武器
+	    	  //点击确定才换武器~
+	    	  campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(), campsitePanel.samuraiPanel.currentWeapon);
 	      }
 	};
 	

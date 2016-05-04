@@ -23,6 +23,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	private Button setItemBtn;
 	
 	private int samuraiNum;
+	public int currentWeapon;
 	
 	public CampsiteSamuraiWrapper(CampsiteHandler campsiteHandler){
 		this.campsiteHandler = campsiteHandler;
@@ -54,6 +55,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setId("set-item-btn");
 		setItemBtn.setOnMouseEntered(campsiteHandler.setItemEnterEvent);
 		setItemBtn.setOnMouseExited(campsiteHandler.setItemExitEvent);
+		setItemBtn.setOnMouseClicked(campsiteHandler.setItemClickEvent);
 		this.getChildren().add(setItemBtn);
 		
 		//TODO default
@@ -76,6 +78,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	}
 
 	public void setWeapon(int num) {
+		currentWeapon = num;
 		samurai.setWeapon(num);
 		samurai.occupy(2);
 	}

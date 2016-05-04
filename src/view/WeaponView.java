@@ -21,8 +21,8 @@ public class WeaponView extends StackPane{
 			imgV.setSmooth(true);
 			
 			if(Images.WEAPON[number/100][number%100/10][number%10].getHeight()/6*SCALE > 100){
-				imgV.setScaleX(1.2);
-				imgV.setScaleY(1.2);
+				imgV.setScaleX(1.1);
+				imgV.setScaleY(1.1);
 			}else{
 				imgV.setScaleX(1.5);
 				imgV.setScaleY(1.5);

@@ -1,14 +1,14 @@
 package view.smithy;
 
-import view.GameColor;
+import view.eventhandler.SmithyHandler;
 
 public class SmithyItemWrapper2 extends SmithyItemWrapper {
 
 	//lockGroup
 	
 	//battleax
-	public SmithyItemWrapper2() {
-		super(2);
+	public SmithyItemWrapper2(SmithyHandler smithyHandler) {
+		super(2, smithyHandler);
 		
 		SmithyItemView item211 = new SmithyItemView(211, -1);
 		item211.setLayoutY(300);
@@ -49,6 +49,8 @@ public class SmithyItemWrapper2 extends SmithyItemWrapper {
 		
 		this.buildGroup.getChildren().addAll(item211, item212);
 		this.lockGroup.getChildren().addAll(item213, item214, item215, item216, item225, item226, item233, item234, item235, item236);
+		
+		this.addClickEvent();
 	}
 
 }

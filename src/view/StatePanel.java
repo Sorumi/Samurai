@@ -90,6 +90,7 @@ public class StatePanel extends OrderPanel {
 		
 		//icon
 		iconGroup = new Group();
+		iconGroup.setLayoutX(15);
 		
 		stateIcon1.setFitWidth(25);
 		stateIcon2.setFitWidth(25);
@@ -135,7 +136,6 @@ public class StatePanel extends OrderPanel {
 		bgCircle.setCenterY(25+strokeWidth);
 		bloodArc.setCenterY(25+strokeWidth);
 		centralCircle.setCenterY(25+strokeWidth);
-		iconGroup.setLayoutX(25);
 		iconGroup.setLayoutY(62);		
 	}
 	
@@ -151,8 +151,6 @@ public class StatePanel extends OrderPanel {
 		bgCircle.setCenterY(prefHeight-25-strokeWidth);
 		bloodArc.setCenterY(prefHeight-25-strokeWidth);
 		centralCircle.setCenterY(prefHeight-25-strokeWidth);
-		
-		iconGroup.setLayoutX(25);
 		iconGroup.setLayoutY(26);
 	}
 	

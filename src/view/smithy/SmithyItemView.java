@@ -45,6 +45,7 @@ public class SmithyItemView extends Pane{
 		fillCircle.setFill(Color.WHITE);
 		this.getChildren().add(fillCircle);
 		
+		//TODO
 //		WeaponView weapon = new WeaponView(itemNum);
 //		this.getChildren().add(weapon);
 //		StackPane.setAlignment(weapon,Pos.CENTER);
@@ -67,6 +68,9 @@ public class SmithyItemView extends Pane{
 		}
 	}
 	
+	public int getItemNum(){
+		return this.itemNum;
+	}
 	
 	//解锁
 //	public void setUnlocked(boolean isUnlocked){

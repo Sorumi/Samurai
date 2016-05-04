@@ -1,14 +1,14 @@
 package view.smithy;
 
-import view.GameColor;
+import view.eventhandler.SmithyHandler;
 
 public class SmithyItemWrapper3 extends SmithyItemWrapper {
 
 	//lockGroup
 	
 	//shuriken
-	public SmithyItemWrapper3() {
-		super(3);
+	public SmithyItemWrapper3(SmithyHandler smithyHandler) {
+		super(3, smithyHandler);
 		
 		SmithyItemView item311 = new SmithyItemView(311, -1);
 		item311.setLayoutY(300);
@@ -43,6 +43,8 @@ public class SmithyItemWrapper3 extends SmithyItemWrapper {
 		
 		this.buildGroup.getChildren().addAll(item311, item312);
 		this.lockGroup.getChildren().addAll(item313, item314, item315, item316,item323, item324, item325, item326);
+		
+		this.addClickEvent();
 	}
 
 }
