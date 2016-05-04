@@ -13,18 +13,12 @@ public class CampsiteController {
         this.storyModel.changeWeapon(samuraiNum,weaponNum);
     }
 
-    public void createWeapon(int weaponNum){
-        Weapon weapon = storyModel.getArmory().getWeapon(weaponNum);
-        if(weapon.canCreate()){
-            if(storyModel.getArmory().buildWeapon(weaponNum,storyModel.materialLibrary())){
-                System.out.println("SUCCESS");
-            }else{
-                System.out.println("FAILURE");
-            }
-        }
-    }
-
     public void setStoryModel(StoryModel storyModel){
         this.storyModel = storyModel;
     }
+
+    public void save(){
+        this.storyModel.saveStoryModel();
+    }
+
 }

@@ -35,6 +35,8 @@ public class CampsitePanel extends Pane{
 				// TODO Auto-generated method stub
 				TerritoryPanel parent =  (TerritoryPanel) CampsitePanel.this.getParent();
 				parent.getChildren().remove(CampsitePanel.this);
+				//退出时保存storyModel
+				campsiteHandler.getCampsiteController().save();
 			}
 		});
 

@@ -196,12 +196,11 @@ public class GamePanel extends Pane implements Observer{
 		}
 		currentSamurai.setCanActionProperty(true);
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
-		arrow.setCurrentSamurai(currentSamurai);
-		actionPanel.setCurrentSamurai(currentSamurai);
+		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
-		roundPanel.setCurrentSamurai(currentSamurai.getNum());
-
+		arrow.setCurrentSamurai(currentSamurai);
+		actionPanel.setCurrentSamurai(currentSamurai);
 		//add
 		currentSamurai.canActionProperty().addListener(new ChangeListener(){
 			public void changed(ObservableValue o,Object oldVal,Object newVal){
@@ -210,15 +209,13 @@ public class GamePanel extends Pane implements Observer{
 					public void run() {
 						// TODO Auto-generated method stub
 						boolean canAction= (boolean) newVal;
-						if(currentPlayer.getPlayer() == 0) {
-							if (canAction) {
-								arrow.setActualLocation();
-								arrow.setVisible(true);
-								currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
-							} else {
-								arrow.setVisible(false);
-								currentSamurai.setOnMouseEntered(null);
-							}
+						if (canAction) {
+							arrow.setActualLocation();
+							arrow.setVisible(true);
+							currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
+						} else {
+							arrow.setVisible(false);
+							currentSamurai.setOnMouseEntered(null);
 						}
 					}
 				});

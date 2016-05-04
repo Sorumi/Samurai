@@ -17,8 +17,7 @@ public class CampsiteHandler {
 		this.campsitePanel = campsitePanel;
 		this.campsiteController = new CampsiteController();
 
-		//这个 StoryModel 需要改变
-		this.campsiteController.setStoryModel(new StoryModel());
+		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  
@@ -70,4 +69,8 @@ public class CampsiteHandler {
 	    	  campsitePanel.samuraiPanel.setItemBtnNormal();
 	      }
 	};
+
+	public CampsiteController getCampsiteController(){
+		return this.campsiteController;
+	}
 }
