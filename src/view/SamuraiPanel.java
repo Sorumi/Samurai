@@ -145,11 +145,13 @@ public class SamuraiPanel extends OrderPanel {
 		timeline.setOnFinished(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				canAction.setValue(true);
 			}
-			
 		});
+	}
+	
+	public void setInjured(boolean isInjured){
+		samuraiV.setInjured(isInjured);
 	}
 	
 	public BooleanProperty canActionProperty(){

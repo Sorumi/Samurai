@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.ExecutionException;
-
 
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -170,30 +168,38 @@ public class GamePanel extends Pane implements Observer{
 		});
 	}
 
-	public void setCurrentSamurai(int i){
+	private SamuraiPanel getSamurai(int num){
+		SamuraiPanel tmpSamurai = null;
+		switch (num){
+		case 1:
+			tmpSamurai = A1;
+			break;
+		case 2:
+			tmpSamurai = A2;
+			break;
+		case 3:
+			tmpSamurai = A3;
+			break;
+		case 4:
+			tmpSamurai = B1;
+			break;
+		case 5:
+			tmpSamurai = B2;
+			break;
+		case 6:
+			tmpSamurai = B3;
+			break;
+		}
+		return tmpSamurai;
+	}
+	
+	public void setCurrentSamurai(int num){
 		if(currentSamurai != null){
 			currentSamurai.setOnMouseClicked(null);
 		}
-		switch (i){
-			case 1:
-				this.currentSamurai = A1;
-				break;
-			case 2:
-				this.currentSamurai = A2;
-				break;
-			case 3:
-				this.currentSamurai = A3;
-				break;
-			case 4:
-				this.currentSamurai = B1;
-				break;
-			case 5:
-				this.currentSamurai = B2;
-				break;
-			case 6:
-				this.currentSamurai = B3;
-				break;
-		}
+		
+		this.currentSamurai = getSamurai(num);
+
 		currentSamurai.setCanActionProperty(true);
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
@@ -277,7 +283,6 @@ public class GamePanel extends Pane implements Observer{
 			this.setCurrentRound((int)notifingObject.getValue());
 
 		}else if(key.equals("time")){
-
 			this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
 
 		}else if(key.equals("state")){
@@ -310,7 +315,7 @@ public class GamePanel extends Pane implements Observer{
 			}
 
 		}else if(key.equals("samuraiKilled")){
-
+			getSamurai((int)notifingObject.getValue()).setInjured(true);
 		}else if(key.equals("visible")) {
 			if (this.currentPlayer.getPlayer() == 0) {
 				this.A1.setVisible(true);
