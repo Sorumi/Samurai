@@ -12,8 +12,6 @@ public class StoreHandler {
 	
 	public StoreHandler(StorePanel storePanel){
 		this.storePanel = storePanel;
-		
-		
 	}
 	
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  

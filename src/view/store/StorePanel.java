@@ -32,6 +32,7 @@ public class StorePanel extends Pane{
 				// TODO Auto-generated method stub
 				TerritoryPanel parent =  (TerritoryPanel) StorePanel.this.getParent();
 				parent.getChildren().remove(StorePanel.this);
+				parent.setBlur(false);
 			}
 		});
 

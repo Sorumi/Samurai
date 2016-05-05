@@ -36,25 +36,23 @@ public class StoreItemsWrapper extends Pane{
 		
 		for (int i=0; i<=3; i++){
 			for (int j=0; j<=3; j++){
-				
-					if(Images.MATERIAL[i][j] != null){
-											StoreItemView item = new StoreItemView(i*10+j);
+				if(Images.MATERIAL[i][j] != null){
+					StoreItemView item = new StoreItemView(i*10+j);
 					item.setOnMouseEntered(storeHandler.itemEnterEvent);
 					item.setOnMouseExited(storeHandler.itemExitEvent);
-//					item.setOnMouseClicked(storeHandler.itemClickEvent);
+	//				item.setOnMouseClicked(storeHandler.itemClickEvent);
 					tile.getChildren().add(item);
-					}
-				
-				
+				}				
 			}
 		}
-			for (int j=0; j<=3; j++){
+		
+		for (int j=0; j<=3; j++){
 			StoreItemView item = new StoreItemView(4*10+j);
-				item.setOnMouseEntered(storeHandler.itemEnterEvent);
-				item.setOnMouseExited(storeHandler.itemExitEvent);
-//				item.setOnMouseClicked(campsiteHandler.itemClickEvent);
-				tile.getChildren().add(item);
-			}
+			item.setOnMouseEntered(storeHandler.itemEnterEvent);
+			item.setOnMouseExited(storeHandler.itemExitEvent);
+//			item.setOnMouseClicked(campsiteHandler.itemClickEvent);
+			tile.getChildren().add(item);
+		}
 			
 		
 

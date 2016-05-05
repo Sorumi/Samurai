@@ -30,8 +30,9 @@ public class StoreItemInfo extends Pane{
 		this.getChildren().add(itemDescription);
 		
 		levelLable = new Label("稀有");
-		levelLable.setLayoutX(150);
-		levelLable.setLayoutY(55);
+		levelLable.setPrefSize(50, 20);
+		levelLable.setLayoutX(180);
+		levelLable.setLayoutY(50);
 		levelLable.setId("material-levelLable");
 		this.getChildren().add(levelLable);
 	}
