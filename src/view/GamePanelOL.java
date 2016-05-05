@@ -77,6 +77,21 @@ public class GamePanelOL extends GamePanel{
         }
     }
 
+    public void setCurrentPlayer(int player){
+        switch(player){
+            case 0:
+                this.currentPlayer = playerA;
+                playerA.pointsPanel.setIsShow(true);
+                playerB.pointsPanel.setIsShow(false);
+                break;
+            case 1:
+                this.currentPlayer = playerB;
+				playerA.pointsPanel.setIsShow(false);
+				playerB.pointsPanel.setIsShow(true);
+                break;
+        }
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         // TODO Auto-generated method stub
@@ -192,7 +207,6 @@ public class GamePanelOL extends GamePanel{
             }
         }else if(key.equals("vision")){
             this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
-            System.out.println(((ArrayList<ActualBlock>) notifingObject.getValue()).size());
             this.chessBoard.setTmpBlocks((ArrayList<ActualBlock>)notifingObject.getValue());
         }else if(key.equals("home")){
             SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();

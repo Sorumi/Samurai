@@ -1,7 +1,9 @@
 package view.eventhandler;
 
+import controller.TerritoryController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import model.StoryModel;
 import view.MapPanel;
 import view.TerritoryPanel;
 import view.TerritoryPanel.TerritoryButton;
@@ -11,16 +13,21 @@ import view.smithy.SmithyPanel;
 public class TerritoryHandler {
 	
 	private TerritoryPanel territoryPanel;
+	private TerritoryController territoryController;
 
 //	DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.WHITE, 0, 1, 0, 0);
 //	ColorAdjust light = new ColorAdjust();
 	  
 	public TerritoryHandler(TerritoryPanel territoryPanel){
 		this.territoryPanel = territoryPanel;
+		this.territoryController = new TerritoryController();
+
+		this.territoryController.setStoryModel(StoryModel.getStoryModel());
 	}
 	
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.campsitePanel = new CampsitePanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.campsitePanel);
 	      }
@@ -28,6 +35,7 @@ public class TerritoryHandler {
 	
 	public EventHandler<MouseEvent> smithyEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.smithyPanel = new SmithyPanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.smithyPanel);
 	      }
@@ -50,8 +58,12 @@ public class TerritoryHandler {
 	public EventHandler<MouseEvent> buttonExitEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
-	    	 btn.setNormal();
+	    	  btn.setNormal();
 	      }
 	};
+
+	public TerritoryController getTerritoryController(){
+		return this.territoryController;
+	}
 
 }

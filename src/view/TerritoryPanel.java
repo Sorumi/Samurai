@@ -1,15 +1,18 @@
 package view;
 
+import controller.TerritoryController;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -32,6 +35,8 @@ public class TerritoryPanel extends Pane {
 	
 	private TerritoryHandler territoryHandler;
 	
+	private Group territoryGroup;
+	
 	private ImageView bg;
 	
 	private TerritoryButton campsiteBtn;
@@ -47,14 +52,18 @@ public class TerritoryPanel extends Pane {
 	private SamuraiView samurai2;
 	private SamuraiView samurai3;
 	
+	private GaussianBlur blur;
+	
 	public TerritoryPanel(){
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		this.setStyle("-fx-background-color: #eeeeee");
 		
+		territoryGroup = new Group();
+		
 		bg = new ImageView(Images.TERRITORY_BG);
 		bg.setFitWidth(WINDOW_WIDTH);
 		bg.setPreserveRatio(true);
-		this.getChildren().add(bg);
+		territoryGroup.getChildren().add(bg);
 		
 		territoryHandler = new TerritoryHandler(this);
 		
@@ -68,7 +77,7 @@ public class TerritoryPanel extends Pane {
 				System.exit(0);				
 			}
 		});
-		this.getChildren().add(exitBtn);
+		territoryGroup.getChildren().add(exitBtn);
 		
 		//save btn
 		saveBtn = new SystemButton(1);
@@ -77,10 +86,10 @@ public class TerritoryPanel extends Pane {
 		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-		
+				territoryHandler.getTerritoryController().save();
 			}
 		});
-		this.getChildren().add(saveBtn);
+		territoryGroup.getChildren().add(saveBtn);
 		
 		//campsite
 		ImageView campsiteImg = new ImageView(Images.TERRITORY_CAMPSITE);
@@ -126,7 +135,7 @@ public class TerritoryPanel extends Pane {
 		flagBtn.setLayoutY(368);
 		flagBtn.setOnMouseClicked(territoryHandler.flagEvent);
 		
-		this.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn);
+		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn);
 
 		//samurai
 		samurai1 = new SamuraiView(1, 2);
@@ -147,7 +156,13 @@ public class TerritoryPanel extends Pane {
 		samurai3.setLayoutX(580);
 		samurai3.setLayoutY(470);
 		
-		this.getChildren().addAll(samurai1, samurai2, samurai3);
+		territoryGroup.getChildren().addAll(samurai1, samurai2, samurai3);
+		
+		//blur
+		blur = new GaussianBlur(0);
+		territoryGroup.setEffect(blur);
+		
+		this.getChildren().add(territoryGroup);
 	}
 	
 	//内部类
@@ -182,4 +197,12 @@ public class TerritoryPanel extends Pane {
 		}
 	}
 	
+	public void setBlur(boolean isBlur){
+		if(isBlur){
+			this.blur.setRadius(7);
+		}else{
+			this.blur.setRadius(0);
+		}
+
+	}
 }
