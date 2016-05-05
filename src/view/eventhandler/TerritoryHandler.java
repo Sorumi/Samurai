@@ -3,6 +3,7 @@ package view.eventhandler;
 import controller.TerritoryController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import model.StoryModel;
 import view.MapPanel;
 import view.TerritoryPanel;
 import view.TerritoryPanel.TerritoryButton;
@@ -20,6 +21,8 @@ public class TerritoryHandler {
 	public TerritoryHandler(TerritoryPanel territoryPanel){
 		this.territoryPanel = territoryPanel;
 		this.territoryController = new TerritoryController();
+
+		this.territoryController.setStoryModel(StoryModel.getStoryModel());
 	}
 	
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  
