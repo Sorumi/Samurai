@@ -1,0 +1,18 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#text-miss {
+    -fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 30;
+	-fx-font-weight: 900;
+    -fx-fill: #BDC8DE;
+    -fx-stroke: #fff;
+    -fx-stroke-width: 1;
+}
+
+#text-attacked {
+    -fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 30;
+	-fx-font-weight: 900;
+    -fx-fill: #E4ABA9;
+    -fx-stroke: #fff;
+    -fx-stroke-width: 1;
+}
