@@ -296,8 +296,30 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("occupiedBlocks",this.chessBoardModel.getStatesOfAllBlocks()));
     }
 
-    //Assign next samurai
+    //联机模式下
     public void assignNext(){
+
+        if(this.playerSeq[this.currentPlayer - 1] == 0){
+            Operation.setServer(true);
+
+//            if(this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5){
+//                this.timer = new Timer();
+//                this.timer.schedule(new countDownTask(), 0, 1000);
+//            }else{
+//                this.timer.cancel();
+//            }
+
+        }else{
+            Operation.setServer(false);
+
+//            if(this.currentPlayer == 2 || this.currentPlayer == 3 || this.currentPlayer == 6){
+//                this.timer = new Timer();
+//                this.timer.schedule(new countDownTask(), 0, 1000);
+//            }else{
+//                this.timer.cancel();
+//            }
+
+        }
 
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
@@ -312,7 +334,9 @@ public class GameModel extends BaseModel implements Observer {
         }
     }
 
+    //经典模式下+故事模式下
     public void assignNextWithAI() {
+
         if(this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4){
             this.timer = new Timer();
             this.timer.schedule(new countDownTask(), 0, 1000);
@@ -471,9 +495,9 @@ public class GameModel extends BaseModel implements Observer {
 
     public class countDownTask extends java.util.TimerTask{
         public void run() {
-            if(!isServer && !isClient) {
+//            if(!isServer && !isClient) {
                 OperationQueue.addOperation(new TimeOperation());
-            }
+//            }
         }
     }
 
