@@ -131,6 +131,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public void changeActionPoint(int i) {
 		actionPoint = actionPoint - i;
 	}
+	public void setActionPoint(int actionPoint) {
+		this.actionPoint = actionPoint;
+	}
 
 	public int getColdRound() {
 		return coldRound;
@@ -1072,6 +1075,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public int getPlayer() {
 		return player;
 	}
+	public Armor getArmor(){
+		return armor;
+	}
 
 	public void setExperience(int experience) {
 		this.experience = experience;
@@ -1175,9 +1181,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public SamuraiPO clone() {
 		try {
-			SamuraiPO samuraiPO = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
+			SamuraiPO samuraiPO1 = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
 					armor,level,armorValue,attackValue,dodgeChance,healthPoint,criticalHitChance);
-			return samuraiPO;
+			return samuraiPO1;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;

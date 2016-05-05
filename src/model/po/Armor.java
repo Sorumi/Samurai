@@ -66,14 +66,15 @@ public class Armor implements Serializable{
 	public void unlock() {
 		canCreate = true;
 	}
-	public Armor clone() {
+	/*public Armor clone() {
 		try {
-			return (Armor) super.clone();
+			return new Armor(type, armorValue,dodgeRate, materialTag.clone(),  materialItem.clone(),  materialNumber.clone(),  canCreate,
+					 nextArmor.clone(), number);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;
 		}
-	}
+	}*/
 }
 
 
