@@ -27,6 +27,7 @@ public class TerritoryHandler {
 	
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.campsitePanel = new CampsitePanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.campsitePanel);
 	      }
@@ -34,6 +35,7 @@ public class TerritoryHandler {
 	
 	public EventHandler<MouseEvent> smithyEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.smithyPanel = new SmithyPanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.smithyPanel);
 	      }
