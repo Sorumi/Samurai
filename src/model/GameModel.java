@@ -327,6 +327,9 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("pointsTotal",this.players[this.playerSeq[this.currentPlayer - 1]].getPointsTotal()));
         this.updateVisible(this.updateVision());
         if(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0){
+
+            super.updateChange(new UpdateMessage("revive",this.samuraiSeq[this.currentSamurai - 1]));
+
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
         }else{
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
@@ -388,6 +391,9 @@ public class GameModel extends BaseModel implements Observer {
             }
         } else {
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
+
+            super.updateChange(new UpdateMessage("revive",this.samuraiSeq[this.currentSamurai - 1]));
+
             this.skip1Round();
         }
     }

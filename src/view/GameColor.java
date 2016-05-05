@@ -30,6 +30,28 @@ public class GameColor {
 		return color;
 	}
 	
+	public static Color getMaterialColor(int x) { 
+		Color color;
+		switch(x) {
+		//fill
+			case 0: color = Color.web("#FFB3B3");break;//cloth 
+		
+			//highlight
+			case 5: color = Color.web("#E46767");break;
+			
+			//stroke
+			case 10: color = Color.web("#C35050");break;
+	
+			//background
+			case 15: color = Color.web("#E2B2B0");break;
+		
+		
+			default: color = Color.web("#EEEEEE");
+		}
+		
+		return color;
+	}
+	
 	public static Color getWeaponColor(int x) {
 		Color color;
 		switch(x) {

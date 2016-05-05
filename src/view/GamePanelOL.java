@@ -239,6 +239,8 @@ public class GamePanelOL extends GamePanel{
             int[] n = (int [])notifingObject.getValue();
             this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
             this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
+        }else if(key.equals("revive")){
+            System.out.println("Samurai revive!" + (int)notifingObject.getValue());
         }
     }
 

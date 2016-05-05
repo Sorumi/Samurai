@@ -151,7 +151,12 @@ public class SamuraiPanel extends OrderPanel {
 	}
 	
 	public void setInjured(boolean isInjured){
-		samuraiV.setInjured(isInjured);
+		if ( number/4 == 0 ){
+			samuraiV.setInjured(isInjured, 2);
+		}else{
+			samuraiV.setInjured(isInjured, 3);
+		}
+
 	}
 	
 	public BooleanProperty canActionProperty(){

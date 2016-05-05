@@ -251,4 +251,42 @@ public class Images {
 		
 		public static Image[][][] WEAPON = {WEAPON_0, WEAPON_1, WEAPON_2, WEAPON_3, WEAPON_4, WEAPON_5};
 
+		//Material
+				//cloth 
+				public static Image MATERIAL_00 = new Image("/./images/material/material_cloth_1.png",true);
+				public static Image MATERIAL_01 = new Image("/./images/material/material_cloth_2.png",true);
+				public static Image MATERIAL_02 = new Image("/./images/material/material_cloth_3.png",true);
+				public static Image MATERIAL_03 = new Image("/./images/material/material_cloth_4.png",true);
+				 
+				//wood
+				public static Image MATERIAL_10 = new Image("/./images/material/material_wood_1.png",true);
+				public static Image MATERIAL_11 = new Image("/./images/material/material_wood_2.png",true);
+				public static Image MATERIAL_12 = new Image("/./images/material/material_wood_3.png",true);
+				public static Image MATERIAL_13 = new Image("/./images/material/material_wood_4.png",true);
+				
+				//stone 
+				public static Image MATERIAL_20 = new Image("/./images/material/material_stone_1.png",true);
+				public static Image MATERIAL_21 = new Image("/./images/material/material_stone_2.png",true);
+				public static Image MATERIAL_22 = new Image("/./images/material/material_stone_3.png",true);
+				public static Image MATERIAL_23 = new Image("/./images/material/material_stone_4.png",true);
+				
+				//metal 
+				public static Image MATERIAL_30 = new Image("/./images/material/material_metal_1.png",true);
+				public static Image MATERIAL_31 = new Image("/./images/material/material_metal_2.png",true);
+				public static Image MATERIAL_32 = new Image("/./images/material/material_metal_3.png",true);
+				public static Image MATERIAL_33 = new Image("/./images/material/material_metal_4.png",true);
+				
+				//crystal 
+				public static Image MATERIAL_40 = new Image("/./images/material/material_crystal_1.png",true);
+				public static Image MATERIAL_41 = new Image("/./images/material/material_crystal_2.png",true);
+				public static Image MATERIAL_42 = new Image("/./images/material/material_crystal_3.png",true);
+				public static Image MATERIAL_43 = new Image("/./images/material/material_crystal_4.png",true);
+				 
+				public static Image[] MATERIAL_0 = {MATERIAL_00, MATERIAL_01, MATERIAL_02, MATERIAL_03};
+				public static Image[] MATERIAL_1 = {MATERIAL_10, MATERIAL_11, MATERIAL_12, MATERIAL_13};
+				public static Image[] MATERIAL_2 = {MATERIAL_20, MATERIAL_21, MATERIAL_22, MATERIAL_23};
+				public static Image[] MATERIAL_3 = {MATERIAL_30, MATERIAL_31, MATERIAL_32, MATERIAL_33};
+				public static Image[] MATERIAL_4 = {MATERIAL_40, MATERIAL_41, MATERIAL_42, MATERIAL_43};
+				
+				public static Image[][] MATERIAL = {MATERIAL_0, MATERIAL_1, MATERIAL_2, MATERIAL_3, MATERIAL_4};
 }

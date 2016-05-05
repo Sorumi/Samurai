@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import view.campsite.CampsitePanel;
 import view.eventhandler.TerritoryHandler;
 import view.smithy.SmithyPanel;
+import view.store.StorePanel;
 
 public class TerritoryPanel extends Pane {
 
@@ -46,6 +47,7 @@ public class TerritoryPanel extends Pane {
 	
 	public CampsitePanel campsitePanel;
 	public SmithyPanel smithyPanel;
+	public StorePanel storePanel;
 	public MapPanel mapPanel;
 	
 	private SamuraiView samurai1;
@@ -122,7 +124,7 @@ public class TerritoryPanel extends Pane {
 		storeBtn.setGraphic(storeImg);
 		storeBtn.setLayoutX(217);
 		storeBtn.setLayoutY(380);
-//		storeBtn.setOnMouseClicked(territoryHandler.storeEvent);
+		storeBtn.setOnMouseClicked(territoryHandler.storeEvent);
 		
 		//flag
 		ImageView flagImg = new ImageView(Images.TERRITORY_FLAG);
