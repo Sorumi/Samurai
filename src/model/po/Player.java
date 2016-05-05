@@ -87,6 +87,9 @@ public class Player {
                                     if(!killedSamurais.contains(4)) {
                                         killedSamurais.add(4);
                                     }
+
+                                    this.gameModel.updateVisible(this.gameModel.updateVision());
+
                                     this.gameModel.getChessBoardModel().changeActualBlock(
                                             this.gameModel.getSamuraiOfNum(4).getHome().getX(),
                                             this.gameModel.getSamuraiOfNum(4).getHome().getY(),
@@ -99,6 +102,9 @@ public class Player {
                                     if(!killedSamurais.contains(5)) {
                                         killedSamurais.add(5);
                                     }
+
+                                    this.gameModel.updateVisible(this.gameModel.updateVision());
+
                                     this.gameModel.getChessBoardModel().changeActualBlock(
                                             this.gameModel.getSamuraiOfNum(5).getHome().getX(),
                                             this.gameModel.getSamuraiOfNum(5).getHome().getY(),
@@ -111,6 +117,9 @@ public class Player {
                                     if(!killedSamurais.contains(6)) {
                                         killedSamurais.add(6);
                                     }
+
+                                    this.gameModel.updateVisible(this.gameModel.updateVision());
+
                                     this.gameModel.getChessBoardModel().changeActualBlock(
                                             this.gameModel.getSamuraiOfNum(6).getHome().getX(),
                                             this.gameModel.getSamuraiOfNum(6).getHome().getY(),
@@ -121,6 +130,9 @@ public class Player {
                                         && position.getY() == this.gameModel.getSamuraiOfNum(1).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(1).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                     this.gameModel.updateHome(1);
+
+                                    this.gameModel.updateVisible(this.gameModel.updateVision());
+
                                     if(!killedSamurais.contains(1)) {
                                         killedSamurais.add(1);
                                     }
@@ -133,6 +145,9 @@ public class Player {
                                         && position.getY() == this.gameModel.getSamuraiOfNum(2).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(2).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                     this.gameModel.updateHome(2);
+
+                                    this.gameModel.updateVisible(this.gameModel.updateVision());
+
                                     if(!killedSamurais.contains(2)) {
                                         killedSamurais.add(2);
                                     }
@@ -145,6 +160,9 @@ public class Player {
                                         && position.getY() == this.gameModel.getSamuraiOfNum(3).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(3).beKilled(this.gameModel.getLength(),this.chessBoardModel);
                                     this.gameModel.updateHome(3);
+
+                                    this.gameModel.updateVisible(this.gameModel.updateVision());
+
                                     if(!killedSamurais.contains(3)) {
                                         killedSamurais.add(3);
                                     }
