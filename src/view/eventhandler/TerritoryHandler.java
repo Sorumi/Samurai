@@ -2,6 +2,7 @@ package view.eventhandler;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import view.MapPanel;
 import view.TerritoryPanel;
 import view.TerritoryPanel.TerritoryButton;
 import view.campsite.CampsitePanel;
@@ -34,10 +35,8 @@ public class TerritoryHandler {
 	
 	public EventHandler<MouseEvent> flagEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  //TODO
-	    	  //map
-//	    	  territoryPanel.smithyPanel = new SmithyPanel();
-//	    	  territoryPanel.getChildren().add(territoryPanel.smithyPanel);
+	    	  territoryPanel.mapPanel = new MapPanel();
+	    	  territoryPanel.getChildren().add(territoryPanel.mapPanel);
 	      }
 	};
 	

@@ -27,7 +27,9 @@ public class TerritoryPanel extends Pane {
 	private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
 	
-	private SystemCloseButton exitBtn;
+	private SystemButton exitBtn;
+	private SystemButton saveBtn;
+	
 	private TerritoryHandler territoryHandler;
 	
 	private ImageView bg;
@@ -39,6 +41,7 @@ public class TerritoryPanel extends Pane {
 	
 	public CampsitePanel campsitePanel;
 	public SmithyPanel smithyPanel;
+	public MapPanel mapPanel;
 	
 	private SamuraiView samurai1;
 	private SamuraiView samurai2;
@@ -56,7 +59,7 @@ public class TerritoryPanel extends Pane {
 		territoryHandler = new TerritoryHandler(this);
 		
 		//exit btn
-		exitBtn = new SystemCloseButton();
+		exitBtn = new SystemButton(0);
 		exitBtn.setLayoutX(1125);
 		exitBtn.setLayoutY(25);
 		exitBtn.setOnAction(new EventHandler<ActionEvent>(){
@@ -66,6 +69,18 @@ public class TerritoryPanel extends Pane {
 			}
 		});
 		this.getChildren().add(exitBtn);
+		
+		//save btn
+		saveBtn = new SystemButton(1);
+		saveBtn.setLayoutX(25);
+		saveBtn.setLayoutY(25);
+		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+		
+			}
+		});
+		this.getChildren().add(saveBtn);
 		
 		//campsite
 		ImageView campsiteImg = new ImageView(Images.TERRITORY_CAMPSITE);

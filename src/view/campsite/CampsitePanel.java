@@ -3,7 +3,7 @@ package view.campsite;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
-import view.SystemCloseButton;
+import view.SystemButton;
 import view.TerritoryPanel;
 import view.eventhandler.CampsiteHandler;
 
@@ -15,7 +15,7 @@ public class CampsitePanel extends Pane{
 	private CampsiteItemInfo infoPanel;
 	public CampsiteSamuraiWrapper samuraiPanel;
 	
-	private SystemCloseButton closeBtn;
+	private SystemButton closeBtn;
 	
 	public CampsitePanel(){
 		this.setPrefSize(1200, 800);
@@ -26,7 +26,7 @@ public class CampsitePanel extends Pane{
 		samuraiPanel = new CampsiteSamuraiWrapper(campsiteHandler);
 
 		//closeBtn
-		closeBtn = new SystemCloseButton();
+		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
 		closeBtn.setOnAction(new EventHandler<ActionEvent>(){

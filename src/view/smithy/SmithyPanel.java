@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import view.SystemCloseButton;
+import view.SystemButton;
 import view.TerritoryPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.SmithyHandler;
@@ -23,7 +23,7 @@ public class SmithyPanel extends Pane {
 	
 	public SmithyBuilder buildPanel;
 	
-	public SystemCloseButton closeBtn;
+	public SystemButton closeBtn;
 	
 	public SmithyPanel(){
 		this.setPrefSize(1200, 800);
@@ -63,7 +63,7 @@ public class SmithyPanel extends Pane {
 		bowBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
 		
 		//closeBtn
-		closeBtn = new SystemCloseButton();
+		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
 		closeBtn.setOnAction(new EventHandler<ActionEvent>(){

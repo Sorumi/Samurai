@@ -8,7 +8,7 @@
     -fx-border-insets: 0;
 }
 
-#close-btn{
+#system-btn{
 	-fx-background-color: #ffffff;
 	-fx-pref-width: 50;
 	-fx-pref-height: 50;

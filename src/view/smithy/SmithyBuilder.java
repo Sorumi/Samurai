@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import view.GameColor;
-import view.SystemCloseButton;
+import view.SystemButton;
 import view.WeaponView;
 import view.eventhandler.SmithyHandler;
 
@@ -22,7 +22,7 @@ public class SmithyBuilder extends Pane {
 	private int itemNum;
 	private WeaponView weapon;
 	private Button buildBtn;
-	private SystemCloseButton closeBtn;
+	private SystemButton closeBtn;
 	
 	private SmithyBuilderMaterialView material1;
 	private SmithyBuilderMaterialView material2;
@@ -88,7 +88,7 @@ public class SmithyBuilder extends Pane {
 		this.getChildren().add(buildBtn);
 		
 		//closeBtn
-		closeBtn = new SystemCloseButton();
+		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(515);
 		closeBtn.setLayoutY(-25);
 		closeBtn.setOnAction(new EventHandler<ActionEvent>(){

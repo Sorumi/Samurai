@@ -10,8 +10,6 @@ import javafx.scene.Scene;
 import view.MenuPanel;
 import view.StoryPanel;
 
-
-
 public class Main extends Application {
 	
 	private Scene scene;
