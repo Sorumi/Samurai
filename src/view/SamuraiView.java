@@ -186,6 +186,7 @@ public class SamuraiView extends Pane{
 		this.weaponExtra = null;
 		
 		this.setDirection(direction);//初始方向
+		this.setInjured(false, direction);
 	}
 	
 	public void setWeapon(int number){
@@ -235,7 +236,7 @@ public class SamuraiView extends Pane{
 		}
 		
 		//reset
-		this.setInjured(false);
+//		this.setInjured(false);
 		//所有旋转角度至为0
 		if (weapon != null){
 			this.resetWeapon();
@@ -513,7 +514,7 @@ public class SamuraiView extends Pane{
 		return true;		
 	}
 	
-	public void setInjured(boolean isInjured){
+	public void setInjured(boolean isInjured, int direction){
 		this.isInjured = isInjured;
 		this.headInjured.setVisible(isInjured);
 		if(isInjured){
@@ -530,6 +531,7 @@ public class SamuraiView extends Pane{
 				@Override
 				public void handle(ActionEvent event) {
 					injuredRo.setAngle(0);
+					setDirection(direction);
 				}
 			});
 		}
