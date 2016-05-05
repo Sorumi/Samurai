@@ -9,6 +9,7 @@ import view.TerritoryPanel;
 import view.TerritoryPanel.TerritoryButton;
 import view.campsite.CampsitePanel;
 import view.smithy.SmithyPanel;
+import view.store.StorePanel;
 
 public class TerritoryHandler {
 	
@@ -20,7 +21,7 @@ public class TerritoryHandler {
 	  
 	public TerritoryHandler(TerritoryPanel territoryPanel){
 		this.territoryPanel = territoryPanel;
-		this.territoryController = new TerritoryController();
+		this.territoryController = new TerritoryController(); 
 
 		this.territoryController.setStoryModel(StoryModel.getStoryModel());
 	}
@@ -45,6 +46,14 @@ public class TerritoryHandler {
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.mapPanel = new MapPanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.mapPanel);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> storeEvent= new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
+	    	  territoryPanel.storePanel = new StorePanel();
+	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
 	      }
 	};
 	
