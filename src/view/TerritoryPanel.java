@@ -4,6 +4,8 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
@@ -24,7 +26,8 @@ public class TerritoryPanel extends Pane {
 	//
 	private final int WINDOW_WIDTH = 1200;
 	private final int WINDOW_HEIGHT = 800;
-	 
+	
+	private SystemCloseButton exitBtn;
 	private TerritoryHandler territoryHandler;
 	
 	private ImageView bg;
@@ -51,6 +54,18 @@ public class TerritoryPanel extends Pane {
 		this.getChildren().add(bg);
 		
 		territoryHandler = new TerritoryHandler(this);
+		
+		//exit btn
+		exitBtn = new SystemCloseButton();
+		exitBtn.setLayoutX(1125);
+		exitBtn.setLayoutY(25);
+		exitBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				System.exit(0);				
+			}
+		});
+		this.getChildren().add(exitBtn);
 		
 		//campsite
 		ImageView campsiteImg = new ImageView(Images.TERRITORY_CAMPSITE);
