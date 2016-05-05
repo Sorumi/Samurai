@@ -1,5 +1,6 @@
 package model.po;
 
+import controller.TerritoryController;
 import model.ChessBoardModel;
 import model.GameModel;
 import model.state.GameState;
@@ -83,12 +84,10 @@ public class Player {
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(4).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(4).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(4).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-                                    this.gameModel.updateHome(4);
+
                                     if(!killedSamurais.contains(4)) {
                                         killedSamurais.add(4);
                                     }
-
-                                    this.gameModel.updateVisible(this.gameModel.updateVision());
 
                                     this.gameModel.getChessBoardModel().changeActualBlock(
                                             this.gameModel.getSamuraiOfNum(4).getHome().getX(),
@@ -98,12 +97,10 @@ public class Player {
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(5).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(5).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(5).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-                                    this.gameModel.updateHome(5);
+
                                     if(!killedSamurais.contains(5)) {
                                         killedSamurais.add(5);
                                     }
-
-                                    this.gameModel.updateVisible(this.gameModel.updateVision());
 
                                     this.gameModel.getChessBoardModel().changeActualBlock(
                                             this.gameModel.getSamuraiOfNum(5).getHome().getX(),
@@ -113,12 +110,10 @@ public class Player {
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(6).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(6).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(6).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-                                    this.gameModel.updateHome(6);
+
                                     if(!killedSamurais.contains(6)) {
                                         killedSamurais.add(6);
                                     }
-
-                                    this.gameModel.updateVisible(this.gameModel.updateVision());
 
                                     this.gameModel.getChessBoardModel().changeActualBlock(
                                             this.gameModel.getSamuraiOfNum(6).getHome().getX(),
@@ -129,13 +124,11 @@ public class Player {
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(1).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(1).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(1).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-                                    this.gameModel.updateHome(1);
-
-                                    this.gameModel.updateVisible(this.gameModel.updateVision());
 
                                     if(!killedSamurais.contains(1)) {
                                         killedSamurais.add(1);
                                     }
+
                                     this.gameModel.getChessBoardModel().changeActualBlock(
                                             this.gameModel.getSamuraiOfNum(1).getHome().getX(),
                                             this.gameModel.getSamuraiOfNum(1).getHome().getY(),
@@ -144,9 +137,6 @@ public class Player {
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(2).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(2).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(2).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-                                    this.gameModel.updateHome(2);
-
-                                    this.gameModel.updateVisible(this.gameModel.updateVision());
 
                                     if(!killedSamurais.contains(2)) {
                                         killedSamurais.add(2);
@@ -159,9 +149,6 @@ public class Player {
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(3).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(3).getPos().getY()){
                                     this.gameModel.getSamuraiOfNum(3).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-                                    this.gameModel.updateHome(3);
-
-                                    this.gameModel.updateVisible(this.gameModel.updateVision());
 
                                     if(!killedSamurais.contains(3)) {
                                         killedSamurais.add(3);
@@ -175,6 +162,9 @@ public class Player {
                         }
                         //去发消息:哪些人被杀了
                         if(killedSamurais.size() > 0) {
+
+                            this.gameModel.updateVisible(this.gameModel.updateVision());
+
                             this.gameModel.getChessBoardModel().changeActualBlock(
                                     this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getX(),
                                     this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getY(),
@@ -187,6 +177,14 @@ public class Player {
                                             this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[0],
                                             this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[1]);
                                 }
+
+                                try{
+                                    Thread.sleep(1000);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                                this.gameModel.updateHome(integer);
 
                             }
                         }
