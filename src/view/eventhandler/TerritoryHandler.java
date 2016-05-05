@@ -60,4 +60,8 @@ public class TerritoryHandler {
 	      }
 	};
 
+	public TerritoryController getTerritoryController(){
+		return this.territoryController;
+	}
+
 }
