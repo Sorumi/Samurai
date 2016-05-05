@@ -163,8 +163,6 @@ public class Player {
                         //去发消息:哪些人被杀了
                         if(killedSamurais.size() > 0) {
 
-                            this.gameModel.updateVisible(this.gameModel.updateVision());
-
                             this.gameModel.getChessBoardModel().changeActualBlock(
                                     this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getX(),
                                     this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getY(),
@@ -185,6 +183,8 @@ public class Player {
                                 }
 
                                 this.gameModel.updateHome(integer);
+
+                                this.gameModel.updateVisible(this.gameModel.updateVision());
 
                             }
                         }
