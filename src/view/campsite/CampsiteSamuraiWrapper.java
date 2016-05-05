@@ -81,6 +81,8 @@ public class CampsiteSamuraiWrapper extends Pane {
 		currentWeapon = num;
 		samurai.setWeapon(num);
 		samurai.occupy(2);
+		//TODO
+		//如果库存大于0 则abled 否则unabled
 	}
 
 	public void setSamurai(int num) {
@@ -105,5 +107,12 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 8);");
 	  	  System.out.println(setItemBtn.layoutYProperty().doubleValue());
+	}
+	
+	public void setItemBtnUnabled() {
+		setItemBtn.setLayoutY(364);
+		setItemBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(-1) + ";"
+				+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(-2) +", 0, 0, 0, 4);");
+
 	}
 }

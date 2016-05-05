@@ -92,6 +92,19 @@
 	-fx-text-alignment: center;
 	
 }
+#material-name{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 14;
+	-fx-alignment: center;
+}
+#material-quantity{
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 14;
+	-fx-alignment: center;
+}
 
 /* Other */
 .scroll-pane {
