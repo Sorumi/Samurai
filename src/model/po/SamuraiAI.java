@@ -125,7 +125,7 @@ public class SamuraiAI {
 				actionOperations = greedy(samuraiPOClone, cbm);
 				samuraiPOClone.setActionPoint(temp - 6);
 			} else {
-				if (compareAbility(samuraiPOClone, enemySamuraiPO, armorRate)) {
+				if (compareAbility(samuraiPOClone, enemySamuraiPO)) {
 					int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
 					if (distance > 1) {
 						System.out.println(distance);
@@ -395,7 +395,7 @@ public class SamuraiAI {
 				+ Math.abs(samuraiPO1.getPos().getY() - position.getY());
 	}
 
-	private boolean compareAbility(SamuraiPO samuraiPO, SamuraiPO enemySamuraiPO, int armorRate) {
+	private boolean compareAbility(SamuraiPO samuraiPO, SamuraiPO enemySamuraiPO) {
 		int count = 0;
 		if (samuraiPO.getLevel() >= enemySamuraiPO.getLevel()) {
 			count++;
@@ -403,7 +403,7 @@ public class SamuraiAI {
 		if (((samuraiPO.getWeapon().getType() % 100) / 10) >= ((enemySamuraiPO.getWeapon().getType() % 100) / 10)) {
 			count++;
 		}
-		if (armorRate >= enemySamuraiPO.getArmorRate()) {
+		if (((samuraiPO.getArmor().getType() % 100) / 10) >= ((enemySamuraiPO.getArmor().getType() % 100) / 10)) {
 			count++;
 		}
 		if (samuraiPO.getHealthPoint() >= enemySamuraiPO.getHealthPoint()) {
