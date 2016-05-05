@@ -46,7 +46,7 @@ public class GameModel extends BaseModel implements Observer {
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
         this.gameState = GameState.RUN;
-        this.timeTotal = 5;
+        this.timeTotal = 30;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
         this.currentRound = 1;

@@ -74,6 +74,13 @@ public class Images {
 	public static final Image DIRECTION_HL_3 = new Image("/./images/direction_highlight_3.png");
 	public static final Image[] DIRECTION_HL = {DIRECTION_HL_0, DIRECTION_HL_1, DIRECTION_HL_2, DIRECTION_HL_3};
 	
+	//territory
+	public static final Image TERRITORY_BG = new Image("/./images/territory_bg.png");
+	public static final Image TERRITORY_CAMPSITE = new Image("/./images/territory_campsite.png");
+	public static final Image TERRITORY_SMITHY = new Image("/./images/territory_smithy.png");
+	public static final Image TERRITORY_STORE = new Image("/./images/territory_store.png");
+	public static final Image TERRITORY_FLAG = new Image("/./images/territory_flag.png");
+	
 	//samurai
 	public static Image SAMURAI_003 = new Image("/./images/samurai/samurai_003_leftarm.png",true);
 	public static Image SAMURAI_004 = new Image("/./images/samurai/samurai_004_head_injured.png",true);
