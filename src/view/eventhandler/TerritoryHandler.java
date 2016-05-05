@@ -1,5 +1,6 @@
 package view.eventhandler;
 
+import controller.TerritoryController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import view.MapPanel;
@@ -11,12 +12,14 @@ import view.smithy.SmithyPanel;
 public class TerritoryHandler {
 	
 	private TerritoryPanel territoryPanel;
+	private TerritoryController territoryController;
 
 //	DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.WHITE, 0, 1, 0, 0);
 //	ColorAdjust light = new ColorAdjust();
 	  
 	public TerritoryHandler(TerritoryPanel territoryPanel){
 		this.territoryPanel = territoryPanel;
+		this.territoryController = new TerritoryController();
 	}
 	
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  
@@ -50,7 +53,7 @@ public class TerritoryHandler {
 	public EventHandler<MouseEvent> buttonExitEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
-	    	 btn.setNormal();
+	    	  btn.setNormal();
 	      }
 	};
 

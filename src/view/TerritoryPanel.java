@@ -1,5 +1,6 @@
 package view;
 
+import controller.TerritoryController;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

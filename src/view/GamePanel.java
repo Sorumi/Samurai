@@ -199,9 +199,9 @@ public class GamePanel extends Pane implements Observer{
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
 //		playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
+        actionPanel.setCurrentSamurai(currentSamurai);
 		if(currentPlayer == playerA) {
-			arrow.setCurrentSamurai(currentSamurai);
-			actionPanel.setCurrentSamurai(currentSamurai);
+            arrow.setCurrentSamurai(currentSamurai);
 		}
 		//add
 		currentSamurai.canActionProperty().addListener(new ChangeListener(){
@@ -238,6 +238,7 @@ public class GamePanel extends Pane implements Observer{
 				this.currentPlayer = playerB;
 //				playerA.pointsPanel.setIsShow(false);
 //				playerB.pointsPanel.setIsShow(true);
+                playerA.pointsPanel.setIsShow(false);
 				break;
 		}
 	}
@@ -247,11 +248,10 @@ public class GamePanel extends Pane implements Observer{
 		if(this.currentPlayer == playerA){
 			playerA.circlePanel.setNewTime(true);
 			playerB.circlePanel.setNewTime(false);
+		}else{
+			playerA.circlePanel.setNewTime(false);
+			playerB.circlePanel.setNewTime(true);
 		}
-//		 else{
-//			playerA.circlePanel.setNewTime(false);
-//			playerB.circlePanel.setNewTime(true);
-//		}
 
 	}
 
