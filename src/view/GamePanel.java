@@ -198,9 +198,11 @@ public class GamePanel extends Pane implements Observer{
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
-		playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
-		arrow.setCurrentSamurai(currentSamurai);
-		actionPanel.setCurrentSamurai(currentSamurai);
+//		playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
+		if(currentPlayer == playerA) {
+			arrow.setCurrentSamurai(currentSamurai);
+			actionPanel.setCurrentSamurai(currentSamurai);
+		}
 		//add
 		currentSamurai.canActionProperty().addListener(new ChangeListener(){
 			public void changed(ObservableValue o,Object oldVal,Object newVal){
@@ -210,9 +212,11 @@ public class GamePanel extends Pane implements Observer{
 						// TODO Auto-generated method stub
 						boolean canAction= (boolean) newVal;
 						if (canAction) {
-							arrow.setActualLocation();
-							arrow.setVisible(true);
-							currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
+							if(currentPlayer == playerA) {
+								arrow.setActualLocation();
+								arrow.setVisible(true);
+								currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
+							}
 						} else {
 							arrow.setVisible(false);
 							currentSamurai.setOnMouseEntered(null);
@@ -232,8 +236,8 @@ public class GamePanel extends Pane implements Observer{
 				break;
 			case 1:
 				this.currentPlayer = playerB;
-				playerA.pointsPanel.setIsShow(false);
-				playerB.pointsPanel.setIsShow(true);
+//				playerA.pointsPanel.setIsShow(false);
+//				playerB.pointsPanel.setIsShow(true);
 				break;
 		}
 	}
@@ -243,10 +247,11 @@ public class GamePanel extends Pane implements Observer{
 		if(this.currentPlayer == playerA){
 			playerA.circlePanel.setNewTime(true);
 			playerB.circlePanel.setNewTime(false);
-		}else{
-			playerA.circlePanel.setNewTime(false);
-			playerB.circlePanel.setNewTime(true);
 		}
+//		 else{
+//			playerA.circlePanel.setNewTime(false);
+//			playerB.circlePanel.setNewTime(true);
+//		}
 
 	}
 
