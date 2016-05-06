@@ -43,4 +43,8 @@ public class CampsitePanel extends Pane{
 
 		this.getChildren().addAll(itemsPanel, infoPanel, samuraiPanel, closeBtn);
 	}
+
+	public CampsiteHandler getCampsiteHandler() {
+		return campsiteHandler;
+	}
 }

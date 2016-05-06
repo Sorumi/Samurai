@@ -10,9 +10,14 @@ import java.util.ArrayList;
  */
 public class StoreController extends TerritoryController {
 
-    public ArrayList<Material> getAllMaterial() {
+    private ArrayList<Material> materials;
+
+    public void getAllMaterial() {
         MaterialLibrary materialLibrary = storyModel.getMaterialLibrary();
-        return materialLibrary.checkAll();
+        this.materials = materialLibrary.checkAll();
     }
 
+    public ArrayList<Material> getMaterials() {
+        return materials;
+    }
 }
