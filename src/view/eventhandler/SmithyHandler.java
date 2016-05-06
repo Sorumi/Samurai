@@ -18,7 +18,6 @@ public class SmithyHandler {
 	public SmithyHandler(SmithyPanel smithyPanel){
 		this.smithyPanel = smithyPanel;
 		this.smithyController = new SmithyController();
-
 		this.smithyController.setStoryModel(StoryModel.getStoryModel());
 	}
 
