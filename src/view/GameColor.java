@@ -33,19 +33,25 @@ public class GameColor {
 	public static Color getMaterialColor(int x) { 
 		Color color;
 		switch(x) {
-		//fill
-			case 0: color = Color.web("#FFB3B3");break;//cloth 
-		
+			//fill
+			case 0: color = Color.web("#FCEAEC");break;//cloth 
+			case 1: color = Color.web("#FAF9E7");break;//wood
+			case 2: color = Color.web("#E5F1D9");break;//stone
+			case 3: color = Color.web("#E8F9FB");break;//metal
+			case 4: color = Color.web("#EFEAF3");break;//crystal
 			//highlight
-			case 5: color = Color.web("#E46767");break;
-			
+			case 5: color = Color.web("#FDDDE1");break;//cloth 
+			case 6: color = Color.web("#FEFBD2");break;//wood
+			case 7: color = Color.web("#D8F0C0");break;//stone
+			case 8: color = Color.web("#D1F3F7");break;//metal
+			case 9: color = Color.web("#E9DCF4");break;//crystal
 			//stroke
-			case 10: color = Color.web("#C35050");break;
-	
-			//background
-			case 15: color = Color.web("#E2B2B0");break;
-		
-		
+			case 10: color = Color.web("#F5C1C8");break;//cloth 
+			case 11: color = Color.web("#ECE8B5");break;//wood
+			case 12: color = Color.web("#C1DEA5");break;//stone
+			case 13: color = Color.web("#B9E3E8");break;//metal
+			case 14: color = Color.web("#D6C4E6");break;//crystal
+				
 			default: color = Color.web("#EEEEEE");
 		}
 		
@@ -56,31 +62,31 @@ public class GameColor {
 		Color color;
 		switch(x) {
 		//fill
-			case 0: color = Color.web("#FFB3B3");break;//spear
-			case 1: color = Color.web("#FFF3BB");break;//sword
-			case 2: color = Color.web("#E1E6C3");break;//battleax
-			case 3: color = Color.web("#CBE5E9");break;//shuriken
-			case 4: color = Color.web("#E3DBF2");break;//bow and arrow
-			//highlight
-			case 5: color = Color.web("#E46767");break;//spear
-			case 6: color = Color.web("#F7E07B");break;//sword
-			case 7: color = Color.web("#C3D26D");break;//battleax
-			case 8: color = Color.web("#A1E0EB");break;//shuriken
-			case 9: color = Color.web("#C2ABEE");break;//bow and arrow
-			//stroke
-			case 10: color = Color.web("#C35050");break;//spear
-			case 11: color = Color.web("#DDC766");break;//sword
-			case 12: color = Color.web("#A4B44B");break;//battleax
-			case 13: color = Color.web("#84BFC9");break;//shuriken
-			case 14: color = Color.web("#A592C9");break;//bow and arrow
-			//background
-			case 15: color = Color.web("#E2B2B0");break;//spear
-			case 16: color = Color.web("#EEE0AE");break;//sword
-			case 17: color = Color.web("#DCE2C8");break;//battleax
-			case 18: color = Color.web("#D2E0ED");break;//shuriken
-			case 19: color = Color.web("#DCD5E6");break;//bow and arrow
-		
-			default: color = Color.web("#EEEEEE");
+		case 0: color = Color.web("#FFB3B3");break;//spear
+		case 1: color = Color.web("#FFF3BB");break;//sword
+		case 2: color = Color.web("#E1E6C3");break;//battleax
+		case 3: color = Color.web("#CBE5E9");break;//shuriken
+		case 4: color = Color.web("#E3DBF2");break;//bow and arrow
+		//highlight
+		case 5: color = Color.web("#E46767");break;//spear
+		case 6: color = Color.web("#F7E07B");break;//sword
+		case 7: color = Color.web("#C3D26D");break;//battleax
+		case 8: color = Color.web("#A1E0EB");break;//shuriken
+		case 9: color = Color.web("#C2ABEE");break;//bow and arrow
+		//stroke
+		case 10: color = Color.web("#C35050");break;//spear
+		case 11: color = Color.web("#DDC766");break;//sword
+		case 12: color = Color.web("#A4B44B");break;//battleax
+		case 13: color = Color.web("#84BFC9");break;//shuriken
+		case 14: color = Color.web("#A592C9");break;//bow and arrow
+		//background
+		case 15: color = Color.web("#E2B2B0");break;//spear
+		case 16: color = Color.web("#EEE0AE");break;//sword
+		case 17: color = Color.web("#DCE2C8");break;//battleax
+		case 18: color = Color.web("#D2E0ED");break;//shuriken
+		case 19: color = Color.web("#DCD5E6");break;//bow and arrow
+	
+		default: color = Color.web("#EEEEEE");
 		}
 		
 		return color;
@@ -147,6 +153,32 @@ public class GameColor {
 			case -1: color = "#b4b4b4";break;
 			case -2: color = "#9b9b9b";break;
 			default: color = "#000000";
+		}
+		return color;
+	}
+	
+	public static String getMaterialColorString(int x) {
+		String color;
+		switch(x){
+		
+		//level bg
+		case 1:
+		case 2:
+			color = "#C8EEFF";break;
+		case 3:
+			color = "#FFFABD";break;
+		case 4:
+			color = "#FCD9D9";break;
+		//level text
+		case 5:
+		case 6:
+			color = "#0081BA";break;
+		case 7:
+			color = "#D29013";break;
+		case 8:
+			color = "#D0021B";break;
+		
+		default: color = "#000000";
 		}
 		return color;
 	}

@@ -1,6 +1,7 @@
 package model.po;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 //Tag 指的是材料的种类 0布料 1木头。。。。。
 //Item 指的是材料的等级 0 1 2 3
@@ -134,4 +135,40 @@ public class MaterialLibrary implements Serializable {
 			return false;
 		}
 	}
+	public ArrayList<Material> checkAll(){
+		ArrayList<Material> materials=new ArrayList<Material>();
+		int tag=0;
+		for(int item=0;item<4;item++){
+			if(cloth[item]>0){
+				materials.add(new Material(tag*10+item,cloth[item]));
+			}
+		}
+		tag++;
+		for(int item=0;item<4;item++){
+			if(wood[item]>0){
+				materials.add(new Material(tag*10+item,wood[item]));
+			}
+		};
+		tag++;
+		for(int item=0;item<4;item++){
+			if(stone[item]>0){
+				materials.add(new Material(tag*10+item,stone[item]));
+			}
+		}
+		tag++;
+		for(int item=0;item<4;item++){
+			if(metal[item]>0){
+				materials.add(new Material(tag*10+item,metal[item]));
+			}
+		}
+		tag++;
+		for(int item=0;item<4;item++){
+			if(crystal[item]>0){
+				materials.add(new Material(tag*10+item,crystal[item]));
+			}
+		}
+		return materials;
+	}
 }
+
+

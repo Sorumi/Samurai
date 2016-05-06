@@ -123,7 +123,7 @@ public class StatePanel extends OrderPanel {
 		stateIcon3.setLayoutX(120);
 		stateIcon3.setLayoutY(0);
 		stateIcon4.setLayoutX(-2);
-		stateIcon4.setLayoutY(45);
+		stateIcon4.setLayoutY(43);
 		stateIcon5.setLayoutX(60);
 		stateIcon5.setLayoutY(42);
 		stateIcon6.setLayoutX(120);

@@ -38,7 +38,10 @@ public class StorePanel extends Pane{
 
 		this.getChildren().addAll(itemsPanel, infoPanel, closeBtn); 
 		
-		
+	}
+	
+	public StoreItemsWrapper getItemsPanel(){
+		return this.itemsPanel;
 	}
 
 }
