@@ -122,6 +122,14 @@
 	-fx-font-size: 14;
 	-fx-alignment: center;
 }
+/* Game */
+#state-lable{
+	-fx-background-color: #dddddd;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 12;
+	-fx-font-weight: 100;
+	-fx-alignment: center-left;
+}
 /* Other */
 .scroll-pane {
 	-fx-background: transparent; 
