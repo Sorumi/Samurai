@@ -17,8 +17,8 @@ public class Armory implements Serializable {
 
 	// 这个方法仅在进入故事模式时调用一次
 	public void initialize() {
-		//基础类别初始化
-		
+		// 基础类别初始化
+
 		int[] materialTag = {};
 		int[] materialItem = {};
 		int[] materialNumber = {};
@@ -105,7 +105,7 @@ public class Armory implements Serializable {
 		nextWeapon = new int[] {};
 		spearList.add(
 				new Weapon(0, 36, 117, 125, 50, 25, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
-		
+
 		// 剑类初始化
 
 		materialTag = new int[] { 1, 2, 2 };
@@ -184,12 +184,77 @@ public class Armory implements Serializable {
 		nextWeapon = new int[] {};
 		swordList.add(
 				new Weapon(1, 136, 105, 111, 45, 22, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
-		//斧类初始化
-		
-		//手里剑类初始化
-		
-		//弓类初始化
-		
+		// 斧类初始化
+		materialTag = new int[] { 1, 2, 2 };
+		materialItem = new int[] { 0, 0, 1 };
+		materialNumber = new int[] { 3, 2, 2 };
+		nextWeapon = new int[] { 213, 233 };
+		axeList.add(new Weapon(2, 212, 30, 34, 0, 8, materialTag, materialItem, materialNumber, true, nextWeapon, 0));
+		materialTag = new int[] { 1, 1, 1, 2, 3 };
+		materialItem = new int[] { 2, 0, 1, 0, 0 };
+		materialNumber = new int[] { 1, 2, 4, 1, 1 };
+		nextWeapon = new int[] { 214 };
+		axeList.add(
+				new Weapon(2, 213, 41, 45, 0, 15, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 1, 1, 1, 2, 3 };
+		materialItem = new int[] { 2, 0, 1, 1, 1 };
+		materialNumber = new int[] { 1, 4, 2, 1, 1 };
+		nextWeapon = new int[] { 234 };
+		axeList
+				.add(new Weapon(2, 233, 35, 39, 8, 6, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 3, 2, 2, 3, 3 };
+		materialItem = new int[] { 2, 0, 1, 0, 1 };
+		materialNumber = new int[] { 1, 2, 2, 3, 3 };
+		nextWeapon = new int[] { 215, 225 };
+		axeList.add(
+				new Weapon(2, 214, 73, 80, 2, 20, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 3, 2, 2, 3, 3 };
+		materialItem = new int[] { 2, 0, 1, 0, 1 };
+		materialNumber = new int[] { 1, 3, 1, 5, 1 };
+		nextWeapon = new int[] { 235 };
+		axeList.add(
+				new Weapon(2, 234, 50, 54, 15, 12, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 2, 3, 3, 3, 4 };
+		materialItem = new int[] { 2, 2, 0, 1, 0 };
+		materialNumber = new int[] { 2, 2, 5, 5, 2 };
+		nextWeapon = new int[] { 216 };
+		axeList.add(
+				new Weapon(2, 215, 97, 107, 5, 28, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 2, 3, 3, 3, 4 };
+		materialItem = new int[] { 2, 2, 0, 1, 0 };
+		materialNumber = new int[] { 2, 2, 3, 7, 2 };
+		nextWeapon = new int[] { 226 };
+		axeList.add(
+				new Weapon(2, 225, 82, 90, 5, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 2, 3, 3, 3, 4, 4 };
+		materialItem = new int[] { 2, 2, 0, 1, 0, 1 };
+		materialNumber = new int[] { 2, 2, 7, 3, 1, 1 };
+		nextWeapon = new int[] { 236 };
+		axeList.add(
+				new Weapon(2, 235, 67, 73, 30, 15, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 1, 2, 3, 4 };
+		materialItem = new int[] { 4, 4, 4, 3 };
+		materialNumber = new int[] { 1, 1, 1, 1 };
+		nextWeapon = new int[] {};
+		axeList.add(
+				new Weapon(2, 216, 150, 161, 10, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 1, 2, 3, 4 };
+		materialItem = new int[] { 4, 4, 4, 3 };
+		materialNumber = new int[] { 1, 1, 1, 1 };
+		nextWeapon = new int[] {};
+		axeList.add(
+				new Weapon(2, 226, 125, 137, 10, 80, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		materialTag = new int[] { 1, 2, 3, 4 };
+		materialItem = new int[] { 4, 4, 4, 3 };
+		materialNumber = new int[] { 1, 1, 1, 1 };
+		nextWeapon = new int[] {};
+		axeList.add(
+				new Weapon(2, 236, 112, 120, 45, 25, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+
+		// 手里剑类初始化
+
+		// 弓类初始化
+
 		// 护甲初始化
 		materialTag = new int[] {};
 		materialItem = new int[] {};
