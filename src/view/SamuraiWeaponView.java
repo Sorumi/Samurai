@@ -211,9 +211,49 @@ public class SamuraiWeaponView extends OrderImageView {
 				height_fix = -2*SCALE;
 				break;
 				
+			//shuriken
 			case 300:
-				this.setFitWidth(16*SCALE);
-				break;			
+			case 323:
+				this.setFitWidth(20*SCALE);
+				break;
+			case 311:
+				this.setFitWidth(8*SCALE);
+				height_fix = -16*SCALE;
+				break;
+			case 312:
+				this.setFitWidth(30*SCALE);
+				height_fix = -6*SCALE;
+				break;
+			case 313:
+				this.setFitWidth(6*SCALE);
+				height_fix = -16*SCALE;
+				break;
+			case 314:
+				this.setFitWidth(10*SCALE);
+				height_fix = -17*SCALE;
+				break;
+			case 315:
+				this.setFitWidth(8*SCALE);
+				height_fix = -16*SCALE;
+				break;
+			case 316:
+				this.setFitWidth(4*SCALE);
+				height_fix = -8*SCALE;
+				break;
+			case 324:
+				this.setFitWidth(24*SCALE);
+				height_fix = -4*SCALE;
+				break;
+			case 325:
+				this.setFitWidth(27*SCALE);
+				height_fix = -5*SCALE;
+				break;
+			case 326:
+				this.setFitWidth(28*SCALE);
+				height_fix = -4*SCALE;
+				break;
+				
+				
 			case 400:
 				this.setFitWidth(18*SCALE);
 				break;
@@ -295,13 +335,15 @@ public class SamuraiWeaponView extends OrderImageView {
 					-25, 35, 0, -25};
 			break;
 		case 3:
+			centerX = 10*SCALE;
+			offsetX = offsetXOther = centerX-this.fitWidthProperty().intValue()/2-width_fix;
 			frontZOrder = 17;
 			backZOrder = 21;
 			
-			frontLayout = new int[]{BODY_X+26*SCALE, BODY_Y+9*SCALE};
-			backLayout = new int[]{BODY_X-18*SCALE, BODY_Y+13*SCALE};//
+			frontLayout = new int[]{BODY_X+23*SCALE+offsetX, BODY_Y+9*SCALE+height_fix};
+			backLayout = new int[]{BODY_X-18*SCALE+offsetXOther, BODY_Y+13*SCALE+height_fix};
 			frontRotatePivot = new int[]{this.fitWidthProperty().intValue()/2, this.fitWidthProperty().intValue()/2};
-			backRotatePivot = new int[]{this.fitWidthProperty().intValue()/2, this.fitWidthProperty().intValue()/2};//
+			backRotatePivot = new int[]{this.fitWidthProperty().intValue()/2, this.fitWidthProperty().intValue()/2};
 			//
 			//front right: -50 # 30
 			//back left: -60 # 30
@@ -309,9 +351,9 @@ public class SamuraiWeaponView extends OrderImageView {
 			frontAngle = new int[]{0, 10, 720,
 					-40, 25, 0, 25,
 					-10, -10, 10, -30};
-			backAngle = new int[]{0, 10, 720,//
-					-50, -50, -30, -70,//
-					-25, 35, 0, -25};//
+			backAngle = new int[]{0, 10, 720,
+					-50, -50, -30, -70,
+					-25, 35, 0, -25};
 			break;
 		case 4:
 			frontZOrder = 6;
@@ -345,6 +387,28 @@ public class SamuraiWeaponView extends OrderImageView {
 			break;
 		}
 		
+		
+		//300 shuriken
+		switch(number){
+		case 311:
+		case 313:
+		case 314:
+		case 315:
+		case 316:
+			centerX = 10*SCALE;
+			offsetX = offsetXOther = centerX-this.fitWidthProperty().intValue()/2-width_fix;
+			
+			frontLayout = new int[]{BODY_X+21*SCALE+offsetX, BODY_Y+9*SCALE+height_fix};
+			backLayout = new int[]{BODY_X-16*SCALE+offsetXOther, BODY_Y+13*SCALE+height_fix};
+			frontRotatePivot = new int[]{this.fitWidthProperty().intValue()/2, 26*SCALE};
+			backRotatePivot = new int[]{this.fitWidthProperty().intValue()/2, 26*SCALE};
+			frontAngle = new int[]{30, 10, 120,
+					-40, 25, 0, 25,
+					-10, -10, 10, -30};
+			backAngle = new int[]{30, 10, 120,
+					-50, -50, -30, -70,
+					-25, 35, 0, -25};
+		}
 		/*
 		 * frontAngle[] / backAngel[]:
 		 * weapon: move1 occupy2
