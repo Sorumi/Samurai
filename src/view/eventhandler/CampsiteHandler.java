@@ -19,9 +19,12 @@ public class CampsiteHandler {
 		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
 
 		this.campsiteController.setWeaponNum();
-//		this.campsitePanel.getCampsiteHandler().
 	}
 
+	public void update(){
+		campsitePanel.getItemsPanel().updateItem(campsiteController.getWeapons());
+	}
+	
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();

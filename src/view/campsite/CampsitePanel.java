@@ -42,9 +42,15 @@ public class CampsitePanel extends Pane{
 		});
 
 		this.getChildren().addAll(itemsPanel, infoPanel, samuraiPanel, closeBtn);
+		
+		campsiteHandler.update();
 	}
 
 	public CampsiteHandler getCampsiteHandler() {
 		return campsiteHandler;
+	}
+	
+	public CampsiteItemsWrapper getItemsPanel(){
+		return this.itemsPanel;
 	}
 }
