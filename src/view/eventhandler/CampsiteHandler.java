@@ -43,6 +43,7 @@ public class CampsiteHandler {
 	      public void handle(MouseEvent event) {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
 	    	  //换装备 显示名字描述属性
+//	    	  campsitePanel.infoPanel.setInfo();
 	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());			 
 	      }
 	};

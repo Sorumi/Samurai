@@ -12,7 +12,7 @@ public class CampsitePanel extends Pane{
 	private CampsiteHandler campsiteHandler;
 	
 	private CampsiteItemsWrapper itemsPanel;
-	private CampsiteItemInfo infoPanel;
+	public CampsiteItemInfo infoPanel;
 	public CampsiteSamuraiWrapper samuraiPanel;
 	
 	private SystemButton closeBtn;

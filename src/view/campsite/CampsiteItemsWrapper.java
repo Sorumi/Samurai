@@ -77,11 +77,7 @@ public class CampsiteItemsWrapper extends Pane{
 //			}
 //		}
 		
-		//TODO
-//		this.updateItem(new int[]{11, 12, 14, 15, 16, 25, 26, 35, 36, 115, 116, 125, 126, 135, 136, 215, 216, 225, 226, 235, 236, 315, 316, 325, 326, 400},
-//				new int[]{11, 12, 14, 15, 16, 25, 26, 35, 36, 115, 116, 125, 126, 135, 136, 215, 216, 225, 226, 235, 236, 315, 316, 325, 326, 400});
-				
-		
+
 	}
 	
 	public void updateItem(ArrayList<Weapon> list){
