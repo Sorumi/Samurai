@@ -6,8 +6,7 @@ import model.po.Weapon;
 /**
  * Created by Kray on 16/5/4.
  */
-public class SmithyController {
-    private StoryModel storyModel;
+public class SmithyController extends TerritoryController{
 
     public void createWeapon(int weaponNum){
         Weapon weapon = storyModel.getArmory().getWeapon(weaponNum);
@@ -18,14 +17,6 @@ public class SmithyController {
                 System.out.println("FAILURE");
             }
         }
-    }
-
-    public void setStoryModel(StoryModel storyModel){
-        this.storyModel = storyModel;
-    }
-
-    public void save(){
-        this.storyModel.saveStoryModel();
     }
 
 }

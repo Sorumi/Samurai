@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.Group;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -35,6 +36,13 @@ public class StatePanel extends OrderPanel {
 	private ImageView stateIcon5;
 	private ImageView stateIcon6;
 	
+	private Label stateLable1;
+	private Label stateLable2;
+	private Label stateLable3;
+	private Label stateLable4;
+	private Label stateLable5;
+	private Label stateLable6;
+	
 	private SamuraiPanel currentSamurai;
 	
 	private StateHandler stateHandler;
@@ -53,6 +61,8 @@ public class StatePanel extends OrderPanel {
 		this.stateIcon4 = new ImageView(Images.STATE_ICON_4);
 		this.stateIcon5 = new ImageView(Images.STATE_ICON_5);
 		this.stateIcon6 = new ImageView(Images.STATE_ICON_6);
+		
+
 		
 		bgRect = new Rectangle();
 		bgRect.setX(0);
@@ -113,13 +123,43 @@ public class StatePanel extends OrderPanel {
 		stateIcon3.setLayoutX(120);
 		stateIcon3.setLayoutY(0);
 		stateIcon4.setLayoutX(-2);
-		stateIcon4.setLayoutY(45);
+		stateIcon4.setLayoutY(43);
 		stateIcon5.setLayoutX(60);
 		stateIcon5.setLayoutY(42);
 		stateIcon6.setLayoutX(120);
 		stateIcon6.setLayoutY(43);
 		
-		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6);
+		stateLable1 = new Label("100");
+		stateLable1.setLayoutX(30);
+		stateLable1.setLayoutY(7);
+		stateLable1.setId("state-lable");
+		
+		stateLable2 = new Label("100");
+		stateLable2.setLayoutX(90);
+		stateLable2.setLayoutY(7);
+		stateLable2.setId("state-lable");
+		
+		stateLable3 = new Label("100");
+		stateLable3.setLayoutX(150);
+		stateLable3.setLayoutY(7);
+		stateLable3.setId("state-lable");
+	
+		stateLable4 = new Label("100");
+		stateLable4.setLayoutX(30);
+		stateLable4.setLayoutY(52);
+		stateLable4.setId("state-lable");
+		
+		stateLable5 = new Label("100");
+		stateLable5.setLayoutX(90);
+		stateLable5.setLayoutY(52);
+		stateLable5.setId("state-lable");
+		
+		stateLable6 = new Label("100");
+		stateLable6.setLayoutX(150);
+		stateLable6.setLayoutY(52);
+		stateLable6.setId("state-lable");
+		
+		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLable1, stateLable2, stateLable3, stateLable4, stateLable5, stateLable6);
 		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, centralCircle, iconGroup);
 		this.setVisible(false);
 		
