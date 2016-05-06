@@ -65,7 +65,7 @@ public class Player {
     //当view做出动作的时候 调用这个方法
     public void actionPerformed(int actionNum, int direction){
         //actionNum:动作编号
-        //0:occupy 1:move 2:show / hide
+        //0:occupy 1:move 2:show / hide 100:pseudo occupy
         boolean done = false;
         switch (actionNum){
             case 0:
@@ -219,6 +219,9 @@ public class Player {
                     }
                 }
                 break;
+            case 100:
+                this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,false);
+//                this.chessBoardModel.
             default:
                 break;
         }

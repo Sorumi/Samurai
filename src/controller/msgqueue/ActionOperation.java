@@ -11,6 +11,8 @@ public class ActionOperation extends Operation{
     private int actionNum;
     private int direction;
 
+    //actionNum = 100 : pseudo occupy
+
     public ActionOperation(int actionNum, int direction) {
         this.actionNum = actionNum;
         this.direction = direction;
