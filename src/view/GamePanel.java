@@ -17,10 +17,8 @@ import model.po.Position;
 import model.po.SamuraiPO;
 import view.background.BackgroundPanel;
 import view.background.BackgroundPanel0;
-import view.background.BackgroundPanel3;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.StateHandler;
-import view.StatePanel;
 
 public class GamePanel extends Pane implements Observer{
 
@@ -379,11 +377,14 @@ public class GamePanel extends Pane implements Observer{
 			int[] n = (int [])notifingObject.getValue();
 			this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
 			this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
-			
 		}else if(key.equals("revive")){
             System.out.println("Samurai revive!" + (int)notifingObject.getValue());
             getSamurai((int)notifingObject.getValue()).setInjured(false);
-        }
+        }else if(key.equals("pseudoOccupy")){
+			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
+		}else if(key.equals("a-pseudoOccupy")){
+			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
+		}
 	}
 
 }

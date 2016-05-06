@@ -1,15 +1,23 @@
 package controller;
 
-import model.StoryModel;
-import model.po.Weapon;
+import model.po.Material;
+import model.po.MaterialLibrary;
+
+import java.util.ArrayList;
 
 /**
  * Created by Kray on 16/5/6.
  */
 public class StoreController extends TerritoryController {
 
-    public int[] getNumbersOfMaterial() {
-        return new int[];
+    private ArrayList<Material> materials;
+
+    public void getAllMaterial() {
+        MaterialLibrary materialLibrary = storyModel.getMaterialLibrary();
+        this.materials = materialLibrary.checkAll();
     }
 
+    public ArrayList<Material> getMaterials() {
+        return materials;
+    }
 }

@@ -296,6 +296,15 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("occupiedBlocks",this.chessBoardModel.getStatesOfAllBlocks()));
     }
 
+    public void updatePseudo0ccupy(boolean HL, int direction) {
+        if(HL) {
+            super.updateChange(new UpdateMessage("pseudoOccupy",this.players[this.playerSeq[this.currentPlayer - 1]].pseudoOccupy(direction)));
+        }else{
+            super.updateChange(new UpdateMessage("a-pseudoOccupy",this.players[this.playerSeq[this.currentPlayer - 1]].pseudoOccupy(direction)));
+        }
+    }
+
+
     //联机模式下
     public void assignNext(){
 

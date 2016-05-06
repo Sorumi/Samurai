@@ -66,6 +66,9 @@ public class Armor implements Serializable{
 	public void unlock() {
 		canCreate = true;
 	}
+	public int getNumber(){
+		return number;
+	}
 	public Armor clone() {
 		try {
 			return new Armor(type, armorValue,dodgeRate, materialTag.clone(),  materialItem.clone(),  materialNumber.clone(),  canCreate,

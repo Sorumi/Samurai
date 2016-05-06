@@ -237,6 +237,10 @@ public class Player {
         }
     }
 
+    public ArrayList<Position> pseudoOccupy(int direction){
+        return this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,false);
+    }
+
     //时间到了或者没点数或者玩家主动放弃的时候调用此方法
     public void actionDone(){
         this.gameModel.actionDone();

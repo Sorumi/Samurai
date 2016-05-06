@@ -17,8 +17,14 @@ public class CampsiteHandler {
 		this.campsitePanel = campsitePanel;
 		this.campsiteController = new CampsiteController();
 		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
+
+		this.campsiteController.setWeaponNum();
 	}
 
+	public void update(){
+		campsitePanel.getItemsPanel().updateItem(campsiteController.getWeapons());
+	}
+	
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
@@ -36,8 +42,10 @@ public class CampsiteHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
-	    	  //换装备 显示名字描述属性
-	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());			 
+	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());
+			  System.out.println(item.getNum() + "itemnum");
+			  campsiteController.getInformationOfTag(item.getNum());
+
 	      }
 	};
 	

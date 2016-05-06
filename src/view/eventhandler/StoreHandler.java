@@ -18,9 +18,12 @@ public class StoreHandler {
 		this.storeController = new StoreController();
 		this.storeController.setStoryModel(StoryModel.getStoryModel());
 
+		this.storeController.getAllMaterial();
 		//加入更新 Panel 数量的方法
-
-
+	}
+	
+	public void update(){
+		storePanel.getItemsPanel().updateItem(storeController.getMaterials());
 	}
 	
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  

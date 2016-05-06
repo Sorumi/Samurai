@@ -24,6 +24,8 @@ public class BlockView extends Polygon {
 	private int stateStrokeSize;
 	private int currentStrokeSize;
 	
+	private int state = 0;
+	
 	private Timeline tl;
 	
 	public BlockView(int x, int y, int size){
@@ -49,18 +51,32 @@ public class BlockView extends Polygon {
 		this.setLayoutY((x+y)*height/2);
 	}
 	
-	public void changeState(int state){
-		Color newColor = GameColor.getBlockColor(state);
-		if(!newColor.equals(color)){
-				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
-				tl.play();
-		}
-	}
+	//没用的方法，，，
+//	public void changeState(int state){
+//		this.state = state;
+//		
+//		Color newColor = GameColor.getBlockColor(state);
+//		if(!newColor.equals(color)){
+//				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
+//				tl.play();
+//		}
+//		this.color = newColor;
+//
+//	}
 	public void setInvision(int state){
 		currentStrokeSize = stateStrokeSize;
+		
+		//add
 		Color newColor = GameColor.getBlockColor(state);
+		if(!newColor.equals(color) && this.state != state){
+				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
+				tl.play();
+		}else{
+			this.setFill(newColor);
+		}
 		this.color = newColor;
-		this.setFill(newColor);
+		this.state = state;
+	
 		this.setStrokeWidth(currentStrokeSize);
 	}
 	
@@ -72,10 +88,28 @@ public class BlockView extends Polygon {
 		currentStrokeSize = 0;
 		Color newColor = GameColor.getBlockColor(99);
 		this.setFill(newColor);
+		this.color = newColor;
 		this.setStrokeWidth(currentStrokeSize);
+		
+		System.out.println("out: " + x + " " + y);
 	}
 
 	public void setHome() {
 		stateStrokeSize = 3;
+	}
+	
+	public void setHighlight(boolean isHL){
+		Color newColor;
+		if (isHL){
+			newColor = GameColor.getBlockColor(state+7);
+		}else{
+			newColor = GameColor.getBlockColor(state);
+		}
+
+		if(!newColor.equals(color)){
+				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
+				tl.play();
+		}
+		this.color = newColor;
 	}
 }

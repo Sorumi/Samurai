@@ -1,9 +1,12 @@
 package view.store;
 
+import java.util.ArrayList;
+
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import model.po.Material;
 import view.Images;
 import view.campsite.CampsiteItemView;
 import view.eventhandler.StoreHandler;
@@ -40,16 +43,16 @@ public class StoreItemsWrapper extends Pane{
 		this.getChildren().add(scroll);
 		
 		//TODO
-		this.updateItem(new int[]{0, 2, 11, 13, 20, 31, 42}, new int[]{2, 3, 5, 4, 1, 4, 6});
+//		this.updateItem(new int[]{0, 2, 11, 13, 20, 31, 42}, new int[]{2, 3, 5, 4, 1, 4, 6});
 		
 	}
 	
-	public void updateItem(int[] nums, int[] quantity){
+	public void updateItem(ArrayList<Material> list){
 		
-		for (int i=0; i<nums.length; i++){
-			int num = nums[i];
+		for (Material materail : list){
+			int num = materail.getType();
 			if(Images.MATERIAL[num/10][num%10] != null){
-				StoreItemView item = new StoreItemView(num, quantity[i]);
+				StoreItemView item = new StoreItemView(num, materail.getNumer());
 				item.setOnMouseEntered(storeHandler.itemEnterEvent);
 				item.setOnMouseExited(storeHandler.itemExitEvent);
 //				item.setOnMouseClicked(storeHandler.itemClickEvent);

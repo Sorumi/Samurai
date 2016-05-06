@@ -1,10 +1,8 @@
 package model;
 
-import main.Main;
 import model.po.*;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,6 +19,7 @@ public class StoryModel implements Serializable{
     private transient GameModel gameModel;
     private Armory armory;
     private MaterialLibrary materialLibrary;
+    private InformationLibrary informationLibrary;
 
     //用来测试有没有序列化成功 不用管它
     private Date time;
@@ -32,6 +31,9 @@ public class StoryModel implements Serializable{
         this.armory.initialize();
 
         this.materialLibrary = new MaterialLibrary();
+
+        this.informationLibrary = new InformationLibrary();
+        this.informationLibrary.initialize();
 
         this.samuraiPO_1 = new SamuraiPO(0,0,this.armory.getWeapon(11),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
         this.samuraiPO_2 = new SamuraiPO(1,0,this.armory.getWeapon(111),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
@@ -81,6 +83,10 @@ public class StoryModel implements Serializable{
 
     public MaterialLibrary getMaterialLibrary(){
         return this.materialLibrary;
+    }
+
+    public InformationLibrary getInformationLibrary() {
+        return this.informationLibrary;
     }
 
     //用序列化保存storyModel的对象
