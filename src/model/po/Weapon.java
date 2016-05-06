@@ -96,6 +96,9 @@ public class Weapon implements Cloneable,Serializable {
 	public int[] getNextWeapon(){
 		return nextWeapon;
 	}
+	public int getNumber(){
+		return number;
+	}
 
 	public Weapon clone() {
 		try {

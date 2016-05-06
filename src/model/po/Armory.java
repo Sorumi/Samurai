@@ -194,20 +194,17 @@ public class Armory implements Serializable {
 		materialItem = new int[] { 2, 0, 1, 0, 0 };
 		materialNumber = new int[] { 1, 2, 4, 1, 1 };
 		nextWeapon = new int[] { 214 };
-		axeList.add(
-				new Weapon(2, 213, 41, 45, 0, 15, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		axeList.add(new Weapon(2, 213, 41, 45, 0, 15, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 1, 1, 2, 3 };
 		materialItem = new int[] { 2, 0, 1, 1, 1 };
 		materialNumber = new int[] { 1, 4, 2, 1, 1 };
 		nextWeapon = new int[] { 234 };
-		axeList
-				.add(new Weapon(2, 233, 35, 39, 8, 6, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		axeList.add(new Weapon(2, 233, 35, 39, 8, 6, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 3, 2, 2, 3, 3 };
 		materialItem = new int[] { 2, 0, 1, 0, 1 };
 		materialNumber = new int[] { 1, 2, 2, 3, 3 };
 		nextWeapon = new int[] { 215, 225 };
-		axeList.add(
-				new Weapon(2, 214, 73, 80, 2, 20, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		axeList.add(new Weapon(2, 214, 73, 80, 2, 20, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 3, 2, 2, 3, 3 };
 		materialItem = new int[] { 2, 0, 1, 0, 1 };
 		materialNumber = new int[] { 1, 3, 1, 5, 1 };
@@ -224,8 +221,7 @@ public class Armory implements Serializable {
 		materialItem = new int[] { 2, 2, 0, 1, 0 };
 		materialNumber = new int[] { 2, 2, 3, 7, 2 };
 		nextWeapon = new int[] { 226 };
-		axeList.add(
-				new Weapon(2, 225, 82, 90, 5, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		axeList.add(new Weapon(2, 225, 82, 90, 5, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 2, 3, 3, 3, 4, 4 };
 		materialItem = new int[] { 2, 2, 0, 1, 0, 1 };
 		materialNumber = new int[] { 2, 2, 7, 3, 1, 1 };
@@ -306,6 +302,45 @@ public class Armory implements Serializable {
 		}
 		System.out.println("No such weapon!");
 		return null;
+	}
+	public ArrayList<Armor> checkAllArmor() {
+		ArrayList<Armor> armors=new ArrayList<Armor>();
+		for(Armor armor:armorList){
+			if(armor.getNumber()>0){
+				armors.add(armor);
+			}
+		}
+		return armors;
+	}
+
+	public ArrayList<Weapon> checkAllWeapon() {
+		ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+		for(Weapon weapon:spearList){
+			if(weapon.getNumber()>0){
+				weapons.add(weapon);
+			}
+		}
+		for(Weapon weapon:swordList){
+			if(weapon.getNumber()>0){
+				weapons.add(weapon);
+			}
+		}
+		for(Weapon weapon:axeList){
+			if(weapon.getNumber()>0){
+				weapons.add(weapon);
+			}
+		}
+		for(Weapon weapon:shurikenList){
+			if(weapon.getNumber()>0){
+				weapons.add(weapon);
+			}
+		}
+		for(Weapon weapon:bowList){
+			if(weapon.getNumber()>0){
+				weapons.add(weapon);
+			}
+		}
+		return weapons;
 	}
 
 	public Armor getArmor(int type) {
