@@ -9,6 +9,7 @@ import view.SystemButton;
 import view.TerritoryPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.SmithyHandler;
+import view.eventhandler.StateHandler;
 
 public class SmithyPanel extends Pane {
 	
@@ -22,6 +23,7 @@ public class SmithyPanel extends Pane {
 	private SmithyGroup bowGroup;
 	
 	public SmithyBuilder buildPanel;
+	public SmithyWeaponState smithyWeaponState;
 	
 	public SystemButton closeBtn;
 	
@@ -29,6 +31,8 @@ public class SmithyPanel extends Pane {
 		this.setPrefSize(1200, 800);
 		
 		smithyHandler = new SmithyHandler(this);
+//		smithyWeaponState = new SmithyWeaponState();
+//		this.getChildren().add(smithyWeaponState);
 
 		spearGroup = new SmithyGroup();
 		swordGroup = new SmithyGroup();
@@ -75,12 +79,17 @@ public class SmithyPanel extends Pane {
 				parent.setBlur(false);
 				//退出时候保存StoryModel
 				smithyHandler.getSmithyController().save();
+				
+				
 			}
 		});
 		
 		routeGroup = new Group();
 		routeGroup.getChildren().addAll(bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn);
 		this.getChildren().add(routeGroup);
+		
+		smithyWeaponState = new SmithyWeaponState();
+		this.getChildren().add(smithyWeaponState);
 
 	}
 

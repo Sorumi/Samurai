@@ -128,6 +128,27 @@
 	-fx-font-weight: 100;
 	-fx-alignment: center-left;
 }
+#weapon-name{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 500;
+	-fx-font-size: 30;
+	-fx-alignment: center-left;
+}
+#weaponstate-lable{
+	-fx-background-color: #dddddd;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 12;
+	-fx-font-weight: 100;
+	-fx-alignment: center-left;
+}
+#weaponamount-lable{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 100;
+	-fx-font-size: 15;
+	-fx-alignment: center-left;
+}
 /* Other */
 .scroll-pane {
 	-fx-background: transparent; 

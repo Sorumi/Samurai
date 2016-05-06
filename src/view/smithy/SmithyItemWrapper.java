@@ -34,7 +34,25 @@ public abstract class SmithyItemWrapper extends Pane{
 	protected void initWeaponView(){
 		this.addClickEvent();
 		this.setLock();
+		this.showState();
+		this.closeState();
+	
 	}
+	
+	private void showState(){
+		for(int i=0; i<buildGroup.getChildren().size(); i++){
+			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
+			tmpItem.weaponGroup.setOnMouseEntered(smithyHandler.showStatePanel);
+		}
+	}
+	
+	private void closeState(){ 
+		for(int i=0; i<buildGroup.getChildren().size(); i++){
+			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
+			tmpItem.weaponGroup.setOnMouseExited(smithyHandler.closeStatePanel); 
+		}
+	}
+	 
 	
 	private void addClickEvent(){
 		for(int i=0; i<buildGroup.getChildren().size(); i++){
@@ -49,4 +67,5 @@ public abstract class SmithyItemWrapper extends Pane{
 			tmpItem.weapon.setOpacity(0.1);
 		}
 	}
+	
 }
