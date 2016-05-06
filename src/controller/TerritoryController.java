@@ -5,9 +5,11 @@ import model.StoryModel;
 /**
  * Created by Kray on 16/5/5.
  */
-public class TerritoryController {
 
-    private StoryModel storyModel;
+//故事模式中三个Controller的父类
+public class TerritoryController{
+
+    protected StoryModel storyModel;
 
     public void setStoryModel(StoryModel storyModel){
         this.storyModel = storyModel;
@@ -16,4 +18,5 @@ public class TerritoryController {
     public void save(){
         this.storyModel.saveStoryModel();
     }
+
 }

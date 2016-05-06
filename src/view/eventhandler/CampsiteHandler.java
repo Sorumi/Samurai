@@ -16,7 +16,6 @@ public class CampsiteHandler {
 	public CampsiteHandler(CampsitePanel campsitePanel){
 		this.campsitePanel = campsitePanel;
 		this.campsiteController = new CampsiteController();
-
 		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
 	}
 
