@@ -90,11 +90,11 @@ public class ActionHandler {
 	    	  DirectionButton btn = (DirectionButton)event.getSource();
 	    	  btn.setHighLight(true);
 
-			  System.out.println("MOUSE ENTER");
-
-			  direction = btn.direction;
-			  Operation op = new PseudoOccupyOperation(true,direction);
-			  OperationQueue.addOperation(op);
+			  if(action == 0) {
+				  direction = btn.direction;
+				  Operation op = new PseudoOccupyOperation(true, direction);
+				  OperationQueue.addOperation(op);
+			  }
 
 	      }
 	};
@@ -104,14 +104,13 @@ public class ActionHandler {
 	    	  DirectionButton btn = (DirectionButton)event.getSource();
 	    	  btn.setHighLight(false);
 
-			  System.out.println("MOUSE EXIT");
-
-			  direction = btn.direction;
-			  Operation op = new PseudoOccupyOperation(false,direction);
-			  OperationQueue.addOperation(op);
+			  if(action == 0) {
+				  direction = btn.direction;
+				  Operation op = new PseudoOccupyOperation(false, direction);
+				  OperationQueue.addOperation(op);
+			  }
 
 	      }
 	};
-	
 
 }

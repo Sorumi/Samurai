@@ -241,6 +241,10 @@ public class GamePanelOL extends GamePanel{
             this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
         }else if(key.equals("revive")){
             System.out.println("Samurai revive!" + (int)notifingObject.getValue());
+        }else if(key.equals("pseudoOccupy")){
+            this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
+        }else if(key.equals("a-pseudoOccupy")){
+            this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
         }
     }
 
