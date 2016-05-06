@@ -377,15 +377,12 @@ public class GamePanel extends Pane implements Observer{
 			int[] n = (int [])notifingObject.getValue();
 			this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
 			this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
-			
 		}else if(key.equals("revive")){
             System.out.println("Samurai revive!" + (int)notifingObject.getValue());
             getSamurai((int)notifingObject.getValue()).setInjured(false);
         }else if(key.equals("pseudoOccupy")){
-			System.out.println("P-Occupy");
 			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
 		}else if(key.equals("a-pseudoOccupy")){
-			System.out.println("A-P-Occupy");
 			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
 		}
 	}
