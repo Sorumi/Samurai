@@ -51,23 +51,6 @@ public class GameColor {
 			case 12: color = Color.web("#C1DEA5");break;//stone
 			case 13: color = Color.web("#B9E3E8");break;//metal
 			case 14: color = Color.web("#D6C4E6");break;//crystal
-		
-			//level bg
-			case -1:
-			case -2:
-				color = Color.web("#C8EEFF");break;
-			case -3:
-				color = Color.web("#FFFABD");break;
-			case -4:
-				color = Color.web("#FCD9D9");break;
-			//level text
-			case -5:
-			case -6:
-				color = Color.web("#0081BA");break;
-			case -7:
-				color = Color.web("#D29013");break;
-			case -8:
-				color = Color.web("#D0021B");break;
 				
 			default: color = Color.web("#EEEEEE");
 		}
@@ -170,6 +153,32 @@ public class GameColor {
 			case -1: color = "#b4b4b4";break;
 			case -2: color = "#9b9b9b";break;
 			default: color = "#000000";
+		}
+		return color;
+	}
+	
+	public static String getMaterialColorString(int x) {
+		String color;
+		switch(x){
+		
+		//level bg
+		case 1:
+		case 2:
+			color = "#C8EEFF";break;
+		case 3:
+			color = "#FFFABD";break;
+		case 4:
+			color = "#FCD9D9";break;
+		//level text
+		case 5:
+		case 6:
+			color = "#0081BA";break;
+		case 7:
+			color = "#D29013";break;
+		case 8:
+			color = "#D0021B";break;
+		
+		default: color = "#000000";
 		}
 		return color;
 	}

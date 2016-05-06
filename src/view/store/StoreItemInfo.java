@@ -2,6 +2,7 @@ package view.store;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import view.GameColor;
 
 public class StoreItemInfo extends Pane{
 	
@@ -29,12 +30,32 @@ public class StoreItemInfo extends Pane{
 		itemDescription.setId("item-description");
 		this.getChildren().add(itemDescription);
 		
-		levelLable = new Label("稀有");
+		levelLable = new Label("");
 		levelLable.setPrefSize(50, 20);
 		levelLable.setLayoutX(180);
 		levelLable.setLayoutY(50);
 		levelLable.setId("material-levelLable");
 		this.getChildren().add(levelLable);
+		
+		//TODO
+		this.updateInfo(32, "月之银", "月之银的描述哦");
 	}
 
+	public void updateInfo(int itemNum, String itemName, String itemDescription){
+		this.itemName.setText(itemName);
+		this.itemDescription.setText(itemDescription);
+		switch(itemNum%10){
+		case 0:
+		case 1:
+			this.levelLable.setText("普通");
+		case 2:
+			this.levelLable.setText("稀有");
+		case 3:
+			this.levelLable.setText("史诗");
+		}
+		this.levelLable.setStyle("-fx-background-color: " + GameColor.getMaterialColorString(itemNum%10) + ";"
+			+ "-fx-text-fill: " + GameColor.getMaterialColorString(itemNum%10+4) );
+
+	}
+	
 }

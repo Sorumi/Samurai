@@ -26,14 +26,6 @@
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
 }
 
-/*Store */
-#store-wrapper{
-	-fx-background-color: #ffffff;
-	-fx-background-radius: 10;
-	-fx-border-radius: 10;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
-}
-
 #item-quantity{
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 15;
@@ -101,6 +93,13 @@
 	-fx-text-alignment: center;
 	
 }
+/* Store */
+#store-wrapper{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
 #material-name{
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 10;
@@ -115,7 +114,6 @@
 	-fx-alignment: center;
 }
 #material-levelLable{
-	-fx-background-color: #FCD9D9;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
 	-fx-font-family: "Hiragino Sans GB";
