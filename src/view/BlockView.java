@@ -51,20 +51,32 @@ public class BlockView extends Polygon {
 		this.setLayoutY((x+y)*height/2);
 	}
 	
-	public void changeState(int state){
-		this.state = state;
-		
-		Color newColor = GameColor.getBlockColor(state);
-		if(!newColor.equals(color)){
-				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
-				tl.play();
-		}
-	}
+	//没用的方法，，，
+//	public void changeState(int state){
+//		this.state = state;
+//		
+//		Color newColor = GameColor.getBlockColor(state);
+//		if(!newColor.equals(color)){
+//				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
+//				tl.play();
+//		}
+//		this.color = newColor;
+//
+//	}
 	public void setInvision(int state){
 		currentStrokeSize = stateStrokeSize;
+		
+		//add
 		Color newColor = GameColor.getBlockColor(state);
+		if(!newColor.equals(color) && this.state != state){
+				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
+				tl.play();
+		}else{
+			this.setFill(newColor);
+		}
 		this.color = newColor;
-		this.setFill(newColor);
+		this.state = state;
+	
 		this.setStrokeWidth(currentStrokeSize);
 	}
 	
@@ -76,7 +88,10 @@ public class BlockView extends Polygon {
 		currentStrokeSize = 0;
 		Color newColor = GameColor.getBlockColor(99);
 		this.setFill(newColor);
+		this.color = newColor;
 		this.setStrokeWidth(currentStrokeSize);
+		
+		System.out.println("out: " + x + " " + y);
 	}
 
 	public void setHome() {
@@ -86,7 +101,7 @@ public class BlockView extends Polygon {
 	public void setHighlight(boolean isHL){
 		Color newColor;
 		if (isHL){
-			newColor = GameColor.getBlockColor(state+6);
+			newColor = GameColor.getBlockColor(state+7);
 		}else{
 			newColor = GameColor.getBlockColor(state);
 		}
@@ -95,5 +110,6 @@ public class BlockView extends Polygon {
 				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
 				tl.play();
 		}
+		this.color = newColor;
 	}
 }
