@@ -65,7 +65,7 @@ public class Player {
     //当view做出动作的时候 调用这个方法
     public void actionPerformed(int actionNum, int direction){
         //actionNum:动作编号
-        //0:occupy 1:move 2:show / hide 100:pseudo occupy
+        //0:occupy 1:move 2:show / hide
         boolean done = false;
         switch (actionNum){
             case 0:
@@ -219,9 +219,6 @@ public class Player {
                     }
                 }
                 break;
-            case 100:
-                this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,false);
-//                this.chessBoardModel.
             default:
                 break;
         }
@@ -238,6 +235,10 @@ public class Player {
             this.actionDone();
 
         }
+    }
+
+    public ArrayList<Position> pseudoOccupy(int direction){
+        return this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,false);
     }
 
     //时间到了或者没点数或者玩家主动放弃的时候调用此方法
