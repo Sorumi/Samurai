@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import view.SamuraiPanel;
 import view.smithy.SmithyBuilder;
 import view.smithy.SmithyItemView;
 import view.smithy.SmithyPanel;
@@ -39,6 +40,30 @@ public class SmithyHandler {
 	    	  
 	      }
 	};
+	
+	//显示状态界面
+	public EventHandler<MouseEvent> showStatePanel = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  Group weaponGroup = (Group) event.getSource();
+	    	  SmithyItemView item = (SmithyItemView) weaponGroup.getParent();
+	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
+	    	  smithyPanel.smithyWeaponState.setAppear(true);
+	    	  
+	    	  
+	    	  
+	      }
+	};
+	
+	public EventHandler<MouseEvent> closeStatePanel = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  Group weaponGroup = (Group) event.getSource();
+	    	  SmithyItemView item = (SmithyItemView) weaponGroup.getParent();
+	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
+	    	  smithyPanel.smithyWeaponState.setAppear(false); 
+//	    		  gamePanel.setOrder();
+	    	  
+	      }
+	};
 
 	//合成按钮
 	public EventHandler<MouseEvent> buildBtnClickEvent = new EventHandler<MouseEvent>() {  
@@ -47,6 +72,7 @@ public class SmithyHandler {
 	    	  //TODO
 	    	  smithyPanel.buildPanel.build();
 			  smithyController.createWeapon(smithyPanel.buildPanel.getItemNum());
+			  
 	      }
 	};
 	
