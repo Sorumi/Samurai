@@ -1,13 +1,15 @@
 package model.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class InformationLibrary {
-	
-	private ArrayList<Information> informationLibraries = new ArrayList<Information>();
+public class InformationLibrary implements Serializable {
 
-	public InformationLibrary() {
-		super();
+	private static final long serialVersionUID = 1L;
+	private ArrayList<Information> informationLibraries;
+
+	public InformationLibrary(){
+		informationLibraries = new ArrayList<>();
 	}
 
 	// 初始化所有的描述 在创建对象的时候调用一次即可
@@ -25,8 +27,6 @@ public class InformationLibrary {
 		informationLibraries.add(new Information(16, "浩劫", "“感觉像到了世界末日，海啸，地震，太阳都看不见了……”---一位幸存者如是说"));
 		informationLibraries.add(new Information(26, "破晓", "战争的漫漫长夜，只等它的一次破晓"));
 		informationLibraries.add(new Information(36, "月耀", "月神之力隐于此，月圆之时，就是胜利之日"));
-
-		System.out.println("初始化完毕");
 	}
 
 	public String getNameInformation(int tag) {
@@ -48,9 +48,7 @@ public class InformationLibrary {
 	}
 
 	public Information getInformationOfTag(int tag){
-		System.out.println("TAG: " + tag);
 		for (Information item : informationLibraries) {
-			System.out.println(item.getTag());
 			if (item.getTag() == tag) {
 				return item;
 			}

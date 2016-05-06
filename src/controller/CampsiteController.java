@@ -1,9 +1,6 @@
 package controller;
 
-import model.po.Armor;
-import model.po.Armory;
-import model.po.Information;
-import model.po.Weapon;
+import model.po.*;
 
 import java.util.ArrayList;
 
@@ -34,7 +31,7 @@ public class CampsiteController extends TerritoryController {
     }
 
     public Information getInformationOfTag(int tag){
-        return super.storyModel.getInformationLibrary().getInformationOfTag(tag);
+        return storyModel.getInformationLibrary().getInformationOfTag(tag);
     }
 
 }

@@ -1,6 +1,9 @@
 package model.po;
 
-public class Information {
+import java.io.Serializable;
+
+public class Information implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private int tag;
 	private String name;
 	private String description;

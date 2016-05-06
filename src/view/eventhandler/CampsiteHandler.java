@@ -4,6 +4,7 @@ import controller.CampsiteController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import model.po.Information;
 import view.campsite.CampsiteItemView;
 import view.campsite.CampsitePanel;
 import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
@@ -43,10 +44,10 @@ public class CampsiteHandler {
 	      public void handle(MouseEvent event) {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
 	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());
-			  System.out.println(item.getNum() + "itemnum");
-			  campsiteController.getInformationOfTag(item.getNum());
 
-	      }
+			  Information information = campsiteController.getInformationOfTag(item.getNum());
+			  System.out.println(information.getTag() + "\n" + information.getName() + "\n" + information.getDescription());
+		  }
 	};
 	
 	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {  
