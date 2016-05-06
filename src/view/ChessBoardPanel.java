@@ -9,6 +9,7 @@ import javafx.scene.shape.Polygon;
 import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
+import model.po.Position;
 
 public class ChessBoardPanel extends OrderPanel implements Observer{
 
@@ -87,6 +88,16 @@ public class ChessBoardPanel extends OrderPanel implements Observer{
 			if (!tmp.contains(block1)) {
 				block1.setOutvision();
 			}
+		}
+	}
+
+	public void pseudoOccupy(ArrayList<Position> positions, boolean HL){
+		ArrayList<BlockView> poBlocks = new ArrayList<>();
+		for(Position position : positions){
+			poBlocks.add(blocks[position.getX()][position.getY()]);
+		}
+		for(BlockView blockView : poBlocks){
+			blockView.setHighlight(HL);
 		}
 	}
 }

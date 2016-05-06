@@ -17,6 +17,9 @@ public class CampsiteHandler {
 		this.campsitePanel = campsitePanel;
 		this.campsiteController = new CampsiteController();
 		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
+
+		this.campsiteController.setWeaponNum();
+//		this.campsitePanel.getCampsiteHandler().
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  
