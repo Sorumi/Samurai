@@ -1,6 +1,5 @@
 package controller;
 
-import model.StoryModel;
 import model.po.Weapon;
 
 /**
