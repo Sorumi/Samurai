@@ -7,6 +7,7 @@ public class Armory implements Serializable {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Weapon> swordList = new ArrayList<Weapon>();
 	private ArrayList<Weapon> spearList = new ArrayList<Weapon>();
@@ -453,14 +454,14 @@ public class Armory implements Serializable {
 			}
 			break;
 		case 3:
-			for (Weapon weapon : bowList) {
+			for (Weapon weapon : shurikenList) {
 				if (weapon.getType() == type) {
 					return weapon;
 				}
 			}
 			break;
 		case 4:
-			for (Weapon weapon : shurikenList) {
+			for (Weapon weapon : bowList) {
 				if (weapon.getType() == type) {
 					return weapon;
 				}
