@@ -89,9 +89,11 @@ public class WeaponView extends StackPane{
 				break;
 			case 15:
 				imgV.setFitWidth(21*SCALE);
+				imgV.setFitHeight(107*SCALE);
 				break;
 			case 16:
 				imgV.setFitWidth(18*SCALE);
+				imgV.setFitHeight(106*SCALE);
 				break;
 			case 23:
 				imgV.setFitWidth(8*SCALE);
@@ -101,6 +103,7 @@ public class WeaponView extends StackPane{
 				break;
 			case 26:
 				imgV.setFitWidth(16*SCALE);
+				imgV.setFitHeight(112*SCALE);
 				break;
 			case 33:
 				imgV.setFitWidth(9*SCALE);
@@ -170,21 +173,26 @@ public class WeaponView extends StackPane{
 				break;
 			case 213:
 				imgV.setFitWidth(31*SCALE);
+				imgV.setFitHeight(111*SCALE);
 				break;
 			case 214:
 				imgV.setFitWidth(32*SCALE);
+				imgV.setFitHeight(115*SCALE);
 				break;
 			case 215:
 				imgV.setFitWidth(37*SCALE);
+				imgV.setFitHeight(121*SCALE);
 				break;
 			case 216:
 				imgV.setFitWidth(25*SCALE);
+				imgV.setFitHeight(116*SCALE);
 				break;
 			case 225:
 				imgV.setFitWidth(38*SCALE);
 				break;
 			case 226:
 				imgV.setFitWidth(36*SCALE);
+				imgV.setFitHeight(105*SCALE);
 				break;
 			case 233:
 				imgV.setFitWidth(27*SCALE);
