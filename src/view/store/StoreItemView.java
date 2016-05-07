@@ -49,10 +49,7 @@ public class StoreItemView extends StackPane{
 
 	}
 
-	public void setHighlight() {
-//		bgCircle.setFill(GameColor.getMaterialColor(itemNum/10+5));
-//		bgCircle.setStrokeWidth(2);
-		
+	public void setHighlight() {		
 		Timeline tl= new Timeline(
 				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), GameColor.getMaterialColor(itemNum/10+5),  Interpolator.EASE_IN)),
 				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 2, Interpolator.EASE_IN))
@@ -61,9 +58,6 @@ public class StoreItemView extends StackPane{
 	}
 	
 	public void setNormal(){
-//		bgCircle.setFill(GameColor.getMaterialColor(itemNum/10));
-//		bgCircle.setStrokeWidth(0);
-		
 		Timeline tl= new Timeline(
 				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), GameColor.getWeaponColor(itemNum/10),  Interpolator.EASE_IN)),
 				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 0, Interpolator.EASE_IN))

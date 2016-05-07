@@ -6,7 +6,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GameModel;
 import view.GamePanel;
+import view.Images;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import view.MenuPanel;
 import view.StoryPanel;
 

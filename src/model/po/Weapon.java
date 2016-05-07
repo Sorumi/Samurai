@@ -80,7 +80,7 @@ public class Weapon implements Cloneable, Serializable {
 		canCreate = true;
 	}
 
-	public int getCricleNumber() {
+	public int getMaterialQuantity() {
 		return materialTag.length;
 	}
 

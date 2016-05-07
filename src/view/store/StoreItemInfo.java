@@ -47,8 +47,6 @@ public class StoreItemInfo extends Pane{
 		levelLable.setId("material-levelLable");
 		this.getChildren().add(levelLable);
 		
-		//TODO
-//		this.updateInfo(32, "月之银", "月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦");
 	}
 
 	public void updateInfo(int itemNum, String itemName, String itemDescription){

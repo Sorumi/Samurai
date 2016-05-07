@@ -25,9 +25,6 @@ public class SmithyHandler {
 	}
 	
 	public void update(){
-		for(Weapon weapon:smithyController.getUnlockedWeapons()){
-			System.out.print(weapon.getType()  + " ");
-		}
 		smithyPanel.spearPanel.updateItem(smithyController.getUnlockedWeapons());
 		smithyPanel.swordPanel.updateItem(smithyController.getUnlockedWeapons());
 		smithyPanel.battleaxPanel.updateItem(smithyController.getUnlockedWeapons());
@@ -51,6 +48,23 @@ public class SmithyHandler {
 	    	  smithyPanel.buildPanel = new SmithyBuilder(item.getItemNum(), SmithyHandler.this);
 	    	  smithyPanel.getChildren().add(smithyPanel.buildPanel);
 	    	  
+	    	  //武器需要的材料
+	    	  Weapon weapon = smithyController.getWeaponOfTag(item.getItemNum());
+	    	  int[] materialNum = new int[weapon.getMaterialQuantity()];
+	    	  String[] materialName = new String[weapon.getMaterialQuantity()];
+	    	  int[] currentQuantity = new int[weapon.getMaterialQuantity()];
+	    	  
+	    	  for (int i=0; i<weapon.getMaterialQuantity(); i++){
+
+	    		  materialNum[i] = weapon.getMaterialTag()[i] * 10 + weapon.getMaterialItem()[i];
+	    		  materialName[i] = smithyController.getInformationOfTag(materialNum[i]+800).getName();
+	    		  currentQuantity[i] = smithyController.getNumOfMaterialOfTag(materialNum[i]+800);
+	    		  
+	    	  }
+	    	  
+	    	  smithyPanel.buildPanel.setMaterial(weapon.getMaterialQuantity(), materialNum, materialName, currentQuantity, weapon.getMaterialNumber());
+
+
 	      }
 	};
 	

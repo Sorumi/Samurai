@@ -19,6 +19,7 @@ public class SmithyBuilder extends Pane {
 	
 	private SmithyHandler smithyHandler;
 	
+	private int width = 540;
 	private int itemNum;
 	private WeaponView weapon;
 	private Button buildBtn;
@@ -26,19 +27,22 @@ public class SmithyBuilder extends Pane {
 	
 	private Group materialGroup;
 	
+	private Circle strokeCircle;
+	private Circle fillCircle;
+	
 	public SmithyBuilder(int itemNum, SmithyHandler smithyHandler){
 		this.itemNum = itemNum;
 		this.smithyHandler = smithyHandler;
 		
-		this.setPrefSize(540, 700);
-		this.setLayoutX(330);
+//		this.setPrefSize(width, 700);
+//		this.setLayoutX((1200-width)/2);
 		this.setLayoutY(50);
 		this.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100));
 		this.setId("smithy-builder");
 		
 		//item circle
-		Circle strokeCircle = new Circle();
-		strokeCircle.setCenterX(RADIUS+110);
+		strokeCircle = new Circle();
+//		strokeCircle.setCenterX(width/2);
 		strokeCircle.setCenterY(RADIUS+70);
 		strokeCircle.setRadius(RADIUS);
 		strokeCircle.setFill(null);
@@ -47,8 +51,8 @@ public class SmithyBuilder extends Pane {
 		strokeCircle.setStrokeType(StrokeType.INSIDE);
 		this.getChildren().add(strokeCircle);
 		
-		Circle fillCircle = new Circle();
-		fillCircle.setCenterX(RADIUS+110);
+		fillCircle = new Circle();
+//		fillCircle.setCenterX(width/2);
 		fillCircle.setCenterY(RADIUS+70);
 		fillCircle.setRadius(RADIUS-30);
 		fillCircle.setFill(Color.WHITE);
@@ -67,13 +71,13 @@ public class SmithyBuilder extends Pane {
 		//buildBtn
 		buildBtn = new Button("合 成");
 		buildBtn.setPrefSize(100, 40);
-		buildBtn.setLayoutX(210);
+//		buildBtn.setLayoutX(width/2-50);
 		buildBtn.setId("build-btn");
 		this.getChildren().add(buildBtn);
 		
 		//closeBtn
 		closeBtn = new SystemButton(0);
-		closeBtn.setLayoutX(515);
+//		closeBtn.setLayoutX(width-25);
 		closeBtn.setLayoutY(-25);
 		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -97,24 +101,41 @@ public class SmithyBuilder extends Pane {
 		}
 	}
 
-	public void setMaterial(int num){
-//		materialGroup.setLayoutX(25);
-//		materialGroup.setLayoutY(420);
-		
-		for (int i=1; i<=num; i++){
-			SmithyBuilderMaterialView material1 = new SmithyBuilderMaterialView(itemNum);
-//			material1.setLayoutX(0);
-//			material2 = new SmithyBuilderMaterialView(itemNum);
-//			material2.setLayoutX(130);
-//			material3 = new SmithyBuilderMaterialView(itemNum);
-//			material3.setLayoutX(260);
-//			material4 = new SmithyBuilderMaterialView(itemNum);
-//			material4.setLayoutX(390);
-		}
 
-		
-//		materialGroup.getChildren().addAll(material1, material2, material3, material4);
+	public void setMaterial(int materialQuantity, int[] materialNum, String[] materialName, int[]currentQuantity, int[] materialNumber) {
+		int x = 130;
+		if (materialQuantity<=3){
+			x = 170;
+		}
+			
+		for (int i=0; i<materialQuantity; i++){
+			SmithyBuilderMaterialView materialView = new SmithyBuilderMaterialView(itemNum, materialNum[i], materialName[i], currentQuantity[i], materialNumber[i] );
+			materialView.setLayoutX(x * i);
+			materialGroup.getChildren().add(materialView);
+		}
+		materialGroup.setLayoutY(420);
+		switch(materialQuantity){
+		case 2:
+			materialGroup.setLayoutX(135);break;
+		case 3:
+			materialGroup.setLayoutX(50);break;
+		case 4:	
+			materialGroup.setLayoutX(25);break;
+		case 5:
+			materialGroup.setLayoutX(25);
+			this.width = 670;break;
+		case 6:
+			materialGroup.setLayoutX(25);
+			this.width = 800;break;
+		}
+		this.setPrefSize(width, 700);
+		this.setLayoutX((1200-width)/2);
+		strokeCircle.setCenterX(width/2);
+		fillCircle.setCenterX(width/2);
+		closeBtn.setLayoutX(width-25);
+		buildBtn.setLayoutX(width/2-50);
 	}
+
 	//TODO
 	//传数据时调用此方法
 	
@@ -144,5 +165,6 @@ public class SmithyBuilder extends Pane {
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(-2) +", 0, 0, 0, 4);");
 
 	}
+
 
 }

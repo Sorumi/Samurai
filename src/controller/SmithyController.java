@@ -22,7 +22,10 @@ public class SmithyController extends TerritoryController{
             }
         }
     }
-
+    
+    public int getNumOfMaterialOfTag(int tag){
+        return storyModel.getMaterialLibrary().getNumber(tag);
+    }
 
     public ArrayList<Armor> getUnlockedArmors() {
         return storyModel.getArmory().checkAllAvailableArmor();

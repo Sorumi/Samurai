@@ -106,7 +106,6 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setLayoutY(360);
 		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 8);");
-	  	  System.out.println(setItemBtn.layoutYProperty().doubleValue());
 	}
 	
 	public void setItemBtnUnabled() {
