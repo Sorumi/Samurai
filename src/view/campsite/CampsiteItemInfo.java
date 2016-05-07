@@ -82,4 +82,6 @@ public class CampsiteItemInfo extends Pane {
 		this.getChildren().add(weaponState);
 		
 	}
+	
+//	public setInfo(in)
 }

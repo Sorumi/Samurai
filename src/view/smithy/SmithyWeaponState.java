@@ -27,13 +27,11 @@ public class SmithyWeaponState extends Pane{
 	private Rectangle bgRect;
 	private Polygon triangle;
 
-
 	private Group iconGroup;
 	private ImageView stateIcon2;
 	private ImageView stateIcon4;
 	private ImageView stateIcon6;
 	
-
 	private Label stateLabel2;
 	private Label stateLabel4;
 	private Label stateLabel6;
@@ -41,9 +39,6 @@ public class SmithyWeaponState extends Pane{
 	private Label amountLabel;
 	
 	private SmithyItemView smithyItemView;
-
-	
-
 	
 	public SmithyWeaponState(){
 		super();
@@ -51,14 +46,11 @@ public class SmithyWeaponState extends Pane{
 		this.isAppear = false;
 		this.setPrefWidth(prefWidth);
 		this.setPrefHeight(prefHeight);
-		
-
+		this.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);");
 		this.stateIcon2 = new ImageView(Images.STATE_ICON_2);
 		this.stateIcon4 = new ImageView(Images.STATE_ICON_4);
 		this.stateIcon6 = new ImageView(Images.STATE_ICON_6);
-		
 
-	
 		bgRect = new Rectangle();
 		bgRect.setX(0);
 		bgRect.setWidth(300);
@@ -68,24 +60,19 @@ public class SmithyWeaponState extends Pane{
 		bgRect.setFill(Color.WHITE);
 		triangle = new Polygon();
 		triangle.setFill(Color.WHITE);
-
-
 		
 		//icon
 		iconGroup = new Group();
 		iconGroup.setLayoutX(15);
-		
 
 		stateIcon2.setFitWidth(25);
 		stateIcon4.setFitWidth(29);
 		stateIcon6.setFitWidth(25);
 		
-
 		stateIcon2.setPreserveRatio(true);
 		stateIcon4.setPreserveRatio(true);
 		stateIcon6.setPreserveRatio(true);
 		
-
 		stateIcon2.setLayoutX(-2);
 		stateIcon2.setLayoutY(43);
 		stateIcon4.setLayoutX(92);
@@ -93,20 +80,15 @@ public class SmithyWeaponState extends Pane{
 		stateIcon6.setLayoutX(186);
 		stateIcon6.setLayoutY(43);
 		
-
-		
 		stateLabel2 = new Label("100-900");
 		stateLabel2.setLayoutX(25);
 		stateLabel2.setLayoutY(52);
 		stateLabel2.setId("weaponstate-lable");
 
-	
 		stateLabel4 = new Label("100-900");
 		stateLabel4.setLayoutX(119);
 		stateLabel4.setLayoutY(52);
 		stateLabel4.setId("weaponstate-lable");
-		
-
 		
 		stateLabel6 = new Label("100-900");
 		stateLabel6.setLayoutX(213);
@@ -115,12 +97,10 @@ public class SmithyWeaponState extends Pane{
 		
 		nameLabel = new Label("武器名字");
 		nameLabel.setLayoutX(10);
-		nameLabel.setLayoutY(10);
 		nameLabel.setId("weapon-name");  
 		
 		amountLabel = new Label("库存：2");
 		amountLabel.setLayoutX(11);
-		amountLabel.setLayoutY(50);
 		amountLabel.setId("weaponamount-lable"); 
 		
 		iconGroup.getChildren().addAll(stateIcon2, stateIcon4, stateIcon6,  stateLabel2, stateLabel4, stateLabel6);
@@ -136,9 +116,10 @@ public class SmithyWeaponState extends Pane{
 		    140.0, 137.0,
 		    160.0, 137.0,
 		    150.0, 157.0 });
-		
 
-		iconGroup.setLayoutY(42);		
+		iconGroup.setLayoutY(52);
+		nameLabel.setLayoutY(10);
+		amountLabel.setLayoutY(40);
 	}
 	
 	public void setDownLocation(){
@@ -149,9 +130,9 @@ public class SmithyWeaponState extends Pane{
 		    160.0, 20.0,
 		    150.0, 0.0 });
 
-		
-
-		iconGroup.setLayoutY(72);
+		iconGroup.setLayoutY(82);
+		nameLabel.setLayoutY(30);
+		amountLabel.setLayoutY(60);
 	}
 	
 
@@ -160,7 +141,6 @@ public class SmithyWeaponState extends Pane{
 		// TODO Auto-generated method stub
 		this.smithyItemView = item;
 		this.setActualLocation();
-		
 	}
 	
 	public void setActualLocation(){
@@ -169,7 +149,7 @@ public class SmithyWeaponState extends Pane{
 			this.setLayoutY(smithyItemView.getLayoutY()-prefHeight+45);
 			this.setUpLocation();
 		}else{
-			this.setLayoutY(smithyItemView.getLayoutY()+smithyItemView.getHeight());
+			this.setLayoutY(smithyItemView.getLayoutY()+smithyItemView.getHeight()+50);
 			this.setDownLocation();
 		}
 	}
