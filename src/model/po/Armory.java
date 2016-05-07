@@ -550,6 +550,17 @@ public class Armory implements Serializable {
 		}
 	}
 
+	public boolean checkIsEnough_Armor(int type, MaterialLibrary materialLibrary) {
+		Armor armor = getArmor(type);
+		return materialLibrary.checkEnough(armor.getMaterialTag(), armor.getMaterialItem(), armor.getMaterialNumber());
+	}
+
+	public boolean checkIsEnough_Weapon(int type, MaterialLibrary materialLibrary) {
+		Weapon weapon = getWeapon(type);
+		return materialLibrary.checkEnough(weapon.getMaterialTag(), weapon.getMaterialItem(),
+				weapon.getMaterialNumber());
+	}
+
 	public boolean buildArmor(int type, MaterialLibrary materialLibrary) {
 		Armor armor = getArmor(type);
 		if (armor.canCreate()) {

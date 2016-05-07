@@ -17,12 +17,12 @@ public class MaterialLibrary implements Serializable {
 	private int[] crystal = new int[4];
 
 	public MaterialLibrary() {
-    cloth[0]=5;
-    cloth[1]=5;
-    wood[0]=5;
-    wood[1]=5;
-    stone[0]=3;
-    stone[1]=3;
+		cloth[0] = 5;
+		cloth[1] = 5;
+		wood[0] = 5;
+		wood[1] = 5;
+		stone[0] = 3;
+		stone[1] = 3;
 	}
 
 	// 传入材料的种类、等级
@@ -72,7 +72,7 @@ public class MaterialLibrary implements Serializable {
 		for (int i = 0; i < tag.length; i++) {
 			switch (tag[i]) {
 			case 0:
-				if (cloth[item[i]] + number[i] >= 0) {
+				if (cloth[item[i]] >= number[i]) {
 					break;
 				} else {
 					return false;
@@ -80,28 +80,28 @@ public class MaterialLibrary implements Serializable {
 
 			case 1:
 
-				if (wood[item[i]] + number[i] >= 0) {
+				if (wood[item[i]] >= number[i]) {
 					break;
 				} else {
 					return false;
 				}
 			case 2:
 
-				if (stone[item[i]] + number[i] >= 0) {
+				if (stone[item[i]] >= number[i]) {
 					break;
 				} else {
 					return false;
 				}
 			case 3:
 
-				if (metal[item[i]] + number[i] >= 0) {
+				if (metal[item[i]] >= number[i]) {
 					break;
 				} else {
 					return false;
 				}
 			case 4:
 
-				if (crystal[item[i]] + number[i] >= 0) {
+				if (crystal[item[i]] >= number[i]) {
 					break;
 				} else {
 					return false;
