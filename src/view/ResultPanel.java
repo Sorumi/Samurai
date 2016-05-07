@@ -137,7 +137,7 @@ public class ResultPanel extends OrderPanel{
 			
 		
 		
-		this.setVisible(true);
+		this.setVisible(false);
 	}
 	
 	
