@@ -24,12 +24,12 @@ public class SmithyController extends TerritoryController{
     }
 
 
-    public ArrayList<Armor> getArmors() {
-        return storyModel.getArmory().checkAllArmor();
+    public ArrayList<Armor> getUnlockedArmors() {
+        return storyModel.getArmory().checkAllAvailableArmor();
     }
 
-    public ArrayList<Weapon> getWeapons() {
-        return storyModel.getArmory().checkAllWeapon();
+    public ArrayList<Weapon> getUnlockedWeapons() {
+        return storyModel.getArmory().checkAllAvailableWeapon();
     }
 
     public Information getInformationOfTag(int tag){

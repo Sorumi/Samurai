@@ -79,7 +79,7 @@ public abstract class SmithyItemWrapper extends Pane{
 	public void updateItem(ArrayList<Weapon> weapons) {
 		// TODO Auto-generated method stub
 		for (Weapon weapon : weapons){
-			if(weapon.getType()/100 == num){
+			if(weapon.getType()/100 == num && weapon.canCreate()){
 				for (SmithyItemView view : list){
 					if (view.itemNum == weapon.getType()){
 						buildGroup.getChildren().add(view);

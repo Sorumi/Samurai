@@ -25,14 +25,14 @@ public class SmithyHandler {
 	}
 	
 	public void update(){
-		for(Weapon weapon:smithyController.getWeapons()){
+		for(Weapon weapon:smithyController.getUnlockedWeapons()){
 			System.out.print(weapon.getType()  + " ");
 		}
-		smithyPanel.spearPanel.updateItem(smithyController.getWeapons());
-		smithyPanel.swordPanel.updateItem(smithyController.getWeapons());
-		smithyPanel.battleaxPanel.updateItem(smithyController.getWeapons());
-		smithyPanel.shurikenPanel.updateItem(smithyController.getWeapons());
-		smithyPanel.bowPanel.updateItem(smithyController.getWeapons());
+		smithyPanel.spearPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.swordPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.battleaxPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.shurikenPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.bowPanel.updateItem(smithyController.getUnlockedWeapons());
 	}
 
 	public EventHandler<MouseEvent> wrapperToFrontEvent = new EventHandler<MouseEvent>() {  

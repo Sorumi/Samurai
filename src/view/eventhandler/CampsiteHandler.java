@@ -46,9 +46,14 @@ public class CampsiteHandler {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
 	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());
 
+			  System.out.println(item.getNum());
 			  Information information = campsiteController.getInformationOfTag(item.getNum());
 			  Weapon weapon = campsiteController.getWeaponOfTag(item.getNum());
 			  
+			  if (information == null){
+				  System.out.println("null");
+			  }
+			  System.out.println(information.getTag());
 			  campsitePanel.infoPanel.setWeaponInfo(information.getTag(), information.getName(), information.getDescription(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(), weapon.getCriticalRate(), weapon.getArmorPenetration());
 		  }
 	};
@@ -65,7 +70,6 @@ public class CampsiteHandler {
 	public EventHandler<MouseEvent> setItemClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //用 controller 换武器
-	    	  //点击确定才换武器~
 //	    	  campsitePanel.samuraiPanel.setItemBtnPressed();
 	    	  campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(), campsitePanel.samuraiPanel.currentWeapon);
 	      }
