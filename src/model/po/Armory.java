@@ -308,20 +308,17 @@ public class Armory implements Serializable {
 		materialItem = new int[] { 0, 0, 1 };
 		materialNumber = new int[] { 3, 2, 2 };
 		nextWeapon = new int[] { 413 };
-		bowList
-				.add(new Weapon(4, 412, 35, 39, 0, 15, materialTag, materialItem, materialNumber, true, nextWeapon, 0));
+		bowList.add(new Weapon(4, 412, 35, 39, 0, 15, materialTag, materialItem, materialNumber, true, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 2 };
 		materialItem = new int[] { 0, 0, 1 };
 		materialNumber = new int[] { 3, 1, 3 };
 		nextWeapon = new int[] { 423 };
-		bowList
-				.add(new Weapon(4, 422, 25, 29, 5, 15, materialTag, materialItem, materialNumber, true, nextWeapon, 0));
+		bowList.add(new Weapon(4, 422, 25, 29, 5, 15, materialTag, materialItem, materialNumber, true, nextWeapon, 0));
 		materialTag = new int[] { 1, 1, 1, 2, 3 };
 		materialItem = new int[] { 2, 0, 1, 0, 0 };
 		materialNumber = new int[] { 1, 2, 4, 1, 1 };
 		nextWeapon = new int[] { 414 };
-		bowList.add(
-				new Weapon(4, 413, 50, 54, 2, 30, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		bowList.add(new Weapon(4, 413, 50, 54, 2, 30, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 1, 1, 2, 3 };
 		materialItem = new int[] { 2, 0, 1, 1, 1 };
 		materialNumber = new int[] { 1, 4, 2, 1, 1 };
@@ -332,8 +329,7 @@ public class Armory implements Serializable {
 		materialItem = new int[] { 2, 0, 1, 0, 1 };
 		materialNumber = new int[] { 1, 2, 2, 3, 3 };
 		nextWeapon = new int[] { 415 };
-		bowList.add(
-				new Weapon(4, 414, 77, 84, 5, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
+		bowList.add(new Weapon(4, 414, 77, 84, 5, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 3, 2, 2, 3, 3 };
 		materialItem = new int[] { 2, 0, 1, 0, 1 };
 		materialNumber = new int[] { 1, 3, 1, 5, 1 };
@@ -371,6 +367,66 @@ public class Armory implements Serializable {
 		materialNumber = new int[] {};
 		int[] nextArmor = { 912 };
 		armorList.add(new Armor(911, 5, 2, materialTag, materialItem, materialNumber, true, nextArmor, 3));
+		materialTag = new int[] { 0, 1, 1 };
+		materialItem = new int[] { 0, 0, 1 };
+		materialNumber = new int[] { 3, 2, 2 };
+		nextArmor = new int[] { 913, 933 };
+		armorList.add(new Armor(912, 15, 5, materialTag, materialItem, materialNumber, true, nextArmor, 0));
+		materialTag = new int[] { 0, 0, 1, 2 };
+		materialItem = new int[] { 0, 1, 0, 0 };
+		materialNumber = new int[] { 3, 3, 2, 1 };
+		nextArmor = new int[] { 914, 924 };
+		armorList.add(new Armor(913, 27, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 0, 1, 2 };
+		materialItem = new int[] { 0, 1, 1, 0 };
+		materialNumber = new int[] { 3, 3, 2, 1 };
+		nextArmor = new int[] { 934 };
+		armorList.add(new Armor(933, 20, 10, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 0, 1, 1, 3 };
+		materialItem = new int[] { 0, 2, 0, 1, 1 };
+		materialNumber = new int[] { 5, 1, 2, 2, 2 };
+		nextArmor = new int[] { 915 };
+		armorList.add(new Armor(914, 50, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 0, 1, 1, 3 };
+		materialItem = new int[] { 1, 2, 0, 1, 0 };
+		materialNumber = new int[] { 5, 1, 1, 3, 2 };
+		nextArmor = new int[] { 925 };
+		armorList.add(new Armor(924, 38, 8, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 0, 0, 1, 1 };
+		materialItem = new int[] { 0, 1, 2, 0, 1 };
+		materialNumber = new int[] { 5, 5, 3, 3, 1 };
+		nextArmor = new int[] { 935 };
+		armorList.add(new Armor(934, 25, 15, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 1, 3, 3, 4 };
+		materialItem = new int[] { 2, 2, 0, 1, 0 };
+		materialNumber = new int[] { 2, 2, 3, 3, 1 };
+		nextArmor = new int[] { 916 };
+		armorList.add(new Armor(915, 80, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 1, 3, 3, 4 };
+		materialItem = new int[] { 2, 2, 0, 1, 1 };
+		materialNumber = new int[] { 2, 2, 2, 4, 1 };
+		nextArmor = new int[] { 926 };
+		armorList.add(new Armor(925, 50, 15, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 0, 1, 3, 3, 4 };
+		materialItem = new int[] { 2, 3, 2, 0, 1, 0 };
+		materialNumber = new int[] { 2, 2, 2, 1, 1, 1 };
+		nextArmor = new int[] { 936 };
+		armorList.add(new Armor(935, 37, 25, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 1, 3, 3, 3, 4 };
+		materialItem = new int[] { 3, 0, 1, 3, 2 };
+		materialNumber = new int[] { 1, 5, 5, 1, 1 };
+		nextArmor = new int[] {};
+		armorList.add(new Armor(916, 120, 10, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 1, 3, 3, 4 };
+		materialItem = new int[] { 3, 3, 0, 1, 2 };
+		materialNumber = new int[] { 2, 1, 2, 2, 1 };
+		nextArmor = new int[] {};
+		armorList.add(new Armor(926, 80, 20, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		materialTag = new int[] { 0, 1, 4 };
+		materialItem = new int[] { 3, 3, 2 };
+		materialNumber = new int[] { 5, 1, 1 };
+		nextArmor = new int[] {};
+		armorList.add(new Armor(936, 40, 40, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 	}
 
 	public Weapon getWeapon(int type) {
