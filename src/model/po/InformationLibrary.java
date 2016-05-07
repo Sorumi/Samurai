@@ -25,6 +25,8 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(25, "龙啸", "一点寒芒先到，随后枪出如龙，枪出之声，似龙啸也"));
 		informationLibraries.add(new Information(35, "狂热", "战争中它的影子，就像狂乱的热浪，无形却致命"));
 		informationLibraries.add(new Information(16, "浩劫", "“感觉像到了世界末日，海啸，地震，太阳都看不见了……”---一位幸存者如是说"));
+		informationLibraries.add(new Information(26,"26","26"));
+		informationLibraries.add(new Information(36,"36","36"));
 		informationLibraries.add(new Information(111,"111","111"));
 		informationLibraries.add(new Information(112,"112","112"));
 		informationLibraries.add(new Information(132,"132","132"));

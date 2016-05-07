@@ -473,11 +473,20 @@ public class Armory implements Serializable {
 		System.out.println("No such weapon!");
 		return null;
 	}
-
+   
 	public ArrayList<Armor> checkAllArmor() {
 		ArrayList<Armor> armors = new ArrayList<Armor>();
 		for (Armor armor : armorList) {
 			if (armor.getNumber() > 0) {
+				armors.add(armor);
+			}
+		}
+		return armors;
+	}
+	public ArrayList<Armor> checkAllAvailableArmor() {
+		ArrayList<Armor> armors = new ArrayList<Armor>();
+		for (Armor armor : armorList) {
+			if (armor.canCreate()) {
 				armors.add(armor);
 			}
 		}
@@ -508,6 +517,35 @@ public class Armory implements Serializable {
 		}
 		for (Weapon weapon : bowList) {
 			if (weapon.getNumber() > 0) {
+				weapons.add(weapon);
+			}
+		}
+		return weapons;
+	}
+	public ArrayList<Weapon> checkAllAvailableWeapon() {
+		ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+		for (Weapon weapon : spearList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : swordList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : axeList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : shurikenList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : bowList) {
+			if (weapon.canCreate()) {
 				weapons.add(weapon);
 			}
 		}
