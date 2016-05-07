@@ -35,13 +35,12 @@ public class WeaponView extends StackPane{
 		
 		if(Images.WEAPON[number/100][number%100/10][number%10] != null){
 			imgV = new ImageView(Images.WEAPON[number/100][number%100/10][number%10]);
-			imgV.setFitWidth(Images.WEAPON[number/100][number%100/10][number%10].getWidth()/6*SCALE);
 			imgV.setPreserveRatio(true);
 			imgV.setSmooth(true);
 			
 			this.setInit();
-			
-			if(Images.WEAPON[number/100][number%100/10][number%10].getHeight()/6*SCALE > 100*SCALE){
+
+			if(imgV.getFitHeight() > 100*SCALE){
 				imgV.setScaleX(1.1);
 				imgV.setScaleY(1.1);
 			}else{
@@ -234,12 +233,35 @@ public class WeaponView extends StackPane{
 				break;
 				
 			case 400:
+			case 411:
+			case 412:
+			case 413:
+			case 414:
+			case 415:
+			case 416:
+			case 422:
+			case 423:
+			case 424:
+			case 425:
+			case 426:
 				imgV.setFitWidth(18*SCALE);
 				break;
 			case 500:
+			case 511:
+			case 512:
+			case 513:
+			case 514:
+			case 515:
+			case 516:
+			case 522:
+			case 523:
+			case 524:
+			case 525:
+			case 526:
 				imgV.setFitWidth(50*SCALE);
 				break;
 		}
+
 	}
 	public void setGray(){
 		grayscale = new ColorAdjust();
