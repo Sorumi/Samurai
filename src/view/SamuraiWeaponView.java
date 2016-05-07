@@ -273,8 +273,8 @@ public class SamuraiWeaponView extends OrderImageView {
 			offsetX = centerX-this.fitWidthProperty().intValue()/2-width_fix;
 			offsetXOther = centerX-this.fitWidthProperty().intValue()/2+width_fix;
 			
-			frontZOrder = 6;
-			backZOrder = 15;
+			frontZOrder = 5;
+			backZOrder = 15+6;
 			
 			frontLayout = new int[]{BODY_X+30*SCALE+offsetX, BODY_Y-45*SCALE+height_fix};
 			backLayout = new int[]{BODY_X-14*SCALE+offsetXOther, BODY_Y-45*SCALE+height_fix};
@@ -294,8 +294,8 @@ public class SamuraiWeaponView extends OrderImageView {
 		case 1:
 			centerX = 7*SCALE;
 			offsetX = offsetXOther = centerX-this.fitWidthProperty().intValue()/2-width_fix;
-			frontZOrder = 17;
-			backZOrder = 7;
+			frontZOrder = 17+6;
+			backZOrder = 9;
 
 			frontLayout = new int[]{BODY_X+30*SCALE+offsetX, BODY_Y-54*SCALE+height_fix};
 			backLayout = new int[]{BODY_X-22*SCALE+offsetXOther, BODY_Y-52*SCALE+height_fix};
@@ -316,8 +316,8 @@ public class SamuraiWeaponView extends OrderImageView {
 			centerX = 5*SCALE;
 			offsetX = centerX-width_fix;
 			offsetXOther = 18*SCALE-this.fitWidthProperty().intValue()+width_fix+-centerX;
-			frontZOrder = 17;
-			backZOrder = 7;
+			frontZOrder = 17+6;
+			backZOrder = 9;
 			
 			frontLayout = new int[]{BODY_X+28*SCALE+offsetX, BODY_Y-48*SCALE+height_fix};
 			backLayout = new int[]{BODY_X-25*SCALE+offsetXOther, BODY_Y-35*SCALE+height_fix};
@@ -337,8 +337,8 @@ public class SamuraiWeaponView extends OrderImageView {
 		case 3:
 			centerX = 10*SCALE;
 			offsetX = offsetXOther = centerX-this.fitWidthProperty().intValue()/2-width_fix;
-			frontZOrder = 17;
-			backZOrder = 21;
+			frontZOrder = 17+6;
+			backZOrder = 9;
 			
 			frontLayout = new int[]{BODY_X+23*SCALE+offsetX, BODY_Y+9*SCALE+height_fix};
 			backLayout = new int[]{BODY_X-18*SCALE+offsetXOther, BODY_Y+13*SCALE+height_fix};
@@ -356,8 +356,8 @@ public class SamuraiWeaponView extends OrderImageView {
 					-25, 35, 0, -25};
 			break;
 		case 4:
-			frontZOrder = 6;
-			backZOrder = 15;
+			frontZOrder = 5;
+			backZOrder = 15+6;
 			
 			frontLayout = new int[]{BODY_X+15*SCALE, BODY_Y-19*SCALE};
 			backLayout = new int[]{BODY_X-15*SCALE, BODY_Y-20*SCALE};
@@ -374,8 +374,8 @@ public class SamuraiWeaponView extends OrderImageView {
 					0, 0, 0, 60};
 			break;
 		case 5:
-			frontZOrder = 6;
-			backZOrder = 15;
+			frontZOrder = 5;
+			backZOrder = 15+6;
 			
 			frontLayout = new int[]{BODY_X-28*SCALE, BODY_Y+24*SCALE};
 			backLayout = new int[]{BODY_X-0*SCALE, BODY_Y+18*SCALE};

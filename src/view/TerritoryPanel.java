@@ -141,22 +141,22 @@ public class TerritoryPanel extends Pane {
 
 		//samurai
 		samurai1 = new SamuraiView(1, 2);
-		samurai1.setScaleX(0.75);
-		samurai1.setScaleY(0.75);
-		samurai1.setLayoutX(820);
-		samurai1.setLayoutY(470);
+//		samurai1.setScaleX(0.75);
+//		samurai1.setScaleY(0.75);
+		samurai1.setLayoutX(800);
+		samurai1.setLayoutY(450);
 		
 		samurai2 = new SamuraiView(2, 2);
-		samurai2.setScaleX(0.75);
-		samurai2.setScaleY(0.75);
-		samurai2.setLayoutX(700);
-		samurai2.setLayoutY(470);
+//		samurai2.setScaleX(0.75);
+//		samurai2.setScaleY(0.75);
+		samurai2.setLayoutX(660);
+		samurai2.setLayoutY(450);
 		
 		samurai3 = new SamuraiView(3, 2);
-		samurai3.setScaleX(0.75);
-		samurai3.setScaleY(0.75);
-		samurai3.setLayoutX(580);
-		samurai3.setLayoutY(470);
+//		samurai3.setScaleX(0.75);
+//		samurai3.setScaleY(0.75);
+		samurai3.setLayoutX(520);
+		samurai3.setLayoutY(450);
 		
 		territoryGroup.getChildren().addAll(samurai1, samurai2, samurai3);
 		

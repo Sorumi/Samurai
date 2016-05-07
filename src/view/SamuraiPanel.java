@@ -33,7 +33,7 @@ public class SamuraiPanel extends OrderPanel {
 	private final int selfHeightOffset = -90;
 		
 	private int number;
-	private SamuraiView samuraiV;
+	public SamuraiView samuraiV;
 	
 	public int x;
 	public int y;

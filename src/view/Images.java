@@ -83,8 +83,14 @@ public class Images {
 	public static final Image TERRITORY_FLAG = new Image("/./images/territory_flag.png");
 	
 	//samurai
+	//add eye
+	public static Image SAMURAI_0042 = new Image("/./images/samurai/samurai_004_eyeleft.png",true);
+	public static Image SAMURAI_0043 = new Image("/./images/samurai/samurai_004_eyeright.png",true);
+	public static Image[] SAMURAI_0 = {SAMURAI_0043, SAMURAI_0043};
+	
 	public static Image SAMURAI_003 = new Image("/./images/samurai/samurai_003_leftarm.png",true);
-	public static Image SAMURAI_004 = new Image("/./images/samurai/samurai_004_head_injured.png",true);
+	public static Image SAMURAI_0040 = new Image("/./images/samurai/samurai_004_head_injured.png",true);
+	public static Image SAMURAI_0041 = new Image("/./images/samurai/samurai_004_head_occupy.png",true);
 	public static Image SAMURAI_005 = new Image("/./images/samurai/samurai_005_head.png",true);
 	public static Image SAMURAI_010 = new Image("/./images/samurai/samurai_010_rightarm.png",true);
 	
@@ -95,7 +101,7 @@ public class Images {
 	public static Image SAMURAI_108 = new Image("/./images/samurai/samurai_108_rightleg.png",true);
 	public static Image SAMURAI_109 = new Image("/./images/samurai/samurai_109_rightshoulder.png",true);
 	public static Image SAMURAI_111 = new Image("/./images/samurai/samurai_111_helmet.png",true);
-	public static Image[] SAMURAI_1 = {null, SAMURAI_101, SAMURAI_102, SAMURAI_003, SAMURAI_004, SAMURAI_005, SAMURAI_106, SAMURAI_107, SAMURAI_108, SAMURAI_109, SAMURAI_010, SAMURAI_111};
+	public static Image[] SAMURAI_1 = {null, SAMURAI_101, SAMURAI_102, SAMURAI_003, SAMURAI_0040, SAMURAI_0041, SAMURAI_005, SAMURAI_106, SAMURAI_107, SAMURAI_108, SAMURAI_109, SAMURAI_010, SAMURAI_111};
 
 	public static Image SAMURAI_201 = new Image("/./images/samurai/SAMURAI_201_helmet_back.png",true);
 	public static Image SAMURAI_202 = new Image("/./images/samurai/SAMURAI_202_leftshoulder.png",true);
@@ -104,7 +110,7 @@ public class Images {
 	public static Image SAMURAI_208 = new Image("/./images/samurai/SAMURAI_208_rightleg.png",true);
 	public static Image SAMURAI_209 = new Image("/./images/samurai/SAMURAI_209_rightshoulder.png",true);
 	public static Image SAMURAI_211 = new Image("/./images/samurai/SAMURAI_211_helmet.png",true);
-	public static Image[] SAMURAI_2 = {null, SAMURAI_201, SAMURAI_202, SAMURAI_003, SAMURAI_004, SAMURAI_005, SAMURAI_206, SAMURAI_207, SAMURAI_208, SAMURAI_209, SAMURAI_010, SAMURAI_211};
+	public static Image[] SAMURAI_2 = {null, SAMURAI_201, SAMURAI_202, SAMURAI_003, SAMURAI_0040, SAMURAI_0041, SAMURAI_005, SAMURAI_206, SAMURAI_207, SAMURAI_208, SAMURAI_209, SAMURAI_010, SAMURAI_211};
 
 	public static Image SAMURAI_301 = new Image("/./images/samurai/SAMURAI_301_helmet_back.png",true);
 	public static Image SAMURAI_302 = new Image("/./images/samurai/SAMURAI_302_leftshoulder.png",true);
@@ -113,7 +119,7 @@ public class Images {
 	public static Image SAMURAI_308 = new Image("/./images/samurai/SAMURAI_308_rightleg.png",true);
 	public static Image SAMURAI_309 = new Image("/./images/samurai/SAMURAI_309_rightshoulder.png",true);
 	public static Image SAMURAI_311 = new Image("/./images/samurai/SAMURAI_311_helmet.png",true);
-	public static Image[] SAMURAI_3 = {null, SAMURAI_301, SAMURAI_302, SAMURAI_003, SAMURAI_004, SAMURAI_005, SAMURAI_306, SAMURAI_307, SAMURAI_308, SAMURAI_309, SAMURAI_010, SAMURAI_311};
+	public static Image[] SAMURAI_3 = {null, SAMURAI_301, SAMURAI_302, SAMURAI_003, SAMURAI_0040, SAMURAI_0041, SAMURAI_005, SAMURAI_306, SAMURAI_307, SAMURAI_308, SAMURAI_309, SAMURAI_010, SAMURAI_311};
 
 	public static Image SAMURAI_401 = new Image("/./images/samurai/SAMURAI_401_helmet_back.png",true);
 	public static Image SAMURAI_402 = new Image("/./images/samurai/SAMURAI_402_leftshoulder.png",true);
@@ -122,7 +128,7 @@ public class Images {
 	public static Image SAMURAI_408 = new Image("/./images/samurai/SAMURAI_408_rightleg.png",true);
 	public static Image SAMURAI_409 = new Image("/./images/samurai/SAMURAI_409_rightshoulder.png",true);
 	public static Image SAMURAI_411 = new Image("/./images/samurai/SAMURAI_411_helmet.png",true);
-	public static Image[] SAMURAI_4 = {null, SAMURAI_401, SAMURAI_402, SAMURAI_003, SAMURAI_004, SAMURAI_005, SAMURAI_406, SAMURAI_407, SAMURAI_408, SAMURAI_409, SAMURAI_010, SAMURAI_411};
+	public static Image[] SAMURAI_4 = {null, SAMURAI_401, SAMURAI_402, SAMURAI_003, SAMURAI_0040, SAMURAI_0041, SAMURAI_005, SAMURAI_406, SAMURAI_407, SAMURAI_408, SAMURAI_409, SAMURAI_010, SAMURAI_411};
 
 	public static Image SAMURAI_501 = new Image("/./images/samurai/SAMURAI_501_helmet_back.png",true);
 	public static Image SAMURAI_502 = new Image("/./images/samurai/SAMURAI_502_leftshoulder.png",true);
@@ -131,7 +137,7 @@ public class Images {
 	public static Image SAMURAI_508 = new Image("/./images/samurai/SAMURAI_508_rightleg.png",true);
 	public static Image SAMURAI_509 = new Image("/./images/samurai/SAMURAI_509_rightshoulder.png",true);
 	public static Image SAMURAI_511 = new Image("/./images/samurai/SAMURAI_511_helmet.png",true);
-	public static Image[] SAMURAI_5 = {null, SAMURAI_501, SAMURAI_502, SAMURAI_003, SAMURAI_004, SAMURAI_005, SAMURAI_506, SAMURAI_507, SAMURAI_508, SAMURAI_509, SAMURAI_010, SAMURAI_511};
+	public static Image[] SAMURAI_5 = {null, SAMURAI_501, SAMURAI_502, SAMURAI_003, SAMURAI_0040, SAMURAI_0041, SAMURAI_005, SAMURAI_506, SAMURAI_507, SAMURAI_508, SAMURAI_509, SAMURAI_010, SAMURAI_511};
 
 	public static Image SAMURAI_601 = new Image("/./images/samurai/SAMURAI_601_helmet_back.png",true);
 	public static Image SAMURAI_602 = new Image("/./images/samurai/SAMURAI_602_leftshoulder.png",true);
@@ -140,7 +146,7 @@ public class Images {
 	public static Image SAMURAI_608 = new Image("/./images/samurai/SAMURAI_608_rightleg.png",true);
 	public static Image SAMURAI_609 = new Image("/./images/samurai/SAMURAI_609_rightshoulder.png",true);
 	public static Image SAMURAI_611 = new Image("/./images/samurai/SAMURAI_611_helmet.png",true);
-	public static Image[] SAMURAI_6 = {null, SAMURAI_601, SAMURAI_602, SAMURAI_003, SAMURAI_004, SAMURAI_005, SAMURAI_606, SAMURAI_607, SAMURAI_608, SAMURAI_609, SAMURAI_010, SAMURAI_611};
+	public static Image[] SAMURAI_6 = {null, SAMURAI_601, SAMURAI_602, SAMURAI_003, SAMURAI_0040, SAMURAI_0041, SAMURAI_005, SAMURAI_606, SAMURAI_607, SAMURAI_608, SAMURAI_609, SAMURAI_010, SAMURAI_611};
 
 	public static Image[][] SAMURAI = {null, SAMURAI_1, SAMURAI_2, SAMURAI_3, SAMURAI_4, SAMURAI_5, SAMURAI_6};
 

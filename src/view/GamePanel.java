@@ -194,12 +194,15 @@ public class GamePanel extends Pane implements Observer{
 	public void setCurrentSamurai(int num){
 		if(currentSamurai != null){
 			currentSamurai.setOnMouseClicked(null);
+			currentSamurai.samuraiV.setRandomAnimation(true);
 		}
 		
 		this.currentSamurai = getSamurai(num);
 
 		currentSamurai.setCanActionProperty(true);
 		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
+		currentSamurai.samuraiV.setRandomAnimation(false);
+		
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
 //		playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
