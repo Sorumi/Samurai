@@ -62,8 +62,8 @@ public class SmithyHandler {
 	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
 	    	  smithyPanel.smithyWeaponState.setAppear(true);
 
-			  Weapon weapon = smithyController.getWeaponOfTag(item.getItemNum());
-			  Information information = smithyController.getInformationOfTag(item.getItemNum());
+//			  Weapon weapon = smithyController.getWeaponOfTag(item.getItemNum());
+//			  Information information = smithyController.getInformationOfTag(item.getItemNum());
 
 
 		  }
@@ -74,9 +74,7 @@ public class SmithyHandler {
 	    	  Group weaponGroup = (Group) event.getSource();
 	    	  SmithyItemView item = (SmithyItemView) weaponGroup.getParent();
 	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
-	    	  smithyPanel.smithyWeaponState.setAppear(false); 
-//	    		  gamePanel.setOrder();
-	    	  
+	    	  smithyPanel.smithyWeaponState.setAppear(false); 	    	  
 	      }
 	};
 
@@ -87,7 +85,7 @@ public class SmithyHandler {
 	    	  //TODO
 	    	  smithyPanel.buildPanel.build();
 			  smithyController.createWeapon(smithyPanel.buildPanel.getItemNum());
-			  
+			  update();
 	      }
 	};
 	

@@ -81,7 +81,7 @@ public abstract class SmithyItemWrapper extends Pane{
 		for (Weapon weapon : weapons){
 			if(weapon.getType()/100 == num && weapon.canCreate()){
 				for (SmithyItemView view : list){
-					if (view.itemNum == weapon.getType()){
+					if (view.itemNum == weapon.getType() && !buildGroup.getChildren().contains(view)){
 						buildGroup.getChildren().add(view);
 						lockGroup.getChildren().remove(view);
 					}

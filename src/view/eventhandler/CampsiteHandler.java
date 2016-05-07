@@ -46,14 +46,10 @@ public class CampsiteHandler {
 	    	  CampsiteItemView item = (CampsiteItemView) event.getSource();
 	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());
 
-			  System.out.println(item.getNum());
+	    	  System.out.println(item.getNum());
 			  Information information = campsiteController.getInformationOfTag(item.getNum());
 			  Weapon weapon = campsiteController.getWeaponOfTag(item.getNum());
-			  
-			  if (information == null){
-				  System.out.println("null");
-			  }
-			  System.out.println(information.getTag());
+
 			  campsitePanel.infoPanel.setWeaponInfo(information.getTag(), information.getName(), information.getDescription(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(), weapon.getCriticalRate(), weapon.getArmorPenetration());
 		  }
 	};
