@@ -102,7 +102,7 @@ public class CampsiteItemInfo extends Pane {
 		itemDescription.setText(description);
 		
 		weaponState1.setText(lowAttackPoint + " - " + highAttackPoint);
-		weaponState2.setText(criticalRate + "");
+		weaponState2.setText(criticalRate + " % ");
 		weaponState3.setText(armorPenetration + "");
 		weaponState.setVisible(true);
 		

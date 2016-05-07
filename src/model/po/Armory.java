@@ -7,6 +7,7 @@ public class Armory implements Serializable {
 	/**
 	 * 
 	 */
+
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Weapon> swordList = new ArrayList<Weapon>();
 	private ArrayList<Weapon> spearList = new ArrayList<Weapon>();
@@ -453,14 +454,14 @@ public class Armory implements Serializable {
 			}
 			break;
 		case 3:
-			for (Weapon weapon : bowList) {
+			for (Weapon weapon : shurikenList) {
 				if (weapon.getType() == type) {
 					return weapon;
 				}
 			}
 			break;
 		case 4:
-			for (Weapon weapon : shurikenList) {
+			for (Weapon weapon : bowList) {
 				if (weapon.getType() == type) {
 					return weapon;
 				}
@@ -473,11 +474,20 @@ public class Armory implements Serializable {
 		System.out.println("No such weapon!");
 		return null;
 	}
-
+   
 	public ArrayList<Armor> checkAllArmor() {
 		ArrayList<Armor> armors = new ArrayList<Armor>();
 		for (Armor armor : armorList) {
 			if (armor.getNumber() > 0) {
+				armors.add(armor);
+			}
+		}
+		return armors;
+	}
+	public ArrayList<Armor> checkAllAvailableArmor() {
+		ArrayList<Armor> armors = new ArrayList<Armor>();
+		for (Armor armor : armorList) {
+			if (armor.canCreate()) {
 				armors.add(armor);
 			}
 		}
@@ -508,6 +518,35 @@ public class Armory implements Serializable {
 		}
 		for (Weapon weapon : bowList) {
 			if (weapon.getNumber() > 0) {
+				weapons.add(weapon);
+			}
+		}
+		return weapons;
+	}
+	public ArrayList<Weapon> checkAllAvailableWeapon() {
+		ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+		for (Weapon weapon : spearList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : swordList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : axeList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : shurikenList) {
+			if (weapon.canCreate()) {
+				weapons.add(weapon);
+			}
+		}
+		for (Weapon weapon : bowList) {
+			if (weapon.canCreate()) {
 				weapons.add(weapon);
 			}
 		}
@@ -548,6 +587,17 @@ public class Armory implements Serializable {
 		} else {
 			return false;
 		}
+	}
+
+	public boolean checkIsEnough_Armor(int type, MaterialLibrary materialLibrary) {
+		Armor armor = getArmor(type);
+		return materialLibrary.checkEnough(armor.getMaterialTag(), armor.getMaterialItem(), armor.getMaterialNumber());
+	}
+
+	public boolean checkIsEnough_Weapon(int type, MaterialLibrary materialLibrary) {
+		Weapon weapon = getWeapon(type);
+		return materialLibrary.checkEnough(weapon.getMaterialTag(), weapon.getMaterialItem(),
+				weapon.getMaterialNumber());
 	}
 
 	public boolean buildArmor(int type, MaterialLibrary materialLibrary) {

@@ -162,20 +162,20 @@ public class GameColor {
 		switch(x){
 		
 		//level bg
+		case 0:
 		case 1:
-		case 2:
 			color = "#C8EEFF";break;
-		case 3:
+		case 2:
 			color = "#FFFABD";break;
-		case 4:
+		case 3:
 			color = "#FCD9D9";break;
 		//level text
+		case 4:
 		case 5:
-		case 6:
 			color = "#0081BA";break;
-		case 7:
+		case 6:
 			color = "#D29013";break;
-		case 8:
+		case 7:
 			color = "#D0021B";break;
 		
 		default: color = "#000000";

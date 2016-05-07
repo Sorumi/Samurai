@@ -48,7 +48,7 @@ public class StoreItemInfo extends Pane{
 		this.getChildren().add(levelLable);
 		
 		//TODO
-		this.updateInfo(32, "月之银", "月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦");
+//		this.updateInfo(32, "月之银", "月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦");
 	}
 
 	public void updateInfo(int itemNum, String itemName, String itemDescription){
@@ -57,11 +57,11 @@ public class StoreItemInfo extends Pane{
 		switch(itemNum%10){
 		case 0:
 		case 1:
-			this.levelLable.setText("普通");
+			this.levelLable.setText("普通");break;
 		case 2:
-			this.levelLable.setText("稀有");
+			this.levelLable.setText("稀有");break;
 		case 3:
-			this.levelLable.setText("史诗");
+			this.levelLable.setText("史诗");break;
 		}
 		this.levelLable.setStyle("-fx-background-color: " + GameColor.getMaterialColorString(itemNum%10) + ";"
 			+ "-fx-text-fill: " + GameColor.getMaterialColorString(itemNum%10+4) );

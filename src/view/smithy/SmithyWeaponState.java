@@ -27,7 +27,7 @@ public class SmithyWeaponState extends Pane{
 	private Rectangle bgRect;
 	private Polygon triangle;
 
-	private Group iconGroup;
+	private Group weaponStateGroup;
 	private ImageView stateIcon2;
 	private ImageView stateIcon4;
 	private ImageView stateIcon6;
@@ -62,8 +62,8 @@ public class SmithyWeaponState extends Pane{
 		triangle.setFill(Color.WHITE);
 		
 		//icon
-		iconGroup = new Group();
-		iconGroup.setLayoutX(15);
+		weaponStateGroup = new Group();
+		weaponStateGroup.setLayoutX(15);
 
 		stateIcon2.setFitWidth(25);
 		stateIcon4.setFitWidth(29);
@@ -81,17 +81,17 @@ public class SmithyWeaponState extends Pane{
 		stateIcon6.setLayoutY(43);
 		
 		stateLabel2 = new Label("100-900");
-		stateLabel2.setLayoutX(25);
+		stateLabel2.setLayoutX(30);
 		stateLabel2.setLayoutY(52);
 		stateLabel2.setId("weaponstate-lable");
 
 		stateLabel4 = new Label("100-900");
-		stateLabel4.setLayoutX(119);
+		stateLabel4.setLayoutX(125);
 		stateLabel4.setLayoutY(52);
 		stateLabel4.setId("weaponstate-lable");
 		
 		stateLabel6 = new Label("100-900");
-		stateLabel6.setLayoutX(213);
+		stateLabel6.setLayoutX(220);
 		stateLabel6.setLayoutY(52);
 		stateLabel6.setId("weaponstate-lable");
 		
@@ -103,47 +103,28 @@ public class SmithyWeaponState extends Pane{
 		amountLabel.setLayoutX(11);
 		amountLabel.setId("weaponamount-lable"); 
 		
-		iconGroup.getChildren().addAll(stateIcon2, stateIcon4, stateIcon6,  stateLabel2, stateLabel4, stateLabel6);
-		this.getChildren().addAll(bgRect, triangle, iconGroup, nameLabel, amountLabel);
+		weaponStateGroup.getChildren().addAll(stateIcon2, stateIcon4, stateIcon6,  stateLabel2, stateLabel4, stateLabel6);
+		weaponStateGroup.setVisible(false);
+		this.getChildren().addAll(bgRect, triangle, weaponStateGroup, nameLabel, amountLabel);
 		this.setVisible(false);
 		
 	}
 	
-	public void setUpLocation(){
-		bgRect.setY(0);
-		
-		triangle.getPoints().addAll(new Double[]{
-		    140.0, 137.0,
-		    160.0, 137.0,
-		    150.0, 157.0 });
-
-		iconGroup.setLayoutY(52);
-		nameLabel.setLayoutY(10);
-		amountLabel.setLayoutY(40);
+	public void setWeaponInfo(int weaponNum, int quantity, String name, int lowAttackPoint, int highAttackPoint, int criticalRate, int armorPenetration){
+		nameLabel.setText(name);
+		amountLabel.setText("库存：" + quantity);
+		stateLabel2.setText(lowAttackPoint + " - " + highAttackPoint);
+		stateLabel4.setText(criticalRate + " % ");
+		stateLabel6.setText(armorPenetration + "");
+		weaponStateGroup.setVisible(true);
 	}
 	
-	public void setDownLocation(){
-		bgRect.setY(20);
-		
-		triangle.getPoints().addAll(new Double[]{
-		    140.0, 20.0,
-		    160.0, 20.0,
-		    150.0, 0.0 });
-
-		iconGroup.setLayoutY(82);
-		nameLabel.setLayoutY(30);
-		amountLabel.setLayoutY(60);
-	}
-	
-
-
 	public void setCurrentItem(SmithyItemView item) {
-		// TODO Auto-generated method stub
 		this.smithyItemView = item;
 		this.setActualLocation();
 	}
 	
-	public void setActualLocation(){
+	private void setActualLocation(){
 		this.setLayoutX(smithyItemView.getLayoutX()+50);
 		if (smithyItemView.getLayoutY()-prefHeight+10>0) {		
 			this.setLayoutY(smithyItemView.getLayoutY()-prefHeight+45);
@@ -153,8 +134,33 @@ public class SmithyWeaponState extends Pane{
 			this.setDownLocation();
 		}
 	}
+	private void setUpLocation(){
+		bgRect.setY(0);
+		
+		triangle.getPoints().addAll(new Double[]{
+		    140.0, 137.0,
+		    160.0, 137.0,
+		    150.0, 157.0 });
+
+		weaponStateGroup.setLayoutY(52);
+		nameLabel.setLayoutY(10);
+		amountLabel.setLayoutY(40);
+	}
+	
+	private void setDownLocation(){
+		bgRect.setY(20);
+		
+		triangle.getPoints().addAll(new Double[]{
+		    140.0, 20.0,
+		    160.0, 20.0,
+		    150.0, 0.0 });
+
+		weaponStateGroup.setLayoutY(72);
+		nameLabel.setLayoutY(30);
+		amountLabel.setLayoutY(60);
+	}
+	
 	public void setAppear(boolean isAppear) {
-		// TODO Auto-generated method stub
 		this.isAppear = isAppear;
 		this.setVisible(isAppear);
 	}

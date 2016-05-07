@@ -23,6 +23,17 @@ public class SmithyHandler {
 		this.smithyController = new SmithyController();
 		this.smithyController.setStoryModel(StoryModel.getStoryModel());
 	}
+	
+	public void update(){
+		for(Weapon weapon:smithyController.getUnlockedWeapons()){
+			System.out.print(weapon.getType()  + " ");
+		}
+		smithyPanel.spearPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.swordPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.battleaxPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.shurikenPanel.updateItem(smithyController.getUnlockedWeapons());
+		smithyPanel.bowPanel.updateItem(smithyController.getUnlockedWeapons());
+	}
 
 	public EventHandler<MouseEvent> wrapperToFrontEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
@@ -54,6 +65,7 @@ public class SmithyHandler {
 			  Weapon weapon = smithyController.getWeaponOfTag(item.getItemNum());
 			  Information information = smithyController.getInformationOfTag(item.getItemNum());
 
+			  smithyPanel.smithyWeaponState.setWeaponInfo(weapon.getType(), weapon.getNumber(), information.getName(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(), weapon.getCriticalRate(), weapon.getArmorPenetration());
 
 		  }
 	};
@@ -62,21 +74,17 @@ public class SmithyHandler {
 	      public void handle(MouseEvent event) {
 	    	  Group weaponGroup = (Group) event.getSource();
 	    	  SmithyItemView item = (SmithyItemView) weaponGroup.getParent();
-	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
-	    	  smithyPanel.smithyWeaponState.setAppear(false); 
-//	    		  gamePanel.setOrder();
-	    	  
+//	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
+	    	  smithyPanel.smithyWeaponState.setAppear(false); 	    	  
 	      }
 	};
 
 	//合成按钮
 	public EventHandler<MouseEvent> buildBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  //合成武器！
-	    	  //TODO
 	    	  smithyPanel.buildPanel.build();
 			  smithyController.createWeapon(smithyPanel.buildPanel.getItemNum());
-			  
+			  update();
 	      }
 	};
 	

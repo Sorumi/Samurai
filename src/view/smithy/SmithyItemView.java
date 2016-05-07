@@ -12,7 +12,7 @@ import view.WeaponView;
 public class SmithyItemView extends Pane{
 
 	private final int RADIUS = 50;
-	private int itemNum;
+	public int itemNum;
 	
 	public WeaponView weapon;
 	public Group weaponGroup;

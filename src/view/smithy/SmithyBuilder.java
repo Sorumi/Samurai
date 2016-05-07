@@ -24,10 +24,7 @@ public class SmithyBuilder extends Pane {
 	private Button buildBtn;
 	private SystemButton closeBtn;
 	
-	private SmithyBuilderMaterialView material1;
-	private SmithyBuilderMaterialView material2;
-	private SmithyBuilderMaterialView material3;
-	private SmithyBuilderMaterialView material4;
+	private Group materialGroup;
 	
 	public SmithyBuilder(int itemNum, SmithyHandler smithyHandler){
 		this.itemNum = itemNum;
@@ -63,21 +60,8 @@ public class SmithyBuilder extends Pane {
 		weapon.setLayoutY(70);
 		this.getChildren().add(weapon);
 		
-		//material circle
-		Group materialGroup = new Group();
-		materialGroup.setLayoutX(25);
-		materialGroup.setLayoutY(420);
-	
-		material1 = new SmithyBuilderMaterialView(itemNum);
-		material1.setLayoutX(0);
-		material2 = new SmithyBuilderMaterialView(itemNum);
-		material2.setLayoutX(130);
-		material3 = new SmithyBuilderMaterialView(itemNum);
-		material3.setLayoutX(260);
-		material4 = new SmithyBuilderMaterialView(itemNum);
-		material4.setLayoutX(390);
-		
-		materialGroup.getChildren().addAll(material1, material2, material3, material4);
+		//material
+		materialGroup = new Group();
 		this.getChildren().add(materialGroup);
 
 		//buildBtn
@@ -113,14 +97,26 @@ public class SmithyBuilder extends Pane {
 		}
 	}
 
+	public void setMaterial(int num){
+//		materialGroup.setLayoutX(25);
+//		materialGroup.setLayoutY(420);
+		
+		for (int i=1; i<=num; i++){
+			SmithyBuilderMaterialView material1 = new SmithyBuilderMaterialView(itemNum);
+//			material1.setLayoutX(0);
+//			material2 = new SmithyBuilderMaterialView(itemNum);
+//			material2.setLayoutX(130);
+//			material3 = new SmithyBuilderMaterialView(itemNum);
+//			material3.setLayoutX(260);
+//			material4 = new SmithyBuilderMaterialView(itemNum);
+//			material4.setLayoutX(390);
+		}
+
+		
+//		materialGroup.getChildren().addAll(material1, material2, material3, material4);
+	}
 	//TODO
 	//传数据时调用此方法
-	public void setMaterail(){
-		material1 = new SmithyBuilderMaterialView(itemNum);
-		material2 = new SmithyBuilderMaterialView(itemNum);
-		material3 = new SmithyBuilderMaterialView(itemNum);
-		material4 = new SmithyBuilderMaterialView(itemNum);
-	}
 	
 	public int getItemNum(){
 		return this.itemNum;

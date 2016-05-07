@@ -56,7 +56,7 @@ public class SamuraiView extends Pane{
 	
 	private Group group;
 	
-	private  ObservableList<OrderImageView>  orderList;
+	private ObservableList<OrderImageView>  orderList;
 	
 	private int direction;// 0 up 1 left 2 right 3 down 4 
 	private int flip;

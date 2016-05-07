@@ -1,5 +1,6 @@
 package view.smithy;
 
+import javafx.collections.FXCollections;
 import view.eventhandler.SmithyHandler;
 
 public class SmithyItemWrapper4 extends SmithyItemWrapper {
@@ -43,9 +44,11 @@ public class SmithyItemWrapper4 extends SmithyItemWrapper {
 		SmithyItemView item426 = new SmithyItemView(426, 0);
 		item426.setLayoutY(500);
 		
+		//TODO
+		list = FXCollections.observableArrayList(item411, item412,item422, item413, item414, item415, item416,item423, item424, item425, item426);
 		
-		this.buildGroup.getChildren().addAll(item411, item412,item422);
-		this.lockGroup.getChildren().addAll(item413, item414, item415, item416,item423, item424, item425, item426);
+//		this.buildGroup.getChildren().addAll();
+		this.lockGroup.getChildren().addAll(item411, item412,item422, item413, item414, item415, item416,item423, item424, item425, item426);
 		
 		this.initWeaponView();
 	}
