@@ -305,5 +305,7 @@ public class Images {
 	
 	public static Image[][] MATERIAL = {MATERIAL_0, MATERIAL_1, MATERIAL_2, MATERIAL_3, MATERIAL_4};
 
-
+	//resultPanel
+	public static Image A_WIN = new Image("/./images/player_logo_A_big.png",true); 
+ 
 }

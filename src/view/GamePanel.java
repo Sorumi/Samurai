@@ -55,6 +55,8 @@ public class GamePanel extends Pane implements Observer{
 	protected PlayerPanel playerB;
 
 	protected RoundPanel roundPanel;
+	
+	protected ResultPanel resultPanel;
 
 	public Arrow arrow;
 	public ActionPanel actionPanel;
@@ -117,6 +119,9 @@ public class GamePanel extends Pane implements Observer{
 		//statepanel
 		statePanel = new StatePanel(stateHandler);
 		this.getChildren().add(statePanel);
+		//resultpanel
+		resultPanel = new ResultPanel(this);
+		this.getChildren().add(resultPanel);
 
 		//samurai
 		A1 = new SamuraiPanel(1, size);
@@ -150,8 +155,9 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
+		resultPanel.setZOrder(999); 
 
-		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemButtonPanel);
+		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemButtonPanel, resultPanel);
 
 	}
 

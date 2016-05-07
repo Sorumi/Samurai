@@ -36,12 +36,12 @@ public class StatePanel extends OrderPanel {
 	private ImageView stateIcon5;
 	private ImageView stateIcon6;
 	
-	private Label stateLable1;
-	private Label stateLable2;
-	private Label stateLable3;
-	private Label stateLable4;
-	private Label stateLable5;
-	private Label stateLable6;
+	private Label stateLabel1;
+	private Label stateLabel2;
+	private Label stateLabel3;
+	private Label stateLabel4;
+	private Label stateLabel5;
+	private Label stateLabel6;
 	
 	private SamuraiPanel currentSamurai;
 	
@@ -129,37 +129,37 @@ public class StatePanel extends OrderPanel {
 		stateIcon6.setLayoutX(120);
 		stateIcon6.setLayoutY(43);
 		
-		stateLable1 = new Label("100");
-		stateLable1.setLayoutX(30);
-		stateLable1.setLayoutY(7);
-		stateLable1.setId("state-lable");
+		stateLabel1 = new Label("100");
+		stateLabel1.setLayoutX(30);
+		stateLabel1.setLayoutY(7);
+		stateLabel1.setId("state-lable");
 		
-		stateLable2 = new Label("100");
-		stateLable2.setLayoutX(90);
-		stateLable2.setLayoutY(7);
-		stateLable2.setId("state-lable");
+		stateLabel2 = new Label("100");
+		stateLabel2.setLayoutX(90);
+		stateLabel2.setLayoutY(7);
+		stateLabel2.setId("state-lable");
 		
-		stateLable3 = new Label("100");
-		stateLable3.setLayoutX(150);
-		stateLable3.setLayoutY(7);
-		stateLable3.setId("state-lable");
+		stateLabel3 = new Label("100");
+		stateLabel3.setLayoutX(150);
+		stateLabel3.setLayoutY(7);
+		stateLabel3.setId("state-lable");
 	
-		stateLable4 = new Label("100");
-		stateLable4.setLayoutX(30);
-		stateLable4.setLayoutY(52);
-		stateLable4.setId("state-lable");
+		stateLabel4 = new Label("100");
+		stateLabel4.setLayoutX(30);
+		stateLabel4.setLayoutY(52);
+		stateLabel4.setId("state-lable");
 		
-		stateLable5 = new Label("100");
-		stateLable5.setLayoutX(90);
-		stateLable5.setLayoutY(52);
-		stateLable5.setId("state-lable");
+		stateLabel5 = new Label("100");
+		stateLabel5.setLayoutX(90);
+		stateLabel5.setLayoutY(52);
+		stateLabel5.setId("state-lable");
 		
-		stateLable6 = new Label("100");
-		stateLable6.setLayoutX(150);
-		stateLable6.setLayoutY(52);
-		stateLable6.setId("state-lable");
+		stateLabel6 = new Label("100");
+		stateLabel6.setLayoutX(150);
+		stateLabel6.setLayoutY(52);
+		stateLabel6.setId("state-lable");
 		
-		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLable1, stateLable2, stateLable3, stateLable4, stateLable5, stateLable6);
+		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);
 		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, centralCircle, iconGroup);
 		this.setVisible(false);
 		
