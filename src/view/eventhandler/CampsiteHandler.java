@@ -46,7 +46,7 @@ public class CampsiteHandler {
 	    	  campsitePanel.samuraiPanel.setWeapon(item.getNum());
 
 			  Information information = campsiteController.getInformationOfTag(item.getNum());
-			  System.out.println(information.getTag() + "\n" + information.getName() + "\n" + information.getDescription());
+			  campsitePanel.infoPanel.setInfo(information.getTag(), information.getName(), information.getDescription());
 		  }
 	};
 	

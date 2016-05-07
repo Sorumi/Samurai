@@ -28,13 +28,13 @@ public class CampsiteItemInfo extends Pane {
 		this.setLayoutY(50);
 		this.setId("campsite-wrapper");
 		
-		itemName = new Label("正义裁决");
+		itemName = new Label();
 		itemName.setLayoutX(50);
 		itemName.setLayoutY(50);
 		itemName.setId("item-name");
 		this.getChildren().add(itemName);
 		
-		itemDescription = new Label("确定这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分");
+		itemDescription = new Label();
 		itemDescription.setLayoutX(50);
 		itemDescription.setLayoutY(80);
 		itemDescription.setMaxWidth(400);
@@ -83,5 +83,8 @@ public class CampsiteItemInfo extends Pane {
 		
 	}
 	
-//	public setInfo(in)
+	public void setInfo(int num, String name, String description){
+		itemName.setText(name);
+		itemDescription.setText(description);
+	}
 }
