@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import view.background.RainGroup;
 import view.campsite.CampsitePanel;
 import view.eventhandler.TerritoryHandler;
 import view.smithy.SmithyPanel;
@@ -55,6 +56,9 @@ public class TerritoryPanel extends Pane {
 	private SamuraiView samurai3;
 	
 	private GaussianBlur blur;
+	
+	//weather
+	private RainGroup rain;
 	
 	public TerritoryPanel(){
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -141,20 +145,14 @@ public class TerritoryPanel extends Pane {
 
 		//samurai
 		samurai1 = new SamuraiView(1, 2);
-//		samurai1.setScaleX(0.75);
-//		samurai1.setScaleY(0.75);
 		samurai1.setLayoutX(800);
 		samurai1.setLayoutY(450);
 		
 		samurai2 = new SamuraiView(2, 2);
-//		samurai2.setScaleX(0.75);
-//		samurai2.setScaleY(0.75);
 		samurai2.setLayoutX(660);
 		samurai2.setLayoutY(450);
 		
 		samurai3 = new SamuraiView(3, 2);
-//		samurai3.setScaleX(0.75);
-//		samurai3.setScaleY(0.75);
 		samurai3.setLayoutX(520);
 		samurai3.setLayoutY(450);
 		
@@ -164,7 +162,21 @@ public class TerritoryPanel extends Pane {
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
 		
+		//rain
+		rain = new RainGroup();
+
+		
+		Button rainBtn = new Button("Rain");
+		rainBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				rain.rain();
+			}
+		});
+		territoryGroup.getChildren().addAll(rain, rainBtn);
+		
 		this.getChildren().add(territoryGroup);
+		
 	}
 	
 	//内部类
