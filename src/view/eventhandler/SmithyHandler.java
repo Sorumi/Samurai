@@ -6,6 +6,8 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import model.po.Information;
+import model.po.Weapon;
 import view.SamuraiPanel;
 import view.smithy.SmithyBuilder;
 import view.smithy.SmithyItemView;
@@ -48,10 +50,12 @@ public class SmithyHandler {
 	    	  SmithyItemView item = (SmithyItemView) weaponGroup.getParent();
 	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
 	    	  smithyPanel.smithyWeaponState.setAppear(true);
-	    	  
-	    	  
-	    	  
-	      }
+
+			  Weapon weapon = smithyController.getWeaponOfTag(item.getItemNum());
+			  Information information = smithyController.getInformationOfTag(item.getItemNum());
+
+
+		  }
 	};
 	
 	public EventHandler<MouseEvent> closeStatePanel = new EventHandler<MouseEvent>() {  

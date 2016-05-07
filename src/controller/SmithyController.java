@@ -1,5 +1,6 @@
 package controller;
 
+import model.po.Information;
 import model.po.Weapon;
 
 /**
@@ -16,6 +17,14 @@ public class SmithyController extends TerritoryController{
                 System.out.println("FAILURE");
             }
         }
+    }
+
+    public Information getInformationOfTag(int tag){
+        return storyModel.getInformationLibrary().getInformationOfTag(tag);
+    }
+
+    public Weapon getWeaponOfTag(int tag){
+        return storyModel.getArmory().getWeapon(tag);
     }
 
 }
