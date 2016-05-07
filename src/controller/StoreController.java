@@ -1,5 +1,6 @@
 package controller;
 
+import model.po.Information;
 import model.po.Material;
 import model.po.MaterialLibrary;
 
@@ -19,5 +20,9 @@ public class StoreController extends TerritoryController {
 
     public ArrayList<Material> getMaterials() {
         return materials;
+    }
+
+    public Information getInformationOfTag(int tag){
+        return storyModel.getInformationLibrary().getInformationOfTag(tag);
     }
 }

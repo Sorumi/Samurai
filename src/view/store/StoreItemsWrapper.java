@@ -55,7 +55,7 @@ public class StoreItemsWrapper extends Pane{
 				StoreItemView item = new StoreItemView(num, materail.getNumer());
 				item.setOnMouseEntered(storeHandler.itemEnterEvent);
 				item.setOnMouseExited(storeHandler.itemExitEvent);
-//				item.setOnMouseClicked(storeHandler.itemClickEvent);
+				item.setOnMouseClicked(storeHandler.itemClickEvent);
 				tile.getChildren().add(item);
 			}				
 		}

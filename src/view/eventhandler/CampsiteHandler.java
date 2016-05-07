@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
+import model.po.Weapon;
 import view.campsite.CampsiteItemView;
 import view.campsite.CampsitePanel;
 import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
@@ -47,6 +48,8 @@ public class CampsiteHandler {
 
 			  Information information = campsiteController.getInformationOfTag(item.getNum());
 			  campsitePanel.infoPanel.setInfo(information.getTag(), information.getName(), information.getDescription());
+
+			  Weapon weapon = campsiteController.getWeaponOfTag(item.getNum());
 		  }
 	};
 	

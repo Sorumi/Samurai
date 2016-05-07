@@ -4,7 +4,7 @@ import controller.StoreController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
-import view.campsite.CampsiteItemView;
+import model.po.Information;
 import view.store.StoreItemView;
 import view.store.StorePanel;
 
@@ -38,6 +38,15 @@ public class StoreHandler {
 	    	  StoreItemView item = (StoreItemView) event.getSource();
 	    	  item.setNormal();
 	      }
+	};
+
+	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			StoreItemView item = (StoreItemView) event.getSource();
+
+			Information information = storeController.getInformationOfTag(item.getNum());
+			System.out.println(information.getTag() + "\n" + information.getName() + "\n" + information.getDescription());
+		}
 	};
 
 }
