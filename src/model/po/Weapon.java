@@ -51,6 +51,14 @@ public class Weapon implements Cloneable,Serializable {
 		return genre;
 	}
 
+	public int getLowAttackPoint(){
+		return lowAttackPoint;
+	}
+	
+	public int getHighAttackPoint(){
+		return highAttackPoint;
+	}
+	
 	public int getAttackPoint() {
 		int cache = highAttackPoint - lowAttackPoint;
 		Random random = new Random();

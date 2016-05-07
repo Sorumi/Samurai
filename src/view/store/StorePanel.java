@@ -13,7 +13,7 @@ public class StorePanel extends Pane{
 	private StoreHandler storeHandler;
 	
 	private StoreItemsWrapper itemsPanel;
-	private StoreItemInfo infoPanel;
+	public StoreItemInfo infoPanel;
 	
 	private SystemButton closeBtn;
 	public  StorePanel(){

@@ -45,7 +45,8 @@ public class StoreHandler {
 			StoreItemView item = (StoreItemView) event.getSource();
 
 			Information information = storeController.getInformationOfTag(item.getNum());
-			System.out.println(information.getTag() + "\n" + information.getName() + "\n" + information.getDescription());
+			storePanel.infoPanel.updateInfo(information.getTag(), information.getName(), information.getDescription());
+//			System.out.println(information.getTag() + "\n" + information.getName() + "\n" + information.getDescription());
 		}
 	};
 

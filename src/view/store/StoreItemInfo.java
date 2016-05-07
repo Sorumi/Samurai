@@ -1,6 +1,8 @@
 package view.store;
 
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 import javafx.scene.layout.Pane;
 import view.GameColor;
 
@@ -17,28 +19,36 @@ public class StoreItemInfo extends Pane{
 		this.setId("store-wrapper"); 
 		
 		itemName = new Label("雪山云杉");
-		itemName.setLayoutX(50);
-		itemName.setLayoutY(50);
+		itemName.setLayoutX(40);
+		itemName.setLayoutY(40);
 		itemName.setId("item-name");
 		this.getChildren().add(itemName);
 		
-		itemDescription = new Label("确定这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分这是描述的部分");
-		itemDescription.setLayoutX(50);
-		itemDescription.setLayoutY(80);
+		itemDescription = new Label("这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述");
 		itemDescription.setMaxWidth(400);
-		itemDescription.setMaxHeight(60);
 		itemDescription.setId("item-description");
-		this.getChildren().add(itemDescription);
+		
+		ScrollPane descriptionScroll = new ScrollPane(itemDescription);
+		descriptionScroll.getStyleClass().add("edge-to-edge"); 
+		descriptionScroll.setStyle("-fx-background-color: transparent;"
+				+ "-fx-control-inner-background: transparent;");
+		descriptionScroll.setLayoutX(40);
+		descriptionScroll.setLayoutY(70);
+		descriptionScroll.setHbarPolicy(ScrollBarPolicy.NEVER);
+		descriptionScroll.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+		descriptionScroll.setPrefWidth(430);
+		descriptionScroll.setPrefHeight(70);
+		this.getChildren().add(descriptionScroll);
 		
 		levelLable = new Label("");
 		levelLable.setPrefSize(50, 20);
 		levelLable.setLayoutX(180);
-		levelLable.setLayoutY(50);
+		levelLable.setLayoutY(40);
 		levelLable.setId("material-levelLable");
 		this.getChildren().add(levelLable);
 		
 		//TODO
-		this.updateInfo(32, "月之银", "月之银的描述哦");
+		this.updateInfo(32, "月之银", "月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦月之银的描述哦");
 	}
 
 	public void updateInfo(int itemNum, String itemName, String itemDescription){
