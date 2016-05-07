@@ -2,9 +2,11 @@ package view.smithy;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
@@ -27,42 +29,44 @@ public class SmithyBuilder extends Pane {
 	
 	private Group materialGroup;
 	
-	private Circle strokeCircle;
-	private Circle fillCircle;
+	private StackPane circlePane;
 	
 	public SmithyBuilder(int itemNum, SmithyHandler smithyHandler){
 		this.itemNum = itemNum;
 		this.smithyHandler = smithyHandler;
 		
-//		this.setPrefSize(width, 700);
-//		this.setLayoutX((1200-width)/2);
 		this.setLayoutY(50);
 		this.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100));
 		this.setId("smithy-builder");
 		
 		//item circle
-		strokeCircle = new Circle();
-//		strokeCircle.setCenterX(width/2);
-		strokeCircle.setCenterY(RADIUS+70);
+		circlePane = new StackPane();
+		circlePane.setPrefSize(RADIUS*2, RADIUS*2);
+		circlePane.setLayoutY(70);
+		
+		Circle strokeCircle = new Circle();
+		strokeCircle.setCenterX(RADIUS);
+		strokeCircle.setCenterY(RADIUS);
 		strokeCircle.setRadius(RADIUS);
 		strokeCircle.setFill(null);
 		strokeCircle.setStroke(Color.WHITE);
 		strokeCircle.setStrokeWidth(15);
 		strokeCircle.setStrokeType(StrokeType.INSIDE);
-		this.getChildren().add(strokeCircle);
+		circlePane.getChildren().add(strokeCircle);
 		
-		fillCircle = new Circle();
-//		fillCircle.setCenterX(width/2);
-		fillCircle.setCenterY(RADIUS+70);
+		Circle fillCircle = new Circle();
+		fillCircle.setCenterX(RADIUS);
+		fillCircle.setCenterY(RADIUS);
 		fillCircle.setRadius(RADIUS-30);
 		fillCircle.setFill(Color.WHITE);
-		this.getChildren().add(fillCircle);
+		circlePane.getChildren().add(fillCircle);
 		
 		weapon = new WeaponView(itemNum, 3);
 		weapon.setGray();
-		weapon.setLayoutX(110);
-		weapon.setLayoutY(70);
-		this.getChildren().add(weapon);
+		circlePane.getChildren().add(weapon);
+		StackPane.setAlignment(weapon,Pos.CENTER);
+		
+		this.getChildren().add(circlePane);
 		
 		//material
 		materialGroup = new Group();
@@ -71,13 +75,11 @@ public class SmithyBuilder extends Pane {
 		//buildBtn
 		buildBtn = new Button("合 成");
 		buildBtn.setPrefSize(100, 40);
-//		buildBtn.setLayoutX(width/2-50);
 		buildBtn.setId("build-btn");
 		this.getChildren().add(buildBtn);
 		
 		//closeBtn
 		closeBtn = new SystemButton(0);
-//		closeBtn.setLayoutX(width-25);
 		closeBtn.setLayoutY(-25);
 		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -130,8 +132,7 @@ public class SmithyBuilder extends Pane {
 		}
 		this.setPrefSize(width, 700);
 		this.setLayoutX((1200-width)/2);
-		strokeCircle.setCenterX(width/2);
-		fillCircle.setCenterX(width/2);
+		circlePane.setLayoutX(width/2 - RADIUS);
 		closeBtn.setLayoutX(width-25);
 		buildBtn.setLayoutX(width/2-50);
 	}

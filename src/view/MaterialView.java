@@ -25,7 +25,5 @@ public class MaterialView extends StackPane{
 		StackPane.setAlignment(imgV, Pos.CENTER);
 	}
 	
-	
-
 }
  

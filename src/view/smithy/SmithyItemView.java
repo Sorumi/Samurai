@@ -73,5 +73,5 @@ public class SmithyItemView extends Pane{
 	public int getItemNum(){
 		return this.itemNum;
 	}
-	
+
 }
