@@ -5,9 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import view.SystemButton;
 import view.TerritoryPanel;
+import view.TransitionPanel;
 import view.eventhandler.CampsiteHandler;
 
-public class CampsitePanel extends Pane{
+public class CampsitePanel extends TransitionPanel{
 
 	private CampsiteHandler campsiteHandler;
 	
@@ -18,6 +19,8 @@ public class CampsitePanel extends Pane{
 	private SystemButton closeBtn;
 	
 	public CampsitePanel(){
+		super();
+		
 		this.setPrefSize(1200, 800);
 		campsiteHandler = new CampsiteHandler(this);
 		
@@ -44,6 +47,7 @@ public class CampsitePanel extends Pane{
 		this.getChildren().addAll(itemsPanel, infoPanel, samuraiPanel, closeBtn);
 		
 		campsiteHandler.update();
+		this.transitionAnimation(true);
 	}
 
 	public CampsiteHandler getCampsiteHandler() {

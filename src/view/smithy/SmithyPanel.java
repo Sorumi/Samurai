@@ -7,11 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import view.SystemButton;
 import view.TerritoryPanel;
+import view.TransitionPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.SmithyHandler;
 import view.eventhandler.StateHandler;
 
-public class SmithyPanel extends Pane {
+public class SmithyPanel extends TransitionPanel {
 	
 	private SmithyHandler smithyHandler;
 
@@ -28,6 +29,8 @@ public class SmithyPanel extends Pane {
 	public SystemButton closeBtn;
 	
 	public SmithyPanel(){
+		super();
+		
 		this.setPrefSize(1200, 800);
 		
 		smithyHandler = new SmithyHandler(this);
@@ -90,6 +93,8 @@ public class SmithyPanel extends Pane {
 		
 		smithyWeaponState = new SmithyWeaponState();
 		this.getChildren().add(smithyWeaponState);
+		
+		this.transitionAnimation(true);
 
 	}
 

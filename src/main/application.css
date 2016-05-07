@@ -38,7 +38,7 @@
 #item-name{
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";
-	-fx-font-weight: 400;
+	-fx-font-weight: 600;
 	-fx-font-size: 20;
 	-fx-alignment: center-left;
 }
@@ -122,6 +122,7 @@
 }
 /* Game */
 #state-lable{
+	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";
 	-fx-font-size: 12;
 	-fx-font-weight: 100;

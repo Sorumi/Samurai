@@ -5,11 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import view.SystemButton;
 import view.TerritoryPanel;
-import view.campsite.CampsiteItemInfo;
-import view.campsite.CampsitePanel;
+import view.TransitionPanel;
 import view.eventhandler.StoreHandler;
 
-public class StorePanel extends Pane{
+public class StorePanel extends TransitionPanel{
 	private StoreHandler storeHandler;
 	
 	private StoreItemsWrapper itemsPanel;
@@ -17,6 +16,8 @@ public class StorePanel extends Pane{
 	
 	private SystemButton closeBtn;
 	public  StorePanel(){
+		super();
+		
 		this.setPrefSize(1200, 800);
 		storeHandler = new StoreHandler(this); 
 		
@@ -30,6 +31,7 @@ public class StorePanel extends Pane{
 			@Override 
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
+				transitionAnimation(false);
 				TerritoryPanel parent =  (TerritoryPanel) StorePanel.this.getParent();
 				parent.getChildren().remove(StorePanel.this);
 				parent.setBlur(false);
@@ -39,9 +41,9 @@ public class StorePanel extends Pane{
 		this.getChildren().addAll(itemsPanel, infoPanel, closeBtn); 
 		
 		storeHandler.update();
-		
+		this.transitionAnimation(true);
 	}
-	
+
 	public StoreItemsWrapper getItemsPanel(){
 		return this.itemsPanel;
 	}
