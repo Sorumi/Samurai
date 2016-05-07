@@ -50,7 +50,7 @@ public class StoreItemsWrapper extends Pane{
 	public void updateItem(ArrayList<Material> list){
 		
 		for (Material materail : list){
-			int num = materail.getType();
+			int num = materail.getType()-800;
 			if(Images.MATERIAL[num/10][num%10] != null){
 				StoreItemView item = new StoreItemView(num, materail.getNumer());
 				item.setOnMouseEntered(storeHandler.itemEnterEvent);
