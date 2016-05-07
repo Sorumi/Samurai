@@ -23,8 +23,16 @@ public class SmithyPanel extends TransitionPanel {
 	private SmithyGroup shurikenGroup;
 	private SmithyGroup bowGroup;
 	
+	public SmithyItemWrapper0 spearPanel;
+	public SmithyItemWrapper1 swordPanel;
+	public SmithyItemWrapper2 battleaxPanel;
+	public SmithyItemWrapper3 shurikenPanel;
+	public SmithyItemWrapper4 bowPanel;
+	
 	public SmithyBuilder buildPanel;
 	public SmithyWeaponState smithyWeaponState;
+	
+	
 	
 	public SystemButton closeBtn;
 	
@@ -44,23 +52,23 @@ public class SmithyPanel extends TransitionPanel {
 		bowGroup = new SmithyGroup();
 		
 		Button spearBtn = new SmithyButton(0);
-		SmithyItemWrapper0 spearPanel = new SmithyItemWrapper0(smithyHandler);
+		spearPanel = new SmithyItemWrapper0(smithyHandler);
 		spearGroup.getChildren().addAll(spearBtn, spearPanel);
 
 		Button swordBtn = new SmithyButton(1);
-		SmithyItemWrapper1 swordPanel = new SmithyItemWrapper1(smithyHandler);
+		swordPanel = new SmithyItemWrapper1(smithyHandler);
 		swordGroup.getChildren().addAll(swordBtn, swordPanel);
 		
 		Button battleaxBtn = new SmithyButton(2);
-		SmithyItemWrapper2 battleaxPanel = new SmithyItemWrapper2(smithyHandler);
+		battleaxPanel = new SmithyItemWrapper2(smithyHandler);
 		battleaxGroup.getChildren().addAll(battleaxBtn, battleaxPanel);
 		
 		Button shurikenBtn = new SmithyButton(3);
-		SmithyItemWrapper3 shurikenPanel = new SmithyItemWrapper3(smithyHandler);
+		shurikenPanel = new SmithyItemWrapper3(smithyHandler);
 		shurikenGroup.getChildren().addAll(shurikenBtn, shurikenPanel);
 		
 		Button bowBtn = new SmithyButton(4);
-		SmithyItemWrapper4 bowPanel = new SmithyItemWrapper4(smithyHandler);
+		bowPanel = new SmithyItemWrapper4(smithyHandler);
 		bowGroup.getChildren().addAll(bowBtn, bowPanel);
 		
 		spearBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
@@ -94,6 +102,7 @@ public class SmithyPanel extends TransitionPanel {
 		smithyWeaponState = new SmithyWeaponState();
 		this.getChildren().add(smithyWeaponState);
 		
+		smithyHandler.update();
 		this.transitionAnimation(true);
 
 	}

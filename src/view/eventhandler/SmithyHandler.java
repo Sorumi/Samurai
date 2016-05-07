@@ -23,6 +23,17 @@ public class SmithyHandler {
 		this.smithyController = new SmithyController();
 		this.smithyController.setStoryModel(StoryModel.getStoryModel());
 	}
+	
+	public void update(){
+		for(Weapon weapon:smithyController.getWeapons()){
+			System.out.print(weapon.getType()  + " ");
+		}
+		smithyPanel.spearPanel.updateItem(smithyController.getWeapons());
+		smithyPanel.swordPanel.updateItem(smithyController.getWeapons());
+		smithyPanel.battleaxPanel.updateItem(smithyController.getWeapons());
+		smithyPanel.shurikenPanel.updateItem(smithyController.getWeapons());
+		smithyPanel.bowPanel.updateItem(smithyController.getWeapons());
+	}
 
 	public EventHandler<MouseEvent> wrapperToFrontEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
