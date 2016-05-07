@@ -1,9 +1,11 @@
 package view.smithy;
 
+import java.util.ArrayList;
+
+import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import model.po.Weapon;
 import view.GameColor;
 import view.eventhandler.SmithyHandler;
 
@@ -15,8 +17,12 @@ public abstract class SmithyItemWrapper extends Pane{
 	protected Group lockGroup;
 	protected Group buildGroup;
 
+	protected ObservableList<SmithyItemView> list;
+	
 	public SmithyItemWrapper(int num, SmithyHandler smithyHandler){
+		this.num = num;
 		this.smithyHandler = smithyHandler;
+		
 		this.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(num));
 		
 		this.setPrefSize(1000, 700);
@@ -29,6 +35,7 @@ public abstract class SmithyItemWrapper extends Pane{
 		lockGroup.setOpacity(0.5);
 		
 		this.getChildren().addAll(buildGroup, lockGroup);
+
 	}
 	
 	protected void initWeaponView(){
@@ -58,6 +65,7 @@ public abstract class SmithyItemWrapper extends Pane{
 		for(int i=0; i<buildGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
 			tmpItem.weaponGroup.setOnMouseClicked(smithyHandler.itemClickEvent);
+			tmpItem.weapon.setOpacity(1);
 		}
 	}
 	
@@ -68,4 +76,19 @@ public abstract class SmithyItemWrapper extends Pane{
 		}
 	}
 	
+	public void updateItem(ArrayList<Weapon> weapons) {
+		// TODO Auto-generated method stub
+		for (Weapon weapon : weapons){
+			if(weapon.getType()/100 == num){
+				for (SmithyItemView view : list){
+					if (view.itemNum == weapon.getType()){
+						buildGroup.getChildren().add(view);
+						lockGroup.getChildren().remove(view);
+					}
+				}
+			}
+		}
+		initWeaponView();
+	}
+
 }
