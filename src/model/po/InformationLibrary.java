@@ -129,14 +129,12 @@ public class InformationLibrary implements Serializable {
 	}
 
 	public Information getInformationOfTag(int tag) {
-		System.out.println(tag);
 		for (Information item : informationLibraries) {
 			if (item.getTag() == tag) {
 				System.out.println(tag);
 				return item;
 			}
 		}
-		System.out.println("Your tag is Wrong!");
 		return null;
 	}
 }

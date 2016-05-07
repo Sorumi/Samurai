@@ -62,9 +62,10 @@ public class SmithyHandler {
 	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
 	    	  smithyPanel.smithyWeaponState.setAppear(true);
 
-//			  Weapon weapon = smithyController.getWeaponOfTag(item.getItemNum());
-//			  Information information = smithyController.getInformationOfTag(item.getItemNum());
+			  Weapon weapon = smithyController.getWeaponOfTag(item.getItemNum());
+			  Information information = smithyController.getInformationOfTag(item.getItemNum());
 
+			  smithyPanel.smithyWeaponState.setWeaponInfo(weapon.getType(), weapon.getNumber(), information.getName(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(), weapon.getCriticalRate(), weapon.getArmorPenetration());
 
 		  }
 	};
@@ -73,7 +74,7 @@ public class SmithyHandler {
 	      public void handle(MouseEvent event) {
 	    	  Group weaponGroup = (Group) event.getSource();
 	    	  SmithyItemView item = (SmithyItemView) weaponGroup.getParent();
-	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
+//	    	  smithyPanel.smithyWeaponState.setCurrentItem(item);
 	    	  smithyPanel.smithyWeaponState.setAppear(false); 	    	  
 	      }
 	};
@@ -81,8 +82,6 @@ public class SmithyHandler {
 	//合成按钮
 	public EventHandler<MouseEvent> buildBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  //合成武器！
-	    	  //TODO
 	    	  smithyPanel.buildPanel.build();
 			  smithyController.createWeapon(smithyPanel.buildPanel.getItemNum());
 			  update();
