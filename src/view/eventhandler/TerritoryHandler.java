@@ -15,9 +15,6 @@ public class TerritoryHandler {
 	
 	private TerritoryPanel territoryPanel;
 	private TerritoryController territoryController;
-
-//	DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.WHITE, 0, 1, 0, 0);
-//	ColorAdjust light = new ColorAdjust();
 	  
 	public TerritoryHandler(TerritoryPanel territoryPanel){
 		this.territoryPanel = territoryPanel;
@@ -27,6 +24,12 @@ public class TerritoryHandler {
 
 		//在这里可以获取武器
 		this.territoryController.getWeaponOfSamurai(1);
+	}
+	
+	public void updateSamurai(){
+		territoryPanel.samurai1.setWeapon(territoryController.getWeaponOfSamurai(1).getType());
+		territoryPanel.samurai2.setWeapon(territoryController.getWeaponOfSamurai(2).getType());
+		territoryPanel.samurai3.setWeapon(territoryController.getWeaponOfSamurai(3).getType());
 	}
 	
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  

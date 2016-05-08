@@ -51,9 +51,9 @@ public class TerritoryPanel extends Pane {
 	public StorePanel storePanel;
 	public MapPanel mapPanel;
 	
-	private SamuraiView samurai1;
-	private SamuraiView samurai2;
-	private SamuraiView samurai3;
+	public SamuraiView samurai1;
+	public SamuraiView samurai2;
+	public SamuraiView samurai3;
 	
 	private GaussianBlur blur;
 	
@@ -149,14 +149,16 @@ public class TerritoryPanel extends Pane {
 		samurai1.setLayoutY(450);
 		
 		samurai2 = new SamuraiView(2, 2);
-		samurai2.setLayoutX(660);
+		samurai2.setLayoutX(640);
 		samurai2.setLayoutY(450);
 		
 		samurai3 = new SamuraiView(3, 2);
-		samurai3.setLayoutX(520);
+		samurai3.setLayoutX(480);
 		samurai3.setLayoutY(450);
 		
 		territoryGroup.getChildren().addAll(samurai1, samurai2, samurai3);
+		
+		territoryHandler.updateSamurai();
 		
 		//blur
 		blur = new GaussianBlur(0);
@@ -221,5 +223,9 @@ public class TerritoryPanel extends Pane {
 			rain.restartRain();
 		}
 
+	}
+	
+	public TerritoryHandler getTerritoryHandler(){
+		return this.territoryHandler;
 	}
 }
