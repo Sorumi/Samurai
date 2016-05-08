@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import model.StoryModel;
 import view.background.RainGroup;
 import view.campsite.CampsitePanel;
 import view.eventhandler.TerritoryHandler;
@@ -94,7 +95,7 @@ public class TerritoryPanel extends Pane {
 		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				territoryHandler.getTerritoryController().save();
+				territoryHandler.getTerritoryController().save(StoryModel.getFileNum());
 			}
 		});
 		territoryGroup.getChildren().add(saveBtn);

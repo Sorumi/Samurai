@@ -62,6 +62,12 @@ public class ArchiveView extends Pane{
 		this.btnAbled(1);
 		
 		this.setVisible(true);
+
+		String time;
+		if(!((time = this.archiveHandler.getArchiveController().getTime(num)).equals(""))){
+			setTime(time);
+		}
+
 	}
 	
 	public void btnPressed(int num) {
@@ -83,6 +89,8 @@ public class ArchiveView extends Pane{
 		}
 	}
 	
-	
+	public void setTime(String time){
+		timeLabel.setText("存储时间 " + time);
+	}
 
 }

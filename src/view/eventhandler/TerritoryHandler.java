@@ -19,7 +19,8 @@ public class TerritoryHandler {
 	  
 	public TerritoryHandler(TerritoryPanel territoryPanel){
 		this.territoryPanel = territoryPanel;
-		this.territoryController = new TerritoryController(); 
+//		this.territoryController = new TerritoryController();
+		this.territoryController = TerritoryController.territoryController();
 
 		this.territoryController.setStoryModel(StoryModel.getStoryModel());
 

@@ -1,28 +1,37 @@
 package view.eventhandler;
 
+import controller.ArchiveController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import model.StoryModel;
 import view.ArchiveView;
 
 public class ArchiveHandler {
 
 	private ArchiveView archiveView;
+	private ArchiveController archiveController;
 	private int num;
 	
 	public ArchiveHandler(ArchiveView archiveView, int num){
 		this.archiveView = archiveView;
 		this.num = num;
+		this.archiveController = new ArchiveController();
+		this.archiveController.setStoryModel(StoryModel.getStoryModel());
+
 	}
 	
 	public EventHandler<MouseEvent> loadBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  //读取存档 num
+			  //读取存档 num
+			  archiveController.load(num);
 	      }
 	};
 	
 	public EventHandler<MouseEvent> saveBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  //保存存档 num
+			  //保存存档 num
+			  archiveController.save(num);
+			  archiveView.setTime(archiveController.getStoryModel().getTime().toString());
 	      }
 	};
 	
@@ -50,4 +59,7 @@ public class ArchiveHandler {
 	      }
 	};
 
+	public ArchiveController getArchiveController() {
+		return archiveController;
+	}
 }
