@@ -105,6 +105,7 @@ public class SmithyBuilder extends Pane {
 
 
 	public void setMaterial(int materialQuantity, int[] materialNum, String[] materialName, int[]currentQuantity, int[] materialNumber) {
+		materialGroup.getChildren().remove(0, materialGroup.getChildren().size());
 		int x = 130;
 		if (materialQuantity<=3){
 			x = 170;
@@ -136,9 +137,6 @@ public class SmithyBuilder extends Pane {
 		closeBtn.setLayoutX(width-25);
 		buildBtn.setLayoutX(width/2-50);
 	}
-
-	//TODO
-	//传数据时调用此方法
 	
 	public int getItemNum(){
 		return this.itemNum;

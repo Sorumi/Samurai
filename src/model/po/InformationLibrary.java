@@ -48,8 +48,8 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(233, "利刃手斧","锋利的战斧，短柄武器中的翘楚，以高机动性击中敌人要害。流血，轻而易举。"));
 		informationLibraries.add(new Information(214, "试炼巨斧", "防守军务要地的禁军所持的重型巨斧，没有胆量的人甚至看到巨大的斧身便会腿软跪下"));
 		informationLibraries.add(new Information(234, "炽炎战斧", "浸润过高温火山岩浆洗礼的手斧，杀伐之时，斧身赤红如血，散发出的高热让被斩于马下的敌人仿佛坠入地狱。"));
-		informationLibraries.add(new Information(215, "审判" ,"传说中击溃来敌的迷之巨人曾经使用过的巨斧，斧身一分为二。\n “我们要审判的不只是面前的敌人，还有我们自己的灵魂。” \n                                       ——巨人的石灵碑言"));
-		informationLibraries.add(new Information(225, "雷神之锤", "掌管雷电的天神所使用的巨锤，狂暴的雷电之力使得锤身常伴令人心生惧意的金色电弧。据说只要雷神一伸手，雷神之锤就能飞回他的手中。\n“只有雷神才能举得起来，不信你试试？”\n                                          ——某个雷神"));
+		informationLibraries.add(new Information(215, "审判" ,"传说中击溃来敌的迷之巨人曾经使用过的巨斧，斧身一分为二。\n “我们要审判的不只是面前的敌人，还有我们自己的灵魂。” \n                                        ——巨人的石灵碑言"));
+		informationLibraries.add(new Information(225, "雷神之锤", "掌管雷电的天神所使用的巨锤，狂暴的雷电之力使得锤身常伴令人心生惧意的金色电弧。据说只要雷神一伸手，雷神之锤就能飞回他的手中。\n“只有雷神才能举得起来，不信你试试？”\n                                                ——某个雷神"));
 		informationLibraries.add(new Information(235, "鬼影","曾经有一名顶尖盗贼头目从阴暗的地穴中冒死从活死人的手中抢来这把颜色诡异却令人着迷的暗紫色短斧。自此，盗贼头目无往不利，无数次帮派间的争斗都取下敌将首级。直到一天夜里，盗贼麾下的谋士进入他休息的房间内，才终于发现，斧子静静的躺在头目的床上，而眼神涣散的头目早已被抽干灵魂随意地丢在床边。后来再也没有人见过这个谋士，灵魂干涸的“头目”还是继续“带”着他的鬼兵出没于荒山野岭……"));
 		informationLibraries.add(new Information(216, "起源","那一斧，分开天与地，绿色的幽光照亮了天与地之间所有的事物，此后，便有了生命与轮回。"));
 		informationLibraries.add(new Information(226, "矢志不渝","传说中举起这把武器的人必须信念坚定，摈弃私心，一切行动都必须化身为秩序与正义的代言人，一旦有恶行，这把武器就会抛弃使用者。"));
