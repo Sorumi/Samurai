@@ -25,7 +25,7 @@ public class RainGroup extends Group {
 	    
 	private final Random random = new Random();
 	
-	public void startRain(int count){
+	private void rain(int count){
 		this.COUNT = count;
 		
 		lines = new Line[COUNT];
@@ -59,14 +59,40 @@ public class RainGroup extends Group {
         
         timer.start();
 	}
-	
-	public void rain(){
+	//新的下雨
+	public void startRain(int count){
+		if(timer == null){
+			this.rain(count);
+		}
+	}
+	//移除下雨效果
+	public void removeRain(){
+		if(timer != null){
+			timer.stop();
+			timer = null;
+			this.getChildren().removeAll(lines);
+		}
+	}
+	//暂停下雨 保留了下雨效果
+	public void stopRain(){
+		if(timer != null){
+			timer.stop();
+		}
+	}
+	//继续下雨
+	public void restartRain(){
+		if(timer != null){
+			timer.start();
+		}
+	}
+	//切换下雨
+	public void toggleRain(int count){
 		if(timer != null){
 			timer.stop();
 			timer = null;
 			this.getChildren().removeAll(lines);
 		}else{
-			this.startRain(700);
+			this.rain(count);
 		}
 	}
 }

@@ -87,7 +87,7 @@ public class TerritoryPanel extends Pane {
 		
 		//save btn
 		saveBtn = new SystemButton(1);
-		saveBtn.setLayoutX(25);
+		saveBtn.setLayoutX(1055);
 		saveBtn.setLayoutY(25);
 		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
@@ -167,10 +167,11 @@ public class TerritoryPanel extends Pane {
 
 		
 		Button rainBtn = new Button("Rain");
+		rainBtn.setLayoutY(100);
 		rainBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				rain.rain();
+				rain.toggleRain(800);
 			}
 		});
 		territoryGroup.getChildren().addAll(rain, rainBtn);
@@ -214,8 +215,10 @@ public class TerritoryPanel extends Pane {
 	public void setBlur(boolean isBlur){
 		if(isBlur){
 			this.blur.setRadius(7);
+			rain.stopRain();
 		}else{
 			this.blur.setRadius(0);
+			rain.restartRain();
 		}
 
 	}
