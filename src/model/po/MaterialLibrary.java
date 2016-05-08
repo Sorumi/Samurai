@@ -17,12 +17,26 @@ public class MaterialLibrary implements Serializable {
 	private int[] crystal = new int[4];
 
 	public MaterialLibrary() {
-		cloth[0] = 5;
-		cloth[1] = 5;
-		wood[0] = 5;
-		wood[1] = 5;
-		stone[0] = 3;
-		stone[1] = 3;
+		cloth[0] = 100;
+		cloth[1] = 100;
+		wood[0] = 100;
+		wood[1] = 100;
+		stone[0] = 100;
+		stone[1] = 100;
+		cloth[2] = 100;
+		cloth[3] = 100;
+		wood[2] = 100;
+		wood[3] = 100;
+		stone[2] = 100;
+		stone[3] = 100;
+		metal[0]=100;
+		metal[1]=100;
+		metal[2]=100;
+		metal[3]=100;
+		crystal[0]=100;
+		crystal[1]=100;
+		crystal[2]=100;
+		crystal[3]=100;
 	}
 
 	// 传入材料的种类、等级

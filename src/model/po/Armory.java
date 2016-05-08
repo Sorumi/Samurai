@@ -89,19 +89,19 @@ public class Armory implements Serializable {
 		spearList.add(
 				new Weapon(0, 35, 79, 85, 28, 17, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		spearList.add(
 				new Weapon(0, 16, 141, 150, 12, 90, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		spearList.add(
 				new Weapon(0, 26, 164, 172, 12, 50, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		spearList.add(
@@ -168,19 +168,19 @@ public class Armory implements Serializable {
 		swordList.add(
 				new Weapon(1, 135, 68, 75, 28, 15, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		swordList.add(
 				new Weapon(1, 126, 120, 134, 10, 80, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		swordList.add(
 				new Weapon(1, 116, 148, 159, 10, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		swordList.add(
@@ -230,19 +230,19 @@ public class Armory implements Serializable {
 		axeList.add(
 				new Weapon(2, 235, 67, 73, 30, 15, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		axeList.add(
 				new Weapon(2, 216, 150, 161, 10, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		axeList.add(
 				new Weapon(2, 226, 125, 137, 10, 80, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		axeList.add(
@@ -292,13 +292,13 @@ public class Armory implements Serializable {
 		shurikenList.add(
 				new Weapon(3, 325, 82, 90, 30, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		shurikenList.add(
 				new Weapon(3, 316, 145, 151, 50, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		shurikenList.add(
@@ -350,13 +350,13 @@ public class Armory implements Serializable {
 		bowList.add(
 				new Weapon(4, 425, 73, 80, 30, 45, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		bowList.add(
 				new Weapon(4, 416, 145, 155, 12, 100, materialTag, materialItem, materialNumber, false, nextWeapon, 0));
 		materialTag = new int[] { 1, 2, 3, 4 };
-		materialItem = new int[] { 4, 4, 4, 3 };
+		materialItem = new int[] { 3, 3, 3, 2 };
 		materialNumber = new int[] { 1, 1, 1, 1 };
 		nextWeapon = new int[] {};
 		bowList.add(
