@@ -1,5 +1,6 @@
 package view;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -208,6 +209,24 @@ public class MapPanel extends Pane {
 			if (!flip){
 				this.setScaleX(-1);
 			}
+		}
+		
+		public void setAppear(){
+			this.setVisible(true);
+			if (this.opacityProperty().intValue() == 0) {
+				FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
+				ft.setFromValue(0);
+				ft.setToValue(1);
+				ft.play();
+			}
+		}
+	}
+	
+	//更新解锁的关卡
+	public void updateMap(boolean[] isUnlock){
+		for (int i=0; i<=5; i++){
+			BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(i);
+			bridge.setVisible(isUnlock[i]);
 		}
 	}
 }

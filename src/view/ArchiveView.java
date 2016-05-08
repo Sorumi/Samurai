@@ -69,7 +69,7 @@ public class ArchiveView extends Pane{
 		}
 
 	}
-	
+
 	public void btnPressed(int num) {
 		if(num == 0){
 			loadBtn.setLayoutY(119);
@@ -88,7 +88,7 @@ public class ArchiveView extends Pane{
 			saveBtn.setStyle("-fx-effect: dropshadow(gaussian, #DDB4B0, 0, 0, 0, 8);");
 		}
 	}
-	
+
 	public void setTime(String time){
 		timeLabel.setText("存储时间 " + time);
 	}
