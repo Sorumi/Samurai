@@ -73,8 +73,8 @@
 }
 
 #smithy-btn{
-	-fx-background-radius: 10 0 0 10;
-	-fx-border-radius: 10 0 0 10;
+	-fx-background-radius: 50 0 0 50;
+	-fx-border-radius: 50 0 0 50;
 }
 
 #smithy-builder{

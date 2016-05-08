@@ -21,10 +21,13 @@ public class StoryModel implements Serializable{
     private MaterialLibrary materialLibrary;
     private InformationLibrary informationLibrary;
 
+    private static int fileNum;
+
     //用来测试有没有序列化成功 不用管它
     private Date time;
 
     private StoryModel(){
+
         gameModel = new GameModel();
 
         this.armory = new Armory();
@@ -103,38 +106,48 @@ public class StoryModel implements Serializable{
     }
 
     //用序列化保存storyModel的对象
-    public void saveStoryModel(){
+    public void saveStoryModel(int num){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("Samurai_StoryModel.ser");
+
+            this.time = new Date();
+
+            String fileName = "Samurai_StoryModel_" + num + ".ser";
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this);
 
-            this.time = new Date();
             System.out.println(this.time.toString());
 
             objectOutputStream.close();
 
             System.out.println("save successfully");
         }catch (Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("save failed");
         }
     }
 
     //用序列化读取整个StoryModel
-    public static StoryModel loadStoryModel(){
+    public static StoryModel loadStoryModel(int num){
         try{
-            FileInputStream fileInputStream = new FileInputStream("Samurai_StoryModel.ser");
+            fileNum = num;
+
+            String fileName = "Samurai_StoryModel_" + num + ".ser";
+            FileInputStream fileInputStream = new FileInputStream(fileName);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object thisObject = objectInputStream.readObject();
             objectInputStream.close();
 
             StoryModel s = (StoryModel) thisObject;
             System.out.println(s.getTime());
-            System.out.println("load successfully");
+            System.out.println("load successfully : " + StoryModel.getFileNum());
+
+//            setStoryModel(s);
 
             return (StoryModel) thisObject;
         }catch (Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("load failed");
         }
         return new StoryModel();
     }
@@ -142,9 +155,40 @@ public class StoryModel implements Serializable{
     //单例模式用于取唯一的storyModel
     public static StoryModel getStoryModel(){
         if(storyModel == null){
-            storyModel = StoryModel.loadStoryModel();
+            storyModel = StoryModel.loadStoryModel(0);
         }
         return storyModel;
+    }
+
+    public static String getTimeOfNum(int num){
+        try{
+            String fileName = "Samurai_StoryModel_" + num + ".ser";
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            Object thisObject = objectInputStream.readObject();
+            objectInputStream.close();
+
+            StoryModel s = (StoryModel) thisObject;
+
+            return s.getTime().toString();
+        }catch (Exception e){
+
+        }
+        return "";
+    }
+
+//    public static void setStoryModel(StoryModel sModel){
+//        storyModel.armory = sModel.armory;
+//        storyModel.materialLibrary = sModel.materialLibrary;
+//        storyModel.informationLibrary = sModel.informationLibrary;
+//        storyModel.samuraiPO_1 = sModel.samuraiPO_1;
+//        storyModel.samuraiPO_2 = sModel.samuraiPO_2;
+//        storyModel.samuraiPO_3 = sModel.samuraiPO_3;
+//        storyModel.time = sModel.time;
+//    }
+
+    public static int getFileNum() {
+        return fileNum;
     }
 
 }

@@ -182,6 +182,13 @@ public class Images {
 	public static Image[][] SAMURAI = {null, SAMURAI_1, SAMURAI_2, SAMURAI_3, SAMURAI_4, SAMURAI_5, SAMURAI_6};
 
 	//weapon
+	//icon
+	public static Image WEAPON_ICON_0 = new Image("/./images/weapon_icon_0_spear.png",true);
+	public static Image WEAPON_ICON_1 = new Image("/./images/weapon_icon_1_sword.png",true);
+	public static Image WEAPON_ICON_2 = new Image("/./images/weapon_icon_2_battleax.png",true);
+	public static Image WEAPON_ICON_3 = new Image("/./images/weapon_icon_3_shuriken.png",true);
+	public static Image WEAPON_ICON_4 = new Image("/./images/weapon_icon_4_bow.png",true);
+	public static Image[] WEAPON_ICON = {WEAPON_ICON_0, WEAPON_ICON_1, WEAPON_ICON_2, WEAPON_ICON_3, WEAPON_ICON_4};
 	
 	//spear
 	public static Image WEAPON_000 = new Image("/./images/weapon/weapon_000_spear.png",true);

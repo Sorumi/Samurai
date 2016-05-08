@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import model.StoryModel;
 import view.SystemButton;
 import view.TerritoryPanel;
 import view.TransitionPanel;
@@ -89,9 +90,7 @@ public class SmithyPanel extends TransitionPanel {
 				parent.getChildren().remove(SmithyPanel.this);
 				parent.setBlur(false);
 				//退出时候保存StoryModel
-				smithyHandler.getSmithyController().save();
-				
-				
+				smithyHandler.getSmithyController().save(StoryModel.getFileNum());
 			}
 		});
 		

@@ -117,6 +117,4 @@ public class SmithyHandler {
 	public SmithyController getSmithyController(){
 		return this.smithyController;
 	}
-
-	//缺少smithy 调用smithyContoller 的 createWeapon
 }
