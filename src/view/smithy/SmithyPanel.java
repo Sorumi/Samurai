@@ -90,8 +90,6 @@ public class SmithyPanel extends TransitionPanel {
 				parent.setBlur(false);
 				//退出时候保存StoryModel
 				smithyHandler.getSmithyController().save();
-				
-				
 			}
 		});
 		

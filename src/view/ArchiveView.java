@@ -64,6 +64,9 @@ public class ArchiveView extends Pane{
 		this.setVisible(true);
 	}
 	
+	public void updateInfo(String time){
+		timeLabel.setText(time);
+	}
 	public void btnPressed(int num) {
 		if(num == 0){
 			loadBtn.setLayoutY(119);
@@ -83,6 +86,4 @@ public class ArchiveView extends Pane{
 		}
 	}
 	
-	
-
 }

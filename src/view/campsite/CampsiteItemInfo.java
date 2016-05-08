@@ -36,7 +36,7 @@ public class CampsiteItemInfo extends Pane {
 		itemName.setId("item-name");
 		this.getChildren().add(itemName);
 		
-		itemDescription = new Label("这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述");
+		itemDescription = new Label("");
 		itemDescription.setMaxWidth(400);
 		itemDescription.setId("item-description");
 		
