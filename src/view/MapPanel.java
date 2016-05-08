@@ -25,7 +25,7 @@ public class MapPanel extends Pane {
 	
 	private MapHandler mapHandler;
 	
-	private SystemButton closeBtn;
+//	private SystemButton closeBtn;
 	
 	private Group landGroup;
 	private LandButton home;
@@ -54,6 +54,7 @@ public class MapPanel extends Pane {
 		home = new LandButton(0);
 		home.setLayoutX(6);
 		home.setLayoutY(93);
+		home.setOnMouseClicked(mapHandler.homeEvent);
 		
 		level1 = new LandButton(1);
 		level1.setLayoutX(258);
@@ -141,18 +142,18 @@ public class MapPanel extends Pane {
 		this.getChildren().add(cloudGroup);
 		
 		//closeBtn
-		closeBtn = new SystemButton(0);
-		closeBtn.setLayoutX(1125);
-		closeBtn.setLayoutY(25);
-		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				TerritoryPanel parent =  (TerritoryPanel) MapPanel.this.getParent();
-				parent.getChildren().remove(MapPanel.this);
-			}
-		});
-		this.getChildren().add(closeBtn);
+//		closeBtn = new SystemButton(0);
+//		closeBtn.setLayoutX(1125);
+//		closeBtn.setLayoutY(25);
+//		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// TODO Auto-generated method stub
+//				TerritoryPanel parent =  (TerritoryPanel) MapPanel.this.getParent();
+//				parent.getChildren().remove(MapPanel.this);
+//			}
+//		});
+//		this.getChildren().add(closeBtn);
 	}
 	
 	//内部类

@@ -25,6 +25,8 @@ public class CampsiteHandler {
 
 	public void update(){
 		campsitePanel.getItemsPanel().updateItem(campsiteController.getWeapons());
+		campsitePanel.samuraiPanel.setSamurai(1);
+		campsitePanel.samuraiPanel.samurai.setWeapon(campsiteController.getWeaponOfSamurai(1).getType());
 	}
 	
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {  
@@ -59,6 +61,7 @@ public class CampsiteHandler {
 	    	  SamuraiButton samurai = (SamuraiButton) event.getSource();
 	    	  //换装备 显示名字描述属性
 	    	  campsitePanel.samuraiPanel.setSamurai(samurai.num);
+	    	  campsitePanel.samuraiPanel.samurai.setWeapon(campsiteController.getWeaponOfSamurai(samurai.num).getType());
 	      }
 	};
 	

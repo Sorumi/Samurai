@@ -13,7 +13,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 
 	private CampsiteHandler campsiteHandler;
 	
-	private SamuraiView samurai;
+	public SamuraiView samurai;
 	
 	private Group samuraiBtns;
 	private SamuraiButton samuraiBtn1;
@@ -58,8 +58,6 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setOnMouseClicked(campsiteHandler.setItemClickEvent);
 		this.getChildren().add(setItemBtn);
 		
-		//TODO default
-		this.setSamurai(1);
 		this.getChildren().add(samurai);
 	}
 	
