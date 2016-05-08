@@ -52,6 +52,9 @@ public class Images {
 	public static final Image PLAYER_LOGO_B = new Image("/./images/PLAYER_LOGO_B.png");
 	public static final Image[] PLAYER_LOGO = {PLAYER_LOGO_A, PLAYER_LOGO_B};
 	
+	//resultPanel
+	public static Image A_WIN = new Image("/./images/player_logo_A_big.png",true); 
+	
 	//arrow
 	public static final Image ARROW = new Image("/./images/arrow.png");
 	
@@ -82,8 +85,36 @@ public class Images {
 	public static final Image TERRITORY_STORE = new Image("/./images/territory_store.png");
 	public static final Image TERRITORY_FLAG = new Image("/./images/territory_flag.png");
 	
+	//map
+	public static final Image MAP_BG = new Image("/./images/map/map_bg.png");
+	public static final Image MAP_HOME = new Image("/./images/map/map_home.png");
+	public static final Image MAP_LEVEL1 = new Image("/./images/map/map_level1.png");
+	public static final Image MAP_LEVEL2 = new Image("/./images/map/map_level2.png");
+	public static final Image MAP_LEVEL3 = new Image("/./images/map/map_level3.png");
+	public static final Image MAP_LEVEL4 = new Image("/./images/map/map_level4.png");
+	public static final Image MAP_LEVEL5 = new Image("/./images/map/map_level5.png");
+	public static final Image[] MAP_LAND = {MAP_HOME, MAP_LEVEL1, MAP_LEVEL2, MAP_LEVEL3, MAP_LEVEL4, MAP_LEVEL5};
+	//bridge
+	public static final Image MAP_BRIDGE = new Image("/./images/map/map_bridge.png");
+	//fog
+	public static final Image MAP_FOG2_0 = new Image("/./images/map/map_fog2_0.png");
+	public static final Image MAP_FOG2_1 = new Image("/./images/map/map_fog2_1.png");
+	public static final Image MAP_FOG3_0 = new Image("/./images/map/map_fog3_0.png");
+	public static final Image MAP_FOG3_1 = new Image("/./images/map/map_fog3_1.png");
+	public static final Image MAP_FOG4_0 = new Image("/./images/map/map_fog4_0.png");
+	public static final Image MAP_FOG4_1 = new Image("/./images/map/map_fog4_1.png");
+	public static final Image MAP_FOG4_2 = new Image("/./images/map/map_fog4_2.png");
+	public static final Image MAP_FOG5_0 = new Image("/./images/map/map_fog5_0.png");
+	public static final Image MAP_FOG5_1 = new Image("/./images/map/map_fog5_1.png");
+	//cloud
+	public static final Image MAP_CLOUD_0 = new Image("/./images/map/map_cloud_0.png");
+	public static final Image MAP_CLOUD_1 = new Image("/./images/map/map_cloud_1.png");
+	public static final Image MAP_CLOUD_2 = new Image("/./images/map/map_cloud_2.png");
+	public static final Image MAP_CLOUD_3 = new Image("/./images/map/map_cloud_3.png");
+	public static final Image MAP_CLOUD_4 = new Image("/./images/map/map_cloud_4.png");
+	public static final Image[] MAP_CLOUD = {MAP_CLOUD_0, MAP_CLOUD_1, MAP_CLOUD_2, MAP_CLOUD_3, MAP_CLOUD_4};
+	
 	//samurai
-	//add eye
 	public static Image SAMURAI_0042 = new Image("/./images/samurai/samurai_004_eyeleft.png",true);
 	public static Image SAMURAI_0043 = new Image("/./images/samurai/samurai_004_eyeright.png",true);
 	public static Image[] SAMURAI_0 = {SAMURAI_0043, SAMURAI_0043};
@@ -304,8 +335,5 @@ public class Images {
 	public static Image[] MATERIAL_4 = {MATERIAL_40, MATERIAL_41, MATERIAL_42, MATERIAL_43};
 	
 	public static Image[][] MATERIAL = {MATERIAL_0, MATERIAL_1, MATERIAL_2, MATERIAL_3, MATERIAL_4};
-
-	//resultPanel
-	public static Image A_WIN = new Image("/./images/player_logo_A_big.png",true); 
  
 }

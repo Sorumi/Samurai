@@ -39,14 +39,12 @@ public class SmithyHandler {
 		int[] currentQuantity = new int[weapon.getMaterialQuantity()];
 
 		for (int i=0; i<weapon.getMaterialQuantity(); i++){
-
 			materialNum[i] = weapon.getMaterialTag()[i] * 10 + weapon.getMaterialItem()[i];
 			materialName[i] = smithyController.getInformationOfTag(materialNum[i]+800).getName();
 			currentQuantity[i] = smithyController.getNumOfMaterialOfTag(materialNum[i]+800);
-
 		}
+		
 		smithyPanel.buildPanel.setMaterial(weapon.getMaterialQuantity(), materialNum, materialName, currentQuantity, weapon.getMaterialNumber());
-	    
 	}
 
 	public EventHandler<MouseEvent> wrapperToFrontEvent = new EventHandler<MouseEvent>() {  
@@ -67,7 +65,7 @@ public class SmithyHandler {
 	    	  
 	    	  //武器需要的材料
 	    	  updateBuilder(item.getItemNum());
-	    	  }
+	      }
 	};
 	
 	//显示状态界面
@@ -82,7 +80,6 @@ public class SmithyHandler {
 			  Information information = smithyController.getInformationOfTag(item.getItemNum());
 
 			  smithyPanel.smithyWeaponState.setWeaponInfo(weapon.getType(), weapon.getNumber(), information.getName(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(), weapon.getCriticalRate(), weapon.getArmorPenetration());
-
 		  }
 	};
 	
