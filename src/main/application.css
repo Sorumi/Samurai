@@ -120,6 +120,44 @@
 	-fx-font-size: 14;
 	-fx-alignment: center;
 }
+/*Archive */
+#Aname-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 18;
+	-fx-alignment: center-left;
+}
+#Atime-label{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 100;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+}	
+
+#Aload-btn{
+	-fx-background-color: #dddddd;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #ffffff; 
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	
+}
+#Asave-btn{ 
+	-fx-background-color: #dddddd;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	
+}
 /* Game */
 #state-lable{
 	-fx-text-fill: #9b9b9b;

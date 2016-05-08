@@ -50,6 +50,7 @@ public class TerritoryPanel extends Pane {
 	public SmithyPanel smithyPanel;
 	public StorePanel storePanel;
 	public MapPanel mapPanel;
+	public ArchivePanel archivePanel;
 	
 	public SamuraiView samurai1;
 	public SamuraiView samurai2;
@@ -89,6 +90,7 @@ public class TerritoryPanel extends Pane {
 		saveBtn = new SystemButton(1);
 		saveBtn.setLayoutX(1055);
 		saveBtn.setLayoutY(25);
+		saveBtn.setOnMouseClicked(territoryHandler.archiveEvent);
 		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
