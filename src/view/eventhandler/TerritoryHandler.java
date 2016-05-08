@@ -24,6 +24,9 @@ public class TerritoryHandler {
 		this.territoryController = new TerritoryController(); 
 
 		this.territoryController.setStoryModel(StoryModel.getStoryModel());
+
+		//在这里可以获取武器
+		this.territoryController.getWeaponOfSamurai(1);
 	}
 	
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  

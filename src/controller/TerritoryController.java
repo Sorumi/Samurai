@@ -1,6 +1,7 @@
 package controller;
 
 import model.StoryModel;
+import model.po.Weapon;
 
 /**
  * Created by Kray on 16/5/5.
@@ -17,6 +18,10 @@ public class TerritoryController{
 
     public void save(){
         this.storyModel.saveStoryModel();
+    }
+
+    public Weapon getWeaponOfSamurai(int i){
+        return this.storyModel.getSamuraiPO(i).getWeapon();
     }
 
 }

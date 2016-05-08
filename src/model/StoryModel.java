@@ -77,6 +77,19 @@ public class StoryModel implements Serializable{
 
     }
 
+    public SamuraiPO getSamuraiPO(int i) {
+        switch (i) {
+            case 1:
+                return samuraiPO_1;
+            case 2:
+                return samuraiPO_2;
+            case 3:
+                return samuraiPO_3;
+            default:
+                return null;
+        }
+    }
+
     public Armory getArmory(){
         return this.armory;
     }
