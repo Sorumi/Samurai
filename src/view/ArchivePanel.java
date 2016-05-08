@@ -5,34 +5,23 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import view.eventhandler.TerritoryHandler;
 
 
 public class ArchivePanel extends Pane{
 	private int width = 500;
 	private int height = 700;
 	
-	private Rectangle bgRect;
-	
 	private SystemButton closeBtn;
 	
-	private ArchiveView arcVone;
-	private ArchiveView arcVtwo;
-	private ArchiveView arcVthree;
-	
-
+	private ArchiveView arcV0;
+	private ArchiveView arcV1;
+	private ArchiveView arcV2;
 	
 	public ArchivePanel(){
-		this.setWidth(width);
-		this.setHeight(height);
-		
-		bgRect = new Rectangle();
-		bgRect.setX(0);
-		bgRect.setWidth(width); 
-		bgRect.setHeight(height); 
-		bgRect.setArcWidth(10);
-		bgRect.setArcHeight(10);
-		bgRect.setFill(Color.AZURE); 
-		this.getChildren().add(bgRect);
+		this.setPrefWidth(width);
+		this.setPrefHeight(height);
+		this.setId("archive-panel");
 		
 	    closeBtn = new SystemButton(0);
 	    closeBtn.setLayoutX(475);
@@ -44,22 +33,20 @@ public class ArchivePanel extends Pane{
 				TerritoryPanel parent = (TerritoryPanel) ArchivePanel.this.getParent();
 				parent.getChildren().remove(ArchivePanel.this);
 				parent.setBlur(false);
-//				parent.routeGroup.setVisible(true);
 			}
 		});
 		this.getChildren().add(closeBtn);
 		
-		arcVone = new ArchiveView(1);
-		arcVone.setLayoutX(50);
-		arcVone.setLayoutY(50);
-		arcVtwo = new ArchiveView(2);
-		arcVtwo.setLayoutX(50);
-		arcVtwo.setLayoutY(260);
-		arcVthree = new ArchiveView(3);
-		arcVthree.setLayoutX(50);
-		arcVthree.setLayoutY(470);
-		this.getChildren().addAll(arcVone, arcVtwo, arcVthree);
+		arcV0 = new ArchiveView(0);
+		arcV0.setLayoutX(50);
+		arcV0.setLayoutY(50);
+		arcV1 = new ArchiveView(1);
+		arcV1.setLayoutX(50);
+		arcV1.setLayoutY(260);
+		arcV2 = new ArchiveView(2);
+		arcV2.setLayoutX(50);
+		arcV2.setLayoutY(470);
+		this.getChildren().addAll(arcV0, arcV1, arcV2);
 	}
-	
 
 }

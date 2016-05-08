@@ -121,6 +121,18 @@
 	-fx-alignment: center;
 }
 /*Archive */
+#archive-panel{
+	-fx-background-color: #f9f9f9;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#archive-view{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
 #Aname-label{
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";
@@ -137,10 +149,10 @@
 }	
 
 #Aload-btn{
-	-fx-background-color: #dddddd;
+	-fx-background-color: #E5F8F6;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-text-fill: #ffffff; 
+	-fx-text-fill: #4AC0D2; 
 	-fx-font-family: "Hiragino Sans GB";
 	-fx-font-size: 18;
 	-fx-alignment: center;
@@ -148,10 +160,10 @@
 	
 }
 #Asave-btn{ 
-	-fx-background-color: #dddddd;
+	-fx-background-color: #FFE3E0;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-text-fill: #ffffff;
+	-fx-text-fill: #B54A3F;
 	-fx-font-family: "Hiragino Sans GB";
 	-fx-font-size: 18;
 	-fx-alignment: center;

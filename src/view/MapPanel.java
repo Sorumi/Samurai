@@ -124,19 +124,19 @@ public class MapPanel extends Pane {
 		cloud2.setFitWidth(356);
 		cloud2.setPreserveRatio(true);
 		cloud2.setLayoutX(514);
-		cloud2.setLayoutY(380);
+		cloud2.setLayoutY(340);
 		
 		ImageView cloud3 =  new ImageView(Images.MAP_CLOUD_3);
 		cloud3.setFitWidth(684);
 		cloud3.setPreserveRatio(true);
 		cloud3.setLayoutX(809);
-		cloud3.setLayoutY(549);
+		cloud3.setLayoutY(529);
 		
 		ImageView cloud4 =  new ImageView(Images.MAP_CLOUD_4);
 		cloud4.setFitWidth(541);
 		cloud4.setPreserveRatio(true);
 		cloud4.setLayoutX(1005);
-		cloud4.setLayoutY(200);
+		cloud4.setLayoutY(180);
 		
 		cloudGroup.getChildren().addAll(cloud0, cloud1, cloud2, cloud3, cloud4);
 		this.getChildren().add(cloudGroup);

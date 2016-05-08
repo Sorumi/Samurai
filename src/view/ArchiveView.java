@@ -1,40 +1,30 @@
 package view;
 
-
-
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import view.eventhandler.ArchiveHandler;
 
 public class ArchiveView extends Pane{
 	private int width = 400;
 	private int height = 180;
 	
-	private Rectangle bgRect;
+	private ArchiveHandler archiveHandler;
 	
+	private int num;
 	private Label nameLabel;
 	private Label timeLabel;
 	
-	private Button loadBtn;
-	private Button saveBtn;
-	private SystemButton closeBtn;
+	public Button loadBtn;
+	public Button saveBtn;
 	
 	public ArchiveView(int num){
-		this.setWidth(width);
-		this.setHeight(height);
+		this.num = num;
+		this.archiveHandler = new ArchiveHandler(this, num);
 		
-		bgRect = new Rectangle();
-		bgRect.setX(0);
-		bgRect.setWidth(width); 
-		bgRect.setHeight(height); 
-		bgRect.setArcWidth(50);
-		bgRect.setArcHeight(50);
-		bgRect.setFill(Color.WHITE);
-		this.getChildren().add(bgRect);
+		this.setPrefWidth(width);
+		this.setPrefHeight(height);
+		this.setId("archive-view");
 		
 		nameLabel = new Label("存档"+num); 
 		nameLabel.setLayoutX(25);
@@ -53,6 +43,9 @@ public class ArchiveView extends Pane{
 		loadBtn.setId("Aload-btn");		
 		loadBtn.setLayoutX(25);
 		loadBtn.setLayoutY(115);
+		loadBtn.setOnMouseEntered(archiveHandler.loadBtnEnterEvent);
+		loadBtn.setOnMouseExited(archiveHandler.loadBtnExitEvent);
+		loadBtn.setOnMouseClicked(archiveHandler.loadBtnClickEvent);
 		this.getChildren().add(loadBtn);
 		
 		saveBtn = new Button("保 存");
@@ -60,26 +53,36 @@ public class ArchiveView extends Pane{
 		saveBtn.setId("Asave-btn");		
 		saveBtn.setLayoutX(275);
 		saveBtn.setLayoutY(115);
+		saveBtn.setOnMouseEntered(archiveHandler.saveBtnEnterEvent);
+		saveBtn.setOnMouseExited(archiveHandler.saveBtnExitEvent);
+		saveBtn.setOnMouseClicked(archiveHandler.saveBtnClickEvent);
 		this.getChildren().add(saveBtn);
 		
-		closeBtn = new SystemButton(0);
-	    closeBtn.setLayoutX(375);
-		closeBtn.setLayoutY(-25);
-		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				ArchivePanel parent = (ArchivePanel) ArchiveView.this.getParent();
-				parent.getChildren().remove(ArchiveView.this);
-
-			}
-		});
-		
-		this.getChildren().add(closeBtn);
+		this.btnAbled(0);
+		this.btnAbled(1);
 		
 		this.setVisible(true);
-				
 	}
+	
+	public void btnPressed(int num) {
+		if(num == 0){
+			loadBtn.setLayoutY(119);
+			loadBtn.setStyle("-fx-effect: dropshadow(gaussian, #AFD5D1, 0, 0, 0, 4);");
+		}else{
+			saveBtn.setLayoutY(119);
+			saveBtn.setStyle("-fx-effect: dropshadow(gaussian, #DDB4B0, 0, 0, 0, 4);");
+		}
+	}
+	public void btnAbled(int num) {
+		if(num == 0){
+			loadBtn.setLayoutY(115);
+			loadBtn.setStyle("-fx-effect: dropshadow(gaussian, #AFD5D1, 0, 0, 0, 8);");
+		}else{
+			saveBtn.setLayoutY(115);
+			saveBtn.setStyle("-fx-effect: dropshadow(gaussian, #DDB4B0, 0, 0, 0, 8);");
+		}
+	}
+	
 	
 
 }

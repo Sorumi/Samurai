@@ -168,7 +168,6 @@ public class TerritoryPanel extends Pane {
 		
 		//rain
 		rain = new RainGroup();
-
 		
 		Button rainBtn = new Button("Rain");
 		rainBtn.setLayoutY(100);

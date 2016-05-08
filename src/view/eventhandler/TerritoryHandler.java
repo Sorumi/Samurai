@@ -41,7 +41,7 @@ public class TerritoryHandler {
 	      }
 	};
 	
-	public EventHandler<MouseEvent> smithyEvent= new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> smithyEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.smithyPanel = new SmithyPanel();
@@ -49,14 +49,14 @@ public class TerritoryHandler {
 	      }
 	};
 	
-	public EventHandler<MouseEvent> flagEvent= new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> flagEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.mapPanel = new MapPanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.mapPanel);
 	      }
 	};
 	
-	public EventHandler<MouseEvent> archiveEvent= new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.archivePanel = new ArchivePanel();
@@ -66,7 +66,7 @@ public class TerritoryHandler {
 	      }
 	};
 	
-	public EventHandler<MouseEvent> storeEvent= new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> storeEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.storePanel = new StorePanel();
@@ -74,14 +74,14 @@ public class TerritoryHandler {
 	      }
 	};
 	
-	public EventHandler<MouseEvent> buttonEnterEvent= new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> buttonEnterEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
 	    	  btn.setHighlight();
 	      }
 	};
 	
-	public EventHandler<MouseEvent> buttonExitEvent= new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> buttonExitEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
 	    	  btn.setNormal();
