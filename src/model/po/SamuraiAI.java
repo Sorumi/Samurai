@@ -136,17 +136,9 @@ public class SamuraiAI {
 				actionOperations = greedy(samuraiPOClone, cbm);
 
 				samuraiPOClone.setActionPoint(temp - 6);
-<<<<<<< HEAD
-
 //				if(samuraiPOClone.getActionPoint()>=2){
 //				actionOperations.add(new ActionOperation(99, 9999));
 //				}
-
-=======
-				if (samuraiPOClone.getActionPoint() >= 2) {
-					actionOperations.add(new ActionOperation(99, 9999));
-				}
->>>>>>> b7712bf632a1bcf137aeb0dd459ff752971eef51
 				return actionOperations;
 			} else {
 				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);
