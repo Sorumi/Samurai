@@ -143,6 +143,9 @@ public class SamuraiAI {
 						if (attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)
 								&& samuraiPOClone.getActionPoint() >= 4) {
 							samuraiPOClone.changeActionPoint(4);
+							if(samuraiPOClone.getActionPoint()<=3){
+								return actionOperations;
+							}
 							continue;
 						} else {
 							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
@@ -150,6 +153,9 @@ public class SamuraiAI {
 								//
 								System.out.println(distance);
 								//
+								if(samuraiPOClone.getActionPoint()<2){
+									return actionOperations;
+								}
 								int way = approach(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
 								if (way == 0) {
 									System.out.println("!!!");
@@ -168,6 +174,9 @@ public class SamuraiAI {
 						if (attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)
 								&& samuraiPOClone.getActionPoint() >= 4) {
 							samuraiPOClone.changeActionPoint(4);
+							if(samuraiPOClone.getActionPoint()<=3){
+								return actionOperations;
+							}
 							continue;
 						} else {
 							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
@@ -175,6 +184,9 @@ public class SamuraiAI {
 								//
 								System.out.println(distance);
 								//
+								if(samuraiPOClone.getActionPoint()<2){
+									return actionOperations;
+								}
 								if (AnotherApproach(samuraiPOClone, enemySamuraiPO.getPos(), cbm,
 										actionOperations) == 0) {
 									actionOperations.addAll(greedy(samuraiPOClone, cbm));
@@ -190,6 +202,9 @@ public class SamuraiAI {
 				else {
 					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
 						int way = leave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
+						if(samuraiPOClone.getActionPoint()<2){
+							return actionOperations;
+						}
 						if (way == 0) {
 							//System.out.println("!!!");
 							actionOperations.addAll(greedy(samuraiPOClone, cbm));
@@ -201,9 +216,7 @@ public class SamuraiAI {
 						} else {
 							samuraiPOClone.changeActionPoint(2);
 						}
-						if(samuraiPOClone.getActionPoint()<2){
-							return actionOperations;
-						}
+						
 					}
 					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
 						if(samuraiPOClone.getActionPoint()<2){
@@ -785,6 +798,7 @@ public class SamuraiAI {
 
 	private boolean attackTest(SamuraiPO samuraiPO1, ChessBoardModel cbm1, Position position,
 			ArrayList<ActionOperation> actionOperations) {
+		print(chessBoardModel);
 		for (int i = 0; i < 4; i++) {
 			ChessBoardModel cbm2 = cbm1.clone();
 			samuraiPO1.occupied(i, cbm2, true);

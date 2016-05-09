@@ -234,7 +234,7 @@ public class GamePanelOL extends GamePanel{
                     break;
             }
             tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
-            chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
+            this.chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
         }else if(key.equals("occupiedBlocks")){
             int[] n = (int [])notifingObject.getValue();
             this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
