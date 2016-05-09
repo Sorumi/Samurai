@@ -14,8 +14,6 @@ import java.util.*;
 
 public class GameModel extends BaseModel implements Observer {
     private ChessBoardModel chessBoardModel;
-    private GameState gameState;
-    private GameResultState gameResultState;
     private int[] samuraiSeq;
     private int currentSamurai;
     private Player[] players;
@@ -36,17 +34,17 @@ public class GameModel extends BaseModel implements Observer {
     private static boolean isServer = false;
     private static boolean isClient = false;
 
-
     //level:
-    //1~9   : Regular Mode, AI Level from 0 ~ 9
-    //11~20 : Adventure Mode, Level from 1 ~ 7
-    //99    : Online Mode, No AI.
+    //0     : Online
+    //11--- : Story Mode, Level from 1 ~ 5, each have 3 difficulties
+    //99    : Classic
+
+    //Classic 和 Online 构造方法
     public GameModel(int round, int length, GamePanel gamePanel, int level){
         this.level = level;
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(gamePanel.chessBoard);
-        this.gameState = GameState.RUN;
         this.timeTotal = 30;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
@@ -66,18 +64,123 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
                 samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
                 break;
-            //TODO:
-            //不同关卡指派不同AI
-//            case 1:
-//                break;
-//            case 2:
-//                break;
-//            case 3:
-//                break;
-//            case 4:
-//                break;
-//            case 5:
-//                break;
+            default:
+                break;
+        }
+        isServer = false;
+        isClient = false;
+    }
+
+    public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
+        this.level = level;
+        this.length = length;
+        this.chessBoardModel = new ChessBoardModel(this.length);
+        this.chessBoardModel.addObserver(gamePanel.chessBoard);
+        this.timeTotal = 30;
+        this.coldRoundNum = 1;
+        this.currentTime = this.timeTotal;
+        this.currentRound = 1;
+        this.totalRound = round;
+        this.currentSamurai = 1;//1,2,3,4,5,6
+        this.samuraiSeq = new int[]{1,4,5,2,3,6};
+        this.currentPlayer = 1;//1,2,3,4,5,6
+        this.playerSeq = new int[]{0,1,1,0,0,1};
+        this.players = new Player[2];
+        players[0] = new Player(this,0,samuraiPOs);
+        players[0].setSamuraiPOs(samuraiPOs);
+        players[1] = new Player(this,1);
+        switch (this.level){
+            //TODO
+            case 11:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),0,this.chessBoardModel,1);
+                break;
+            case 12:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 13:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 21:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 22:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 23:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 31:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 32:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                break;
+            case 33:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                break;
+            case 41:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 42:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                break;
+            case 43:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                break;
+            case 51:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                break;
+            case 52:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                break;
+            case 53:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                break;
             default:
                 break;
         }
@@ -87,9 +190,8 @@ public class GameModel extends BaseModel implements Observer {
 
     public GameModel(){
         this.level = 9999;
-        this.length = 15;
+        this.length = 14;
         this.chessBoardModel = new ChessBoardModel(this.length);
-        this.gameState = GameState.RUN;
         this.timeTotal = 30;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
@@ -102,10 +204,6 @@ public class GameModel extends BaseModel implements Observer {
         this.players = new Player[2];
         players[0] = new Player(this,0);
         players[1] = new Player(this,1);
-    }
-
-    public void cbmAddObserver(Main mainFrame){
-        this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
     }
 
     public GameModel(ClientService client) {
@@ -452,7 +550,6 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public boolean gameOver(){
-        this.gameState = GameState.OVER;
         if(this.timer != null) {
             this.timer.cancel();
         }

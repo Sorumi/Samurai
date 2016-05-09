@@ -19,7 +19,7 @@ public class Player {
     private int actionPoint;
     private int pointsTotal;
 
-    public Player(GameModel model,int playerNum){
+    public Player(GameModel model, int playerNum){
         this.pointsTotal = 30;
         this.playerNum = playerNum;
         this.gameModel = model;
@@ -34,6 +34,22 @@ public class Player {
             samuraiPOs[5] = new SamuraiPO(5,playerNum,new Weapon(1),this.gameModel.getLength(),this.chessBoardModel,new Armor());
             samuraiPOs[6] = new SamuraiPO(6,playerNum,new Weapon(2),this.gameModel.getLength(),this.chessBoardModel,new Armor());
         }
+    }
+
+    //故事模式中带SamuraiPO的 构造方法
+    public Player(GameModel model, int playerNum, SamuraiPO[] sPOs){
+        this.pointsTotal = 30;
+        this.playerNum = playerNum;
+        this.gameModel = model;
+        this.chessBoardModel = this.gameModel.getChessBoardModel();
+        this.samuraiPOs = new SamuraiPO[7];
+        samuraiPOs[1] = sPOs[1];
+        samuraiPOs[2] = sPOs[2];
+        samuraiPOs[3] = sPOs[3];
+
+        System.out.println("Weapon number 1: "+samuraiPOs[1].getWeapon().getType());
+        System.out.println("Weapon number 2: "+samuraiPOs[2].getWeapon().getType());
+        System.out.println("Weapon number 3: "+samuraiPOs[3].getWeapon().getType());
     }
 
     public void setEnableToAction(){
@@ -252,6 +268,10 @@ public class Player {
 
     public SamuraiPO getSamuraiOfNum(int num){
         return samuraiPOs[num];
+    }
+
+    public void setSamuraiPOs(SamuraiPO[] samuraiPOs) {
+        this.samuraiPOs = samuraiPOs;
     }
 
     public int getActionPoint(){

@@ -108,7 +108,23 @@ public class SamuraiPO implements Serializable, Cloneable {
 			home = pos.clone();
 		}
 	}
-
+	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor,Position home,int actionPoint) {
+		this.number = number;
+		this.player = player;
+		this.weapon = weapon;
+		this.armor = armor;
+		this.length = length;
+		this.criticalHitChance = 1;
+		this.level=1;
+		this.dodgeChance = 1;
+		this.attackValue = 5;
+		this.armorValue = 10;
+		this.coldRound = 0;
+		this.healthPoint = 60;
+		this.criticalHitChance=1;
+		this.home=home;
+		this.actionPoint=actionPoint;
+	}
 	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,int level,int armorValue,int attackValue,int dodgeChance,int healthPonit,int criticalHitRate) {
 		this.number = number;
 		this.armor=armor;
@@ -1151,10 +1167,11 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public int[] getAttackPoint() {
 		int criticalHitRate = criticalHitChance + weapon.getCriticalRate();
 		int armorPenetration = weapon.getArmorPenetration();
-		int[] result = new int[2];
+		int[] result = new int[3];
 		Random random = new Random();
 		if (random.nextInt(100) + 1 <= criticalHitRate) {
 			result[0] = (weapon.getAttackPoint() + attackValue) * 2;
+			result[3]=1;
 		} else {
 			result[0] = weapon.getAttackPoint() + attackValue;
 		}

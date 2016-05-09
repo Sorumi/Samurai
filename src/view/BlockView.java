@@ -90,8 +90,7 @@ public class BlockView extends Polygon {
 		this.setFill(newColor);
 		this.color = newColor;
 		this.setStrokeWidth(currentStrokeSize);
-		
-		System.out.println("out: " + x + " " + y);
+
 	}
 
 	public void setHome() {
