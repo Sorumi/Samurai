@@ -59,6 +59,8 @@ public class GamePanel extends Pane implements Observer{
 	protected PlayerPanel currentPlayer;
 	protected PlayerPanel playerA;
 	protected PlayerPanel playerB;
+	
+	private ImageView bg;
 
 	protected RoundPanel roundPanel;
 	
@@ -170,10 +172,12 @@ public class GamePanel extends Pane implements Observer{
 
 	}
 	
-	public void setBackground(int level){
-		ImageView bg = new ImageView(Images.BG[level/10]);
-		bg.setFitWidth(1200);
-		bg.setPreserveRatio(true);
+	public void setBackground(int level){		
+	    this.setStyle("-fx-background-image: url("+Images.BG[level/10]+") ;"
+	    		+ "-fx-background-size: 100% 100%; ");
+//		bg = new ImageView(Images.BG[level/10]);
+//		bg.setFitWidth(1200);
+//		bg.setPreserveRatio(true);
 		switch(level/10){
 		case 0: backgroundPanel = new BackgroundPanel0();break;
 		case 1: backgroundPanel = new BackgroundPanel1();break;
@@ -184,7 +188,7 @@ public class GamePanel extends Pane implements Observer{
 		}
 
 
-		this.getChildren().add(bg);
+//		this.getChildren().add(bg);
 		
 	}
 
