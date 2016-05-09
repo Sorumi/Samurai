@@ -141,8 +141,9 @@ public class StoryModel implements Serializable{
             StoryModel s = (StoryModel) thisObject;
             System.out.println(s.getTime());
             System.out.println("load successfully : " + StoryModel.getFileNum());
+            System.out.println(s.getArmory().checkAllWeapon().size());
 
-//            setStoryModel(s);
+            setStoryModel(s);
 
             return (StoryModel) thisObject;
         }catch (Exception e){
@@ -177,15 +178,15 @@ public class StoryModel implements Serializable{
         return "";
     }
 
-//    public static void setStoryModel(StoryModel sModel){
-//        storyModel.armory = sModel.armory;
-//        storyModel.materialLibrary = sModel.materialLibrary;
-//        storyModel.informationLibrary = sModel.informationLibrary;
-//        storyModel.samuraiPO_1 = sModel.samuraiPO_1;
-//        storyModel.samuraiPO_2 = sModel.samuraiPO_2;
-//        storyModel.samuraiPO_3 = sModel.samuraiPO_3;
-//        storyModel.time = sModel.time;
-//    }
+    public static void setStoryModel(StoryModel sModel){
+        storyModel.armory = sModel.armory;
+        storyModel.materialLibrary = sModel.materialLibrary;
+        storyModel.informationLibrary = sModel.informationLibrary;
+        storyModel.samuraiPO_1 = sModel.samuraiPO_1;
+        storyModel.samuraiPO_2 = sModel.samuraiPO_2;
+        storyModel.samuraiPO_3 = sModel.samuraiPO_3;
+        storyModel.time = sModel.time;
+    }
 
     public static int getFileNum() {
         return fileNum;
