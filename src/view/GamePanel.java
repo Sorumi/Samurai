@@ -10,6 +10,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.UpdateMessage;
 import model.po.ActualBlock;
@@ -17,6 +18,11 @@ import model.po.Position;
 import model.po.SamuraiPO;
 import view.background.BackgroundPanel;
 import view.background.BackgroundPanel0;
+import view.background.BackgroundPanel1;
+import view.background.BackgroundPanel2;
+import view.background.BackgroundPanel3;
+import view.background.BackgroundPanel4;
+import view.background.BackgroundPanel5;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.StateHandler;
 
@@ -57,6 +63,8 @@ public class GamePanel extends Pane implements Observer{
 	protected RoundPanel roundPanel;
 	
 	protected ResultPanel resultPanel;
+	
+	private ImageView bgImage;
 
 	public Arrow arrow;
 	public ActionPanel actionPanel;
@@ -74,16 +82,17 @@ public class GamePanel extends Pane implements Observer{
 	 */
 	public GamePanel(int size, int level){
 		this.size = size;
-		this.level = level;
-
+		this.level = level; 
+		this.setBackground(level);
+	
 		//bounds
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
 		//background
 
-		backgroundPanel = new BackgroundPanel0();
+//		backgroundPanel = new BackgroundPanel0();
 //		backgroundPanel = new BackgroundPanel3();
-		this.getChildren().add(backgroundPanel);
+//		this.getChildren().add(backgroundPanel);
 
 
 		//systembutton
@@ -146,9 +155,9 @@ public class GamePanel extends Pane implements Observer{
 		B3.setOnMouseExited(stateHandler.closeStatePanel);
 
 		//add
-		backgroundPanel.setZOrder(-999);
-		systemButtonPanel.setZOrder(-3);
-		chessBoard.setZOrder(-2);
+		backgroundPanel.setZOrder(-2);
+		systemButtonPanel.setZOrder(-1);
+		chessBoard.setZOrder(-3);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
 		statePanel.setZOrder(-1);
@@ -159,6 +168,24 @@ public class GamePanel extends Pane implements Observer{
 
 		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemButtonPanel, resultPanel);
 
+	}
+	
+	public void setBackground(int level){
+		ImageView bg = new ImageView(Images.BG[level/10]);
+		bg.setFitWidth(1200);
+		bg.setPreserveRatio(true);
+		switch(level/10){
+		case 0: backgroundPanel = new BackgroundPanel0();break;
+		case 1: backgroundPanel = new BackgroundPanel1();break;
+		case 2: backgroundPanel = new BackgroundPanel2();break;
+		case 3: backgroundPanel = new BackgroundPanel3();break;
+		case 4: backgroundPanel = new BackgroundPanel4();break;
+		case 5: backgroundPanel = new BackgroundPanel5();break;
+		}
+
+
+		this.getChildren().add(bg);
+		
 	}
 
 	public void setOrder(){

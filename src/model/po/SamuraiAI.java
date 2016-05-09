@@ -126,6 +126,10 @@ public class SamuraiAI {
 				samuraiPOClone.setActionPoint(6);
 				actionOperations = greedy(samuraiPOClone, cbm);
 				samuraiPOClone.setActionPoint(temp - 6);
+				if(samuraiPOClone.getActionPoint()>=2){
+				actionOperations.add(new ActionOperation(99, 9999));
+				}
+				return actionOperations;
 			} else {
 				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);
 				if (compareAbility(samuraiPOClone, enemySamuraiPO)) {
