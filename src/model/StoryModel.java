@@ -138,9 +138,9 @@ public class StoryModel implements Serializable{
 
             StoryModel s = (StoryModel) thisObject;
 
-//            System.out.println(s.getTime());
+            System.out.println(s.getTime());
             System.out.println("load successfully : " + StoryModel.getFileNum());
-//            System.out.println(s.getArmory().checkAllWeapon().size());
+            System.out.println(s.getArmory().checkAllWeapon().size());
 
             return (StoryModel) thisObject;
         }catch (Exception e){

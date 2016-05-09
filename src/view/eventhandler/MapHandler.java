@@ -1,5 +1,6 @@
 package view.eventhandler;
 
+import controller.MapController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import view.MapPanel;
@@ -9,10 +10,11 @@ import view.MapPanel.LandButton;
 public class MapHandler {
 
 	private MapPanel mapPanel;
-
+	private MapController mapController;
 	  
 	public MapHandler(MapPanel mapPanel){
 		this.mapPanel = mapPanel;
+		this.mapController = new MapController();
 	}
 	
 	public EventHandler<MouseEvent> homeEvent= new EventHandler<MouseEvent>() {  

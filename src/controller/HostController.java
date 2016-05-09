@@ -4,7 +4,6 @@ import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
 import controller.msgqueue.StartGameOperation;
 import main.Main;
-import model.ChessBoardModel;
 import model.GameModel;
 import network.server.HostHandlerImpl;
 import network.server.HostServiceImpl;
@@ -18,7 +17,7 @@ public class HostController {
         HostServiceImpl host = new HostServiceImpl();
         HostHandlerImpl hostH = new HostHandlerImpl();
 
-        GameModel game = new GameModel(24, 14, main, 0);
+        GameModel game = new GameModel(24, 14, main.gamePanel, 0);
         GameModel.setServer(true);
         game.addObserver(host);
 
