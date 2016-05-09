@@ -66,6 +66,18 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
                 samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
                 break;
+            //TODO:
+            //不同关卡指派不同AI
+//            case 1:
+//                break;
+//            case 2:
+//                break;
+//            case 3:
+//                break;
+//            case 4:
+//                break;
+//            case 5:
+//                break;
             default:
                 break;
         }
@@ -121,10 +133,8 @@ public class GameModel extends BaseModel implements Observer {
             case 0:
                 this.assignNext();
                 break;
-            case 99:
-                this.assignNextWithAI();
-                break;
             default:
+                this.assignNextWithAI();
                 break;
         }
 
@@ -432,10 +442,8 @@ public class GameModel extends BaseModel implements Observer {
                 case 0:
                     this.assignNext();
                     break;
-                case 99:
-                    this.assignNextWithAI();
-                    break;
                 default:
+                    this.assignNextWithAI();
                     break;
             }
         }else{
