@@ -2,9 +2,9 @@ package view.eventhandler;
 
 import controller.MapController;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
+import model.StoryModel;
 import view.LevelSelectPanel;
 import view.LevelSelectPanel.LevelButton;
 import view.GamePanel;
@@ -20,6 +20,7 @@ public class MapHandler {
 	public MapHandler(MapPanel mapPanel){ 
 		this.mapPanel = mapPanel;
 		this.mapController = new MapController();
+		this.mapController.setStoryModel(StoryModel.getStoryModel());
 	}
 	
 	public EventHandler<MouseEvent> homeEvent= new EventHandler<MouseEvent>() {  

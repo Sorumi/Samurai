@@ -3,12 +3,13 @@ package controller;
 import controller.msgqueue.OperationQueue;
 import controller.msgqueue.StartGameOperation;
 import model.GameModel;
+import model.po.SamuraiPO;
 import view.GamePanel;
 
 /**
  * Created by Kray on 16/5/9.
  */
-public class MapController {
+public class MapController extends TerritoryController {
 
     private GamePanel gamePanel;
     private GameModel gameModel;
@@ -21,7 +22,7 @@ public class MapController {
 
         System.out.println("Level: " + level);
 
-        this.gameModel = new GameModel(24, 14, gamePanel, level);
+        this.gameModel = new GameModel(24, 14, gamePanel, level, this.storyModel.getSamuraiPOs());
         this.gameModel.addObserver(this.gamePanel);
         this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 
@@ -32,4 +33,5 @@ public class MapController {
         OperationQueue.addOperation(new StartGameOperation());
 
     }
+
 }

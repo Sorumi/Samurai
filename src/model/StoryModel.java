@@ -48,16 +48,6 @@ public class StoryModel implements Serializable{
         return this.time;
     }
 
-    public void startLevel(int level){
-        switch (level){
-            case 1:
-//                gameModel = new GameModel();
-                break;
-            default:
-                break;
-        }
-    }
-
     public void changeWeapon(int samuraiNum, int weaponNum){
         System.out.println("Samurai " + samuraiNum + " is changing to weapon " + weaponNum);
         switch (samuraiNum){
@@ -77,6 +67,10 @@ public class StoryModel implements Serializable{
 
     public void createWeapon(){
 
+    }
+
+    public SamuraiPO[] getSamuraiPOs(){
+        return new SamuraiPO[]{samuraiPO_1,samuraiPO_2,samuraiPO_3};
     }
 
     public SamuraiPO getSamuraiPO(int i) {
