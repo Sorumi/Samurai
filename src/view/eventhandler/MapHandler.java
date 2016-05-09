@@ -34,6 +34,13 @@ public class MapHandler {
 	    	  LevelButton btn = (LevelButton) event.getSource();
 	    	  //TODO
 	    	  //开始游戏！！！
+	    	  /*
+	    	   * 11, 12, 13
+	    	   * 21, 22, 23
+	    	   * 31, 32, 33
+	    	   * 41, 42, 43
+	    	   * 51, 52, 53
+	    	   */
 	    	  StoryPanel storyPanel =  (StoryPanel) mapPanel.getParent();
 	    	  LevelSelectPanel selectPanel = (LevelSelectPanel)btn.getParent();
 	    	  int num = selectPanel.level*10 + btn.num;
@@ -63,7 +70,10 @@ public class MapHandler {
 	
 	public EventHandler<MouseEvent> levelSelectEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  LandButton btn = (LandButton) event.getSource();
+	    	  mapPanel.levelSelectPanel.setLevel(btn.levelNum);
 	    	  mapPanel.levelSelectPanel.setAppear(true); 
+	    	  
 	      }
 	};
 	
