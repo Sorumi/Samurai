@@ -43,9 +43,13 @@ public class Player {
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
         this.samuraiPOs = new SamuraiPO[7];
-        samuraiPOs[1] = sPOs[0];
-        samuraiPOs[2] = sPOs[1];
-        samuraiPOs[3] = sPOs[2];
+        samuraiPOs[1] = sPOs[1];
+        samuraiPOs[2] = sPOs[2];
+        samuraiPOs[3] = sPOs[3];
+
+        System.out.println("Weapon number 1: "+samuraiPOs[1].getWeapon().getType());
+        System.out.println("Weapon number 2: "+samuraiPOs[2].getWeapon().getType());
+        System.out.println("Weapon number 3: "+samuraiPOs[3].getWeapon().getType());
     }
 
     public void setEnableToAction(){

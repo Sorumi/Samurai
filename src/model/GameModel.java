@@ -14,8 +14,6 @@ import java.util.*;
 
 public class GameModel extends BaseModel implements Observer {
     private ChessBoardModel chessBoardModel;
-    private GameState gameState;
-    private GameResultState gameResultState;
     private int[] samuraiSeq;
     private int currentSamurai;
     private Player[] players;
@@ -47,7 +45,6 @@ public class GameModel extends BaseModel implements Observer {
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(gamePanel.chessBoard);
-        this.gameState = GameState.RUN;
         this.timeTotal = 30;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
@@ -79,7 +76,6 @@ public class GameModel extends BaseModel implements Observer {
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(gamePanel.chessBoard);
-        this.gameState = GameState.RUN;
         this.timeTotal = 30;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
@@ -91,6 +87,7 @@ public class GameModel extends BaseModel implements Observer {
         this.playerSeq = new int[]{0,1,1,0,0,1};
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
+        players[0].setSamuraiPOs(samuraiPOs);
         players[1] = new Player(this,1);
         switch (this.level){
             //TODO
@@ -193,9 +190,8 @@ public class GameModel extends BaseModel implements Observer {
 
     public GameModel(){
         this.level = 9999;
-        this.length = 15;
+        this.length = 14;
         this.chessBoardModel = new ChessBoardModel(this.length);
-        this.gameState = GameState.RUN;
         this.timeTotal = 30;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
@@ -554,7 +550,6 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public boolean gameOver(){
-        this.gameState = GameState.OVER;
         if(this.timer != null) {
             this.timer.cancel();
         }

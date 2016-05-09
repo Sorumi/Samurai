@@ -37,9 +37,9 @@ public class StoryModel implements Serializable{
         this.informationLibrary = new InformationLibrary();
         this.informationLibrary.initialize();
 
-        this.samuraiPO_1 = new SamuraiPO(0,0,this.armory.getWeapon(11),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
-        this.samuraiPO_2 = new SamuraiPO(1,0,this.armory.getWeapon(111),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
-        this.samuraiPO_3 = new SamuraiPO(2,0,this.armory.getWeapon(211),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
+        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
+        this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
+        this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
 
         this.time = new Date();
     }
@@ -53,6 +53,7 @@ public class StoryModel implements Serializable{
         switch (samuraiNum){
             case 1:
                 this.samuraiPO_1.changeWeapon(this.armory.getWeapon(weaponNum));
+                System.out.println(this.samuraiPO_1.getWeapon().getType());
                 break;
             case 2:
                 this.samuraiPO_2.changeWeapon(this.armory.getWeapon(weaponNum));
@@ -70,7 +71,7 @@ public class StoryModel implements Serializable{
     }
 
     public SamuraiPO[] getSamuraiPOs(){
-        return new SamuraiPO[]{samuraiPO_1,samuraiPO_2,samuraiPO_3};
+        return new SamuraiPO[]{null,samuraiPO_1,samuraiPO_2,samuraiPO_3};
     }
 
     public SamuraiPO getSamuraiPO(int i) {
