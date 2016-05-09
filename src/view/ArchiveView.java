@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import view.eventhandler.ArchiveHandler;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ArchiveView extends Pane{
 	private int width = 400;
 	private int height = 180;
@@ -67,9 +70,10 @@ public class ArchiveView extends Pane{
 		
 		this.setVisible(true);
 
-		String time;
-		if(!((time = this.archiveHandler.getArchiveController().getTime(num)).equals(""))){
-			setTime(time);
+		Date time;
+		if(((time = this.archiveHandler.getArchiveController().getTime(num)) != null)){
+			SimpleDateFormat ft = new SimpleDateFormat ("yyyy年MM月dd日 HH:mm:ss");
+			setTime(ft.format(time));
 		}
 
 	}
@@ -83,6 +87,7 @@ public class ArchiveView extends Pane{
 			saveBtn.setStyle("-fx-effect: dropshadow(gaussian, #DDB4B0, 0, 0, 0, 4);");
 		}
 	}
+
 	public void btnAbled(int num) {
 		if(num == 0){
 			loadBtn.setLayoutY(115);
