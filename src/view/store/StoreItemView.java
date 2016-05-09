@@ -59,7 +59,7 @@ public class StoreItemView extends StackPane{
 	
 	public void setNormal(){
 		Timeline tl= new Timeline(
-				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), GameColor.getWeaponColor(itemNum/10),  Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), GameColor.getMaterialColor(itemNum/10),  Interpolator.EASE_IN)),
 				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 0, Interpolator.EASE_IN))
 				);
 		tl.play();	

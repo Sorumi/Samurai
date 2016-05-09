@@ -42,7 +42,7 @@ public class CampsitePanel extends TransitionPanel{
 				parent.getChildren().remove(CampsitePanel.this);
 				parent.setBlur(false);
 				//退出时保存storyModel
-				campsiteHandler.getCampsiteController().save(StoryModel.getFileNum());
+//				campsiteHandler.getCampsiteController().save(StoryModel.getFileNum());
 				parent.getTerritoryHandler().updateSamurai();
 			}
 		});

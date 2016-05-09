@@ -23,7 +23,6 @@ public class StoryModel implements Serializable{
 
     private static int fileNum;
 
-    //用来测试有没有序列化成功 不用管它
     private Date time;
 
     private StoryModel(){
@@ -109,6 +108,8 @@ public class StoryModel implements Serializable{
     public void saveStoryModel(int num){
         try {
 
+            System.out.println("Now is : " + num);
+
             this.time = new Date();
 
             String fileName = "Samurai_StoryModel_" + num + ".ser";
@@ -116,13 +117,10 @@ public class StoryModel implements Serializable{
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this);
 
-            System.out.println(this.time.toString());
-
             objectOutputStream.close();
 
             System.out.println("save successfully");
         }catch (Exception e){
-//            e.printStackTrace();
             System.out.println("save failed");
         }
     }
@@ -139,28 +137,18 @@ public class StoryModel implements Serializable{
             objectInputStream.close();
 
             StoryModel s = (StoryModel) thisObject;
-            System.out.println(s.getTime());
-            System.out.println("load successfully : " + StoryModel.getFileNum());
 
-//            setStoryModel(s);
+            System.out.println("load successfully : " + StoryModel.getFileNum());
+            System.out.println(s.getArmory().checkAllWeapon().size());
 
             return (StoryModel) thisObject;
         }catch (Exception e){
-//            e.printStackTrace();
             System.out.println("load failed");
         }
         return new StoryModel();
     }
 
-    //单例模式用于取唯一的storyModel
-    public static StoryModel getStoryModel(){
-        if(storyModel == null){
-            storyModel = StoryModel.loadStoryModel(0);
-        }
-        return storyModel;
-    }
-
-    public static String getTimeOfNum(int num){
+    public static Date getTimeOfNum(int num){
         try{
             String fileName = "Samurai_StoryModel_" + num + ".ser";
             FileInputStream fileInputStream = new FileInputStream(fileName);
@@ -170,22 +158,31 @@ public class StoryModel implements Serializable{
 
             StoryModel s = (StoryModel) thisObject;
 
-            return s.getTime().toString();
+            return s.getTime();
         }catch (Exception e){
 
         }
-        return "";
+        return null;
     }
 
-//    public static void setStoryModel(StoryModel sModel){
-//        storyModel.armory = sModel.armory;
-//        storyModel.materialLibrary = sModel.materialLibrary;
-//        storyModel.informationLibrary = sModel.informationLibrary;
-//        storyModel.samuraiPO_1 = sModel.samuraiPO_1;
-//        storyModel.samuraiPO_2 = sModel.samuraiPO_2;
-//        storyModel.samuraiPO_3 = sModel.samuraiPO_3;
-//        storyModel.time = sModel.time;
-//    }
+    public static void setStoryModel(StoryModel sModel){
+        storyModel.armory = sModel.armory;
+        storyModel.materialLibrary = sModel.materialLibrary;
+        storyModel.informationLibrary = sModel.informationLibrary;
+        storyModel.samuraiPO_1 = sModel.samuraiPO_1;
+        storyModel.samuraiPO_2 = sModel.samuraiPO_2;
+        storyModel.samuraiPO_3 = sModel.samuraiPO_3;
+        storyModel.time = sModel.time;
+    }
+
+    //单例模式用于取唯一的storyModel
+    public static StoryModel getStoryModel(){
+        if(storyModel == null){
+            storyModel = loadStoryModel(0);
+        }
+        setStoryModel(storyModel);
+        return storyModel;
+    }
 
     public static int getFileNum() {
         return fileNum;

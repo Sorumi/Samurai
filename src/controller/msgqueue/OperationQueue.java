@@ -35,8 +35,8 @@ public class OperationQueue implements Runnable, Serializable {
 
 	public void run() {
 		while(isRunning){
-			System.out.println("execute Operation");
 			Operation operation = getNewOperation();
+			System.out.println("execute Operation : " + operation.getClass());
 			UpdateMessage updateMessage = new UpdateMessage("execute",operation);
 			if(GameModel.isClient() && !Operation.isServer()){
 				clientService.submitOperation(operation);

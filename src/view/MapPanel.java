@@ -58,7 +58,6 @@ public class MapPanel extends Pane {
 		home = new LandButton(0);
 		home.setLayoutX(6);
 		home.setLayoutY(93);
-		home.setOnMouseClicked(mapHandler.homeEvent);
 		
 		level1 = new LandButton(1);
 		level1.setLayoutX(258);
@@ -168,10 +167,12 @@ public class MapPanel extends Pane {
 	
 	//内部类
 	public class LandButton extends Button{
+		public int levelNum;
 		private DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.WHITE, 0, 1, 0, 0);
 		private ColorAdjust light = new ColorAdjust();
 		
 		public LandButton(int num){
+			this.levelNum = num;
 			ImageView imgV = new ImageView(Images.MAP_LAND[num]);
 			switch(num){
 				case 0: imgV.setFitWidth(313);break;
@@ -188,6 +189,11 @@ public class MapPanel extends Pane {
 			this.setEffect(shadow);
 			this.setOnMouseEntered(mapHandler.buttonEnterEvent);
 			this.setOnMouseExited(mapHandler.buttonExitEvent);
+			if(num == 0){
+				this.setOnMouseClicked(mapHandler.homeEvent);
+			}else{
+				this.setOnMouseClicked(mapHandler.buttonClickEvent);
+			}
 		}
 		
 		public void setHighlight(){

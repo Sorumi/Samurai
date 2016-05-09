@@ -80,6 +80,10 @@ public class Images {
 	
 	//territory
 	public static final Image TERRITORY_BG = new Image("/./images/territory_bg.png");
+	public static final Image TERRITORY_MOUNTAIN = new Image("/./images/territory_mountain.png");
+	public static final Image TERRITORY_LAND_0 = new Image("/./images/territory_land_0.png");
+	public static final Image TERRITORY_LAND_1 = new Image("/./images/territory_land_1.png");
+	public static final Image TERRITORY_ITEMS = new Image("/./images/territory_items.png");
 	public static final Image TERRITORY_CAMPSITE = new Image("/./images/territory_campsite.png");
 	public static final Image TERRITORY_SMITHY = new Image("/./images/territory_smithy.png");
 	public static final Image TERRITORY_STORE = new Image("/./images/territory_store.png");

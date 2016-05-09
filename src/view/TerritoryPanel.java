@@ -16,9 +16,11 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import model.StoryModel;
 import view.background.RainGroup;
+import view.background.TerritoryBackground;
 import view.campsite.CampsitePanel;
 import view.eventhandler.TerritoryHandler;
 import view.smithy.SmithyPanel;
@@ -37,10 +39,10 @@ public class TerritoryPanel extends Pane {
 	private SystemButton saveBtn;
 	
 	private TerritoryHandler territoryHandler;
-	
+	private TerritoryBackground territoryBg;
 	private Group territoryGroup;
 	
-	private ImageView bg;
+//	private ImageView bg;
 	
 	private TerritoryButton campsiteBtn;
 	private TerritoryButton smithyBtn;
@@ -50,7 +52,7 @@ public class TerritoryPanel extends Pane {
 	public CampsitePanel campsitePanel;
 	public SmithyPanel smithyPanel;
 	public StorePanel storePanel;
-	public MapPanel mapPanel;
+
 	public ArchivePanel archivePanel;
 	
 	public SamuraiView samurai1;
@@ -68,10 +70,9 @@ public class TerritoryPanel extends Pane {
 		
 		territoryGroup = new Group();
 		
-		bg = new ImageView(Images.TERRITORY_BG);
-		bg.setFitWidth(WINDOW_WIDTH);
-		bg.setPreserveRatio(true);
-		territoryGroup.getChildren().add(bg);
+		territoryBg = new TerritoryBackground();
+		territoryBg.setNight();
+		territoryGroup.getChildren().add(territoryBg);
 		
 		territoryHandler = new TerritoryHandler(this);
 		
@@ -95,7 +96,7 @@ public class TerritoryPanel extends Pane {
 		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				territoryHandler.getTerritoryController().save(StoryModel.getFileNum());
+//				territoryHandler.getTerritoryController().save(StoryModel.getFileNum());
 			}
 		});
 		territoryGroup.getChildren().add(saveBtn);

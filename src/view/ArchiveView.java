@@ -3,7 +3,11 @@ package view;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import model.StoryModel;
 import view.eventhandler.ArchiveHandler;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ArchiveView extends Pane{
 	private int width = 400;
@@ -26,13 +30,17 @@ public class ArchiveView extends Pane{
 		this.setPrefHeight(height);
 		this.setId("archive-view");
 		
-		nameLabel = new Label("存档"+num); 
+		if(num == 0){
+			nameLabel = new Label("自动存档"); 
+		}else{
+			nameLabel = new Label("存档"+num); 
+		}
 		nameLabel.setLayoutX(25);
 		nameLabel.setLayoutY(25);
 		nameLabel.setId("Aname-label");
 		this.getChildren().add(nameLabel);
 		
-		timeLabel = new Label("存储时间"); 
+		timeLabel = new Label("存档时间");
 		timeLabel.setLayoutX(25);
 		timeLabel.setLayoutY(60);
 		timeLabel.setId("Atime-label");
@@ -63,9 +71,10 @@ public class ArchiveView extends Pane{
 		
 		this.setVisible(true);
 
-		String time;
-		if(!((time = this.archiveHandler.getArchiveController().getTime(num)).equals(""))){
-			setTime(time);
+		Date time;
+		if(((time = archiveHandler.getArchiveController().getTime(num)) != null)){
+			SimpleDateFormat ft = new SimpleDateFormat ("yyyy年MM月dd日 HH:mm:ss");
+			setTime(ft.format(time));
 		}
 
 	}
@@ -79,6 +88,7 @@ public class ArchiveView extends Pane{
 			saveBtn.setStyle("-fx-effect: dropshadow(gaussian, #DDB4B0, 0, 0, 0, 4);");
 		}
 	}
+
 	public void btnAbled(int num) {
 		if(num == 0){
 			loadBtn.setLayoutY(115);
@@ -90,7 +100,7 @@ public class ArchiveView extends Pane{
 	}
 
 	public void setTime(String time){
-		timeLabel.setText("存储时间 " + time);
+		timeLabel.setText("存档时间： " + time);
 	}
 
 }

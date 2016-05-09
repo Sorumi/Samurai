@@ -226,7 +226,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getX() - 1 >= 0) {
 					state = cbm.getActualBlockState(pos.getX() - 1, pos.getY());
 					if (cbm.getActualBlockOccupied(pos.getX() - 1, pos.getY()) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -253,7 +253,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getY() - 1 >= 0) {
 					state = cbm.getActualBlockState(pos.getX(), pos.getY() - 1);
 					if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() - 1) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -280,7 +280,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getY() + 1 <= length) {
 					state = cbm.getActualBlockState(pos.getX(), pos.getY() + 1);
 					if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() + 1) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -307,7 +307,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getX() + 1 <= length) {
 					state = cbm.getActualBlockState(pos.getX() + 1, pos.getY());
 					if (cbm.getActualBlockOccupied(pos.getX() + 1, pos.getY()) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -357,7 +357,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getX() - 1 >= 0) {
 				state = cbm.getActualBlockState(pos.getX() - 1, pos.getY());
 				if (cbm.getActualBlockOccupied(pos.getX() - 1, pos.getY()) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setX(pos.getX() - 1);
 						} else {
@@ -386,7 +386,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getY() - 1 >= 0) {
 				state = cbm.getActualBlockState(pos.getX(), pos.getY() - 1);
 				if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() - 1) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setY(pos.getY() - 1);
 						} else {
@@ -415,7 +415,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getY() + 1 <= length) {
 				state = cbm.getActualBlockState(pos.getX(), pos.getY() + 1);
 				if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() + 1) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setY(pos.getY() + 1);
 						} else {
@@ -444,7 +444,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getX() + 1 <= length) {
 				state = cbm.getActualBlockState(pos.getX() + 1, pos.getY());
 				if (cbm.getActualBlockOccupied(pos.getX() + 1, pos.getY()) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setX(pos.getX() + 1);
 						} else {
@@ -513,7 +513,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				}
 				break;
 			default:
-				for (int i = pos.getX() + 1, x = 0; i >= 0 && x < 4; i++, x++) {
+				for (int i = pos.getX() + 1, x = 0; i <= 0 && x < 4; i++, x++) {
 					if (real) {
 						cbm.changeActualBlock(i, pos.getY(), number);
 					}

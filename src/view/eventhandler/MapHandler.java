@@ -1,26 +1,51 @@
 package view.eventhandler;
 
+import controller.MapController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+
 import view.ArchivePanel;
 import view.LevelSelectPanel;
+
+import view.GamePanel;
+
 import view.MapPanel;
 import view.TerritoryPanel;
 import view.MapPanel.LandButton;
+import view.StoryPanel;
 
 public class MapHandler {
 
 	private MapPanel mapPanel;
-
+	private MapController mapController;
 	  
 	public MapHandler(MapPanel mapPanel){ 
 		this.mapPanel = mapPanel;
+		this.mapController = new MapController();
 	}
 	
 	public EventHandler<MouseEvent> homeEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  TerritoryPanel parent =  (TerritoryPanel) mapPanel.getParent();
-	    	  parent.getChildren().remove(mapPanel);
+	    	  
+	    	  
+	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
+	    	  parent.territoryPanel.toFront();
+	      }
+	};
+	
+	public EventHandler<MouseEvent> buttonClickEvent= new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  LandButton btn = (LandButton) event.getSource();
+	    	  //TODO
+	    	  //开始游戏！！！
+	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
+	    	  parent.gamePanel = new GamePanel(15, btn.levelNum);
+			  parent.getChildren().add(parent.gamePanel);
+
+			  mapController.setGamePanel(parent.gamePanel);
+			  mapController.startGameAtLevel(btn.levelNum);
+
+			  parent.gamePanel.toFront();
 	      }
 	};
 	
