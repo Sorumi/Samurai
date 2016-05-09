@@ -1,10 +1,9 @@
 package view.background;
 
-import javafx.animation.FillTransition;
-import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -14,6 +13,8 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import view.Images;
+import view.items.Moon;
+import view.items.Star;
 
 public class TerritoryBackground extends Pane{
 
@@ -22,6 +23,8 @@ public class TerritoryBackground extends Pane{
 	
 	private Rectangle skyDay;
 	private Rectangle skyNight;
+	
+	private Moon moon;
 	
 	private ImageView landDay;
 	private ImageView landNight;
@@ -46,13 +49,31 @@ public class TerritoryBackground extends Pane{
 		lg = new LinearGradient(0.5, 0, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);	
 		skyNight.setFill(lg);
 		skyNight.setOpacity(0);
-		
+	
 		//mountains
 		ImageView mountains = new ImageView(Images.TERRITORY_MOUNTAIN);
 		mountains.setFitWidth(WIDTH);
 		mountains.setPreserveRatio(true);
 		mountains.setSmooth(true);
 		
+		//items
+		moon = new Moon();
+		moon.setLayoutX(50);
+		moon.setLayoutY(11);
+		moon.setVisible(false);
+		
+		Group stars = new Group();
+		
+		Star star1 = new Star(10);
+		star1.setLayoutX(323);
+		star1.setLayoutY(49);
+		Star star2 = new Star(7);
+		star2.setLayoutX(1159);
+		star2.setLayoutY(151);
+		
+		stars.getChildren().addAll(star1, star2);
+		
+		//land
 		landDay = new ImageView(Images.TERRITORY_LAND_0);
 		landDay.setFitWidth(1148);
 		landDay.setPreserveRatio(true);
@@ -75,7 +96,8 @@ public class TerritoryBackground extends Pane{
 		items.setLayoutX(74);
 		items.setLayoutY(102);
 		
-		this.getChildren().addAll(skyDay, skyNight, mountains, landDay, landNight, items);
+		this.getChildren().addAll(skyDay, skyNight, mountains, moon, landDay, landNight, items);
+		
 	}
 	
 	
@@ -85,5 +107,7 @@ public class TerritoryBackground extends Pane{
 					new KeyFrame(Duration.millis(1000), new KeyValue(landNight.opacityProperty(), 1))
 					);
 		 nightTL.play();
+		 moon.setVisible(true);
+		 moon.lightAnimation();
 	}
 }

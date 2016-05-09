@@ -70,11 +70,8 @@ public class TerritoryPanel extends Pane {
 		
 		territoryGroup = new Group();
 		
-//		bg = new ImageView(Images.TERRITORY_BG);
-//		bg.setFitWidth(WINDOW_WIDTH);
-//		bg.setPreserveRatio(true);
-//		territoryGroup.getChildren().add(bg);
 		territoryBg = new TerritoryBackground();
+		territoryBg.setNight();
 		territoryGroup.getChildren().add(territoryBg);
 		
 		territoryHandler = new TerritoryHandler(this);
