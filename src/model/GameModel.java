@@ -483,7 +483,6 @@ public class GameModel extends BaseModel implements Observer {
                     int i = 0;
                     ArrayList<Position> positions = this.players[this.playerSeq[this.currentPlayer - 1]].getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).see();
                     for(Position p : positions){
-                        System.out.println(p.getX() + " , " + p.getY());
                         if(p.getX() == this.players[0].getSamuraiOfNum(1).getPos().getX()
                                 && p.getY() == this.players[0].getSamuraiOfNum(1).getPos().getY()){
                             i = 1;
