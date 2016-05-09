@@ -55,7 +55,7 @@ public class TerritoryHandler {
 	      public void handle(MouseEvent event) {
 	    	  StoryPanel parent = (StoryPanel) territoryPanel.getParent();
 	    	  parent.mapPanel.toFront();
-	    	  territoryPanel.stopAll();
+	    	  territoryPanel.territoryBg.stopAll();
 	      }
 	};
 	
