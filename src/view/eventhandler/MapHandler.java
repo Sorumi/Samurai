@@ -1,7 +1,9 @@
 package view.eventhandler;
 
+import controller.MapController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import view.GamePanel;
 import view.MapPanel;
 import view.TerritoryPanel;
 import view.MapPanel.LandButton;
@@ -10,10 +12,11 @@ import view.StoryPanel;
 public class MapHandler {
 
 	private MapPanel mapPanel;
-
+	private MapController mapController;
 	  
 	public MapHandler(MapPanel mapPanel){
 		this.mapPanel = mapPanel;
+		this.mapController = new MapController();
 	}
 	
 	public EventHandler<MouseEvent> homeEvent= new EventHandler<MouseEvent>() {  
@@ -29,9 +32,13 @@ public class MapHandler {
 	    	  //TODO
 	    	  //开始游戏！！！
 	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
-//	    	  parent.gamePanel = new GamePanel();
-	    	  parent.gamePanel.toFront();
-	    	  System.out.println(btn.levelNum);
+	    	  parent.gamePanel = new GamePanel(15, btn.levelNum);
+			  parent.getChildren().add(parent.gamePanel);
+
+			  mapController.setGamePanel(parent.gamePanel);
+			  mapController.startGameAtLevel(btn.levelNum);
+
+			  parent.gamePanel.toFront();
 	      }
 	};
 	

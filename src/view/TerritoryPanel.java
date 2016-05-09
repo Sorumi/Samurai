@@ -96,7 +96,7 @@ public class TerritoryPanel extends Pane {
 		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				territoryHandler.getTerritoryController().save(StoryModel.getFileNum());
+//				territoryHandler.getTerritoryController().save(StoryModel.getFileNum());
 			}
 		});
 		territoryGroup.getChildren().add(saveBtn);

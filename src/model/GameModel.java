@@ -7,6 +7,7 @@ import model.state.GameResultState;
 import model.state.GameState;
 import network.TransformObject;
 import network.client.ClientService;
+import view.GamePanel;
 //import view.MainFrame;
 
 import java.util.*;
@@ -40,11 +41,11 @@ public class GameModel extends BaseModel implements Observer {
     //1~9   : Regular Mode, AI Level from 0 ~ 9
     //11~20 : Adventure Mode, Level from 1 ~ 7
     //99    : Online Mode, No AI.
-    public GameModel(int round, int length, Main mainFrame, int level){
+    public GameModel(int round, int length, GamePanel gamePanel, int level){
         this.level = level;
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
-        this.chessBoardModel.addObserver(mainFrame.gamePanel.chessBoard);
+        this.chessBoardModel.addObserver(gamePanel.chessBoard);
         this.gameState = GameState.RUN;
         this.timeTotal = 30;
         this.coldRoundNum = 1;
@@ -65,6 +66,18 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
                 samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
                 break;
+            //TODO:
+            //不同关卡指派不同AI
+//            case 1:
+//                break;
+//            case 2:
+//                break;
+//            case 3:
+//                break;
+//            case 4:
+//                break;
+//            case 5:
+//                break;
             default:
                 break;
         }
@@ -120,10 +133,8 @@ public class GameModel extends BaseModel implements Observer {
             case 0:
                 this.assignNext();
                 break;
-            case 99:
-                this.assignNextWithAI();
-                break;
             default:
+                this.assignNextWithAI();
                 break;
         }
 
@@ -431,10 +442,8 @@ public class GameModel extends BaseModel implements Observer {
                 case 0:
                     this.assignNext();
                     break;
-                case 99:
-                    this.assignNextWithAI();
-                    break;
                 default:
+                    this.assignNextWithAI();
                     break;
             }
         }else{
