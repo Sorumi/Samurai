@@ -6,8 +6,12 @@ public class Images {
 
 	//BG
 	public static Image BG_0 = new Image("/./images/bg_0.png");
+	public static Image BG_1 = new Image("/./images/bg_1.png");
+	public static Image BG_2 = new Image("/./images/bg_2.png");
 	public static Image BG_3 = new Image("/./images/bg_3.png");
-	public static Image[] BG = {BG_0, null, null, BG_3, null};
+	public static Image BG_4 = new Image("/./images/bg_4.png");
+	public static Image BG_5 = new Image("/./images/bg_5.png");	
+	public static Image[] BG = {BG_0, BG_1, BG_2, BG_3, BG_4};
 	//cloud 
 	public static Image CLOUD_0 = new Image("/./images/cloud_0.png",true);
 	public static Image CLOUD_1 = new Image("/./images/cloud_1.png",true);
