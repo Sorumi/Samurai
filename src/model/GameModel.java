@@ -478,6 +478,7 @@ public class GameModel extends BaseModel implements Observer {
                             }
                             break;
                     }
+                    this.skip1Round();
                 }else{
                     int i = 0;
                     ArrayList<Position> positions = this.players[this.playerSeq[this.currentPlayer - 1]].getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).see();
