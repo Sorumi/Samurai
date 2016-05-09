@@ -146,9 +146,11 @@ public class SamuraiAI {
 					// 进攻策略
 
 					while (samuraiPOClone.getActionPoint() >= 2) {
+						System.out.println("BACK");
 						if (samuraiPOClone.getActionPoint() >= 4
 								&& attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)) {
 							samuraiPOClone.changeActionPoint(4);
+							System.out.println("wrong");
 							if (samuraiPOClone.getActionPoint() < 2) {
 								return actionOperations;
 							}
@@ -158,6 +160,8 @@ public class SamuraiAI {
 							if (distance > 1) {
 								//
 								System.out.println(distance);
+								System.out.println(samuraiPOClone.getActionPoint());
+								System.out.println(actionOperations.size());
 								//
 								if (samuraiPOClone.getActionPoint() < 2) {
 									return actionOperations;
@@ -172,8 +176,12 @@ public class SamuraiAI {
 									break;
 								} else {
 									samuraiPOClone.changeActionPoint(2);
+									System.out.println(actionOperations.size());
 								}
 							}
+						}
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
 						}
 					}
 					while (samuraiPOClone.getActionPoint() >= 2) {
@@ -202,6 +210,9 @@ public class SamuraiAI {
 								}
 							}
 						}
+					}
+					if (samuraiPOClone.getActionPoint() < 2) {
+						return actionOperations;
 					}
 				}
 				// 逃跑策略
