@@ -1,6 +1,10 @@
 package view.background;
 
 import javafx.animation.FillTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -8,6 +12,7 @@ import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import view.Images;
 
 public class TerritoryBackground extends Pane{
@@ -17,6 +22,9 @@ public class TerritoryBackground extends Pane{
 	
 	private Rectangle skyDay;
 	private Rectangle skyNight;
+	
+	private ImageView landDay;
+	private ImageView landNight;
 	
 	public TerritoryBackground(){
 		Stop[] stops;
@@ -36,7 +44,8 @@ public class TerritoryBackground extends Pane{
 		skyNight.setHeight(HEIGHT);
 		stops = new Stop[]{new Stop(0, Color.web("#3B5D88")), new Stop(1, Color.web("#31C8C0"))};
 		lg = new LinearGradient(0.5, 0, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);	
-		skyNight.setFill(lg);	
+		skyNight.setFill(lg);
+		skyNight.setOpacity(0);
 		
 		//mountains
 		ImageView mountains = new ImageView(Images.TERRITORY_MOUNTAIN);
@@ -44,25 +53,37 @@ public class TerritoryBackground extends Pane{
 		mountains.setPreserveRatio(true);
 		mountains.setSmooth(true);
 		
-		ImageView land_0 = new ImageView(Images.TERRITORY_LAND_0);
-		land_0.setFitWidth(1148);
-		land_0.setPreserveRatio(true);
-		land_0.setSmooth(true);
-		land_0.setLayoutX(39);
-		land_0.setLayoutY(108);
+		landDay = new ImageView(Images.TERRITORY_LAND_0);
+		landDay.setFitWidth(1148);
+		landDay.setPreserveRatio(true);
+		landDay.setSmooth(true);
+		landDay.setLayoutX(39);
+		landDay.setLayoutY(108);
 		
-		ImageView land_1 = new ImageView(Images.TERRITORY_LAND_1);
-		land_1.setFitWidth(1148);
-		land_1.setPreserveRatio(true);
-		land_1.setSmooth(true);
-		land_1.setLayoutX(39);
-		land_1.setLayoutY(108);
-		land_1.setOpacity(0);
+		landNight = new ImageView(Images.TERRITORY_LAND_1);
+		landNight.setFitWidth(1148);
+		landNight.setPreserveRatio(true);
+		landNight.setSmooth(true);
+		landNight.setLayoutX(39);
+		landNight.setLayoutY(108);
+		landNight.setOpacity(0);
 		
-		this.getChildren().addAll(skyDay, skyNight, mountains, land_0, land_1);
+		ImageView items = new ImageView(Images.TERRITORY_ITEMS);
+		items.setFitWidth(981);
+		items.setPreserveRatio(true);
+		items.setSmooth(true);
+		items.setLayoutX(74);
+		items.setLayoutY(102);
+		
+		this.getChildren().addAll(skyDay, skyNight, mountains, landDay, landNight, items);
 	}
 	
+	
 	public void setNight(){
-
+		 Timeline nightTL= new Timeline(
+					new KeyFrame(Duration.millis(1000), new KeyValue(skyNight.opacityProperty(), 1)),
+					new KeyFrame(Duration.millis(1000), new KeyValue(landNight.opacityProperty(), 1))
+					);
+		 nightTL.play();
 	}
 }
