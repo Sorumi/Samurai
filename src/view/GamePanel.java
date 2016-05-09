@@ -175,9 +175,6 @@ public class GamePanel extends Pane implements Observer{
 	public void setBackground(int level){		
 	    this.setStyle("-fx-background-image: url("+Images.BG[level/10]+") ;"
 	    		+ "-fx-background-size: 100% 100%; ");
-//		bg = new ImageView(Images.BG[level/10]);
-//		bg.setFitWidth(1200);
-//		bg.setPreserveRatio(true);
 		switch(level/10){
 		case 0: backgroundPanel = new BackgroundPanel0();break;
 		case 1: backgroundPanel = new BackgroundPanel1();break;
@@ -186,9 +183,8 @@ public class GamePanel extends Pane implements Observer{
 		case 4: backgroundPanel = new BackgroundPanel4();break;
 		case 5: backgroundPanel = new BackgroundPanel5();break;
 		}
+		this.getChildren().add(backgroundPanel);
 
-
-//		this.getChildren().add(bg);
 		
 	}
 
