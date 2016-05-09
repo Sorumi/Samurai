@@ -482,13 +482,22 @@ public class GameModel extends BaseModel implements Observer {
                 }else{
                     int i = 0;
                     ArrayList<Position> positions = this.players[this.playerSeq[this.currentPlayer - 1]].getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).see();
-                    if(positions.contains(this.players[0].getSamuraiOfNum(1).getPos())){
-                        i = 1;
-                    }else if(positions.contains(this.players[0].getSamuraiOfNum(2).getPos())){
-                        i = 2;
-                    }else if(positions.contains(this.players[0].getSamuraiOfNum(3).getPos())){
-                        i = 3;
+                    for(Position p : positions){
+                        System.out.println(p.getX() + " , " + p.getY());
+                        if(p.getX() == this.players[0].getSamuraiOfNum(1).getPos().getX()
+                                && p.getY() == this.players[0].getSamuraiOfNum(1).getPos().getY()){
+                            i = 1;
+                        }
+                        if(p.getX() == this.players[0].getSamuraiOfNum(2).getPos().getX()
+                                && p.getY() == this.players[0].getSamuraiOfNum(2).getPos().getY()){
+                            i = 2;
+                        }
+                        if(p.getX() == this.players[0].getSamuraiOfNum(3).getPos().getX()
+                                && p.getY() == this.players[0].getSamuraiOfNum(3).getPos().getY()){
+                            i = 3;
+                        }
                     }
+                    System.out.println("Samurai in vision: " + i);
                     switch (this.currentPlayer) {
                         case 2:
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
