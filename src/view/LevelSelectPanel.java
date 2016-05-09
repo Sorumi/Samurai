@@ -120,8 +120,7 @@ public class LevelSelectPanel extends Pane{
 				@Override
 				public void handle(ActionEvent event) {
 					// TODO Auto-generated method stub
-					MapPanel parent = (MapPanel) LevelSelectPanel.this.getParent();
-					parent.getChildren().remove(LevelSelectPanel.this);
+					LevelSelectPanel.this.setVisible(false);
 				}
 		});
 		
