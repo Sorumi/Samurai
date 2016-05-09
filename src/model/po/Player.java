@@ -17,6 +17,8 @@ public class Player {
     private int currentSamurai;
     private ChessBoardModel chessBoardModel;
 
+    private boolean isAI = false;
+
     public Player(GameModel model, int playerNum){
         this.playerNum = playerNum;
         this.gameModel = model;
@@ -31,9 +33,13 @@ public class Player {
             samuraiPOs[5] = new SamuraiPO(5,playerNum,new Weapon(1),this.gameModel.getLength(),this.chessBoardModel,new Armor());
             samuraiPOs[6] = new SamuraiPO(6,playerNum,new Weapon(2),this.gameModel.getLength(),this.chessBoardModel,new Armor());
         }
+
+        if(gameModel.getLevel() != 0){
+            this.isAI = true;
+        }
     }
 
-    //故事模式中带SamuraiPO的 构造方法
+    //故事模式中带SamuraiPO的构造方法
     public Player(GameModel model, int playerNum, SamuraiPO[] sPOs){
         this.playerNum = playerNum;
         this.gameModel = model;
@@ -247,7 +253,10 @@ public class Player {
                 e.printStackTrace();
             }
 
-            this.actionDone();
+            //若是人类操纵,那么点数为零的时候自动跳转下一局
+            if(!this.isAI) {
+                this.actionDone();
+            }
 
         }
     }
