@@ -109,6 +109,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			home = pos.clone();
 		}
 	}
+
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor,Position home,int actionPoint) {
 		this.number = number;
 		this.player = player;

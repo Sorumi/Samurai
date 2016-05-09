@@ -3,6 +3,7 @@ package controller;
 import controller.msgqueue.OperationQueue;
 import controller.msgqueue.StartGameOperation;
 import model.GameModel;
+import model.po.Position;
 import model.po.SamuraiPO;
 import view.GamePanel;
 
@@ -25,6 +26,12 @@ public class MapController extends TerritoryController {
         this.gameModel = new GameModel(24, 14, gamePanel, level, this.storyModel.getSamuraiPOs());
         this.gameModel.addObserver(this.gamePanel);
         this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
+
+        for (int i = 1; i <= 3; i++) {
+            Position pos = this.gameModel.getSamuraiOfNum(i).getHome();
+            this.gameModel.getChessBoardModel().changeActualBlock(pos.getX(), pos.getY(), true);
+            this.gameModel.getChessBoardModel().changeActualBlock(pos.getX(), pos.getY(), this.gameModel.getSamuraiOfNum(i).getNumber());
+        }
 
         OperationQueue operationQueue = new OperationQueue(gameModel);
         Thread operationThread = new Thread(operationQueue);
