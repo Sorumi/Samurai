@@ -1,5 +1,7 @@
 package view.eventhandler;
 
+import java.text.SimpleDateFormat;
+
 import controller.ArchiveController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -31,7 +33,8 @@ public class ArchiveHandler {
 	      public void handle(MouseEvent event) {
 			  //保存存档 num
 			  archiveController.save(num);
-			  archiveView.setTime(archiveController.getStoryModel().getTime().toString());
+			  SimpleDateFormat ft = new SimpleDateFormat ("yyyy年MM月dd日 HH:mm:ss");
+			  archiveView.setTime(ft.format(archiveController.getStoryModel().getTime()));
 	      }
 	};
 	
