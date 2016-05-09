@@ -49,7 +49,9 @@ public class Moon extends Group{
 	}
 	
 	public void stopTL(){
-		effectTL.stop();
+		if(effectTL != null){
+			effectTL.stop();
+		}
 	}
 
 }

@@ -74,6 +74,8 @@ public class Star extends Group {
 	}
 	
 	public void stopTL(){
-		effectTL.stop();
+		if(effectTL != null){
+			effectTL.stop();
+		}
 	}
 }
