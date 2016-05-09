@@ -56,7 +56,6 @@ public class TerritoryHandler {
 	    	  StoryPanel parent = (StoryPanel) territoryPanel.getParent();
 	    	  parent.mapPanel.toFront();
 	    	  territoryPanel.stopAll();
-//	    	  territoryPanel.getChildren().add(territoryPanel.mapPanel);
 	      }
 	};
 	

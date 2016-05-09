@@ -92,7 +92,11 @@ public class SamuraiAI {
 
 	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition) {
 		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
+		if(enemySamuraiPO!=null){
+			System.out.println("enemy location"+enemySamuraiPO.getPos().getX()+" "+enemySamuraiPO.getPos().getY());
+		}
 		Random random = new Random();
+		samuraiPO.setActionPoint(10);
 		SamuraiPO samuraiPOClone = samuraiPO.clone();
 		ChessBoardModel cbm = chessBoardModel.clone();
 		switch (type) {
@@ -772,7 +776,7 @@ public class SamuraiAI {
 		if (samuraiPO.getHealthPoint() >= enemySamuraiPO.getHealthPoint()) {
 			count++;
 		}
-		if (count >= 5) {
+		if (count >= 0) {
 			return true;
 		} else {
 			return false;

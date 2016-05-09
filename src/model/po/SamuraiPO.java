@@ -76,6 +76,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.coldRound = 0;
 		this.healthPoint = 60;
 		this.criticalHitChance=1;
+		this.actionPoint=30;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
@@ -1135,6 +1136,8 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.attackValue += 3;
 		this.healthPoint += 20;
 		level++;
+		this.actionPoint++;
+		
 	}
 
 	public void changeWeapon(Weapon weapon) {

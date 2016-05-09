@@ -13,8 +13,7 @@ import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import view.Images;
-import view.items.Moon;
-import view.items.Star;
+import view.items.*;
 
 public class TerritoryBackground extends Pane{
 
@@ -26,6 +25,7 @@ public class TerritoryBackground extends Pane{
 	private Rectangle skyDay;
 	private Rectangle skyNight;
 	
+	private Sun sun;
 	private Moon moon;
 	private Group stars;
 	
@@ -62,6 +62,12 @@ public class TerritoryBackground extends Pane{
 		mountains.setSmooth(true);
 		
 		//items
+		sun = new Sun();
+		sun.setLayoutX(46);
+		sun.setLayoutY(21);
+		sun.setVisible(true);
+		sun.lightAnimation();
+		
 		moon = new Moon();
 		moon.setLayoutX(50);
 		moon.setLayoutY(11);
@@ -78,7 +84,7 @@ public class TerritoryBackground extends Pane{
 		
 		stars.getChildren().addAll(star1, star2);
 		stars.setVisible(false);
-		
+		this.setStars();
 		//land
 		landDay = new ImageView(Images.TERRITORY_LAND_0);
 		landDay.setFitWidth(1148);
@@ -102,7 +108,7 @@ public class TerritoryBackground extends Pane{
 		items.setLayoutX(74);
 		items.setLayoutY(102);
 		
-		this.getChildren().addAll(skyDay, skyNight, mountains, moon, stars, landDay, landNight, items);
+		this.getChildren().addAll(skyDay, skyNight, mountains, sun, moon, stars, landDay, landNight, items);
 		
 	}
 	
