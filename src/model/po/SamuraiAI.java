@@ -31,10 +31,10 @@ public class SamuraiAI {
 		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 1);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
 		cbm.changeActualBlock(0, 4, true);
-		//cbm.changeActualBlock(1, 4, true);
+		// cbm.changeActualBlock(1, 4, true);
 		for (int i = 0; i < 5; i++) {
 			mine2.storyCalculate(No3, null);
-			System.out.println(No3.getPos().getX()+" "+No1.getPos().getY());
+			System.out.println(No3.getPos().getX() + " " + No1.getPos().getY());
 			print(cbm);
 			/*
 			 * mine4.storyCalculate(null, null); print(cbm);
@@ -96,8 +96,9 @@ public class SamuraiAI {
 
 	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition) {
 		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
-		if(enemySamuraiPO!=null){
-			System.out.println("enemy location"+enemySamuraiPO.getPos().getX()+" "+enemySamuraiPO.getPos().getY());
+		if (enemySamuraiPO != null) {
+			System.out
+					.println("enemy location" + enemySamuraiPO.getPos().getX() + " " + enemySamuraiPO.getPos().getY());
 		}
 		Random random = new Random();
 
@@ -135,22 +136,28 @@ public class SamuraiAI {
 				actionOperations = greedy(samuraiPOClone, cbm);
 
 				samuraiPOClone.setActionPoint(temp - 6);
+<<<<<<< HEAD
 
 //				if(samuraiPOClone.getActionPoint()>=2){
 //				actionOperations.add(new ActionOperation(99, 9999));
 //				}
 
+=======
+				if (samuraiPOClone.getActionPoint() >= 2) {
+					actionOperations.add(new ActionOperation(99, 9999));
+				}
+>>>>>>> b7712bf632a1bcf137aeb0dd459ff752971eef51
 				return actionOperations;
 			} else {
 				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);
 				if (compareAbility(samuraiPOClone, enemySamuraiPO)) {
 					// 进攻策略
-					
+
 					while (samuraiPOClone.getActionPoint() >= 2) {
-						if (attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)
-								&& samuraiPOClone.getActionPoint() >= 4) {
+						if (samuraiPOClone.getActionPoint() >= 4
+								&& attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)) {
 							samuraiPOClone.changeActionPoint(4);
-							if(samuraiPOClone.getActionPoint()<=3){
+							if (samuraiPOClone.getActionPoint() < 2) {
 								return actionOperations;
 							}
 							continue;
@@ -160,7 +167,7 @@ public class SamuraiAI {
 								//
 								System.out.println(distance);
 								//
-								if(samuraiPOClone.getActionPoint()<2){
+								if (samuraiPOClone.getActionPoint() < 2) {
 									return actionOperations;
 								}
 								int way = approach(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
@@ -178,10 +185,10 @@ public class SamuraiAI {
 						}
 					}
 					while (samuraiPOClone.getActionPoint() >= 2) {
-						if (attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)
-								&& samuraiPOClone.getActionPoint() >= 4) {
+						if (samuraiPOClone.getActionPoint() >= 4
+								&& attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)) {
 							samuraiPOClone.changeActionPoint(4);
-							if(samuraiPOClone.getActionPoint()<=3){
+							if (samuraiPOClone.getActionPoint() < 2) {
 								return actionOperations;
 							}
 							continue;
@@ -191,7 +198,7 @@ public class SamuraiAI {
 								//
 								System.out.println(distance);
 								//
-								if(samuraiPOClone.getActionPoint()<2){
+								if (samuraiPOClone.getActionPoint() < 2) {
 									return actionOperations;
 								}
 								if (AnotherApproach(samuraiPOClone, enemySamuraiPO.getPos(), cbm,
@@ -209,24 +216,24 @@ public class SamuraiAI {
 				else {
 					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
 						int way = leave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
-						if(samuraiPOClone.getActionPoint()<2){
+						if (samuraiPOClone.getActionPoint() < 2) {
 							return actionOperations;
 						}
 						if (way == 0) {
-							//System.out.println("!!!");
+							// System.out.println("!!!");
 							actionOperations.addAll(greedy(samuraiPOClone, cbm));
 							return actionOperations;
 						} else if (way == 1) {
-							//System.out.println("!!!");
+							// System.out.println("!!!");
 							samuraiPOClone.changeActionPoint(2);
 							break;
 						} else {
 							samuraiPOClone.changeActionPoint(2);
 						}
-						
+
 					}
 					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
-						if(samuraiPOClone.getActionPoint()<2){
+						if (samuraiPOClone.getActionPoint() < 2) {
 							return actionOperations;
 						}
 						if (AnotherLeave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations) == 0) {
@@ -239,7 +246,7 @@ public class SamuraiAI {
 							//
 							samuraiPOClone.changeActionPoint(2);
 						}
-						
+
 					}
 					actionOperations.addAll(greedy(samuraiPOClone, cbm));
 					return actionOperations;
@@ -353,8 +360,8 @@ public class SamuraiAI {
 					Collections.sort(saveCaches);
 					samuraiPO1.occupied(saveCaches.get(0).location, chessBoardModel1, true);
 					//
-					 //samuraiPO.occupied(saveCaches.get(0).location,
-					 //chessBoardModel, true);
+					// samuraiPO.occupied(saveCaches.get(0).location,
+					// chessBoardModel, true);
 					//
 					actionOperations.add(new ActionOperation(0, saveCaches.get(0).location));
 					samuraiPO1.changeActionPoint(4);
@@ -365,7 +372,7 @@ public class SamuraiAI {
 					} while (!samuraiPO1.checkMove(chessBoardModel1)[moveDirection1]);
 					samuraiPO1.move(moveDirection1, chessBoardModel1);
 					//
-					 //samuraiPO.move(moveDirection1, chessBoardModel);
+					// samuraiPO.move(moveDirection1, chessBoardModel);
 					//
 					actionOperations.add(new ActionOperation(1, moveDirection1));
 					samuraiPO1.changeActionPoint(2);
@@ -379,7 +386,7 @@ public class SamuraiAI {
 					} while (!samuraiPO1.checkMove(chessBoardModel1)[moveDirection1]);
 					samuraiPO1.move(moveDirection1, chessBoardModel1);
 					//
-					 //samuraiPO.move(moveDirection1, chessBoardModel);
+					// samuraiPO.move(moveDirection1, chessBoardModel);
 					//
 					actionOperations.add(new ActionOperation(1, moveDirection1));
 					samuraiPO1.changeActionPoint(2);
@@ -395,7 +402,7 @@ public class SamuraiAI {
 					Collections.sort(saveCaches);
 					samuraiPO1.occupied(saveCaches.get(0).location, chessBoardModel1, true);
 					//
-					 //samuraiPO.occupied(saveCaches.get(0).location,
+					// samuraiPO.occupied(saveCaches.get(0).location,
 					// chessBoardModel, true);
 					//
 					actionOperations.add(new ActionOperation(0, saveCaches.get(0).location));
@@ -432,7 +439,7 @@ public class SamuraiAI {
 
 				}
 				//
-				//samuraiPO.move(0, chessBoardModel);
+				// samuraiPO.move(0, chessBoardModel);
 				//
 			} else {
 				if (samuraiPO1.checkMove(cbm1)[3]) {
@@ -442,7 +449,7 @@ public class SamuraiAI {
 					return AnotherApproach(samuraiPO1, position1, cbm1, actionOperations);
 				}
 				//
-				//samuraiPO.move(3, chessBoardModel);
+				// samuraiPO.move(3, chessBoardModel);
 				//
 			}
 		} else {
@@ -454,14 +461,14 @@ public class SamuraiAI {
 					return AnotherApproach(samuraiPO1, position1, cbm1, actionOperations);
 				}
 				//
-				//samuraiPO.move(1, chessBoardModel);
+				// samuraiPO.move(1, chessBoardModel);
 				//
 			} else {
 				if (samuraiPO1.checkMove(cbm1)[2]) {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(1, 2));
 					//
-					//samuraiPO.move(2, chessBoardModel);
+					// samuraiPO.move(2, chessBoardModel);
 					//
 				} else {
 					return AnotherApproach(samuraiPO1, position1, cbm1, actionOperations);
@@ -485,55 +492,57 @@ public class SamuraiAI {
 		} else {
 			compare = 0;
 		}
-		
+
 		if (compare == 0) {
 			if ((samuraiPO1.getPos().getX() - position1.getX()) > 0) {
 				if (samuraiPO1.checkMove(cbm1)[0]) {
 					samuraiPO1.move(0, cbm1);
 					actionOperations.add(new ActionOperation(1, 0));
-				} else if (samuraiPO1.checkMove(cbm1)[1]&&samuraiPO1.getPos().getY()>=(chessBoardModel.getLength()/2)) {
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
 					samuraiPO1.move(1, cbm1);
 					actionOperations.add(new ActionOperation(1, 1));
 					//
-					//samuraiPO.move(1, chessBoardModel);
+					// samuraiPO.move(1, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[2]) {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(1, 2));
 					//
-					//samuraiPO.move(2, chessBoardModel);
+					// samuraiPO.move(2, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				//samuraiPO.move(0, chessBoardModel);
+				// samuraiPO.move(0, chessBoardModel);
 				//
 			} else {
 				if (samuraiPO1.checkMove(cbm1)[3]) {
 					samuraiPO1.move(3, cbm1);
 					actionOperations.add(new ActionOperation(1, 3));
-				} else if (samuraiPO1.checkMove(cbm1)[1]&&samuraiPO1.getPos().getY()>=(chessBoardModel.getLength()/2)) {
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
 					samuraiPO1.move(1, cbm1);
 					actionOperations.add(new ActionOperation(1, 1));
 					//
-					//samuraiPO.move(1, chessBoardModel);
+					// samuraiPO.move(1, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[2]) {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(1, 2));
 					//
-					//samuraiPO.move(2, chessBoardModel);
+					// samuraiPO.move(2, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				//samuraiPO.move(3, chessBoardModel);
+				// samuraiPO.move(3, chessBoardModel);
 				//
 			}
 		} else {
@@ -541,50 +550,52 @@ public class SamuraiAI {
 				if (samuraiPO1.checkMove(cbm1)[1]) {
 					samuraiPO1.move(1, cbm1);
 					actionOperations.add(new ActionOperation(1, 1));
-				} else if (samuraiPO1.checkMove(cbm1)[0]&&samuraiPO1.getPos().getX()>=(chessBoardModel.getLength()/2)) {
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
 					samuraiPO1.move(0, cbm1);
 					actionOperations.add(new ActionOperation(1, 0));
 					//
-					//samuraiPO.move(0, chessBoardModel);
+					// samuraiPO.move(0, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[3]) {
 					samuraiPO1.move(3, cbm1);
 					actionOperations.add(new ActionOperation(1, 3));
 					//
-					//samuraiPO.move(3, chessBoardModel);
+					// samuraiPO.move(3, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				//samuraiPO.move(1, chessBoardModel);
+				// samuraiPO.move(1, chessBoardModel);
 				//
 			} else {
 				if (samuraiPO1.checkMove(cbm1)[2]) {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(1, 2));
-				} else if (samuraiPO1.checkMove(cbm1)[0]&&samuraiPO1.getPos().getX()>=(chessBoardModel.getLength()/2)) {
-					
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
+
 					samuraiPO1.move(0, cbm1);
 					actionOperations.add(new ActionOperation(1, 0));
 					//
-					//samuraiPO.move(0, chessBoardModel);
+					// samuraiPO.move(0, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[3]) {
 					samuraiPO1.move(3, cbm1);
 					actionOperations.add(new ActionOperation(1, 3));
 					//
-					//samuraiPO.move(3, chessBoardModel);
+					// samuraiPO.move(3, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				//samuraiPO.move(2, chessBoardModel);
+				// samuraiPO.move(2, chessBoardModel);
 				//
 			}
 		}
@@ -599,7 +610,7 @@ public class SamuraiAI {
 		if ((Math.abs(samuraiPO1.getPos().getX() - position1.getX()) < Math
 				.abs(samuraiPO1.getPos().getY() - position1.getY())
 				&& ((samuraiPO1.getPos().getX() - position1.getX()) != 0))
-				||(samuraiPO1.getPos().getY() == position1.getY())) {
+				|| (samuraiPO1.getPos().getY() == position1.getY())) {
 			compare = 1;
 		} else {
 			compare = 0;
@@ -610,53 +621,55 @@ public class SamuraiAI {
 			//
 			System.out.println("WWW");
 			//
-			if ((samuraiPO1.getPos().getX() - position1.getX()) > 0&&samuraiPO1.getPos().getX()==0) {
+			if ((samuraiPO1.getPos().getX() - position1.getX()) > 0 && samuraiPO1.getPos().getX() == 0) {
 				if (samuraiPO1.checkMove(cbm1)[3]) {
 					samuraiPO1.move(3, cbm1);
 					actionOperations.add(new ActionOperation(1, 3));
-				} else if (samuraiPO1.checkMove(cbm1)[1]&&samuraiPO1.getPos().getY()>=(chessBoardModel.getLength()/2)) {
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
 					samuraiPO1.move(1, cbm1);
 					actionOperations.add(new ActionOperation(1, 1));
 					//
-					//samuraiPO.move(1, chessBoardModel);
+					// samuraiPO.move(1, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[2]) {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(1, 2));
 					//
-					//samuraiPO.move(2, chessBoardModel);
+					// samuraiPO.move(2, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				//samuraiPO.move(3, chessBoardModel);
+				// samuraiPO.move(3, chessBoardModel);
 				//
 			} else {
 				if (samuraiPO1.checkMove(cbm1)[0]) {
 					samuraiPO1.move(0, cbm1);
 					actionOperations.add(new ActionOperation(1, 0));
-				} else if (samuraiPO1.checkMove(cbm1)[1]&&samuraiPO1.getPos().getY()>=(chessBoardModel.getLength()/2)) {
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
 					samuraiPO1.move(1, cbm1);
 					actionOperations.add(new ActionOperation(1, 1));
 					//
-					//samuraiPO.move(1, chessBoardModel);
+					// samuraiPO.move(1, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[2]) {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(1, 2));
 					//
-					//samuraiPO.move(2, chessBoardModel);
+					// samuraiPO.move(2, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				//samuraiPO.move(0, chessBoardModel);
+				// samuraiPO.move(0, chessBoardModel);
 				//
 			}
 		} else {
@@ -664,49 +677,51 @@ public class SamuraiAI {
 				if (samuraiPO1.checkMove(cbm1)[2]) {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(1, 2));
-				} else if (samuraiPO1.checkMove(cbm1)[0]&&samuraiPO1.getPos().getX()>=(chessBoardModel.getLength()/2)) {
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
 					samuraiPO1.move(0, cbm1);
 					actionOperations.add(new ActionOperation(1, 0));
 					//
-					//samuraiPO.move(0, chessBoardModel);
+					// samuraiPO.move(0, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[3]) {
 					samuraiPO1.move(3, cbm1);
 					actionOperations.add(new ActionOperation(1, 3));
 					//
-					//samuraiPO.move(3, chessBoardModel);
+					// samuraiPO.move(3, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				//samuraiPO.move(2, chessBoardModel);
+				// samuraiPO.move(2, chessBoardModel);
 				//
 			} else {
 				if (samuraiPO1.checkMove(cbm1)[1]) {
 					samuraiPO1.move(1, cbm1);
 					actionOperations.add(new ActionOperation(1, 1));
-				} else if (samuraiPO1.checkMove(cbm1)[0]&&samuraiPO1.getPos().getX()>=(chessBoardModel.getLength()/2)) {
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
 					samuraiPO1.move(0, cbm1);
 					actionOperations.add(new ActionOperation(1, 0));
 					//
-					////samuraiPO.move(0, chessBoardModel);
+					//// samuraiPO.move(0, chessBoardModel);
 					//
 					return 1;
 				} else if (samuraiPO1.checkMove(cbm1)[3]) {
 					samuraiPO1.move(3, cbm1);
 					actionOperations.add(new ActionOperation(1, 3));
 					//
-					////samuraiPO.move(3, chessBoardModel);
+					//// samuraiPO.move(3, chessBoardModel);
 					//
 					return 1;
 				} else {
 					return 0;
 				}
 				//
-				////samuraiPO.move(1, chessBoardModel);
+				//// samuraiPO.move(1, chessBoardModel);
 				//
 			}
 		}
@@ -734,7 +749,7 @@ public class SamuraiAI {
 					samuraiPO1.move(3, cbm1);
 					actionOperations.add(new ActionOperation(1, 3));
 					//
-					////samuraiPO.move(3, chessBoardModel);
+					//// samuraiPO.move(3, chessBoardModel);
 					//
 				} else {
 					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
@@ -744,7 +759,7 @@ public class SamuraiAI {
 					samuraiPO1.move(0, cbm1);
 					actionOperations.add(new ActionOperation(0, 3));
 					//
-					////samuraiPO.move(0, chessBoardModel);
+					//// samuraiPO.move(0, chessBoardModel);
 					//
 				} else {
 					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
@@ -757,7 +772,7 @@ public class SamuraiAI {
 					samuraiPO1.move(2, cbm1);
 					actionOperations.add(new ActionOperation(2, 1));
 					//
-					////samuraiPO.move(2, chessBoardModel);
+					//// samuraiPO.move(2, chessBoardModel);
 					//
 				} else {
 					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
@@ -767,7 +782,7 @@ public class SamuraiAI {
 					samuraiPO1.move(1, cbm1);
 					actionOperations.add(new ActionOperation(1, 1));
 					//
-					////samuraiPO.move(1, chessBoardModel);
+					//// samuraiPO.move(1, chessBoardModel);
 					//
 				} else {
 					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
@@ -812,7 +827,7 @@ public class SamuraiAI {
 			if (cbm2.getActualBlockState(position.getX(), position.getY()) != 99) {
 				actionOperations.add(new ActionOperation(0, i));
 				//
-				//samuraiPO.occupied(i, chessBoardModel, true);
+				// samuraiPO.occupied(i, chessBoardModel, true);
 				//
 				return true;
 			}

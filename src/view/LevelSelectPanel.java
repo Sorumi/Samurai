@@ -98,6 +98,7 @@ public class LevelSelectPanel extends Pane{
 		materialOne.setScaleX(0.5);
 		materialOne.setScaleY(0.5);
 
+
 		materialCircleTwo = new Circle();
 		materialCircleTwo.setCenterX(295);
 		materialCircleTwo.setCenterY(140);

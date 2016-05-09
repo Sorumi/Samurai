@@ -21,6 +21,9 @@ public class TerritoryBackground extends Pane{
 	private static int HEIGHT = 800;
 	
 	private boolean isDay;
+	private boolean isSun;
+	private boolean isMoon;
+	private boolean isStars;
 	
 	private Rectangle skyDay;
 	private Rectangle skyNight;
@@ -28,6 +31,7 @@ public class TerritoryBackground extends Pane{
 	private Sun sun;
 	private Moon moon;
 	private Group stars;
+	private Group starCircles;
 	
 	private ImageView landDay;
 	private ImageView landNight;
@@ -37,6 +41,9 @@ public class TerritoryBackground extends Pane{
 		LinearGradient lg;
 		
 		isDay = true;
+		isSun = false;
+		isMoon = false;
+		isStars = false;
 		
 		//sky day
 		skyDay = new Rectangle();
@@ -65,8 +72,7 @@ public class TerritoryBackground extends Pane{
 		sun = new Sun();
 		sun.setLayoutX(46);
 		sun.setLayoutY(21);
-		sun.setVisible(true);
-		sun.lightAnimation();
+		sun.setVisible(false);
 		
 		moon = new Moon();
 		moon.setLayoutX(50);
@@ -74,17 +80,63 @@ public class TerritoryBackground extends Pane{
 		moon.setVisible(false);
 		
 		stars = new Group();
-		
 		Star star1 = new Star(10);
 		star1.setLayoutX(323);
 		star1.setLayoutY(49);
 		Star star2 = new Star(7);
 		star2.setLayoutX(1159);
 		star2.setLayoutY(151);
+		Star star3 = new Star(7);
+		star3.setLayoutX(40);
+		star3.setLayoutY(173);
 		
-		stars.getChildren().addAll(star1, star2);
+		stars.getChildren().addAll(star1, star2, star3);
 		stars.setVisible(false);
-		this.setStars();
+
+		
+		starCircles = new Group();
+		StarCircle starC1 = new StarCircle(9);
+		starC1.setLayoutX(65);
+		starC1.setLayoutY(695);
+		StarCircle starC2 = new StarCircle(4);
+		starC2.setLayoutX(34);
+		starC2.setLayoutY(754);
+		StarCircle starC3 = new StarCircle(2);
+		starC3.setLayoutX(81);
+		starC3.setLayoutY(218);
+		StarCircle starC4 = new StarCircle(3);
+		starC4.setLayoutX(18);
+		starC4.setLayoutY(254);
+		StarCircle starC5 = new StarCircle(4);
+		starC5.setLayoutX(70);
+		starC5.setLayoutY(285);
+		StarCircle starC6 = new StarCircle(4);
+		starC6.setLayoutX(278);
+		starC6.setLayoutY(99);
+		StarCircle starC7 = new StarCircle(3);
+		starC7.setLayoutX(385);
+		starC7.setLayoutY(63);
+		StarCircle starC8 = new StarCircle(2);
+		starC8.setLayoutX(739);
+		starC8.setLayoutY(87);
+		StarCircle starC9 = new StarCircle(4);
+		starC9.setLayoutX(796);
+		starC9.setLayoutY(45);
+		StarCircle starC10 = new StarCircle(4);
+		starC10.setLayoutX(1075);
+		starC10.setLayoutY(112);
+		StarCircle starC11 = new StarCircle(6);
+		starC11.setLayoutX(1057);
+		starC11.setLayoutY(195);
+		StarCircle starC12 = new StarCircle(9);
+		starC12.setLayoutX(1169);
+		starC12.setLayoutY(329);
+		StarCircle starC13 = new StarCircle(7);
+		starC13.setLayoutX(1174);
+		starC13.setLayoutY(695);
+		starCircles.getChildren().addAll(starC1, starC2, starC3, starC4, starC5, starC6, starC7, starC8, starC9, starC10, starC11, starC12, starC13);
+		starCircles.setVisible(false);
+		
 		//land
 		landDay = new ImageView(Images.TERRITORY_LAND_0);
 		landDay.setFitWidth(1148);
@@ -108,8 +160,11 @@ public class TerritoryBackground extends Pane{
 		items.setLayoutX(74);
 		items.setLayoutY(102);
 		
-		this.getChildren().addAll(skyDay, skyNight, mountains, sun, moon, stars, landDay, landNight, items);
+		this.getChildren().addAll(skyDay, skyNight, mountains, sun, moon, stars, starCircles, landDay, landNight, items);
 		
+		//TODO
+		this.setMoon(true);
+		this.setStars(true);
 	}
 	
 	public void setDay(){
@@ -130,16 +185,49 @@ public class TerritoryBackground extends Pane{
 			 nightTL.play();
 		}
 	}
-	public void setMoon(){
-		moon.setVisible(true);
-		moon.lightAnimation();
+	
+	public void setSun(boolean isSun){
+		this.isSun = isSun;
+		moon.setVisible(isSun);
+		if (isSun) {
+			sun.lightAnimation();
+		}
 	}
 	
-	public void setStars(){
-		stars.setVisible(true);
+	public void setMoon(boolean isMoon){
+		this.isMoon = isMoon;
+		moon.setVisible(isMoon);
+		if (isMoon) {
+			moon.lightAnimation();
+		}
+	}
+	
+	public void setStars(boolean isStars){
+		this.isStars = isStars;
+		stars.setVisible(isStars);
+		starCircles.setVisible(isStars);
+		if (isStars){
+			for(int i=0; i<stars.getChildren().size(); i++){
+				Star star = (Star) stars.getChildren().get(i);
+				star.lightAnimation();
+			}
+		}
+	}
+	
+	public void stopAll() {
+		// TODO Auto-generated method stub
+		//停止所有动画
+		sun.stopTL();
+		moon.stopTL();
 		for(int i=0; i<stars.getChildren().size(); i++){
 			Star star = (Star) stars.getChildren().get(i);
-			star.lightAnimation();
+			star.stopTL();
 		}
+	}
+	
+	public void restartAll(){
+		this.setSun(isSun);
+		this.setMoon(isMoon);
+		this.setStars(isStars);
 	}
 }
