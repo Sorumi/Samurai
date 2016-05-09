@@ -45,7 +45,7 @@ public class OperationQueue implements Runnable, Serializable {
 			}
 
 			//迫不得已才加在这里..
-			if(gameModel.getLevel() == 99 && gameModel.getCurrentSamurai() >= 4){
+			if(gameModel.getLevel() != 0 && gameModel.getCurrentSamurai() >= 4){
 				ActionOperation ao = new ActionOperation(100,100);
 				NextOperation po = new NextOperation();
 				if(operation.getClass() == ao.getClass()

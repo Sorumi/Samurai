@@ -17,10 +17,8 @@ public class Player {
     private int currentSamurai;
     private ChessBoardModel chessBoardModel;
     private int actionPoint;
-    private int pointsTotal;
 
     public Player(GameModel model, int playerNum){
-        this.pointsTotal = 30;
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
@@ -38,7 +36,6 @@ public class Player {
 
     //故事模式中带SamuraiPO的 构造方法
     public Player(GameModel model, int playerNum, SamuraiPO[] sPOs){
-        this.pointsTotal = 30;
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
@@ -54,7 +51,7 @@ public class Player {
 
     public void setEnableToAction(){
         this.currentSamurai = gameModel.getCurrentSamurai();
-        this.actionPoint = pointsTotal;
+        this.actionPoint = this.samuraiPOs[this.currentSamurai].getActionPoint();
         this.gameModel.actionPerformed(0);
     }
 
@@ -93,6 +90,7 @@ public class Player {
                         this.gameModel.updateOccupiedBlocks();
                         done = true;
                         this.actionPoint -= 4;
+                        this.samuraiPOs[this.currentSamurai].changeActionPoint(4);
                         //检测需不需要把别人踢回去
                         ArrayList<Integer> killedSamurais = new ArrayList<>();
                         for(Position position : positions){
@@ -213,6 +211,7 @@ public class Player {
                         this.gameModel.updatePosition(this.samuraiPOs[this.currentSamurai].getPos());
                         done = true;
                         this.actionPoint -= 2;
+                        this.samuraiPOs[this.currentSamurai].changeActionPoint(2);
                     }
                 }
                 break;
@@ -223,6 +222,7 @@ public class Player {
                             this.gameModel.updateHide(false);
                             done = true;
                             this.actionPoint -= 1;
+                            this.samuraiPOs[this.currentSamurai].changeActionPoint(1);
                         }
                     }
                 }else{
@@ -231,6 +231,7 @@ public class Player {
                             this.gameModel.updateHide(true);
                             done = true;
                             this.actionPoint -= 1;
+                            this.samuraiPOs[this.currentSamurai].changeActionPoint(1);
                         }
                     }
                 }
@@ -276,10 +277,6 @@ public class Player {
 
     public int getActionPoint(){
         return this.actionPoint;
-    }
-    
-    public int getPointsTotal(){
-        return this.pointsTotal;
     }
 
 }
