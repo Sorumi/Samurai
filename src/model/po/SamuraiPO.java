@@ -1135,6 +1135,8 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.attackValue += 3;
 		this.healthPoint += 20;
 		level++;
+		this.actionPoint++;
+		
 	}
 
 	public void changeWeapon(Weapon weapon) {

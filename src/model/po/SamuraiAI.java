@@ -93,6 +93,7 @@ public class SamuraiAI {
 	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition) {
 		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
 		Random random = new Random();
+		samuraiPO.setActionPoint(10);
 		SamuraiPO samuraiPOClone = samuraiPO.clone();
 		ChessBoardModel cbm = chessBoardModel.clone();
 		switch (type) {
