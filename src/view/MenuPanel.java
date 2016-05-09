@@ -17,6 +17,8 @@ public class MenuPanel extends Pane {
 	Button storyBtn;
 	Button exitBtn;
 	
+	LevelSelectPanel l;
+	
 	public MenuPanel(Main mainFrame){
 		this.mainFrame = mainFrame;
 		
@@ -26,12 +28,14 @@ public class MenuPanel extends Pane {
 		clientBtn = new Button("Client");
 		storyBtn = new Button("Story");
 		exitBtn = new Button("Exit");
+		l = new LevelSelectPanel(00,10);
 		
 		this.getChildren().add(classicBtn);
 		this.getChildren().add(serverBtn);
 		this.getChildren().add(clientBtn);
 		this.getChildren().add(storyBtn);
 		this.getChildren().add(exitBtn);
+		this.getChildren().add(l);
 		
 		classicBtn.setLayoutX(500);
 		classicBtn.setLayoutY(100);

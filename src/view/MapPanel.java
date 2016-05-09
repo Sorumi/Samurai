@@ -39,6 +39,9 @@ public class MapPanel extends Pane {
 	private Group bridgeGroup;
 	private Group cloudGroup;
 	
+	public LevelSelectPanel levelSelectPanel; 
+
+	
 	public MapPanel(){
 		this.setPrefSize(1200, 800);
 //		this.setStyle("-fx-background-color: #dddddd");
@@ -60,22 +63,27 @@ public class MapPanel extends Pane {
 		level1 = new LandButton(1);
 		level1.setLayoutX(258);
 		level1.setLayoutY(298);
+		level1.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level2 = new LandButton(2);
 		level2.setLayoutX(511);
 		level2.setLayoutY(495);
+		level2.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level3 = new LandButton(3);
 		level3.setLayoutX(807);
 		level3.setLayoutY(381);
+		level3.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level4 = new LandButton(4);
 		level4.setLayoutX(570);
 		level4.setLayoutY(98);
+		level4.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level5 = new LandButton(5);
 		level5.setLayoutX(902);
 		level5.setLayoutY(26);
+		level5.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		landGroup.getChildren().addAll(home, level5, level4, level3, level2, level1);
 		this.getChildren().add(landGroup);
@@ -141,6 +149,7 @@ public class MapPanel extends Pane {
 		
 		cloudGroup.getChildren().addAll(cloud0, cloud1, cloud2, cloud3, cloud4);
 		this.getChildren().add(cloudGroup);
+		
 		
 		//closeBtn
 //		closeBtn = new SystemButton(0);

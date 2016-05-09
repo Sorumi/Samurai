@@ -170,6 +170,21 @@
 	-fx-text-alignment: center;
 	
 }
+/*LevelSelect */
+#LevelName-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 18;
+	-fx-alignment: center-left;
+}
+#materialName-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+}
 /* Game */
 #state-lable{
 	-fx-text-fill: #9b9b9b;
