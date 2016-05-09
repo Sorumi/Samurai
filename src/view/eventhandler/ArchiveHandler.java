@@ -26,7 +26,7 @@ public class ArchiveHandler {
 	      public void handle(MouseEvent event) {
 			  //读取存档 num
 			  archiveController.load(num);
-	      }
+		  }
 	};
 	
 	public EventHandler<MouseEvent> saveBtnClickEvent = new EventHandler<MouseEvent>() {  
