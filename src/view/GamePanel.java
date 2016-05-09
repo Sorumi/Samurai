@@ -18,7 +18,11 @@ import model.po.Position;
 import model.po.SamuraiPO;
 import view.background.BackgroundPanel;
 import view.background.BackgroundPanel0;
+import view.background.BackgroundPanel1;
+import view.background.BackgroundPanel2;
 import view.background.BackgroundPanel3;
+import view.background.BackgroundPanel4;
+import view.background.BackgroundPanel5;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.StateHandler;
 
@@ -167,14 +171,20 @@ public class GamePanel extends Pane implements Observer{
 	}
 	
 	public void setBackground(int level){
-		ImageView bg = new ImageView(Images.BG[level]);
-		switch(level){
+		ImageView bg = new ImageView(Images.BG[level/10]);
+		bg.setFitWidth(1200);
+		bg.setPreserveRatio(true);
+		switch(level/10){
 		case 0: backgroundPanel = new BackgroundPanel0();break;
+		case 1: backgroundPanel = new BackgroundPanel1();break;
+		case 2: backgroundPanel = new BackgroundPanel2();break;
 		case 3: backgroundPanel = new BackgroundPanel3();break;
+		case 4: backgroundPanel = new BackgroundPanel4();break;
+		case 5: backgroundPanel = new BackgroundPanel5();break;
 		}
 
 
-		this.getChildren().add(backgroundPanel);
+		this.getChildren().add(bg);
 		
 	}
 
