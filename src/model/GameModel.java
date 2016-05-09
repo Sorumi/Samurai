@@ -96,21 +96,93 @@ public class GameModel extends BaseModel implements Observer {
             //TODO
             case 11:
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),0,this.chessBoardModel,1);
                 break;
             case 12:
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
                 samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
                 break;
             case 13:
                 samuraiAI = new SamuraiAI[3];
                 samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 21:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
                 samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 22:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 23:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 31:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 32:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                break;
+            case 33:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                break;
+            case 41:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                break;
+            case 42:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                break;
+            case 43:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                break;
+            case 51:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                break;
+            case 52:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                break;
+            case 53:
+                samuraiAI = new SamuraiAI[3];
+                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
                 break;
             default:
                 break;
