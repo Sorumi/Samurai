@@ -10,7 +10,7 @@ import java.util.Date;
 public class ArchiveController extends TerritoryController {
 
     public void load(int n){
-        StoryModel.loadStoryModel(n);
+        StoryModel.setStoryModel(StoryModel.loadStoryModel(n));
     }
 
     public Date getTime(int num){

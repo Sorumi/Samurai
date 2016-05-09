@@ -108,14 +108,14 @@ public class StoryModel implements Serializable{
     public void saveStoryModel(int num){
         try {
 
+            System.out.println("Now is : " + num);
+
             this.time = new Date();
 
             String fileName = "Samurai_StoryModel_" + num + ".ser";
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this);
-
-//            System.out.println(this.time.toString());
 
             objectOutputStream.close();
 
@@ -138,7 +138,6 @@ public class StoryModel implements Serializable{
 
             StoryModel s = (StoryModel) thisObject;
 
-            System.out.println(s.getTime());
             System.out.println("load successfully : " + StoryModel.getFileNum());
             System.out.println(s.getArmory().checkAllWeapon().size());
 

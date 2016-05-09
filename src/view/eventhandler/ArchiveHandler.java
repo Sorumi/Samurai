@@ -34,7 +34,7 @@ public class ArchiveHandler {
 			  //保存存档 num
 			  archiveController.save(num);
 			  SimpleDateFormat ft = new SimpleDateFormat ("yyyy年MM月dd日 HH:mm:ss");
-			  archiveView.setTime(ft.format(archiveController.getStoryModel().getTime()));
+			  archiveView.setTime(ft.format(archiveController.getTime(num)));
 	      }
 	};
 	

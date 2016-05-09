@@ -3,6 +3,7 @@ package view;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import model.StoryModel;
 import view.eventhandler.ArchiveHandler;
 
 import java.text.SimpleDateFormat;
@@ -39,7 +40,7 @@ public class ArchiveView extends Pane{
 		nameLabel.setId("Aname-label");
 		this.getChildren().add(nameLabel);
 		
-		timeLabel = new Label("存储时间"); 
+		timeLabel = new Label("存档时间");
 		timeLabel.setLayoutX(25);
 		timeLabel.setLayoutY(60);
 		timeLabel.setId("Atime-label");
@@ -71,7 +72,7 @@ public class ArchiveView extends Pane{
 		this.setVisible(true);
 
 		Date time;
-		if(((time = this.archiveHandler.getArchiveController().getTime(num)) != null)){
+		if(((time = archiveHandler.getArchiveController().getTime(num)) != null)){
 			SimpleDateFormat ft = new SimpleDateFormat ("yyyy年MM月dd日 HH:mm:ss");
 			setTime(ft.format(time));
 		}
