@@ -143,7 +143,7 @@ public class SamuraiAI {
 						if (attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)
 								&& samuraiPOClone.getActionPoint() >= 4) {
 							samuraiPOClone.changeActionPoint(4);
-							if(samuraiPOClone.getActionPoint()<2){
+							if(samuraiPOClone.getActionPoint()<=3){
 								return actionOperations;
 							}
 							continue;
@@ -174,7 +174,7 @@ public class SamuraiAI {
 						if (attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)
 								&& samuraiPOClone.getActionPoint() >= 4) {
 							samuraiPOClone.changeActionPoint(4);
-							if(samuraiPOClone.getActionPoint()<2){
+							if(samuraiPOClone.getActionPoint()<=3){
 								return actionOperations;
 							}
 							continue;
