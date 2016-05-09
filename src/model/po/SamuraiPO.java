@@ -530,7 +530,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				}
 				break;
 			default:
-				for (int i = pos.getX() + 1, x = 0; i <= 0 && x < 4; i++, x++) {
+				for (int i = pos.getX() + 1, x = 0; i <= length && x < 4; i++, x++) {
 					if (real) {
 						cbm.changeActualBlock(i, pos.getY(), number);
 					}
