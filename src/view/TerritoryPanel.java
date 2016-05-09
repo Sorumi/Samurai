@@ -39,7 +39,7 @@ public class TerritoryPanel extends Pane {
 	private SystemButton saveBtn;
 	
 	private TerritoryHandler territoryHandler;
-	private TerritoryBackground territoryBg;
+	public TerritoryBackground territoryBg;
 	private Group territoryGroup;
 	
 //	private ImageView bg;
@@ -215,9 +215,11 @@ public class TerritoryPanel extends Pane {
 		if(isBlur){
 			this.blur.setRadius(7);
 			rain.stopRain();
+			territoryBg.stopAll();
 		}else{
 			this.blur.setRadius(0);
 			rain.restartRain();
+			territoryBg.restartAll();
 		}
 
 	}
@@ -226,8 +228,4 @@ public class TerritoryPanel extends Pane {
 		return this.territoryHandler;
 	}
 
-	public void stopAll() {
-		// TODO Auto-generated method stub
-		//停止所有动画
-	}
 }

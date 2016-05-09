@@ -27,6 +27,7 @@ public class MapHandler {
 	      public void handle(MouseEvent event) {	    	  
 	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
 	    	  parent.territoryPanel.toFront();
+	    	  //设置随机天气
 	      }
 	};
 	
