@@ -26,7 +26,11 @@ public class ArchiveView extends Pane{
 		this.setPrefHeight(height);
 		this.setId("archive-view");
 		
-		nameLabel = new Label("存档"+num); 
+		if(num == 0){
+			nameLabel = new Label("自动存档"); 
+		}else{
+			nameLabel = new Label("存档"+num); 
+		}
 		nameLabel.setLayoutX(25);
 		nameLabel.setLayoutY(25);
 		nameLabel.setId("Aname-label");
@@ -90,7 +94,7 @@ public class ArchiveView extends Pane{
 	}
 
 	public void setTime(String time){
-		timeLabel.setText("存储时间 " + time);
+		timeLabel.setText("存档时间： " + time);
 	}
 
 }
