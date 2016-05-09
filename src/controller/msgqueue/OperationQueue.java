@@ -38,6 +38,7 @@ public class OperationQueue implements Runnable, Serializable {
 			Operation operation = getNewOperation();
 			System.out.println("execute Operation : " + operation.getClass());
 			UpdateMessage updateMessage = new UpdateMessage("execute",operation);
+
 			if(GameModel.isClient() && !Operation.isServer()){
 				clientService.submitOperation(operation);
 			}else if(GameModel.isServer() && Operation.isServer()){
@@ -48,6 +49,14 @@ public class OperationQueue implements Runnable, Serializable {
 			if(gameModel.getLevel() != 0 && gameModel.getCurrentSamurai() >= 4){
 				ActionOperation ao = new ActionOperation(100,100);
 				NextOperation po = new NextOperation();
+
+//				if(operation.getClass() == ao.getClass()){
+//					ActionOperation o = (ActionOperation) operation;
+//					if(o.getActionNum() == 99){
+//						queue.remove(operation);
+//					}
+//				}
+
 				if(operation.getClass() == ao.getClass()
 						|| operation.getClass() == po.getClass()) {
 					try {

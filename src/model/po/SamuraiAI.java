@@ -49,6 +49,10 @@ public class SamuraiAI {
 
 	}
 
+	public SamuraiPO getSamuraiPO() {
+		return samuraiPO;
+	}
+
 	public static void print(ChessBoardModel cbm) {
 		for (int i = 0; i <= 14; i++) {
 			System.out.print(i + ":");
@@ -96,7 +100,7 @@ public class SamuraiAI {
 			System.out.println("enemy location"+enemySamuraiPO.getPos().getX()+" "+enemySamuraiPO.getPos().getY());
 		}
 		Random random = new Random();
-		samuraiPO.setActionPoint(10);
+
 		SamuraiPO samuraiPOClone = samuraiPO.clone();
 		ChessBoardModel cbm = chessBoardModel.clone();
 		switch (type) {
@@ -129,10 +133,13 @@ public class SamuraiAI {
 				int temp = samuraiPOClone.getActionPoint();
 				samuraiPOClone.setActionPoint(6);
 				actionOperations = greedy(samuraiPOClone, cbm);
+
 				samuraiPOClone.setActionPoint(temp - 6);
-				if(samuraiPOClone.getActionPoint()>=2){
-				actionOperations.add(new ActionOperation(99, 9999));
-				}
+
+//				if(samuraiPOClone.getActionPoint()>=2){
+//				actionOperations.add(new ActionOperation(99, 9999));
+//				}
+
 				return actionOperations;
 			} else {
 				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);

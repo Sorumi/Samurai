@@ -16,7 +16,6 @@ public class Player {
     private SamuraiPO[] samuraiPOs;
     private int currentSamurai;
     private ChessBoardModel chessBoardModel;
-    private int actionPoint;
 
     public Player(GameModel model, int playerNum){
         this.playerNum = playerNum;
@@ -51,7 +50,6 @@ public class Player {
 
     public void setEnableToAction(){
         this.currentSamurai = gameModel.getCurrentSamurai();
-        this.actionPoint = this.samuraiPOs[this.currentSamurai].getActionPoint();
         this.gameModel.actionPerformed(0);
     }
 
@@ -82,14 +80,13 @@ public class Player {
         boolean done = false;
         switch (actionNum){
             case 0:
-                if(this.actionPoint >= 4){
+                if(this.samuraiPOs[this.currentSamurai].getActionPoint() >= 4){
                     ArrayList<Position> positions
                             = this.samuraiPOs[this.currentSamurai].occupied(direction,this.chessBoardModel,true);
                     if(!positions.isEmpty()) {
                         this.gameModel.updateOccupy(direction);
                         this.gameModel.updateOccupiedBlocks();
                         done = true;
-                        this.actionPoint -= 4;
                         this.samuraiPOs[this.currentSamurai].changeActionPoint(4);
                         //检测需不需要把别人踢回去
                         ArrayList<Integer> killedSamurais = new ArrayList<>();
@@ -206,31 +203,28 @@ public class Player {
                 }
                 break;
             case 1:
-                if(this.actionPoint >= 2){
+                if(this.samuraiPOs[this.currentSamurai].getActionPoint() >= 2){
                     if(this.samuraiPOs[this.currentSamurai].move(direction,this.chessBoardModel)){
                         this.gameModel.updatePosition(this.samuraiPOs[this.currentSamurai].getPos());
                         done = true;
-                        this.actionPoint -= 2;
                         this.samuraiPOs[this.currentSamurai].changeActionPoint(2);
                     }
                 }
                 break;
             case 2:
                 if(this.samuraiPOs[this.currentSamurai].getHide()) {
-                    if (this.actionPoint >= 1) {
+                    if (this.samuraiPOs[this.currentSamurai].getActionPoint() >= 1) {
                         if(this.samuraiPOs[this.currentSamurai].show(this.chessBoardModel)) {
                             this.gameModel.updateHide(false);
                             done = true;
-                            this.actionPoint -= 1;
                             this.samuraiPOs[this.currentSamurai].changeActionPoint(1);
                         }
                     }
                 }else{
-                    if(this.actionPoint >= 1){
+                    if(this.samuraiPOs[this.currentSamurai].getActionPoint() >= 1){
                         if(this.samuraiPOs[this.currentSamurai].hide(this.chessBoardModel)) {
                             this.gameModel.updateHide(true);
                             done = true;
-                            this.actionPoint -= 1;
                             this.samuraiPOs[this.currentSamurai].changeActionPoint(1);
                         }
                     }
@@ -242,7 +236,10 @@ public class Player {
         if(done){
             this.gameModel.actionPerformed(actionNum);
         }
-        if(this.actionPoint == 0){
+
+//        System.out.println("Point left : "  + this.samuraiPOs[this.currentSamurai].getActionPoint());
+
+        if(this.samuraiPOs[this.currentSamurai].getActionPoint() == 0){
             //这是为了点数没了的时候可以播放完动画
             try{
                 Thread.sleep(1200);
@@ -273,10 +270,6 @@ public class Player {
 
     public void setSamuraiPOs(SamuraiPO[] samuraiPOs) {
         this.samuraiPOs = samuraiPOs;
-    }
-
-    public int getActionPoint(){
-        return this.actionPoint;
     }
 
 }
