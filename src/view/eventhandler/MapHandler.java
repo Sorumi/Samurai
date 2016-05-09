@@ -22,6 +22,15 @@ public class MapHandler {
 	      }
 	};
 	
+	public EventHandler<MouseEvent> buttonClickEvent= new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  LandButton btn = (LandButton) event.getSource();
+	    	  //TODO
+	    	  //开始游戏！！！
+	    	  System.out.println(btn.levelNum);
+	      }
+	};
+	
 	public EventHandler<MouseEvent> buttonEnterEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  LandButton btn = (LandButton) event.getSource();
