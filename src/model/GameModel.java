@@ -71,6 +71,7 @@ public class GameModel extends BaseModel implements Observer {
         isClient = false;
     }
 
+    //Story 构造方法
     public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
         this.level = level;
         this.length = length;
@@ -441,7 +442,7 @@ public class GameModel extends BaseModel implements Observer {
     //经典模式下+故事模式下
     public void assignNextWithAI() {
 
-//        System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
+        System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
 
         if(this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4){
             this.timer = new Timer();
@@ -500,11 +501,16 @@ public class GameModel extends BaseModel implements Observer {
                             i = 3;
                         }
                     }
+                    boolean flag = false;
                     switch (this.currentPlayer) {
                         case 2:
                             this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
+                            }
+                            System.out.println("P L : " + samuraiAI[0].getSamuraiPO().getActionPoint());
+                            if(this.samuraiAI[0].getSamuraiPO().getActionPoint() == 0){
+                                flag = true;
                             }
                             break;
                         case 3:
@@ -512,15 +518,23 @@ public class GameModel extends BaseModel implements Observer {
                             for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
+                            if(this.samuraiAI[1].getSamuraiPO().getActionPoint() == 0){
+                                flag = true;
+                            }
                             break;
                         case 6:
                             this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
+                            if(this.samuraiAI[2].getSamuraiPO().getActionPoint() == 0){
+                                flag = true;
+                            }
                             break;
                     }
-                    this.skip1Round();
+                    if(!flag) {
+                        this.skip1Round();
+                    }
                 }
             }
         } else {
@@ -536,6 +550,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void skip1Round(){
+        System.out.println("Skip");
         OperationQueue.addOperation(new NextOperation());
     }
 

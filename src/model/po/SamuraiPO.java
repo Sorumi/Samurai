@@ -150,6 +150,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public void changeActionPoint(int i) {
 		actionPoint = actionPoint - i;
 	}
+
 	public void setActionPoint(int actionPoint) {
 		this.actionPoint = actionPoint;
 	}
