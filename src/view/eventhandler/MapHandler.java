@@ -5,6 +5,7 @@ import javafx.scene.input.MouseEvent;
 import view.MapPanel;
 import view.TerritoryPanel;
 import view.MapPanel.LandButton;
+import view.StoryPanel;
 
 public class MapHandler {
 
@@ -17,8 +18,8 @@ public class MapHandler {
 	
 	public EventHandler<MouseEvent> homeEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  TerritoryPanel parent =  (TerritoryPanel) mapPanel.getParent();
-	    	  parent.getChildren().remove(mapPanel);
+	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
+	    	  parent.territoryPanel.toFront();
 	      }
 	};
 	
@@ -27,6 +28,9 @@ public class MapHandler {
 	    	  LandButton btn = (LandButton) event.getSource();
 	    	  //TODO
 	    	  //开始游戏！！！
+	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
+//	    	  parent.gamePanel = new GamePanel();
+	    	  parent.gamePanel.toFront();
 	    	  System.out.println(btn.levelNum);
 	      }
 	};

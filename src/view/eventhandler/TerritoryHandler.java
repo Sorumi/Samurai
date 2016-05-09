@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import view.ArchivePanel;
 import view.MapPanel;
+import view.StoryPanel;
 import view.TerritoryPanel;
 import view.TerritoryPanel.TerritoryButton;
 import view.campsite.CampsitePanel;
@@ -52,8 +53,9 @@ public class TerritoryHandler {
 	
 	public EventHandler<MouseEvent> flagEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  territoryPanel.mapPanel = new MapPanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.mapPanel);
+	    	  StoryPanel parent = (StoryPanel) territoryPanel.getParent();
+	    	  parent.mapPanel.toFront();
+//	    	  territoryPanel.getChildren().add(territoryPanel.mapPanel);
 	      }
 	};
 	

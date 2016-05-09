@@ -52,7 +52,7 @@ public class TerritoryPanel extends Pane {
 	public CampsitePanel campsitePanel;
 	public SmithyPanel smithyPanel;
 	public StorePanel storePanel;
-	public MapPanel mapPanel;
+
 	public ArchivePanel archivePanel;
 	
 	public SamuraiView samurai1;
