@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
 import view.LevelSelectPanel;
+import view.LevelSelectPanel.LevelButton;
 import view.GamePanel;
 import view.MapPanel;
 import view.MapPanel.LandButton;
@@ -30,16 +31,17 @@ public class MapHandler {
 	
 	public EventHandler<MouseEvent> startGameEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  Button btn = (Button) event.getSource();
+	    	  LevelButton btn = (LevelButton) event.getSource();
 	    	  //TODO
 	    	  //开始游戏！！！
 	    	  StoryPanel storyPanel =  (StoryPanel) mapPanel.getParent();
 	    	  LevelSelectPanel selectPanel = (LevelSelectPanel)btn.getParent();
-	    	  storyPanel.gamePanel = new GamePanel(15, selectPanel.level);
+	    	  int num = selectPanel.level*10 + btn.num;
+	    	  storyPanel.gamePanel = new GamePanel(15, num);
 	    	  storyPanel.getChildren().add(storyPanel.gamePanel);
 
 			  mapController.setGamePanel(storyPanel.gamePanel);
-			  mapController.startGameAtLevel(selectPanel.level);
+			  mapController.startGameAtLevel(num);
 
 			  storyPanel.gamePanel.toFront();
 	      }
