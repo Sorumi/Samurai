@@ -93,12 +93,6 @@ public class TerritoryPanel extends Pane {
 		saveBtn.setLayoutX(1055);
 		saveBtn.setLayoutY(25);
 		saveBtn.setOnMouseClicked(territoryHandler.archiveEvent);
-		saveBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-//				territoryHandler.getTerritoryController().save(StoryModel.getFileNum());
-			}
-		});
 		territoryGroup.getChildren().add(saveBtn);
 		
 		//campsite
@@ -230,5 +224,10 @@ public class TerritoryPanel extends Pane {
 	
 	public TerritoryHandler getTerritoryHandler(){
 		return this.territoryHandler;
+	}
+
+	public void stopAll() {
+		// TODO Auto-generated method stub
+		//停止所有动画
 	}
 }

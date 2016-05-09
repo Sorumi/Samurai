@@ -19,14 +19,8 @@ import javafx.util.Duration;
 import view.eventhandler.MapHandler;
 
 public class MapPanel extends Pane {
-
-	/*
-	 * 关卡的按钮
-	 */
 	
 	private MapHandler mapHandler;
-	
-//	private SystemButton closeBtn;
 	
 	private Group landGroup;
 	private LandButton home;
@@ -41,10 +35,8 @@ public class MapPanel extends Pane {
 	
 	public LevelSelectPanel levelSelectPanel; 
 
-	
 	public MapPanel(){
 		this.setPrefSize(1200, 800);
-//		this.setStyle("-fx-background-color: #dddddd");
 		
 		mapHandler = new MapHandler(this);
 		
@@ -62,27 +54,22 @@ public class MapPanel extends Pane {
 		level1 = new LandButton(1);
 		level1.setLayoutX(258);
 		level1.setLayoutY(298);
-		level1.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level2 = new LandButton(2);
 		level2.setLayoutX(511);
 		level2.setLayoutY(495);
-		level2.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level3 = new LandButton(3);
 		level3.setLayoutX(807);
 		level3.setLayoutY(381);
-		level3.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level4 = new LandButton(4);
 		level4.setLayoutX(570);
 		level4.setLayoutY(98);
-		level4.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		level5 = new LandButton(5);
 		level5.setLayoutX(902);
 		level5.setLayoutY(26);
-		level5.setOnMouseClicked(mapHandler.levelSelectEvent);
 		
 		landGroup.getChildren().addAll(home, level5, level4, level3, level2, level1);
 		this.getChildren().add(landGroup);
@@ -148,21 +135,12 @@ public class MapPanel extends Pane {
 		
 		cloudGroup.getChildren().addAll(cloud0, cloud1, cloud2, cloud3, cloud4);
 		this.getChildren().add(cloudGroup);
-		
-		
-		//closeBtn
-//		closeBtn = new SystemButton(0);
-//		closeBtn.setLayoutX(1125);
-//		closeBtn.setLayoutY(25);
-//		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
-//			@Override
-//			public void handle(ActionEvent event) {
-//				// TODO Auto-generated method stub
-//				TerritoryPanel parent =  (TerritoryPanel) MapPanel.this.getParent();
-//				parent.getChildren().remove(MapPanel.this);
-//			}
-//		});
-//		this.getChildren().add(closeBtn);
+
+		//select panel
+		levelSelectPanel = new LevelSelectPanel(mapHandler);
+		levelSelectPanel.setLayoutX(400);
+		levelSelectPanel.setLayoutY(250);
+		this.getChildren().add(levelSelectPanel);
 	}
 	
 	//内部类
@@ -192,7 +170,7 @@ public class MapPanel extends Pane {
 			if(num == 0){
 				this.setOnMouseClicked(mapHandler.homeEvent);
 			}else{
-				this.setOnMouseClicked(mapHandler.buttonClickEvent);
+				this.setOnMouseClicked(mapHandler.levelSelectEvent);
 			}
 		}
 		

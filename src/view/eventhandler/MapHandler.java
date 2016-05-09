@@ -2,15 +2,12 @@ package view.eventhandler;
 
 import controller.MapController;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 
-import view.ArchivePanel;
 import view.LevelSelectPanel;
-
 import view.GamePanel;
-
 import view.MapPanel;
-import view.TerritoryPanel;
 import view.MapPanel.LandButton;
 import view.StoryPanel;
 
@@ -25,27 +22,26 @@ public class MapHandler {
 	}
 	
 	public EventHandler<MouseEvent> homeEvent= new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  
-	    	  
+	      public void handle(MouseEvent event) {	    	  
 	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
 	    	  parent.territoryPanel.toFront();
 	      }
 	};
 	
-	public EventHandler<MouseEvent> buttonClickEvent= new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> startGameEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  LandButton btn = (LandButton) event.getSource();
+	    	  Button btn = (Button) event.getSource();
 	    	  //TODO
 	    	  //开始游戏！！！
-	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
-	    	  parent.gamePanel = new GamePanel(15, btn.levelNum);
-			  parent.getChildren().add(parent.gamePanel);
+	    	  StoryPanel storyPanel =  (StoryPanel) mapPanel.getParent();
+	    	  LevelSelectPanel selectPanel = (LevelSelectPanel)btn.getParent();
+	    	  storyPanel.gamePanel = new GamePanel(15, selectPanel.level);
+	    	  storyPanel.getChildren().add(storyPanel.gamePanel);
 
-			  mapController.setGamePanel(parent.gamePanel);
-			  mapController.startGameAtLevel(btn.levelNum);
+			  mapController.setGamePanel(storyPanel.gamePanel);
+			  mapController.startGameAtLevel(selectPanel.level);
 
-			  parent.gamePanel.toFront();
+			  storyPanel.gamePanel.toFront();
 	      }
 	};
 	
@@ -65,13 +61,7 @@ public class MapHandler {
 	
 	public EventHandler<MouseEvent> levelSelectEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  mapPanel.levelSelectPanel = new LevelSelectPanel(00,10);
-	    	  mapPanel.levelSelectPanel.setLayoutX(400);
-	    	  mapPanel.levelSelectPanel.setLayoutY(250);
-	    	  mapPanel.getChildren().add(mapPanel.levelSelectPanel);
 	    	  mapPanel.levelSelectPanel.setAppear(true); 
-	 
-
 	      }
 	};
 	
