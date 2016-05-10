@@ -159,36 +159,6 @@ public class StatePanel extends OrderPanel {
 		stateLabel6 = new Label("100");
 		stateLabel6.setLayoutX(150*SCALE);
 		stateLabel6.setLayoutY(52*SCALE);
-
-		stateLabel1 = new Label();
-		stateLabel1.setLayoutX(30);
-		stateLabel1.setLayoutY(7);
-		stateLabel1.setId("state-lable");
-		
-		stateLabel2 = new Label();
-		stateLabel2.setLayoutX(90);
-		stateLabel2.setLayoutY(7);
-		stateLabel2.setId("state-lable");
-		
-		stateLabel3 = new Label();
-		stateLabel3.setLayoutX(150);
-		stateLabel3.setLayoutY(7);
-		stateLabel3.setId("state-lable");
-	
-		stateLabel4 = new Label();
-		stateLabel4.setLayoutX(30);
-		stateLabel4.setLayoutY(52);
-		stateLabel4.setId("state-lable");
-		
-		stateLabel5 = new Label();
-		stateLabel5.setLayoutX(90);
-		stateLabel5.setLayoutY(52);
-		stateLabel5.setId("state-lable");
-		
-		stateLabel6 = new Label();
-		stateLabel6.setLayoutX(150);
-		stateLabel6.setLayoutY(52);
-
 		stateLabel6.setId("state-lable");
 		
 		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);
