@@ -243,8 +243,6 @@ public class Player {
             this.gameModel.actionPerformed(actionNum);
         }
 
-        System.out.println("Point left : "  + this.samuraiPOs[this.currentSamurai].getActionPoint());
-
         if(this.samuraiPOs[this.currentSamurai].getActionPoint() == 0){
             //这是为了点数没了的时候可以播放完动画
             try{

@@ -9,5 +9,6 @@ public class EndOperation extends Operation {
     public void execute() {
         GameModel model = OperationQueue.getGameModel();
         model.gameOver();
+//        model.
     }
 }

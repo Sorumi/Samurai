@@ -92,5 +92,8 @@ public class MapHandler {
 	    	  btn.btnAbled();
 	      }
 	};
-	
+
+	public MapController getMapController() {
+		return mapController;
+	}
 }

@@ -26,7 +26,6 @@ public class Rain extends Group {
 	private final Random random = new Random();
 	
 	private void rain(int count){
-		this.COUNT = count;
 		
 		lines = new Line[COUNT];
 		length = new int[COUNT];

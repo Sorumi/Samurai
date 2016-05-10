@@ -26,7 +26,7 @@ public class TerritoryHandler {
 		this.territoryController.setStoryModel(StoryModel.getStoryModel());
 
 		//在这里可以获取武器
-		this.territoryController.getWeaponOfSamurai(1);
+//		this.territoryController.getWeaponOfSamurai(1);
 	}
 	
 	public void updateSamurai(){

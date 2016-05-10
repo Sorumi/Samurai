@@ -442,8 +442,6 @@ public class GameModel extends BaseModel implements Observer {
     //经典模式下+故事模式下
     public void assignNextWithAI() {
 
-        System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
-
         if(this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4){
             this.timer = new Timer();
             this.timer.schedule(new countDownTask(), 0, 1000);
@@ -576,9 +574,9 @@ public class GameModel extends BaseModel implements Observer {
         }
         super.updateChange(new UpdateMessage("over",this.chessBoardModel));
 
-        //暂时先exit(0)
-        System.exit(0);
-        //用来保存信息的部分
+        //这里应该传递一些游戏的结果数据,而并不真的结束游戏
+
+        System.out.println("GAME OVER!");
 
         return true;
     }

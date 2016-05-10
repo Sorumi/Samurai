@@ -102,9 +102,6 @@ public class StoryModel implements Serializable{
     //用序列化保存storyModel的对象
     public void saveStoryModel(int num){
         try {
-
-            System.out.println("Now is : " + num);
-
             this.time = new Date();
 
             String fileName = "Samurai_StoryModel_" + num + ".ser";
@@ -134,7 +131,6 @@ public class StoryModel implements Serializable{
             StoryModel s = (StoryModel) thisObject;
 
             System.out.println("load successfully : " + StoryModel.getFileNum());
-            System.out.println(s.getArmory().checkAllWeapon().size());
 
             return (StoryModel) thisObject;
         }catch (Exception e){

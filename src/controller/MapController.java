@@ -23,7 +23,8 @@ public class MapController extends TerritoryController {
 
         for (int i = 1; i <= 3; i++) {
             SamuraiPO tmpPO = storyModel.getSamuraiPO(i);
-            this.gamePanel.set6Properties(i,new int[]{tmpPO.getLevel(),999,999,999,999,999});
+            this.gamePanel.set6Properties(i,new int[]{tmpPO.getLevel(),tmpPO.getAttackValue(),
+            tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()});
         }
 
     }
