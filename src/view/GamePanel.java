@@ -10,6 +10,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.UpdateMessage;
@@ -25,6 +27,7 @@ import view.background.BackgroundPanel4;
 import view.background.BackgroundPanel5;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.StateHandler;
+import view.smithy.SmithyPanel;
 
 public class GamePanel extends Pane implements Observer{
 
@@ -39,7 +42,8 @@ public class GamePanel extends Pane implements Observer{
 	protected int blockWidth;
 	protected int blockHeight;
 
-	protected SystemButtonPanel systemButtonPanel;
+	protected SystemButton closeBtn;
+//	protected SystemButtonPanel systemButtonPanel;
 	protected BackgroundPanel backgroundPanel;
 	public ChessBoardPanel chessBoard;
 
@@ -98,8 +102,19 @@ public class GamePanel extends Pane implements Observer{
 
 
 		//systembutton
-		systemButtonPanel = new SystemButtonPanel();
-		this.getChildren().add(systemButtonPanel);
+		closeBtn = new SystemButton(0);
+		closeBtn.setLayoutX(1125);
+		closeBtn.setLayoutY(25);
+		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				System.exit(0);
+			}
+		});
+		OrderPanel systemPanel = new OrderPanel();
+		systemPanel.getChildren().add(closeBtn);
+		this.getChildren().add(systemPanel);
 
 		//chessboard
 		chessBoard = new ChessBoardPanel(size);
@@ -158,7 +173,7 @@ public class GamePanel extends Pane implements Observer{
 
 		//add
 		backgroundPanel.setZOrder(-2);
-		systemButtonPanel.setZOrder(-1);
+		systemPanel.setZOrder(-1);
 		chessBoard.setZOrder(-3);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
@@ -168,7 +183,7 @@ public class GamePanel extends Pane implements Observer{
 		roundPanel.setZOrder(999);
 		resultPanel.setZOrder(999); 
 
-		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemButtonPanel, resultPanel);
+		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel);
 
 	}
 

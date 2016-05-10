@@ -165,7 +165,7 @@ public class StatePanel extends OrderPanel {
 		
 	}
 	
-	public void setUpLocation(){
+	private void setUpLocation(){
 		bgRect.setY(25+strokeWidth); 
 		
 		triangle.getPoints().addAll(new Double[]{
@@ -179,28 +179,24 @@ public class StatePanel extends OrderPanel {
 		iconGroup.setLayoutY(62);		
 	}
 	
-	public void setDownLocation(){
+	private void setDownLocation(){
 		bgRect.setY(10);
 		
 		triangle.getPoints().addAll(new Double[]{
 		    95.0, 10.0,
 		    105.0, 10.0,
 		    100.0, 0.0 });
-
 		
 		bgCircle.setCenterY(prefHeight-25-strokeWidth);
 		bloodArc.setCenterY(prefHeight-25-strokeWidth);
 		centralCircle.setCenterY(prefHeight-25-strokeWidth);
 		iconGroup.setLayoutY(26);
 	}
-	
-
 
 	public void setCurrentSamurai(SamuraiPanel samurai) {
 		// TODO Auto-generated method stub
 		this.currentSamurai = samurai;
 		this.setActualLocation();
-		
 	}
 	
 	public void setActualLocation(){
@@ -217,5 +213,14 @@ public class StatePanel extends OrderPanel {
 		// TODO Auto-generated method stub
 		this.isAppear = isAppear;
 		this.setVisible(isAppear);
+	}
+	
+	public void set6Properties(int[] states){
+		stateLabel1.setText(states[1] + "");
+		stateLabel2.setText(states[2] + "");
+		stateLabel3.setText(states[3] + "");
+		stateLabel4.setText(states[4] + "");
+		stateLabel5.setText(states[5] + "");
+		stateLabel6.setText(states[6] + "");
 	}
 }
