@@ -442,8 +442,6 @@ public class GameModel extends BaseModel implements Observer {
     //经典模式下+故事模式下
     public void assignNextWithAI() {
 
-        System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
-
         if(this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4){
             this.timer = new Timer();
             this.timer.schedule(new countDownTask(), 0, 1000);
