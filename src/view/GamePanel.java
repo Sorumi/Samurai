@@ -73,7 +73,7 @@ public class GamePanel extends Pane implements Observer{
 	protected ActionHandler actionHandler;
 	public StatePanel statePanel;
 	protected StateHandler stateHandler;
-	protected  ObservableList<OrderPanel>  orderList;
+	protected ObservableList<OrderPanel>  orderList;
 
 	/*
 	 * level:
@@ -170,6 +170,33 @@ public class GamePanel extends Pane implements Observer{
 
 		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemButtonPanel, resultPanel);
 
+	}
+
+	public void set6Properties(int samurai, int[] properties){
+//		switch (samurai) {
+//			case 1:
+//				this.A1.samuraiV.setWeapon(weapon);
+//				break;
+//			case 2:
+//				this.A2.samuraiV.setWeapon(weapon);
+//				break;
+//			case 3:
+//				this.A3.samuraiV.setWeapon(weapon);
+//				break;
+//		}
+	}
+
+	public int[] get6Properties(int samurai){
+		switch (samurai) {
+			case 1:
+				return new int[]{1,2,3,4,5,6};
+			case 2:
+				return new int[]{7,8,9,10,11,12};
+			case 3:
+				return new int[]{13,14,15,16,17,18};
+			default:
+				return new int[]{0};
+		}
 	}
 
 	public void setSamuraiWeapon(int samurai, int weapon){
