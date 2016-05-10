@@ -79,4 +79,18 @@ public class MapHandler {
 	      }
 	};
 	
+	public EventHandler<MouseEvent> levelBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  LevelButton btn = (LevelButton) event.getSource();
+	    	  btn.btnPressed();
+	      }
+	};
+	
+	public EventHandler<MouseEvent> levelBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  LevelButton btn = (LevelButton) event.getSource();
+	    	  btn.btnAbled();
+	      }
+	};
+	
 }

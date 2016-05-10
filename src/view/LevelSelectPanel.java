@@ -42,14 +42,15 @@ public class LevelSelectPanel extends Pane{
 
 	
 	public LevelSelectPanel(MapHandler mapHandler){
-		//TODO
 		this.mapHandler = mapHandler;
 		
+		//TODO
 		int itemNumOne = 00;
 		int itemNumTwo = 10;
 		
-		this.setWidth(width);
-		this.setHeight(height);
+		this.setPrefWidth(width);
+		this.setPrefHeight(height);
+		this.setId("level-select-panel");
 		
 		bgRect = new Rectangle();
 		bgRect.setX(0);
@@ -139,11 +140,29 @@ public class LevelSelectPanel extends Pane{
 			
 			this.num = num;
 			this.setPrefSize(100, 40);
-			this.setId("Aload-btn");		
+			this.setId("level-btn");		
 			this.setLayoutX(125*(num-1)+25);
 			this.setLayoutY(220);
 			this.setOnMouseClicked(mapHandler.startGameEvent);
+			this.setOnMouseEntered(mapHandler.levelBtnEnterEvent);
+			this.setOnMouseExited(mapHandler.levelBtnExitEvent);
+			this.btnAbled();
+			
 		}
+		public void btnPressed() {
+			this.setLayoutY(224);
+			this.setStyle("-fx-text-fill: " + GameColor.getLevelColorString(num+6) + ";"
+					+ "-fx-background-color: " + GameColor.getLevelColorString(num) + ";"
+					+ "-fx-effect: dropshadow(gaussian," + GameColor.getLevelColorString(num+3) +", 0, 0, 0, 4);");
+		}
+		public void btnAbled() {
+			this.setLayoutY(220);
+			this.setStyle("-fx-text-fill: " + GameColor.getLevelColorString(num+6) + ";"
+					+ "-fx-background-color: " + GameColor.getLevelColorString(num) + ";"
+					+ "-fx-effect: dropshadow(gaussian," + GameColor.getLevelColorString(num+3) +", 0, 0, 0, 8);");
+		}
+		
+		
 	}
 	
 	public void setLevel(int level){

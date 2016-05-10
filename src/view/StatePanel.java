@@ -66,7 +66,6 @@ public class StatePanel extends OrderPanel {
 		this.stateIcon6 = new ImageView(Images.STATE_ICON_6);
 		
 
-		
 		bgRect = new Rectangle();
 		bgRect.setX(0);
 		bgRect.setWidth(200*SCALE);
@@ -74,7 +73,6 @@ public class StatePanel extends OrderPanel {
 		bgRect.setArcWidth(10*SCALE);
 		bgRect.setArcHeight(10*SCALE);
 		bgRect.setFill(Color.WHITE);
-		
 		
 		triangle = new Polygon();
 		triangle.setFill(Color.WHITE);
@@ -132,6 +130,7 @@ public class StatePanel extends OrderPanel {
 		stateIcon6.setLayoutX(120*SCALE);
 		stateIcon6.setLayoutY(43*SCALE);
 		
+
 		stateLabel1 = new Label("100");
 		stateLabel1.setLayoutX(30*SCALE);
 		stateLabel1.setLayoutY(7*SCALE);
@@ -160,6 +159,36 @@ public class StatePanel extends OrderPanel {
 		stateLabel6 = new Label("100");
 		stateLabel6.setLayoutX(150*SCALE);
 		stateLabel6.setLayoutY(52*SCALE);
+
+		stateLabel1 = new Label();
+		stateLabel1.setLayoutX(30);
+		stateLabel1.setLayoutY(7);
+		stateLabel1.setId("state-lable");
+		
+		stateLabel2 = new Label();
+		stateLabel2.setLayoutX(90);
+		stateLabel2.setLayoutY(7);
+		stateLabel2.setId("state-lable");
+		
+		stateLabel3 = new Label();
+		stateLabel3.setLayoutX(150);
+		stateLabel3.setLayoutY(7);
+		stateLabel3.setId("state-lable");
+	
+		stateLabel4 = new Label();
+		stateLabel4.setLayoutX(30);
+		stateLabel4.setLayoutY(52);
+		stateLabel4.setId("state-lable");
+		
+		stateLabel5 = new Label();
+		stateLabel5.setLayoutX(90);
+		stateLabel5.setLayoutY(52);
+		stateLabel5.setId("state-lable");
+		
+		stateLabel6 = new Label();
+		stateLabel6.setLayoutX(150);
+		stateLabel6.setLayoutY(52);
+
 		stateLabel6.setId("state-lable");
 		
 		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);
@@ -168,8 +197,12 @@ public class StatePanel extends OrderPanel {
 		
 	}
 	
-	public void setUpLocation(){
-		bgRect.setY((25+strokeWidth)*SCALE);  
+
+ 
+
+	private void setUpLocation(){
+		bgRect.setY(25+strokeWidth); 
+
 		
 		triangle.getPoints().addAll(new Double[]{
 		    95.0*SCALE, 147.0*SCALE,
@@ -182,13 +215,15 @@ public class StatePanel extends OrderPanel {
 		iconGroup.setLayoutY(62*SCALE);		
 	}
 	
-	public void setDownLocation(){
-		bgRect.setY(10*SCALE);
+
+
+	private void setDownLocation(){
+		bgRect.setY(10);
 		
 		triangle.getPoints().addAll(new Double[]{
-		    95.0*SCALE, 10.0*SCALE,
-		    105.0*SCALE, 10.0*SCALE,
-		    100.0*SCALE, 0.0*SCALE });
+		    95.0, 10.0,
+		    105.0, 10.0,
+		    100.0, 0.0 });
 
 		
 		bgCircle.setCenterY((prefHeight-25-strokeWidth)*SCALE);
@@ -196,12 +231,11 @@ public class StatePanel extends OrderPanel {
 		centralCircle.setCenterY((prefHeight-25-strokeWidth)*SCALE);
 		iconGroup.setLayoutY(26*SCALE);
 	}
-	
-
 
 	public void setCurrentSamuraiInG(SamuraiPanel samurai) { 
 		// TODO Auto-generated method stub
 		this.currentSamurai = samurai;
+
 		this.setActualLocationInG(); 
 		
 	}
@@ -216,6 +250,7 @@ public class StatePanel extends OrderPanel {
 			this.setDownLocation();
 		}
 	}
+
 	
 	
 
@@ -237,9 +272,32 @@ public class StatePanel extends OrderPanel {
 			this.setDownLocation();
 		}
 	}
+
+
+
 	public void setAppear(boolean isAppear) {
 		// TODO Auto-generated method stub
 		this.isAppear = isAppear;
 		this.setVisible(isAppear); 
 	}
+	
+	public void set6Properties(int[] states){
+		if(states.length == 6){
+			stateLabel1.setText(states[0] + "");
+			stateLabel2.setText(states[1] + "");
+			stateLabel3.setText(states[2] + "");
+			stateLabel4.setText(states[3] + "");
+			stateLabel5.setText(states[4] + "");
+			stateLabel6.setText(states[5] + "");	
+
+		}else{
+			stateLabel1.setText("");
+			stateLabel2.setText("");
+			stateLabel3.setText("");
+			stateLabel4.setText("");
+			stateLabel5.setText("");
+			stateLabel6.setText("");
+		}
+	}
+
 }

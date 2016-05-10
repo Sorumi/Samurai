@@ -171,6 +171,9 @@
 	
 }
 /*LevelSelect */
+#level-select-panel{
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
 #LevelName-label{
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";
@@ -185,7 +188,41 @@
 	-fx-font-size: 14;
 	-fx-alignment: center-left;
 }
+#level-btn{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+}
 /* Game */
+#point-label{
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 20;
+	-fx-font-weight: 100;
+	-fx-alignment: center;
+}
+#block-Lable{
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 14;
+	-fx-font-weight: 100;
+	-fx-alignment: center;
+}
+#round-current{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 26;
+	-fx-font-weight: 300;
+	-fx-alignment: center;
+}
+#round-total{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 22;
+	-fx-font-weight: 300;
+	-fx-alignment: center;
+}
 #state-lable{
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";

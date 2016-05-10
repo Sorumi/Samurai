@@ -11,7 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import view.GameColor;
-import view.GameFont;
 import view.Images;
 
 public class CampsiteItemInfo extends Pane {

@@ -182,5 +182,28 @@ public class GameColor {
 		}
 		return color;
 	}
+	
+	
+	public static String getLevelColorString(int x) {
+		String color;
+		switch(x){
+		
+		//button fill
+		case 1: color = "#C8EEFF";break;
+		case 2: color = "#FFFABD";break;
+		case 3: color = "#FCD9D9";break;
+		//button shadow
+		case 4: color = "#A6CBDC";break;
+		case 5: color = "#E2DD9F";break;
+		case 6: color = "#D3A6A6";break;
+		//button text
+		case 7: color = "#0081BA";break;
+		case 8: color = "#D29013";break;
+		case 9: color = "#D0021B";break;
+		
+		default: color = "#000000";
+		}
+		return color;
+	}
 
 }
