@@ -42,7 +42,7 @@ public class ResultPanel extends OrderPanel {
 	private Group resultGroup;
 	private Group materialGroup;
 	
-	private TilePane tile;
+	
 
 	private BlockArc[] arcsOne;
 	private BlockArc[] arcsTwo;
@@ -108,9 +108,9 @@ public class ResultPanel extends OrderPanel {
 		materialCircle.setCenterX(CIRCLE_RADIUS + strokeSize);
 		materialCircle.setCenterY(CIRCLE_RADIUS + strokeSize);
 		materialCircle.setRadius(252);
-		materialCircle.setFill(Color.ANTIQUEWHITE);
+		materialCircle.setFill(Color.web("#ffffff"));
 		
-		tile = new TilePane();
+		TilePane tile = new TilePane();
 		tile.setVgap(10);
 		tile.setHgap(20);
 		tile.setPrefColumns(4);
@@ -123,11 +123,29 @@ public class ResultPanel extends OrderPanel {
 			MaterialPanel materialPanel= new MaterialPanel(1,00,3);
 			tile.getChildren().add(materialPanel);
 		}
-		tile.setLayoutX(100);
-		tile.setLayoutY(50);
-		materialGroup.getChildren().addAll(materialCircle, tile);
+		tile.setLayoutX(120);
+		tile.setLayoutY(200);
+		
+		Pane samuraiPanel = new Pane();
+		for(int num=1;num<=3;num++){ 
+		ImageView samurai = new ImageView(Images.SAMURAI_BTN[num]);
+		samurai.setFitWidth(52);
+		samurai.setPreserveRatio(true);
+		samurai.setLayoutX(140*(num-1));
+		samurai.setLayoutY(0);
+		Label samuraiLabel = new Label("230");
+		samuraiLabel.setLayoutX(60+140*(num-1)); 
+		samuraiLabel.setLayoutY(25);
+		samuraiLabel.setId("amount-label"); 
+		samuraiPanel.getChildren().addAll(samurai, samuraiLabel);
+		}		
+		samuraiPanel.setLayoutX(120);
+		samuraiPanel.setLayoutY(380);
+		materialGroup.getChildren().addAll(materialCircle, tile, samuraiPanel); 
 		materialGroup.setRotationAxis(Rotate.Y_AXIS);
 		materialGroup.setRotate(270);
+		
+		
 		
 		circle3 = new Circle(); 
 		circle3.setCenterX(CIRCLE_RADIUS + strokeSize);
@@ -210,12 +228,14 @@ public class ResultPanel extends OrderPanel {
 
 		timeline.play();
 
-		this.setVisible(false);   
+		this.setVisible(true);   
 		
 		this.flip();
 	}
 	
 	public void flip(){
+		
+		Timeline timeline0 = new Timeline(new KeyFrame(Duration.millis(3000), new KeyValue(logo.rotateProperty(), 0)));
 
 		//logo换成circle1
 		RotateTransition rotator1 = new RotateTransition(Duration.millis(1000), logo);
@@ -254,6 +274,13 @@ public class ResultPanel extends OrderPanel {
 		
 		Timeline timeline3 = new Timeline(new KeyFrame(Duration.millis(3000), new KeyValue(circle3.rotateProperty(), 360)));
 		
+		timeline0.setOnFinished(new EventHandler<ActionEvent>() {
+		    @Override
+		    public void handle(ActionEvent t) {
+		    	rotator1.play();
+		    	
+		    }
+		});
 		
 		rotator1.setOnFinished(new EventHandler<ActionEvent>() {
 		    @Override
@@ -318,7 +345,7 @@ public class ResultPanel extends OrderPanel {
 		    	
 		    }
 		});
-		rotator1.play();
+		timeline0.play();
 	}
 	//内部类
 	public class MaterialPanel extends Pane{
@@ -352,7 +379,7 @@ public class ResultPanel extends OrderPanel {
 			amountLabel.setLayoutY(22);
 			amountLabel.setId("amount-label");
 			
-			this.getChildren().addAll(circle, material, amountLabel);  
+			this.getChildren().addAll(circle, amountLabel);  
 			
 		}
 	}

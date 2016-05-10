@@ -46,8 +46,8 @@ public class Snow extends Group {
                 for (int i=0; i<COUNT; i++) {
                     final Node node = circles[i];
                     final double d = now / (v[i]*500000);
-                    node.setTranslateX( startX[i]/100%800 );
-                    node.setTranslateY( (d + startY[i]/100) %600 );
+                    node.setTranslateX( startX[i]/100%WIDTH );
+                    node.setTranslateY( (d + startY[i]/100) %HEIGHT );
                 }
             }
         };
