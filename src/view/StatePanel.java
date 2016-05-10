@@ -19,6 +19,7 @@ public class StatePanel extends OrderPanel {
 	private int prefWidth = 200;
 	private int prefHeight = 157;
 	private int strokeWidth = 2;
+	private int SCALE = 1;
 	
 	private boolean isAppear;
 	
@@ -44,16 +45,18 @@ public class StatePanel extends OrderPanel {
 	private Label stateLabel6;
 	
 	private SamuraiPanel currentSamurai;
+	private SamuraiView currentSamuraiV;
 	
 	private StateHandler stateHandler;
 	
-	public StatePanel(StateHandler stateHandler){
+	public StatePanel(StateHandler stateHandler, int SCALE){
 		super();
 		
 		this.isAppear = false;
 		this.stateHandler = stateHandler;
-		this.setPrefWidth(prefWidth);
-		this.setPrefHeight(prefHeight);
+		this.SCALE = SCALE;
+		this.setPrefWidth(prefWidth*SCALE); 
+		this.setPrefHeight(prefHeight*SCALE);
 		
 		this.stateIcon1 = new ImageView(Images.STATE_ICON_1);
 		this.stateIcon2 = new ImageView(Images.STATE_ICON_2);
@@ -63,51 +66,49 @@ public class StatePanel extends OrderPanel {
 		this.stateIcon6 = new ImageView(Images.STATE_ICON_6);
 		
 
-		
 		bgRect = new Rectangle();
 		bgRect.setX(0);
-		bgRect.setWidth(200);
-		bgRect.setHeight(120);
-		bgRect.setArcWidth(10);
-		bgRect.setArcHeight(10);
+		bgRect.setWidth(200*SCALE);
+		bgRect.setHeight(120*SCALE);
+		bgRect.setArcWidth(10*SCALE);
+		bgRect.setArcHeight(10*SCALE);
 		bgRect.setFill(Color.WHITE);
-		
 		
 		triangle = new Polygon();
 		triangle.setFill(Color.WHITE);
 		
 		bgCircle = new Circle();
-		bgCircle.setCenterX(100.0);
-		bgCircle.setRadius(25);
+		bgCircle.setCenterX(100.0*SCALE);
+		bgCircle.setRadius(25*SCALE);
 		bgCircle.setStroke(Color.WHITE);
-		bgCircle.setStrokeWidth(strokeWidth);
+		bgCircle.setStrokeWidth(strokeWidth*SCALE);
 		bgCircle.setStrokeType(StrokeType.OUTSIDE);
 		bgCircle.setFill(Color.WHITE);
 		
 		bloodArc = new Arc();
-		bloodArc.setCenterX(100.0);
-		bloodArc.setRadiusX(25);
-		bloodArc.setRadiusY(25);
+		bloodArc.setCenterX(100.0*SCALE);
+		bloodArc.setRadiusX(25*SCALE);
+		bloodArc.setRadiusY(25*SCALE);
 		bloodArc.setStartAngle(0);
 		bloodArc.setLength(-270);
 		bloodArc.setType(ArcType.ROUND);
 		bloodArc.setFill(GameColor.getOtherColor(3));
 		//这个圆以后换成图片
 		centralCircle = new Circle();
-		centralCircle.setCenterX(100.0);
-		centralCircle.setRadius(22);
+		centralCircle.setCenterX(100.0*SCALE);
+		centralCircle.setRadius(22*SCALE);
 		centralCircle.setFill(Color.WHITE);
 		
 		//icon
 		iconGroup = new Group();
-		iconGroup.setLayoutX(15);
+		iconGroup.setLayoutX(15*SCALE);
 		
-		stateIcon1.setFitWidth(25);
-		stateIcon2.setFitWidth(25);
-		stateIcon3.setFitWidth(25);
-		stateIcon4.setFitWidth(29);
-		stateIcon5.setFitWidth(26);
-		stateIcon6.setFitWidth(25);
+		stateIcon1.setFitWidth(25*SCALE);
+		stateIcon2.setFitWidth(25*SCALE);
+		stateIcon3.setFitWidth(25*SCALE);
+		stateIcon4.setFitWidth(29*SCALE);
+		stateIcon5.setFitWidth(26*SCALE);
+		stateIcon6.setFitWidth(25*SCALE);
 		
 		stateIcon1.setPreserveRatio(true);
 		stateIcon2.setPreserveRatio(true);
@@ -118,17 +119,47 @@ public class StatePanel extends OrderPanel {
 		
 		stateIcon1.setLayoutX(0);
 		stateIcon1.setLayoutY(0);
-		stateIcon2.setLayoutX(61);
+		stateIcon2.setLayoutX(61*SCALE);
 		stateIcon2.setLayoutY(0);
-		stateIcon3.setLayoutX(120);
+		stateIcon3.setLayoutX(120*SCALE);
 		stateIcon3.setLayoutY(0);
-		stateIcon4.setLayoutX(-2);
-		stateIcon4.setLayoutY(43);
-		stateIcon5.setLayoutX(60);
-		stateIcon5.setLayoutY(42);
-		stateIcon6.setLayoutX(120);
-		stateIcon6.setLayoutY(43);
+		stateIcon4.setLayoutX(-2*SCALE);
+		stateIcon4.setLayoutY(43*SCALE);
+		stateIcon5.setLayoutX(60*SCALE);
+		stateIcon5.setLayoutY(42*SCALE);
+		stateIcon6.setLayoutX(120*SCALE);
+		stateIcon6.setLayoutY(43*SCALE);
 		
+
+		stateLabel1 = new Label("100");
+		stateLabel1.setLayoutX(30*SCALE);
+		stateLabel1.setLayoutY(7*SCALE);
+		stateLabel1.setId("state-lable");
+		
+		stateLabel2 = new Label("100");
+		stateLabel2.setLayoutX(90*SCALE);
+		stateLabel2.setLayoutY(7*SCALE);
+		stateLabel2.setId("state-lable");
+		
+		stateLabel3 = new Label("100");
+		stateLabel3.setLayoutX(150*SCALE);
+		stateLabel3.setLayoutY(7*SCALE);
+		stateLabel3.setId("state-lable");
+	
+		stateLabel4 = new Label("100");
+		stateLabel4.setLayoutX(30*SCALE);
+		stateLabel4.setLayoutY(52*SCALE);
+		stateLabel4.setId("state-lable");
+		
+		stateLabel5 = new Label("100");
+		stateLabel5.setLayoutX(90*SCALE);
+		stateLabel5.setLayoutY(52*SCALE);
+		stateLabel5.setId("state-lable");
+		
+		stateLabel6 = new Label("100");
+		stateLabel6.setLayoutX(150*SCALE);
+		stateLabel6.setLayoutY(52*SCALE);
+
 		stateLabel1 = new Label();
 		stateLabel1.setLayoutX(30);
 		stateLabel1.setLayoutY(7);
@@ -157,52 +188,62 @@ public class StatePanel extends OrderPanel {
 		stateLabel6 = new Label();
 		stateLabel6.setLayoutX(150);
 		stateLabel6.setLayoutY(52);
+
 		stateLabel6.setId("state-lable");
 		
 		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);
 		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, centralCircle, iconGroup);
-		this.setVisible(false);
+		this.setVisible(false);  
 		
 	}
 	
+
+ 
+
 	private void setUpLocation(){
-		bgRect.setY(25+strokeWidth); 
+		bgRect.setY((25+strokeWidth)*SCALE);  
+
 		
 		triangle.getPoints().addAll(new Double[]{
-		    95.0, 147.0,
-		    105.0, 147.0,
-		    100.0, 157.0 });
+		    95.0*SCALE, 147.0*SCALE,
+		    105.0*SCALE, 147.0*SCALE,
+		    100.0*SCALE, 157.0*SCALE });
 		
-		bgCircle.setCenterY(25+strokeWidth);
-		bloodArc.setCenterY(25+strokeWidth);
-		centralCircle.setCenterY(25+strokeWidth);
-		iconGroup.setLayoutY(62);		
+		bgCircle.setCenterY((25+strokeWidth)*SCALE);
+		bloodArc.setCenterY((25+strokeWidth)*SCALE);
+		centralCircle.setCenterY((25+strokeWidth)*SCALE);
+		iconGroup.setLayoutY(62*SCALE);		
 	}
 	
+
+
 	private void setDownLocation(){
-		bgRect.setY(10);
+		bgRect.setY(10*SCALE); 
 		
 		triangle.getPoints().addAll(new Double[]{
 		    95.0, 10.0,
 		    105.0, 10.0,
 		    100.0, 0.0 });
+
 		
-		bgCircle.setCenterY(prefHeight-25-strokeWidth);
-		bloodArc.setCenterY(prefHeight-25-strokeWidth);
-		centralCircle.setCenterY(prefHeight-25-strokeWidth);
-		iconGroup.setLayoutY(26);
+		bgCircle.setCenterY((prefHeight-25-strokeWidth)*SCALE);
+		bloodArc.setCenterY((prefHeight-25-strokeWidth)*SCALE);
+		centralCircle.setCenterY((prefHeight-25-strokeWidth)*SCALE);
+		iconGroup.setLayoutY(26*SCALE);
 	}
 
-	public void setCurrentSamurai(SamuraiPanel samurai) {
+	public void setCurrentSamuraiInG(SamuraiPanel samurai) { 
 		// TODO Auto-generated method stub
 		this.currentSamurai = samurai;
-		this.setActualLocation();
+
+		this.setActualLocationInG(); 
+		
 	}
 	
-	public void setActualLocation(){
-		this.setLayoutX(currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2);
-		if (currentSamurai.getLayoutY()-prefHeight+10>0) {		
-			this.setLayoutY(currentSamurai.getLayoutY()-prefHeight+10);
+	public void setActualLocationInG(){
+		this.setLayoutX((currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2)*SCALE);
+		if (currentSamurai.getLayoutY()-prefHeight*SCALE+10>0) {		
+			this.setLayoutY(currentSamurai.getLayoutY()-prefHeight*SCALE+10);
 			this.setUpLocation();
 		}else{
 			this.setLayoutY(currentSamurai.getLayoutY()+currentSamurai.getHeight());
@@ -210,10 +251,34 @@ public class StatePanel extends OrderPanel {
 		}
 	}
 
+	
+	
+
+
+	public void setCurrentSamuraiInT(SamuraiView samurai) {  
+		// TODO Auto-generated method stub
+		this.currentSamuraiV = samurai;
+		this.setActualLocationInT(); 
+		
+	}
+	
+	public void setActualLocationInT(){
+		this.setLayoutX(currentSamuraiV.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2-70);		
+		if (currentSamuraiV.getLayoutY()-prefHeight*SCALE+10>0) {		
+			this.setLayoutY(currentSamuraiV.getLayoutY()-prefHeight*SCALE+35);
+			this.setUpLocation();
+		}else{
+			this.setLayoutY(currentSamuraiV.getLayoutY()+currentSamuraiV.getHeight());
+			this.setDownLocation();
+		}
+	}
+
+
+
 	public void setAppear(boolean isAppear) {
 		// TODO Auto-generated method stub
 		this.isAppear = isAppear;
-		this.setVisible(isAppear);
+		this.setVisible(isAppear); 
 	}
 	
 	public void set6Properties(int[] states){

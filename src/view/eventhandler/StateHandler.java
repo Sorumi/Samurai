@@ -4,29 +4,53 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import view.GamePanel;
 import view.SamuraiPanel;
+import view.SamuraiView;
+import view.TerritoryPanel;
 
 public class StateHandler {
 	private GamePanel gamePanel;
+	private TerritoryPanel territoryPanel;
 	
 	public StateHandler(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
 	}
 	
-	public EventHandler<MouseEvent> showStatePanel = new EventHandler<MouseEvent>() {  
+	public StateHandler(TerritoryPanel territoryPanel){
+		this.territoryPanel = territoryPanel;
+	}
+	
+	public EventHandler<MouseEvent> showStatePanelInG = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	 
-	    	  gamePanel.statePanel.setCurrentSamurai(currentSamurai);
+	    	  gamePanel.statePanel.setCurrentSamuraiInG(currentSamurai); 
 	    	  gamePanel.statePanel.setAppear(true);
-//	    		gamePanel.setOrder();
+		gamePanel.setOrder();
 	    	  gamePanel.statePanel.set6Properties(gamePanel.get6Properties(currentSamurai.getNum()));
 	      }
 	};
 	
-	public EventHandler<MouseEvent> closeStatePanel = new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> showStatePanelInT = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  SamuraiView currentSamurai = (SamuraiView) event.getSource();	  
+	    	  territoryPanel.statePanel.setCurrentSamuraiInT(currentSamurai);
+	    	  territoryPanel.statePanel.setAppear(true);
+
+	      }
+	};
+	
+	public EventHandler<MouseEvent> closeStatePanelInG = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	    	  
 	    	  gamePanel.statePanel.setAppear(false);
-//	    		  gamePanel.setOrder();
+	    	   
+	      }
+	};
+	
+	public EventHandler<MouseEvent> closeStatePanelInT = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  SamuraiView currentSamurai = (SamuraiView) event.getSource();	  
+	    	  territoryPanel.statePanel.setCurrentSamuraiInT(currentSamurai);
+	    	  territoryPanel.statePanel.setAppear(false);
 	    	  
 	      }
 	};

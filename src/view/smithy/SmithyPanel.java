@@ -30,6 +30,7 @@ public class SmithyPanel extends TransitionPanel {
 	public SmithyItemWrapper3 shurikenPanel;
 	public SmithyItemWrapper4 bowPanel;
 	
+	
 	public SmithyBuilder buildPanel;
 	public SmithyWeaponState smithyWeaponState;
 	

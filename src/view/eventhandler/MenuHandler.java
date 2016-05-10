@@ -1,17 +1,14 @@
 package view.eventhandler;
 
-import java.util.Collections;
-
 import controller.ClientController;
 import controller.HostController;
-import controller.MenuController;
+import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import main.Main;
-import model.GameModel;
 import network.Configure;
 import view.GamePanel;
 import view.GamePanelOL;
@@ -33,8 +30,7 @@ public class MenuHandler {
 					mainFrame.gamePanel = new GamePanel(15, 0);
 					mainFrame.startClassicGame();
 
-					MenuController menuController = new MenuController();
-					menuController.startGame();
+					OperationQueue.addOperation(new StartGameOperation());
 				}
 				});
 	      }
