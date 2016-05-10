@@ -119,6 +119,7 @@ public class GamePanel extends Pane implements Observer{
 					storyPanel.gamePanel.getChildren().remove(GamePanel.this);
 					storyPanel.gamePanel = null;
 
+					OperationQueue.addOperation(new EndOperation());
 				}
 
 			}
