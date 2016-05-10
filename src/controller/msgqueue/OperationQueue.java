@@ -31,6 +31,8 @@ public class OperationQueue implements Runnable, Serializable {
 		queue = new ArrayBlockingQueue<>(1000);
 		isRunning = true;
 		gameModel = model;
+
+		Thread.currentThread().setPriority(10);
 	}
 
 	public void run() {
@@ -68,6 +70,7 @@ public class OperationQueue implements Runnable, Serializable {
 	
 	public static boolean addOperation (Operation operation){
 		try {
+			System.out.println("ADD: " + operation.toString());
 			queue.put(operation);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -84,6 +87,11 @@ public class OperationQueue implements Runnable, Serializable {
 			e.printStackTrace();
 		}
 		return operation;
+	}
+
+	public static boolean isEmpty(){
+		System.out.println(queue.size());
+		return queue.isEmpty();
 	}
 
 	public static GameModel getGameModel(){
