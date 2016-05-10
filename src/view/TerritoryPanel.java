@@ -60,6 +60,11 @@ public class TerritoryPanel extends Pane {
 	public SamuraiView samurai3;
 	
 	private GaussianBlur blur;
+
+
+	private int[] samuraiProperties_1;
+	private int[] samuraiProperties_2;
+	private int[] samuraiProperties_3;
 	
 	//weather
 //	private RainGroup rain;
@@ -168,8 +173,12 @@ public class TerritoryPanel extends Pane {
 		
 		territoryHandler.updateSamurai();
 		
-		
-		
+
+		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
+		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
+		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
+
+
 		//blur
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
@@ -222,7 +231,20 @@ public class TerritoryPanel extends Pane {
 		}
 
 	}
-	
+
+	public int[] get6PropertiesOfSamurai(int i) {
+		switch (i){
+			case 1:
+				return this.samuraiProperties_1;
+			case 2:
+				return this.samuraiProperties_2;
+			case 3:
+				return this.samuraiProperties_3;
+			default:
+				return new int[]{0};
+		}
+	}
+
 	public TerritoryHandler getTerritoryHandler(){
 		return this.territoryHandler;
 	}
