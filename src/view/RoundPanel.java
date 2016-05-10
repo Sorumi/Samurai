@@ -24,8 +24,8 @@ public class RoundPanel extends OrderPanel{
 
 	public RoundPanel(int total){
 		//bounds
-		this.setLayoutX(1000);
-		this.setLayoutY(30);
+		this.setLayoutX(25);
+		this.setLayoutY(25);
 		this.setPrefWidth(137);
 		this.setPrefHeight(72);
 //		this.setStyle("-fx-background-color: #DDDDDD");
