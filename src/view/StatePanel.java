@@ -63,7 +63,6 @@ public class StatePanel extends OrderPanel {
 		this.stateIcon6 = new ImageView(Images.STATE_ICON_6);
 		
 
-		
 		bgRect = new Rectangle();
 		bgRect.setX(0);
 		bgRect.setWidth(200);
@@ -71,7 +70,6 @@ public class StatePanel extends OrderPanel {
 		bgRect.setArcWidth(10);
 		bgRect.setArcHeight(10);
 		bgRect.setFill(Color.WHITE);
-		
 		
 		triangle = new Polygon();
 		triangle.setFill(Color.WHITE);
