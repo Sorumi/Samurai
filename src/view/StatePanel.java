@@ -201,7 +201,7 @@ public class StatePanel extends OrderPanel {
  
 
 	private void setUpLocation(){
-		bgRect.setY(25+strokeWidth); 
+		bgRect.setY((25+strokeWidth)*SCALE);  
 
 		
 		triangle.getPoints().addAll(new Double[]{
@@ -218,7 +218,7 @@ public class StatePanel extends OrderPanel {
 
 
 	private void setDownLocation(){
-		bgRect.setY(10);
+		bgRect.setY(10*SCALE); 
 		
 		triangle.getPoints().addAll(new Double[]{
 		    95.0, 10.0,
