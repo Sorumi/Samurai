@@ -10,13 +10,15 @@ import view.Images;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import view.MenuPanel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import view.StoryPanel;
 
 public class Main extends Application {
 	
 	private Scene scene;
 	
-	public MenuPanel menuPanel;
+	public MenuPanel menuPanel; 
 	
 	public GamePanel gamePanel; 
 	public GameModel gameModel;

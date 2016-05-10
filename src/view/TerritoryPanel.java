@@ -1,6 +1,5 @@
 package view;
 
-import controller.TerritoryController;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -16,12 +15,10 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import model.StoryModel;
-import view.background.RainGroup;
 import view.background.TerritoryBackground;
 import view.campsite.CampsitePanel;
+import view.eventhandler.StateHandler;
 import view.eventhandler.TerritoryHandler;
 import view.smithy.SmithyPanel;
 import view.store.StorePanel;
@@ -54,15 +51,23 @@ public class TerritoryPanel extends Pane {
 	public StorePanel storePanel;
 
 	public ArchivePanel archivePanel;
+	public StatePanel statePanel;
+	
+	protected StateHandler stateHandler;
 	
 	public SamuraiView samurai1;
 	public SamuraiView samurai2;
 	public SamuraiView samurai3;
 	
 	private GaussianBlur blur;
+
+
+	private int[] samuraiProperties_1;
+	private int[] samuraiProperties_2;
+	private int[] samuraiProperties_3;
 	
 	//weather
-	private RainGroup rain;
+//	private RainGroup rain;
 	
 	public TerritoryPanel(){
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -140,40 +145,45 @@ public class TerritoryPanel extends Pane {
 		flagBtn.setOnMouseClicked(territoryHandler.flagEvent);
 		
 		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn);
+		stateHandler = new StateHandler(this);
+		statePanel = new StatePanel(stateHandler,2);		
+		territoryGroup.getChildren().add(statePanel);
+
 
 		//samurai
 		samurai1 = new SamuraiView(1, 2);
 		samurai1.setLayoutX(800);
 		samurai1.setLayoutY(450);
+		samurai1.setOnMouseEntered(stateHandler.showStatePanelInT);
+		samurai1.setOnMouseExited(stateHandler.closeStatePanelInT); 
 		
 		samurai2 = new SamuraiView(2, 2);
 		samurai2.setLayoutX(640);
 		samurai2.setLayoutY(450);
+		samurai2.setOnMouseEntered(stateHandler.showStatePanelInT);
+		samurai2.setOnMouseExited(stateHandler.closeStatePanelInT); 
 		
 		samurai3 = new SamuraiView(3, 2);
 		samurai3.setLayoutX(480);
 		samurai3.setLayoutY(450);
+		samurai3.setOnMouseEntered(stateHandler.showStatePanelInT);
+		samurai3.setOnMouseExited(stateHandler.closeStatePanelInT); 
 		
 		territoryGroup.getChildren().addAll(samurai1, samurai2, samurai3);
 		
 		territoryHandler.updateSamurai();
 		
+
+		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
+		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
+		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
+
+
 		//blur
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
 		
 		//rain
-		rain = new RainGroup();
-		
-		Button rainBtn = new Button("Rain");
-		rainBtn.setLayoutY(100);
-		rainBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				rain.toggleRain(800);
-			}
-		});
-		territoryGroup.getChildren().addAll(rain, rainBtn);
 		
 		this.getChildren().add(territoryGroup);
 		
@@ -214,16 +224,27 @@ public class TerritoryPanel extends Pane {
 	public void setBlur(boolean isBlur){
 		if(isBlur){
 			this.blur.setRadius(7);
-			rain.stopRain();
 			territoryBg.stopAll();
 		}else{
 			this.blur.setRadius(0);
-			rain.restartRain();
 			territoryBg.restartAll();
 		}
 
 	}
-	
+
+	public int[] get6PropertiesOfSamurai(int i) {
+		switch (i){
+			case 1:
+				return this.samuraiProperties_1;
+			case 2:
+				return this.samuraiProperties_2;
+			case 3:
+				return this.samuraiProperties_3;
+			default:
+				return new int[]{0};
+		}
+	}
+
 	public TerritoryHandler getTerritoryHandler(){
 		return this.territoryHandler;
 	}

@@ -17,7 +17,6 @@ import javafx.util.Duration;
 public class Sun extends Circle{
 	private DropShadow light;
 	
-	private Timeline effectTL;
 	
 	public Sun(){
 		this.setRadius(60);
@@ -32,20 +31,12 @@ public class Sun extends Circle{
 		this.setEffect(light);
 	}
 	
-	public void lightAnimation(){
-		effectTL = new Timeline(
+	public KeyFrame[] lightAnimation(){
+		KeyFrame[] frames = {
 				new KeyFrame(Duration.ZERO, new KeyValue(light.radiusProperty(), 30)),
 				new KeyFrame(Duration.millis(6000), new KeyValue(light.radiusProperty(), 127, Interpolator.EASE_BOTH))
-				);
-		effectTL.setAutoReverse(true);
-		effectTL.setCycleCount(Timeline.INDEFINITE);
-		effectTL.play();
-	}
-	
-	public void stopTL(){
-		if(effectTL != null){
-			effectTL.stop();
-		}
+		};
+		return frames;
 	}
 
 }

@@ -17,8 +17,6 @@ public class Star extends Group {
 	private Polygon star;
 	private Polygon light;
 	
-	private Timeline effectTL;
-	
 	public Star(int scale){
 		star = new Polygon();
 		star.getPoints().addAll(new Double[]{
@@ -55,27 +53,23 @@ public class Star extends Group {
 		this.setScaleY(scale/40.0);
 	}
 	
-	public void lightAnimation(){
+	public KeyFrame[] lightAnimation(){
 		Random random = new Random();
 		int time = random.nextInt(3000);
-		effectTL= new Timeline(
+		KeyFrame[] frames = {
 				new KeyFrame(Duration.ZERO, new KeyValue(light.scaleXProperty(), 1.4)),
 				new KeyFrame(Duration.ZERO, new KeyValue(light.scaleYProperty(), 1.4)),
-				new KeyFrame(Duration.millis(time), new KeyValue(light.scaleXProperty(), 1.4)),
-				new KeyFrame(Duration.millis(time), new KeyValue(light.scaleYProperty(), 1.4)),
 				new KeyFrame(Duration.millis(1000+time), new KeyValue(light.scaleXProperty(), 1.8)),
 				new KeyFrame(Duration.millis(1000+time), new KeyValue(light.scaleYProperty(), 1.8)),
 				new KeyFrame(Duration.millis(1300+time), new KeyValue(light.scaleXProperty(), 2.5, Interpolator.EASE_IN)),
-				new KeyFrame(Duration.millis(1300+time), new KeyValue(light.scaleYProperty(), 2.5, Interpolator.EASE_IN))
-				);
-		effectTL.setAutoReverse(true);
-		effectTL.setCycleCount(Timeline.INDEFINITE);
-		effectTL.play();
+				new KeyFrame(Duration.millis(1300+time), new KeyValue(light.scaleYProperty(), 2.5, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1600+time), new KeyValue(light.scaleXProperty(), 1.8, Interpolator.EASE_OUT)),
+				new KeyFrame(Duration.millis(1600+time), new KeyValue(light.scaleYProperty(), 1.8, Interpolator.EASE_OUT)),
+				new KeyFrame(Duration.millis(2600+time), new KeyValue(light.scaleXProperty(), 1.4)),
+				new KeyFrame(Duration.millis(2600+time), new KeyValue(light.scaleYProperty(), 1.4)),
+		};
+
+		return frames;
 	}
 	
-	public void stopTL(){
-		if(effectTL != null){
-			effectTL.stop();
-		}
-	}
 }

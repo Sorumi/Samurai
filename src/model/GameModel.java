@@ -501,16 +501,11 @@ public class GameModel extends BaseModel implements Observer {
                             i = 3;
                         }
                     }
-                    boolean flag = false;
                     switch (this.currentPlayer) {
                         case 2:
                             this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
-                            }
-                            System.out.println("P L : " + samuraiAI[0].getSamuraiPO().getActionPoint());
-                            if(this.samuraiAI[0].getSamuraiPO().getActionPoint() == 0){
-                                flag = true;
                             }
                             break;
                         case 3:
@@ -518,23 +513,15 @@ public class GameModel extends BaseModel implements Observer {
                             for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
-                            if(this.samuraiAI[1].getSamuraiPO().getActionPoint() == 0){
-                                flag = true;
-                            }
                             break;
                         case 6:
                             this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
-                            if(this.samuraiAI[2].getSamuraiPO().getActionPoint() == 0){
-                                flag = true;
-                            }
                             break;
                     }
-                    if(!flag) {
-                        this.skip1Round();
-                    }
+                    this.skip1Round();
                 }
             }
         } else {
