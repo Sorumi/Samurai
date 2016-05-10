@@ -36,6 +36,8 @@ public class TerritoryBackground extends Pane{
 	private ImageView landDay;
 	private ImageView landNight;
 	
+	private Timeline timeline;
+	
 	public TerritoryBackground(){
 		Stop[] stops;
 		LinearGradient lg;
@@ -89,8 +91,14 @@ public class TerritoryBackground extends Pane{
 		Star star3 = new Star(7);
 		star3.setLayoutX(40);
 		star3.setLayoutY(173);
+		Star star4 = new Star(10);
+		star4.setLayoutX(7);
+		star4.setLayoutY(400);
+		Star star5 = new Star(13);
+		star5.setLayoutX(1020);
+		star5.setLayoutY(38);
 		
-		stars.getChildren().addAll(star1, star2, star3);
+		stars.getChildren().addAll(star1, star2, star3, star4, star5);
 		stars.setVisible(false);
 
 		
@@ -162,18 +170,23 @@ public class TerritoryBackground extends Pane{
 		
 		this.getChildren().addAll(skyDay, skyNight, mountains, sun, moon, stars, starCircles, landDay, landNight, items);
 		
+		timeline = new Timeline();
+		timeline.setCycleCount(Timeline.INDEFINITE);
 		//TODO
+		
 		this.setMoon(true);
 		this.setStars(true);
+		
+		timeline.play();
 	}
 	
 	public void setDay(){
 		if (!isDay){
-			 Timeline nightTL= new Timeline(
+			 Timeline dayTL= new Timeline(
 						new KeyFrame(Duration.millis(1000), new KeyValue(skyNight.opacityProperty(), 0)),
 						new KeyFrame(Duration.millis(1000), new KeyValue(landNight.opacityProperty(), 0))
 						);
-			 nightTL.play();
+			 dayTL.play();
 		}
 	}
 	public void setNight(){
@@ -190,7 +203,7 @@ public class TerritoryBackground extends Pane{
 		this.isSun = isSun;
 		moon.setVisible(isSun);
 		if (isSun) {
-			sun.lightAnimation();
+			timeline.getKeyFrames().addAll(sun.lightAnimation());
 		}
 	}
 	
@@ -198,7 +211,7 @@ public class TerritoryBackground extends Pane{
 		this.isMoon = isMoon;
 		moon.setVisible(isMoon);
 		if (isMoon) {
-			moon.lightAnimation();
+			timeline.getKeyFrames().addAll(moon.lightAnimation());
 		}
 	}
 	
@@ -209,25 +222,16 @@ public class TerritoryBackground extends Pane{
 		if (isStars){
 			for(int i=0; i<stars.getChildren().size(); i++){
 				Star star = (Star) stars.getChildren().get(i);
-				star.lightAnimation();
+				timeline.getKeyFrames().addAll(star.lightAnimation());
 			}
 		}
 	}
 	
 	public void stopAll() {
-		// TODO Auto-generated method stub
-		//停止所有动画
-		sun.stopTL();
-		moon.stopTL();
-		for(int i=0; i<stars.getChildren().size(); i++){
-			Star star = (Star) stars.getChildren().get(i);
-			star.stopTL();
-		}
+		timeline.stop();
 	}
 	
 	public void restartAll(){
-		this.setSun(isSun);
-		this.setMoon(isMoon);
-		this.setStars(isStars);
+		timeline.play();
 	}
 }

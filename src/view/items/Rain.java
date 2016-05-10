@@ -1,4 +1,4 @@
-package view.background;
+package view.items;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-public class RainGroup extends Group {
+public class Rain extends Group {
 
 	private static int COUNT = 500;
 	private static final int ANGLE = 30;
@@ -86,13 +86,13 @@ public class RainGroup extends Group {
 		}
 	}
 	//切换下雨
-	public void toggleRain(int count){
-		if(timer != null){
-			timer.stop();
-			timer = null;
-			this.getChildren().removeAll(lines);
-		}else{
-			this.rain(count);
-		}
-	}
+//	public void toggleRain(int count){
+//		if(timer != null){
+//			timer.stop();
+//			timer = null;
+//			this.getChildren().removeAll(lines);
+//		}else{
+//			this.rain(count);
+//		}
+//	}
 }

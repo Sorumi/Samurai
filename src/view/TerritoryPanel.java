@@ -1,6 +1,5 @@
 package view;
 
-import controller.TerritoryController;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -16,10 +15,7 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
-import model.StoryModel;
-import view.background.RainGroup;
 import view.background.TerritoryBackground;
 import view.campsite.CampsitePanel;
 import view.eventhandler.TerritoryHandler;
@@ -62,7 +58,7 @@ public class TerritoryPanel extends Pane {
 	private GaussianBlur blur;
 	
 	//weather
-	private RainGroup rain;
+//	private RainGroup rain;
 	
 	public TerritoryPanel(){
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -163,17 +159,6 @@ public class TerritoryPanel extends Pane {
 		territoryGroup.setEffect(blur);
 		
 		//rain
-		rain = new RainGroup();
-		
-		Button rainBtn = new Button("Rain");
-		rainBtn.setLayoutY(100);
-		rainBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				rain.toggleRain(800);
-			}
-		});
-		territoryGroup.getChildren().addAll(rain, rainBtn);
 		
 		this.getChildren().add(territoryGroup);
 		
@@ -214,11 +199,9 @@ public class TerritoryPanel extends Pane {
 	public void setBlur(boolean isBlur){
 		if(isBlur){
 			this.blur.setRadius(7);
-			rain.stopRain();
 			territoryBg.stopAll();
 		}else{
 			this.blur.setRadius(0);
-			rain.restartRain();
 			territoryBg.restartAll();
 		}
 

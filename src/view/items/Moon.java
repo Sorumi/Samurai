@@ -16,7 +16,6 @@ public class Moon extends Group{
 	
 	private DropShadow light;
 	
-	private Timeline effectTL;
 	
 	public Moon(){
 		Circle bigC = new Circle();
@@ -38,20 +37,14 @@ public class Moon extends Group{
 		this.getChildren().add(moon);
 	}
 	
-	public void lightAnimation(){
-		effectTL= new Timeline(
+	public KeyFrame[] lightAnimation(){
+		KeyFrame[] frames = {
 				new KeyFrame(Duration.ZERO, new KeyValue(light.radiusProperty(), 30)),
-				new KeyFrame(Duration.millis(6000), new KeyValue(light.radiusProperty(), 127, Interpolator.EASE_BOTH))
-				);
-		effectTL.setAutoReverse(true);
-		effectTL.setCycleCount(Timeline.INDEFINITE);
-		effectTL.play();
-	}
-	
-	public void stopTL(){
-		if(effectTL != null){
-			effectTL.stop();
-		}
+				new KeyFrame(Duration.millis(2500), new KeyValue(light.radiusProperty(), 127, Interpolator.EASE_BOTH)),
+				new KeyFrame(Duration.millis(5000), new KeyValue(light.radiusProperty(), 30))
+		};
+
+		return frames;
 	}
 
 }
