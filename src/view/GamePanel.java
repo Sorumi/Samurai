@@ -171,6 +171,20 @@ public class GamePanel extends Pane implements Observer{
 		orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemButtonPanel, resultPanel);
 
 	}
+
+	public void setSamuraiWeapon(int samurai, int weapon){
+		switch (samurai) {
+			case 1:
+				this.A1.samuraiV.setWeapon(weapon);
+				break;
+			case 2:
+				this.A2.samuraiV.setWeapon(weapon);
+				break;
+			case 3:
+				this.A3.samuraiV.setWeapon(weapon);
+				break;
+		}
+	}
 	
 	public void setBackground(int level){		
 	    this.setStyle("-fx-background-image: url("+Images.BG[level/10]+") ;"

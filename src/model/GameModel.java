@@ -71,6 +71,7 @@ public class GameModel extends BaseModel implements Observer {
         isClient = false;
     }
 
+    //Story 构造方法
     public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
         this.level = level;
         this.length = length;
@@ -380,7 +381,7 @@ public class GameModel extends BaseModel implements Observer {
             this.updateVisible(blocks);
         }
         //要更新一下actionPoint
-        super.updateChange(new UpdateMessage("actionPoint",this.players[this.playerSeq[this.currentPlayer - 1]].getActionPoint()));
+        super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getActionPoint()));
     }
 
     //单机模式也是只能看见自己这方的 block
@@ -441,6 +442,8 @@ public class GameModel extends BaseModel implements Observer {
     //经典模式下+故事模式下
     public void assignNextWithAI() {
 
+        System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
+
         if(this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4){
             this.timer = new Timer();
             this.timer.schedule(new countDownTask(), 0, 1000);
@@ -456,7 +459,9 @@ public class GameModel extends BaseModel implements Observer {
 //        this.updateVisible(this.updateVision());
 
         if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
+
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+
             if (this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5) {
 
             } else {
@@ -496,37 +501,43 @@ public class GameModel extends BaseModel implements Observer {
                             i = 3;
                         }
                     }
-                    System.out.println("Samurai in vision: " + i);
                     switch (this.currentPlayer) {
                         case 2:
+                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
                             break;
                         case 3:
+                            this.samuraiAI[1].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
                             break;
                         case 6:
+                            this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
                             break;
                     }
+                    this.skip1Round();
                 }
-                this.skip1Round();
             }
         } else {
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
 
-            super.updateChange(new UpdateMessage("revive",this.samuraiSeq[this.currentSamurai - 1]));
+            if(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0){
+                super.updateChange(new UpdateMessage("revive",this.samuraiSeq[this.currentSamurai - 1]));
+            }
 
             this.skip1Round();
+
         }
     }
 
     public void skip1Round(){
+        System.out.println("Skip");
         OperationQueue.addOperation(new NextOperation());
     }
 
@@ -635,7 +646,7 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
-            System.out.println("Time:" + this.currentTime);
+//            System.out.println("Time:" + this.currentTime);
             this.currentTime--;
         }else{
             this.actionDone();
