@@ -1,5 +1,6 @@
 package view;
 
+import controller.MapController;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -21,6 +22,7 @@ import view.eventhandler.MapHandler;
 public class MapPanel extends Pane {
 	
 	private MapHandler mapHandler;
+	private MapController mapController;
 	
 	private Group landGroup;
 	private LandButton home;

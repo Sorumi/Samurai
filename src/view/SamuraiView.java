@@ -759,4 +759,7 @@ public class SamuraiView extends Pane{
 		attackTL.play();
 	}
 
+	public int getNumber() {
+		return number;
+	}
 }

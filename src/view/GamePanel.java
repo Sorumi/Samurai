@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
+import controller.msgqueue.EndOperation;
+import controller.msgqueue.OperationQueue;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -116,6 +118,7 @@ public class GamePanel extends Pane implements Observer{
 					storyPanel.mapPanel.toFront();
 					storyPanel.gamePanel.getChildren().remove(GamePanel.this);
 					storyPanel.gamePanel = null;
+
 				}
 
 			}

@@ -39,8 +39,9 @@ public class TerritoryController{
     }
 
     public int[] get6Properties(int samurai){
-//        return this.storyModel.getSamuraiPO(samurai)
-        return new int[]{1,2,3,4,5,6};
+        SamuraiPO tmpPO  = this.storyModel.getSamuraiPO(samurai);
+        return new int[]{tmpPO.getLevel(),tmpPO.getAttackValue(),tmpPO.getArmorValue(),
+                tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()};
     }
 
 }
