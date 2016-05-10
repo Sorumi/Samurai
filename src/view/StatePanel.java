@@ -252,13 +252,13 @@ public class StatePanel extends OrderPanel {
 	}
 	
 	public void set6Properties(int[] states){
-		if(states.length == 6){
+		if(states.length == 7){
 			stateLabel1.setText(states[0] + "");
-			stateLabel2.setText(states[1] + "");
-			stateLabel3.setText(states[2] + "");
-			stateLabel4.setText(states[3] + "");
-			stateLabel5.setText(states[4] + "");
-			stateLabel6.setText(states[5] + "");	
+			stateLabel2.setText(states[1] + "~" + states[2]);
+			stateLabel3.setText(states[3] + "");
+			stateLabel4.setText(states[4] + "");
+			stateLabel5.setText(states[5] + "");
+			stateLabel6.setText(states[6] + "");
 
 		}else{
 			stateLabel1.setText("");

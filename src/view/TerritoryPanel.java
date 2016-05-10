@@ -17,6 +17,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import view.background.TerritoryBackground;
+import view.background.TerritoryFrontground;
 import view.campsite.CampsitePanel;
 import view.eventhandler.StateHandler;
 import view.eventhandler.TerritoryHandler;
@@ -36,10 +37,10 @@ public class TerritoryPanel extends Pane {
 	private SystemButton saveBtn;
 	
 	private TerritoryHandler territoryHandler;
-	public TerritoryBackground territoryBg;
 	private Group territoryGroup;
 	
-//	private ImageView bg;
+	public TerritoryBackground territoryBg;
+	public TerritoryFrontground territoryFg;
 	
 	private TerritoryButton campsiteBtn;
 	private TerritoryButton smithyBtn;
@@ -149,7 +150,6 @@ public class TerritoryPanel extends Pane {
 		statePanel = new StatePanel(stateHandler,2);		
 		territoryGroup.getChildren().add(statePanel);
 
-
 		//samurai
 		samurai1 = new SamuraiView(1, 2);
 		samurai1.setLayoutX(800);
@@ -170,23 +170,26 @@ public class TerritoryPanel extends Pane {
 		samurai3.setOnMouseExited(stateHandler.closeStatePanelInT); 
 		
 		territoryGroup.getChildren().addAll(samurai1, samurai2, samurai3);
-		
 		territoryHandler.updateSamurai();
 		
+
+		//frontground
+		territoryFg = new TerritoryFrontground();
+		territoryGroup.getChildren().add(territoryFg);
+		
+
 
 		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
 		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
 		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
 
 
+
 		//blur
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
 		
-		//rain
-		
 		this.getChildren().add(territoryGroup);
-		
 	}
 	
 	//内部类
@@ -225,11 +228,12 @@ public class TerritoryPanel extends Pane {
 		if(isBlur){
 			this.blur.setRadius(7);
 			territoryBg.stopAll();
+			territoryFg.stopAll();
 		}else{
 			this.blur.setRadius(0);
 			territoryBg.restartAll();
+			territoryFg.restartAll();
 		}
-
 	}
 
 	public int[] get6PropertiesOfSamurai(int i) {

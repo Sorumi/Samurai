@@ -23,7 +23,7 @@ public class MapController extends TerritoryController {
 
         for (int i = 1; i <= 3; i++) {
             SamuraiPO tmpPO = storyModel.getSamuraiPO(i);
-            this.gamePanel.set6Properties(i,new int[]{tmpPO.getLevel(),tmpPO.getAttackValue(),
+            this.gamePanel.set6Properties(i,new int[]{tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
             tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()});
         }
 
@@ -43,7 +43,7 @@ public class MapController extends TerritoryController {
             this.gameModel.getChessBoardModel().changeActualBlock(pos.getX(), pos.getY(), this.gameModel.getSamuraiOfNum(i).getNumber());
         }
 
-        OperationQueue operationQueue = new OperationQueue(gameModel);
+        OperationQueue operationQueue = new OperationQueue(this.gameModel);
         Thread operationThread = new Thread(operationQueue);
         operationThread.start();
 
