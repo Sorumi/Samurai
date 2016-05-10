@@ -24,7 +24,7 @@ public class StateHandler {
 	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	 
 	    	  gamePanel.statePanel.setCurrentSamuraiInG(currentSamurai); 
 	    	  gamePanel.statePanel.setAppear(true);
-		gamePanel.setOrder();
+			  gamePanel.setOrder();
 	    	  gamePanel.statePanel.set6Properties(gamePanel.get6Properties(currentSamurai.getNum()));
 	      }
 	};
@@ -35,6 +35,7 @@ public class StateHandler {
 	    	  territoryPanel.statePanel.setCurrentSamuraiInT(currentSamurai);
 	    	  territoryPanel.statePanel.setAppear(true);
 
+			  territoryPanel.statePanel.set6Properties(territoryPanel.get6PropertiesOfSamurai(currentSamurai.getNumber()));
 	      }
 	};
 	

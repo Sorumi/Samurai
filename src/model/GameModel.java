@@ -576,9 +576,9 @@ public class GameModel extends BaseModel implements Observer {
         }
         super.updateChange(new UpdateMessage("over",this.chessBoardModel));
 
-        //暂时先exit(0)
-        System.exit(0);
-        //用来保存信息的部分
+        //这里应该传递一些游戏的结果数据,而并不真的结束游戏
+
+        System.out.println("GAME OVER!");
 
         return true;
     }
