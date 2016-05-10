@@ -18,9 +18,11 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import view.background.TerritoryBackground;
 import view.background.TerritoryFrontground;
+import view.background.WeatherSelectPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.StateHandler;
 import view.eventhandler.TerritoryHandler;
+import view.eventhandler.WeatherHandler;
 import view.smithy.SmithyPanel;
 import view.store.StorePanel;
 
@@ -39,6 +41,7 @@ public class TerritoryPanel extends Pane {
 	private TerritoryHandler territoryHandler;
 	private Group territoryGroup;
 	
+	private WeatherHandler weatherHandler;
 	public TerritoryBackground territoryBg;
 	public TerritoryFrontground territoryFg;
 	
@@ -61,7 +64,8 @@ public class TerritoryPanel extends Pane {
 	public SamuraiView samurai3;
 	
 	private GaussianBlur blur;
-
+	
+	private WeatherSelectPanel weatherPanel;
 
 	private int[] samuraiProperties_1;
 	private int[] samuraiProperties_2;
@@ -177,13 +181,17 @@ public class TerritoryPanel extends Pane {
 		territoryFg = new TerritoryFrontground();
 		territoryGroup.getChildren().add(territoryFg);
 		
-
+		//weather select
+		WeatherHandler weatherHandler = new WeatherHandler(territoryBg, territoryFg);
+		
+		WeatherSelectPanel weatherPanel = new WeatherSelectPanel(weatherHandler);
+		weatherPanel.setLayoutX(25);
+		weatherPanel.setLayoutY(445);
+		territoryGroup.getChildren().add(weatherPanel);
 
 		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
 		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
 		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
-
-
 
 		//blur
 		blur = new GaussianBlur(0);

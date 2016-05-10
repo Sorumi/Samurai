@@ -28,7 +28,6 @@ public class SystemButton extends Button {
 		if(img != null){
 			this.setGraphic(img);
 		}
-
 	}
 
 }

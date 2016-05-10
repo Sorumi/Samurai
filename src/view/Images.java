@@ -93,6 +93,14 @@ public class Images {
 	public static final Image TERRITORY_STORE = new Image("/./images/territory_store.png");
 	public static final Image TERRITORY_FLAG = new Image("/./images/territory_flag.png");
 	
+	//weather
+	public static final Image WEATHER_1 = new Image("/./images/weather_1_sun.png");
+	public static final Image WEATHER_2 = new Image("/./images/weather_2_moon.png");
+	public static final Image WEATHER_3 = new Image("/./images/weather_3_stars.png");
+	public static final Image WEATHER_4 = new Image("/./images/weather_4_rain.png");
+	public static final Image WEATHER_5 = new Image("/./images/weather_5_snow.png");
+	public static final Image[] WEATHER = {null, WEATHER_1, WEATHER_2, WEATHER_3, WEATHER_4, WEATHER_5};
+	
 	//map
 	public static final Image MAP_BG = new Image("/./images/map/map_bg.png");
 	public static final Image MAP_HOME = new Image("/./images/map/map_home.png");
