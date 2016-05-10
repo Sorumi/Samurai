@@ -17,12 +17,8 @@ public class ActionOperation extends Operation{
     }
 
     public void execute(){
-
-        System.out.println("A-op begin");
         GameModel model = OperationQueue.getGameModel();
         model.sendMsg(actionNum,direction);
-
-        System.out.println("A-op done");
     }
 
     public int getActionNum(){

@@ -513,16 +513,21 @@ public class GameModel extends BaseModel implements Observer {
                         case 2:
                             this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null,0)) {
-                                if(operation.getActionNum() != 99){
+                                if (operation.getActionNum() != 99) {
                                     OperationQueue.addOperation(operation);
                                 } else {
                                     break;
                                 }
                             }
-
-                            while(!OperationQueue.isEmpty()) {
-                                System.out.println("!");
-                            }
+                            Thread.yield();
+//                            while(!OperationQueue.isEmpty()) {
+//                                try {
+//                                    Thread.currentThread().wait();
+//                                }catch (Exception e){
+//                                    e.printStackTrace();
+//                                }
+//                                System.out.println("!");
+//                            }
                             i = 0;
                             positions = this.samuraiAI[0].getSamuraiPO().see();
                             for(Position p : positions){
@@ -543,10 +548,6 @@ public class GameModel extends BaseModel implements Observer {
                             for (ActionOperation operation2 : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), null, 1)) {
                                 OperationQueue.addOperation(operation2);
                             }
-//                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
-//                            for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null,0)) {
-//                                OperationQueue.addOperation(operation);
-//                            }
                             break;
                         case 3:
                             this.samuraiAI[1].getSamuraiPO().setActionPoint(10);
