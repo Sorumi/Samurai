@@ -16,7 +16,7 @@ import view.eventhandler.StateHandler;
 
 public class StatePanel extends OrderPanel { 
 	private final int SAMURAI_WIDTH = 60;
-	private int prefWidth = 200;
+	private int prefWidth = 230;
 	private int prefHeight = 157;
 	private int strokeWidth = 2;
 	private int SCALE = 1;
@@ -68,7 +68,7 @@ public class StatePanel extends OrderPanel {
 
 		bgRect = new Rectangle();
 		bgRect.setX(0);
-		bgRect.setWidth(200*SCALE);
+		bgRect.setWidth(230*SCALE);
 		bgRect.setHeight(120*SCALE);
 		bgRect.setArcWidth(10*SCALE);
 		bgRect.setArcHeight(10*SCALE);
@@ -78,7 +78,7 @@ public class StatePanel extends OrderPanel {
 		triangle.setFill(Color.WHITE);
 		
 		bgCircle = new Circle();
-		bgCircle.setCenterX(100.0*SCALE);
+		bgCircle.setCenterX(115.0*SCALE);
 		bgCircle.setRadius(25*SCALE);
 		bgCircle.setStroke(Color.WHITE);
 		bgCircle.setStrokeWidth(strokeWidth*SCALE);
@@ -86,7 +86,7 @@ public class StatePanel extends OrderPanel {
 		bgCircle.setFill(Color.WHITE);
 		
 		bloodArc = new Arc();
-		bloodArc.setCenterX(100.0*SCALE);
+		bloodArc.setCenterX(115.0*SCALE);
 		bloodArc.setRadiusX(25*SCALE);
 		bloodArc.setRadiusY(25*SCALE);
 		bloodArc.setStartAngle(0);
@@ -95,7 +95,7 @@ public class StatePanel extends OrderPanel {
 		bloodArc.setFill(GameColor.getOtherColor(3));
 		//这个圆以后换成图片
 		centralCircle = new Circle();
-		centralCircle.setCenterX(100.0*SCALE);
+		centralCircle.setCenterX(115.0*SCALE);
 		centralCircle.setRadius(22*SCALE);
 		centralCircle.setFill(Color.WHITE);
 		
@@ -119,15 +119,15 @@ public class StatePanel extends OrderPanel {
 		
 		stateIcon1.setLayoutX(0);
 		stateIcon1.setLayoutY(0);
-		stateIcon2.setLayoutX(61*SCALE);
+		stateIcon2.setLayoutX(70*SCALE);
 		stateIcon2.setLayoutY(0);
-		stateIcon3.setLayoutX(120*SCALE);
+		stateIcon3.setLayoutX(135*SCALE);
 		stateIcon3.setLayoutY(0);
 		stateIcon4.setLayoutX(-2*SCALE);
 		stateIcon4.setLayoutY(43*SCALE);
-		stateIcon5.setLayoutX(60*SCALE);
+		stateIcon5.setLayoutX(69*SCALE);
 		stateIcon5.setLayoutY(42*SCALE);
-		stateIcon6.setLayoutX(120*SCALE);
+		stateIcon6.setLayoutX(135*SCALE);
 		stateIcon6.setLayoutY(43*SCALE);
 		
 
@@ -137,12 +137,12 @@ public class StatePanel extends OrderPanel {
 		stateLabel1.setId("state-lable");
 		
 		stateLabel2 = new Label("100");
-		stateLabel2.setLayoutX(90*SCALE);
+		stateLabel2.setLayoutX(95*SCALE);
 		stateLabel2.setLayoutY(7*SCALE);
 		stateLabel2.setId("state-lable");
 		
 		stateLabel3 = new Label("100");
-		stateLabel3.setLayoutX(150*SCALE);
+		stateLabel3.setLayoutX(160*SCALE);
 		stateLabel3.setLayoutY(7*SCALE);
 		stateLabel3.setId("state-lable");
 	
@@ -152,12 +152,12 @@ public class StatePanel extends OrderPanel {
 		stateLabel4.setId("state-lable");
 		
 		stateLabel5 = new Label("100");
-		stateLabel5.setLayoutX(90*SCALE);
+		stateLabel5.setLayoutX(95*SCALE);
 		stateLabel5.setLayoutY(52*SCALE);
 		stateLabel5.setId("state-lable");
 		
 		stateLabel6 = new Label("100");
-		stateLabel6.setLayoutX(150*SCALE);
+		stateLabel6.setLayoutX(160*SCALE);
 		stateLabel6.setLayoutY(52*SCALE);
 		stateLabel6.setId("state-lable");
 		
@@ -175,9 +175,9 @@ public class StatePanel extends OrderPanel {
 
 		
 		triangle.getPoints().addAll(new Double[]{
-		    95.0*SCALE, 147.0*SCALE,
-		    105.0*SCALE, 147.0*SCALE,
-		    100.0*SCALE, 157.0*SCALE });
+		    110.0*SCALE, 147.0*SCALE,
+		    120.0*SCALE, 147.0*SCALE,
+		    115.0*SCALE, 157.0*SCALE });
 		
 		bgCircle.setCenterY((25+strokeWidth)*SCALE);
 		bloodArc.setCenterY((25+strokeWidth)*SCALE);
@@ -191,9 +191,9 @@ public class StatePanel extends OrderPanel {
 		bgRect.setY(10*SCALE); 
 		
 		triangle.getPoints().addAll(new Double[]{
-		    95.0, 10.0,
-		    105.0, 10.0,
-		    100.0, 0.0 });
+		    110.0, 10.0,
+		    120.0, 10.0,
+		    115.0, 0.0 });
 
 		
 		bgCircle.setCenterY((prefHeight-25-strokeWidth)*SCALE);

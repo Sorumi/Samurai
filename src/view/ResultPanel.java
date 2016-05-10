@@ -210,7 +210,7 @@ public class ResultPanel extends OrderPanel {
 
 		timeline.play();
 
-		this.setVisible(true);  
+		this.setVisible(false);   
 		
 		this.flip();
 	}
@@ -342,14 +342,14 @@ public class ResultPanel extends OrderPanel {
 			}
 			
 			MaterialView material = new MaterialView(materialnum);
-			material.setLayoutX(20);
-			material.setLayoutY(20);
+			material.setLayoutX(10);
+			material.setLayoutY(10);
 			material.setScaleX(0.5);
 			material.setScaleY(0.5);
 			
 			Label amountLabel = new Label("×"+amount);
 			amountLabel.setLayoutX(53);
-			amountLabel.setLayoutY(47);
+			amountLabel.setLayoutY(22);
 			amountLabel.setId("amount-label");
 			
 			this.getChildren().addAll(circle, material, amountLabel);  
