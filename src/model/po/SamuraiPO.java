@@ -130,7 +130,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,
-			int level, int armorValue, int attackValue, int dodgeChance, int healthPonit, int criticalHitRate) {
+			int level, int armorValue, int attackValue, int dodgeChance, int healthPonit, int criticalHitRate,int actionPoint) {
 		this.number = number;
 		this.armor = armor;
 		this.player = player;
@@ -144,6 +144,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.attackValue = attackValue;
 		this.criticalHitChance = criticalHitRate;
 		this.healthPoint = healthPonit;
+		this.actionPoint=actionPoint;
 	}
 
 	public int getActionPoint() {
@@ -1095,8 +1096,11 @@ public class SamuraiPO implements Serializable, Cloneable {
 		return level;
 	}
 
-	public int getAttackValue() {
-		return attackValue + this.weapon.getAttackPoint();
+	public int[] getAttackValue() {
+		int [] result=new int[2];
+		result[0]=attackValue+weapon.getLowAttackPoint();
+		result[1]=attackValue+weapon.getHighAttackPoint();
+		return result;
 	}
 
 	public int getArmorValue() {
@@ -1229,7 +1233,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public SamuraiPO clone() {
 		try {
 			SamuraiPO samuraiPO1 = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
-					armor, level, armorValue, attackValue, dodgeChance, healthPoint, criticalHitChance);
+					armor, level, armorValue, attackValue, dodgeChance, healthPoint, criticalHitChance,actionPoint);
 			return samuraiPO1;
 		} catch (Exception ex) {
 			ex.printStackTrace();

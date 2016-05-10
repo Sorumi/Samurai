@@ -46,7 +46,6 @@ public class StoreHandler {
 
 			Information information = storeController.getInformationOfTag(item.getNum()+800);
 			storePanel.infoPanel.updateInfo(information.getTag()-800, information.getName(), information.getDescription());
-//			System.out.println(information.getTag() + "\n" + information.getName() + "\n" + information.getDescription());
 		}
 	};
 
