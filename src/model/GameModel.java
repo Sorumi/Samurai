@@ -187,6 +187,13 @@ public class GameModel extends BaseModel implements Observer {
         }
         isServer = false;
         isClient = false;
+        //暂时用这个方法重置每个 samurai 位置
+        this.getSamuraiOfNum(1).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(2).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(3).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(4).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(5).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(6).beKilled(length,chessBoardModel);
     }
 
     public GameModel(){
@@ -454,7 +461,7 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round", this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-//        this.updateVisible(this.updateVision());
+        this.updateVisible(this.updateVision());
 
         if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
 
@@ -501,23 +508,23 @@ public class GameModel extends BaseModel implements Observer {
                     }
                     switch (this.currentPlayer) {
                         case 2:
-                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
-                            for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
-                                OperationQueue.addOperation(operation);
-                            }
-                            break;
+//                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
+//                            for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
+//                                OperationQueue.addOperation(operation);
+//                            }
+//                            break;
                         case 3:
-                            this.samuraiAI[1].getSamuraiPO().setActionPoint(10);
-                            for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
-                                OperationQueue.addOperation(operation);
-                            }
-                            break;
+//                            this.samuraiAI[1].getSamuraiPO().setActionPoint(10);
+//                            for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
+//                                OperationQueue.addOperation(operation);
+//                            }
+//                            break;
                         case 6:
-                            this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
-                            for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
-                                OperationQueue.addOperation(operation);
-                            }
-                            break;
+//                            this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
+//                            for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
+//                                OperationQueue.addOperation(operation);
+//                            }
+//                            break;
                     }
                     this.skip1Round();
                 }
@@ -635,9 +642,7 @@ public class GameModel extends BaseModel implements Observer {
 
     public class countDownTask extends java.util.TimerTask{
         public void run() {
-//            if(!isServer && !isClient) {
-                OperationQueue.addOperation(new TimeOperation());
-//            }
+            OperationQueue.addOperation(new TimeOperation());
         }
     }
 
