@@ -60,6 +60,13 @@ public class GamePanel extends Pane implements Observer{
 	protected SamuraiPanel B2;
 	protected SamuraiPanel B3;
 
+	private int[] samuraiProperties_1;
+	private int[] samuraiProperties_2;
+	private int[] samuraiProperties_3;
+	private int[] samuraiProperties_4;
+	private int[] samuraiProperties_5;
+	private int[] samuraiProperties_6;
+
 	protected PlayerPanel currentPlayer;
 	protected PlayerPanel playerA;
 	protected PlayerPanel playerB;
@@ -188,27 +195,27 @@ public class GamePanel extends Pane implements Observer{
 	}
 
 	public void set6Properties(int samurai, int[] properties){
-//		switch (samurai) {
-//			case 1:
-//				this.A1.samuraiV.setWeapon(weapon);
-//				break;
-//			case 2:
-//				this.A2.samuraiV.setWeapon(weapon);
-//				break;
-//			case 3:
-//				this.A3.samuraiV.setWeapon(weapon);
-//				break;
-//		}
+		switch (samurai) {
+			case 1:
+				this.samuraiProperties_1 = properties;
+				break;
+			case 2:
+				this.samuraiProperties_2 = properties;
+				break;
+			case 3:
+				this.samuraiProperties_3 = properties;
+				break;
+		}
 	}
 
 	public int[] get6Properties(int samurai){
 		switch (samurai) {
 			case 1:
-				return new int[]{1,2,3,4,5,6};
+				return this.samuraiProperties_1;
 			case 2:
-				return new int[]{7,8,9,10,11,12};
+				return this.samuraiProperties_2;
 			case 3:
-				return new int[]{13,14,15,16,17,18};
+				return this.samuraiProperties_3;
 			default:
 				return new int[]{0};
 		}
