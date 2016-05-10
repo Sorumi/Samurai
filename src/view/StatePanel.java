@@ -129,32 +129,32 @@ public class StatePanel extends OrderPanel {
 		stateIcon6.setLayoutX(120);
 		stateIcon6.setLayoutY(43);
 		
-		stateLabel1 = new Label("100");
+		stateLabel1 = new Label();
 		stateLabel1.setLayoutX(30);
 		stateLabel1.setLayoutY(7);
 		stateLabel1.setId("state-lable");
 		
-		stateLabel2 = new Label("100");
+		stateLabel2 = new Label();
 		stateLabel2.setLayoutX(90);
 		stateLabel2.setLayoutY(7);
 		stateLabel2.setId("state-lable");
 		
-		stateLabel3 = new Label("100");
+		stateLabel3 = new Label();
 		stateLabel3.setLayoutX(150);
 		stateLabel3.setLayoutY(7);
 		stateLabel3.setId("state-lable");
 	
-		stateLabel4 = new Label("100");
+		stateLabel4 = new Label();
 		stateLabel4.setLayoutX(30);
 		stateLabel4.setLayoutY(52);
 		stateLabel4.setId("state-lable");
 		
-		stateLabel5 = new Label("100");
+		stateLabel5 = new Label();
 		stateLabel5.setLayoutX(90);
 		stateLabel5.setLayoutY(52);
 		stateLabel5.setId("state-lable");
 		
-		stateLabel6 = new Label("100");
+		stateLabel6 = new Label();
 		stateLabel6.setLayoutX(150);
 		stateLabel6.setLayoutY(52);
 		stateLabel6.setId("state-lable");
@@ -217,12 +217,14 @@ public class StatePanel extends OrderPanel {
 	}
 	
 	public void set6Properties(int[] states){
-		stateLabel1.setText(states[1] + "");
-		stateLabel2.setText(states[2] + "");
-		stateLabel3.setText(states[3] + "");
-		stateLabel4.setText(states[4] + "");
-		stateLabel5.setText(states[5] + "");
-		stateLabel6.setText(states[6] + "");
+		if(states.length == 6){
+			stateLabel1.setText(states[0] + "");
+			stateLabel2.setText(states[1] + "");
+			stateLabel3.setText(states[2] + "");
+			stateLabel4.setText(states[3] + "");
+			stateLabel5.setText(states[4] + "");
+			stateLabel6.setText(states[5] + "");	
+		}
 	}
 
 }
