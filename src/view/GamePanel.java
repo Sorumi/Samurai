@@ -27,7 +27,6 @@ import view.background.BackgroundPanel4;
 import view.background.BackgroundPanel5;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.StateHandler;
-import view.smithy.SmithyPanel;
 
 public class GamePanel extends Pane implements Observer{
 
@@ -107,7 +106,19 @@ public class GamePanel extends Pane implements Observer{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				System.exit(0);
+				switch(level){
+				case 0:
+				case 99:
+					System.exit(0);
+					break;
+				default:
+					//TODO
+					StoryPanel storyPanel = (StoryPanel) GamePanel.this.getParent();
+					storyPanel.mapPanel.toFront();
+					storyPanel.gamePanel.getChildren().remove(GamePanel.this);
+					storyPanel.gamePanel = null;
+				}
+
 			}
 		});
 		OrderPanel systemPanel = new OrderPanel();
