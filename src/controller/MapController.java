@@ -17,6 +17,9 @@ public class MapController extends TerritoryController {
 
     public void setGamePanel(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
+        this.gamePanel.setSamuraiWeapon(1,storyModel.getSamuraiPO(1).getWeapon().getType());
+        this.gamePanel.setSamuraiWeapon(2,storyModel.getSamuraiPO(2).getWeapon().getType());
+        this.gamePanel.setSamuraiWeapon(3,storyModel.getSamuraiPO(3).getWeapon().getType());
     }
 
     public void startGameAtLevel(int level){
