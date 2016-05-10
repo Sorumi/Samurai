@@ -60,18 +60,14 @@ public class RoundPanel extends OrderPanel{
 		this.getChildren().add(currentRing);
 		
 		roundTotal = new Label(total + "");
-		roundTotal.setFont(GameFont.F22);
-		roundTotal.setTextFill(GameColor.getOtherColor(2));
-		roundTotal.setAlignment(Pos.CENTER);
+		roundTotal.setId("round-total");
 		roundTotal.setLayoutX(70);
 		roundTotal.setLayoutY(23);
 		roundTotal.setPrefWidth(50);
 		this.getChildren().add(roundTotal);
 		
 		roundCurrent = new Label("30");
-		roundCurrent.setFont(GameFont.F26);
-		roundCurrent.setTextFill(GameColor.getOtherColor(2));
-		roundCurrent.setAlignment(Pos.CENTER);
+		roundCurrent.setId("round-current");
 		roundCurrent.setLayoutX(2);
 		roundCurrent.setLayoutY(22);
 		roundCurrent.setPrefWidth(70);

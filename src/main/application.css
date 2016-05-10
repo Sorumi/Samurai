@@ -197,6 +197,32 @@
 	-fx-text-alignment: center;
 }
 /* Game */
+#point-label{
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 20;
+	-fx-font-weight: 100;
+	-fx-alignment: center;
+}
+#block-Lable{
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 14;
+	-fx-font-weight: 100;
+	-fx-alignment: center;
+}
+#round-current{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 26;
+	-fx-font-weight: 300;
+	-fx-alignment: center;
+}
+#round-total{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 22;
+	-fx-font-weight: 300;
+	-fx-alignment: center;
+}
 #state-lable{
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";

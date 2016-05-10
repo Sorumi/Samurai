@@ -35,7 +35,6 @@ public class GamePanel extends Pane implements Observer{
 	protected final int WINDOW_HEIGHT = 800;
 	protected final int FIELD_WIDTH = 1050;
 	protected final int FIELD_HEIGHT = 600;
-//	protected final int FIELD_FIX = 20;
 
 	protected int level;
 	protected int size;
@@ -43,7 +42,6 @@ public class GamePanel extends Pane implements Observer{
 	protected int blockHeight;
 
 	protected SystemButton closeBtn;
-//	protected SystemButtonPanel systemButtonPanel;
 	protected BackgroundPanel backgroundPanel;
 	public ChessBoardPanel chessBoard;
 
@@ -100,13 +98,6 @@ public class GamePanel extends Pane implements Observer{
 	
 		//bounds
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-
-		//background
-
-//		backgroundPanel = new BackgroundPanel0();
-//		backgroundPanel = new BackgroundPanel3();
-//		this.getChildren().add(backgroundPanel);
-
 
 		//systembutton
 		closeBtn = new SystemButton(0);
