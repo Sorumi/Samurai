@@ -1096,8 +1096,11 @@ public class SamuraiPO implements Serializable, Cloneable {
 		return level;
 	}
 
-	public int getAttackValue() {
-		return attackValue + this.weapon.getAttackPoint();
+	public int[] getAttackValue() {
+		int [] result=new int[2];
+		result[0]=attackValue+weapon.getLowAttackPoint();
+		result[1]=attackValue+weapon.getHighAttackPoint();
+		return result;
 	}
 
 	public int getArmorValue() {
