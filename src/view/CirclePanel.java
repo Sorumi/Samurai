@@ -77,7 +77,7 @@ public class CirclePanel extends Pane {
 		this.getChildren().add(blockCircle);
 		
 		blockLabel = new Label("");
-		blockLabel.setFont(GameFont.F14);
+		blockLabel.setId("block-label");
 		blockLabel.setTextFill(GameColor.getOtherColor(2));
 		blockLabel.setPrefWidth(30);
 		if (player == 0){

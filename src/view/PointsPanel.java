@@ -66,13 +66,12 @@ public class PointsPanel extends Pane {
 		
 		//label		
 		pointsLabel = new Label("10");
-		pointsLabel.setFont(GameFont.F20);
+		pointsLabel.setId("point-label");
 		pointsLabel.setTextFill(Color.WHITE);
 		
 		
 		pointsLabel.setLayoutY(strokeSize+4);
 		pointsLabel.setPrefWidth(40);
-//		pointsLabel.setStyle("-fx-background-color: #DDDDDD");
 		if(player == 0){
 			pointsLabel.setLayoutX(PANEL_WIDTH-50);
 			pointsLabel.setAlignment(Pos.CENTER_RIGHT);
