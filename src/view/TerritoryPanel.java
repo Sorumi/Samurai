@@ -16,12 +16,14 @@ import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import model.StoryModel;
 import view.background.RainGroup;
 import view.background.TerritoryBackground;
 import view.campsite.CampsitePanel;
+import view.eventhandler.StateHandler;
 import view.eventhandler.TerritoryHandler;
 import view.smithy.SmithyPanel;
 import view.store.StorePanel;
@@ -54,6 +56,9 @@ public class TerritoryPanel extends Pane {
 	public StorePanel storePanel;
 
 	public ArchivePanel archivePanel;
+	public StatePanel statePanel;
+	
+	protected StateHandler stateHandler;
 	
 	public SamuraiView samurai1;
 	public SamuraiView samurai2;
@@ -140,23 +145,35 @@ public class TerritoryPanel extends Pane {
 		flagBtn.setOnMouseClicked(territoryHandler.flagEvent);
 		
 		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn);
+		stateHandler = new StateHandler(this);
+		statePanel = new StatePanel(stateHandler,2);		
+		territoryGroup.getChildren().add(statePanel);
+
 
 		//samurai
 		samurai1 = new SamuraiView(1, 2);
 		samurai1.setLayoutX(800);
 		samurai1.setLayoutY(450);
+		samurai1.setOnMouseEntered(stateHandler.showStatePanelInT);
+		samurai1.setOnMouseExited(stateHandler.closeStatePanelInT); 
 		
 		samurai2 = new SamuraiView(2, 2);
 		samurai2.setLayoutX(640);
 		samurai2.setLayoutY(450);
+		samurai2.setOnMouseEntered(stateHandler.showStatePanelInT);
+		samurai2.setOnMouseExited(stateHandler.closeStatePanelInT); 
 		
 		samurai3 = new SamuraiView(3, 2);
 		samurai3.setLayoutX(480);
 		samurai3.setLayoutY(450);
+		samurai3.setOnMouseEntered(stateHandler.showStatePanelInT);
+		samurai3.setOnMouseExited(stateHandler.closeStatePanelInT); 
 		
 		territoryGroup.getChildren().addAll(samurai1, samurai2, samurai3);
 		
 		territoryHandler.updateSamurai();
+		
+		
 		
 		//blur
 		blur = new GaussianBlur(0);

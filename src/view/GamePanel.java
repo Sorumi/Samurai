@@ -128,7 +128,7 @@ public class GamePanel extends Pane implements Observer{
 		//stateHandler
 		stateHandler = new StateHandler(this);
 		//statepanel
-		statePanel = new StatePanel(stateHandler);
+		statePanel = new StatePanel(stateHandler,1);
 		this.getChildren().add(statePanel);
 		//resultpanel
 		resultPanel = new ResultPanel(this);
@@ -143,18 +143,18 @@ public class GamePanel extends Pane implements Observer{
 		B3 = new SamuraiPanel(6, size);
 		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
 
-		A1.setOnMouseEntered(stateHandler.showStatePanel);
-		A1.setOnMouseExited(stateHandler.closeStatePanel);
-		A2.setOnMouseEntered(stateHandler.showStatePanel);
-		A2.setOnMouseExited(stateHandler.closeStatePanel);
-		A3.setOnMouseEntered(stateHandler.showStatePanel);
-		A3.setOnMouseExited(stateHandler.closeStatePanel);
-		B1.setOnMouseEntered(stateHandler.showStatePanel);
-		B1.setOnMouseExited(stateHandler.closeStatePanel);
-		B2.setOnMouseEntered(stateHandler.showStatePanel);
-		B2.setOnMouseExited(stateHandler.closeStatePanel);
-		B3.setOnMouseEntered(stateHandler.showStatePanel);
-		B3.setOnMouseExited(stateHandler.closeStatePanel);
+		A1.setOnMouseEntered(stateHandler.showStatePanelInG);
+		A1.setOnMouseExited(stateHandler.closeStatePanelInG);
+		A2.setOnMouseEntered(stateHandler.showStatePanelInG);
+		A2.setOnMouseExited(stateHandler.closeStatePanelInG);
+		A3.setOnMouseEntered(stateHandler.showStatePanelInG);
+		A3.setOnMouseExited(stateHandler.closeStatePanelInG);
+		B1.setOnMouseEntered(stateHandler.showStatePanelInG);
+		B1.setOnMouseExited(stateHandler.closeStatePanelInG);
+		B2.setOnMouseEntered(stateHandler.showStatePanelInG);
+		B2.setOnMouseExited(stateHandler.closeStatePanelInG);
+		B3.setOnMouseEntered(stateHandler.showStatePanelInG);
+		B3.setOnMouseExited(stateHandler.closeStatePanelInG);
 
 		//add
 		backgroundPanel.setZOrder(-2);
@@ -255,7 +255,7 @@ public class GamePanel extends Pane implements Observer{
 							if(currentPlayer == playerA) {
 								arrow.setActualLocation();
 								arrow.setVisible(true);
-								currentSamurai.setOnMouseEntered(stateHandler.showStatePanel);
+								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 							}
 						} else {
 							arrow.setVisible(false);

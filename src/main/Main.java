@@ -16,7 +16,7 @@ public class Main extends Application {
 	
 	private Scene scene;
 	
-	public MenuPanel menuPanel;
+	public MenuPanel menuPanel; 
 	
 	public GamePanel gamePanel; 
 	public GameModel gameModel;
