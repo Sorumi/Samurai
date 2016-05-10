@@ -209,6 +209,7 @@ public class StatePanel extends OrderPanel {
 			this.setDownLocation();
 		}
 	}
+
 	public void setAppear(boolean isAppear) {
 		// TODO Auto-generated method stub
 		this.isAppear = isAppear;
@@ -223,4 +224,5 @@ public class StatePanel extends OrderPanel {
 		stateLabel5.setText(states[5] + "");
 		stateLabel6.setText(states[6] + "");
 	}
+
 }
