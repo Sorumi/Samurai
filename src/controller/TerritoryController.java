@@ -1,6 +1,7 @@
 package controller;
 
 import model.StoryModel;
+import model.po.SamuraiPO;
 import model.po.Weapon;
 
 /**
@@ -35,6 +36,11 @@ public class TerritoryController{
             territoryController = new TerritoryController();
         }
         return territoryController;
+    }
+
+    public int[] get6Properties(int samurai){
+//        return this.storyModel.getSamuraiPO(samurai)
+        return new int[]{1,2,3,4,5,6};
     }
 
 }
