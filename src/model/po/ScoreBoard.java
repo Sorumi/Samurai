@@ -1,5 +1,6 @@
 package model.po;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ScoreBoard {
@@ -7,6 +8,36 @@ public class ScoreBoard {
 	private int[] materialItem = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 	private String Rating;
 	private Random random = new Random();
+
+	public int[] getExperience(int checkPoint, int level, int land1, int land2, int land3, int kill1, int kill2,
+			int kill3) {
+		int[] result = new int[3];
+		result[0] = (land1 + kill1 * 5) * ((checkPoint + level) / 5 + 1);
+		result[1] = (land2 + kill2 * 5) * ((checkPoint + level) / 5 + 1);
+		result[2] = (land3 + kill3 * 5) * ((checkPoint + level) / 5 + 1);
+		return result;
+	}
+
+	public ArrayList<Material> getMaterial() {
+		int count = 0;
+		ArrayList<Material> materials = new ArrayList<Material>();
+		while (materialTag[count] > 0) {
+			boolean flag = false;
+			int type = 800 + materialTag[count] * 10 + materialItem[count];
+			for (Material material : materials) {
+				if (material.getType() == type) {
+					material.setNumber(material.getNumer() + 1);
+					flag = true;
+					break;
+				}
+			}
+			if (!flag) {
+				Material material = new Material(type, 1);
+				materials.add(material);
+			}
+		}
+		return materials;
+	}
 
 	public boolean caculateMaterial(int checkPoint, int level, int block, int ourKill, int enemyKill) {
 		// 判断评级
