@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import controller.msgqueue.EndOperation;
+import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -106,6 +107,7 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
+				System.out.println("LEVEL : " + level);
 				// TODO Auto-generated method stub
 				switch(level){
 				case 0:
@@ -113,6 +115,8 @@ public class GamePanel extends Pane implements Observer{
 					OperationQueue.addOperation(new EndOperation());
 					Pane basePanel = (Pane) GamePanel.this.getParent();
 					basePanel.getChildren().remove(GamePanel.this);
+
+					OperationQueue.addOperation(new EndOperation());
 					break;
 				default:
 					//TODO
@@ -122,6 +126,7 @@ public class GamePanel extends Pane implements Observer{
 					storyPanel.gamePanel = null;
 
 					OperationQueue.addOperation(new EndOperation());
+					break;
 				}
 
 			}
