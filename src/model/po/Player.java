@@ -194,14 +194,8 @@ public class Player {
                                     this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getX(),
                                     this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getY(),
                                     true);
-                            for(Integer integer : killedSamurais){
-                                this.gameModel.updateKilled(integer);
 
-                                if(this.gameModel.getLevel() >= 11 && this.gameModel.getLevel() <= 20){
-                                    this.gameModel.attackSamurai(integer,
-                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[0],
-                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[1]);
-                                }
+                            for(Integer integer : killedSamurais){
 
                                 try{
                                     Thread.sleep(1000);
@@ -209,9 +203,20 @@ public class Player {
                                     e.printStackTrace();
                                 }
 
-                                this.gameModel.updateHome(integer);
-
-                                this.gameModel.updateVisible(this.gameModel.updateVision());
+                                if(this.gameModel.getLevel() < 99 && this.gameModel.getLevel() > 0){
+                                    if(this.gameModel.attackSamurai(integer,
+                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[0],
+                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[1],
+                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[2]) < 0){
+                                        this.gameModel.updateKilled(integer);
+                                        this.gameModel.updateHome(integer);
+                                        this.gameModel.updateVisible(this.gameModel.updateVision());
+                                    }
+                                }else {
+                                    this.gameModel.updateKilled(integer);
+                                    this.gameModel.updateHome(integer);
+                                    this.gameModel.updateVisible(this.gameModel.updateVision());
+                                }
 
                             }
                         }

@@ -307,7 +307,8 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("samuraiKilled",i));
     }
 
-    public void attackSamurai(int samurai, int attackPoint, int armorPuncture){
+    public int attackSamurai(int samurai, int attackPoint, int armorPuncture, int isCritical){
+        System.out.println("Attack samurai : " + samurai);
         double attackPointDouble=attackPoint;
         switch (samurai){
             case 1:
@@ -319,8 +320,17 @@ public class GameModel extends BaseModel implements Observer {
                         attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(1).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[0].getSamuraiOfNum(1).getHealthPoint();
             case 2:
                 if(!this.players[0].getSamuraiOfNum(2).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
@@ -330,8 +340,17 @@ public class GameModel extends BaseModel implements Observer {
                         attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(2).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[0].getSamuraiOfNum(2).getHealthPoint();
             case 3:
                 if(!this.players[0].getSamuraiOfNum(3).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
@@ -341,41 +360,79 @@ public class GameModel extends BaseModel implements Observer {
                         attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(3).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[0].getSamuraiOfNum(3).getHealthPoint();
             case 4:
-                if(!this.players[1].getSamuraiOfNum(1).checkMiss()){
-                    double ta = this.players[1].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
+                if(!this.players[1].getSamuraiOfNum(4).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(4).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (ta / (ta + 100));
                     }else{
                         attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(1).injure((int)attackPointDouble);
+                    this.players[1].getSamuraiOfNum(4).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[1].getSamuraiOfNum(4).getHealthPoint();
             case 5:
-                if(!this.players[1].getSamuraiOfNum(2).checkMiss()){
-                    double ta = this.players[1].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
+                if(!this.players[1].getSamuraiOfNum(5).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(5).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (ta / (ta + 100));
                     }else{
                         attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(2).injure((int)attackPointDouble);
+                    this.players[1].getSamuraiOfNum(5).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[1].getSamuraiOfNum(5).getHealthPoint();
             case 6:
-                if(!this.players[1].getSamuraiOfNum(3).checkMiss()){
-                    double ta = this.players[1].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
+                if(!this.players[1].getSamuraiOfNum(6).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(6).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (ta / (ta + 100));
                     }else{
                         attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(3).injure((int)attackPointDouble);
+                    this.players[1].getSamuraiOfNum(6).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[1].getSamuraiOfNum(6).getHealthPoint();
+            default:
+                return 9999;
         }
     }
 
