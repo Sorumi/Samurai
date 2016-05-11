@@ -66,7 +66,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		this.getChildren().add(fish2);
 		this.getChildren().add(fish3);
 		this.getChildren().add(leaf0);
-//		this.getChildren().add(leaf1);
+		this.getChildren().add(leaf1);
 		this.getChildren().add(lotus0);
 		this.getChildren().add(lotus1);
 		
@@ -80,7 +80,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		this.fish3.setLayoutY(365);
 		this.leaf0.setLayoutX(236);
 		this.leaf0.setLayoutY(108);
-		this.leaf1.setLayoutX(1099);
+		this.leaf1.setLayoutX(999);
 		this.leaf1.setLayoutY(225);
 		this.lotus0.setLayoutX(139);
 		this.lotus0.setLayoutY(302);
@@ -98,6 +98,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		arc1.setType(ArcType.OPEN);
 		arc1.setStroke(Color.WHITE);
 		arc1.setStrokeWidth(2);
+		arc1.setVisible(false);
 		this.getChildren().add(arc1);
 		
 		Arc arc2 = new Arc();
@@ -111,6 +112,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		arc2.setType(ArcType.OPEN);
 		arc2.setStroke(Color.WHITE);
 		arc2.setStrokeWidth(2);
+		arc2.setVisible(false);
 		this.getChildren().add(arc2);
 		
 		Arc arc3 = new Arc();
@@ -124,6 +126,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		arc3.setType(ArcType.OPEN);
 		arc3.setStroke(Color.WHITE);
 		arc3.setStrokeWidth(2);
+		arc3.setVisible(false);
 		this.getChildren().add(arc3);
 		
 		Arc arc4 = new Arc();
@@ -137,8 +140,9 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		arc4.setType(ArcType.OPEN);
 		arc4.setStroke(Color.WHITE);
 		arc4.setStrokeWidth(2);
+		arc4.setVisible(false);
 		this.getChildren().add(arc4);
-		this.getChildren().add(leaf1);
+
 
 		this.setOnMouseClicked(new EventHandler<MouseEvent>() { 
 			@Override
@@ -169,9 +173,12 @@ public class BackgroundPanel3 extends BackgroundPanel {
 						new KeyFrame(Duration.millis(16000), new KeyValue(arc4.radiusXProperty(), 150)),
 						new KeyFrame(Duration.millis(16000), new KeyValue(arc4.radiusYProperty(), 140))
 						);
+				arc1.setVisible(true);
+				arc2.setVisible(true);
+				arc3.setVisible(true);
+				arc4.setVisible(true);
 				timeline.play();
 			
-				System.out.println("aaaa");
 				FadeTransition ft1 = new FadeTransition(Duration.millis(6000), arc1);
 				ft1.setFromValue(1.0);
 				ft1.setToValue(0.0);

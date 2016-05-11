@@ -217,7 +217,7 @@ public class GamePanel extends Pane implements Observer{
 		}else{
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, resultPanel);
 		}
-
+		this.setOrder();
 	}
 
 	public void set6Properties(int samurai, int[] properties){
