@@ -46,7 +46,7 @@ public class Main extends Application {
 		this.gameModel = new GameModel(24, 14, gamePanel, 0);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
-		OperationQueue operationQueue = new OperationQueue(gameModel);
+		OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();
 	}
@@ -56,7 +56,7 @@ public class Main extends Application {
 		this.gameModel = new GameModel(24, 14, gamePanel, 99);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
-		OperationQueue operationQueue = new OperationQueue(gameModel);
+		OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();
 	}
