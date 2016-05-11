@@ -95,7 +95,6 @@ public class GameModel extends BaseModel implements Observer {
         players[0] = new Player(this,0,samuraiPOs);
         players[0].setSamuraiPOs(samuraiPOs);
 
-
         players[1] = new Player(this,1);
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
@@ -706,6 +705,7 @@ public class GameModel extends BaseModel implements Observer {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.caculateMaterial(level/10, level%10, 0, 0, 0);
         ArrayList<Material> materials = scoreBoard.getMaterial();
+        super.updateChange(new UpdateMessage("materials",materials));
 
         int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[0],
                 this.chessBoardModel.getStatesOfAllBlocks()[1], this.chessBoardModel.getStatesOfAllBlocks()[2],
@@ -721,8 +721,6 @@ public class GameModel extends BaseModel implements Observer {
                 super.updateChange(new UpdateMessage("levelup",i));
             }
         }
-
-        //这里应该传递一些游戏的结果数据,而并不真的结束游戏
 
         System.out.println("GAME OVER!");
 
@@ -790,7 +788,6 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
-//            System.out.println("Time:" + this.currentTime);
             this.currentTime--;
         }else{
             this.actionDone();
