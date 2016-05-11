@@ -173,14 +173,14 @@
 /*ResultPanel */
 #win-label{ 
 	-fx-text-fill: #C25A3E;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "Tsukushi B Round Gothic";
 	-fx-font-weight: 600;
 	-fx-font-size: 144;
 	-fx-alignment: center-left;
 }
 #lose-label{  
 	-fx-text-fill: #4372C7;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "Tsukushi B Round Gothic";
 	-fx-font-weight: 600;
 	-fx-font-size: 144;
 	-fx-alignment: center-left;

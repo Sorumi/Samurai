@@ -111,7 +111,8 @@ public class GamePanel extends Pane implements Observer{
 				case 0:
 				case 99:
 					OperationQueue.addOperation(new EndOperation());
-//					System.exit(0);
+					Pane basePanel = (Pane) GamePanel.this.getParent();
+					basePanel.getChildren().remove(GamePanel.this);
 					break;
 				default:
 					//TODO
