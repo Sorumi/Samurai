@@ -53,7 +53,6 @@ public class StoryModel implements Serializable{
         switch (samuraiNum){
             case 1:
                 this.samuraiPO_1.changeWeapon(this.armory.getWeapon(weaponNum));
-                System.out.println(this.samuraiPO_1.getWeapon().getType());
                 break;
             case 2:
                 this.samuraiPO_2.changeWeapon(this.armory.getWeapon(weaponNum));
@@ -64,10 +63,6 @@ public class StoryModel implements Serializable{
             default:
                 break;
         }
-    }
-
-    public void createWeapon(){
-
     }
 
     public SamuraiPO[] getSamuraiPOs(){
