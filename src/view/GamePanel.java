@@ -203,7 +203,7 @@ public class GamePanel extends Pane implements Observer{
 
 		//add
 		backgroundPanel.setZOrder(-2);
-		systemPanel.setZOrder(1000);
+		systemPanel.setZOrder(-1);
 		chessBoard.setZOrder(-3);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
