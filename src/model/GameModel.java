@@ -696,10 +696,10 @@ public class GameModel extends BaseModel implements Observer {
         ScoreBoard scoreBoard = new ScoreBoard();
         scoreBoard.caculateMaterial(level/10, level%10, 0, 0, 0);
         ArrayList<Material> materials = scoreBoard.getMaterial();
+
         int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[0],
                 this.chessBoardModel.getStatesOfAllBlocks()[1], this.chessBoardModel.getStatesOfAllBlocks()[2],
-                0,0,0);
-
+                this.getSamuraiOfNum(1).getKillNum(),this.getSamuraiOfNum(2).getKillNum(),this.getSamuraiOfNum(3).getKillNum());
         this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
         this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
         this.players[0].getSamuraiOfNum(3).addExperience(experience[2]);

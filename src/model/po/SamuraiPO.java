@@ -42,6 +42,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	private int actionPoint;
 	private int totalActionPoint;
 	private int totalHealthPoint;
+	private int killNum;
 
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
@@ -79,6 +80,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.healthPoint = 60;
 		this.criticalHitChance = 1;
 		this.actionPoint = 30;
+		this.killNum = 0;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
@@ -131,6 +133,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.home = home;
 		this.totalActionPoint = actionPoint;
 		this.actionPoint = actionPoint;
+		this.killNum = 0;
 	}
 
 	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,
@@ -150,6 +153,15 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.criticalHitChance = criticalHitRate;
 		this.healthPoint = healthPonit;
 		this.actionPoint = actionPoint;
+		this.killNum = 0;
+	}
+
+	public int getKillNum() {
+		return killNum;
+	}
+
+	public void updateKillNum(int delta) {
+		this.killNum += delta;
 	}
 
 	public int getTotalHealthPoint() {

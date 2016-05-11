@@ -211,6 +211,10 @@ public class Player {
                                         this.gameModel.updateKilled(integer);
                                         this.gameModel.updateHome(integer);
                                         this.gameModel.updateVisible(this.gameModel.updateVision());
+
+                                        this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).updateKillNum(1);
+
+                                        System.out.println("~" + this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getKillNum());
                                     }
                                 }else {
                                     this.gameModel.updateKilled(integer);
