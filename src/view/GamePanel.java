@@ -484,6 +484,14 @@ public class GamePanel extends Pane implements Observer{
 			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
 		}else if(key.equals("over")){
 			this.resultPanel.setResults((int [])notifingObject.getValue());
+		}else if(key.equals("miss")){
+			System.out.println((int)notifingObject.getValue() + " miss !");
+		}else if(key.equals("normal-attack")){
+			int[] t = (int [])notifingObject.getValue();
+			System.out.println("Normal attack : " + t[0] + " , " + t[1]);
+		}else if(key.equals("critical-attack")){
+			int[] t = (int [])notifingObject.getValue();
+			System.out.println("Critical attack : " + t[0] + " , " + t[1]);
 		}
 	}
 
