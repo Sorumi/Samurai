@@ -24,8 +24,8 @@ public class OperationQueue implements Runnable, Serializable {
 	private static GameModel gameModel;
 	public static boolean isRunning;
 
-	ClientService clientService = new ClientServiceImpl();
-	HostService hostService = new HostServiceImpl();
+	static ClientService clientService = new ClientServiceImpl();
+	static HostService hostService = new HostServiceImpl();
 
 	public OperationQueue(GameModel model){
 		queue = new ArrayBlockingQueue<>(1000);
@@ -85,7 +85,11 @@ public class OperationQueue implements Runnable, Serializable {
 
 		System.out.println("execute Operation : " + operation.getClass());
 		UpdateMessage updateMessage = new UpdateMessage("execute",operation);
-
+		if(GameModel.isClient() && !Operation.isServer()){
+			clientService.submitOperation(operation);
+		}else if(GameModel.isServer() && Operation.isServer()){
+			hostService.update(gameModel, updateMessage);
+		}
 
 		//迫不得已才加在这里..
 		if(gameModel.getLevel() != 0 && gameModel.getCurrentSamurai() >= 4){
@@ -100,7 +104,7 @@ public class OperationQueue implements Runnable, Serializable {
 		}
 
 		operation1.execute();
-		return true;
+	return true;
 	}
 
 	private static Operation getNewOperation (){

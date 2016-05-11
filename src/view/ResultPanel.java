@@ -228,7 +228,7 @@ public class ResultPanel extends OrderPanel {
 
 		timeline.play();
 
-		this.setVisible(true);   
+		this.setVisible(false);   
 		
 		this.flip();
 	}
