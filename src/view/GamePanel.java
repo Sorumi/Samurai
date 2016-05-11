@@ -148,20 +148,15 @@ public class GamePanel extends Pane implements Observer{
 		//actionHandler
 		actionHandler = new ActionHandler(this);
 		this.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
+
 		//actionpanel
 		actionPanel = new ActionPanel(actionHandler);
 		actionPanel.setSize(this.size);
 		this.getChildren().add(actionPanel);
 
-		//stateHandler
-		stateHandler = new StateHandler(this);
-		//statepanel
-		statePanel = new StatePanel(stateHandler,1);
-		this.getChildren().add(statePanel);
 		//resultpanel
 		resultPanel = new ResultPanel(this);
 		this.getChildren().add(resultPanel);
-
 
 		//samurai
 		A1 = new SamuraiPanel(1, size);
@@ -172,20 +167,6 @@ public class GamePanel extends Pane implements Observer{
 		B3 = new SamuraiPanel(6, size);
 		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
 
-
-		A1.setOnMouseEntered(stateHandler.showStatePanelInG);
-		A1.setOnMouseExited(stateHandler.closeStatePanelInG);
-		A2.setOnMouseEntered(stateHandler.showStatePanelInG);
-		A2.setOnMouseExited(stateHandler.closeStatePanelInG);
-		A3.setOnMouseEntered(stateHandler.showStatePanelInG);
-		A3.setOnMouseExited(stateHandler.closeStatePanelInG);
-		B1.setOnMouseEntered(stateHandler.showStatePanelInG);
-		B1.setOnMouseExited(stateHandler.closeStatePanelInG);
-		B2.setOnMouseEntered(stateHandler.showStatePanelInG);
-		B2.setOnMouseExited(stateHandler.closeStatePanelInG);
-		B3.setOnMouseEntered(stateHandler.showStatePanelInG);
-		B3.setOnMouseExited(stateHandler.closeStatePanelInG);
-
 		if(level < 99 && level > 0) {
 			//stateHandler
 			stateHandler = new StateHandler(this);
@@ -193,7 +174,6 @@ public class GamePanel extends Pane implements Observer{
 			statePanel = new StatePanel(stateHandler,1);
 			this.getChildren().add(statePanel);
 			statePanel.setZOrder(-1);
-
 
 			A1.setOnMouseEntered(stateHandler.showStatePanelInG);
 			A1.setOnMouseExited(stateHandler.closeStatePanelInG);
@@ -213,7 +193,6 @@ public class GamePanel extends Pane implements Observer{
 		//resultpanel
 		resultPanel = new ResultPanel(this);
 		this.getChildren().add(resultPanel);
-
 
 		//add
 		backgroundPanel.setZOrder(-2);
@@ -355,7 +334,9 @@ public class GamePanel extends Pane implements Observer{
 							if(currentPlayer == playerA) {
 								arrow.setActualLocation();
 								arrow.setVisible(true);
-								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
+								if(level < 99 && level > 0) {
+									currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
+								}
 							}
 						} else {
 							arrow.setVisible(false);
@@ -500,6 +481,8 @@ public class GamePanel extends Pane implements Observer{
 			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
 		}else if(key.equals("a-pseudoOccupy")){
 			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
+		}else if(key.equals("over")){
+			this.resultPanel.setResults((int [])notifingObject.getValue());
 		}
 	}
 
