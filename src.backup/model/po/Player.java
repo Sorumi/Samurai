@@ -62,15 +62,24 @@ public class Player {
     public ArrayList<ActualBlock> showVision(){
         ArrayList<ActualBlock> blocks = new ArrayList<>();
         ArrayList<Position> positions = new ArrayList<>();
-        if(this.playerNum == 1){
-            positions.addAll(samuraiPOs[4].see());
-            positions.addAll(samuraiPOs[5].see());
-            positions.addAll(samuraiPOs[6].see());
-        }else{
-            positions.addAll(samuraiPOs[1].see());
-            positions.addAll(samuraiPOs[2].see());
-            positions.addAll(samuraiPOs[3].see());
+//        if(this.playerNum == 1){
+//            positions.addAll(samuraiPOs[4].see());
+//            positions.addAll(samuraiPOs[5].see());
+//            positions.addAll(samuraiPOs[6].see());
+//        }else{
+//            positions.addAll(samuraiPOs[1].see());
+//            positions.addAll(samuraiPOs[2].see());
+//            positions.addAll(samuraiPOs[3].see());
+//        }
+
+        //开挂模式
+        for(int i = 0; i <= gameModel.getLength(); i++){
+            for (int j = 0; j <= gameModel.getLength(); j++) {
+                positions.add(new Position(i,j));
+            }
         }
+
+
         //设为可见
         for(Position position : positions){
             blocks.add(this.chessBoardModel.getActualBlock(position.getX(),position.getY()));
@@ -94,6 +103,7 @@ public class Player {
                         this.gameModel.updateOccupiedBlocks();
                         done = true;
                         this.samuraiPOs[this.currentSamurai].changeActionPoint(4);
+                        System.out.println(this.samuraiPOs[this.currentSamurai].getActionPoint());
                         //检测需不需要把别人踢回去
                         ArrayList<Integer> killedSamurais = new ArrayList<>();
                         for(Position position : positions){

@@ -31,9 +31,11 @@ public class OperationQueue implements Runnable, Serializable {
 		queue = new ArrayBlockingQueue<>(1000);
 		isRunning = true;
 		gameModel = model;
+
+		Thread.currentThread().setPriority(10);
 	}
 
-	public void run() {
+	public synchronized void run() {
 		while(isRunning && !Thread.currentThread().isInterrupted()){
 			Operation operation = getNewOperation();
 
@@ -63,16 +65,41 @@ public class OperationQueue implements Runnable, Serializable {
 			}
 
 			operation.execute();
+
 		}
 	}
 	
-	public static boolean addOperation (Operation operation){
+	public synchronized static boolean addOperation (Operation operation){
 		try {
+			System.out.println("ADD: " + operation.toString());
 			queue.put(operation);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 			return false;
 		}
+		Operation operation1 = getNewOperation();
+
+		if (operation instanceof EndOperation){
+			Thread.interrupted();
+		}
+
+		System.out.println("execute Operation : " + operation.getClass());
+		UpdateMessage updateMessage = new UpdateMessage("execute",operation);
+
+
+		//迫不得已才加在这里..
+		if(gameModel.getLevel() != 0 && gameModel.getCurrentSamurai() >= 4){
+			if(operation instanceof ActionOperation
+					|| operation instanceof NextOperation) {
+				try {
+					Thread.sleep(2400);
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		}
+
+		operation1.execute();
 		return true;
 	}
 
@@ -84,6 +111,11 @@ public class OperationQueue implements Runnable, Serializable {
 			e.printStackTrace();
 		}
 		return operation;
+	}
+
+	public static boolean isEmpty(){
+		System.out.println(queue.size());
+		return queue.isEmpty();
 	}
 
 	public static GameModel getGameModel(){

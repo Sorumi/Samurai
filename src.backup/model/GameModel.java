@@ -73,6 +73,9 @@ public class GameModel extends BaseModel implements Observer {
 
     //Story 构造方法
     public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
+
+        Thread.currentThread().setPriority(1);
+
         this.level = level;
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
@@ -393,16 +396,30 @@ public class GameModel extends BaseModel implements Observer {
 
     //单机模式也是只能看见自己这方的 block
     public ArrayList<ActualBlock> updateVision(){
-        ArrayList<ActualBlock> blocks;
-        if(GameModel.isClient() && !GameModel.isServer()){
-            blocks = this.players[1].showVision();
-            super.updateChange(new UpdateMessage("vision", blocks));
-            return blocks;
-        }else{
-            blocks = this.players[0].showVision();
-            super.updateChange(new UpdateMessage("vision", blocks));
-            return blocks;
+
+        //开挂模式
+
+        ArrayList<ActualBlock> blocks = new ArrayList<>();
+
+        for(int x = 0; x <= this.length; x++){
+            for (int y = 0; y <= this.length; y++) {
+                blocks.add(this.chessBoardModel.getActualBlock(x,y));
+            }
         }
+
+//        if(GameModel.isClient() && !GameModel.isServer()){
+//            blocks = this.players[1].showVision();
+//            super.updateChange(new UpdateMessage("vision", blocks));
+//            return blocks;
+//        }else{
+//            blocks = this.players[0].showVision();
+//            super.updateChange(new UpdateMessage("vision", blocks));
+//            return blocks;
+//        }
+
+
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
     }
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
@@ -447,7 +464,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     //经典模式下+故事模式下
-    public void assignNextWithAI() {
+    public void assignNextWithAI()  {
 
         if(this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4){
             this.timer = new Timer();
@@ -508,23 +525,57 @@ public class GameModel extends BaseModel implements Observer {
                     }
                     switch (this.currentPlayer) {
                         case 2:
-//                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
-//                            for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
-//                                OperationQueue.addOperation(operation);
-//                            }
-//                            break;
+                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
+                            for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null,0)) {
+                                if (operation.getActionNum() != 99) {
+                                    OperationQueue.addOperation(operation);
+                                } else {
+                                    break;
+                                }
+                            }
+                            Thread.yield();
+                           while(!OperationQueue.isEmpty()) {
+                                try {
+                                    Thread.yield();
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                                System.out.println("!");
+                            }
+                            i = 0;
+                            positions = this.samuraiAI[0].getSamuraiPO().see();
+                            for(Position p : positions){
+                                if(p.getX() == this.players[0].getSamuraiOfNum(1).getPos().getX()
+                                        && p.getY() == this.players[0].getSamuraiOfNum(1).getPos().getY()){
+                                    i = 1;
+                                }
+                                if(p.getX() == this.players[0].getSamuraiOfNum(2).getPos().getX()
+                                        && p.getY() == this.players[0].getSamuraiOfNum(2).getPos().getY()){
+                                    i = 2;
+                                }
+                                if(p.getX() == this.players[0].getSamuraiOfNum(3).getPos().getX()
+                                        && p.getY() == this.players[0].getSamuraiOfNum(3).getPos().getY()){
+                                    i = 3;
+                                }
+                            }
+                            System.out.println("—————————————");
+                            System.out.println(this.samuraiAI[0].getSamuraiPO().getActionPoint());
+                            for (ActionOperation operation2 : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), null, 1)) {
+                                OperationQueue.addOperation(operation2);
+                            }
+                            break;
                         case 3:
-//                            this.samuraiAI[1].getSamuraiPO().setActionPoint(10);
-//                            for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
-//                                OperationQueue.addOperation(operation);
-//                            }
-//                            break;
+                            this.samuraiAI[1].getSamuraiPO().setActionPoint(10);
+                            for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null,0)) {
+                                OperationQueue.addOperation(operation);
+                            }
+                            break;
                         case 6:
-//                            this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
-//                            for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
-//                                OperationQueue.addOperation(operation);
-//                            }
-//                            break;
+                            this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
+                            for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null,0)) {
+                                OperationQueue.addOperation(operation);
+                            }
+                            break;
                     }
                     this.skip1Round();
                 }

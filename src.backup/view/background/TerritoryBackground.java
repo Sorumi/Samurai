@@ -172,10 +172,6 @@ public class TerritoryBackground extends Pane{
 		
 		timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
-		//TODO
-		
-		this.setMoon(true);
-		this.setStars(true);
 		
 		timeline.play();
 	}
@@ -188,6 +184,7 @@ public class TerritoryBackground extends Pane{
 						);
 			 dayTL.play();
 		}
+		isDay = true;
 	}
 	public void setNight(){
 		if(isDay){
@@ -197,11 +194,12 @@ public class TerritoryBackground extends Pane{
 						);
 			 nightTL.play();
 		}
+		isDay = false;
 	}
 	
 	public void setSun(boolean isSun){
 		this.isSun = isSun;
-		moon.setVisible(isSun);
+		sun.setVisible(isSun);
 		if (isSun) {
 			timeline.getKeyFrames().addAll(sun.lightAnimation());
 		}
@@ -227,6 +225,12 @@ public class TerritoryBackground extends Pane{
 		}
 	}
 	
+	public void removeAll() {
+		this.setSun(false);
+		this.setMoon(false);
+		this.setStars(false);
+		timeline = new Timeline();
+	}
 	public void stopAll() {
 		timeline.stop();
 	}
