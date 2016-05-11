@@ -266,6 +266,7 @@ public class GamePanel extends Pane implements Observer{
 		case 3: backgroundPanel = new BackgroundPanel3();break;
 		case 4: backgroundPanel = new BackgroundPanel4();break;
 		case 5: backgroundPanel = new BackgroundPanel5();break;
+		default: backgroundPanel = new BackgroundPanel0();
 		}
 		this.getChildren().add(backgroundPanel);
 	}
