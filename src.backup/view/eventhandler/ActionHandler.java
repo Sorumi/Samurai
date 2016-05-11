@@ -1,9 +1,6 @@
 package view.eventhandler;
 
-import controller.msgqueue.ActionOperation;
-import controller.msgqueue.NextOperation;
-import controller.msgqueue.Operation;
-import controller.msgqueue.OperationQueue;
+import controller.msgqueue.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -17,7 +14,6 @@ public class ActionHandler {
 	private GamePanel gamePanel;
 	private int action;
 	private int direction;
-	
 	
 	public ActionHandler(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
@@ -93,14 +89,28 @@ public class ActionHandler {
 	      public void handle(MouseEvent event) {
 	    	  DirectionButton btn = (DirectionButton)event.getSource();
 	    	  btn.setHighLight(true);
+
+			  if(action == 0) {
+				  direction = btn.direction;
+				  Operation op = new PseudoOccupyOperation(true, direction);
+				  OperationQueue.addOperation(op);
+			  }
+
 	      }
 	};
+
 	public EventHandler<MouseEvent> directionExitEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  DirectionButton btn = (DirectionButton)event.getSource();
 	    	  btn.setHighLight(false);
+
+			  if(action == 0) {
+				  direction = btn.direction;
+				  Operation op = new PseudoOccupyOperation(false, direction);
+				  OperationQueue.addOperation(op);
+			  }
+
 	      }
 	};
-	
 
 }

@@ -33,7 +33,7 @@ public class SamuraiPanel extends OrderPanel {
 	private final int selfHeightOffset = -90;
 		
 	private int number;
-	private SamuraiView samuraiV;
+	public SamuraiView samuraiV;
 	
 	public int x;
 	public int y;
@@ -145,11 +145,18 @@ public class SamuraiPanel extends OrderPanel {
 		timeline.setOnFinished(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				canAction.setValue(true);
 			}
-			
 		});
+	}
+	
+	public void setInjured(boolean isInjured){
+		if ( number/4 == 0 ){
+			samuraiV.setInjured(isInjured, 2);
+		}else{
+			samuraiV.setInjured(isInjured, 3);
+		}
+
 	}
 	
 	public BooleanProperty canActionProperty(){

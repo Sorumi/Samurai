@@ -1,17 +1,14 @@
 package view.eventhandler;
 
-import java.util.Collections;
-
 import controller.ClientController;
 import controller.HostController;
-import controller.MenuController;
+import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import main.Main;
-import model.GameModel;
 import network.Configure;
 import view.GamePanel;
 import view.GamePanelOL;
@@ -26,18 +23,16 @@ public class MenuHandler {
 	
 	public EventHandler<MouseEvent> classicEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  Platform.runLater(new Runnable(){
-	  			@Override
-	  			public void run() {
-	  				// TODO Auto-generated method stub
-	  	    	  mainFrame.gamePanel = new GamePanel(15, 0);
-		    	  mainFrame.startClassicGame();
+	    	  	Platform.runLater(new Runnable(){
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					mainFrame.gamePanel = new GamePanel(15, 0);
+					mainFrame.startClassicGame();
 
-		    	  MenuController menuController = new MenuController();
-		    	  menuController.startGame();
-	  			}
-	  		});
-	  		
+					OperationQueue.addOperation(new StartGameOperation());
+				}
+				});
 	      }
 	};
 	
@@ -46,12 +41,12 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-		  	    	  mainFrame.gamePanel = new GamePanelOL(15, 10);
-			    	  mainFrame.startGame();
-			    	  
-			    	  System.out.println("Waiting for client...");
-			    	  HostController hostController = new HostController();
-			    	  hostController.serviceSetupHost(mainFrame);
+						mainFrame.gamePanel = new GamePanelOL(15, 10);
+						mainFrame.startGame();
+
+						System.out.println("Waiting for client...");
+						HostController hostController = new HostController();
+						hostController.serviceSetupHost(mainFrame);
 		  			}
 	    	  });
 	    	 
@@ -63,11 +58,11 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-		  	    	  mainFrame.gamePanel = new GamePanelOL(15, 10);
-			    	  mainFrame.startGame();
-			    	  
-			    	  ClientController clientController = new ClientController();
-			    	  clientController.setupClient(Configure.SERVER_ADDRESS);
+						mainFrame.gamePanel = new GamePanelOL(15, 10);
+						mainFrame.startGame();
+
+						ClientController clientController = new ClientController();
+						clientController.setupClient(Configure.SERVER_ADDRESS);
 		  			}
 	    	  });
 	      }
@@ -78,7 +73,8 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-			    	  mainFrame.startStory();
+						mainFrame.gamePanel = new GamePanel(15,0);
+						mainFrame.startStory();
 		  			}
 	    	  });
 	      }

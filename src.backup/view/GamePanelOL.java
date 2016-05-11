@@ -77,6 +77,21 @@ public class GamePanelOL extends GamePanel{
         }
     }
 
+    public void setCurrentPlayer(int player){
+        switch(player){
+            case 0:
+                this.currentPlayer = playerA;
+                playerA.pointsPanel.setIsShow(true);
+                playerB.pointsPanel.setIsShow(false);
+                break;
+            case 1:
+                this.currentPlayer = playerB;
+				playerA.pointsPanel.setIsShow(false);
+				playerB.pointsPanel.setIsShow(true);
+                break;
+        }
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         // TODO Auto-generated method stub
@@ -192,7 +207,6 @@ public class GamePanelOL extends GamePanel{
             }
         }else if(key.equals("vision")){
             this.chessBoard.see((ArrayList<ActualBlock>)notifingObject.getValue());
-            System.out.println(((ArrayList<ActualBlock>) notifingObject.getValue()).size());
             this.chessBoard.setTmpBlocks((ArrayList<ActualBlock>)notifingObject.getValue());
         }else if(key.equals("home")){
             SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
@@ -220,11 +234,17 @@ public class GamePanelOL extends GamePanel{
                     break;
             }
             tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
-            chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
+            this.chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
         }else if(key.equals("occupiedBlocks")){
             int[] n = (int [])notifingObject.getValue();
             this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
             this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
+        }else if(key.equals("revive")){
+            System.out.println("Samurai revive!" + (int)notifingObject.getValue());
+        }else if(key.equals("pseudoOccupy")){
+            this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
+        }else if(key.equals("a-pseudoOccupy")){
+            this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
         }
     }
 

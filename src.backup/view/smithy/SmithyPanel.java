@@ -5,12 +5,15 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import model.StoryModel;
 import view.SystemButton;
 import view.TerritoryPanel;
+import view.TransitionPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.SmithyHandler;
+import view.eventhandler.StateHandler;
 
-public class SmithyPanel extends Pane {
+public class SmithyPanel extends TransitionPanel {
 	
 	private SmithyHandler smithyHandler;
 
@@ -21,14 +24,28 @@ public class SmithyPanel extends Pane {
 	private SmithyGroup shurikenGroup;
 	private SmithyGroup bowGroup;
 	
+	public SmithyItemWrapper0 spearPanel;
+	public SmithyItemWrapper1 swordPanel;
+	public SmithyItemWrapper2 battleaxPanel;
+	public SmithyItemWrapper3 shurikenPanel;
+	public SmithyItemWrapper4 bowPanel;
+	
+	
 	public SmithyBuilder buildPanel;
+	public SmithyWeaponState smithyWeaponState;
+	
+	
 	
 	public SystemButton closeBtn;
 	
 	public SmithyPanel(){
+		super();
+		
 		this.setPrefSize(1200, 800);
 		
 		smithyHandler = new SmithyHandler(this);
+//		smithyWeaponState = new SmithyWeaponState();
+//		this.getChildren().add(smithyWeaponState);
 
 		spearGroup = new SmithyGroup();
 		swordGroup = new SmithyGroup();
@@ -37,23 +54,23 @@ public class SmithyPanel extends Pane {
 		bowGroup = new SmithyGroup();
 		
 		Button spearBtn = new SmithyButton(0);
-		SmithyItemWrapper0 spearPanel = new SmithyItemWrapper0(smithyHandler);
+		spearPanel = new SmithyItemWrapper0(smithyHandler);
 		spearGroup.getChildren().addAll(spearBtn, spearPanel);
 
 		Button swordBtn = new SmithyButton(1);
-		SmithyItemWrapper1 swordPanel = new SmithyItemWrapper1(smithyHandler);
+		swordPanel = new SmithyItemWrapper1(smithyHandler);
 		swordGroup.getChildren().addAll(swordBtn, swordPanel);
 		
 		Button battleaxBtn = new SmithyButton(2);
-		SmithyItemWrapper2 battleaxPanel = new SmithyItemWrapper2(smithyHandler);
+		battleaxPanel = new SmithyItemWrapper2(smithyHandler);
 		battleaxGroup.getChildren().addAll(battleaxBtn, battleaxPanel);
 		
 		Button shurikenBtn = new SmithyButton(3);
-		SmithyItemWrapper3 shurikenPanel = new SmithyItemWrapper3(smithyHandler);
+		shurikenPanel = new SmithyItemWrapper3(smithyHandler);
 		shurikenGroup.getChildren().addAll(shurikenBtn, shurikenPanel);
 		
 		Button bowBtn = new SmithyButton(4);
-		SmithyItemWrapper4 bowPanel = new SmithyItemWrapper4(smithyHandler);
+		bowPanel = new SmithyItemWrapper4(smithyHandler);
 		bowGroup.getChildren().addAll(bowBtn, bowPanel);
 		
 		spearBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
@@ -72,14 +89,21 @@ public class SmithyPanel extends Pane {
 				// TODO Auto-generated method stub
 				TerritoryPanel parent =  (TerritoryPanel) SmithyPanel.this.getParent();
 				parent.getChildren().remove(SmithyPanel.this);
+				parent.setBlur(false);
 				//退出时候保存StoryModel
-				smithyHandler.getSmithyController().save();
+//				smithyHandler.getSmithyController().save(StoryModel.getFileNum());
 			}
 		});
 		
 		routeGroup = new Group();
 		routeGroup.getChildren().addAll(bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn);
 		this.getChildren().add(routeGroup);
+		
+		smithyWeaponState = new SmithyWeaponState();
+		this.getChildren().add(smithyWeaponState);
+		
+		smithyHandler.update();
+		this.transitionAnimation(true);
 
 	}
 

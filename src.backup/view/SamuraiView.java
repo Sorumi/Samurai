@@ -1,7 +1,7 @@
 package view;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Random;
 
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -9,11 +9,11 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
@@ -33,6 +33,7 @@ public class SamuraiView extends Pane{
 	private OrderImageView leftShoulder;
 	private OrderImageView leftArm;
 	private OrderImageView headInjured;
+	private OrderImageView headOccupy;
 	private OrderImageView head;
 	private OrderImageView body;
 	private OrderImageView leftLeg;
@@ -40,6 +41,8 @@ public class SamuraiView extends Pane{
 	private OrderImageView rightShoulder;
 	private OrderImageView rightArm;
 	private OrderImageView helmet;
+	private OrderImageView eyeLeft;
+	private OrderImageView eyeRight;
 	
 	private SamuraiWeaponView weapon;
 	private SamuraiWeaponView weaponExtra;
@@ -53,7 +56,7 @@ public class SamuraiView extends Pane{
 	
 	private Group group;
 	
-	private  ObservableList<OrderImageView>  orderList;
+	private ObservableList<OrderImageView>  orderList;
 	
 	private int direction;// 0 up 1 left 2 right 3 down 4 
 	private int flip;
@@ -78,6 +81,7 @@ public class SamuraiView extends Pane{
 //		this.setStyle("-fx-background-color: #dddddd");
 
 		this.direction = 2;
+		this.isInjured = false;
 		
 		group = new Group();
 		this.getChildren().add(group);
@@ -106,26 +110,32 @@ public class SamuraiView extends Pane{
 		leftShoulder = new OrderImageView(Images.SAMURAI[number][2]);
 		leftArm = new OrderImageView(Images.SAMURAI[number][3]);
 		headInjured = new OrderImageView(Images.SAMURAI[number][4]);
-		head = new OrderImageView(Images.SAMURAI[number][5]);
-		body = new OrderImageView(Images.SAMURAI[number][6]);
-		leftLeg = new OrderImageView(Images.SAMURAI[number][7]);
-		rightLeg = new OrderImageView(Images.SAMURAI[number][8]);
-		rightShoulder = new OrderImageView(Images.SAMURAI[number][9]);
-		rightArm = new OrderImageView(Images.SAMURAI[number][10]);
-		helmet = new OrderImageView(Images.SAMURAI[number][11]);
+		headOccupy = new OrderImageView(Images.SAMURAI[number][5]);
+		head = new OrderImageView(Images.SAMURAI[number][6]);
+		body = new OrderImageView(Images.SAMURAI[number][7]);
+		leftLeg = new OrderImageView(Images.SAMURAI[number][8]);
+		rightLeg = new OrderImageView(Images.SAMURAI[number][9]);
+		rightShoulder = new OrderImageView(Images.SAMURAI[number][10]);
+		rightArm = new OrderImageView(Images.SAMURAI[number][11]);
+		helmet = new OrderImageView(Images.SAMURAI[number][12]);
+		eyeLeft = new OrderImageView(Images.SAMURAI_0[0]);
+		eyeRight = new OrderImageView(Images.SAMURAI_0[1]);
 		
 		//fitsize
 		helmetBack.setFitWidth(53*SCALE);
 		leftShoulder.setFitWidth(14*SCALE);
 		leftArm.setFitWidth(17*SCALE);
 		headInjured.setFitWidth(32*SCALE);
+		headOccupy.setFitWidth(32*SCALE);
 		head.setFitWidth(32*SCALE);
 		body.setFitWidth(29*SCALE);
 		leftLeg.setFitWidth(12*SCALE);
 		rightLeg.setFitWidth(10*SCALE);
 		rightShoulder.setFitWidth(12*SCALE);
-		rightArm.setFitWidth(18*SCALE);
+		rightArm.setFitWidth(17*SCALE);
 		helmet.setFitWidth(55*SCALE);
+		eyeLeft.setFitWidth(5.2*SCALE);
+		eyeRight.setFitWidth(5*SCALE);
 		
 		//layout
 		body.setLayoutX(BODY_X);
@@ -136,6 +146,8 @@ public class SamuraiView extends Pane{
 		helmetBack.setLayoutY(BODY_Y-40*SCALE);
 		headInjured.setLayoutX(BODY_X-3*SCALE);
 		headInjured.setLayoutY(BODY_Y-26*SCALE);
+		headOccupy.setLayoutX(BODY_X-3*SCALE);
+		headOccupy.setLayoutY(BODY_Y-26*SCALE);
 		head.setLayoutX(BODY_X-3*SCALE);
 		head.setLayoutY(BODY_Y-26*SCALE);
 		leftShoulder.setLayoutX(BODY_X-3*SCALE);
@@ -150,8 +162,12 @@ public class SamuraiView extends Pane{
 		rightArm.setLayoutY(BODY_Y+3*SCALE);
 		rightLeg.setLayoutX(BODY_X+17*SCALE);
 		rightLeg.setLayoutY(BODY_Y+28*SCALE);
+		eyeLeft.setLayoutX(BODY_X+6*SCALE);
+		eyeLeft.setLayoutY(BODY_Y-13*SCALE);
+		eyeRight.setLayoutX(BODY_X+18*SCALE);
+		eyeRight.setLayoutY(BODY_Y-15*SCALE);
 		
-		orderList = FXCollections.observableArrayList(helmetBack, leftShoulder, leftArm, headInjured, head, body, leftLeg, rightLeg, rightShoulder, rightArm, helmet);
+		orderList = FXCollections.observableArrayList(helmetBack, leftShoulder, leftArm, headInjured, headOccupy, eyeLeft, eyeRight, head, body, leftLeg, rightLeg, rightShoulder, rightArm, helmet);
 		
 		for(int i=orderList.size()-1; i>=0; i--){
 			OrderImageView tmpImg = orderList.get(i);
@@ -160,6 +176,10 @@ public class SamuraiView extends Pane{
 			tmpImg.setZOrder(2*i);
 			group.getChildren().add(tmpImg);
 		}
+		
+		//add
+		eyeLeft.setRotate(-5);
+		eyeRight.setRotate(-5);
 		
 		//rotation
 		leftArmRo.pivotXProperty().bind(leftArm.xProperty().add(14*SCALE));
@@ -186,6 +206,33 @@ public class SamuraiView extends Pane{
 		this.weaponExtra = null;
 		
 		this.setDirection(direction);//初始方向
+		this.setInjured(false, direction);
+		this.headOccupy.setVisible(false);
+		
+		//TODO
+		this.blink();
+		this.setRandomAnimation(true);
+	}
+	
+	public void setRandomAnimation(boolean isAdd){
+		if(isAdd){
+			this.setOnMouseClicked(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					Random random = new Random();
+					int x = random.nextInt(4);
+					switch (x){
+					case 0: jump();break;
+					case 1: swing();break;
+					case 2: walk(2);break;
+					case 3: walk(3);break;
+					}
+				}
+			});
+		}else{
+			this.setOnMouseClicked(null);
+		}
+
 	}
 	
 	public void setWeapon(int number){
@@ -235,7 +282,7 @@ public class SamuraiView extends Pane{
 		}
 		
 		//reset
-		this.setInjured(false);
+//		this.setInjured(false);
 		//所有旋转角度至为0
 		if (weapon != null){
 			this.resetWeapon();
@@ -250,6 +297,7 @@ public class SamuraiView extends Pane{
 			layout = weapon.frontLayout;
 			rotatePivot = weapon.frontRotatePivot;
 			weaponRo.setAngle(weapon.frontAngle[0]);
+			leftArmRo.setAngle(0);
 			rightArmRo.setAngle(weapon.armAngle[0]);
 			weapon.setScaleX(1);
 			weapon.zOrder = weapon.frontZOrder;
@@ -258,6 +306,7 @@ public class SamuraiView extends Pane{
 			rotatePivot = weapon.backRotatePivot;
 			weaponRo.setAngle(weapon.backAngle[0]);
 			leftArmRo.setAngle(weapon.armAngle[1]);
+			rightArmRo.setAngle(0);
 			weapon.setScaleX(-1);
 			weapon.zOrder = weapon.backZOrder;
 		}
@@ -352,6 +401,141 @@ public class SamuraiView extends Pane{
 		this.setScaleX(flip);
 	}
 	
+	public void blink(){
+		Random random = new Random();
+		int duration = random.nextInt(2000);
+		Timeline blinkTL = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(eyeLeft.scaleYProperty(), 1)),
+				new KeyFrame(Duration.ZERO, new KeyValue(eyeRight.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(300), new KeyValue(eyeLeft.scaleYProperty(), 0.3)),
+				new KeyFrame(Duration.millis(300), new KeyValue(eyeRight.scaleYProperty(), 0.3)),
+				new KeyFrame(Duration.millis(600), new KeyValue(eyeLeft.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(600), new KeyValue(eyeRight.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(duration+2000), new KeyValue(eyeLeft.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(duration+2000), new KeyValue(eyeRight.scaleYProperty(), 1))
+		);
+		blinkTL.setCycleCount(Timeline.INDEFINITE);
+		blinkTL.play();
+		
+	}
+	
+	public void swing(){
+		Rotate swingRo = new Rotate();
+		swingRo.pivotXProperty().bind(group.layoutXProperty().add(BODY_X+14*SCALE));
+		swingRo.pivotYProperty().bind(group.layoutYProperty().add(BODY_Y+40*SCALE));
+		group.getTransforms().add(swingRo);
+		
+		Timeline swingTL= new Timeline(
+				//group
+				new KeyFrame(Duration.ZERO, new KeyValue(swingRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(swingRo.angleProperty(), 7*back, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(swingRo.angleProperty(), -7*back, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(swingRo.angleProperty(), 0, Interpolator.EASE_IN)),
+				//leftArm
+				new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(leftArmRo.angleProperty(), 20)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(leftArmRo.angleProperty(), -10)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(leftArmRo.angleProperty(), 0)),
+				//rightArm
+				new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(rightArmRo.angleProperty(), -20)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(rightArmRo.angleProperty(), 10)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(rightArmRo.angleProperty(), 0)),
+				//leftLeg
+				new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(leftLegRo.angleProperty(), -10)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(leftLegRo.angleProperty(), 10)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(leftLegRo.angleProperty(), 0)),
+				//rightLeg
+				new KeyFrame(Duration.ZERO, new KeyValue(rightLegRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(rightLegRo.angleProperty(), 10)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(rightLegRo.angleProperty(), -10)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(rightLegRo.angleProperty(), 0))
+				);
+		swingTL.play();
+	}
+	
+	public void jump(){
+		Timeline jumpTL = new Timeline(
+				//group
+				new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(group.translateYProperty(), -5*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(group.translateYProperty(), 3*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1700), new KeyValue(group.translateYProperty(), 0)),
+				//leftArm
+				new KeyFrame(Duration.ZERO, new KeyValue(leftArmRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(leftArmRo.angleProperty(), 40, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(leftArmRo.angleProperty(), -10, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1700), new KeyValue(leftArmRo.angleProperty(), 0)),
+				//rightArm
+				new KeyFrame(Duration.ZERO, new KeyValue(rightArmRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(rightArmRo.angleProperty(), -40, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(rightArmRo.angleProperty(), 10, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(rightArmRo.angleProperty(), 0)),
+				//leftLeg
+				new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(leftLegRo.angleProperty(), -10, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(leftLegRo.angleProperty(), 20, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1700), new KeyValue(leftLegRo.angleProperty(), 0)),
+				//rightLeg
+				new KeyFrame(Duration.ZERO, new KeyValue(rightLegRo.angleProperty(), 0)),
+				new KeyFrame(Duration.millis(500), new KeyValue(rightLegRo.angleProperty(), 10, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(rightLegRo.angleProperty(), -20, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1700), new KeyValue(rightLegRo.angleProperty(), 0))
+		);
+		jumpTL.play();
+	}
+	
+	public void walk(int num){
+		Timeline moveTL1 = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 0)),
+				new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), 0)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(group.translateXProperty(), 5*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(group.translateYProperty(), 3*SCALE, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(group.translateYProperty(), 3*SCALE))
+				);
+		Timeline moveTL2 = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(group.translateXProperty(), 5*SCALE)),
+				new KeyFrame(Duration.ZERO, new KeyValue(group.translateYProperty(), 3*SCALE)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(group.translateXProperty(), 0, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(group.translateYProperty(), 0, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(1500), new KeyValue(group.translateYProperty(), 0))
+				);
+		
+		if(num == 2){
+			move(2);
+			moveTL1.setOnFinished(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					move(1);
+					moveTL2.play();
+				}
+			});
+			moveTL2.setOnFinished(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					setDirection(2);
+				}
+			});
+		}else if(num == 3){
+			move(3);
+			moveTL1.setOnFinished(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					move(0);
+					moveTL2.play();
+				}
+			});
+			moveTL2.setOnFinished(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					setDirection(2);
+				}
+			});
+		}
+		moveTL1.play();		
+	}
+
 	public void move(int direction){
 		this.setDirection(direction);
 		Timeline moveTL = new Timeline(
@@ -513,7 +697,7 @@ public class SamuraiView extends Pane{
 		return true;		
 	}
 	
-	public void setInjured(boolean isInjured){
+	public void setInjured(boolean isInjured, int direction){
 		this.isInjured = isInjured;
 		this.headInjured.setVisible(isInjured);
 		if(isInjured){
@@ -530,6 +714,7 @@ public class SamuraiView extends Pane{
 				@Override
 				public void handle(ActionEvent event) {
 					injuredRo.setAngle(0);
+					setDirection(direction);
 				}
 			});
 		}
@@ -574,4 +759,7 @@ public class SamuraiView extends Pane{
 		attackTL.play();
 	}
 
+	public int getNumber() {
+		return number;
+	}
 }

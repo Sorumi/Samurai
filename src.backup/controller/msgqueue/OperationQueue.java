@@ -34,10 +34,16 @@ public class OperationQueue implements Runnable, Serializable {
 	}
 
 	public void run() {
-		while(isRunning){
-			System.out.println("execute Operation");
+		while(isRunning && !Thread.currentThread().isInterrupted()){
 			Operation operation = getNewOperation();
+
+			if (operation instanceof EndOperation){
+				Thread.interrupted();
+			}
+
+			System.out.println("execute Operation : " + operation.getClass());
 			UpdateMessage updateMessage = new UpdateMessage("execute",operation);
+
 			if(GameModel.isClient() && !Operation.isServer()){
 				clientService.submitOperation(operation);
 			}else if(GameModel.isServer() && Operation.isServer()){
@@ -45,11 +51,9 @@ public class OperationQueue implements Runnable, Serializable {
 			}
 
 			//迫不得已才加在这里..
-			if(gameModel.getLevel() == 99 && gameModel.getCurrentSamurai() >= 4){
-				ActionOperation ao = new ActionOperation(100,100);
-				NextOperation po = new NextOperation();
-				if(operation.getClass() == ao.getClass()
-						|| operation.getClass() == po.getClass()) {
+			if(gameModel.getLevel() != 0 && gameModel.getCurrentSamurai() >= 4){
+				if(operation instanceof ActionOperation
+						|| operation instanceof NextOperation) {
 					try {
 						Thread.sleep(2400);
 					} catch (Exception E) {

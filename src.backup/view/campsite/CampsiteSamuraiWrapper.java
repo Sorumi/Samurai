@@ -13,7 +13,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 
 	private CampsiteHandler campsiteHandler;
 	
-	private SamuraiView samurai;
+	public SamuraiView samurai;
 	
 	private Group samuraiBtns;
 	private SamuraiButton samuraiBtn1;
@@ -23,6 +23,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	private Button setItemBtn;
 	
 	private int samuraiNum;
+	public int currentWeapon;
 	
 	public CampsiteSamuraiWrapper(CampsiteHandler campsiteHandler){
 		this.campsiteHandler = campsiteHandler;
@@ -54,10 +55,9 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setId("set-item-btn");
 		setItemBtn.setOnMouseEntered(campsiteHandler.setItemEnterEvent);
 		setItemBtn.setOnMouseExited(campsiteHandler.setItemExitEvent);
+		setItemBtn.setOnMouseClicked(campsiteHandler.setItemClickEvent);
 		this.getChildren().add(setItemBtn);
 		
-		//TODO default
-		this.setSamurai(1);
 		this.getChildren().add(samurai);
 	}
 	
@@ -76,16 +76,23 @@ public class CampsiteSamuraiWrapper extends Pane {
 	}
 
 	public void setWeapon(int num) {
+		currentWeapon = num;
 		samurai.setWeapon(num);
 		samurai.occupy(2);
+		//TODO
+		//如果库存大于0 则abled 否则unabled
 	}
 
 	public void setSamurai(int num) {
 		this.samuraiNum = num;
 		samurai.setSamurai(samuraiNum);
-		this.setItemBtnNormal();
+		this.setItemBtnAbled();
 		//TODO
 		//武器
+	}
+
+	public int getSamuraiNum(){
+		return this.samuraiNum;
 	}
 
 	public void setItemBtnPressed() {
@@ -93,9 +100,16 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 4);");
 	}
-	public void setItemBtnNormal() {
+	public void setItemBtnAbled() {
 		setItemBtn.setLayoutY(360);
 		setItemBtn.setStyle("-fx-background-color: " + GameColor.getSamuraiColorString(samuraiNum) + ";"
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 8);");
+	}
+	
+	public void setItemBtnUnabled() {
+		setItemBtn.setLayoutY(364);
+		setItemBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(-1) + ";"
+				+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(-2) +", 0, 0, 0, 4);");
+
 	}
 }

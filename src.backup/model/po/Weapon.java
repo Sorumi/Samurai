@@ -1,17 +1,16 @@
 package model.po;
 
-
 import java.io.Serializable;
 import java.util.Random;
 
-public class Weapon implements Cloneable,Serializable {
+public class Weapon implements Cloneable, Serializable {
 	/**
 	 * 
 	 */
-	//canCreate  表示这个武器可以被制造
-	//nextWeapon 指示这个武器之后可以解锁的武器
-	//number 指这个武器的数量
-	//Tag Item 的意思参见材料库
+	// canCreate 表示这个武器可以被制造
+	// nextWeapon 指示这个武器之后可以解锁的武器
+	// number 指这个武器的数量
+	// Tag Item 的意思参见材料库
 	private static final long serialVersionUID = 1L;
 	private int genre;
 	private int type;
@@ -28,19 +27,19 @@ public class Weapon implements Cloneable,Serializable {
 
 	public Weapon(int genre, int type, int lowAttackPoint, int highAttackPoint, int criticalHitRate,
 			int armorPenetration, int[] materialTag, int[] materialItem, int[] materialNumber, boolean canCreate,
-			int[] nextWeapon,int number) {
+			int[] nextWeapon, int number) {
 		this.genre = genre;
 		this.type = type;
 		this.lowAttackPoint = lowAttackPoint;
 		this.highAttackPoint = highAttackPoint;
 		this.criticalRate = criticalHitRate;
 		this.armorPenetration = armorPenetration;
-		this.materialTag=materialTag;
-		this.materialItem=materialItem;
-		this.materialNumber=materialNumber;
-		this.canCreate=canCreate;
-		this.nextWeapon=nextWeapon;
-		this.number=number;
+		this.materialTag = materialTag;
+		this.materialItem = materialItem;
+		this.materialNumber = materialNumber;
+		this.canCreate = canCreate;
+		this.nextWeapon = nextWeapon;
+		this.number = number;
 	}
 
 	public Weapon(int genre) {
@@ -49,6 +48,14 @@ public class Weapon implements Cloneable,Serializable {
 
 	public int getGenre() {
 		return genre;
+	}
+
+	public int getLowAttackPoint() {
+		return lowAttackPoint;
+	}
+
+	public int getHighAttackPoint() {
+		return highAttackPoint;
 	}
 
 	public int getAttackPoint() {
@@ -73,6 +80,10 @@ public class Weapon implements Cloneable,Serializable {
 		canCreate = true;
 	}
 
+	public int getMaterialQuantity() {
+		return materialTag.length;
+	}
+
 	public boolean create() {
 		number++;
 		if (number == 1) {
@@ -81,20 +92,29 @@ public class Weapon implements Cloneable,Serializable {
 			return false;
 		}
 	}
-	public boolean canCreate(){
+
+	public boolean canCreate() {
 		return canCreate;
 	}
-	public int[] getMaterialTag(){
+
+	public int[] getMaterialTag() {
 		return materialTag;
 	}
-	public int[] getMaterialItem(){
+
+	public int[] getMaterialItem() {
 		return materialItem;
 	}
-	public int[] getMaterialNumber(){
+
+	public int[] getMaterialNumber() {
 		return materialNumber;
 	}
-	public int[] getNextWeapon(){
+
+	public int[] getNextWeapon() {
 		return nextWeapon;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 
 	public Weapon clone() {

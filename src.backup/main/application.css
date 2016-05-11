@@ -8,7 +8,7 @@
     -fx-border-insets: 0;
 }
 
-#close-btn{
+#system-btn{
 	-fx-background-color: #ffffff;
 	-fx-pref-width: 50;
 	-fx-pref-height: 50;
@@ -25,6 +25,7 @@
 	-fx-border-radius: 10;
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
 }
+
 #item-quantity{
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 15;
@@ -37,7 +38,7 @@
 #item-name{
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";
-	-fx-font-weight: 400;
+	-fx-font-weight: 600;
 	-fx-font-size: 20;
 	-fx-alignment: center-left;
 }
@@ -63,7 +64,6 @@
 	-fx-font-size: 18;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 0, 0, 0, 6);
 }
 
 /* Smithy */
@@ -73,10 +73,207 @@
 }
 
 #smithy-btn{
-	-fx-background-radius: 10 0 0 10;
-	-fx-border-radius: 10 0 0 10;
+	-fx-background-radius: 50 0 0 50;
+	-fx-border-radius: 50 0 0 50;
 }
 
+#smithy-builder{
+	-fx-background-color: #dddddd;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#build-btn{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	
+}
+/* Store */
+#store-wrapper{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#material-name{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 14;
+	-fx-alignment: center;
+}
+#material-quantity{
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 14;
+	-fx-alignment: center;
+}
+#material-levelLable{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 14;
+	-fx-alignment: center;
+}
+/*Archive */
+#archive-panel{
+	-fx-background-color: #f9f9f9;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#archive-view{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#Aname-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 18;
+	-fx-alignment: center-left;
+}
+#Atime-label{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 100;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+}	
+
+#Aload-btn{
+	-fx-background-color: #E5F8F6;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #4AC0D2; 
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	
+}
+#Asave-btn{ 
+	-fx-background-color: #FFE3E0;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #B54A3F;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	
+}
+/*ResultPanel */
+#win-label{ 
+	-fx-text-fill: #C25A3E;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 144;
+	-fx-alignment: center-left;
+}
+#lose-label{  
+	-fx-text-fill: #4372C7;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 144;
+	-fx-alignment: center-left;
+}
+#amount-label{  
+	-fx-text-fill: #4372C7;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 300;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+}
+/*LevelSelect */
+#level-select-panel{
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#LevelName-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 18;
+	-fx-alignment: center-left;
+}
+#materialName-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+}
+#level-btn{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+}
+/* Game */
+#point-label{
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 20;
+	-fx-font-weight: 100;
+	-fx-alignment: center;
+}
+#block-Lable{
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 14;
+	-fx-font-weight: 100;
+	-fx-alignment: center;
+}
+#round-current{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 26;
+	-fx-font-weight: 300;
+	-fx-alignment: center;
+}
+#round-total{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 22;
+	-fx-font-weight: 300;
+	-fx-alignment: center;
+}
+#state-lable{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 12;
+	-fx-font-weight: 100;
+	-fx-alignment: center-left;
+}
+#weapon-name{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 18;
+	-fx-alignment: center-left;
+}
+#weaponamount-lable{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 100;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+}
+#weaponstate-lable{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 12;
+	-fx-font-weight: 100;
+	-fx-alignment: center-left;
+}
+/* Other */
 .scroll-pane {
 	-fx-background: transparent; 
     -fx-background-insets: 0;

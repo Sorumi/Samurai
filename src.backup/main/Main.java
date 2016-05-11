@@ -6,17 +6,19 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GameModel;
 import view.GamePanel;
+import view.Images;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import view.MenuPanel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import view.StoryPanel;
-
-
 
 public class Main extends Application {
 	
 	private Scene scene;
 	
-	public MenuPanel menuPanel;
+	public MenuPanel menuPanel; 
 	
 	public GamePanel gamePanel; 
 	public GameModel gameModel;
@@ -36,12 +38,11 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
-		
 	}
 
 	public void startGame(){
 		scene.setRoot(gamePanel);
-		this.gameModel = new GameModel(24, 14, this, 0);
+		this.gameModel = new GameModel(24, 14, gamePanel, 0);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		OperationQueue operationQueue = new OperationQueue(gameModel);
@@ -51,7 +52,7 @@ public class Main extends Application {
 
 	public void startClassicGame(){
 		scene.setRoot(gamePanel);
-		this.gameModel = new GameModel(24, 14, this, 99);
+		this.gameModel = new GameModel(24, 14, gamePanel, 99);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		OperationQueue operationQueue = new OperationQueue(gameModel);

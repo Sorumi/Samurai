@@ -2,43 +2,57 @@ package model.po;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
+
 import controller.msgqueue.ActionOperation;
 import model.ChessBoardModel;
 
 public class SamuraiAI {
 	// test
-	/*public static void main(String[] args) {
+
+	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
-		SamuraiPO No1 = new SamuraiPO(1, 0, 0, 14, cbm);
-		SamuraiPO No2 = new SamuraiPO(2, 0, 1, 14, cbm);
-		SamuraiPO No3 = new SamuraiPO(3, 0, 2, 14, cbm);
-		SamuraiPO No4 = new SamuraiPO(4, 1, 0, 14, cbm);
-		SamuraiPO No5 = new SamuraiPO(5, 1, 1, 14, cbm);
-		SamuraiPO No6 = new SamuraiPO(6, 1, 2, 14, cbm);
-		SamuraiAI mine1 = new SamuraiAI(No1, 1, cbm, 0);
-		SamuraiAI mine2 = new SamuraiAI(No2, 1, cbm, 0);
+		int[] materialTag = new int[] {};
+		int[] materialItem = new int[] {};
+		int[] materialNumber = new int[] {};
+		int[] nextArmor = { 912 };
+		SamuraiPO No1 = new SamuraiPO(1, 0, new Weapon(0), 14, cbm,
+				new Armor(911, 5, 2, materialTag, materialItem, materialNumber, true, nextArmor, 3));
+		SamuraiPO No2 = new SamuraiPO(2, 0, new Weapon(1), 14, cbm, new Armor());
+		SamuraiPO No3 = new SamuraiPO(3, 0, new Weapon(2), 14, cbm, new Armor());
+		SamuraiPO No4 = new SamuraiPO(4, 1, new Weapon(0), 14, cbm,
+				new Armor(911, 5, 2, materialTag, materialItem, materialNumber, true, nextArmor, 3));
+		SamuraiPO No5 = new SamuraiPO(5, 1, new Weapon(1), 14, cbm, new Armor());
+		SamuraiPO No6 = new SamuraiPO(6, 1, new Weapon(2), 14, cbm, new Armor());
+		SamuraiAI mine1 = new SamuraiAI(No1, 3, cbm, 0);
+		SamuraiAI mine2 = new SamuraiAI(No2, 3, cbm, 0);
 		SamuraiAI mine3 = new SamuraiAI(No3, 1, cbm, 0);
 		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 1);
 		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 1);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
-		for (int i = 0; i < 10; i++) {
-			mine1.calculate();
+		cbm.changeActualBlock(5, 1, true);
+		cbm.changeActualBlock(7, 2, true);
+		for (int i = 0; i < 4; i++) {
+			System.out.println(No2.getPos().getX() + " " + No2.getPos().getY());
+			mine2.storyCalculate(null, new Position(0, 4), 0);
+			System.out.println(No2.getPos().getX() + " " + No2.getPos().getY());
 			print(cbm);
-			mine4.calculate();
-			print(cbm);
-			mine5.calculate();
-			print(cbm);
-			mine2.calculate();
-			print(cbm);
-			mine3.calculate();
-			print(cbm);
-			mine6.calculate();
-			print(cbm);
+			/*
+			 * mine4.storyCalculate(null, null); print(cbm);
+			 * mine5.storyCalculate(null, null); print(cbm);
+			 * mine2.storyCalculate(null, null); print(cbm);
+			 * mine3.storyCalculate(null, null); print(cbm);
+			 * mine6.storyCalculate(null, null); print(cbm);
+			 */
 		}
 
 		//
 
-	}*/
+	}
+
+	public SamuraiPO getSamuraiPO() {
+		return samuraiPO;
+	}
 
 	public static void print(ChessBoardModel cbm) {
 		for (int i = 0; i <= 14; i++) {
@@ -81,12 +95,416 @@ public class SamuraiAI {
 		return type;
 	}
 
+	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition, int count) {
+		//
+		samuraiPO.setActionPoint(10);
+		//
+		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
+		if (enemySamuraiPO != null) {
+			System.out
+					.println("enemy location" + enemySamuraiPO.getPos().getX() + " " + enemySamuraiPO.getPos().getY());
+		}
+		Random random = new Random();
+
+		SamuraiPO samuraiPOClone = samuraiPO.clone();
+		ChessBoardModel cbm = chessBoardModel.clone();
+		switch (type) {
+		case 0:
+			int moveDirection;
+			int occupyDirection;
+			while (samuraiPOClone.getActionPoint() >= 2) {
+				if (samuraiPOClone.getActionPoint() >= 4) {
+					do {
+						occupyDirection = random.nextInt(4);
+					} while (!samuraiPOClone.checkOccupy()[occupyDirection]);
+					samuraiPOClone.changeActionPoint(4);
+					actionOperations.add(new ActionOperation(0, occupyDirection));
+				}
+				if (samuraiPOClone.getActionPoint() >= 2) {
+					do {
+						moveDirection = random.nextInt(4);
+					} while (!samuraiPOClone.move(moveDirection, cbm));
+					samuraiPOClone.changeActionPoint(2);
+					actionOperations.add(new ActionOperation(0, moveDirection));
+				}
+			}
+			return actionOperations;
+		//
+		case 1:
+			return greedy(samuraiPOClone, cbm);
+		//
+		case 2:
+			if (enemySamuraiPO == null && count == 0) {
+				int temp = samuraiPOClone.getActionPoint();
+				samuraiPOClone.setActionPoint(6);
+				actionOperations = greedy(samuraiPOClone, cbm);
+
+				samuraiPOClone.setActionPoint(temp - 6);
+				// if(samuraiPOClone.getActionPoint()>=2){
+				// actionOperations.add(new ActionOperation(99, 9999));
+				// }
+				return actionOperations;
+			} else if (enemySamuraiPO == null && count == 1) {
+				return greedy(samuraiPOClone, cbm);
+			} else {
+				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);
+				if (compareAbility(samuraiPOClone, enemySamuraiPO)) {
+					// 进攻策略
+
+					while (samuraiPOClone.getActionPoint() >= 2) {
+						if (samuraiPOClone.getActionPoint() >= 4
+								&& attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)) {
+							samuraiPOClone.changeActionPoint(4);
+							// System.out.println("wrong");
+							if (samuraiPOClone.getActionPoint() < 2) {
+								return actionOperations;
+							}
+							continue;
+						} else {
+							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
+							if (distance > 1) {
+								//
+								// System.out.println(distance);
+								// System.out.println(samuraiPOClone.getActionPoint());
+								// System.out.println(actionOperations.size());
+								//
+								if (samuraiPOClone.getActionPoint() < 2) {
+									return actionOperations;
+								}
+								int way = approach(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
+								if (way == 0) {
+									System.out.println("!!!");
+									actionOperations.addAll(greedy(samuraiPOClone, cbm));
+									return actionOperations;
+								} else if (way == 1) {
+									samuraiPOClone.changeActionPoint(2);
+									break;
+								} else {
+									samuraiPOClone.changeActionPoint(2);
+									// System.out.println(actionOperations.size());
+								}
+							}
+						}
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+					}
+					while (samuraiPOClone.getActionPoint() >= 2) {
+						if (samuraiPOClone.getActionPoint() >= 4
+								&& attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)) {
+							samuraiPOClone.changeActionPoint(4);
+							if (samuraiPOClone.getActionPoint() < 2) {
+								return actionOperations;
+							}
+							continue;
+						} else {
+							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
+							if (distance > 1) {
+								//
+								// System.out.println(distance);
+								//
+								if (samuraiPOClone.getActionPoint() < 2) {
+									return actionOperations;
+								}
+								if (AnotherApproach(samuraiPOClone, enemySamuraiPO.getPos(), cbm,
+										actionOperations) == 0) {
+									actionOperations.addAll(greedy(samuraiPOClone, cbm));
+									return actionOperations;
+								} else {
+									samuraiPOClone.changeActionPoint(2);
+								}
+							}
+						}
+					}
+					if (samuraiPOClone.getActionPoint() < 2) {
+						return actionOperations;
+					}
+				}
+				// 逃跑策略
+				else {
+					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
+						int way = leave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+						if (way == 0) {
+							// System.out.println("!!!");
+							actionOperations.addAll(greedy(samuraiPOClone, cbm));
+							return actionOperations;
+						} else if (way == 1) {
+							// System.out.println("!!!");
+							samuraiPOClone.changeActionPoint(2);
+							break;
+						} else {
+							samuraiPOClone.changeActionPoint(2);
+						}
+
+					}
+					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+						if (AnotherLeave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations) == 0) {
+							System.out.println("232");
+							actionOperations.addAll(greedy(samuraiPOClone, cbm));
+							return actionOperations;
+						} else {
+							//
+							System.out.println("Another Leave!");
+							//
+							samuraiPOClone.changeActionPoint(2);
+						}
+
+					}
+					actionOperations.addAll(greedy(samuraiPOClone, cbm));
+					return actionOperations;
+				}
+			}
+			break;
+		case 3:
+			if (enemySamuraiPO == null && count == 0 && aidPosition == null) {
+				int temp = samuraiPOClone.getActionPoint();
+				samuraiPOClone.setActionPoint(6);
+				actionOperations = greedy(samuraiPOClone, cbm);
+
+				samuraiPOClone.setActionPoint(temp - 6);
+				// if(samuraiPOClone.getActionPoint()>=2){
+				// actionOperations.add(new ActionOperation(99, 9999));
+				// }
+				return actionOperations;
+			} else if (enemySamuraiPO == null && count == 1 && aidPosition == null) {
+				return greedy(samuraiPOClone, cbm);
+			} else if (enemySamuraiPO != null) {
+				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);
+				if(compareAbilityToCall(samuraiPOClone, enemySamuraiPO)){
+					actionOperations.add(new ActionOperation(98, enemySamuraiPO.getPos().getX()*100+enemySamuraiPO.getPos().getY()));
+					int aid=enemySamuraiPO.getPos().getX()*100+enemySamuraiPO.getPos().getY();
+					System.out.println("aid  "+aid/100+"  "+aid%100);
+				}
+				if (compareAbility(samuraiPOClone, enemySamuraiPO)) {
+					// 进攻策略
+
+					while (samuraiPOClone.getActionPoint() >= 2) {
+						System.out.println(samuraiPOClone.getActionPoint());
+						System.out.println("BACK");
+						if (samuraiPOClone.getActionPoint() >= 4
+								&& attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)) {
+							samuraiPOClone.changeActionPoint(4);
+							System.out.println("wrong");
+							if (samuraiPOClone.getActionPoint() < 2) {
+								return actionOperations;
+							}
+							continue;
+						} else {
+							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
+							if (distance > 1) {
+								//
+								// System.out.println(distance);
+								// System.out.println(samuraiPOClone.getActionPoint());
+								// System.out.println(actionOperations.size());
+								//
+								if (samuraiPOClone.getActionPoint() < 2) {
+									return actionOperations;
+								}
+								int way = approach(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
+								if (way == 0) {
+									System.out.println("!!!");
+									actionOperations.addAll(greedy(samuraiPOClone, cbm));
+									return actionOperations;
+								} else if (way == 1) {
+									samuraiPOClone.changeActionPoint(2);
+									break;
+								} else {
+									samuraiPOClone.changeActionPoint(2);
+									System.out.println(actionOperations.size());
+								}
+							} else {
+								return actionOperations;
+							}
+						}
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+					}
+					while (samuraiPOClone.getActionPoint() >= 2) {
+						if (samuraiPOClone.getActionPoint() >= 4
+								&& attackTest(samuraiPOClone, cbm, enemySamuraiPO.getPos(), actionOperations)) {
+							samuraiPOClone.changeActionPoint(4);
+							if (samuraiPOClone.getActionPoint() < 2) {
+								return actionOperations;
+							}
+							continue;
+						} else {
+							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
+							if (distance > 1) {
+								//
+								//System.out.println(distance);
+								//
+								if (samuraiPOClone.getActionPoint() < 2) {
+									return actionOperations;
+								}
+								if (AnotherApproach(samuraiPOClone, enemySamuraiPO.getPos(), cbm,
+										actionOperations) == 0) {
+									actionOperations.addAll(greedy(samuraiPOClone, cbm));
+									return actionOperations;
+								} else {
+									samuraiPOClone.changeActionPoint(2);
+								}
+							} else {
+								return actionOperations;
+							}
+						}
+					}
+					if (samuraiPOClone.getActionPoint() < 2) {
+						return actionOperations;
+					}
+				}
+				// 逃跑策略
+				else {
+					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
+						int way = leave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+						if (way == 0) {
+							// System.out.println("!!!");
+							actionOperations.addAll(greedy(samuraiPOClone, cbm));
+							return actionOperations;
+						} else if (way == 1) {
+							// System.out.println("!!!");
+							samuraiPOClone.changeActionPoint(2);
+							break;
+						} else {
+							samuraiPOClone.changeActionPoint(2);
+						}
+
+					}
+					while (getDistance(samuraiPOClone, enemySamuraiPO.getPos()) <= 100) {
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+						if (AnotherLeave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations) == 0) {
+							//System.out.println("232");
+							actionOperations.addAll(greedy(samuraiPOClone, cbm));
+							return actionOperations;
+						} else {
+							//
+							System.out.println("Another Leave!");
+							//
+							samuraiPOClone.changeActionPoint(2);
+						}
+
+					}
+					actionOperations.addAll(greedy(samuraiPOClone, cbm));
+					return actionOperations;
+				}
+			}
+			// 前往支援
+			else {
+				System.out.println(" Action "+samuraiPOClone.getActionPoint());
+				cbm.changeActualBlock(aidPosition.getX(), aidPosition.getY(), 99);
+				while (samuraiPOClone.getActionPoint() >= 2) {
+					if (samuraiPOClone.getActionPoint() >= 4
+							&& attackTest(samuraiPOClone, cbm, aidPosition, actionOperations)) {
+						samuraiPOClone.changeActionPoint(4);
+						 //System.out.println("wrong");
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+						continue;
+					}
+					int distance = getDistance(samuraiPOClone, aidPosition);
+					if (distance > 1) {
+						//
+						//System.out.println(distance);
+						// System.out.println(samuraiPOClone.getActionPoint());
+						// System.out.println(actionOperations.size());
+						//
+						if (samuraiPOClone.getActionPoint() < 2) {
+							return actionOperations;
+						}
+						int way = approach(samuraiPOClone, aidPosition, cbm, actionOperations);
+						if (way == 0) {
+							System.out.println("!!!");
+							actionOperations.addAll(greedy(samuraiPOClone, cbm));
+							return actionOperations;
+						} else if (way == 1) {
+							samuraiPOClone.changeActionPoint(2);
+							break;
+						} else {
+							samuraiPOClone.changeActionPoint(2);
+							// System.out.println(actionOperations.size());
+						}
+					} else {
+						return actionOperations;
+					}
+					if (samuraiPOClone.getActionPoint() < 2) {
+						return actionOperations;
+					}
+				}
+			}
+			while (samuraiPOClone.getActionPoint() >= 2) {
+				if (samuraiPOClone.getActionPoint() >= 4
+						&& attackTest(samuraiPOClone, cbm, aidPosition, actionOperations)) {
+					samuraiPOClone.changeActionPoint(4);
+					//System.out.println("wrong");
+					if (samuraiPOClone.getActionPoint() < 2) {
+						return actionOperations;
+					}
+					continue;
+				}
+				int distance = getDistance(samuraiPOClone, aidPosition);
+				if (distance > 1) {
+					//
+					//System.out.println(distance);
+					//
+					if (samuraiPOClone.getActionPoint() < 2) {
+						return actionOperations;
+					}
+					if (AnotherApproach(samuraiPOClone, aidPosition, cbm, actionOperations) == 0) {
+						actionOperations.addAll(greedy(samuraiPOClone, cbm));
+						return actionOperations;
+					} else {
+						samuraiPOClone.changeActionPoint(2);
+					}
+				} else {
+					return actionOperations;
+				}
+				if (samuraiPOClone.getActionPoint() < 2) {
+					return actionOperations;
+				}
+			}
+			break;
+		default:
+			break;
+		}
+		return actionOperations;
+	}
+
 	public ActionOperation[] calculate() {
+		Random random = new Random();
 		ArrayList<SaveCache> saveCaches = new ArrayList<SaveCache>();
 		ActionOperation[] actionOperations = new ActionOperation[2];
 		boolean[] check = samuraiPO.checkMove(chessBoardModel);
 		switch (type) {
 		case 0:
+			int moveDirection;
+			int occupyDirection;
+			SamuraiPO samuraiPOClone1 = samuraiPO.clone();
+			ChessBoardModel cbm1 = chessBoardModel.clone();
+			do {
+				moveDirection = random.nextInt(4);
+			} while (!samuraiPOClone1.move(moveDirection, cbm1));
+			do {
+				occupyDirection = random.nextInt(4);
+			} while (!samuraiPOClone1.checkOccupy()[occupyDirection]);
+			//
+			// System.out.println(occupyDirection);
+			// samuraiPO.move(moveDirection, chessBoardModel);
+			// samuraiPO.occupied(occupyDirection, chessBoardModel, true);
+			//
+			actionOperations[0] = new ActionOperation(1, moveDirection);
+			actionOperations[1] = new ActionOperation(0, occupyDirection);
 			return null;
 		case 1:
 			//
@@ -105,8 +523,10 @@ public class SamuraiAI {
 			}
 			Collections.sort(saveCaches);
 			//
-//			samuraiPO.move(saveCaches.get(0).getLocation() / 4, chessBoardModel);
-//			samuraiPO.occupied(saveCaches.get(0).getLocation() % 4, chessBoardModel, true);
+			// samuraiPO.move(saveCaches.get(0).getLocation() / 4,
+			// chessBoardModel);
+			// samuraiPO.occupied(saveCaches.get(0).getLocation() % 4,
+			// chessBoardModel, true);
 			//
 			actionOperations[0] = new ActionOperation(1, saveCaches.get(0).getLocation() / 4);
 			actionOperations[1] = new ActionOperation(0, saveCaches.get(0).getLocation() % 4);
@@ -142,6 +562,518 @@ public class SamuraiAI {
 			}
 		}
 		return result;
+	}
+
+	private ArrayList<ActionOperation> greedy(SamuraiPO samuraiPO1, ChessBoardModel chessBoardModel1) {
+		int moveDirection1;
+		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
+		ArrayList<SaveCache> saveCaches = new ArrayList<SaveCache>();
+		Random random = new Random();
+		if (samuraiPO1.getWeapon().getGenre() != 2) {
+			while (samuraiPO1.getActionPoint() >= 2) {
+				if (samuraiPO1.getActionPoint() >= 4) {
+					for (int x = 0; x < 4; x++) {
+						ChessBoardModel cbm1 = chessBoardModel1.clone();
+						samuraiPO1.occupied(x, cbm1, true);
+						SaveCache saveCache = new SaveCache(sumArea(cbm1), x);
+						saveCaches.add(saveCache);
+					}
+					Collections.sort(saveCaches);
+					samuraiPO1.occupied(saveCaches.get(0).location, chessBoardModel1, true);
+					//
+					// samuraiPO.occupied(saveCaches.get(0).location,
+					// chessBoardModel, true);
+					//
+					actionOperations.add(new ActionOperation(0, saveCaches.get(0).location));
+					samuraiPO1.changeActionPoint(4);
+				}
+				if (samuraiPO1.getActionPoint() >= 2) {
+					do {
+						moveDirection1 = random.nextInt(4);
+					} while (!samuraiPO1.checkMove(chessBoardModel1)[moveDirection1]);
+					samuraiPO1.move(moveDirection1, chessBoardModel1);
+					//
+					// samuraiPO.move(moveDirection1, chessBoardModel);
+					//
+					actionOperations.add(new ActionOperation(1, moveDirection1));
+					samuraiPO1.changeActionPoint(2);
+				}
+			}
+		} else {
+			while (samuraiPO1.getActionPoint() >= 2) {
+				if (samuraiPO1.getActionPoint() >= 2) {
+					do {
+						moveDirection1 = random.nextInt(4);
+					} while (!samuraiPO1.checkMove(chessBoardModel1)[moveDirection1]);
+					samuraiPO1.move(moveDirection1, chessBoardModel1);
+					//
+					// samuraiPO.move(moveDirection1, chessBoardModel);
+					//
+					actionOperations.add(new ActionOperation(1, moveDirection1));
+					samuraiPO1.changeActionPoint(2);
+					// System.out.println(samuraiPO1.getActionPoint());
+				}
+				if (samuraiPO1.getActionPoint() >= 4) {
+					for (int x = 0; x < 4; x++) {
+						ChessBoardModel cbm1 = chessBoardModel1.clone();
+						samuraiPO1.occupied(x, cbm1, true);
+						SaveCache saveCache = new SaveCache(sumArea(cbm1), x);
+						saveCaches.add(saveCache);
+					}
+					Collections.sort(saveCaches);
+					samuraiPO1.occupied(saveCaches.get(0).location, chessBoardModel1, true);
+					//
+					// samuraiPO.occupied(saveCaches.get(0).location,
+					// chessBoardModel, true);
+					//
+					actionOperations.add(new ActionOperation(0, saveCaches.get(0).location));
+					samuraiPO1.changeActionPoint(4);
+					// System.out.println(samuraiPO1.getActionPoint());
+				}
+			}
+		}
+		return actionOperations;
+
+	}
+
+	private int approach(SamuraiPO samuraiPO1, Position position1, ChessBoardModel cbm1,
+			ArrayList<ActionOperation> actionOperations) {
+		int compare;
+		// 0 改变X
+		// 1 改变Y
+		if ((Math.abs(samuraiPO1.getPos().getX() - position1.getX()) < Math
+				.abs(samuraiPO1.getPos().getY() - position1.getY())
+				&& ((samuraiPO1.getPos().getX() - position1.getX()) != 0))
+				|| ((samuraiPO1.getPos().getY() - position1.getY()) == 0)) {
+			compare = 0;
+		} else {
+			compare = 1;
+		}
+		//
+		if (compare == 0) {
+			if ((samuraiPO1.getPos().getX() - position1.getX()) > 0) {
+				if (samuraiPO1.checkMove(cbm1)[0]) {
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(1, 0));
+				} else {
+					return AnotherApproach(samuraiPO1, position1, cbm1, actionOperations);
+
+				}
+				//
+				//samuraiPO.move(0, chessBoardModel);
+				//
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+				} else {
+					return AnotherApproach(samuraiPO1, position1, cbm1, actionOperations);
+				}
+				//
+				//samuraiPO.move(3, chessBoardModel);
+				//
+			}
+		} else {
+			if ((samuraiPO1.getPos().getY() - position1.getY()) > 0) {
+				if (samuraiPO1.checkMove(cbm1)[1]) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+				} else {
+					return AnotherApproach(samuraiPO1, position1, cbm1, actionOperations);
+				}
+				//
+				//samuraiPO.move(1, chessBoardModel);
+				//
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(1, 2));
+					//
+					//samuraiPO.move(2, chessBoardModel);
+					//
+				} else {
+					return AnotherApproach(samuraiPO1, position1, cbm1, actionOperations);
+				}
+
+			}
+		}
+		return 2;
+	}
+
+	private int AnotherApproach(SamuraiPO samuraiPO1, Position position1, ChessBoardModel cbm1,
+			ArrayList<ActionOperation> actionOperations) {
+		int compare;
+		// 0 改变X
+		// 1 改变Y
+		if ((Math.abs(samuraiPO1.getPos().getX() - position1.getX()) < Math
+				.abs(samuraiPO1.getPos().getY() - position1.getY())
+				&& ((samuraiPO1.getPos().getX() - position1.getX()) != 0))
+				|| ((samuraiPO1.getPos().getY() - position1.getY()) == 0)) {
+			compare = 1;
+		} else {
+			compare = 0;
+		}
+
+		if (compare == 0) {
+			if ((samuraiPO1.getPos().getX() - position1.getX()) > 0) {
+				if (samuraiPO1.checkMove(cbm1)[0]) {
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(1, 0));
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+					//
+					//samuraiPO.move(1, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(1, 2));
+					//
+					//samuraiPO.move(2, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				//samuraiPO.move(0, chessBoardModel);
+				//
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+					//
+					//samuraiPO.move(1, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(1, 2));
+					//
+					//samuraiPO.move(2, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				//samuraiPO.move(3, chessBoardModel);
+				//
+			}
+		} else {
+			if ((samuraiPO1.getPos().getY() - position1.getY()) > 0) {
+				if (samuraiPO1.checkMove(cbm1)[1]) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(1, 0));
+					//
+					//samuraiPO.move(0, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+					//
+					//samuraiPO.move(3, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				//samuraiPO.move(1, chessBoardModel);
+				//
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(1, 2));
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
+
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(1, 0));
+					//
+					//samuraiPO.move(0, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+					//
+					//samuraiPO.move(3, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				//samuraiPO.move(2, chessBoardModel);
+				//
+			}
+		}
+		return 1;
+	}
+
+	private int AnotherLeave(SamuraiPO samuraiPO1, Position position1, ChessBoardModel cbm1,
+			ArrayList<ActionOperation> actionOperations) {
+		int compare;
+		// 0 改变X
+		// 1 改变Y
+		if ((Math.abs(samuraiPO1.getPos().getX() - position1.getX()) < Math
+				.abs(samuraiPO1.getPos().getY() - position1.getY())
+				&& ((samuraiPO1.getPos().getX() - position1.getX()) != 0))
+				|| (samuraiPO1.getPos().getY() == position1.getY())) {
+			compare = 1;
+		} else {
+			compare = 0;
+		}
+		System.out.println(compare);
+		//
+		if (compare == 0) {
+			//
+			System.out.println("WWW");
+			//
+			if ((samuraiPO1.getPos().getX() - position1.getX()) > 0 && samuraiPO1.getPos().getX() == 0) {
+				if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+					//
+					// samuraiPO.move(1, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(1, 2));
+					//
+					// samuraiPO.move(2, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				// samuraiPO.move(3, chessBoardModel);
+				//
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[0]) {
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(1, 0));
+				} else if (samuraiPO1.checkMove(cbm1)[1]
+						&& samuraiPO1.getPos().getY() >= (chessBoardModel.getLength() / 2)) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+					//
+					// samuraiPO.move(1, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(1, 2));
+					//
+					// samuraiPO.move(2, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				// samuraiPO.move(0, chessBoardModel);
+				//
+			}
+		} else {
+			if ((samuraiPO1.getPos().getY() - position1.getY()) >= 0) {
+				if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(1, 2));
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(1, 0));
+					//
+					// samuraiPO.move(0, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+					//
+					// samuraiPO.move(3, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				// samuraiPO.move(2, chessBoardModel);
+				//
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[1]) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+				} else if (samuraiPO1.checkMove(cbm1)[0]
+						&& samuraiPO1.getPos().getX() >= (chessBoardModel.getLength() / 2)) {
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(1, 0));
+					//
+					//// samuraiPO.move(0, chessBoardModel);
+					//
+					return 1;
+				} else if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+					//
+					//// samuraiPO.move(3, chessBoardModel);
+					//
+					return 1;
+				} else {
+					return 0;
+				}
+				//
+				//// samuraiPO.move(1, chessBoardModel);
+				//
+			}
+		}
+		System.out.println(compare);
+		return 1;
+	}
+
+	private int leave(SamuraiPO samuraiPO1, Position position1, ChessBoardModel cbm1,
+			ArrayList<ActionOperation> actionOperations) {
+		int compare;
+		// 0 改变X
+		// 1 改变Y
+		if ((Math.abs(samuraiPO1.getPos().getX() - position1.getX()) < Math
+				.abs(samuraiPO1.getPos().getY() - position1.getY())
+				&& ((samuraiPO1.getPos().getX() - position1.getX()) != 0))
+				|| ((samuraiPO1.getPos().getY() - position1.getY()) == 0)) {
+			compare = 0;
+		} else {
+			compare = 1;
+		}
+		//
+		if (compare == 0) {
+			if ((samuraiPO1.getPos().getX() - position1.getX()) > 0) {
+				if (samuraiPO1.checkMove(cbm1)[3]) {
+					samuraiPO1.move(3, cbm1);
+					actionOperations.add(new ActionOperation(1, 3));
+					//
+					//// samuraiPO.move(3, chessBoardModel);
+					//
+				} else {
+					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
+				}
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[0]) {
+					samuraiPO1.move(0, cbm1);
+					actionOperations.add(new ActionOperation(0, 3));
+					//
+					//// samuraiPO.move(0, chessBoardModel);
+					//
+				} else {
+					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
+				}
+			}
+		} else {
+			if ((samuraiPO1.getPos().getY() - position1.getY()) > 0) {
+				System.out.println(samuraiPO1.checkMove(cbm1)[2]);
+				if (samuraiPO1.checkMove(cbm1)[2]) {
+					samuraiPO1.move(2, cbm1);
+					actionOperations.add(new ActionOperation(2, 1));
+					//
+					//// samuraiPO.move(2, chessBoardModel);
+					//
+				} else {
+					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
+				}
+			} else {
+				if (samuraiPO1.checkMove(cbm1)[1]) {
+					samuraiPO1.move(1, cbm1);
+					actionOperations.add(new ActionOperation(1, 1));
+					//
+					//// samuraiPO.move(1, chessBoardModel);
+					//
+				} else {
+					return AnotherLeave(samuraiPO1, position1, cbm1, actionOperations);
+				}
+			}
+		}
+		return 2;
+	}
+
+	private int getDistance(SamuraiPO samuraiPO1, Position position) {
+		return Math.abs(samuraiPO1.getPos().getX() - position.getX())
+				+ Math.abs(samuraiPO1.getPos().getY() - position.getY());
+	}
+
+	private boolean compareAbility(SamuraiPO samuraiPO, SamuraiPO enemySamuraiPO) {
+		int count = 0;
+		if (samuraiPO.getLevel() >= enemySamuraiPO.getLevel()) {
+			count++;
+		}
+		if (((samuraiPO.getWeapon().getType() % 100) / 10) >= ((enemySamuraiPO.getWeapon().getType() % 100) / 10)) {
+			count++;
+		}
+		if (((samuraiPO.getArmor().getType() % 100) / 10) >= ((enemySamuraiPO.getArmor().getType() % 100) / 10)) {
+			count++;
+		}
+		if (samuraiPO.getHealthPoint() >= enemySamuraiPO.getHealthPoint()) {
+			count++;
+		}
+		if (count >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	private boolean compareAbilityToCall(SamuraiPO samuraiPO, SamuraiPO enemySamuraiPO) {
+		int count = 0;
+		if (samuraiPO.getLevel() >= enemySamuraiPO.getLevel()) {
+			count++;
+		}
+		if (((samuraiPO.getWeapon().getType() % 100) / 10) >= ((enemySamuraiPO.getWeapon().getType() % 100) / 10)) {
+			count++;
+		}
+		if (((samuraiPO.getArmor().getType() % 100) / 10) >= ((enemySamuraiPO.getArmor().getType() % 100) / 10)) {
+			count++;
+		}
+		if (samuraiPO.getHealthPoint() >= enemySamuraiPO.getHealthPoint()) {
+			count++;
+		}
+		if (count >= 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private boolean attackTest(SamuraiPO samuraiPO1, ChessBoardModel cbm1, Position position,
+			ArrayList<ActionOperation> actionOperations) {
+		// print(chessBoardModel);
+		for (int i = 0; i < 4; i++) {
+			ChessBoardModel cbm2 = cbm1.clone();
+			samuraiPO1.occupied(i, cbm2, true);
+			if (cbm2.getActualBlockState(position.getX(), position.getY()) != 99) {
+				actionOperations.add(new ActionOperation(0, i));
+				//
+				//samuraiPO.occupied(i, chessBoardModel, true);
+				//
+				return true;
+			}
+		}
+		return false;
 	}
 
 	class SaveCache implements Comparable<SaveCache> {

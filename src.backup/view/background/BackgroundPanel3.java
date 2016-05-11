@@ -17,6 +17,7 @@ import view.GameColor;
 import view.Images;
 
 public class BackgroundPanel3 extends BackgroundPanel {
+	private ImageView bg;
 	private ImageView fish0; 
 	private ImageView fish1;
 	private ImageView fish2;

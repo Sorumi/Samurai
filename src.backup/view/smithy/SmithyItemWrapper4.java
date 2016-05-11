@@ -1,14 +1,15 @@
 package view.smithy;
 
-import view.GameColor;
+import javafx.collections.FXCollections;
+import view.eventhandler.SmithyHandler;
 
 public class SmithyItemWrapper4 extends SmithyItemWrapper {
 
 	//lockGroup
 	
 	//bow and arrow
-	public SmithyItemWrapper4() {
-		super(4);
+	public SmithyItemWrapper4(SmithyHandler smithyHandler) {
+		super(4, smithyHandler);
 		
 		SmithyItemView item411 = new SmithyItemView(411, -1);
 		item411.setLayoutY(300);
@@ -43,9 +44,13 @@ public class SmithyItemWrapper4 extends SmithyItemWrapper {
 		SmithyItemView item426 = new SmithyItemView(426, 0);
 		item426.setLayoutY(500);
 		
+		//TODO
+		list = FXCollections.observableArrayList(item411, item412,item422, item413, item414, item415, item416,item423, item424, item425, item426);
 		
-		this.buildGroup.getChildren().addAll(item411, item412,item422);
-		this.lockGroup.getChildren().addAll(item413, item414, item415, item416,item423, item424, item425, item426);
+//		this.buildGroup.getChildren().addAll();
+		this.lockGroup.getChildren().addAll(item411, item412,item422, item413, item414, item415, item416,item423, item424, item425, item426);
+		
+		this.initWeaponView();
 	}
 
 }

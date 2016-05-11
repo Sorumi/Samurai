@@ -39,6 +39,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	private Weapon weapon;
 	private Armor armor;
 	private int healthPoint;
+	private int actionPoint = 10;
 
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
@@ -68,13 +69,16 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.armor = armor;
 		this.length = length;
 		this.criticalHitChance = 1;
+		this.level = 1;
 		this.dodgeChance = 1;
 		this.attackValue = 5;
 		this.armorValue = 10;
 		this.coldRound = 0;
 		this.healthPoint = 60;
+		this.criticalHitChance = 1;
+		this.actionPoint = 30;
 		if (number == 1 && player == 0) {
-			pos = new Position(0, 0);
+			pos = new Position(2, length - 2);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			home = pos.clone();
@@ -106,13 +110,53 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
-	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor) {
+	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor, Position home,
+			int actionPoint) {
 		this.number = number;
+		this.player = player;
+		this.weapon = weapon;
+		this.armor = armor;
+		this.length = length;
+		this.criticalHitChance = 1;
+		this.level = 1;
+		this.dodgeChance = 1;
+		this.attackValue = 5;
+		this.armorValue = 10;
+		this.coldRound = 0;
+		this.healthPoint = 60;
+		this.criticalHitChance = 1;
+		this.home = home;
+		this.actionPoint = actionPoint;
+	}
+
+	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,
+			int level, int armorValue, int attackValue, int dodgeChance, int healthPonit, int criticalHitRate,int actionPoint) {
+		this.number = number;
+		this.armor = armor;
 		this.player = player;
 		this.weapon = weapon;
 		this.length = length;
 		this.pos = position;
 		this.home = home;
+		this.level = level;
+		this.dodgeChance = dodgeChance;
+		this.armorValue = armorValue;
+		this.attackValue = attackValue;
+		this.criticalHitChance = criticalHitRate;
+		this.healthPoint = healthPonit;
+		this.actionPoint=actionPoint;
+	}
+
+	public int getActionPoint() {
+		return actionPoint;
+	}
+
+	public void changeActionPoint(int i) {
+		actionPoint = actionPoint - i;
+	}
+
+	public void setActionPoint(int actionPoint) {
+		this.actionPoint = actionPoint;
 	}
 
 	public int getColdRound() {
@@ -205,7 +249,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getX() - 1 >= 0) {
 					state = cbm.getActualBlockState(pos.getX() - 1, pos.getY());
 					if (cbm.getActualBlockOccupied(pos.getX() - 1, pos.getY()) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -232,7 +276,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getY() - 1 >= 0) {
 					state = cbm.getActualBlockState(pos.getX(), pos.getY() - 1);
 					if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() - 1) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -259,7 +303,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getY() + 1 <= length) {
 					state = cbm.getActualBlockState(pos.getX(), pos.getY() + 1);
 					if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() + 1) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -286,7 +330,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				if (pos.getX() + 1 <= length) {
 					state = cbm.getActualBlockState(pos.getX() + 1, pos.getY());
 					if (cbm.getActualBlockOccupied(pos.getX() + 1, pos.getY()) || hide) {
-						if (hide || player == 0) {
+						if (hide && player == 0) {
 							if (state == 1 || state == 2 || state == 3) {
 								result[direction] = true;
 							} else {
@@ -336,7 +380,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getX() - 1 >= 0) {
 				state = cbm.getActualBlockState(pos.getX() - 1, pos.getY());
 				if (cbm.getActualBlockOccupied(pos.getX() - 1, pos.getY()) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setX(pos.getX() - 1);
 						} else {
@@ -365,7 +409,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getY() - 1 >= 0) {
 				state = cbm.getActualBlockState(pos.getX(), pos.getY() - 1);
 				if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() - 1) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setY(pos.getY() - 1);
 						} else {
@@ -394,7 +438,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getY() + 1 <= length) {
 				state = cbm.getActualBlockState(pos.getX(), pos.getY() + 1);
 				if (cbm.getActualBlockOccupied(pos.getX(), pos.getY() + 1) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setY(pos.getY() + 1);
 						} else {
@@ -423,7 +467,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 			if (pos.getX() + 1 <= length) {
 				state = cbm.getActualBlockState(pos.getX() + 1, pos.getY());
 				if (cbm.getActualBlockOccupied(pos.getX() + 1, pos.getY()) || hide) {
-					if (hide || player == 0) {
+					if (hide && player == 0) {
 						if (state == 1 || state == 2 || state == 3) {
 							pos.setX(pos.getX() + 1);
 						} else {
@@ -492,7 +536,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 				}
 				break;
 			default:
-				for (int i = pos.getX() + 1, x = 0; i >= 0 && x < 4; i++, x++) {
+				for (int i = pos.getX() + 1, x = 0; i <= length && x < 4; i++, x++) {
 					if (real) {
 						cbm.changeActualBlock(i, pos.getY(), number);
 					}
@@ -1052,8 +1096,35 @@ public class SamuraiPO implements Serializable, Cloneable {
 		return level;
 	}
 
+	public int[] getAttackValue() {
+		int [] result=new int[2];
+		result[0]=attackValue+weapon.getLowAttackPoint();
+		result[1]=attackValue+weapon.getHighAttackPoint();
+		return result;
+	}
+
+	public int getArmorValue() {
+		return armorValue + this.armor.getArmorValue();
+	}
+
+	public int getDodgeRate() {
+		return dodgeChance + this.armor.getDodgeRate();
+	}
+
+	public int getCriticalHitRate() {
+		return criticalHitChance + this.weapon.getCriticalRate();
+	}
+
+	public int getArmorPenetration() {
+		return this.weapon.getArmorPenetration();
+	}
+
 	public int getPlayer() {
 		return player;
+	}
+
+	public Armor getArmor() {
+		return armor;
 	}
 
 	public void setExperience(int experience) {
@@ -1095,6 +1166,8 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.attackValue += 3;
 		this.healthPoint += 20;
 		level++;
+		this.actionPoint++;
+
 	}
 
 	public void changeWeapon(Weapon weapon) {
@@ -1127,10 +1200,11 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public int[] getAttackPoint() {
 		int criticalHitRate = criticalHitChance + weapon.getCriticalRate();
 		int armorPenetration = weapon.getArmorPenetration();
-		int[] result = new int[2];
+		int[] result = new int[3];
 		Random random = new Random();
 		if (random.nextInt(100) + 1 <= criticalHitRate) {
 			result[0] = (weapon.getAttackPoint() + attackValue) * 2;
+			result[3] = 1;
 		} else {
 			result[0] = weapon.getAttackPoint() + attackValue;
 		}
@@ -1158,9 +1232,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public SamuraiPO clone() {
 		try {
-			SamuraiPO samuraiPO = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
-					armor);
-			return samuraiPO;
+			SamuraiPO samuraiPO1 = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
+					armor, level, armorValue, attackValue, dodgeChance, healthPoint, criticalHitChance,actionPoint);
+			return samuraiPO1;
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return null;

@@ -77,7 +77,7 @@ public class CirclePanel extends Pane {
 		this.getChildren().add(blockCircle);
 		
 		blockLabel = new Label("");
-		blockLabel.setFont(GameFont.F14);
+		blockLabel.setId("block-label");
 		blockLabel.setTextFill(GameColor.getOtherColor(2));
 		blockLabel.setPrefWidth(30);
 		if (player == 0){
@@ -264,6 +264,7 @@ public class CirclePanel extends Pane {
 					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].startAngleProperty(), startAngle+preAngle*blockNum[0]+preAngle*blockNum[1])),
 					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].lengthProperty(), preAngle*blockNum[2]))
 					);
+
 			timeline.play();
 		
 		}

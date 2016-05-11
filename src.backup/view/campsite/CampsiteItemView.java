@@ -1,11 +1,16 @@
 package view.campsite;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import javafx.util.Duration;
 import view.GameColor;
 import view.WeaponView;
 
@@ -16,7 +21,7 @@ public class CampsiteItemView extends StackPane {
 	private Circle bgCircle;
 	private Label quantityLabel;
 	
-	public CampsiteItemView(int itemNum){
+	public CampsiteItemView(int itemNum, int quantity){
 		this.itemNum = itemNum;
 		
 		this.setPrefSize(RADIUS*2, RADIUS*2);
@@ -31,7 +36,7 @@ public class CampsiteItemView extends StackPane {
 		bgCircle.setStrokeWidth(0);
 		this.getChildren().add(bgCircle);
 		
-		quantityLabel = new Label("1");
+		quantityLabel = new Label(quantity+"");
 		quantityLabel.setPrefSize(30, 30);
 		quantityLabel.setId("item-quantity");
 		this.getChildren().add(quantityLabel);
@@ -44,13 +49,19 @@ public class CampsiteItemView extends StackPane {
 	}
 
 	public void setHighlight() {
-		bgCircle.setFill(GameColor.getWeaponColor(itemNum/100+5));
-		bgCircle.setStrokeWidth(2);
+		 Timeline tl= new Timeline(
+					new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), GameColor.getWeaponColor(itemNum/100+5),  Interpolator.EASE_IN)),
+					new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 2, Interpolator.EASE_IN))
+					);
+		 tl.play();
 	}
 	
 	public void setNormal(){
-		bgCircle.setFill(GameColor.getWeaponColor(itemNum/100));
-		bgCircle.setStrokeWidth(0);
+		Timeline tl= new Timeline(
+				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), GameColor.getWeaponColor(itemNum/100),  Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 0, Interpolator.EASE_IN))
+				);
+		tl.play();		
 	}
 	
 	public int getNum(){
