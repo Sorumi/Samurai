@@ -29,6 +29,8 @@ public class GameModel extends BaseModel implements Observer {
     private SamuraiAI[] samuraiAI;
     private int coldRoundNum;
 
+    private Armory armory;
+
     protected ClientService net;
 
     private static boolean isServer = false;
@@ -92,14 +94,21 @@ public class GameModel extends BaseModel implements Observer {
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
         players[0].setSamuraiPOs(samuraiPOs);
+
         players[1] = new Player(this,1);
+
+        SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
+
         switch (this.level){
             //TODO
             case 11:
+//                aiSamuraiPO[0] = new SamuraiPO()
+//                aiSamuraiPO[1] = new SamuraiPO();
+//                aiSamuraiPO[2] = new SamuraiPO();
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),0,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],0,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],0,this.chessBoardModel,1);
                 break;
             case 12:
                 samuraiAI = new SamuraiAI[3];
@@ -693,7 +702,25 @@ public class GameModel extends BaseModel implements Observer {
         }
         super.updateChange(new UpdateMessage("over",this.chessBoardModel.getStatesOfAllBlocks()));
 
-        //这里应该传递一些游戏的结果数据,而并不真的结束游戏
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.caculateMaterial(level/10, level%10, 0, 0, 0);
+        ArrayList<Material> materials = scoreBoard.getMaterial();
+        super.updateChange(new UpdateMessage("materials",materials));
+
+        int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[0],
+                this.chessBoardModel.getStatesOfAllBlocks()[1], this.chessBoardModel.getStatesOfAllBlocks()[2],
+                this.getSamuraiOfNum(1).getKillNum(),this.getSamuraiOfNum(2).getKillNum(),this.getSamuraiOfNum(3).getKillNum());
+        this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
+        this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
+        this.players[0].getSamuraiOfNum(3).addExperience(experience[2]);
+
+        boolean[] isLevelUp = new boolean[]{this.players[0].getSamuraiOfNum(1).isUpLevel(),this.players[0].getSamuraiOfNum(2).isUpLevel(),
+                this.players[0].getSamuraiOfNum(3).isUpLevel()};
+        for (int i = 0; i < 2; i++) {
+            if(isLevelUp[i]){
+                super.updateChange(new UpdateMessage("levelup",i));
+            }
+        }
 
         System.out.println("GAME OVER!");
 
@@ -761,7 +788,6 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
-//            System.out.println("Time:" + this.currentTime);
             this.currentTime--;
         }else{
             this.actionDone();

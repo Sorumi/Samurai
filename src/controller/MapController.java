@@ -43,7 +43,7 @@ public class MapController extends TerritoryController {
             this.gameModel.getChessBoardModel().changeActualBlock(pos.getX(), pos.getY(), this.gameModel.getSamuraiOfNum(i).getNumber());
         }
 
-        OperationQueue operationQueue = new OperationQueue(this.gameModel);
+        OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
         Thread operationThread = new Thread(operationQueue);
         operationThread.start();
 

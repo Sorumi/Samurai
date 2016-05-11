@@ -1,6 +1,7 @@
 package view;
 
 import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -11,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.po.Position;
 
@@ -39,6 +41,9 @@ public class SamuraiPanel extends OrderPanel {
 	public int y;
 	private boolean isHide;
 	private BooleanProperty canAction;
+	
+	private Text missText;
+	private Text attackedText;
 	
 	public SamuraiPanel(int number, int size){
 		this.number = number;
@@ -79,6 +84,19 @@ public class SamuraiPanel extends OrderPanel {
 			break;
 		}
 		
+		//text
+		missText = new Text("Miss");
+		missText.setId("text-miss");
+		missText.setX(0);
+		missText.setOpacity(0);
+		
+		attackedText = new Text();
+		attackedText.setId("text-attacked");
+		attackedText.setX(0);
+		attackedText.setOpacity(0);
+		this.getChildren().addAll(missText, attackedText);
+
+		
 	}
 	
 	public void setActualLocation(int x, int y){
@@ -105,6 +123,7 @@ public class SamuraiPanel extends OrderPanel {
 		this.isHide = isHide;
 	}
 	
+
 	public int getNum(){
 		return this.number;
 	}
@@ -158,6 +177,50 @@ public class SamuraiPanel extends OrderPanel {
 		}
 
 	}
+	
+	public void setMiss(){
+		Timeline missTL= new Timeline(
+				//text
+				new KeyFrame(Duration.ZERO, new KeyValue(missText.opacityProperty(), 1)),
+				new KeyFrame(Duration.millis(800), new KeyValue(missText.opacityProperty(), 1)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(missText.opacityProperty(), 0, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.ZERO, new KeyValue(missText.yProperty(), 10)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(missText.yProperty(), -20, Interpolator.EASE_IN))
+				);
+		missTL.play();
+		samuraiV.setMiss();
+	}
+	
+	public void setAttacked(int num){
+		attackedText.setText("- " + num);//TODO
+		Timeline attackTL= new Timeline(
+				//text
+				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.opacityProperty(), 1)),
+				new KeyFrame(Duration.millis(800), new KeyValue(attackedText.opacityProperty(), 1)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.opacityProperty(), 0, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.yProperty(), 10)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.yProperty(), -20, Interpolator.EASE_IN))
+				);
+		attackTL.play();
+		samuraiV.setAttacked();
+	}
+
+	public void setDoubleAttacked(int num){
+		attackedText.setText("- " + num + "×2");//TODO
+
+		Timeline attackTL= new Timeline(
+				//text
+				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.opacityProperty(), 1)),
+				new KeyFrame(Duration.millis(800), new KeyValue(attackedText.opacityProperty(), 1)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.opacityProperty(), 0, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.yProperty(), 10)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.yProperty(), -20, Interpolator.EASE_IN))
+				
+				);
+		attackTL.play();
+		samuraiV.setDoubleAttacked();
+	}
+	
 	
 	public BooleanProperty canActionProperty(){
 		return this.canAction;

@@ -61,6 +61,10 @@ public class Weapon implements Cloneable, Serializable {
 	public int getAttackPoint() {
 		int cache = highAttackPoint - lowAttackPoint;
 		Random random = new Random();
+		System.out.println("num " + type);
+		System.out.println("hap " + highAttackPoint);
+		System.out.println("lap " + highAttackPoint);
+		System.out.println("cache " + cache);
 		return lowAttackPoint + random.nextInt(cache);
 	}
 

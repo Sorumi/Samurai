@@ -203,7 +203,7 @@ public class GamePanel extends Pane implements Observer{
 
 		//add
 		backgroundPanel.setZOrder(-2);
-		systemPanel.setZOrder(1000);
+		systemPanel.setZOrder(-1);
 		chessBoard.setZOrder(-3);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
@@ -217,7 +217,7 @@ public class GamePanel extends Pane implements Observer{
 		}else{
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, resultPanel);
 		}
-
+		this.setOrder();
 	}
 
 	public void set6Properties(int samurai, int[] properties){
@@ -420,8 +420,7 @@ public class GamePanel extends Pane implements Observer{
 				this.arrow.setVisible(true);
 			}
 		}else if(key.equals("samuraiKilled")){
-			getSamurai((int)notifingObject.getValue()).setInjured(true);
-			
+			this.getSamurai((int)notifingObject.getValue()).setInjured(true);
 		}else if(key.equals("visible")) {
             System.out.println("visible");
             this.A1.setVisible(true);
@@ -484,7 +483,7 @@ public class GamePanel extends Pane implements Observer{
 			this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
 		}else if(key.equals("revive")){
             System.out.println("Samurai revive!" + (int)notifingObject.getValue());
-            getSamurai((int)notifingObject.getValue()).setInjured(false);
+            this.getSamurai((int)notifingObject.getValue()).setInjured(false);
         }else if(key.equals("pseudoOccupy")){
 			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
 		}else if(key.equals("a-pseudoOccupy")){
@@ -492,13 +491,17 @@ public class GamePanel extends Pane implements Observer{
 		}else if(key.equals("over")){
 			this.resultPanel.setResults((int [])notifingObject.getValue());
 		}else if(key.equals("miss")){
-			System.out.println((int)notifingObject.getValue() + " miss !");
+			this.getSamurai((int)notifingObject.getValue()).setMiss();
 		}else if(key.equals("normal-attack")){
 			int[] t = (int [])notifingObject.getValue();
-			System.out.println("Normal attack : " + t[0] + " , " + t[1]);
+			this.getSamurai(t[0]).setAttacked(t[1]);
 		}else if(key.equals("critical-attack")){
 			int[] t = (int [])notifingObject.getValue();
-			System.out.println("Critical attack : " + t[0] + " , " + t[1]);
+			this.getSamurai(t[0]).setDoubleAttacked((int)(t[1] / 2));
+		}else if(key.equals("levelup")){
+
+		}else if(key.equals("materials")){
+
 		}
 	}
 

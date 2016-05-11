@@ -12,8 +12,8 @@ public class EndOperation extends Operation {
         GameModel model = OperationQueue.getGameModel();
         model.gameOver();
         if(model.getLevel() == 99 || model.getLevel() == 0){
-//            Pane basePanel = (Pane) GamePanel.this.getParent();
-//            basePanel.getChildren().remove(GamePanel.this);
+//            Pane basePanel = (Pane) OperationQueue.getGamePanel().getParent();
+//            basePanel.getChildren().remove(OperationQueue.getGamePanel());
         }
     }
 }

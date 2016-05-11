@@ -720,7 +720,7 @@ public class SamuraiView extends Pane{
 		}
 	}
 	
-	public void setMiss(int direction){
+	public void setMiss(){
 		Timeline missTL= new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(group.layoutXProperty(), 0)),
 				new KeyFrame(Duration.millis(300), new KeyValue(group.layoutXProperty(), -30*flip*SCALE, Interpolator.EASE_IN)),
@@ -737,16 +737,26 @@ public class SamuraiView extends Pane{
 	}
 	
 	public void setAttacked(){
+		headInjured.setVisible(true);
 		Timeline attackTL= new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(group.layoutXProperty(), 0)),
 				new KeyFrame(Duration.millis(100), new KeyValue(group.layoutXProperty(), 15*SCALE, Interpolator.EASE_IN)),
 				new KeyFrame(Duration.millis(300), new KeyValue(group.layoutXProperty(), -15*SCALE, Interpolator.EASE_IN)),
 				new KeyFrame(Duration.millis(400), new KeyValue(group.layoutXProperty(), 0, Interpolator.EASE_IN))
 				);
+		attackTL.setOnFinished(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				headInjured.setVisible(false);
+			}
+		});
 		attackTL.play();
+		
 	}
 
 	public void setDoubleAttacked(){
+		headInjured.setVisible(true);
 		Timeline attackTL= new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(group.layoutXProperty(), 0)),
 				new KeyFrame(Duration.millis(100), new KeyValue(group.layoutXProperty(), 15*SCALE, Interpolator.EASE_IN)),
@@ -756,6 +766,13 @@ public class SamuraiView extends Pane{
 				new KeyFrame(Duration.millis(550), new KeyValue(group.layoutXProperty(), -10*SCALE, Interpolator.EASE_IN)),
 				new KeyFrame(Duration.millis(600), new KeyValue(group.layoutXProperty(), 0, Interpolator.EASE_IN))
 				);
+		attackTL.setOnFinished(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				headInjured.setVisible(false);
+			}
+		});
 		attackTL.play();
 	}
 

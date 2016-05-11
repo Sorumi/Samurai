@@ -53,7 +53,6 @@ public class StoryModel implements Serializable{
         switch (samuraiNum){
             case 1:
                 this.samuraiPO_1.changeWeapon(this.armory.getWeapon(weaponNum));
-                System.out.println(this.samuraiPO_1.getWeapon().getType());
                 break;
             case 2:
                 this.samuraiPO_2.changeWeapon(this.armory.getWeapon(weaponNum));
@@ -64,10 +63,6 @@ public class StoryModel implements Serializable{
             default:
                 break;
         }
-    }
-
-    public void createWeapon(){
-
     }
 
     public SamuraiPO[] getSamuraiPOs(){
@@ -108,7 +103,6 @@ public class StoryModel implements Serializable{
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this);
-
             objectOutputStream.close();
 
             System.out.println("save successfully");
@@ -127,8 +121,6 @@ public class StoryModel implements Serializable{
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object thisObject = objectInputStream.readObject();
             objectInputStream.close();
-
-            StoryModel s = (StoryModel) thisObject;
 
             System.out.println("load successfully : " + StoryModel.getFileNum());
 
