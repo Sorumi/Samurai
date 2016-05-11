@@ -110,7 +110,8 @@ public class GamePanel extends Pane implements Observer{
 				switch(level){
 				case 0:
 				case 99:
-					System.exit(0);
+					OperationQueue.addOperation(new EndOperation());
+//					System.exit(0);
 					break;
 				default:
 					//TODO
