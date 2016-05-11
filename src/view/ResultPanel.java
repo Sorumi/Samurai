@@ -57,6 +57,12 @@ public class ResultPanel extends OrderPanel {
 		}
 	}
 
+	public void setResults(int [] results){
+		for (int i : results){
+			System.out.println(i);
+		}
+	}
+
 	public ResultPanel(GamePanel gamePanel) {
 		this.logo = new ImageView(Images.A_WIN);
 		this.logo.setFitWidth(504);
