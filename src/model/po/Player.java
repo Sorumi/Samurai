@@ -39,20 +39,29 @@ public class Player {
         }
     }
 
-    //故事模式中带SamuraiPO的构造方法
+    //故事模式中带SamuraiPO的人类方构造方法
     public Player(GameModel model, int playerNum, SamuraiPO[] sPOs){
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
         this.samuraiPOs = new SamuraiPO[7];
-        samuraiPOs[1] = sPOs[1];
-        samuraiPOs[2] = sPOs[2];
-        samuraiPOs[3] = sPOs[3];
+        if(playerNum == 0){
+            samuraiPOs[1] = sPOs[1];
+            samuraiPOs[2] = sPOs[2];
+            samuraiPOs[3] = sPOs[3];
+        }else if(playerNum == 1) {
+            samuraiPOs[4] = sPOs[0];
+            samuraiPOs[5] = sPOs[1];
+            samuraiPOs[6] = sPOs[2];
+        }
 
         System.out.println("Weapon number 1: "+samuraiPOs[1].getWeapon().getType());
         System.out.println("Weapon number 2: "+samuraiPOs[2].getWeapon().getType());
         System.out.println("Weapon number 3: "+samuraiPOs[3].getWeapon().getType());
     }
+
+    //故事模式中带SamuraiPO的AI构造方法
+
 
     public void setEnableToAction(){
         this.currentSamurai = gameModel.getCurrentSamurai();

@@ -92,14 +92,19 @@ public class GameModel extends BaseModel implements Observer {
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
         players[0].setSamuraiPOs(samuraiPOs);
-        players[1] = new Player(this,1);
+
+        SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
+
         switch (this.level){
             //TODO
             case 11:
+                aiSamuraiPO[0] = new SamuraiPO();
+                aiSamuraiPO[1] = new SamuraiPO();
+                aiSamuraiPO[2] = new SamuraiPO();
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),0,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],0,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],0,this.chessBoardModel,1);
                 break;
             case 12:
                 samuraiAI = new SamuraiAI[3];
@@ -188,6 +193,9 @@ public class GameModel extends BaseModel implements Observer {
             default:
                 break;
         }
+
+        players[1] = new Player(this,1,aiSamuraiPO);
+
         isServer = false;
         isClient = false;
         //暂时用这个方法重置每个 samurai 位置
