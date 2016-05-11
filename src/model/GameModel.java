@@ -458,25 +458,25 @@ public class GameModel extends BaseModel implements Observer {
 
         ArrayList<ActualBlock> blocks = new ArrayList<>();
 
-//        for(int x = 0; x <= this.length; x++){
-//            for (int y = 0; y <= this.length; y++) {
-//                blocks.add(this.chessBoardModel.getActualBlock(x,y));
-//            }
-//        }
-
-        if(GameModel.isClient() && !GameModel.isServer()){
-            blocks = this.players[1].showVision();
-            super.updateChange(new UpdateMessage("vision", blocks));
-            return blocks;
-        }else{
-            blocks = this.players[0].showVision();
-            super.updateChange(new UpdateMessage("vision", blocks));
-            return blocks;
+        for(int x = 0; x <= this.length; x++){
+            for (int y = 0; y <= this.length; y++) {
+                blocks.add(this.chessBoardModel.getActualBlock(x,y));
+            }
         }
 
-
+//        if(GameModel.isClient() && !GameModel.isServer()){
+//            blocks = this.players[1].showVision();
 //            super.updateChange(new UpdateMessage("vision", blocks));
 //            return blocks;
+//        }else{
+//            blocks = this.players[0].showVision();
+//            super.updateChange(new UpdateMessage("vision", blocks));
+//            return blocks;
+//        }
+
+
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
     }
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
