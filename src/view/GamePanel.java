@@ -420,8 +420,7 @@ public class GamePanel extends Pane implements Observer{
 				this.arrow.setVisible(true);
 			}
 		}else if(key.equals("samuraiKilled")){
-			getSamurai((int)notifingObject.getValue()).setInjured(true);
-			
+			this.getSamurai((int)notifingObject.getValue()).setInjured(true);
 		}else if(key.equals("visible")) {
             System.out.println("visible");
             this.A1.setVisible(true);
@@ -498,7 +497,11 @@ public class GamePanel extends Pane implements Observer{
 			this.getSamurai(t[0]).setAttacked(t[1]);
 		}else if(key.equals("critical-attack")){
 			int[] t = (int [])notifingObject.getValue();
-			this.getSamurai(t[0]).setDoubleAttacked(t[1]);
+			this.getSamurai(t[0]).setDoubleAttacked((int)(t[1] / 2));
+		}else if(key.equals("levelup")){
+
+		}else if(key.equals("materials")){
+
 		}
 	}
 
