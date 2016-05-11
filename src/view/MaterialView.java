@@ -28,11 +28,11 @@ public class MaterialView extends StackPane {
 	}
 
 	private void setInit(){ 
-		switch (num / 10) {
-		case 00:imgV.setFitWidth(79);break;
-		case 01:imgV.setFitWidth(79);break;
-		case 02:imgV.setFitWidth(79);break;
-		case 03:imgV.setFitWidth(79);break;
+		switch (num) {
+		case 0:imgV.setFitWidth(79);break;
+		case 1:imgV.setFitWidth(79);break;
+		case 2:imgV.setFitWidth(79);break;
+		case 3:imgV.setFitWidth(79);break;
 		case 10:imgV.setFitWidth(69);break;
 		case 11:imgV.setFitWidth(69);break;
 		case 12:imgV.setFitWidth(68);break;
