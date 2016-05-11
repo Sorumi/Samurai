@@ -29,6 +29,9 @@ public class TerritoryFrontground extends Group{
 	
 	
 	public void removeAll(){
+		isRain = false;
+		isSnow = false;
+		
 		rain.removeRain();
 		snow.removeSnow();
 	}
