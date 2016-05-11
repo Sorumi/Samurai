@@ -97,7 +97,7 @@ public class SamuraiAI {
 
 	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition, int count) {
 		//
-		samuraiPO.setActionPoint(10);
+		//samuraiPO.setActionPoint(10);
 		//
 		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
 		if (enemySamuraiPO != null) {
@@ -140,9 +140,9 @@ public class SamuraiAI {
 				actionOperations = greedy(samuraiPOClone, cbm);
 
 				samuraiPOClone.setActionPoint(temp - 6);
-				// if(samuraiPOClone.getActionPoint()>=2){
-				// actionOperations.add(new ActionOperation(99, 9999));
-				// }
+				 if(samuraiPOClone.getActionPoint()>=2){
+					 actionOperations.add(new ActionOperation(99, 9999));
+				 }
 				return actionOperations;
 			} else if (enemySamuraiPO == null && count == 1) {
 				return greedy(samuraiPOClone, cbm);
