@@ -11,7 +11,7 @@ public class Images {
 	public static String BG_3 = Images.class.getResource("/./images/bg_3.png").toExternalForm();
 	public static String BG_4 = Images.class.getResource("/./images/bg_4.png").toExternalForm();
 	public static String BG_5 = Images.class.getResource("/./images/bg_5.png").toExternalForm();	
-	public static String[] BG = {BG_0, BG_1, BG_2, BG_3, BG_4, BG_5};
+	public static String[] BG = {BG_0, BG_1, BG_2, BG_3, BG_4, BG_5, null, null, null, BG_0};
 	//cloud 
 	public static Image CLOUD_0 = new Image("/./images/cloud_0.png",true);
 	public static Image CLOUD_1 = new Image("/./images/cloud_1.png",true);

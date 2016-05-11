@@ -34,7 +34,7 @@ public class SamuraiAI {
 		cbm.changeActualBlock(7, 2, true);
 		for (int i = 0; i < 4; i++) {
 			System.out.println(No2.getPos().getX() + " " + No2.getPos().getY());
-			mine2.storyCalculate(null, new Position(0, 4), 0);
+			mine2.storyCalculate(null, new Position(0, 4));
 			System.out.println(No2.getPos().getX() + " " + No2.getPos().getY());
 			print(cbm);
 			/*
@@ -95,7 +95,7 @@ public class SamuraiAI {
 		return type;
 	}
 
-	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition, int count) {
+	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition) {
 		//
 		//samuraiPO.setActionPoint(10);
 		//
@@ -134,18 +134,9 @@ public class SamuraiAI {
 			return greedy(samuraiPOClone, cbm);
 		//
 		case 2:
-			if (enemySamuraiPO == null && count == 0) {
-				int temp = samuraiPOClone.getActionPoint();
-				samuraiPOClone.setActionPoint(6);
+			if (enemySamuraiPO == null) {
 				actionOperations = greedy(samuraiPOClone, cbm);
-
-				samuraiPOClone.setActionPoint(temp - 6);
-				 if(samuraiPOClone.getActionPoint()>=2){
-					 actionOperations.add(new ActionOperation(99, 9999));
-				 }
-				return actionOperations;
-			} else if (enemySamuraiPO == null && count == 1) {
-				return greedy(samuraiPOClone, cbm);
+				return actionOperations;	
 			} else {
 				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);
 				if (compareAbility(samuraiPOClone, enemySamuraiPO)) {
@@ -262,18 +253,9 @@ public class SamuraiAI {
 			}
 			break;
 		case 3:
-			if (enemySamuraiPO == null && count == 0 && aidPosition == null) {
-				int temp = samuraiPOClone.getActionPoint();
-				samuraiPOClone.setActionPoint(6);
+			if (enemySamuraiPO == null && aidPosition == null) {
 				actionOperations = greedy(samuraiPOClone, cbm);
-
-				samuraiPOClone.setActionPoint(temp - 6);
-				// if(samuraiPOClone.getActionPoint()>=2){
-				// actionOperations.add(new ActionOperation(99, 9999));
-				// }
 				return actionOperations;
-			} else if (enemySamuraiPO == null && count == 1 && aidPosition == null) {
-				return greedy(samuraiPOClone, cbm);
 			} else if (enemySamuraiPO != null) {
 				cbm.changeActualBlock(enemySamuraiPO.getPos().getX(), enemySamuraiPO.getPos().getY(), 99);
 				if(compareAbilityToCall(samuraiPOClone, enemySamuraiPO)){
