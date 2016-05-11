@@ -101,7 +101,6 @@ public class TerritoryBackground extends Pane{
 		stars.getChildren().addAll(star1, star2, star3, star4, star5);
 		stars.setVisible(false);
 
-		
 		starCircles = new Group();
 		StarCircle starC1 = new StarCircle(9);
 		starC1.setLayoutX(65);
