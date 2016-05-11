@@ -20,8 +20,8 @@ import java.util.Observer;
 public class GamePanelOL extends GamePanel{
 
 
-    public GamePanelOL(int size, int level){
-        super(size, 10);
+    public GamePanelOL(int size){
+        super(size, 0);
     }
 
     public void setCurrentSamurai(int i){
@@ -50,6 +50,8 @@ public class GamePanelOL extends GamePanel{
         }
         currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
         currentSamurai.setCanActionProperty(true);
+        currentSamurai.samuraiV.setRandomAnimation(false);
+
         playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
         playerB.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
         if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)){
