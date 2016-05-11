@@ -94,6 +94,7 @@ public class Player {
                         this.gameModel.updateOccupiedBlocks();
                         done = true;
                         this.samuraiPOs[this.currentSamurai].changeActionPoint(4);
+                        System.out.println(this.samuraiPOs[this.currentSamurai].getActionPoint());
                         //检测需不需要把别人踢回去
                         ArrayList<Integer> killedSamurais = new ArrayList<>();
                         for(Position position : positions){

@@ -35,7 +35,7 @@ public class OperationQueue implements Runnable, Serializable {
 		Thread.currentThread().setPriority(10);
 	}
 
-	public void run() {
+	public synchronized void run() {
 		while(isRunning && !Thread.currentThread().isInterrupted()){
 			Operation operation = getNewOperation();
 
@@ -69,7 +69,7 @@ public class OperationQueue implements Runnable, Serializable {
 		}
 	}
 	
-	public static boolean addOperation (Operation operation){
+	public synchronized static boolean addOperation (Operation operation){
 		try {
 			System.out.println("ADD: " + operation.toString());
 			queue.put(operation);
@@ -77,6 +77,29 @@ public class OperationQueue implements Runnable, Serializable {
 			e.printStackTrace();
 			return false;
 		}
+		Operation operation1 = getNewOperation();
+
+		if (operation instanceof EndOperation){
+			Thread.interrupted();
+		}
+
+		System.out.println("execute Operation : " + operation.getClass());
+		UpdateMessage updateMessage = new UpdateMessage("execute",operation);
+
+
+		//迫不得已才加在这里..
+		if(gameModel.getLevel() != 0 && gameModel.getCurrentSamurai() >= 4){
+			if(operation instanceof ActionOperation
+					|| operation instanceof NextOperation) {
+				try {
+					Thread.sleep(2400);
+				} catch (Exception E) {
+					E.printStackTrace();
+				}
+			}
+		}
+
+		operation1.execute();
 		return true;
 	}
 

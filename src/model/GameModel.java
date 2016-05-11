@@ -520,14 +520,14 @@ public class GameModel extends BaseModel implements Observer {
                                 }
                             }
                             Thread.yield();
-//                            while(!OperationQueue.isEmpty()) {
-//                                try {
-//                                    Thread.currentThread().wait();
-//                                }catch (Exception e){
-//                                    e.printStackTrace();
-//                                }
-//                                System.out.println("!");
-//                            }
+                           while(!OperationQueue.isEmpty()) {
+                                try {
+                                    Thread.yield();
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                                System.out.println("!");
+                            }
                             i = 0;
                             positions = this.samuraiAI[0].getSamuraiPO().see();
                             for(Position p : positions){
@@ -545,6 +545,7 @@ public class GameModel extends BaseModel implements Observer {
                                 }
                             }
                             System.out.println("—————————————");
+                            System.out.println(this.samuraiAI[0].getSamuraiPO().getActionPoint());
                             for (ActionOperation operation2 : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), null, 1)) {
                                 OperationQueue.addOperation(operation2);
                             }
