@@ -226,9 +226,11 @@ public class ResultPanel extends OrderPanel {
 				new KeyFrame(Duration.millis(1400), new KeyValue(arcsTwo[2].lengthProperty(), 0)),
 				new KeyFrame(Duration.millis(1900), new KeyValue(arcsTwo[2].lengthProperty(), preAngleTwo * 40)));
 
-		timeline.play();
+//		timeline.play();
 
-		this.setVisible(false);   
+
+		this.setVisible(false);    
+
 		
 		this.flip();
 	}
@@ -345,7 +347,7 @@ public class ResultPanel extends OrderPanel {
 		    	
 		    }
 		});
-		timeline0.play();
+//		timeline0.play();
 	}
 	//内部类
 	public class MaterialPanel extends Pane{
@@ -369,8 +371,8 @@ public class ResultPanel extends OrderPanel {
 			}
 			
 			MaterialView material = new MaterialView(materialnum);
-			material.setLayoutX(10);
-			material.setLayoutY(10);
+			material.setLayoutX(-23);
+			material.setLayoutY(-23);
 			material.setScaleX(0.5);
 			material.setScaleY(0.5);
 			
@@ -379,7 +381,7 @@ public class ResultPanel extends OrderPanel {
 			amountLabel.setLayoutY(22);
 			amountLabel.setId("amount-label");
 			
-			this.getChildren().addAll(circle, amountLabel);  
+			this.getChildren().addAll(circle, amountLabel, material);  
 			
 		}
 	}
