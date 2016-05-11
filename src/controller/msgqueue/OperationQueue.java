@@ -22,28 +22,36 @@ public class OperationQueue implements Runnable, Serializable {
 
 	private static BlockingQueue<Operation> queue;
 	private static GameModel gameModel;
-	public static boolean isRunning;
 
 	ClientService clientService = new ClientServiceImpl();
 	HostService hostService = new HostServiceImpl();
 
 	public OperationQueue(GameModel model){
 		queue = new ArrayBlockingQueue<>(1000);
-		isRunning = true;
 		gameModel = model;
 	}
 
 	public void run() {
-		while(isRunning && !Thread.currentThread().isInterrupted()){
+		while(!Thread.currentThread().isInterrupted()){
 			Operation operation = getNewOperation();
 
-			if (operation instanceof EndOperation){
-				operation.execute();
-				Thread.interrupted();
-			}else {
+			System.out.println("execute Operation : " + operation.getClass());
+			UpdateMessage updateMessage = new UpdateMessage("execute", operation);
 
-				System.out.println("execute Operation : " + operation.getClass());
-				UpdateMessage updateMessage = new UpdateMessage("execute", operation);
+			if (operation instanceof EndOperation){
+
+				if (GameModel.isClient() && !Operation.isServer()) {
+					clientService.submitOperation(operation);
+					Thread.currentThread().interrupt();
+				} else if (GameModel.isServer() && Operation.isServer()) {
+					hostService.update(gameModel, updateMessage);
+					Thread.currentThread().interrupt();
+				} else {
+					operation.execute();
+					Thread.currentThread().interrupt();
+				}
+
+			}else {
 
 				if (GameModel.isClient() && !Operation.isServer()) {
 					clientService.submitOperation(operation);

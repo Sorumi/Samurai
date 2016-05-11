@@ -17,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
@@ -110,23 +111,22 @@ public class GamePanel extends Pane implements Observer{
 				System.out.println("LEVEL : " + level);
 				// TODO Auto-generated method stub
 				switch(level){
-				case 0:
-				case 99:
-					OperationQueue.addOperation(new EndOperation());
-					Pane basePanel = (Pane) GamePanel.this.getParent();
-					basePanel.getChildren().remove(GamePanel.this);
+					case 99:
+					case 0:
+						Pane basePanel = (Pane) GamePanel.this.getParent();
+						basePanel.getChildren().remove(GamePanel.this);
 
-					OperationQueue.addOperation(new EndOperation());
-					break;
-				default:
-					//TODO
-					StoryPanel storyPanel = (StoryPanel) GamePanel.this.getParent();
-					storyPanel.mapPanel.toFront();
-					storyPanel.gamePanel.getChildren().remove(GamePanel.this);
-					storyPanel.gamePanel = null;
+						OperationQueue.addOperation(new EndOperation());
+						break;
+					default:
+						//TODO
+						StoryPanel storyPanel = (StoryPanel) GamePanel.this.getParent();
+						storyPanel.mapPanel.toFront();
+						storyPanel.gamePanel.getChildren().remove(GamePanel.this);
+						storyPanel.gamePanel = null;
 
-					OperationQueue.addOperation(new EndOperation());
-					break;
+						OperationQueue.addOperation(new EndOperation());
+						break;
 				}
 
 			}
@@ -265,13 +265,13 @@ public class GamePanel extends Pane implements Observer{
 	    this.setStyle("-fx-background-image: url("+Images.BG[level/10]+") ;"
 	    		+ "-fx-background-size: 100% 100%; ");
 		switch(level/10){
-		case 0: backgroundPanel = new BackgroundPanel0();break;
-		case 1: backgroundPanel = new BackgroundPanel1();break;
-		case 2: backgroundPanel = new BackgroundPanel2();break;
-		case 3: backgroundPanel = new BackgroundPanel3();break;
-		case 4: backgroundPanel = new BackgroundPanel4();break;
-		case 5: backgroundPanel = new BackgroundPanel5();break;
-		default: backgroundPanel = new BackgroundPanel0();
+			case 0: backgroundPanel = new BackgroundPanel0();break;
+			case 1: backgroundPanel = new BackgroundPanel1();break;
+			case 2: backgroundPanel = new BackgroundPanel2();break;
+			case 3: backgroundPanel = new BackgroundPanel3();break;
+			case 4: backgroundPanel = new BackgroundPanel4();break;
+			case 5: backgroundPanel = new BackgroundPanel5();break;
+			default: backgroundPanel = new BackgroundPanel0();
 		}
 		this.getChildren().add(backgroundPanel);
 	}
