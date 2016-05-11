@@ -66,7 +66,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		this.getChildren().add(fish2);
 		this.getChildren().add(fish3);
 		this.getChildren().add(leaf0);
-		this.getChildren().add(leaf1);
+//		this.getChildren().add(leaf1);
 		this.getChildren().add(lotus0);
 		this.getChildren().add(lotus1);
 		
@@ -80,7 +80,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		this.fish3.setLayoutY(365);
 		this.leaf0.setLayoutX(236);
 		this.leaf0.setLayoutY(108);
-		this.leaf1.setLayoutX(999);
+		this.leaf1.setLayoutX(1099);
 		this.leaf1.setLayoutY(225);
 		this.lotus0.setLayoutX(139);
 		this.lotus0.setLayoutY(302);
@@ -138,23 +138,32 @@ public class BackgroundPanel3 extends BackgroundPanel {
 		arc4.setStroke(Color.WHITE);
 		arc4.setStrokeWidth(2);
 		this.getChildren().add(arc4);
-//		this.startAnimation();
-		leaf1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+		this.getChildren().add(leaf1);
+
+		this.setOnMouseClicked(new EventHandler<MouseEvent>() { 
 			@Override
-			public void handle(MouseEvent event) {
+			public void handle(MouseEvent event) { 
 				// TODO Auto-generated method stub
 			
 				
-				Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10000), new KeyValue(arc1.radiusXProperty(), 150)),
+				Timeline timeline = new Timeline(new KeyFrame(Duration.millis(0), new KeyValue(arc1.radiusXProperty(), 35.5)),
+						new KeyFrame(Duration.millis(0), new KeyValue(arc1.radiusYProperty(), 21)),
+						new KeyFrame(Duration.millis(10000), new KeyValue(arc1.radiusXProperty(), 150)),
 						new KeyFrame(Duration.millis(10000), new KeyValue(arc1.radiusYProperty(), 140)),
+						new KeyFrame(Duration.millis(0), new KeyValue(arc2.radiusXProperty(), 35.5)),
+						new KeyFrame(Duration.millis(0), new KeyValue(arc2.radiusYProperty(), 21)),
 						new KeyFrame(Duration.millis(2000), new KeyValue(arc2.radiusXProperty(), 35.5)),
 						new KeyFrame(Duration.millis(2000), new KeyValue(arc2.radiusYProperty(), 21)),
 						new KeyFrame(Duration.millis(12000), new KeyValue(arc2.radiusXProperty(), 150)),
 						new KeyFrame(Duration.millis(12000), new KeyValue(arc2.radiusYProperty(), 140)),
+						new KeyFrame(Duration.millis(0), new KeyValue(arc3.radiusXProperty(), 35.5)),
+						new KeyFrame(Duration.millis(0), new KeyValue(arc3.radiusYProperty(), 21)),
 						new KeyFrame(Duration.millis(4000), new KeyValue(arc3.radiusXProperty(), 35.5)),
 						new KeyFrame(Duration.millis(4000), new KeyValue(arc3.radiusYProperty(), 21)),
 						new KeyFrame(Duration.millis(14000), new KeyValue(arc3.radiusXProperty(), 150)),
 						new KeyFrame(Duration.millis(14000), new KeyValue(arc3.radiusYProperty(), 140)),
+						new KeyFrame(Duration.millis(0), new KeyValue(arc4.radiusXProperty(), 35.5)),
+						new KeyFrame(Duration.millis(0), new KeyValue(arc4.radiusYProperty(), 21)),
 						new KeyFrame(Duration.millis(6000), new KeyValue(arc4.radiusXProperty(), 35.5)),
 						new KeyFrame(Duration.millis(6000), new KeyValue(arc4.radiusYProperty(), 21)),
 						new KeyFrame(Duration.millis(16000), new KeyValue(arc4.radiusXProperty(), 150)),
@@ -162,7 +171,7 @@ public class BackgroundPanel3 extends BackgroundPanel {
 						);
 				timeline.play();
 			
-				
+				System.out.println("aaaa");
 				FadeTransition ft1 = new FadeTransition(Duration.millis(6000), arc1);
 				ft1.setFromValue(1.0);
 				ft1.setToValue(0.0);
