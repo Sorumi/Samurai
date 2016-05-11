@@ -693,6 +693,25 @@ public class GameModel extends BaseModel implements Observer {
         }
         super.updateChange(new UpdateMessage("over",this.chessBoardModel.getStatesOfAllBlocks()));
 
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.caculateMaterial(level/10, level%10, 0, 0, 0);
+        ArrayList<Material> materials = scoreBoard.getMaterial();
+        int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[0],
+                this.chessBoardModel.getStatesOfAllBlocks()[1], this.chessBoardModel.getStatesOfAllBlocks()[2],
+                0,0,0);
+
+        this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
+        this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
+        this.players[0].getSamuraiOfNum(3).addExperience(experience[2]);
+
+        boolean[] isLevelUp = new boolean[]{this.players[0].getSamuraiOfNum(1).isUpLevel(),this.players[0].getSamuraiOfNum(2).isUpLevel(),
+                this.players[0].getSamuraiOfNum(3).isUpLevel()};
+        for (int i = 0; i < 2; i++) {
+            if(isLevelUp[i]){
+                super.updateChange(new UpdateMessage("levelup",i));
+            }
+        }
+
         //这里应该传递一些游戏的结果数据,而并不真的结束游戏
 
         System.out.println("GAME OVER!");

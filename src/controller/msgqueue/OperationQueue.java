@@ -6,6 +6,7 @@ import network.client.ClientService;
 import network.client.ClientServiceImpl;
 import network.server.HostService;
 import network.server.HostServiceImpl;
+import view.GamePanel;
 
 import java.io.Serializable;
 import java.util.Observable;
@@ -22,13 +23,15 @@ public class OperationQueue implements Runnable, Serializable {
 
 	private static BlockingQueue<Operation> queue;
 	private static GameModel gameModel;
+	private static GamePanel gamePanel;
 
 	ClientService clientService = new ClientServiceImpl();
 	HostService hostService = new HostServiceImpl();
 
-	public OperationQueue(GameModel model){
+	public OperationQueue(GameModel model, GamePanel panel){
 		queue = new ArrayBlockingQueue<>(1000);
 		gameModel = model;
+		gamePanel = panel;
 	}
 
 	public void run() {
@@ -99,6 +102,10 @@ public class OperationQueue implements Runnable, Serializable {
 
 	public static GameModel getGameModel(){
 		return gameModel;
+	}
+
+	public static GamePanel getGamePanel() {
+		return gamePanel;
 	}
 
 }
