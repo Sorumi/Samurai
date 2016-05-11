@@ -46,7 +46,6 @@ public class ResultPanel extends OrderPanel {
 	private BlockArc[] arcsTwo;
 
 	Timeline timeline;
-	Timeline timeline0;
 
 	private class BlockArc extends Arc {
 		private int blockNum;
@@ -118,7 +117,6 @@ public class ResultPanel extends OrderPanel {
 		tile.setHgap(20);
 		tile.setPrefColumns(4);
 		tile.setPrefRows(2);
-		tile.setStyle("fx-background-color: #aaaaaa");
 		for (int i = 0; i < 4; i++) {
 			MaterialPanel materialPanel = new MaterialPanel(0, 00, 3);
 			tile.getChildren().add(materialPanel);
@@ -224,20 +222,18 @@ public class ResultPanel extends OrderPanel {
 				new KeyFrame(Duration.millis(1400), new KeyValue(arcsTwo[2].lengthProperty(), 0)),
 				new KeyFrame(Duration.millis(1900), new KeyValue(arcsTwo[2].lengthProperty(), preAngleTwo * 40)));
 
-		this.flip();
 		this.setVisible(false);
-		// this.setStart();
 	}
 
 	public void setStart() {
 		this.setVisible(true);
 		timeline.play();
-		timeline0.play();
+		this.flip();
 	}
 
 	public void flip() {
 
-		timeline0 = new Timeline(new KeyFrame(Duration.millis(3000), new KeyValue(logo.rotateProperty(), 0)));
+		Timeline timeline0 = new Timeline(new KeyFrame(Duration.millis(3000), new KeyValue(logo.rotateProperty(), 0)));
 
 		// logo换成circle1
 		RotateTransition rotator1 = new RotateTransition(Duration.millis(1000), logo);
