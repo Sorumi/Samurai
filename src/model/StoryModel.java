@@ -103,7 +103,6 @@ public class StoryModel implements Serializable{
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this);
-
             objectOutputStream.close();
 
             System.out.println("save successfully");
@@ -122,8 +121,6 @@ public class StoryModel implements Serializable{
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object thisObject = objectInputStream.readObject();
             objectInputStream.close();
-
-            StoryModel s = (StoryModel) thisObject;
 
             System.out.println("load successfully : " + StoryModel.getFileNum());
 
