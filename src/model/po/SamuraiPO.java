@@ -39,7 +39,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 	private Weapon weapon;
 	private Armor armor;
 	private int healthPoint;
-	private int actionPoint = 10;
+	private int actionPoint;
+	private int totalActionPoint;
+	private int totalHealthPoint;
 
 	public static void main(String[] args) {
 		ChessBoardModel cbm = new ChessBoardModel(14);
@@ -124,13 +126,16 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.armorValue = 10;
 		this.coldRound = 0;
 		this.healthPoint = 60;
+		this.totalHealthPoint = 60;
 		this.criticalHitChance = 1;
 		this.home = home;
+		this.totalActionPoint = actionPoint;
 		this.actionPoint = actionPoint;
 	}
 
 	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,
-			int level, int armorValue, int attackValue, int dodgeChance, int healthPonit, int criticalHitRate,int actionPoint) {
+			int level, int armorValue, int attackValue, int dodgeChance, int healthPonit, int criticalHitRate,
+			int actionPoint) {
 		this.number = number;
 		this.armor = armor;
 		this.player = player;
@@ -144,7 +149,15 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.attackValue = attackValue;
 		this.criticalHitChance = criticalHitRate;
 		this.healthPoint = healthPonit;
-		this.actionPoint=actionPoint;
+		this.actionPoint = actionPoint;
+	}
+
+	public int getTotalHealthPoint() {
+		return totalHealthPoint;
+	}
+
+	public int getTotalActionPoint() {
+		return totalActionPoint;
 	}
 
 	public int getActionPoint() {
@@ -1097,9 +1110,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public int[] getAttackValue() {
-		int [] result=new int[2];
-		result[0]=attackValue+weapon.getLowAttackPoint();
-		result[1]=attackValue+weapon.getHighAttackPoint();
+		int[] result = new int[2];
+		result[0] = attackValue + weapon.getLowAttackPoint();
+		result[1] = attackValue + weapon.getHighAttackPoint();
 		return result;
 	}
 
@@ -1160,14 +1173,13 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	private void upLevel() {
-		this.criticalHitChance += 1;
-		this.dodgeChance += 1;
+		this.criticalHitChance += 2;
+		this.dodgeChance += 2;
 		this.armorValue += 5;
 		this.attackValue += 3;
-		this.healthPoint += 20;
+		this.totalHealthPoint += 30;
+		this.totalActionPoint += 1;
 		level++;
-		this.actionPoint++;
-
 	}
 
 	public void changeWeapon(Weapon weapon) {
@@ -1233,7 +1245,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public SamuraiPO clone() {
 		try {
 			SamuraiPO samuraiPO1 = new SamuraiPO(number, player, this.weapon.clone(), length, pos.clone(), home.clone(),
-					armor, level, armorValue, attackValue, dodgeChance, healthPoint, criticalHitChance,actionPoint);
+					armor, level, armorValue, attackValue, dodgeChance, healthPoint, criticalHitChance, actionPoint);
 			return samuraiPO1;
 		} catch (Exception ex) {
 			ex.printStackTrace();
