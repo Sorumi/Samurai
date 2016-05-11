@@ -113,7 +113,17 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor, Position home,
-			int actionPoint) {
+			int actionPoint,int level) {
+		this.level=level;
+		this.totalHealthPoint=60+(level-1)*30;
+		this.healthPoint=totalHealthPoint;
+		this.actionPoint=5+level;
+		//
+		this.criticalHitChance=level<<1;
+		this.dodgeChance=level<<1;
+		this.armorValue= level*5;
+		this.attackValue=level*3;
+		//
 		this.number = number;
 		this.player = player;
 		this.weapon = weapon;
