@@ -280,7 +280,22 @@ public class Images {
 	
 	//bow and arrow
 	public static Image WEAPON_400 = new Image("/./images/weapon/weapon_400_bow.png",true);
+	
+	public static Image WEAPON_411 = new Image("/./images/weapon/weapon_411_bow.png",true);
+	public static Image WEAPON_412 = new Image("/./images/weapon/weapon_412_bow.png",true);
+	public static Image WEAPON_413 = new Image("/./images/weapon/weapon_413_bow.png",true);
+	public static Image WEAPON_414 = new Image("/./images/weapon/weapon_414_bow.png",true);
+	public static Image WEAPON_415 = new Image("/./images/weapon/weapon_415_bow.png",true);
+	public static Image WEAPON_416 = new Image("/./images/weapon/weapon_416_bow.png",true);
+	
 	public static Image WEAPON_500 = new Image("/./images/weapon/weapon_500_arrow.png",true);
+	
+	public static Image WEAPON_511 = new Image("/./images/weapon/weapon_511_arrow.png",true);
+	public static Image WEAPON_512 = new Image("/./images/weapon/weapon_512_arrow.png",true);
+	public static Image WEAPON_513 = new Image("/./images/weapon/weapon_513_arrow.png",true);
+	public static Image WEAPON_514 = new Image("/./images/weapon/weapon_514_arrow.png",true);
+	public static Image WEAPON_515 = new Image("/./images/weapon/weapon_515_arrow.png",true);
+	public static Image WEAPON_516 = new Image("/./images/weapon/weapon_516_arrow.png",true);
 	
 	public static Image[] WEAPON_00 = {WEAPON_000};
 	public static Image[] WEAPON_01 = {null, WEAPON_011, WEAPON_012, WEAPON_013, WEAPON_014, WEAPON_015, WEAPON_016};
@@ -303,20 +318,20 @@ public class Images {
 	
 	//TODO
 	public static Image[] WEAPON_40 = {WEAPON_400};
-	public static Image[] WEAPON_41 = {WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400};
+	public static Image[] WEAPON_41 = {null,WEAPON_411, WEAPON_412, WEAPON_413, WEAPON_414, WEAPON_415, WEAPON_416};
 	public static Image[] WEAPON_42 = {WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400};
-	public static Image[] WEAPON_43 = {WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400, WEAPON_400};
+
 	public static Image[] WEAPON_50 = {WEAPON_500};
-	public static Image[] WEAPON_51 = {WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500};
+	public static Image[] WEAPON_51 = {null,WEAPON_511, WEAPON_512, WEAPON_513, WEAPON_514, WEAPON_515, WEAPON_516};
 	public static Image[] WEAPON_52 = {WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500};
-	public static Image[] WEAPON_53 = {WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500, WEAPON_500};
+
 	
 	public static Image[][] WEAPON_0 = {WEAPON_00, WEAPON_01, WEAPON_02, WEAPON_03};
 	public static Image[][] WEAPON_1 = {WEAPON_10, WEAPON_11, WEAPON_12, WEAPON_13};
 	public static Image[][] WEAPON_2 = {WEAPON_20, WEAPON_21, WEAPON_22, WEAPON_23};
 	public static Image[][] WEAPON_3 = {WEAPON_30, WEAPON_31, WEAPON_32, null};
-	public static Image[][] WEAPON_4 = {WEAPON_40, WEAPON_41, WEAPON_42, WEAPON_43};
-	public static Image[][] WEAPON_5 = {WEAPON_50, WEAPON_51, WEAPON_52, WEAPON_53};
+	public static Image[][] WEAPON_4 = {WEAPON_40, WEAPON_41, WEAPON_42, null};
+	public static Image[][] WEAPON_5 = {WEAPON_50, WEAPON_51, WEAPON_52, null}; 
 	
 	public static Image[][][] WEAPON = {WEAPON_0, WEAPON_1, WEAPON_2, WEAPON_3, WEAPON_4, WEAPON_5};
 	
