@@ -226,9 +226,9 @@ public class ResultPanel extends OrderPanel {
 				new KeyFrame(Duration.millis(1400), new KeyValue(arcsTwo[2].lengthProperty(), 0)),
 				new KeyFrame(Duration.millis(1900), new KeyValue(arcsTwo[2].lengthProperty(), preAngleTwo * 40)));
 
-		timeline.play();
+//		timeline.play();
 
-		this.setVisible(true);    
+		this.setVisible(false);    
 		
 		this.flip();
 	}
@@ -345,7 +345,7 @@ public class ResultPanel extends OrderPanel {
 		    	
 		    }
 		});
-		timeline0.play();
+//		timeline0.play();
 	}
 	//内部类
 	public class MaterialPanel extends Pane{
