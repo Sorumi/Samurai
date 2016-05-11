@@ -93,7 +93,9 @@ public class TerritoryPanel extends Pane {
 		exitBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				System.exit(0);				
+				StoryPanel storyPanel = (StoryPanel) TerritoryPanel.this.getParent();
+				Pane basePanel = (Pane) storyPanel.getParent();
+				basePanel.getChildren().remove(storyPanel);
 			}
 		});
 		territoryGroup.getChildren().add(exitBtn);

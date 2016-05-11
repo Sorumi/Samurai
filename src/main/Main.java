@@ -7,12 +7,14 @@ import javafx.stage.StageStyle;
 import model.GameModel;
 import view.GamePanel;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import view.MenuPanel;
 import view.StoryPanel;
 
 public class Main extends Application {
 	
 	private Scene scene;
+	public Pane basePanel;
 	
 	public MenuPanel menuPanel; 
 	
@@ -24,11 +26,14 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
+		basePanel = new Pane();
+		
 		menuPanel = new MenuPanel(this);
 		menuPanel.setPrefWidth(1200);
 		menuPanel.setPrefHeight(800);
+		basePanel.getChildren().add(menuPanel);
 		
-		scene = new Scene(menuPanel);
+		scene = new Scene(basePanel);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		primaryStage.setScene(scene);
@@ -37,7 +42,7 @@ public class Main extends Application {
 	}
 
 	public void startGame(){
-		scene.setRoot(gamePanel);
+		basePanel.getChildren().add(gamePanel);
 		this.gameModel = new GameModel(24, 14, gamePanel, 0);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
@@ -47,7 +52,7 @@ public class Main extends Application {
 	}
 
 	public void startClassicGame(){
-		scene.setRoot(gamePanel);
+		basePanel.getChildren().add(gamePanel);
 		this.gameModel = new GameModel(24, 14, gamePanel, 99);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
@@ -58,7 +63,7 @@ public class Main extends Application {
 	
 	public void startStory(){
 		this.storyPanel = new StoryPanel();
-		scene.setRoot(storyPanel);
+		basePanel.getChildren().add(storyPanel);
 	}
 
 	public static void main(String[] args) {
