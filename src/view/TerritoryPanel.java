@@ -93,7 +93,9 @@ public class TerritoryPanel extends Pane {
 		exitBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				System.exit(0);				
+				StoryPanel storyPanel = (StoryPanel) TerritoryPanel.this.getParent();
+				Pane basePanel = (Pane) storyPanel.getParent();
+				basePanel.getChildren().remove(storyPanel);
 			}
 		});
 		territoryGroup.getChildren().add(exitBtn);
@@ -189,9 +191,7 @@ public class TerritoryPanel extends Pane {
 		weatherPanel.setLayoutY(445);
 		territoryGroup.getChildren().add(weatherPanel);
 
-		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
-		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
-		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
+		this.set6Properties();
 
 		//blur
 		blur = new GaussianBlur(0);
@@ -255,6 +255,12 @@ public class TerritoryPanel extends Pane {
 			default:
 				return new int[]{0};
 		}
+	}
+
+	public void set6Properties(){
+		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
+		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
+		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
 	}
 
 	public TerritoryHandler getTerritoryHandler(){

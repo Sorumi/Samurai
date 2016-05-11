@@ -307,7 +307,8 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("samuraiKilled",i));
     }
 
-    public void attackSamurai(int samurai, int attackPoint, int armorPuncture){
+    public int attackSamurai(int samurai, int attackPoint, int armorPuncture, int isCritical){
+        System.out.println("Attack samurai : " + samurai);
         double attackPointDouble=attackPoint;
         switch (samurai){
             case 1:
@@ -319,8 +320,17 @@ public class GameModel extends BaseModel implements Observer {
                         attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(1).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[0].getSamuraiOfNum(1).getHealthPoint();
             case 2:
                 if(!this.players[0].getSamuraiOfNum(2).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
@@ -330,8 +340,17 @@ public class GameModel extends BaseModel implements Observer {
                         attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(2).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[0].getSamuraiOfNum(2).getHealthPoint();
             case 3:
                 if(!this.players[0].getSamuraiOfNum(3).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
@@ -341,41 +360,79 @@ public class GameModel extends BaseModel implements Observer {
                         attackPointDouble *= 1.5;
                     }
                     this.players[0].getSamuraiOfNum(3).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[0].getSamuraiOfNum(3).getHealthPoint();
             case 4:
-                if(!this.players[1].getSamuraiOfNum(1).checkMiss()){
-                    double ta = this.players[1].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
+                if(!this.players[1].getSamuraiOfNum(4).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(4).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (ta / (ta + 100));
                     }else{
                         attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(1).injure((int)attackPointDouble);
+                    this.players[1].getSamuraiOfNum(4).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[1].getSamuraiOfNum(4).getHealthPoint();
             case 5:
-                if(!this.players[1].getSamuraiOfNum(2).checkMiss()){
-                    double ta = this.players[1].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
+                if(!this.players[1].getSamuraiOfNum(5).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(5).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (ta / (ta + 100));
                     }else{
                         attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(2).injure((int)attackPointDouble);
+                    this.players[1].getSamuraiOfNum(5).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[1].getSamuraiOfNum(5).getHealthPoint();
             case 6:
-                if(!this.players[1].getSamuraiOfNum(3).checkMiss()){
-                    double ta = this.players[1].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
+                if(!this.players[1].getSamuraiOfNum(6).checkMiss()){
+                    double ta = this.players[1].getSamuraiOfNum(6).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (ta / (ta + 100));
                     }else{
                         attackPointDouble *= 1.5;
                     }
-                    this.players[1].getSamuraiOfNum(3).injure((int)attackPointDouble);
+                    this.players[1].getSamuraiOfNum(6).injure((int)attackPointDouble);
+
+                    if(isCritical == 0){
+                        super.updateChange(new UpdateMessage("normal-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }else{
+                        super.updateChange(new UpdateMessage("critical-attack",new int[]{samurai,(int)attackPointDouble}));
+                    }
+
+                }else{
+                    super.updateChange(new UpdateMessage("miss",samurai));
                 }
-                break;
+                return this.players[1].getSamuraiOfNum(6).getHealthPoint();
+            default:
+                return 9999;
         }
     }
 
@@ -401,25 +458,25 @@ public class GameModel extends BaseModel implements Observer {
 
         ArrayList<ActualBlock> blocks = new ArrayList<>();
 
-        for(int x = 0; x <= this.length; x++){
-            for (int y = 0; y <= this.length; y++) {
-                blocks.add(this.chessBoardModel.getActualBlock(x,y));
-            }
-        }
-
-//        if(GameModel.isClient() && !GameModel.isServer()){
-//            blocks = this.players[1].showVision();
-//            super.updateChange(new UpdateMessage("vision", blocks));
-//            return blocks;
-//        }else{
-//            blocks = this.players[0].showVision();
-//            super.updateChange(new UpdateMessage("vision", blocks));
-//            return blocks;
+//        for(int x = 0; x <= this.length; x++){
+//            for (int y = 0; y <= this.length; y++) {
+//                blocks.add(this.chessBoardModel.getActualBlock(x,y));
+//            }
 //        }
 
-
+        if(GameModel.isClient() && !GameModel.isServer()){
+            blocks = this.players[1].showVision();
             super.updateChange(new UpdateMessage("vision", blocks));
             return blocks;
+        }else{
+            blocks = this.players[0].showVision();
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
+        }
+
+
+//            super.updateChange(new UpdateMessage("vision", blocks));
+//            return blocks;
     }
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
@@ -525,43 +582,47 @@ public class GameModel extends BaseModel implements Observer {
                     }
                     switch (this.currentPlayer) {
                         case 2:
+//                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
+//                            for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null,0)) {
+//                                if (operation.getActionNum() != 99) {
+//                                    OperationQueue.addOperation(operation);
+//                                } else {
+//                                    break;
+//                                }
+//                            }
+//                            Thread.yield();
+//                           while(!OperationQueue.isEmpty()) {
+//                                try {
+//                                    Thread.yield();
+//                                }catch (Exception e){
+//                                    e.printStackTrace();
+//                                }
+//                                System.out.println("!");
+//                            }
+//                            i = 0;
+//                            positions = this.samuraiAI[0].getSamuraiPO().see();
+//                            for(Position p : positions){
+//                                if(p.getX() == this.players[0].getSamuraiOfNum(1).getPos().getX()
+//                                        && p.getY() == this.players[0].getSamuraiOfNum(1).getPos().getY()){
+//                                    i = 1;
+//                                }
+//                                if(p.getX() == this.players[0].getSamuraiOfNum(2).getPos().getX()
+//                                        && p.getY() == this.players[0].getSamuraiOfNum(2).getPos().getY()){
+//                                    i = 2;
+//                                }
+//                                if(p.getX() == this.players[0].getSamuraiOfNum(3).getPos().getX()
+//                                        && p.getY() == this.players[0].getSamuraiOfNum(3).getPos().getY()){
+//                                    i = 3;
+//                                }
+//                            }
+//                            System.out.println("—————————————");
+//                            System.out.println(this.samuraiAI[0].getSamuraiPO().getActionPoint());
+//                            for (ActionOperation operation2 : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), null, 1)) {
+//                                OperationQueue.addOperation(operation2);
+//                            }
                             this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null,0)) {
-                                if (operation.getActionNum() != 99) {
-                                    OperationQueue.addOperation(operation);
-                                } else {
-                                    break;
-                                }
-                            }
-                            Thread.yield();
-                           while(!OperationQueue.isEmpty()) {
-                                try {
-                                    Thread.yield();
-                                }catch (Exception e){
-                                    e.printStackTrace();
-                                }
-                                System.out.println("!");
-                            }
-                            i = 0;
-                            positions = this.samuraiAI[0].getSamuraiPO().see();
-                            for(Position p : positions){
-                                if(p.getX() == this.players[0].getSamuraiOfNum(1).getPos().getX()
-                                        && p.getY() == this.players[0].getSamuraiOfNum(1).getPos().getY()){
-                                    i = 1;
-                                }
-                                if(p.getX() == this.players[0].getSamuraiOfNum(2).getPos().getX()
-                                        && p.getY() == this.players[0].getSamuraiOfNum(2).getPos().getY()){
-                                    i = 2;
-                                }
-                                if(p.getX() == this.players[0].getSamuraiOfNum(3).getPos().getX()
-                                        && p.getY() == this.players[0].getSamuraiOfNum(3).getPos().getY()){
-                                    i = 3;
-                                }
-                            }
-                            System.out.println("—————————————");
-                            System.out.println(this.samuraiAI[0].getSamuraiPO().getActionPoint());
-                            for (ActionOperation operation2 : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), null, 1)) {
-                                OperationQueue.addOperation(operation2);
+                                OperationQueue.addOperation(operation);
                             }
                             break;
                         case 3:
@@ -630,7 +691,7 @@ public class GameModel extends BaseModel implements Observer {
         if(this.timer != null) {
             this.timer.cancel();
         }
-        super.updateChange(new UpdateMessage("over",this.chessBoardModel));
+        super.updateChange(new UpdateMessage("over",this.chessBoardModel.getStatesOfAllBlocks()));
 
         //这里应该传递一些游戏的结果数据,而并不真的结束游戏
 

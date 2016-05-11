@@ -21,6 +21,7 @@ public class WeatherHandler {
 	    	  fg.removeAll();
 	    	  bg.setDay();
 	    	  bg.setSun(true);
+	    	  bg.restartAll();
 	      }
 	};
 	
@@ -31,6 +32,7 @@ public class WeatherHandler {
 	    	  bg.setNight();
 	    	  bg.setMoon(true);
 	    	  bg.setStars(true);
+	    	  bg.restartAll();
 	      }
 	};
 	
@@ -40,6 +42,7 @@ public class WeatherHandler {
 	    	  fg.removeAll();
 	    	  bg.setNight();
 	    	  bg.setStars(true);
+	    	  bg.restartAll();
 	      }
 	};
 	

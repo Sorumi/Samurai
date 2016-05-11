@@ -257,8 +257,44 @@ public class SamuraiWeaponView extends OrderImageView {
 			case 400:
 				this.setFitWidth(18*SCALE);
 				break;
+			case 411:
+				this.setFitWidth(54*SCALE);
+				break;
+			case 412:
+				this.setFitWidth(54*SCALE);
+				break;
+			case 413:
+				this.setFitWidth(45*SCALE);
+				break;
+			case 414:
+				this.setFitWidth(60*SCALE);
+				break;
+			case 415:
+				this.setFitWidth(84*SCALE);
+				break;
+			case 416:
+				this.setFitWidth(72*SCALE);
+				break;
 			case 500:
 				this.setFitWidth(50*SCALE);
+				break;
+			case 511:
+				this.setFitWidth(147*SCALE);
+				break;
+			case 512:
+				this.setFitWidth(150*SCALE);
+				break;
+			case 513:
+				this.setFitWidth(156*SCALE);
+				break;
+			case 514:
+				this.setFitWidth(153*SCALE);
+				break;
+			case 515:
+				this.setFitWidth(153*SCALE);
+				break;
+			case 516:
+				this.setFitWidth(153*SCALE);
 				break;
 		}
 		
