@@ -80,7 +80,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.criticalHitChance = 1;
 		this.actionPoint = 30;
 		if (number == 1 && player == 0) {
-			pos = new Position(0,0);
+			pos = new Position(0, 0);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 			cbm.changeActualBlock(pos.getX(), pos.getY(), number);
 			home = pos.clone();
@@ -1150,6 +1150,10 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public int getLength() {
 		return length;
+	}
+
+	public void addExperience(int experience) {
+		this.experience = this.experience + experience;
 	}
 
 	public boolean isUpLevel() {
