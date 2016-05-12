@@ -229,6 +229,15 @@ public class GamePanel extends Pane implements Observer{
 			case 3:
 				this.samuraiProperties_3 = properties;
 				break;
+			case 4:
+				this.samuraiProperties_4 = properties;
+				break;
+			case 5:
+				this.samuraiProperties_5 = properties;
+				break;
+			case 6:
+				this.samuraiProperties_6 = properties;
+				break;
 		}
 	}
 
@@ -240,6 +249,12 @@ public class GamePanel extends Pane implements Observer{
 				return this.samuraiProperties_2;
 			case 3:
 				return this.samuraiProperties_3;
+			case 4:
+				return this.samuraiProperties_4;
+			case 5:
+				return this.samuraiProperties_5;
+			case 6:
+				return this.samuraiProperties_6;
 			default:
 				return new int[]{0};
 		}

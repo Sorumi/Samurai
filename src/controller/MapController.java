@@ -41,6 +41,12 @@ public class MapController extends TerritoryController {
         this.gamePanel.setSamuraiWeapon(5,this.gameModel.getSamuraiOfNum(5).getWeapon().getType());
         this.gamePanel.setSamuraiWeapon(6,this.gameModel.getSamuraiOfNum(6).getWeapon().getType());
 
+        for (int i = 4; i <= 6; i++) {
+            SamuraiPO tmpPO = this.gameModel.getSamuraiOfNum(i);
+            this.gamePanel.set6Properties(i,new int[]{tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
+                    tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()});
+        }
+
         for (int i = 1; i <= 6; i++) {
             Position pos = this.gameModel.getSamuraiOfNum(i).getHome();
             this.gameModel.getChessBoardModel().changeActualBlock(pos.getX(), pos.getY(), true);
