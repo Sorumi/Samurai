@@ -1,6 +1,9 @@
 package view.eventhandler;
 
 import controller.MapController;
+import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StartGameOperation;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -46,12 +49,18 @@ public class MapHandler {
 	    	  StoryPanel storyPanel =  (StoryPanel) mapPanel.getParent();
 	    	  LevelSelectPanel selectPanel = (LevelSelectPanel)btn.getParent();
 	    	  int num = selectPanel.level*10 + btn.num;
-	    	  storyPanel.gamePanel = new GamePanel(15, num);
-	    	  storyPanel.getChildren().add(storyPanel.gamePanel);
+	    	  
+	    	  Platform.runLater(new Runnable(){
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						storyPanel.gamePanel = new GamePanel(15, num);
+				    	  storyPanel.getChildren().add(storyPanel.gamePanel);
 
-			  mapController.setGamePanel(storyPanel.gamePanel);
-			  mapController.startGameAtLevel(num);
-
+						  mapController.setGamePanel(storyPanel.gamePanel);
+						  mapController.startGameAtLevel(num);
+					}
+	    	  });
 			  storyPanel.gamePanel.toFront();
 	      }
 	};

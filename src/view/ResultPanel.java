@@ -44,8 +44,10 @@ public class ResultPanel extends OrderPanel {
 
 	private BlockArc[] arcsOne;
 	private BlockArc[] arcsTwo;
+	
+	private int[] blocks;
 
-	Timeline timeline;
+	private Timeline timeline;
 
 	private class BlockArc extends Arc {
 		private int blockNum;
@@ -58,7 +60,9 @@ public class ResultPanel extends OrderPanel {
 	public void setResults(int[] results) {
 		for (int i : results) {
 			System.out.println(i);
+//			this.blocks[i]
 		}
+
 	}
 
 	public ResultPanel(GamePanel gamePanel) {
@@ -197,7 +201,10 @@ public class ResultPanel extends OrderPanel {
 		logo.setLayoutY(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
 		this.getChildren().add(logo);
 		this.getChildren().addAll(circle3, resultGroup, materialGroup);
-
+		
+		
+		
+		
 		// 40是假数字！！
 		double startAngle = 90.0;
 		timeline = new Timeline(
