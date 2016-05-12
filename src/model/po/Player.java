@@ -125,8 +125,6 @@ public class Player {
                             if(this.playerNum == 0){
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(4).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(4).getPos().getY()){
-                                    this.gameModel.getSamuraiOfNum(4).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-
                                     if(!killedSamurais.contains(4)) {
                                         killedSamurais.add(4);
                                     }
@@ -138,8 +136,6 @@ public class Player {
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(5).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(5).getPos().getY()){
-                                    this.gameModel.getSamuraiOfNum(5).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-
                                     if(!killedSamurais.contains(5)) {
                                         killedSamurais.add(5);
                                     }
@@ -151,8 +147,6 @@ public class Player {
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(6).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(6).getPos().getY()){
-                                    this.gameModel.getSamuraiOfNum(6).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-
                                     if(!killedSamurais.contains(6)) {
                                         killedSamurais.add(6);
                                     }
@@ -165,8 +159,6 @@ public class Player {
                             }else{
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(1).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(1).getPos().getY()){
-                                    this.gameModel.getSamuraiOfNum(1).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-
                                     if(!killedSamurais.contains(1)) {
                                         killedSamurais.add(1);
                                     }
@@ -178,8 +170,6 @@ public class Player {
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(2).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(2).getPos().getY()){
-                                    this.gameModel.getSamuraiOfNum(2).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-
                                     if(!killedSamurais.contains(2)) {
                                         killedSamurais.add(2);
                                     }
@@ -190,8 +180,6 @@ public class Player {
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(3).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(3).getPos().getY()){
-                                    this.gameModel.getSamuraiOfNum(3).beKilled(this.gameModel.getLength(),this.chessBoardModel);
-
                                     if(!killedSamurais.contains(3)) {
                                         killedSamurais.add(3);
                                     }
@@ -226,7 +214,7 @@ public class Player {
                                         this.gameModel.updateKilled(integer);
                                         this.gameModel.updateHome(integer);
                                         this.gameModel.updateVisible(this.gameModel.updateVision());
-
+                                        this.gameModel.getSamuraiOfNum(integer).beKilled(this.chessBoardModel);
                                         this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).updateKillNum(1);
 
                                         System.out.println("~" + this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getKillNum());
