@@ -107,7 +107,6 @@ public class GamePanel extends Pane implements Observer{
 			@Override
 			public void handle(ActionEvent event) {
 				System.out.println("LEVEL : " + level);
-				// TODO Auto-generated method stub
 				switch(level){
 					case 99:
 					case 0:
@@ -128,7 +127,6 @@ public class GamePanel extends Pane implements Observer{
 						OperationQueue.addOperation(new EndOperation());
 						break;
 				}
-
 			}
 		});
 		OrderPanel systemPanel = new OrderPanel();
@@ -174,6 +172,7 @@ public class GamePanel extends Pane implements Observer{
 		B3 = new SamuraiPanel(6, size);
 		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
 
+		//只有故事模式有 statePanel 和 resultPanel
 		if(level < 99 && level > 0) {
 			//stateHandler
 			stateHandler = new StateHandler(this);
@@ -195,13 +194,12 @@ public class GamePanel extends Pane implements Observer{
 			B3.setOnMouseEntered(stateHandler.showStatePanelInG);
 			B3.setOnMouseExited(stateHandler.closeStatePanelInG);
 
+			//resultpanel
+			resultPanel = new ResultPanel(this);
+			this.getChildren().add(resultPanel);
+			resultPanel.setZOrder(999);
 		}
 
-		//resultpanel
-		resultPanel = new ResultPanel(this);
-		this.getChildren().add(resultPanel);
-
-		//add
 		backgroundPanel.setZOrder(-2);
 		systemPanel.setZOrder(-1);
 		chessBoard.setZOrder(-3);
@@ -210,12 +208,11 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
-		resultPanel.setZOrder(999);
 
 		if(level < 99 && level > 0) {
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel);
 		}else{
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, resultPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel);
 		}
 		this.setOrder();
 	}
@@ -304,7 +301,6 @@ public class GamePanel extends Pane implements Observer{
 		Platform.runLater(new Runnable(){
 			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				Collections.sort(orderList);
 				GamePanel.this.getChildren().setAll(orderList);
 			}
@@ -350,11 +346,7 @@ public class GamePanel extends Pane implements Observer{
 
 		if(currentPlayer == playerA) {
 			currentSamurai.setCanActionProperty(true);
-//			if(!actionPanel.isAppear()) {
-				currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
-//			}else {
-//				currentSamurai.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
-//			}
+			currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
 			actionPanel.setCurrentSamurai(currentSamurai);
             arrow.setCurrentSamurai(currentSamurai);
 		}else{
@@ -373,10 +365,9 @@ public class GamePanel extends Pane implements Observer{
 							if(currentPlayer == playerA) {
 								arrow.setActualLocation();
 								arrow.setVisible(true);
-
-//								if(level < 99 && level > 0) {
-//									currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
-//								}
+								if(level < 99 && level > 0) {
+									currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
+								}
 							}
 						} else {
 							arrow.setVisible(false);
@@ -413,18 +404,12 @@ public class GamePanel extends Pane implements Observer{
 		}
 	}
 
-	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
 
-		
 		Platform.runLater(new Runnable(){
-			@Override
 			public void run() {
-				// TODO Auto-generated method stub
 				if(key.equals("samurai")){
 					setCurrentSamurai((int) notifingObject.getValue());
 				}else if(key.equals("player")){
@@ -443,7 +428,6 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("samuraiMove")){
 					Position position = (Position)notifingObject.getValue();
 					currentSamurai.move(position.getX(), position.getY());
-
 					if (currentPlayer.getPlayer() == 0) {
 						actionPanel.reset();
 						setOrder();
@@ -458,8 +442,7 @@ public class GamePanel extends Pane implements Observer{
 					}
 				}else if(key.equals("samuraiKilled")){
 					getSamurai((int)notifingObject.getValue()).setInjured(true);
-				}else if(key.equals("visible")) {
-		            System.out.println("visible");
+				}else if(key.equals("visible"))
 		            A1.setVisible(true);
 		            A2.setVisible(true);
 		            A3.setVisible(true);
@@ -484,7 +467,6 @@ public class GamePanel extends Pane implements Observer{
 		                }
 		            }
 				}else if(key.equals("vision")){
-					System.out.println("vision");
 					chessBoard.see((ArrayList<ActualBlock>) notifingObject.getValue());
 					chessBoard.setTmpBlocks((ArrayList<ActualBlock>) notifingObject.getValue());
 				}else if(key.equals("home")){
@@ -540,12 +522,8 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("materials")){
 
 				}
-				
-				
-				
 			}
 		});
-		
 	}
 
 }
