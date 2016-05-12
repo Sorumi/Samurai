@@ -423,8 +423,12 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("actionPoint")){
 					currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
 					actionPanel.setPointsRest((int)notifingObject.getValue());
+					System.out.println("rest: " + (int)notifingObject.getValue());
+					
 				}else if(key.equals("pointsTotal")){
 					currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
+					System.out.println("total: " + (int)notifingObject.getValue());
+					
 				}else if(key.equals("samuraiMove")){
 					Position position = (Position)notifingObject.getValue();
 					currentSamurai.move(position.getX(), position.getY());
