@@ -577,14 +577,14 @@ public class SamuraiAI {
 						int temp = random.nextInt(2);
 						switch (temp) {
 						case 1:
-							if (samuraiPO1.getPos().getX() <= samuraiPO1.getLength()) {
+							if (samuraiPO1.getPos().getX() <= samuraiPO1.getLength()/2) {
 								moveDirection1 = 3;
 							} else {
 								moveDirection1 = 0;
 							}
 							break;
 						default:
-							if (samuraiPO1.getPos().getY() <= samuraiPO1.getLength()) {
+							if (samuraiPO1.getPos().getY() <= samuraiPO1.getLength()/2) {
 								moveDirection1 = 2;
 							} else {
 								moveDirection1 = 1;
@@ -604,16 +604,33 @@ public class SamuraiAI {
 		}else {
 			while (samuraiPO1.getActionPoint() >= 2) {
 				if (samuraiPO1.getActionPoint() >= 2) {
-					do {
-						moveDirection1 = random.nextInt(4);
-					} while (!samuraiPO1.checkMove(chessBoardModel1)[moveDirection1]);
+					boolean flag = false;
+					while (!flag) {
+						int temp = random.nextInt(2);
+						switch (temp) {
+						case 1:
+							if (samuraiPO1.getPos().getX() <= samuraiPO1.getLength()/2) {
+								moveDirection1 = 3;
+							} else {
+								moveDirection1 = 0;
+							}
+							break;
+						default:
+							if (samuraiPO1.getPos().getY() <= samuraiPO1.getLength()/2) {
+								moveDirection1 = 2;
+							} else {
+								moveDirection1 = 1;
+							}
+							break;
+						}
+						flag=samuraiPO1.checkMove(chessBoardModel1)[moveDirection1];
+					}
 					samuraiPO1.move(moveDirection1, chessBoardModel1);
 					//
 					// samuraiPO.move(moveDirection1, chessBoardModel);
 					//
 					actionOperations.add(new ActionOperation(1, moveDirection1));
 					samuraiPO1.changeActionPoint(2);
-					// System.out.println(samuraiPO1.getActionPoint());
 				}
 				if (samuraiPO1.getActionPoint() >= 4) {
 					for (int x = 0; x < 4; x++) {

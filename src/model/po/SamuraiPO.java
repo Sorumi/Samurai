@@ -119,8 +119,8 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.level=level;
 		this.totalHealthPoint=60+(level-1)*30;
 		this.healthPoint=totalHealthPoint;
-		this.totalActionPoint=5+level;
-		this.actionPoint=totalActionPoint;
+		this.totalActionPoint=actionPoint;
+		this.actionPoint=actionPoint;
 		//
 		this.criticalHitChance=level<<1;
 		this.dodgeChance=level<<1;
@@ -142,7 +142,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.totalHealthPoint = 60;
 		this.criticalHitChance = 1;
 		this.home = home;
-		this.actionPoint = actionPoint;
 		this.killNum = 0;
 	}
 
