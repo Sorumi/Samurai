@@ -21,9 +21,7 @@ public class StoryModel implements Serializable{
     private MaterialLibrary materialLibrary;
     private InformationLibrary informationLibrary;
 
-    private int experience;
     private int money;
-    private int level;
 
     private static int fileNum;
 
@@ -32,9 +30,7 @@ public class StoryModel implements Serializable{
     private StoryModel(){
         gameModel = new GameModel();
 
-        this.experience = 0;
         this.money = 0;
-        this.level = 1;
 
         this.armory = new Armory();
         this.armory.initialize();
@@ -44,9 +40,9 @@ public class StoryModel implements Serializable{
         this.informationLibrary = new InformationLibrary();
         this.informationLibrary.initialize();
 
-        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(0,0),30,level);
-        this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(7,0),30,level);
-        this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(14,0),30,level);
+        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(2,12),30,1);
+        this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(7,0),30,1);
+        this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(14,0),30,1);
 
         this.time = new Date();
     }
@@ -163,7 +159,6 @@ public class StoryModel implements Serializable{
         storyModel.samuraiPO_2 = sModel.samuraiPO_2;
         storyModel.samuraiPO_3 = sModel.samuraiPO_3;
         storyModel.time = sModel.time;
-        storyModel.experience = sModel.experience;
         storyModel.money = sModel.money;
     }
 

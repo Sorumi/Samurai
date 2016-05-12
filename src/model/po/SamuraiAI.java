@@ -21,7 +21,7 @@ public class SamuraiAI {
 				new Armor(911, 5, 2, materialTag, materialItem, materialNumber, true, nextArmor, 3));
 		SamuraiPO No2 = new SamuraiPO(2, 0, new Weapon(1), 14, cbm, new Armor());
 		SamuraiPO No3 = new SamuraiPO(3, 0, new Weapon(2), 14, cbm, new Armor());
-		SamuraiPO No4 = new SamuraiPO(4, 1, new Weapon(0), 14, cbm,
+		SamuraiPO No4 = new SamuraiPO(4, 1, new Weapon(2), 14, cbm,
 				new Armor(911, 5, 2, materialTag, materialItem, materialNumber, true, nextArmor, 3));
 		SamuraiPO No5 = new SamuraiPO(5, 1, new Weapon(1), 14, cbm, new Armor());
 		SamuraiPO No6 = new SamuraiPO(6, 1, new Weapon(2), 14, cbm, new Armor());
@@ -31,12 +31,12 @@ public class SamuraiAI {
 		SamuraiAI mine4 = new SamuraiAI(No4, 1, cbm, 1);
 		SamuraiAI mine5 = new SamuraiAI(No5, 1, cbm, 1);
 		SamuraiAI mine6 = new SamuraiAI(No6, 1, cbm, 1);
-		cbm.changeActualBlock(5, 1, true);
-		cbm.changeActualBlock(7, 2, true);
-		for (int i = 0; i < 4; i++) {
-			System.out.println(No2.getPos().getX() + " " + No2.getPos().getY());
-			mine2.storyCalculate(null, new Position(0, 4));
-			System.out.println(No2.getPos().getX() + " " + No2.getPos().getY());
+//		cbm.changeActualBlock(5, 1, true);
+//		cbm.changeActualBlock(7, 2, true);
+		for (int i = 0; i < 1; i++) {
+			System.out.println(No4.getPos().getX() + " " + No2.getPos().getY());
+			mine4.storyCalculate(null, new Position(0, 4));
+			System.out.println(No4.getPos().getX() + " " + No2.getPos().getY());
 			print(cbm);
 			/*
 			 * mine4.storyCalculate(null, null); print(cbm);
@@ -98,7 +98,7 @@ public class SamuraiAI {
 
 	public ArrayList<ActionOperation> storyCalculate(SamuraiPO enemySamuraiPO, Position aidPosition) {
 		//
-		// samuraiPO.setActionPoint(10);
+		//samuraiPO.setActionPoint(10);
 		//
 		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
 		if (enemySamuraiPO != null) {
@@ -528,8 +528,8 @@ public class SamuraiAI {
 	private int sumArea(ChessBoardModel cbm) {
 		int result = 0;
 		if (player == 0) {
-			for (int x = 0; x < samuraiPO.getLength(); x++) {
-				for (int y = 0; y < samuraiPO.getLength(); y++) {
+			for (int x = 0; x <= samuraiPO.getLength(); x++) {
+				for (int y = 0; y <= samuraiPO.getLength(); y++) {
 					if (cbm.getActualBlockState(x, y) == 1 || cbm.getActualBlockState(x, y) == 2
 							|| cbm.getActualBlockState(x, y) == 3) {
 						result++;
@@ -537,8 +537,8 @@ public class SamuraiAI {
 				}
 			}
 		} else {
-			for (int x = 0; x < samuraiPO.getLength(); x++) {
-				for (int y = 0; y < samuraiPO.getLength(); y++) {
+			for (int x = 0; x <=samuraiPO.getLength(); x++) {
+				for (int y = 0; y <= samuraiPO.getLength(); y++) {
 					if (cbm.getActualBlockState(x, y) == 4 || cbm.getActualBlockState(x, y) == 5
 							|| cbm.getActualBlockState(x, y) == 6) {
 						result++;

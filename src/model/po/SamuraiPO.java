@@ -214,49 +214,14 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public Position getHome() {
-		switch (number) {
-		case 1:
-			return new Position(0, 0);
-		case 2:
-			return new Position(length / 2, 0);
-		case 3:
-			return new Position(length, 0);
-		case 4:
-			return new Position(0, length);
-		case 5:
-			return new Position(length / 2, length);
-		default:
-			return new Position(length, length);
-		}
+		return this.home;
 	}
 
-	public void beKilled(int length, ChessBoardModel cbm) {
-		Position tmpPos = pos;
-		if (number == 1 && player == 0) {
-			pos = new Position(0, 0);
-			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
-		} else if (number == 2 && player == 0) {
-			pos = new Position(length / 2, 0);
-			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
-		} else if (number == 3 && player == 0) {
-			pos = new Position(length, 0);
-			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
-		} else if (number == 4 && player == 1) {
-			pos = new Position(0, length);
-			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
-		} else if (number == 5 && player == 1) {
-			pos = new Position(length / 2, length);
-			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
-		} else if (number == 6 && player == 1) {
-			pos = new Position(length, length);
-			// cbm.changeActualBlock(pos.getX(), pos.getY(), number);
-			cbm.changeActualBlock(pos.getX(), pos.getY(), true);
-		}
+	public void beKilled(ChessBoardModel cbm) {
+		cbm.changeActualBlock(this.pos.getX(),this.pos.getY(),false);
+		Position tmpPos = home;
+		this.pos = home;
+		cbm.changeActualBlock(tmpPos.getX(),tmpPos.getY(),true);
 		if (!hide) {
 			cbm.changeActualBlock(tmpPos.getX(), tmpPos.getY(), false);
 		}
@@ -1249,7 +1214,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		Random random = new Random();
 		if (random.nextInt(100) + 1 <= criticalHitRate) {
 			result[0] = (weapon.getAttackPoint() + attackValue) * 2;
-			result[3] = 1;
+			result[2] = 1;
 		} else {
 			result[0] = weapon.getAttackPoint() + attackValue;
 		}
