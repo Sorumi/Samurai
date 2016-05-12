@@ -135,6 +135,7 @@ public class SamuraiAI {
 			return greedy(samuraiPOClone, cbm);
 		//
 		case 2:
+			System.out.println(samuraiPOClone.getActionPoint());
 			if (enemySamuraiPO == null) {
 				actionOperations = greedy(samuraiPOClone, cbm);
 				return actionOperations;

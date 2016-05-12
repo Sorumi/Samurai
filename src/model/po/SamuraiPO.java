@@ -146,6 +146,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 		//home 和 pos 关系?(反正都要初始化,一开始没这句的时候所有的调用  xxxSamurai.getPos()都是空指针
 		this.pos = home;
+		cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 
 
 

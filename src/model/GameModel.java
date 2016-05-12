@@ -687,19 +687,19 @@ public class GameModel extends BaseModel implements Observer {
 //                            for (ActionOperation operation2 : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), null, 1)) {
 //                                OperationQueue.addOperation(operation2);
 //                            }
-                            this.samuraiAI[0].getSamuraiPO().setActionPoint(10);
+                            this.samuraiAI[0].getSamuraiPO().setActionPoint(samuraiAI[0].getSamuraiPO().getTotalActionPoint());
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
                             break;
                         case 3:
-                            this.samuraiAI[1].getSamuraiPO().setActionPoint(10);
+                            this.samuraiAI[1].getSamuraiPO().setActionPoint(samuraiAI[1].getSamuraiPO().getTotalActionPoint());
                             for (ActionOperation operation : samuraiAI[1].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
                             break;
                         case 6:
-                            this.samuraiAI[2].getSamuraiPO().setActionPoint(10);
+                            this.samuraiAI[2].getSamuraiPO().setActionPoint(samuraiAI[2].getSamuraiPO().getTotalActionPoint());
                             for (ActionOperation operation : samuraiAI[2].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i),null)) {
                                 OperationQueue.addOperation(operation);
                             }
