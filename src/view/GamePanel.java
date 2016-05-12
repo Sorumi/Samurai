@@ -73,7 +73,7 @@ public class GamePanel extends Pane implements Observer{
 	private ImageView bg;
 
 	protected RoundPanel roundPanel;
-	
+	protected PropPanel propPanel;
 	protected ResultPanel resultPanel;
 	
 	private ImageView bgImage;
@@ -140,7 +140,11 @@ public class GamePanel extends Pane implements Observer{
 		//round
 		roundPanel = new RoundPanel(roundTotal);
 		this.getChildren().add(roundPanel);
-
+		
+		//prop
+		propPanel = new PropPanel();
+		this.getChildren().add(propPanel);
+		
 		//player
 		playerA = new PlayerPanel(0, timeTotal);
 		playerB = new PlayerPanel(1, timeTotal);
@@ -208,11 +212,12 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
+		propPanel.setZOrder(999);
 
 		if(level < 99 && level > 0) {
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel);
 		}else{
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, propPanel);
 		}
 		this.setOrder();
 	}
