@@ -46,17 +46,17 @@ public class Player {
         this.chessBoardModel = this.gameModel.getChessBoardModel();
         this.samuraiPOs = new SamuraiPO[7];
         if(playerNum == 0){
-            samuraiPOs[1] = sPOs[1];
-            samuraiPOs[2] = sPOs[2];
-            samuraiPOs[3] = sPOs[3];
+            this.samuraiPOs[1] = sPOs[1];
+            this.samuraiPOs[2] = sPOs[2];
+            this.samuraiPOs[3] = sPOs[3];
 
             System.out.println("Weapon number 1: "+samuraiPOs[1].getWeapon().getType());
             System.out.println("Weapon number 2: "+samuraiPOs[2].getWeapon().getType());
             System.out.println("Weapon number 3: "+samuraiPOs[3].getWeapon().getType());
         }else if(playerNum == 1) {
-            samuraiPOs[4] = sPOs[0];
-            samuraiPOs[5] = sPOs[1];
-            samuraiPOs[6] = sPOs[2];
+            this.samuraiPOs[4] = sPOs[0];
+            this.samuraiPOs[5] = sPOs[1];
+            this.samuraiPOs[6] = sPOs[2];
 
             System.out.println("Weapon number 4: "+samuraiPOs[4].getWeapon().getType());
             System.out.println("Weapon number 5: "+samuraiPOs[5].getWeapon().getType());

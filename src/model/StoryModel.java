@@ -26,7 +26,6 @@ public class StoryModel implements Serializable{
     private Date time;
 
     private StoryModel(){
-
         gameModel = new GameModel();
 
         this.armory = new Armory();
@@ -37,9 +36,12 @@ public class StoryModel implements Serializable{
         this.informationLibrary = new InformationLibrary();
         this.informationLibrary.initialize();
 
-        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
-        this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
-        this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),gameModel.getLength(),gameModel.getChessBoardModel(),new Armor());
+        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),new Armor(),new Position(0,0),30,1);
+        this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),new Armor(),new Position(7,0),30,1);
+        this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),14,gameModel.getChessBoardModel(),new Armor(),new Position(14,0),30,1);
+
+        System.out.println("Story constructed.");
+        System.out.println(this.samuraiPO_2.getPos().getX());
 
         this.time = new Date();
     }

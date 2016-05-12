@@ -115,7 +115,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor, Position home,
-			int actionPoint,int level) {
+			int actionPoint, int level) {
 		this.level=level;
 		this.totalHealthPoint=60+(level-1)*30;
 		this.healthPoint=totalHealthPoint;
@@ -142,7 +142,16 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.totalHealthPoint = 60;
 		this.criticalHitChance = 1;
 		this.home = home;
+
+
+		//home 和 pos 关系?(反正都要初始化,一开始没这句的时候所有的调用  xxxSamurai.getPos()都是空指针
+		this.pos = home;
+
+
+
 		this.killNum = 0;
+
+		System.out.println("Home: " + home.getX() + " , " + home.getY());
 	}
 
 	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,

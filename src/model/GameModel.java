@@ -77,6 +77,7 @@ public class GameModel extends BaseModel implements Observer {
     public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
 
         Thread.currentThread().setPriority(1);
+        this.armory = StoryModel.getStoryModel().getArmory();
 
         this.level = level;
         this.length = length;
@@ -93,9 +94,6 @@ public class GameModel extends BaseModel implements Observer {
         this.playerSeq = new int[]{0,1,1,0,0,1};
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
-        players[0].setSamuraiPOs(samuraiPOs);
-
-        players[1] = new Player(this,1);
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
 
@@ -111,143 +109,159 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],0,this.chessBoardModel,1);
                 break;
             case 12:
-             	aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(12), 14, chessBoardModel, armory.getArmor(911), new Position(0, length), 12, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(12), 14, chessBoardModel, armory.getArmor(911), new Position(0, length), 12, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(112), 14, chessBoardModel, armory.getArmor(911), new Position(length/2, length), 12, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(212), 14, chessBoardModel, armory.getArmor(911), new Position(length, length), 12, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],0,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 13:
-             	aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(13), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 12, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(13), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 12, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(133), 14, chessBoardModel, armory.getArmor(912), new Position(length/2, length), 12, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(213), 14, chessBoardModel, armory.getArmor(912), new Position(length, length), 12, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 21:
-            	    aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(12), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 14, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(12), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 14, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(112), 14, chessBoardModel, armory.getArmor(912), new Position(length/2, length), 14, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(212), 14, chessBoardModel, armory.getArmor(912), new Position(length, length), 14, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),0,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],0,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 22:
-                	aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(13), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 16, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(13), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 16, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(133), 14, chessBoardModel, armory.getArmor(912), new Position(length/2, length), 16, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(213), 14, chessBoardModel, armory.getArmor(912), new Position(length, length), 16, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 23:
-             	aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(14), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 16, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(14), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 16, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(124), 14, chessBoardModel, armory.getArmor(912), new Position(length/2, length), 16, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(234), 14, chessBoardModel, armory.getArmor(933), new Position(length, length), 16, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 31:
-            	    aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(33), 14, chessBoardModel, armory.getArmor(933), new Position(0, length), 16, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(33), 14, chessBoardModel, armory.getArmor(933), new Position(0, length), 16, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(113), 14, chessBoardModel, armory.getArmor(913), new Position(length/2, length), 16, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(323), 14, chessBoardModel, armory.getArmor(913), new Position(length, length), 16, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 32:
-            	    aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(233), 14, chessBoardModel, armory.getArmor(914), new Position(0, length), 16, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(233), 14, chessBoardModel, armory.getArmor(914), new Position(0, length), 16, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(23), 14, chessBoardModel, armory.getArmor(933), new Position(length/2, length), 16, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(413), 14, chessBoardModel, armory.getArmor(913), new Position(length, length), 16, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],2,this.chessBoardModel,1);
                 break;
             case 33:
-            	    aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(14), 14, chessBoardModel, armory.getArmor(914), new Position(0, length), 18, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(14), 14, chessBoardModel, armory.getArmor(914), new Position(0, length), 18, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(424), 14, chessBoardModel, armory.getArmor(924), new Position(length/2, length), 18, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(324), 14, chessBoardModel, armory.getArmor(934), new Position(length, length), 18, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
                 break;
             case 41:
-            	    aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(234), 14, chessBoardModel, armory.getArmor(924), new Position(0, length), 18, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(234), 14, chessBoardModel, armory.getArmor(924), new Position(0, length), 18, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(134), 14, chessBoardModel, armory.getArmor(934), new Position(length/2, length), 18, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(314), 14, chessBoardModel, armory.getArmor(915), new Position(length, length), 18, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],1,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 42:
-            	    aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(115), 14, chessBoardModel, armory.getArmor(925), new Position(0, length), 20, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(115), 14, chessBoardModel, armory.getArmor(925), new Position(0, length), 20, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(15), 14, chessBoardModel, armory.getArmor(935), new Position(length/2, length), 20, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(414), 14, chessBoardModel, armory.getArmor(915), new Position(length, length), 20, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],2,this.chessBoardModel,1);
                 break;
             case 43:
-            	    aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(415), 14, chessBoardModel, armory.getArmor(916), new Position(0, length), 22, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(415), 14, chessBoardModel, armory.getArmor(916), new Position(0, length), 22, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(16), 14, chessBoardModel, armory.getArmor(925), new Position(length/2, length), 22, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(325), 14, chessBoardModel, armory.getArmor(935), new Position(length, length), 22, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
                 break;
             case 51:
-             	aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(315), 14, chessBoardModel, armory.getArmor(915), new Position(0, length), 22, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(315), 14, chessBoardModel, armory.getArmor(915), new Position(0, length), 22, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(225), 14, chessBoardModel, armory.getArmor(925), new Position(length/2, length), 22, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(35), 14, chessBoardModel, armory.getArmor(935), new Position(length, length), 22, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),2,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),2,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],2,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],2,this.chessBoardModel,1);
                 break;
             case 52:
-              	aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(416), 14, chessBoardModel, armory.getArmor(916), new Position(0, length), 24, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(416), 14, chessBoardModel, armory.getArmor(916), new Position(0, length), 24, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(325), 14, chessBoardModel, armory.getArmor(925), new Position(length/2, length), 24, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(15), 14, chessBoardModel, armory.getArmor(936), new Position(length, length), 24, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),2,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
                 break;
             case 53:
-             	aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(326), 14, chessBoardModel, armory.getArmor(926), new Position(0, length), 26, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(326), 14, chessBoardModel, armory.getArmor(926), new Position(0, length), 26, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(426), 14, chessBoardModel, armory.getArmor(936), new Position(length/2, length), 26, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(16), 14, chessBoardModel, armory.getArmor(916), new Position(length, length), 26, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),3,this.chessBoardModel,1);
-                samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),3,this.chessBoardModel,1);
-                samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),3,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],3,this.chessBoardModel,1);
+                samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],3,this.chessBoardModel,1);
+                samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
                 break;
             default:
                 break;
         }
+
+        players[1] = new Player(this,1,aiSamuraiPO);
+
+        SamuraiPO[] allSamuraiPOS = new SamuraiPO[]{null,samuraiPOs[0],samuraiPOs[1],samuraiPOs[2],aiSamuraiPO[0],aiSamuraiPO[1],aiSamuraiPO[2]};
+
+        players[0].setSamuraiPOs(samuraiPOs);
+//        players[1].setSamuraiPOs(allSamuraiPOS);
+
+        System.out.println(this.getSamuraiOfNum(1).getPos());
+        System.out.println(this.getSamuraiOfNum(2).getPos());
+        System.out.println(this.getSamuraiOfNum(3).getPos());
+        System.out.println(this.getSamuraiOfNum(4).getPos());
+        System.out.println(this.getSamuraiOfNum(5).getPos());
+        System.out.println(this.getSamuraiOfNum(6).getPos());
+
         isServer = false;
         isClient = false;
+
         //暂时用这个方法重置每个 samurai 位置
-        this.getSamuraiOfNum(1).beKilled(length,chessBoardModel);
-        this.getSamuraiOfNum(2).beKilled(length,chessBoardModel);
-        this.getSamuraiOfNum(3).beKilled(length,chessBoardModel);
-        this.getSamuraiOfNum(4).beKilled(length,chessBoardModel);
-        this.getSamuraiOfNum(5).beKilled(length,chessBoardModel);
-        this.getSamuraiOfNum(6).beKilled(length,chessBoardModel);
+//        this.getSamuraiOfNum(1).beKilled(length,chessBoardModel);
+//        this.getSamuraiOfNum(2).beKilled(length,chessBoardModel);
+//        this.getSamuraiOfNum(3).beKilled(length,chessBoardModel);
+//        this.getSamuraiOfNum(4).beKilled(length,chessBoardModel);
+//        this.getSamuraiOfNum(5).beKilled(length,chessBoardModel);
+//        this.getSamuraiOfNum(6).beKilled(length,chessBoardModel);
     }
 
     public GameModel(){
