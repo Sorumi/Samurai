@@ -19,7 +19,7 @@ public class WeatherHandler {
 	      public void handle(MouseEvent event) {
 	    	  bg.removeAll();
 	    	  fg.removeAll();
-	    	  bg.setDay();
+	    	  bg.setSky(0);
 	    	  bg.setSun(true);
 	    	  bg.restartAll();
 	      }
@@ -29,7 +29,7 @@ public class WeatherHandler {
 	      public void handle(MouseEvent event) {
 	    	  bg.removeAll();
 	    	  fg.removeAll();
-	    	  bg.setNight();
+	    	  bg.setSky(1);
 	    	  bg.setMoon(true);
 	    	  bg.setStars(true);
 	    	  bg.restartAll();
@@ -40,7 +40,7 @@ public class WeatherHandler {
 	      public void handle(MouseEvent event) {
 	    	  bg.removeAll();
 	    	  fg.removeAll();
-	    	  bg.setNight();
+	    	  bg.setSky(1);
 	    	  bg.setStars(true);
 	    	  bg.restartAll();
 	      }
@@ -48,6 +48,8 @@ public class WeatherHandler {
 	
 	public EventHandler<MouseEvent> rainEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  bg.removeAll();
+	    	  bg.setSky(2);
 	    	  fg.removeAll();
 	    	  fg.setRain(700);
 	      }
@@ -55,6 +57,8 @@ public class WeatherHandler {
 	
 	public EventHandler<MouseEvent> snowEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
+	    	  bg.removeAll();
+	    	  bg.setSky(3);
 	    	  fg.removeAll();
 	    	  fg.setSnow(500);
 	      }

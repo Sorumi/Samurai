@@ -20,13 +20,18 @@ public class TerritoryBackground extends Pane{
 	private static int WIDTH = 1200;
 	private static int HEIGHT = 800;
 	
-	private boolean isDay;
+	private int currentSky;
+	
 	private boolean isSun;
 	private boolean isMoon;
 	private boolean isStars;
 	
 	private Rectangle skyDay;
 	private Rectangle skyNight;
+	private Rectangle skyRain;
+	private Rectangle skyDusk;
+	private Group skyGroup;
+	private Rectangle[] sky;
 	
 	private Sun sun;
 	private Moon moon;
@@ -35,6 +40,10 @@ public class TerritoryBackground extends Pane{
 	
 	private ImageView landDay;
 	private ImageView landNight;
+	private ImageView landRain;
+	private ImageView landDusk;
+	private Group landGroup;
+	private ImageView[] land;
 	
 	private Timeline timeline;
 	
@@ -42,7 +51,7 @@ public class TerritoryBackground extends Pane{
 		Stop[] stops;
 		LinearGradient lg;
 		
-		isDay = true;
+		currentSky = 0;
 		isSun = false;
 		isMoon = false;
 		isStars = false;
@@ -63,6 +72,28 @@ public class TerritoryBackground extends Pane{
 		lg = new LinearGradient(0.5, 0, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);	
 		skyNight.setFill(lg);
 		skyNight.setOpacity(0);
+		
+		//sky rain
+		skyRain = new Rectangle();
+		skyRain.setWidth(WIDTH);
+		skyRain.setHeight(HEIGHT);
+		stops = new Stop[]{new Stop(0, Color.web("#E3E3E3")), new Stop(1, Color.web("#93AAA4"))};
+		lg = new LinearGradient(0.5, 0, 0.5, 1, true, CycleMethod.NO_CYCLE, stops);	
+		skyRain.setFill(lg);
+		skyRain.setOpacity(0);
+		
+		//sky dust
+		skyDusk = new Rectangle();
+		skyDusk.setWidth(WIDTH);
+		skyDusk.setHeight(HEIGHT);
+		stops = new Stop[]{new Stop(0, Color.web("#FDEFDC")), new Stop(0.23, Color.web("#FDECE4")), new Stop(0.58, Color.web("#F9D8DE")), new Stop(0.77, Color.web("#EDD6EC")), new Stop(1, Color.web("#E0C5EF"))};
+		lg = new LinearGradient(0, 0.5, 1, 0.5, true, CycleMethod.NO_CYCLE, stops);	
+		skyDusk.setFill(lg);
+		skyDusk.setOpacity(0);
+		
+		sky = new Rectangle[]{skyDay, skyNight, skyRain, skyDusk};
+		skyGroup = new Group();
+		skyGroup.getChildren().addAll(skyNight, skyRain, skyDusk, skyDay);
 	
 		//mountains
 		ImageView mountains = new ImageView(Images.TERRITORY_MOUNTAIN);
@@ -158,7 +189,25 @@ public class TerritoryBackground extends Pane{
 		landNight.setSmooth(true);
 		landNight.setLayoutX(39);
 		landNight.setLayoutY(108);
-		landNight.setOpacity(0);
+		
+		landRain = new ImageView(Images.TERRITORY_LAND_2);
+		landRain.setFitWidth(1148);
+		landRain.setPreserveRatio(true);
+		landRain.setSmooth(true);
+		landRain.setLayoutX(39);
+		landRain.setLayoutY(108);
+		
+		landDusk = new ImageView(Images.TERRITORY_LAND_3);
+		landDusk.setFitWidth(1148);
+		landDusk.setPreserveRatio(true);
+		landDusk.setSmooth(true);
+		landDusk.setLayoutX(39);
+		landDusk.setLayoutY(108);
+		landDusk.setOpacity(0);
+		
+		land = new ImageView[]{landDay, landNight, landRain, landDusk};
+		landGroup = new Group();
+		landGroup.getChildren().addAll(landNight, landRain, landDusk, landDay);
 		
 		ImageView items = new ImageView(Images.TERRITORY_ITEMS);
 		items.setFitWidth(981);
@@ -167,7 +216,7 @@ public class TerritoryBackground extends Pane{
 		items.setLayoutX(74);
 		items.setLayoutY(102);
 		
-		this.getChildren().addAll(skyDay, skyNight, mountains, sun, moon, stars, starCircles, landDay, landNight, items);
+		this.getChildren().addAll(skyGroup, mountains, sun, moon, stars, starCircles, landGroup, items);
 		
 		timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
@@ -175,26 +224,30 @@ public class TerritoryBackground extends Pane{
 		timeline.play();
 	}
 	
-	public void setDay(){
-		if (!isDay){
+	public void setSky(int num){
+		if (currentSky != num){
+			sky[num].setOpacity(0);
+			sky[num].toFront();
+			land[num].setOpacity(0);
+			land[num].toFront();
 			 Timeline dayTL= new Timeline(
-						new KeyFrame(Duration.millis(1000), new KeyValue(skyNight.opacityProperty(), 0)),
-						new KeyFrame(Duration.millis(1000), new KeyValue(landNight.opacityProperty(), 0))
+						new KeyFrame(Duration.millis(1000), new KeyValue(sky[num].opacityProperty(), 1)),
+						new KeyFrame(Duration.millis(1000), new KeyValue(land[num].opacityProperty(), 1))
 						);
 			 dayTL.play();
 		}
-		isDay = true;
+		currentSky = num;
 	}
-	public void setNight(){
-		if(isDay){
-			 Timeline nightTL= new Timeline(
-						new KeyFrame(Duration.millis(1000), new KeyValue(skyNight.opacityProperty(), 1)),
-						new KeyFrame(Duration.millis(1000), new KeyValue(landNight.opacityProperty(), 1))
-						);
-			 nightTL.play();
-		}
-		isDay = false;
-	}
+//	public void setNight(){
+//		if(isDay){
+//			 Timeline nightTL= new Timeline(
+//						new KeyFrame(Duration.millis(1000), new KeyValue(skyNight.opacityProperty(), 1)),
+//						new KeyFrame(Duration.millis(1000), new KeyValue(landNight.opacityProperty(), 1))
+//						);
+//			 nightTL.play();
+//		}
+//		isDay = false;
+//	}
 	
 	public void setSun(boolean isSun){
 		this.isSun = isSun;

@@ -87,6 +87,9 @@ public class Images {
 	public static final Image TERRITORY_MOUNTAIN = new Image("/./images/territory_mountain.png");
 	public static final Image TERRITORY_LAND_0 = new Image("/./images/territory_land_0.png");
 	public static final Image TERRITORY_LAND_1 = new Image("/./images/territory_land_1.png");
+	public static final Image TERRITORY_LAND_2 = new Image("/./images/territory_land_2.png");
+	public static final Image TERRITORY_LAND_3 = new Image("/./images/territory_land_3.png");
+	
 	public static final Image TERRITORY_ITEMS = new Image("/./images/territory_items.png");
 	public static final Image TERRITORY_CAMPSITE = new Image("/./images/territory_campsite.png");
 	public static final Image TERRITORY_SMITHY = new Image("/./images/territory_smithy.png");

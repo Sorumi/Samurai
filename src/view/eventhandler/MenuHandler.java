@@ -73,7 +73,7 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-						mainFrame.gamePanel = new GamePanel(15, 0);
+//						mainFrame.gamePanel = new GamePanel(15, 0);
 						mainFrame.startStory();
 		  			}
 	    	  });

@@ -81,7 +81,6 @@ public class TerritoryPanel extends Pane {
 		territoryGroup = new Group();
 		
 		territoryBg = new TerritoryBackground();
-		territoryBg.setNight();
 		territoryGroup.getChildren().add(territoryBg);
 		
 		territoryHandler = new TerritoryHandler(this);
