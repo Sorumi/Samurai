@@ -1,6 +1,7 @@
 package main;
 
 import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StartGameOperation;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,14 +28,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		basePanel = new Pane();
+		scene = new Scene(basePanel);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		menuPanel = new MenuPanel(this);
 		menuPanel.setPrefWidth(1200);
 		menuPanel.setPrefHeight(800);
 		basePanel.getChildren().add(menuPanel);
-		
-		scene = new Scene(basePanel);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
@@ -42,6 +42,7 @@ public class Main extends Application {
 	}
 
 	public void startGame(){
+		menuPanel.samuraiTimer.stop();
 		basePanel.getChildren().add(gamePanel);
 		this.gameModel = new GameModel(24, 14, gamePanel, 0);
 		this.gameModel.addObserver(this.gamePanel);
@@ -52,16 +53,22 @@ public class Main extends Application {
 	}
 
 	public void startClassicGame(){
+		menuPanel.samuraiTimer.stop();
+		gamePanel = new GamePanel(15, 99);
+		
 		basePanel.getChildren().add(gamePanel);
 		this.gameModel = new GameModel(24, 14, gamePanel, 99);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
+		OperationQueue.addOperation(new StartGameOperation());
+		
 		Thread operationThread = new Thread(operationQueue);
 		operationThread.start();
 	}
 	
 	public void startStory(){
+		menuPanel.samuraiTimer.stop();
 		this.storyPanel = new StoryPanel();
 		basePanel.getChildren().add(storyPanel);
 	}

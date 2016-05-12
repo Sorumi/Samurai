@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 
 public class Images {
 
+	//menu
+	public static Image MENU_BTN = new Image("/./images/menu_button.png",true);
+	
 	//BG
 	public static String BG_0 = Images.class.getResource("/./images/bg_0.png").toExternalForm();
 	public static String BG_1 = Images.class.getResource("/./images/bg_1.png").toExternalForm();

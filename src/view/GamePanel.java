@@ -113,6 +113,8 @@ public class GamePanel extends Pane implements Observer{
 					case 0:
 						Pane basePanel = (Pane) GamePanel.this.getParent();
 						basePanel.getChildren().remove(GamePanel.this);
+						MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
+						menu.samuraiTimer.start();
 
 						OperationQueue.addOperation(new EndOperation());
 						break;
