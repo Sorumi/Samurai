@@ -65,6 +65,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
+	//经典模式构造方法
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor) {
 		this.number = number;
 		this.player = player;
@@ -79,7 +80,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.coldRound = 0;
 		this.healthPoint = 60;
 		this.criticalHitChance = 1;
-		this.actionPoint = 30;
+		//这里改一下经典模式玩家的点数
+		this.totalActionPoint = 30;
+		this.actionPoint = this.totalActionPoint;
 		this.killNum = 0;
 		if (number == 1 && player == 0) {
 			pos = new Position(0, 0);
@@ -114,6 +117,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
+	//故事模式构造方法
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor, Position home,
 			int actionPoint, int level) {
 		this.level=level;
@@ -143,11 +147,8 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.criticalHitChance = 1;
 		this.home = home;
 
-
-		//home 和 pos 关系?(反正都要初始化,一开始没这句的时候所有的调用  xxxSamurai.getPos()都是空指针
 		this.pos = home;
 		cbm.changeActualBlock(pos.getX(), pos.getY(), true);
-		
 
 		this.killNum = 0;
 	}
