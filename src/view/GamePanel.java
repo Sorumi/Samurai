@@ -358,7 +358,7 @@ public class GamePanel extends Pane implements Observer{
 			actionPanel.setCurrentSamurai(currentSamurai);
             arrow.setCurrentSamurai(currentSamurai);
 		}else{
-			actionPanel.setAppear(false,false);
+			actionPanel.setAppear(false,true);
 		}
 
 		//add

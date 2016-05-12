@@ -29,12 +29,9 @@ public class ArchiveView extends Pane{
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
 		this.setId("archive-view");
-		
-		if(num == 0){
-			nameLabel = new Label("自动存档"); 
-		}else{
-			nameLabel = new Label("存档"+num); 
-		}
+
+		nameLabel = new Label("存档"+(num+1));
+
 		nameLabel.setLayoutX(25);
 		nameLabel.setLayoutY(25);
 		nameLabel.setId("Aname-label");
