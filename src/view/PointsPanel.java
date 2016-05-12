@@ -100,6 +100,8 @@ public class PointsPanel extends Pane {
 			@Override
 			public void run() {
 				pointsLabel.setText(pointsRest + "");
+
+				System.out.println("rest point" + pointsRest);
 			}
 		});
 
@@ -132,6 +134,8 @@ public class PointsPanel extends Pane {
 			@Override
 			public void run() {
 				pointsLabel.setText(pointsRest + "");
+
+				System.out.println("total point:" + pointsTotal);
 			}
 		});
 	}

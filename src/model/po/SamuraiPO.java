@@ -1249,7 +1249,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		Random random = new Random();
 		if (random.nextInt(100) + 1 <= criticalHitRate) {
 			result[0] = (weapon.getAttackPoint() + attackValue) * 2;
-			result[3] = 1;
+			result[2] = 1;
 		} else {
 			result[0] = weapon.getAttackPoint() + attackValue;
 		}
