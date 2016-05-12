@@ -97,7 +97,7 @@ public class MenuPanel extends Pane {
 		samuraiB.setLayoutY(320);
 		
 		samuraiB1 = new SamuraiView(6,2);
-		samuraiB1.setWeapon(0);
+		samuraiB1.setWeapon(200);
 		samuraiB1.setDirection(3);
 		samuraiB1.setLayoutX(300);
 		samuraiB1.setRotate(5);
@@ -106,7 +106,7 @@ public class MenuPanel extends Pane {
 		samuraiB2.setDirection(3);
 		samuraiB2.setLayoutX(150);
 		samuraiB3 = new SamuraiView(4,2);
-		samuraiB3.setWeapon(200);
+		samuraiB3.setWeapon(0);
 		samuraiB3.setDirection(3);
 		samuraiB3.setLayoutX(0);
 		samuraiB3.setRotate(-5);
