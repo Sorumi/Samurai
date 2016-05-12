@@ -127,6 +127,13 @@ public class PointsPanel extends Pane {
 
 	public void setPointsTotal(int pointsTotal) {
 		this.pointsTotal = pointsTotal;
+		this.pointsRest = pointsTotal;
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				pointsLabel.setText(pointsRest + "");
+			}
+		});
 	}
 
 }
