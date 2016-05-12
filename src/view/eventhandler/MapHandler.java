@@ -59,9 +59,10 @@ public class MapHandler {
 
 						  mapController.setGamePanel(storyPanel.gamePanel);
 						  mapController.startGameAtLevel(num);
+						  storyPanel.gamePanel.toFront();
 					}
 	    	  });
-			  storyPanel.gamePanel.toFront();
+
 	      }
 	};
 	
