@@ -247,13 +247,6 @@ public class GameModel extends BaseModel implements Observer {
 
         players[0].setSamuraiPOs(samuraiPOs);
 
-        System.out.println(this.getSamuraiOfNum(1).getPos());
-        System.out.println(this.getSamuraiOfNum(2).getPos());
-        System.out.println(this.getSamuraiOfNum(3).getPos());
-        System.out.println(this.getSamuraiOfNum(4).getPos());
-        System.out.println(this.getSamuraiOfNum(5).getPos());
-        System.out.println(this.getSamuraiOfNum(6).getPos());
-
         isServer = false;
         isClient = false;
 
@@ -375,7 +368,6 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public int attackSamurai(int samurai, int attackPoint, int armorPuncture, int isCritical){
-        System.out.println("Attack samurai : " + samurai);
         double attackPointDouble=attackPoint;
         switch (samurai){
             case 1:
@@ -601,7 +593,6 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round", this.currentRound));
-        System.out.println("++++ " + this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
         super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
         super.updateChange(new UpdateMessage("pointsTotal",this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
 //        this.updateVisible(this.updateVision());

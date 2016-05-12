@@ -50,19 +50,10 @@ public class Player {
             this.samuraiPOs[1] = sPOs[1];
             this.samuraiPOs[2] = sPOs[2];
             this.samuraiPOs[3] = sPOs[3];
-
-            System.out.println("Weapon number 1: "+samuraiPOs[1].getWeapon().getType());
-            System.out.println("Weapon number 2: "+samuraiPOs[2].getWeapon().getType());
-            System.out.println("Weapon number 3: "+samuraiPOs[3].getWeapon().getType());
         }else if(playerNum == 1) {
             this.samuraiPOs[4] = sPOs[0];
             this.samuraiPOs[5] = sPOs[1];
             this.samuraiPOs[6] = sPOs[2];
-
-            System.out.println("Weapon number 4: "+samuraiPOs[4].getWeapon().getType());
-            System.out.println("Weapon number 5: "+samuraiPOs[5].getWeapon().getType());
-            System.out.println("Weapon number 6: "+samuraiPOs[6].getWeapon().getType());
-
             this.isAI = true;
         }
 
@@ -118,7 +109,6 @@ public class Player {
                         this.gameModel.updateOccupiedBlocks();
                         done = true;
                         this.samuraiPOs[this.currentSamurai].changeActionPoint(4);
-                        System.out.println(this.samuraiPOs[this.currentSamurai].getActionPoint());
                         //检测需不需要把别人踢回去
                         ArrayList<Integer> killedSamurais = new ArrayList<>();
                         for(Position position : positions){
@@ -216,8 +206,6 @@ public class Player {
                                         this.gameModel.updateVisible(this.gameModel.updateVision());
                                         this.gameModel.getSamuraiOfNum(integer).beKilled(this.chessBoardModel);
                                         this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).updateKillNum(1);
-
-                                        System.out.println("~" + this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getKillNum());
                                     }
                                 }else {
                                     this.gameModel.updateKilled(integer);
