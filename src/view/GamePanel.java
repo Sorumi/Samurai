@@ -8,6 +8,7 @@ import java.util.Observer;
 import controller.msgqueue.EndOperation;
 import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -388,121 +389,133 @@ public class GamePanel extends Pane implements Observer{
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
 
-		if(key.equals("samurai")){
-			this.setCurrentSamurai((int) notifingObject.getValue());
-		}else if(key.equals("player")){
-			this.setCurrentPlayer((int) notifingObject.getValue());
-		}else if(key.equals("round")){
-			this.setCurrentRound((int)notifingObject.getValue());
-		}else if(key.equals("time")){
-			this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
-		}else if(key.equals("state")){
+		
+		Platform.runLater(new Runnable(){
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
 
-		}else if(key.equals("actionPoint")){
-			this.currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
-			this.actionPanel.setPointsRest((int)notifingObject.getValue());
-		}else if(key.equals("pointsTotal")){
-			this.currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
-		}else if(key.equals("samuraiMove")){
-			Position position = (Position)notifingObject.getValue();
-			this.currentSamurai.move(position.getX(), position.getY());
+				if(key.equals("samurai")){
+					setCurrentSamurai((int) notifingObject.getValue());
+				}else if(key.equals("player")){
+					setCurrentPlayer((int) notifingObject.getValue());
+				}else if(key.equals("round")){
+					setCurrentRound((int)notifingObject.getValue());
+				}else if(key.equals("time")){
+					currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
+				}else if(key.equals("state")){
 
-			if (this.currentPlayer.getPlayer() == 0) {
-				this.actionPanel.reset();
-				this.setOrder();
+				}else if(key.equals("actionPoint")){
+					currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
+					actionPanel.setPointsRest((int)notifingObject.getValue());
+				}else if(key.equals("pointsTotal")){
+					currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
+				}else if(key.equals("samuraiMove")){
+					Position position = (Position)notifingObject.getValue();
+					currentSamurai.move(position.getX(), position.getY());
+
+					if (currentPlayer.getPlayer() == 0) {
+						actionPanel.reset();
+						setOrder();
+					}
+				}else if(key.equals("samuraiHide")){
+					currentSamurai.setHide((boolean)notifingObject.getValue());
+				}else if(key.equals("samuraiOccupy")){
+					currentSamurai.occupy((int)notifingObject.getValue());
+					if (currentPlayer.getPlayer() == 0) {
+						actionPanel.reset();
+						arrow.setVisible(true);
+					}
+				}else if(key.equals("samuraiKilled")){
+					getSamurai((int)notifingObject.getValue()).setInjured(true);
+				}else if(key.equals("visible")) {
+		            System.out.println("visible");
+		            A1.setVisible(true);
+		            A2.setVisible(true);
+		            A3.setVisible(true);
+		            B1.setVisible(false);
+		            B2.setVisible(false);
+		            B3.setVisible(false);
+		            for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
+		                if (block.getX() == B1.x && block.getY() == B1.y) {
+		                    if (!B1.isHide()) {
+		                        B1.setVisible(true);
+		                    }
+		                }
+		                if (block.getX() == B2.x && block.getY() == B2.y) {
+		                    if (!B2.isHide()) {
+		                        B2.setVisible(true);
+		                    }
+		                }
+		                if (block.getX() == B3.x && block.getY() == B3.y) {
+		                    if (!B3.isHide()) {
+		                        B3.setVisible(true);
+		                    }
+		                }
+		            }
+				}else if(key.equals("vision")){
+					System.out.println("vision");
+					chessBoard.see((ArrayList<ActualBlock>) notifingObject.getValue());
+					chessBoard.setTmpBlocks((ArrayList<ActualBlock>) notifingObject.getValue());
+				}else if(key.equals("home")){
+					SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
+					SamuraiPanel tmpView = null;
+					switch (samuraiPO.getNumber()){
+						case 1:
+							tmpView = A1;
+							break;
+						case 2:
+							tmpView = A2;
+							break;
+						case 3:
+							tmpView = A3;
+							break;
+						case 4:
+							tmpView = B1;
+							break;
+						case 5:
+							tmpView = B2;
+							break;
+						case 6:
+							tmpView = B3;
+							break;
+						default:
+							break;
+					}
+					tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
+					chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
+				}else if(key.equals("occupiedBlocks")){
+					int[] n = (int [])notifingObject.getValue();
+					playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
+					playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
+				}else if(key.equals("revive")){
+		            System.out.println("Samurai revive!" + (int)notifingObject.getValue());
+		            getSamurai((int)notifingObject.getValue()).setInjured(false);
+		        }else if(key.equals("pseudoOccupy")){
+					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
+				}else if(key.equals("a-pseudoOccupy")){
+					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
+				}else if(key.equals("over")){
+					resultPanel.setResults((int [])notifingObject.getValue());
+				}else if(key.equals("miss")){
+					getSamurai((int)notifingObject.getValue()).setMiss();
+				}else if(key.equals("normal-attack")){
+					int[] t = (int [])notifingObject.getValue();
+					getSamurai(t[0]).setAttacked(t[1]);
+				}else if(key.equals("critical-attack")){
+					int[] t = (int [])notifingObject.getValue();
+					getSamurai(t[0]).setDoubleAttacked((int)(t[1] / 2));
+				}else if(key.equals("levelup")){
+
+				}else if(key.equals("materials")){
+
+				}
+				
+				
+				
 			}
-		}else if(key.equals("samuraiHide")){
-			this.currentSamurai.setHide((boolean)notifingObject.getValue());
-		}else if(key.equals("samuraiOccupy")){
-			this.currentSamurai.occupy((int)notifingObject.getValue());
-			if (this.currentPlayer.getPlayer() == 0) {
-				this.actionPanel.reset();
-				this.arrow.setVisible(true);
-			}
-		}else if(key.equals("samuraiKilled")){
-			this.getSamurai((int)notifingObject.getValue()).setInjured(true);
-		}else if(key.equals("visible")) {
-            System.out.println("visible");
-            this.A1.setVisible(true);
-            this.A2.setVisible(true);
-            this.A3.setVisible(true);
-            this.B1.setVisible(false);
-            this.B2.setVisible(false);
-            this.B3.setVisible(false);
-            for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()) {
-                if (block.getX() == this.B1.x && block.getY() == this.B1.y) {
-                    if (!this.B1.isHide()) {
-                        this.B1.setVisible(true);
-                    }
-                }
-                if (block.getX() == this.B2.x && block.getY() == this.B2.y) {
-                    if (!this.B2.isHide()) {
-                        this.B2.setVisible(true);
-                    }
-                }
-                if (block.getX() == this.B3.x && block.getY() == this.B3.y) {
-                    if (!this.B3.isHide()) {
-                        this.B3.setVisible(true);
-                    }
-                }
-            }
-		}else if(key.equals("vision")){
-			System.out.println("vision");
-			this.chessBoard.see((ArrayList<ActualBlock>) notifingObject.getValue());
-			this.chessBoard.setTmpBlocks((ArrayList<ActualBlock>) notifingObject.getValue());
-		}else if(key.equals("home")){
-			SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
-			SamuraiPanel tmpView = null;
-			switch (samuraiPO.getNumber()){
-				case 1:
-					tmpView = this.A1;
-					break;
-				case 2:
-					tmpView = this.A2;
-					break;
-				case 3:
-					tmpView = this.A3;
-					break;
-				case 4:
-					tmpView = this.B1;
-					break;
-				case 5:
-					tmpView = this.B2;
-					break;
-				case 6:
-					tmpView = this.B3;
-					break;
-				default:
-					break;
-			}
-			tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
-			this.chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
-		}else if(key.equals("occupiedBlocks")){
-			int[] n = (int [])notifingObject.getValue();
-			this.playerA.circlePanel.setBlocks(new int[]{n[1], n[2], n[3]});
-			this.playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
-		}else if(key.equals("revive")){
-            System.out.println("Samurai revive!" + (int)notifingObject.getValue());
-            this.getSamurai((int)notifingObject.getValue()).setInjured(false);
-        }else if(key.equals("pseudoOccupy")){
-			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
-		}else if(key.equals("a-pseudoOccupy")){
-			this.chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
-		}else if(key.equals("over")){
-			this.resultPanel.setResults((int [])notifingObject.getValue());
-		}else if(key.equals("miss")){
-			this.getSamurai((int)notifingObject.getValue()).setMiss();
-		}else if(key.equals("normal-attack")){
-			int[] t = (int [])notifingObject.getValue();
-			this.getSamurai(t[0]).setAttacked(t[1]);
-		}else if(key.equals("critical-attack")){
-			int[] t = (int [])notifingObject.getValue();
-			this.getSamurai(t[0]).setDoubleAttacked((int)(t[1] / 2));
-		}else if(key.equals("levelup")){
-
-		}else if(key.equals("materials")){
-
-		}
+		});
+		
 	}
 
 }
