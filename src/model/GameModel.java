@@ -240,10 +240,7 @@ public class GameModel extends BaseModel implements Observer {
 
         players[1] = new Player(this,1,aiSamuraiPO);
 
-        SamuraiPO[] allSamuraiPOS = new SamuraiPO[]{null,samuraiPOs[0],samuraiPOs[1],samuraiPOs[2],aiSamuraiPO[0],aiSamuraiPO[1],aiSamuraiPO[2]};
-
         players[0].setSamuraiPOs(samuraiPOs);
-//        players[1].setSamuraiPOs(allSamuraiPOS);
 
         System.out.println(this.getSamuraiOfNum(1).getPos());
         System.out.println(this.getSamuraiOfNum(2).getPos());
@@ -256,12 +253,12 @@ public class GameModel extends BaseModel implements Observer {
         isClient = false;
 
         //暂时用这个方法重置每个 samurai 位置
-//        this.getSamuraiOfNum(1).beKilled(length,chessBoardModel);
-//        this.getSamuraiOfNum(2).beKilled(length,chessBoardModel);
-//        this.getSamuraiOfNum(3).beKilled(length,chessBoardModel);
-//        this.getSamuraiOfNum(4).beKilled(length,chessBoardModel);
-//        this.getSamuraiOfNum(5).beKilled(length,chessBoardModel);
-//        this.getSamuraiOfNum(6).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(1).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(2).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(3).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(4).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(5).beKilled(length,chessBoardModel);
+        this.getSamuraiOfNum(6).beKilled(length,chessBoardModel);
     }
 
     public GameModel(){

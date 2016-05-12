@@ -21,12 +21,20 @@ public class StoryModel implements Serializable{
     private MaterialLibrary materialLibrary;
     private InformationLibrary informationLibrary;
 
+    private int experience;
+    private int money;
+    private int level;
+
     private static int fileNum;
 
     private Date time;
 
     private StoryModel(){
         gameModel = new GameModel();
+
+        this.experience = 0;
+        this.money = 0;
+        this.level = 1;
 
         this.armory = new Armory();
         this.armory.initialize();
@@ -36,12 +44,9 @@ public class StoryModel implements Serializable{
         this.informationLibrary = new InformationLibrary();
         this.informationLibrary.initialize();
 
-        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),new Armor(),new Position(0,0),30,1);
-        this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),new Armor(),new Position(7,0),30,1);
-        this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),14,gameModel.getChessBoardModel(),new Armor(),new Position(14,0),30,1);
-
-        System.out.println("Story constructed.");
-        System.out.println(this.samuraiPO_2.getPos().getX());
+        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(0,0),30,level);
+        this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(7,0),30,level);
+        this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(14,0),30,level);
 
         this.time = new Date();
     }
@@ -124,7 +129,7 @@ public class StoryModel implements Serializable{
             Object thisObject = objectInputStream.readObject();
             objectInputStream.close();
 
-            System.out.println("load successfully : " + StoryModel.getFileNum());
+            System.out.println("load successfully : " + StoryModel.fileNum);
 
             return (StoryModel) thisObject;
         }catch (Exception e){
@@ -158,6 +163,8 @@ public class StoryModel implements Serializable{
         storyModel.samuraiPO_2 = sModel.samuraiPO_2;
         storyModel.samuraiPO_3 = sModel.samuraiPO_3;
         storyModel.time = sModel.time;
+        storyModel.experience = sModel.experience;
+        storyModel.money = sModel.money;
     }
 
     //单例模式用于取唯一的storyModel
@@ -167,10 +174,6 @@ public class StoryModel implements Serializable{
         }
         setStoryModel(storyModel);
         return storyModel;
-    }
-
-    public static int getFileNum() {
-        return fileNum;
     }
 
 }

@@ -19,6 +19,7 @@ public class Player {
 
     private boolean isAI = false;
 
+    //classic 和 online 的构造方法
     public Player(GameModel model, int playerNum){
         this.playerNum = playerNum;
         this.gameModel = model;
@@ -70,6 +71,7 @@ public class Player {
     public void setEnableToAction(){
         this.currentSamurai = gameModel.getCurrentSamurai();
         this.gameModel.actionPerformed(0);
+        this.samuraiPOs[this.currentSamurai].setActionPoint(this.samuraiPOs[this.currentSamurai].getTotalActionPoint());
     }
 
     public ArrayList<ActualBlock> showVision(){
