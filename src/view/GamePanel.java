@@ -341,6 +341,7 @@ public class GamePanel extends Pane implements Observer{
 		}
 		
 		this.currentSamurai = getSamurai(num);
+		currentSamurai.samuraiV.setRandomAnimation(false);
 
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
@@ -352,7 +353,6 @@ public class GamePanel extends Pane implements Observer{
 //			}else {
 //				currentSamurai.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
 //			}
-			currentSamurai.samuraiV.setRandomAnimation(false);
 			actionPanel.setCurrentSamurai(currentSamurai);
             arrow.setCurrentSamurai(currentSamurai);
 		}else{
@@ -372,9 +372,9 @@ public class GamePanel extends Pane implements Observer{
 								arrow.setActualLocation();
 								arrow.setVisible(true);
 
-								if(level < 99 && level > 0) {
-									currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
-								}
+//								if(level < 99 && level > 0) {
+//									currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
+//								}
 							}
 						} else {
 							arrow.setVisible(false);
@@ -423,7 +423,6 @@ public class GamePanel extends Pane implements Observer{
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-
 				if(key.equals("samurai")){
 					setCurrentSamurai((int) notifingObject.getValue());
 				}else if(key.equals("player")){
