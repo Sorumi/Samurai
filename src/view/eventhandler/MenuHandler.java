@@ -2,15 +2,12 @@ package view.eventhandler;
 
 import controller.ClientController;
 import controller.HostController;
-import controller.msgqueue.OperationQueue;
-import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import main.Main;
 import network.Configure;
-import view.GamePanel;
 import view.GamePanelOL;
 
 public class MenuHandler {
@@ -21,16 +18,56 @@ public class MenuHandler {
 		this.mainFrame = mainFrame;
 	}
 	
-	public EventHandler<MouseEvent> classicEvent = new EventHandler<MouseEvent>() {  
+	public EventHandler<MouseEvent> leftClickEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.btnClick(0);
+	      }
+	};
+	public EventHandler<MouseEvent> rightClickEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.btnClick(1);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> leftBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.leftBtnEnter();
+	      }
+	};
+	public EventHandler<MouseEvent> rightBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.rightBtnEnter();
+	      }
+	};
+	public EventHandler<MouseEvent> leftBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.leftBtnExit();
+	      }
+	};
+	public EventHandler<MouseEvent> rightBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.rightBtnExit();
+	      }
+	};
+	
+	
+	//
+	public EventHandler<MouseEvent> btnEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  	Platform.runLater(new Runnable(){
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					mainFrame.gamePanel = new GamePanel(15, 99);
-					mainFrame.startClassicGame();
-
-					OperationQueue.addOperation(new StartGameOperation());
+					switch(mainFrame.menuPanel.modeNum){
+					case 0:
+						mainFrame.startStory();
+						break;
+					case 1:
+						mainFrame.startClassicGame();
+						break;
+					case 2:
+						//双人模式
+					}
 				}
 				});
 	      }
@@ -68,19 +105,8 @@ public class MenuHandler {
 	      }
 	};
 	
-	public EventHandler<MouseEvent> storyEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  Platform.runLater(new Runnable(){
-		  			@Override
-		  			public void run() {
-//						mainFrame.gamePanel = new GamePanel(15, 0);
-						mainFrame.startStory();
-		  			}
-	    	  });
-	      }
-	};
 	
-	public EventHandler<ActionEvent> exitEvent = new EventHandler<ActionEvent>() {//注册事件handler
+	public EventHandler<ActionEvent> exitEvent = new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
 			System.exit(0);

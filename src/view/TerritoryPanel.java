@@ -95,6 +95,8 @@ public class TerritoryPanel extends Pane {
 				StoryPanel storyPanel = (StoryPanel) TerritoryPanel.this.getParent();
 				Pane basePanel = (Pane) storyPanel.getParent();
 				basePanel.getChildren().remove(storyPanel);
+				MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
+				menu.samuraiTimer.start();
 			}
 		});
 		territoryGroup.getChildren().add(exitBtn);

@@ -19,6 +19,8 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class SamuraiView extends Pane{
+	//add
+	public boolean state;
 	
 	private int SCALE;
 	private int WIDTH = 60*SCALE;
@@ -104,6 +106,8 @@ public class SamuraiView extends Pane{
 	public void setSamurai(int number){
 		this.number = number;
 		group.getChildren().remove(0, group.getChildren().size());
+		//add
+		state = true;
 		
 		//images
 		helmetBack = new OrderImageView(Images.SAMURAI[number][1]);
@@ -538,6 +542,7 @@ public class SamuraiView extends Pane{
 
 	public void move(int direction){
 		this.setDirection(direction);
+		state = false;//TODO
 		Timeline moveTL = new Timeline(
 				//leftLeg
 				new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
@@ -565,6 +570,12 @@ public class SamuraiView extends Pane{
 		}
 
 		moveTL.play();
+		moveTL.setOnFinished(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				state = true;
+			}
+		});
 	}
 	
 	public boolean occupy(int direction){
@@ -583,13 +594,14 @@ public class SamuraiView extends Pane{
 		if(weapon == null){
 			return false;
 		}
-		
+		state = false;
+		Timeline occupyTL= new Timeline();
 		if (back == 1){
 			angle = weapon.frontAngle;
 			leftLegAngle = 30;
 			rightLegAngle = -10;
 
-			Timeline occupyTL= new Timeline(
+			occupyTL.getKeyFrames().addAll(
 					//leftLeg
 					new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
 					new KeyFrame(Duration.millis(400), new KeyValue(leftLegRo.angleProperty(), leftLegAngle)),
@@ -644,7 +656,7 @@ public class SamuraiView extends Pane{
 			leftLegAngle = 10;
 			rightLegAngle = -30;
 			
-			Timeline occupyTL= new Timeline(
+			occupyTL.getKeyFrames().addAll(
 					//leftLeg
 					new KeyFrame(Duration.ZERO, new KeyValue(leftLegRo.angleProperty(), 0)),
 					new KeyFrame(Duration.millis(400), new KeyValue(leftLegRo.angleProperty(), leftLegAngle)),
@@ -694,6 +706,13 @@ public class SamuraiView extends Pane{
 			}
 			occupyTL.play();
 		}
+		
+		occupyTL.setOnFinished(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				state = true;
+			}
+		});
 		return true;		
 	}
 	

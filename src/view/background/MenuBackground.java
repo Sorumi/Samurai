@@ -1,8 +1,11 @@
 package view.background;
 
+import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -10,21 +13,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import view.Images;
-import view.items.*;
+import view.items.Moon;
+import view.items.Star;
+import view.items.StarCircle;
+import view.items.Sun;
 
-public class TerritoryBackground extends Pane{
-
+public class MenuBackground extends Pane{
 	private static int WIDTH = 1200;
 	private static int HEIGHT = 800;
 	
 	private int currentSky;
-	
-	private boolean isSun;
-	private boolean isMoon;
-	private boolean isStars;
 	
 	private Rectangle skyDay;
 	private Rectangle skyNight;
@@ -38,23 +41,20 @@ public class TerritoryBackground extends Pane{
 	private Group stars;
 	private Group starCircles;
 	
-	private ImageView landDay;
-	private ImageView landNight;
-	private ImageView landRain;
-	private ImageView landDusk;
-	private Group landGroup;
-	private ImageView[] land;
+	private Rotate sunRo;
+	private Rotate moonRo;
+	private Rotate starRo;
+	
+	private Circle land;
+	private Color[] landColor;
 	
 	private Timeline timeline;
 	
-	public TerritoryBackground(){
+	public MenuBackground(){
 		Stop[] stops;
 		LinearGradient lg;
 		
 		currentSky = 0;
-		isSun = false;
-		isMoon = false;
-		isStars = false;
 		
 		//sky day
 		skyDay = new Rectangle();
@@ -103,14 +103,12 @@ public class TerritoryBackground extends Pane{
 		
 		//items
 		sun = new Sun();
-		sun.setLayoutX(46);
-		sun.setLayoutY(21);
-		sun.setVisible(false);
+		sun.setLayoutX(WIDTH/2 - 60);
+		sun.setLayoutY(50);
 		
 		moon = new Moon();
-		moon.setLayoutX(50);
-		moon.setLayoutY(11);
-		moon.setVisible(false);
+		moon.setLayoutX(WIDTH/2 - 85);
+		moon.setLayoutY(50);
 		
 		stars = new Group();
 		Star star1 = new Star(10);
@@ -130,7 +128,7 @@ public class TerritoryBackground extends Pane{
 		star5.setLayoutY(38);
 		
 		stars.getChildren().addAll(star1, star2, star3, star4, star5);
-		stars.setVisible(false);
+//		stars.setVisible(false);
 
 		starCircles = new Group();
 		StarCircle starC1 = new StarCircle(9);
@@ -173,66 +171,53 @@ public class TerritoryBackground extends Pane{
 		starC13.setLayoutX(1174);
 		starC13.setLayoutY(695);
 		starCircles.getChildren().addAll(starC1, starC2, starC3, starC4, starC5, starC6, starC7, starC8, starC9, starC10, starC11, starC12, starC13);
-		starCircles.setVisible(false);
+//		starCircles.setVisible(false);
+		
+		//rotate
+		sunRo = new Rotate();
+		sunRo.pivotXProperty().bind(sun.centerXProperty());
+		sunRo.pivotYProperty().bind(sun.centerYProperty().add(1290));
+		sunRo.setAngle(-20);
+		sun.getTransforms().add(sunRo);
+		
+		moonRo = new Rotate();
+		moonRo.pivotXProperty().bind(sun.centerXProperty());
+		moonRo.pivotYProperty().bind(sun.centerYProperty().add(1290));
+		moonRo.setAngle(-200);
+		moon.getTransforms().add(moonRo);
+		
+		
+		starRo = new Rotate();
+		starRo.pivotXProperty().bind(stars.layoutXProperty().add(600));
+		starRo.pivotYProperty().bind(stars.layoutYProperty().add(1400));
+		starRo.setAngle(-180);
+		stars.getTransforms().add(starRo);
+		starCircles.getTransforms().add(starRo);
 		
 		//land
-		landDay = new ImageView(Images.TERRITORY_LAND_0);
-		landDay.setFitWidth(1148);
-		landDay.setPreserveRatio(true);
-		landDay.setSmooth(true);
-		landDay.setLayoutX(39);
-		landDay.setLayoutY(108);
+		land = new Circle();
+		land.setRadius(900);
+		land.setCenterX(600);
+		land.setCenterY(1400);
+		land.setFill(Color.web("#DEE6D6"));//TODO
 		
-		landNight = new ImageView(Images.TERRITORY_LAND_1);
-		landNight.setFitWidth(1148);
-		landNight.setPreserveRatio(true);
-		landNight.setSmooth(true);
-		landNight.setLayoutX(39);
-		landNight.setLayoutY(108);
+		landColor = new Color[]{Color.web("#DEE6D6"), Color.web("#AFCBC8"), Color.web("#D2D6CD"), Color.web("#D5CED8")};
 		
-		landRain = new ImageView(Images.TERRITORY_LAND_2);
-		landRain.setFitWidth(1148);
-		landRain.setPreserveRatio(true);
-		landRain.setSmooth(true);
-		landRain.setLayoutX(39);
-		landRain.setLayoutY(108);
+		this.getChildren().addAll(skyGroup, mountains, sun, moon, stars, starCircles, land);
 		
-		landDusk = new ImageView(Images.TERRITORY_LAND_3);
-		landDusk.setFitWidth(1148);
-		landDusk.setPreserveRatio(true);
-		landDusk.setSmooth(true);
-		landDusk.setLayoutX(39);
-		landDusk.setLayoutY(108);
-		landDusk.setOpacity(0);
+//		timeline = new Timeline();
+//		timeline.setCycleCount(Timeline.INDEFINITE);
 		
-		land = new ImageView[]{landDay, landNight, landRain, landDusk};
-		landGroup = new Group();
-		landGroup.getChildren().addAll(landNight, landRain, landDusk, landDay);
-		
-		ImageView items = new ImageView(Images.TERRITORY_ITEMS);
-		items.setFitWidth(981);
-		items.setPreserveRatio(true);
-		items.setSmooth(true);
-		items.setLayoutX(74);
-		items.setLayoutY(102);
-		
-		this.getChildren().addAll(skyGroup, mountains, sun, moon, stars, starCircles, landGroup, items);
-		
-		timeline = new Timeline();
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		
-		timeline.play();
+//		timeline.play();
 	}
 	
 	public void setSky(int num){
 		if (currentSky != num){
 			sky[num].setOpacity(0);
 			sky[num].toFront();
-			land[num].setOpacity(0);
-			land[num].toFront();
 			Timeline skyTL= new Timeline(
-						new KeyFrame(Duration.millis(1000), new KeyValue(sky[num].opacityProperty(), 1)),
-						new KeyFrame(Duration.millis(1000), new KeyValue(land[num].opacityProperty(), 1))
+					new KeyFrame(Duration.millis(2000), new KeyValue(sky[num].opacityProperty(), 1)),
+					new KeyFrame(Duration.millis(2000), new KeyValue(land.fillProperty(), landColor[num]))
 						);
 			skyTL.play();
 		}
@@ -240,44 +225,59 @@ public class TerritoryBackground extends Pane{
 	}
 	
 	public void setSun(boolean isSun){
-		this.isSun = isSun;
-		sun.setVisible(isSun);
-		if (isSun) {
-			timeline.getKeyFrames().addAll(sun.lightAnimation());
+		Timeline sunTL= new Timeline(
+				new KeyFrame(Duration.millis(2000), new KeyValue(sunRo.angleProperty(), sunRo.angleProperty().intValue()+180, Interpolator.EASE_IN))
+				);
+		if (!isSun) {
+			sunTL.setOnFinished(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					sunRo.setAngle(-200);
+				}
+			});
 		}
+		sunTL.play();
 	}
 	
 	public void setMoon(boolean isMoon){
-		this.isMoon = isMoon;
-		moon.setVisible(isMoon);
-		if (isMoon) {
-			timeline.getKeyFrames().addAll(moon.lightAnimation());
+		Timeline moonTL= new Timeline(
+				new KeyFrame(Duration.millis(2000), new KeyValue(moonRo.angleProperty(), moonRo.angleProperty().intValue()+180, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(2000), new KeyValue(starRo.angleProperty(), starRo.angleProperty().intValue()+180, Interpolator.EASE_IN))
+				);
+		if (!isMoon) {
+			moonTL.setOnFinished(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					moonRo.setAngle(-200);
+					starRo.setAngle(-180);
+				}
+			});
 		}
+		moonTL.play();
 	}
 	
-	public void setStars(boolean isStars){
-		this.isStars = isStars;
-		stars.setVisible(isStars);
-		starCircles.setVisible(isStars);
-		if (isStars){
-			for(int i=0; i<stars.getChildren().size(); i++){
-				Star star = (Star) stars.getChildren().get(i);
-				timeline.getKeyFrames().addAll(star.lightAnimation());
-			}
-		}
-	}
+//	public void setStars(boolean isStars){
+//		stars.setVisible(isStars);
+//		starCircles.setVisible(isStars);
+//		if (isStars){
+//			for(int i=0; i<stars.getChildren().size(); i++){
+//				Star star = (Star) stars.getChildren().get(i);
+//				timeline.getKeyFrames().addAll(star.lightAnimation());
+//			}
+//		}
+//	}
 	
-	public void removeAll() {
-		this.setSun(false);
-		this.setMoon(false);
-		this.setStars(false);
-		timeline = new Timeline();
-	}
-	public void stopAll() {
-		timeline.stop();
-	}
-	
-	public void restartAll(){
-		timeline.play();
-	}
+//	public void removeAll() {
+//		this.setSun(false);
+//		this.setMoon(false);
+//		this.setStars(false);
+//		timeline = new Timeline();
+//	}
+//	public void stopAll() {
+//		timeline.stop();
+//	}
+//	
+//	public void restartAll(){
+//		timeline.play();
+//	}
 }

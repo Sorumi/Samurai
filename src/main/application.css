@@ -6,6 +6,7 @@
     -fx-border-radius: 0;
     -fx-padding: 0;
     -fx-border-insets: 0;
+    -fx-content-display: center;
 }
 
 #system-btn{
@@ -14,10 +15,19 @@
 	-fx-pref-height: 50;
 	-fx-background-radius: 25;
 	-fx-border-radius: 25;
-	-fx-content-display: center;
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
 }
-
+#mode-btn{
+	-fx-background-color: rgba(255,255,255,0.5);
+	-fx-background-radius: 30;
+	-fx-border-radius: 30;
+	-fx-font-family: "FZZhengHeiS-EL-GB";
+	-fx-font-size: 24;
+	-fx-font-weight: 600;
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
 /* Campsite */
 #campsite-wrapper{
 	-fx-background-color: #ffffff;
@@ -273,6 +283,25 @@
 	-fx-font-weight: 100;
 	-fx-alignment: center-left;
 }
+#text-miss {
+    -fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 30;
+	-fx-font-weight: 900;
+    -fx-fill: #BDC8DE;
+    -fx-stroke: #fff;
+    -fx-stroke-width: 1;
+}
+
+#text-attacked {
+    -fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 30;
+	-fx-font-weight: 900;
+    -fx-fill: #E4ABA9;
+    -fx-stroke: #fff;
+    -fx-stroke-width: 1;
+}
+
+
 /* Other */
 .scroll-pane {
 	-fx-background: transparent; 
