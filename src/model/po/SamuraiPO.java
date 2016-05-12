@@ -214,20 +214,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public Position getHome() {
-		switch (number) {
-		case 1:
-			return new Position(0, 0);
-		case 2:
-			return new Position(length / 2, 0);
-		case 3:
-			return new Position(length, 0);
-		case 4:
-			return new Position(0, length);
-		case 5:
-			return new Position(length / 2, length);
-		default:
-			return new Position(length, length);
-		}
+		return this.home;
 	}
 
 	public void beKilled(ChessBoardModel cbm) {
