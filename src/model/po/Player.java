@@ -61,6 +61,8 @@ public class Player {
             System.out.println("Weapon number 4: "+samuraiPOs[4].getWeapon().getType());
             System.out.println("Weapon number 5: "+samuraiPOs[5].getWeapon().getType());
             System.out.println("Weapon number 6: "+samuraiPOs[6].getWeapon().getType());
+
+            this.isAI = true;
         }
 
     }

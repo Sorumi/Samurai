@@ -600,7 +600,9 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round", this.currentRound));
         super.updateChange(new UpdateMessage("pointsTotal",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-        this.updateVisible(this.updateVision());
+//        this.updateVisible(this.updateVision());
+
+        System.out.println("Now is " +this.samuraiSeq[this.currentSamurai - 1]);
 
         if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
 
@@ -719,7 +721,6 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void skip1Round(){
-        System.out.println("Skip");
         OperationQueue.addOperation(new NextOperation());
     }
 

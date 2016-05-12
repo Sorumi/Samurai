@@ -194,7 +194,7 @@ public class GamePanel extends Pane implements Observer{
 			B2.setOnMouseEntered(stateHandler.showStatePanelInG);
 			B2.setOnMouseExited(stateHandler.closeStatePanelInG);
 			B3.setOnMouseEntered(stateHandler.showStatePanelInG);
-			B3.setOnMouseExited(stateHandler.closeStatePanelInG); 
+			B3.setOnMouseExited(stateHandler.closeStatePanelInG);
 
 		}
 
@@ -258,6 +258,15 @@ public class GamePanel extends Pane implements Observer{
 				break;
 			case 3:
 				this.A3.samuraiV.setWeapon(weapon);
+				break;
+			case 4:
+				this.B1.samuraiV.setWeapon(weapon);
+				break;
+			case 5:
+				this.B2.samuraiV.setWeapon(weapon);
+				break;
+			case 6:
+				this.B3.samuraiV.setWeapon(weapon);
 				break;
 		}
 	}
