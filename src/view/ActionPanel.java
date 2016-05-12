@@ -140,7 +140,11 @@ public class ActionPanel extends OrderPanel {
 		}
 		this.isAppear = isAppear;
 	}
-	
+
+	public boolean isAppear() {
+		return isAppear;
+	}
+
 	public void setAppearAnimation(boolean isAppear){
 		
 		if(isAppear == this.isAppear){
@@ -227,8 +231,7 @@ public class ActionPanel extends OrderPanel {
 					ActionPanel.this.setVisible(isAppear);
 				}
 	        });
-			
-		} 
+		}
 	}
 
 	private void setStartLocation(){

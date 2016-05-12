@@ -6,9 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import controller.msgqueue.EndOperation;
-import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
-import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import model.GameModel;
 import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
@@ -330,16 +327,23 @@ public class GamePanel extends Pane implements Observer{
 		
 		this.currentSamurai = getSamurai(num);
 
-		currentSamurai.setCanActionProperty(true);
-		currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
-		currentSamurai.samuraiV.setRandomAnimation(false);
-		
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
-        actionPanel.setCurrentSamurai(currentSamurai);
+
 		if(currentPlayer == playerA) {
+			currentSamurai.setCanActionProperty(true);
+//			if(!actionPanel.isAppear()) {
+				currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
+//			}else {
+//				currentSamurai.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
+//			}
+			currentSamurai.samuraiV.setRandomAnimation(false);
+			actionPanel.setCurrentSamurai(currentSamurai);
             arrow.setCurrentSamurai(currentSamurai);
+		}else{
+			actionPanel.setAppear(false,false);
 		}
+
 		//add
 		currentSamurai.canActionProperty().addListener(new ChangeListener(){
 			public void changed(ObservableValue o,Object oldVal,Object newVal){
@@ -347,11 +351,12 @@ public class GamePanel extends Pane implements Observer{
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						boolean canAction= (boolean) newVal;
+						boolean canAction = (boolean) newVal;
 						if (canAction) {
 							if(currentPlayer == playerA) {
 								arrow.setActualLocation();
 								arrow.setVisible(true);
+
 								if(level < 99 && level > 0) {
 									currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 								}
