@@ -272,13 +272,13 @@ public class StatePanel extends OrderPanel {
 
 	public void setBloodTotal(int total){
 		this.bloodTotal = total;
-		bloodArc.setLength(360);
+		bloodArc.setLength(-360);
 		bloodLabel.setText(total + "");
 	}
 	
 	public void setBloodRest(int rest){
 		this.bloodRest = rest;
 		bloodLabel.setText(rest + "");
-		bloodArc.setLength(- (float) bloodRest / bloodTotal);
+		bloodArc.setLength(- (float) bloodRest / bloodTotal * 360);
 	}
 }
