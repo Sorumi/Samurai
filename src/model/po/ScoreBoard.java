@@ -36,6 +36,7 @@ public class ScoreBoard {
 				materials.add(material);
 			}
 		}
+        System.out.println(materials.size());
 		return materials;
 	}
 

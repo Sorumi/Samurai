@@ -142,8 +142,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.attackValue = 5;
 		this.armorValue = 10;
 		this.coldRound = 0;
-		this.healthPoint = 60;
-		this.totalHealthPoint = 60;
 		this.criticalHitChance = 1;
 		this.home = home;
 
@@ -1185,7 +1183,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public void changeWeapon(Weapon weapon) {
 		this.weapon = weapon;
 	}
-
+	public void setHealthPoint(int healthPoint){
+		this.healthPoint=healthPoint;
+	}
 	public void changeArmor(Armor armor) {
 		this.armor = armor;
 	}
