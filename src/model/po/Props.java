@@ -15,4 +15,5 @@ public class Props {
 	public void changeNumber(int number) {
 		this.number = this.number + number;
 	}
+
 }
