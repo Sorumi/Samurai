@@ -43,6 +43,9 @@ public class WeaponView extends StackPane{
 			if(imgV.getFitHeight() > 100*SCALE){
 				imgV.setScaleX(1.1);
 				imgV.setScaleY(1.1);
+			}else if (imgV.getFitHeight() > 70*SCALE){
+				imgV.setScaleX(1.3);
+				imgV.setScaleY(1.3);
 			}else{
 				imgV.setScaleX(1.5);
 				imgV.setScaleY(1.5);
@@ -52,15 +55,17 @@ public class WeaponView extends StackPane{
 				imgV.setRotate(45);
 			}else{
 				imgV.setRotate(-45);
-				imgVExtra = new ImageView(Images.WEAPON[number/100+1][number%100/10][number%10]);
-				imgVExtra.setFitWidth(Images.WEAPON[number/100+1][number%100/10][number%10].getWidth()/6*SCALE);
-				imgVExtra.setPreserveRatio(true);
-				imgVExtra.setSmooth(true);
-				imgVExtra.setScaleX(1.5);
-				imgVExtra.setScaleY(1.5);
-				imgVExtra.setRotate(-45);
-				this.getChildren().add(imgVExtra);
-				StackPane.setAlignment(imgVExtra, Pos.CENTER);
+				if(number/10 == 41){
+					imgVExtra = new ImageView(Images.WEAPON[number/100+1][number%100/10][number%10]);
+					imgVExtra.setFitWidth(Images.WEAPON[number/100+1][number%100/10][number%10].getWidth()/6*SCALE);
+					imgVExtra.setPreserveRatio(true);
+					imgVExtra.setSmooth(true);
+					imgVExtra.setScaleX(1.5);
+					imgVExtra.setScaleY(1.5);
+					imgVExtra.setRotate(-45);
+					this.getChildren().add(imgVExtra);
+					StackPane.setAlignment(imgVExtra, Pos.CENTER);
+				}
 			}
 			
 			this.getChildren().add(imgV);
@@ -75,11 +80,13 @@ public class WeaponView extends StackPane{
 		switch(num){
 			//spear
 			case 00:
-			case 12:
 				imgV.setFitWidth(6*SCALE);
 				break;
 			case 11:
 				imgV.setFitWidth(7*SCALE);
+				break;
+			case 12:
+				imgV.setFitWidth(6*SCALE);
 				break;
 			case 13:
 				imgV.setFitWidth(17*SCALE);
@@ -120,7 +127,6 @@ public class WeaponView extends StackPane{
 				
 			//sword
 			case 100:
-			case 113:
 				imgV.setFitWidth(14*SCALE);
 				break;
 			case 111:
@@ -128,6 +134,9 @@ public class WeaponView extends StackPane{
 				break;
 			case 112:
 				imgV.setFitWidth(8*SCALE);
+				break;
+			case 113:
+				imgV.setFitWidth(14*SCALE);
 				break;
 			case 114:
 				imgV.setFitWidth(10*SCALE);
@@ -165,11 +174,13 @@ public class WeaponView extends StackPane{
 			
 			//battleax
 			case 200:
-			case 212:
 				imgV.setFitWidth(18*SCALE);
 				break;
 			case 211:
 				imgV.setFitWidth(23*SCALE);
+				break;
+			case 212:
+				imgV.setFitWidth(18*SCALE);
 				break;
 			case 213:
 				imgV.setFitWidth(31*SCALE);
@@ -209,7 +220,6 @@ public class WeaponView extends StackPane{
 				
 			//shuriken
 			case 300:
-			case 323:
 				imgV.setFitWidth(20*SCALE);
 				break;
 			case 311:
@@ -230,6 +240,9 @@ public class WeaponView extends StackPane{
 			case 316:
 				imgV.setFitWidth(4*SCALE);
 				break;
+			case 323:
+				imgV.setFitWidth(20*SCALE);
+				break;
 			case 324:
 				imgV.setFitWidth(24*SCALE);
 				break;
@@ -238,36 +251,58 @@ public class WeaponView extends StackPane{
 				break;
 			case 326:
 				imgV.setFitWidth(28*SCALE);
-				break;				
+				break;
+				
+			//bow
 			case 400:
 				imgV.setFitWidth(18*SCALE);
+				imgV.setFitHeight(62*SCALE);
 				break;
 			case 411:
 				imgV.setFitWidth(18*SCALE);
+				imgV.setFitHeight(66*SCALE);
 				break;
 			case 412:
 				imgV.setFitWidth(18*SCALE);
+				imgV.setFitHeight(62*SCALE);
 				break;
 			case 413:
 				imgV.setFitWidth(15*SCALE);
+				imgV.setFitHeight(67*SCALE);
 				break;
 			case 414:
 				imgV.setFitWidth(20*SCALE);
+				imgV.setFitHeight(66*SCALE);
 				break;
 			case 415:
 				imgV.setFitWidth(28*SCALE);
+				imgV.setFitHeight(66*SCALE);
 				break;
 			case 416:
 				imgV.setFitWidth(24*SCALE);
+				imgV.setFitHeight(73*SCALE);
+				break;
+			case 422:
+				imgV.setFitWidth(59*SCALE);
+				imgV.setFitHeight(69*SCALE);
+				break;
+			case 423:
+				imgV.setFitWidth(87*SCALE);
+				imgV.setFitHeight(71*SCALE);
+				break;
+			case 424:
+				imgV.setFitWidth(68*SCALE);
+				imgV.setFitHeight(76*SCALE);
+				break;
+			case 425:
+				imgV.setFitWidth(65*SCALE);
+				imgV.setFitHeight(74*SCALE);
+				break;
+			case 426:
+				imgV.setFitWidth(81*SCALE);
+				imgV.setFitHeight(76*SCALE);
 				break;
 				
-			case 422:
-			case 423:
-			case 424:
-			case 425:
-			case 426:
-				imgV.setFitWidth(18*SCALE);
-				break;
 			case 500:
 				imgV.setFitWidth(50*SCALE);
 				break;
@@ -288,13 +323,6 @@ public class WeaponView extends StackPane{
 				break;
 			case 516:
 				imgV.setFitWidth(51*SCALE);
-				break;
-			case 522:
-			case 523:
-			case 524:
-			case 525:
-			case 526:
-				imgV.setFitWidth(50*SCALE);
 				break;
 		}
 
