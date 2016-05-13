@@ -343,7 +343,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void updateHealthPoint(int samurai){
-        super.updateChange(new UpdateMessage("healthRest", new int[]{samurai, this.getSamuraiOfNum(samurai).getHealthPoint()}));
+        super.updateChange(new UpdateMessage("healthPoint", new int[]{samurai, this.getSamuraiOfNum(samurai).getHealthPoint()}));
     }
 
     public void updateKilled(int i){
@@ -537,8 +537,8 @@ public class GameModel extends BaseModel implements Observer {
 //        }
 
 
-            super.updateChange(new UpdateMessage("vision", blocks));
-            return blocks;
+        super.updateChange(new UpdateMessage("vision", blocks));
+        return blocks;
     }
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
@@ -555,6 +555,21 @@ public class GameModel extends BaseModel implements Observer {
         }else{
             super.updateChange(new UpdateMessage("a-pseudoOccupy",this.players[this.playerSeq[this.currentPlayer - 1]].pseudoOccupy(direction)));
         }
+    }
+
+    //生成道具随机位置
+    public Position randomPropLocation(){
+        Random random = new Random();
+        boolean flag = false;
+        int x=0, y=0;
+        while(!flag){
+            x = random.nextInt(this.length);
+            y = random.nextInt(this.length);
+            if(this.chessBoardModel.getActualBlockState(x ,y) == 0){
+                flag = true;
+            }
+        }
+        return new Position(x, y);
     }
 
     //联机模式下
@@ -576,7 +591,7 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("round",this.currentRound));
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-            this.updateVisible(this.updateVision());
+//            this.updateVisible(this.updateVision());
         }else{
 
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
@@ -592,6 +607,8 @@ public class GameModel extends BaseModel implements Observer {
 
     //经典模式下+故事模式下
     public void assignNextWithAI()  {
+
+        this.randomPropLocation();
 
         System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
 
@@ -748,16 +765,16 @@ public class GameModel extends BaseModel implements Observer {
         int aiKill = this.getSamuraiOfNum(4).getKillNum() + this.getSamuraiOfNum(5).getKillNum() + this.getSamuraiOfNum(6).getKillNum();
         System.out.println("I kill " + myKill + " and AI kill " + aiKill);
 
-        int block = this.chessBoardModel.getStatesOfAllBlocks()[0] + this.chessBoardModel.getStatesOfAllBlocks()[1]
-                + this.chessBoardModel.getStatesOfAllBlocks()[2] - this.chessBoardModel.getStatesOfAllBlocks()[4]
+        int block = this.chessBoardModel.getStatesOfAllBlocks()[1] + this.chessBoardModel.getStatesOfAllBlocks()[2]
+                + this.chessBoardModel.getStatesOfAllBlocks()[3] - this.chessBoardModel.getStatesOfAllBlocks()[4]
                 - this.chessBoardModel.getStatesOfAllBlocks()[5] - this.chessBoardModel.getStatesOfAllBlocks()[6];
 
         scoreBoard.caculateMaterial(level/10 - 1, level%10, block, myKill, aiKill);
         ArrayList<Material> materials = scoreBoard.getMaterial();
         super.updateChange(new UpdateMessage("materials",materials));
 
-        int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[0],
-                this.chessBoardModel.getStatesOfAllBlocks()[1], this.chessBoardModel.getStatesOfAllBlocks()[2],
+        int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],
+                this.chessBoardModel.getStatesOfAllBlocks()[2], this.chessBoardModel.getStatesOfAllBlocks()[3],
                 this.getSamuraiOfNum(1).getKillNum(),this.getSamuraiOfNum(2).getKillNum(),this.getSamuraiOfNum(3).getKillNum());
         this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
         this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
@@ -771,6 +788,8 @@ public class GameModel extends BaseModel implements Observer {
                 super.updateChange(new UpdateMessage("levelup",i));
             }
         }
+
+        super.updateChange(new UpdateMessage("rating",scoreBoard.getRating()));
 
         System.out.println("GAME OVER!");
 
