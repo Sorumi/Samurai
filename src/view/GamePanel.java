@@ -110,12 +110,14 @@ public class GamePanel extends Pane implements Observer{
 				System.out.println("LEVEL : " + level);
 				switch(level){
 					case 99:
-					case 0:
 						Pane basePanel = (Pane) GamePanel.this.getParent();
 						basePanel.getChildren().remove(GamePanel.this);
 						MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
 						menu.samuraiTimer.start();
 
+						OperationQueue.addOperation(new EndOperation());
+						break;
+					case 0:
 						OperationQueue.addOperation(new EndOperation());
 						break;
 					default:
@@ -572,8 +574,17 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("healthPoint")){
 					int[] t = (int [])notifingObject.getValue();
 					bloodRest[t[0]] = t[1];
+
 				}else if(key.equals("rating")){
 					System.out.println("Rating : " + (String)notifingObject.getValue());
+
+				}else if(key.equals("prop")){
+					int[] t = (int [])notifingObject.getValue();
+					System.out.println("Position : " + t[0] + " , " + t[1] + " set prop " + t[2]);
+
+				}else if(key.equals("goodbyeactionpanel")){
+					actionPanel.setAppear(false,false);
+
 				}
 			}
 		});

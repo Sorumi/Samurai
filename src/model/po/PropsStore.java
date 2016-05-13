@@ -1,10 +1,13 @@
 package model.po;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 //若大起大落是KILL  不要调用他的replace
-public class PropsStore {
+public class PropsStore implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	ArrayList<Props> props = new ArrayList<Props>();
 	Random random = new Random();
 

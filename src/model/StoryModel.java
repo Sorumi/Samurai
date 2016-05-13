@@ -20,6 +20,7 @@ public class StoryModel implements Serializable{
     private Armory armory;
     private MaterialLibrary materialLibrary;
     private InformationLibrary informationLibrary;
+    private PropsStore propsStore;
 
     private int money;
 
@@ -39,6 +40,8 @@ public class StoryModel implements Serializable{
 
         this.informationLibrary = new InformationLibrary();
         this.informationLibrary.initialize();
+
+        this.propsStore = new PropsStore();
 
         this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(2,12),30,1);
         this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(7,0),30,1);
@@ -155,6 +158,7 @@ public class StoryModel implements Serializable{
         storyModel.armory = sModel.armory;
         storyModel.materialLibrary = sModel.materialLibrary;
         storyModel.informationLibrary = sModel.informationLibrary;
+        storyModel.propsStore = sModel.propsStore;
         storyModel.samuraiPO_1 = sModel.samuraiPO_1;
         storyModel.samuraiPO_2 = sModel.samuraiPO_2;
         storyModel.samuraiPO_3 = sModel.samuraiPO_3;
