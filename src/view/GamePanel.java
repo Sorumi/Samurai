@@ -66,6 +66,9 @@ public class GamePanel extends Pane implements Observer{
 	private int[] samuraiProperties_5;
 	private int[] samuraiProperties_6;
 
+	private int[] bloodTotal = new int[7];
+	private int[] bloodRest = new int[7];
+
 	protected PlayerPanel currentPlayer;
 	protected PlayerPanel playerA;
 	protected PlayerPanel playerB;
@@ -409,6 +412,14 @@ public class GamePanel extends Pane implements Observer{
 		}
 	}
 
+	public int getBloodRestOfSamurai(int i) {
+		return bloodRest[i];
+	}
+
+	public int getBloodTotalOfSamurai(int i){
+		return bloodTotal[i];
+	}
+
 	public void update(Observable o, Object arg) {
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
@@ -547,6 +558,14 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("materials")){
 
+				}else if(key.equals("healthTotal")){
+					int[] t = (int [])notifingObject.getValue();
+					bloodTotal[t[0]] = t[1];
+					bloodRest[t[0]] = t[1];
+
+				}else if(key.equals("healthPoint")){
+					int[] t = (int [])notifingObject.getValue();
+					bloodRest[t[0]] = t[1];
 				}
 			}
 		});

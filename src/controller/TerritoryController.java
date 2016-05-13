@@ -44,4 +44,9 @@ public class TerritoryController{
                 tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()};
     }
 
+    public int getBlood(int samurai){
+        return this.storyModel.getSamuraiPO(samurai).getTotalHealthPoint();
+    }
+
+
 }

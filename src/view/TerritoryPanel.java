@@ -70,6 +70,8 @@ public class TerritoryPanel extends Pane {
 	private int[] samuraiProperties_1;
 	private int[] samuraiProperties_2;
 	private int[] samuraiProperties_3;
+
+	private int[] bloodTotal = new int[4];
 	
 	//weather
 //	private RainGroup rain;
@@ -194,6 +196,8 @@ public class TerritoryPanel extends Pane {
 
 		this.set6Properties();
 
+		this.setBloodTotal();
+
 		//blur
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
@@ -268,6 +272,16 @@ public class TerritoryPanel extends Pane {
 		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
 		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
 		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
+	}
+
+	public void setBloodTotal(){
+		for (int i = 1; i <= 3; i++) {
+			this.bloodTotal[i] = this.territoryHandler.getTerritoryController().getBlood(i);
+		}
+	}
+
+	public int getBloodTotalOfSamurai(int samurai){
+		return this.bloodTotal[samurai];
 	}
 
 	public TerritoryHandler getTerritoryHandler(){
