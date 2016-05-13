@@ -75,7 +75,39 @@
 	-fx-alignment: center;
 	-fx-text-alignment: center;
 }
-
+/*Shop */
+#perprice-label{ 
+	-fx-text-fill: #987F69;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 20;
+	-fx-alignment: center-left;
+}
+#quantity-label{  
+	-fx-text-fill: #86A1A6;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 20;
+	-fx-alignment: center-left;
+}
+#plus-label{   
+	-fx-text-fill: #86A1A6;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 600;
+	-fx-font-size: 20;
+	-fx-alignment: center-left;
+}
+#buy-btn{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #4792A0;
+	-fx-background-color: #D7ECF0;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	
+}
 /* Smithy */
 #smithy-wrapper{
 	-fx-background-radius: 0 10 10 10;

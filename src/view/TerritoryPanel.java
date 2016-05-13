@@ -23,6 +23,7 @@ import view.campsite.CampsitePanel;
 import view.eventhandler.StateHandler;
 import view.eventhandler.TerritoryHandler;
 import view.eventhandler.WeatherHandler;
+import view.shop.ShopPanel;
 import view.smithy.SmithyPanel;
 import view.store.StorePanel;
 
@@ -38,6 +39,7 @@ public class TerritoryPanel extends Pane {
 	private SystemButton exitBtn;
 	private SystemButton saveBtn;
 	
+	
 	private TerritoryHandler territoryHandler;
 	private Group territoryGroup;
 	
@@ -49,10 +51,12 @@ public class TerritoryPanel extends Pane {
 	private TerritoryButton smithyBtn;
 	private TerritoryButton storeBtn;
 	private TerritoryButton flagBtn;
+	private Button shopBtn;
 	
 	public CampsitePanel campsitePanel;
 	public SmithyPanel smithyPanel;
 	public StorePanel storePanel;
+	public ShopPanel shopPanel;
 
 	public ArchivePanel archivePanel;
 	public StatePanel statePanel;
@@ -151,6 +155,13 @@ public class TerritoryPanel extends Pane {
 		flagBtn.setLayoutX(926);
 		flagBtn.setLayoutY(368);
 		flagBtn.setOnMouseClicked(territoryHandler.flagEvent);
+		
+		shopBtn = new Button("shop");
+		shopBtn.setLayoutX(500);
+		shopBtn.setLayoutY(430);
+		shopBtn.setOnMouseClicked(territoryHandler.shopEvent); 
+		territoryGroup.getChildren().add(shopBtn);
+		
 		
 		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn);
 		stateHandler = new StateHandler(this);
