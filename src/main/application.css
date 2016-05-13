@@ -262,6 +262,13 @@
 	-fx-font-weight: 100;
 	-fx-alignment: center-left;
 }
+#state-lable-big{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 24;
+	-fx-font-weight: 100;
+	-fx-alignment: center-left;
+}
 #weapon-name{ 
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";
