@@ -240,6 +240,7 @@ public class TerritoryPanel extends Pane {
 	public void updateSamurai(){
 		territoryHandler.updateSamurai();
 		this.set6Properties();
+		this.setBloodTotal();
 	}
 	
 	public void setBlur(boolean isBlur){
