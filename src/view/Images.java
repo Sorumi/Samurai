@@ -384,5 +384,8 @@ public class Images {
 	public static Image[] MATERIAL_4 = {MATERIAL_40, MATERIAL_41, MATERIAL_42, MATERIAL_43};
 	
 	public static Image[][] MATERIAL = {MATERIAL_0, MATERIAL_1, MATERIAL_2, MATERIAL_3, MATERIAL_4};
+	
+	//prop
+	public static Image PROP_0 = new Image("/./images/prop_0.png",true);
  
 }
