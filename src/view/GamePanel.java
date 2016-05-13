@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.UpdateMessage;
 import model.po.ActualBlock;
+import model.po.Material;
 import model.po.Position;
 import model.po.SamuraiPO;
 import view.background.BackgroundPanel;
@@ -541,7 +542,7 @@ public class GamePanel extends Pane implements Observer{
 					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
 					
 				}else if(key.equals("over")){
-					resultPanel.setResults((int [])notifingObject.getValue());
+					resultPanel.setBlocks((int [])notifingObject.getValue());
 					
 				}else if(key.equals("miss")){
 					getSamurai((int)notifingObject.getValue()).setMiss();
@@ -555,11 +556,14 @@ public class GamePanel extends Pane implements Observer{
 					getSamurai(t[0]).setDoubleAttacked((int)(t[1] / 2));
 					
 				}else if(key.equals("levelup")){
-
+//					resultPanel.setStart();
+					
 				}else if(key.equals("materials")){
-
+					resultPanel.setMaterials((ArrayList<Material>)notifingObject.getValue());
+					
 				}else if(key.equals("experiences")){
-					int[] experience = (int [])notifingObject.getValue();
+//					int[] experience = (int[])notifingObject.getValue();
+					resultPanel.setExperiences((int[])notifingObject.getValue());
 
 				}else if(key.equals("healthTotal")){
 					int[] t = (int [])notifingObject.getValue();

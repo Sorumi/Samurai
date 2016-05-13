@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
@@ -19,6 +21,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import model.po.Material;
 
 public class ResultPanel extends OrderPanel {
 
@@ -41,11 +44,14 @@ public class ResultPanel extends OrderPanel {
 
 	private Group resultGroup;
 	private Group materialGroup;
+	private TilePane tile;
 
 	private BlockArc[] arcsOne;
 	private BlockArc[] arcsTwo;
 	
-	private int[] blocks;
+	private int[] blocks = {0,20,30,30,40,10,20};
+	
+	private Pane samuraiPanel;
 
 	private Timeline timeline;
 
@@ -55,14 +61,6 @@ public class ResultPanel extends OrderPanel {
 		BlockArc() {
 			blockNum = 0;
 		}
-	}
-
-	public void setResults(int[] results) {
-		for (int i : results) {
-			System.out.println(i);
-//			this.blocks[i]
-		}
-
 	}
 
 	public ResultPanel(GamePanel gamePanel) {
@@ -116,23 +114,23 @@ public class ResultPanel extends OrderPanel {
 		materialCircle.setRadius(252);
 		materialCircle.setFill(Color.web("#ffffff"));
 
-		TilePane tile = new TilePane();
+		tile = new TilePane();
 		tile.setVgap(10);
 		tile.setHgap(20);
 		tile.setPrefColumns(4);
 		tile.setPrefRows(2);
-		for (int i = 0; i < 4; i++) {
-			MaterialPanel materialPanel = new MaterialPanel(0, 00, 3);
-			tile.getChildren().add(materialPanel);
-		}
-		for (int i = 0; i < 4; i++) {
-			MaterialPanel materialPanel = new MaterialPanel(1, 00, 3);
-			tile.getChildren().add(materialPanel);
-		}
+//		for (int i = 0; i < 4; i++) {
+//			MaterialPanel materialPanel = new MaterialPanel(00, 3);
+//			tile.getChildren().add(materialPanel);
+//		}
+//		for (int i = 0; i < 4; i++) {
+//			MaterialPanel materialPanel = new MaterialPanel(00, 3);
+//			tile.getChildren().add(materialPanel);
+//		}
 		tile.setLayoutX(100);
 		tile.setLayoutY(200);
 
-		Pane samuraiPanel = new Pane();
+		samuraiPanel = new Pane();
 		for (int num = 1; num <= 3; num++) {
 			ImageView samurai = new ImageView(Images.SAMURAI_BTN[num]);
 			samurai.setFitWidth(52);
@@ -162,7 +160,7 @@ public class ResultPanel extends OrderPanel {
 		// player0
 		arcsOne = new BlockArc[3];
 		double startAngleOne = 90.0;
-		double preAngleOne = 180.0 / (size * size);
+		double preAngleOne = 360.0 / (size * size);
 		for (int i = 0; i < arcsOne.length; i++) {
 			arcsOne[i] = new BlockArc();
 			BlockArc tmpArc = arcsOne[i];
@@ -180,7 +178,7 @@ public class ResultPanel extends OrderPanel {
 		// player1
 		arcsTwo = new BlockArc[3];
 		double startAngleTwo = 90.0;
-		double preAngleTwo = -180.0 / (size * size);
+		double preAngleTwo = -360.0 / (size * size);
 		for (int i = 0; i < arcsTwo.length; i++) {
 			arcsTwo[i] = new BlockArc();
 			BlockArc tmpArc = arcsTwo[i];
@@ -200,36 +198,55 @@ public class ResultPanel extends OrderPanel {
 		logo.setLayoutX(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
 		logo.setLayoutY(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
 		this.getChildren().add(logo);
-		this.getChildren().addAll(circle3, resultGroup, materialGroup);
+		this.getChildren().addAll(circle3, resultGroup, materialGroup);		
 		
-		
-		
-		
-		// 40是假数字！！
 		double startAngle = 90.0;
 		timeline = new Timeline(
-				new KeyFrame(Duration.millis(500), new KeyValue(arcsOne[0].lengthProperty(), preAngleOne * 40)),
-				new KeyFrame(Duration.millis(500), new KeyValue(arcsTwo[0].lengthProperty(), preAngleTwo * 40)),
+				new KeyFrame(Duration.millis(500), new KeyValue(arcsOne[0].lengthProperty(), preAngleOne * blocks[1])),
+				new KeyFrame(Duration.millis(500), new KeyValue(arcsTwo[0].lengthProperty(), preAngleTwo * blocks[4])),
 				new KeyFrame(Duration.millis(700),
-						new KeyValue(arcsOne[1].startAngleProperty(), startAngle + preAngleOne * 40)),
+						new KeyValue(arcsOne[1].startAngleProperty(), startAngle + preAngleOne * blocks[1])),
 				new KeyFrame(Duration.millis(700), new KeyValue(arcsOne[1].lengthProperty(), 0)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(arcsOne[1].lengthProperty(), preAngleOne * 40)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(arcsOne[1].lengthProperty(), preAngleOne * blocks[2])),
 				new KeyFrame(Duration.millis(700),
-						new KeyValue(arcsTwo[1].startAngleProperty(), startAngle + preAngleTwo * 40)),
+						new KeyValue(arcsTwo[1].startAngleProperty(), startAngle + preAngleTwo * blocks[4])),
 				new KeyFrame(Duration.millis(700), new KeyValue(arcsTwo[1].lengthProperty(), 0)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(arcsTwo[1].lengthProperty(), preAngleTwo * 40)),
+				new KeyFrame(Duration.millis(1200), new KeyValue(arcsTwo[1].lengthProperty(), preAngleTwo * blocks[5])),
 				new KeyFrame(Duration.millis(1400),
 						new KeyValue(arcsOne[2].startAngleProperty(),
-								startAngle + preAngleOne * 40 + preAngleOne * 40)),
+								startAngle + preAngleOne * blocks[1] + preAngleOne * blocks[2])),
 				new KeyFrame(Duration.millis(1400), new KeyValue(arcsOne[2].lengthProperty(), 0)),
-				new KeyFrame(Duration.millis(1900), new KeyValue(arcsOne[2].lengthProperty(), preAngleOne * 40)),
+				new KeyFrame(Duration.millis(1900), new KeyValue(arcsOne[2].lengthProperty(), preAngleOne * blocks[3])),
 				new KeyFrame(Duration.millis(1400),
 						new KeyValue(arcsTwo[2].startAngleProperty(),
-								startAngle + preAngleTwo * 40 + preAngleTwo * 40)),
+								startAngle + preAngleTwo * blocks[4] + preAngleTwo * blocks[5])),
 				new KeyFrame(Duration.millis(1400), new KeyValue(arcsTwo[2].lengthProperty(), 0)),
-				new KeyFrame(Duration.millis(1900), new KeyValue(arcsTwo[2].lengthProperty(), preAngleTwo * 40)));
+				new KeyFrame(Duration.millis(1900), new KeyValue(arcsTwo[2].lengthProperty(), preAngleTwo * blocks[6])));
 
 		this.setVisible(false);
+	}
+
+	public void setBlocks(int[] results) {
+		for (int i=0; i<results.length; i++) {
+			this.blocks[i] = results[i];
+			System.out.println(results[i]);
+		}
+		this.setStart();
+	}
+	
+	public void setMaterials(ArrayList<Material> list){
+		for (Material material : list){
+			System.out.println(material.getType() + ": " + material.getNumer());
+			MaterialPanel materialPanel = new MaterialPanel(material.getType(), material.getNumer());
+			tile.getChildren().add(materialPanel);
+		}
+	}
+	
+	public void setExperiences(int[] expertiences) {
+		for(int i=0; i<expertiences.length; i++){
+			Label label = (Label) samuraiPanel.getChildren().get(i*2+1);
+			label.setText(expertiences[i] + "");
+		}
 	}
 
 	public void setStart() {
@@ -238,7 +255,7 @@ public class ResultPanel extends OrderPanel {
 		this.flip();
 	}
 
-	public void flip() {
+	private void flip() {
 
 		Timeline timeline0 = new Timeline(new KeyFrame(Duration.millis(3000), new KeyValue(logo.rotateProperty(), 0)));
 
@@ -354,6 +371,7 @@ public class ResultPanel extends OrderPanel {
 			}
 		});
 
+		timeline0.play();
 	}
 
 	// 内部类
@@ -363,7 +381,8 @@ public class ResultPanel extends OrderPanel {
 
 		// private MaterialView materialView;
 
-		public MaterialPanel(int colorNum, int materialnum, int amount) {
+		public MaterialPanel(int materialnum, int amount) {
+			materialnum = materialnum-800;
 			this.setWidth(width);
 			this.setHeight(height);
 
@@ -372,18 +391,19 @@ public class ResultPanel extends OrderPanel {
 			circle.setCenterY(25);
 			circle.setRadius(25);
 
-			switch (colorNum) {
-			case 0:
-				circle.setFill(Color.web("#FFD3D3"));
-				break;
-			case 1:
-				circle.setFill(Color.web("FFFDE1"));
-				break;
-			}
+			circle.setFill(GameColor.getMaterialColor(materialnum));
+//			switch (colorNum) {
+//			case 0:
+//				circle.setFill(Color.web("#FFD3D3"));
+//				break;
+//			case 1:
+//				circle.setFill(Color.web("FFFDE1"));
+//				break;
+//			}
 
 			MaterialView material = new MaterialView(materialnum);
-			material.setLayoutX(-23);
-			material.setLayoutY(-23);
+//			material.setLayoutX(-23);
+//			material.setLayoutY(-23);
 			material.setScaleX(0.5);
 			material.setScaleY(0.5);
 
@@ -396,5 +416,7 @@ public class ResultPanel extends OrderPanel {
 
 		}
 	}
+
+
 
 }
