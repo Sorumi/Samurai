@@ -1,11 +1,71 @@
 package model.po;
 
 import java.util.ArrayList;
+import java.util.Random;
 
+//若大起大落是KILL  不要调用他的replace
 public class PropsStore {
 	ArrayList<Props> props = new ArrayList<Props>();
+	Random random = new Random();
 
-	private void useHPjar(int level, SamuraiPO samuraiPO) {
+	public String use(int type, SamuraiPO samuraiPO) {
+		int check = (type - 700) / 10;
+		switch (check) {
+		case 0:
+			useHPJar(check % 10, samuraiPO);
+			break;
+		case 1:
+			useAPJar(check % 10, samuraiPO);
+			break;
+		case 2:
+			useAttackPointJar(check % 10, samuraiPO);
+			break;
+		case 3:
+			useCriticalHitRateJar(check % 10, samuraiPO);
+			break;
+		case 4:
+			if (random.nextBoolean()) {
+				return "kill";
+			} else {
+				useBigSurprise(samuraiPO);
+			}
+			break;
+		case 5:
+			if (random.nextBoolean()) {
+				samuraiPO.setHealthPoint(10);
+			} else {
+				useSmallSurprise(samuraiPO);
+			}
+			break;
+		default:
+			System.out.println("Props wrong");
+			break;
+		}
+		return null;
+	}
+
+	public String replace(int type, SamuraiPO samuraiPO) {
+		int check = (type - 700) / 10;
+		switch (check) {
+		case 2:
+			replaceAttackPointJar(check % 10, samuraiPO);
+			break;
+		case 3:
+			replaceCriticalHitRateJar(check % 10, samuraiPO);
+			break;
+		case 4:
+			replaceBigSurprise(samuraiPO);
+			break;
+		case 5:
+			replaceSmallSurprise(samuraiPO);
+			break;
+		default:
+			break;
+		}
+		return null;
+	}
+
+	private void useHPJar(int level, SamuraiPO samuraiPO) {
 		switch (level) {
 		case 1:
 			if (samuraiPO.getHealthPoint() + 30 <= samuraiPO.getTotalHealthPoint()) {
@@ -36,7 +96,7 @@ public class PropsStore {
 		}
 	}
 
-	private void useAPjar(int level, SamuraiPO samuraiPO) {
+	private void useAPJar(int level, SamuraiPO samuraiPO) {
 		switch (level) {
 		case 1:
 			if (samuraiPO.getActionPoint() + 4 <= samuraiPO.getTotalActionPoint()) {
@@ -66,7 +126,7 @@ public class PropsStore {
 		}
 	}
 
-	public void useAttackPointJar(int level, SamuraiPO samuraiPO) {
+	private void useAttackPointJar(int level, SamuraiPO samuraiPO) {
 		switch (level) {
 		case 1:
 			samuraiPO.changeAttackPoint(30);
@@ -83,7 +143,8 @@ public class PropsStore {
 			break;
 		}
 	}
-    public void replaceAttackPoint(int level, SamuraiPO samuraiPO) {
+
+	private void replaceAttackPointJar(int level, SamuraiPO samuraiPO) {
 		switch (level) {
 		case 1:
 			samuraiPO.changeAttackPoint(-30);
@@ -99,9 +160,9 @@ public class PropsStore {
 			System.out.println("Props wrong!");
 			break;
 		}
-    }
-    	
-	public void useCriticalHitRateJar(int level, SamuraiPO samuraiPO) {
+	}
+
+	private void useCriticalHitRateJar(int level, SamuraiPO samuraiPO) {
 		switch (level) {
 		case 1:
 			samuraiPO.changeCriticalHitRate(10);
@@ -118,7 +179,8 @@ public class PropsStore {
 			break;
 		}
 	}
-	public void replaceCriticalHitRateJar(int level, SamuraiPO samuraiPO) {
+
+	private void replaceCriticalHitRateJar(int level, SamuraiPO samuraiPO) {
 		switch (level) {
 		case 1:
 			samuraiPO.changeCriticalHitRate(-10);
@@ -134,5 +196,25 @@ public class PropsStore {
 			System.out.println("Props wrong!");
 			break;
 		}
+	}
+
+	private void useBigSurprise(SamuraiPO samuraiPO) {
+		samuraiPO.changeAttackPoint(200);
+		samuraiPO.changeCriticalHitRate(100);
+	}
+
+	private void replaceBigSurprise(SamuraiPO samuraiPO) {
+		samuraiPO.changeAttackPoint(-200);
+		samuraiPO.changeCriticalHitRate(-100);
+	}
+
+	private void useSmallSurprise(SamuraiPO samuraiPO) {
+		samuraiPO.changeAttackPoint(200);
+		samuraiPO.changeCriticalHitRate(50);
+	}
+
+	private void replaceSmallSurprise(SamuraiPO samuraiPO) {
+		samuraiPO.changeAttackPoint(-200);
+		samuraiPO.changeCriticalHitRate(-50);
 	}
 }
