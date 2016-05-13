@@ -63,8 +63,9 @@ public class Player {
 
     public void setEnableToAction(){
         this.currentSamurai = gameModel.getCurrentSamurai();
-        this.gameModel.actionPerformed(0);
-        this.samuraiPOs[this.currentSamurai].setActionPoint(this.samuraiPOs[this.currentSamurai].getTotalActionPoint());
+//        this.gameModel.actionPerformed(0);
+//        this.samuraiPOs[this.currentSamurai].setActionPoint(this.samuraiPOs[this.currentSamurai].getTotalActionPoint());
+//        this.gameModel.updateVisible(this.gameModel.updateVision());
     }
 
     public ArrayList<ActualBlock> showVision(){

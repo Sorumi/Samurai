@@ -563,6 +563,8 @@ public class GameModel extends BaseModel implements Observer {
             Operation.setServer(false);
         }
 
+        this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
+
         super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
         super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
         super.updateChange(new UpdateMessage("round",this.currentRound));
@@ -595,12 +597,19 @@ public class GameModel extends BaseModel implements Observer {
                 this.timer.cancel();
             }
 
+            this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
+
             super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
             super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
             super.updateChange(new UpdateMessage("round", this.currentRound));
-            super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
-//        this.updateVisible(this.updateVision());
+            super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
+
+            System.out.println("Now is :" + this.getSamuraiOfNum(this.getCurrentSamurai()).getNumber());
+            System.out.println("Total Point: " + this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
+            System.out.println("Action Point: " + this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint());
+            this.updateVisible(this.updateVision());
+
 
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
 
@@ -651,6 +660,7 @@ public class GameModel extends BaseModel implements Observer {
                             ArrayList<ActionOperation> operations =  samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), flag ? aidPos : null);
                             System.out.println("operation size: " + operations.size());
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), flag ? aidPos : null)) {
+                                System.out.println(operation.getActionNum() + " , " + operation.getDirection());
                                 if (operation.getActionNum() == 98) {
                                     aidPos.setX(operation.getDirection() / 100);
                                     aidPos.setY(operation.getDirection() % 100);
@@ -709,8 +719,6 @@ public class GameModel extends BaseModel implements Observer {
     public void actionDone(){
 
         this.currentTime = this.timeTotal;
-
-        super.updateChange(new UpdateMessage("pointsTotal",this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
 
         System.out.println("Action Done");
 
