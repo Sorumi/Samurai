@@ -30,7 +30,7 @@ public class StatePanel extends OrderPanel {
 	private Polygon triangle;
 	private Circle bgCircle;
 	private Arc bloodArc;
-	private Circle centralCircle;
+	private Label bloodLabel;
 
 	private Group iconGroup;
 	private ImageView stateIcon1;
@@ -92,14 +92,14 @@ public class StatePanel extends OrderPanel {
 		bloodArc.setRadiusX(25*SCALE);
 		bloodArc.setRadiusY(25*SCALE);
 		bloodArc.setStartAngle(0);
-		bloodArc.setLength(-270);
+//		bloodArc.setLength();
 		bloodArc.setType(ArcType.ROUND);
 		bloodArc.setFill(GameColor.getOtherColor(3));
 		//这个圆以后换成图片
-		centralCircle = new Circle();
-		centralCircle.setCenterX(prefWidth/2*SCALE);
-		centralCircle.setRadius(22*SCALE);
-		centralCircle.setFill(Color.WHITE);
+		bloodLabel = new Label("");
+		bloodLabel.setId("blood-label");
+		bloodLabel.setPrefSize(44*SCALE, 44*SCALE);
+		bloodLabel.setLayoutX((prefWidth/2-22)*SCALE);
 		
 		//icon
 		iconGroup = new Group();
@@ -173,7 +173,7 @@ public class StatePanel extends OrderPanel {
 		}
 		
 		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);
-		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, centralCircle, iconGroup);
+		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, bloodLabel, iconGroup);
 		this.setVisible(false);  
 		
 	}
@@ -189,7 +189,7 @@ public class StatePanel extends OrderPanel {
 		
 		bgCircle.setCenterY((25+strokeWidth)*SCALE);
 		bloodArc.setCenterY((25+strokeWidth)*SCALE);
-		centralCircle.setCenterY((25+strokeWidth)*SCALE);
+		bloodLabel.setLayoutY((3+strokeWidth)*SCALE);
 		iconGroup.setLayoutY(62*SCALE);		
 	}
 
@@ -204,7 +204,7 @@ public class StatePanel extends OrderPanel {
 		
 		bgCircle.setCenterY((prefHeight-25-strokeWidth)*SCALE);
 		bloodArc.setCenterY((prefHeight-25-strokeWidth)*SCALE);
-		centralCircle.setCenterY((prefHeight-25-strokeWidth)*SCALE);
+		bloodLabel.setLayoutY((prefHeight-47-strokeWidth)*SCALE);
 		iconGroup.setLayoutY(26*SCALE);
 	}
 
@@ -272,10 +272,13 @@ public class StatePanel extends OrderPanel {
 
 	public void setBloodTotal(int total){
 		this.bloodTotal = total;
+		bloodArc.setLength(-360);
+		bloodLabel.setText(total + "");
 	}
 	
 	public void setBloodRest(int rest){
 		this.bloodRest = rest;
-		bloodArc.setLength(- (float) bloodRest / bloodTotal);
+		bloodLabel.setText(rest + "");
+		bloodArc.setLength(- (float) bloodRest / bloodTotal * 360);
 	}
 }
