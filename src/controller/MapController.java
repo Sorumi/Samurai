@@ -31,7 +31,7 @@ public class MapController extends TerritoryController {
 
     public void startGameAtLevel(int level){
 
-        this.gameModel = new GameModel(24, 14, gamePanel, level, this.storyModel.getSamuraiPOs());
+        this.gameModel = new GameModel(4, 14, gamePanel, level, this.storyModel.getSamuraiPOs());
         this.gameModel.addObserver(this.gamePanel);
         this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 
