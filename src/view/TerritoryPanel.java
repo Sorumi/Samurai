@@ -235,11 +235,11 @@ public class TerritoryPanel extends Pane {
 	
 	public void updateSamurai(){
 		territoryHandler.updateSamurai();
+		this.set6Properties();
 	}
 	
 	public void setBlur(boolean isBlur){
 		if(isBlur){
-
 			this.blur.setRadius(7);
 			territoryBg.stopAll();
 			territoryFg.stopAll();
