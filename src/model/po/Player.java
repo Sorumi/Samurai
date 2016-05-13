@@ -210,6 +210,8 @@ public class Player {
                                         this.gameModel.getSamuraiOfNum(integer).beKilled(this.chessBoardModel);
                                         this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).updateKillNum(1);
                                     }
+                                    //要更新血量
+                                    this.gameModel.updateHealthPoint(integer);
                                 }else {
                                     this.gameModel.updateKilled(integer);
                                     this.gameModel.updateHome(integer);

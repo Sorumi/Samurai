@@ -26,6 +26,8 @@ public class StateHandler {
 	    	  gamePanel.statePanel.setAppear(true);
 			  gamePanel.setOrder();
 	    	  gamePanel.statePanel.set6Properties(gamePanel.get6Properties(currentSamurai.getNum()));
+			  gamePanel.statePanel.setBloodTotal(gamePanel.getBloodTotalOfSamurai(currentSamurai.getNum()));
+			  gamePanel.statePanel.setBloodRest(gamePanel.getBloodRestOfSamurai(currentSamurai.getNum()));
 	      }
 	};
 	
@@ -36,7 +38,9 @@ public class StateHandler {
 	    	  territoryPanel.statePanel.setAppear(true);
 
 			  territoryPanel.statePanel.set6Properties(territoryPanel.get6PropertiesOfSamurai(currentSamurai.getNumber()));
-	      }
+			  territoryPanel.statePanel.setBloodTotal(territoryPanel.getBloodTotalOfSamurai(currentSamurai.getNumber()));
+			  System.out.println("Blood : " + territoryPanel.getBloodTotalOfSamurai(currentSamurai.getNumber()));
+		  }
 	};
 	
 	public EventHandler<MouseEvent> closeStatePanelInG = new EventHandler<MouseEvent>() {  

@@ -231,7 +231,7 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
                 break;
             case 53:
-                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(326), 14, chessBoardModel, armory.getArmor(926), new Position(0, length), 10, 2);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(126), 14, chessBoardModel, armory.getArmor(926), new Position(0, length), 10, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(226), 14, chessBoardModel, armory.getArmor(936), new Position(length/2, length), 2, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(16), 14, chessBoardModel, armory.getArmor(916), new Position(length, length), 2, 2);
                 samuraiAI = new SamuraiAI[3];
@@ -295,6 +295,7 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("vision", blocks));
 
         for (int i = 1; i <= 6; i++) {
+            super.updateChange(new UpdateMessage("healthTotal", new int[]{i, this.getSamuraiOfNum(i).getTotalHealthPoint()}));
             this.updateHome(i);
         }
 
@@ -341,6 +342,10 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updateOccupy(int direction){
         super.updateChange(new UpdateMessage("samuraiOccupy",direction));
+    }
+
+    public void updateHealthPoint(int samurai){
+        super.updateChange(new UpdateMessage("healthRest", new int[]{samurai, this.getSamuraiOfNum(samurai).getHealthPoint()}));
     }
 
     public void updateKilled(int i){
@@ -604,12 +609,13 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("round", this.currentRound));
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
+//            super.updateChange(new UpdateMessage("healthPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getHealthPoint()));
 
             System.out.println("Now is :" + this.getSamuraiOfNum(this.getCurrentSamurai()).getNumber());
             System.out.println("Total Point: " + this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
             System.out.println("Action Point: " + this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint());
-            this.updateVisible(this.updateVision());
 
+            this.updateVisible(this.updateVision());
 
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
 
