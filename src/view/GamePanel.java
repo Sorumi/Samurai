@@ -11,6 +11,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.UpdateMessage;
@@ -70,19 +71,18 @@ public class GamePanel extends Pane implements Observer{
 	protected PlayerPanel currentPlayer;
 	protected PlayerPanel playerA;
 	protected PlayerPanel playerB;
-	
-	private ImageView bg;
 
 	protected RoundPanel roundPanel;
 	protected PropPanel propPanel;
 	protected ResultPanel resultPanel;
-	
-	private ImageView bgImage;
 
+	protected OrderPanel propsGroup;
+	
 	public Arrow arrow;
 	public ActionPanel actionPanel;
 	protected ActionHandler actionHandler;
 	public StatePanel statePanel;
+	
 	protected StateHandler stateHandler;
 	protected ObservableList<OrderPanel>  orderList;
 
@@ -144,9 +144,7 @@ public class GamePanel extends Pane implements Observer{
 		roundPanel = new RoundPanel(roundTotal);
 		this.getChildren().add(roundPanel);
 		
-		//prop
-		propPanel = new PropPanel();
-		this.getChildren().add(propPanel);
+
 		
 		//player
 		playerA = new PlayerPanel(0, timeTotal);
@@ -179,7 +177,7 @@ public class GamePanel extends Pane implements Observer{
 		B3 = new SamuraiPanel(6, size);
 		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
 
-		//只有故事模式有 statePanel 和 resultPanel
+		//只有故事模式有 statePanel 和 resultPanel 和 propPanel
 		if(level < 99 && level > 0) {
 			//stateHandler
 			stateHandler = new StateHandler(this);
@@ -205,24 +203,45 @@ public class GamePanel extends Pane implements Observer{
 			resultPanel = new ResultPanel(this);
 			this.getChildren().add(resultPanel);
 			resultPanel.setZOrder(999);
+			
+			//proppanel
+			propPanel = new PropPanel();
+			this.getChildren().add(propPanel);
+			propPanel.setZOrder(999);
+			
+			propsGroup = new OrderPanel();
+			this.getChildren().add(propsGroup);
+			propsGroup.setZOrder(-3);
 		}
 
 		backgroundPanel.setZOrder(-2);
 		systemPanel.setZOrder(-1);
-		chessBoard.setZOrder(-3);
+		chessBoard.setZOrder(-4);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
-		propPanel.setZOrder(999);
+
 
 		if(level < 99 && level > 0) {
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup);
 		}else{
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, propPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel);
 		}
 		this.setOrder();
+		
+		
+		//TODO
+//		this.addProp(0, 3, 3);
+	}
+
+	private void addProp(int num, int x, int y) {
+		if (propsGroup != null){
+			PropView prop = new PropView(num, 1);
+			prop.setActualLocation(x, y);
+			propsGroup.getChildren().add(prop);
+		}
 	}
 
 	public void set6Properties(int samurai, int[] properties){
