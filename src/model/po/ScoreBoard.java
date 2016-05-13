@@ -27,7 +27,7 @@ public class ScoreBoard {
 		System.out.println(Rating);
 		int count = 0;
 		ArrayList<Material> materials = new ArrayList<Material>();
-		while (materialTag[count] > 0) {
+		while (materialTag[count] >= 0) {
 			boolean flag = false;
 			int type = 800 + materialTag[count] * 10 + materialItem[count];
 			for (Material material : materials) {
