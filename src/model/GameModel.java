@@ -1,5 +1,6 @@
 package model;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import controller.msgqueue.*;
 import main.Main;
 import model.po.*;
@@ -343,7 +344,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void updateHealthPoint(int samurai){
-        super.updateChange(new UpdateMessage("healthRest", new int[]{samurai, this.getSamuraiOfNum(samurai).getHealthPoint()}));
+        super.updateChange(new UpdateMessage("healthPoint", new int[]{samurai, this.getSamuraiOfNum(samurai).getHealthPoint()}));
     }
 
     public void updateKilled(int i){
@@ -537,8 +538,8 @@ public class GameModel extends BaseModel implements Observer {
 //        }
 
 
-            super.updateChange(new UpdateMessage("vision", blocks));
-            return blocks;
+        super.updateChange(new UpdateMessage("vision", blocks));
+        return blocks;
     }
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
@@ -576,7 +577,7 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("round",this.currentRound));
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-            this.updateVisible(this.updateVision());
+//            this.updateVisible(this.updateVision());
         }else{
 
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);

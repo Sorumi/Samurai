@@ -316,28 +316,28 @@ public class GamePanel extends Pane implements Observer{
 		});
 	}
 
-	private SamuraiPanel getSamurai(int num){
+	protected SamuraiPanel getSamurai(int num){
 		SamuraiPanel tmpSamurai = null;
 		switch (num){
-		case 1:
-			tmpSamurai = A1;
-			break;
-		case 2:
-			tmpSamurai = A2;
-			break;
-		case 3:
-			tmpSamurai = A3;
-			break;
-		case 4:
-			tmpSamurai = B1;
-			break;
-		case 5:
-			tmpSamurai = B2;
-			break;
-		case 6:
-			tmpSamurai = B3;
-			break;
-		}
+			case 1:
+				tmpSamurai = A1;
+				break;
+			case 2:
+				tmpSamurai = A2;
+				break;
+			case 3:
+				tmpSamurai = A3;
+				break;
+			case 4:
+				tmpSamurai = B1;
+				break;
+			case 5:
+				tmpSamurai = B2;
+				break;
+			case 6:
+				tmpSamurai = B3;
+				break;
+			}
 		return tmpSamurai;
 	}
 	
@@ -525,7 +525,6 @@ public class GamePanel extends Pane implements Observer{
 						default:
 							break;
 					}
-					System.out.println("GP HOME : " + samuraiPO.getHome().getX() + " , " + samuraiPO.getHome().getY());
 					tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
 					chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
 					
@@ -565,7 +564,6 @@ public class GamePanel extends Pane implements Observer{
 					resultPanel.setMaterials((ArrayList<Material>)notifingObject.getValue());
 					
 				}else if(key.equals("experiences")){
-//					int[] experience = (int[])notifingObject.getValue();
 					resultPanel.setExperiences((int[])notifingObject.getValue());
 
 				}else if(key.equals("healthTotal")){
