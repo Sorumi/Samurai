@@ -773,6 +773,8 @@ public class GameModel extends BaseModel implements Observer {
             }
         }
 
+        super.updateChange(new UpdateMessage("rating",scoreBoard.getRating()));
+
         System.out.println("GAME OVER!");
 
         return true;

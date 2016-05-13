@@ -67,7 +67,7 @@ public class ActionPanel extends OrderPanel {
 	
 	public void setCurrentSamurai(SamuraiPanel samurai){
 		this.currentSamurai = samurai;
-//		this.reset();
+		this.reset();
 	}
 
 	public void setSize(int size){

@@ -1,9 +1,6 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 import controller.msgqueue.EndOperation;
 import controller.msgqueue.OperationQueue;
@@ -349,6 +346,7 @@ public class GamePanel extends Pane implements Observer{
 		
 		this.currentSamurai = getSamurai(num);
 		currentSamurai.samuraiV.setRandomAnimation(false);
+		currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
 
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
@@ -574,6 +572,8 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("healthPoint")){
 					int[] t = (int [])notifingObject.getValue();
 					bloodRest[t[0]] = t[1];
+				}else if(key.equals("rating")){
+					System.out.println("Rating : " + (String)notifingObject.getValue());
 				}
 			}
 		});
