@@ -255,7 +255,7 @@ public class SamuraiView extends Pane{
 		weapon.getTransforms().add(weaponRo);
 		
 		//ADD 400
-		if(number/100 == 4){
+		if(number/10 == 40 || number/10 == 41){
 			weaponExtra = new SamuraiWeaponView(number+100, SCALE);
 			group.getChildren().add(weaponExtra);
 			orderList.add(weaponExtra);
