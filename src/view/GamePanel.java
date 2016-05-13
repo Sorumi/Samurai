@@ -236,7 +236,7 @@ public class GamePanel extends Pane implements Observer{
 //		this.addProp(0, 3, 3);
 	}
 
-	private void addProp(int num, int x, int y) {
+	private void addProp(int x, int y, int num) {
 		if (propsGroup != null){
 			PropView prop = new PropView(num, 1);
 			prop.setActualLocation(x, y);
@@ -600,6 +600,7 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("prop")){
 					int[] t = (int [])notifingObject.getValue();
 					System.out.println("Position : " + t[0] + " , " + t[1] + " set prop " + t[2]);
+					addProp(t[0], t[1], t[2] == 0 ? t[2] : 0);
 
 				}else if(key.equals("goodbyeactionpanel")){
 					actionPanel.setAppear(false,false);
