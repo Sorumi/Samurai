@@ -50,19 +50,7 @@ public class BlockView extends Polygon {
 		this.setLayoutX(FIELD_WIDTH/2 + (y-x-1)*width/2);
 		this.setLayoutY((x+y)*height/2);
 	}
-	
-	//没用的方法，，，
-//	public void changeState(int state){
-//		this.state = state;
-//		
-//		Color newColor = GameColor.getBlockColor(state);
-//		if(!newColor.equals(color)){
-//				tl = new Timeline(new KeyFrame(Duration.millis(300), new KeyValue(this.fillProperty(), newColor)));
-//				tl.play();
-//		}
-//		this.color = newColor;
-//
-//	}
+
 	public void setInvision(int state){
 		currentStrokeSize = stateStrokeSize;
 		
@@ -110,5 +98,9 @@ public class BlockView extends Polygon {
 				tl.play();
 		}
 		this.color = newColor;
+	}
+
+	public int getState() {
+		return state;
 	}
 }

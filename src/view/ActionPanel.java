@@ -67,7 +67,7 @@ public class ActionPanel extends OrderPanel {
 	
 	public void setCurrentSamurai(SamuraiPanel samurai){
 		this.currentSamurai = samurai;
-		this.reset();
+//		this.reset();
 	}
 
 	public void setSize(int size){
@@ -81,6 +81,9 @@ public class ActionPanel extends OrderPanel {
 		moveButton.setTrue();
 		occupyButton.setTrue();
 		hideButton.setTrue();
+		if(!this.currentSamurai.isCanHide()){
+			hideButton.setFalse();
+		}
 	}
 	
 	public void setActualLocation(){

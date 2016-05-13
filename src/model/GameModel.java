@@ -662,9 +662,7 @@ public class GameModel extends BaseModel implements Observer {
                     switch (this.currentPlayer) {
                         case 2:
                             this.samuraiAI[0].getSamuraiPO().setActionPoint(samuraiAI[0].getSamuraiPO().getTotalActionPoint());
-                            ArrayList<ActionOperation> operations =  samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), flag ? aidPos : null);
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), flag ? aidPos : null)) {
-                                System.out.println(operation.getActionNum() + " , " + operation.getDirection());
                                 if (operation.getActionNum() == 98) {
                                     aidPos.setX(operation.getDirection() / 100);
                                     aidPos.setY(operation.getDirection() % 100);
@@ -673,7 +671,6 @@ public class GameModel extends BaseModel implements Observer {
                                     OperationQueue.addOperation(operation);
                                 }
                             }
-                            System.out.println("Skip:");
                             OperationQueue.addOperation(new SkipOperation());
                             break;
                         case 3:
@@ -765,7 +762,6 @@ public class GameModel extends BaseModel implements Observer {
         this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
         this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
         this.players[0].getSamuraiOfNum(3).addExperience(experience[2]);
-
         super.updateChange(new UpdateMessage("experiences",experience));
 
         boolean[] isLevelUp = new boolean[]{this.players[0].getSamuraiOfNum(1).isUpLevel(),this.players[0].getSamuraiOfNum(2).isUpLevel(),
