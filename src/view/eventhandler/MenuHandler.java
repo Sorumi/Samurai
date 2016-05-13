@@ -2,13 +2,17 @@ package view.eventhandler;
 
 import controller.ClientController;
 import controller.HostController;
+import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import main.Main;
 import network.Configure;
 import view.GamePanelOL;
+import view.MenuPanel;
 
 public class MenuHandler {
 	
@@ -95,11 +99,24 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-						mainFrame.gamePanel = new GamePanelOL(15);
-						mainFrame.startGame();
 
-						ClientController clientController = new ClientController();
-						clientController.setupClient(Configure.SERVER_ADDRESS);
+						mainFrame.gamePanel = new GamePanelOL(15);
+
+						try {
+							mainFrame.startGame();
+							ClientController clientController = new ClientController();
+							if(clientController.setupClient(Configure.SERVER_ADDRESS)) {
+								OperationQueue.addOperation(new StartGameOperation());
+							}else{
+								System.out.println("fail to connect server");
+								Pane basePanel = (Pane) mainFrame.gamePanel.getParent();
+								basePanel.getChildren().remove(mainFrame.gamePanel);
+								MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
+								menu.samuraiTimer.start();
+							}
+						} catch (Exception e){
+//							e.printStackTrace();
+						}
 		  			}
 	    	  });
 	      }

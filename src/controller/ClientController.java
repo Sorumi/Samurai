@@ -4,6 +4,7 @@ import controller.msgqueue.Operation;
 import controller.msgqueue.OperationQueue;
 import controller.msgqueue.StartGameOperation;
 import controller.msgqueue.TimeOperation;
+import main.Main;
 import model.GameModel;
 import network.client.ClientHandlerImpl;
 import network.client.ClientServiceImpl;
@@ -23,10 +24,16 @@ public class ClientController {
 
         Operation.setServer(false);
 
-        if(client.init(ip, clientH)) {
-            OperationQueue.addOperation(new StartGameOperation());
+        try{
+            if(client.init(ip, clientH)){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (Exception e){
+//            e.printStackTrace();
+            return false;
         }
 
-        return false;
     }
 }
