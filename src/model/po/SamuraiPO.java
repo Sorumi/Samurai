@@ -147,7 +147,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.criticalHitChance = 1;
 		this.home = home;
 
-		this.pos = home;
+		this.pos = home.clone();
 		cbm.changeActualBlock(home.getX(), home.getY(), true);
 
 		this.killNum = 0;
