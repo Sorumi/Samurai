@@ -3,6 +3,7 @@ package controller.msgqueue;
 import javafx.scene.layout.Pane;
 import model.GameModel;
 import view.GamePanel;
+import view.MenuPanel;
 
 /**
  * Created by Kray on 16/4/22.
@@ -10,10 +11,10 @@ import view.GamePanel;
 public class EndOperation extends Operation {
     public void execute() {
         GameModel model = OperationQueue.getGameModel();
-        model.gameOver();
-        if(model.getLevel() == 99 || model.getLevel() == 0){
-//            Pane basePanel = (Pane) OperationQueue.getGamePanel().getParent();
-//            basePanel.getChildren().remove(OperationQueue.getGamePanel());
+        System.out.println("Lvl " + model.getLevel());
+        if(model.getLevel() == 0){
+            System.out.println("Close window");
         }
+        model.gameOver();
     }
 }

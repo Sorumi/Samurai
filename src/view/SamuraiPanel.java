@@ -40,6 +40,7 @@ public class SamuraiPanel extends OrderPanel {
 	public int x;
 	public int y;
 	private boolean isHide;
+	private boolean canHide;
 	private BooleanProperty canAction;
 	
 	private Text missText;
@@ -54,14 +55,14 @@ public class SamuraiPanel extends OrderPanel {
 //		this.setStyle("-fx-background-color: rgba(255,0,0,0.5)");
 		this.samuraiV = new SamuraiView(number, 1);
 		this.isHide = false;
+		this.canHide = false;
 		this.canAction = new SimpleBooleanProperty(true);
 		
 		this.getChildren().add(samuraiV);
 		
 		blockWidthOffset = FIELD_WIDTH / size / 2;
 		blockHeightOffset = FIELD_HEIGHT / size / 2;
-		
-		
+
 		if(number < 4){
 			samuraiV.setDirection(2);
 		}else{
@@ -95,8 +96,6 @@ public class SamuraiPanel extends OrderPanel {
 		attackedText.setX(0);
 		attackedText.setOpacity(0);
 		this.getChildren().addAll(missText, attackedText);
-
-		
 	}
 	
 	public void setActualLocation(int x, int y){
@@ -122,7 +121,11 @@ public class SamuraiPanel extends OrderPanel {
 		}
 		this.isHide = isHide;
 	}
-	
+
+	public boolean canHide(){
+
+		return false;
+	}
 
 	public int getNum(){
 		return this.number;
@@ -175,7 +178,6 @@ public class SamuraiPanel extends OrderPanel {
 		}else{
 			samuraiV.setInjured(isInjured, 3);
 		}
-
 	}
 	
 	public void setMiss(){
@@ -220,8 +222,7 @@ public class SamuraiPanel extends OrderPanel {
 		attackTL.play();
 		samuraiV.setDoubleAttacked();
 	}
-	
-	
+
 	public BooleanProperty canActionProperty(){
 		return this.canAction;
 	}
@@ -230,4 +231,11 @@ public class SamuraiPanel extends OrderPanel {
 		this.canAction.set(canAction);
 	}
 
+	public void setCanHide(boolean canHide) {
+		this.canHide = canHide;
+	}
+
+	public boolean isCanHide() {
+		return canHide;
+	}
 }

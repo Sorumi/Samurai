@@ -39,6 +39,7 @@ public class OperationQueue implements Runnable, Serializable {
 			Operation operation = getNewOperation();
 
 			System.out.println("execute Operation : " + operation.getClass());
+
 			UpdateMessage updateMessage = new UpdateMessage("execute", operation);
 
 			if (operation instanceof EndOperation){
@@ -64,8 +65,12 @@ public class OperationQueue implements Runnable, Serializable {
 
 				//迫不得已才加在这里..
 				if (gameModel.getLevel() != 0 && gameModel.getCurrentSamurai() >= 4) {
-					if (operation instanceof ActionOperation
-							|| operation instanceof NextOperation) {
+					if (operation instanceof ActionOperation) {
+
+//						|| operation instanceof SkipOperation
+//								|| operation instanceof NextOperation
+
+						System.out.println("wait...");
 						try {
 							Thread.sleep(2400);
 						} catch (Exception E) {

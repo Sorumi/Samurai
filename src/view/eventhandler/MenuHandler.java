@@ -2,13 +2,18 @@ package view.eventhandler;
 
 import controller.ClientController;
 import controller.HostController;
+import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import main.Main;
 import network.Configure;
+import view.ArchivePanel;
 import view.GamePanelOL;
+import view.MenuPanel;
 
 public class MenuHandler {
 	
@@ -60,17 +65,33 @@ public class MenuHandler {
 					// TODO Auto-generated method stub
 					switch(mainFrame.menuPanel.modeNum){
 					case 0:
-						mainFrame.startStory();
+						mainFrame.menuPanel.storySelectPanel.setVisible(true);
+//						mainFrame.startStory();
 						break;
 					case 1:
 						mainFrame.startClassicGame();
 						break;
 					case 2:
-						//双人模式
+						mainFrame.menuPanel.doubleSelectPanel.setVisible(true);
 					}
 				}
 				});
 	      }
+	};
+	public EventHandler<MouseEvent> newStoryEvent = new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent event) {
+			mainFrame.startStory();
+		}  
+	};
+	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent event) {
+			mainFrame.menuPanel.archivePanel = new ArchivePanel(1);
+			mainFrame.menuPanel.archivePanel.setLayoutX(350);
+			mainFrame.menuPanel.archivePanel.setLayoutY(50);
+			mainFrame.menuPanel.getChildren().add(mainFrame.menuPanel.archivePanel);
+		}  
 	};
 	
 	public EventHandler<MouseEvent> serverEvent = new EventHandler<MouseEvent>() {  
@@ -95,16 +116,75 @@ public class MenuHandler {
 	    	  Platform.runLater(new Runnable(){
 		  			@Override
 		  			public void run() {
-						mainFrame.gamePanel = new GamePanelOL(15);
-						mainFrame.startGame();
 
-						ClientController clientController = new ClientController();
-						clientController.setupClient(Configure.SERVER_ADDRESS);
+						mainFrame.gamePanel = new GamePanelOL(15);
+
+						try {
+							mainFrame.startGame();
+							ClientController clientController = new ClientController();
+							if(clientController.setupClient(Configure.SERVER_ADDRESS)) {
+								OperationQueue.addOperation(new StartGameOperation());
+							}else{
+								System.out.println("fail to connect server");
+								Pane basePanel = (Pane) mainFrame.gamePanel.getParent();
+								basePanel.getChildren().remove(mainFrame.gamePanel);
+								MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
+								menu.samuraiTimer.start();
+							}
+						} catch (Exception e){
+//							e.printStackTrace();
+						}
 		  			}
 	    	  });
 	      }
 	};
+	public EventHandler<MouseEvent> serverBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnPressed(0);
+	      }
+	};
 	
+	public EventHandler<MouseEvent> serverBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnAbled(0);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> clientBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnPressed(1);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> clientBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnAbled(1);
+	      }
+	};
+
+	public EventHandler<MouseEvent> newBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnPressed(0);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> newBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnAbled(0);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> oldBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnPressed(1);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> oldBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnAbled(1);
+	      }
+	};
 	
 	public EventHandler<ActionEvent> exitEvent = new EventHandler<ActionEvent>() {
 		@Override

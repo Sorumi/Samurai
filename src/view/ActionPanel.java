@@ -33,7 +33,7 @@ public class ActionPanel extends OrderPanel {
 	private ActionHandler actionHandler;
 	
 	public ActionPanel(ActionHandler actionHandler){
-		
+
 		this.actionHandler = actionHandler;
 		
 		occupyButton = new ActionButton(0);	
@@ -81,6 +81,9 @@ public class ActionPanel extends OrderPanel {
 		moveButton.setTrue();
 		occupyButton.setTrue();
 		hideButton.setTrue();
+		if(!this.currentSamurai.isCanHide()){
+			hideButton.setFalse();
+		}
 	}
 	
 	public void setActualLocation(){

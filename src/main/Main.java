@@ -23,6 +23,8 @@ public class Main extends Application {
 	public GameModel gameModel;
 	
 	public StoryPanel storyPanel;
+
+	public Thread operationThread;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -48,7 +50,7 @@ public class Main extends Application {
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
-		Thread operationThread = new Thread(operationQueue);
+		operationThread = new Thread(operationQueue);
 		operationThread.start();
 	}
 
@@ -63,7 +65,7 @@ public class Main extends Application {
 		OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
 		OperationQueue.addOperation(new StartGameOperation());
 		
-		Thread operationThread = new Thread(operationQueue);
+		operationThread = new Thread(operationQueue);
 		operationThread.start();
 	}
 	

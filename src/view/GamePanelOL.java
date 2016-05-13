@@ -19,7 +19,6 @@ import java.util.Observer;
  */
 public class GamePanelOL extends GamePanel{
 
-
     public GamePanelOL(int size){
         super(size, 0);
     }
@@ -83,13 +82,13 @@ public class GamePanelOL extends GamePanel{
         switch(player){
             case 0:
                 this.currentPlayer = playerA;
-                playerA.pointsPanel.setIsShow(true);
-                playerB.pointsPanel.setIsShow(false);
+                playerA.pointsPanel.setVisible(true);
+                playerB.pointsPanel.setVisible(false);
                 break;
             case 1:
                 this.currentPlayer = playerB;
-				playerA.pointsPanel.setIsShow(false);
-				playerB.pointsPanel.setIsShow(true);
+				playerA.pointsPanel.setVisible(false);
+				playerB.pointsPanel.setVisible(true);
                 break;
         }
     }
@@ -110,11 +109,11 @@ public class GamePanelOL extends GamePanel{
             this.setCurrentRound((int)notifingObject.getValue());
 
         }else if(key.equals("time")){
-            System.out.println("time" + (int) notifingObject.getValue());
-            int i = this.currentSamurai.getNum();
-            if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)){
-                this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
-            }
+//            System.out.println("time" + (int) notifingObject.getValue());
+//            int i = this.currentSamurai.getNum();
+//            if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)){
+//                this.currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
+//            }
 
         }else if(key.equals("actionPoint")){
 
@@ -133,22 +132,23 @@ public class GamePanelOL extends GamePanel{
 
         }else if(key.equals("samuraiMove")){
             Position position = (Position)notifingObject.getValue();
+            this.currentSamurai.move(position.getX(), position.getY());
+            currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
             int i = this.currentSamurai.getNum();
-//            this.currentSamurai.setActualLocation(position.getX(), position.getY());
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
-                this.currentSamurai.move(position.getX(), position.getY());
                 this.actionPanel.reset();
                 this.setOrder();
             }
 
         }else if(key.equals("samuraiHide")){
-
             int i = this.currentSamurai.getNum();
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
                 this.currentSamurai.setHide((boolean) notifingObject.getValue());
             }
+
         }else if(key.equals("samuraiOccupy")){
 			this.currentSamurai.occupy((int)notifingObject.getValue());
+            currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
             int i = this.currentSamurai.getNum();
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
                 this.actionPanel.reset();
@@ -156,6 +156,7 @@ public class GamePanelOL extends GamePanel{
             }
 			
         }else if(key.equals("samuraiKilled")){
+            getSamurai((int)notifingObject.getValue()).setInjured(true);
 
         }else if(key.equals("visible")) {
             if(GameModel.isClient() && !GameModel.isServer()) {

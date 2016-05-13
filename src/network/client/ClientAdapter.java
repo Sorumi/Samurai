@@ -20,10 +20,9 @@ public class ClientAdapter {
             socket.start();
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            return false;
         }
-
-        return false;
     }
 
     public static void write(Object o){

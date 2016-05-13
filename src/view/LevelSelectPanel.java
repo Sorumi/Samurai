@@ -31,6 +31,9 @@ public class LevelSelectPanel extends Pane{
 	private Circle materialCircleOne;
 	private Circle materialCircleTwo;
 	
+	private MaterialView materialOne;
+	private MaterialView materialTwo;
+	
 	private Label levelName;
 	private Label materialGet;
 	private Label materialNameOne;
@@ -45,8 +48,8 @@ public class LevelSelectPanel extends Pane{
 		this.mapHandler = mapHandler;
 		
 		//TODO
-		int itemNumOne = 00;
-		int itemNumTwo = 10;
+//		int itemNumOne = 00;
+//		int itemNumTwo = 10;
 		
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
@@ -78,12 +81,12 @@ public class LevelSelectPanel extends Pane{
 		materialGet.setLayoutY(135);
 		materialGet.setId("materialName-label");
 		 
-		materialNameOne = new Label("布料"); 
+		materialNameOne = new Label(""); 
 		materialNameOne.setLayoutX(215);
 		materialNameOne.setLayoutY(135);
 		materialNameOne.setId("materialName-label"); 
 		
-		materialNameTwo = new Label("木材"); 
+		materialNameTwo = new Label(""); 
 		materialNameTwo.setLayoutX(335);
 		materialNameTwo.setLayoutY(135);
 		materialNameTwo.setId("materialName-label");
@@ -92,24 +95,23 @@ public class LevelSelectPanel extends Pane{
 		materialCircleOne.setCenterX(175);
 		materialCircleOne.setCenterY(140);
 		materialCircleOne.setRadius(25);
-		materialCircleOne.setFill(GameColor.getMaterialColor(itemNumOne/10));
-		MaterialView materialOne = new MaterialView(itemNumOne);
-		materialOne.setLayoutX(125);
-		materialOne.setLayoutY(90);
-		materialOne.setScaleX(0.5);
-		materialOne.setScaleY(0.5);
-
 
 		materialCircleTwo = new Circle();
 		materialCircleTwo.setCenterX(295);
 		materialCircleTwo.setCenterY(140);
 		materialCircleTwo.setRadius(25);
-		materialCircleTwo.setFill(GameColor.getMaterialColor(itemNumTwo/10));
-		MaterialView materialTwo = new MaterialView(itemNumTwo); 
-		materialTwo.setLayoutX(245);
-		materialTwo.setLayoutY(90);
-		materialTwo.setScaleX(0.5);
-		materialTwo.setScaleY(0.5);
+
+		materialOne = new MaterialView();
+//		materialOne.setLayoutX(125);
+//		materialOne.setLayoutY(90);
+//		materialOne.setScaleX(0.5);
+//		materialOne.setScaleY(0.5);
+		
+		materialTwo = new MaterialView(); 
+//		materialTwo.setLayoutX(245);
+//		materialTwo.setLayoutY(90);
+//		materialTwo.setScaleX(0.5);
+//		materialTwo.setScaleY(0.5);
 		
 		levelBtnOne = new LevelButton("简 单", 1); 
 		levelBtnTwo = new LevelButton("普 通", 2);
@@ -162,11 +164,63 @@ public class LevelSelectPanel extends Pane{
 					+ "-fx-effect: dropshadow(gaussian," + GameColor.getLevelColorString(num+3) +", 0, 0, 0, 8);");
 		}
 		
-		
 	}
 	
 	public void setLevel(int level){
 		this.level = level;
+		
+		int itemNumOne = 00;
+		int itemNumTwo = 10;
+		switch(level){
+		case 1:
+			materialNameOne.setText("布料");
+			materialNameTwo.setText("木材");
+			itemNumOne = 0;
+			itemNumTwo = 10;
+			break;
+		case 2:
+			materialNameOne.setText("木材");
+			materialNameTwo.setText("石材");
+			itemNumOne = 10;
+			itemNumTwo = 20;
+			break;
+		case 3:
+			materialNameOne.setText("石材");
+			materialNameTwo.setText("金属");
+			itemNumOne = 20;
+			itemNumTwo = 30;
+			break;
+		case 4:
+			materialNameOne.setText("金属");
+			materialNameTwo.setText("水晶");
+			itemNumOne = 30;
+			itemNumTwo = 40;
+			break;
+		case 5:
+			materialNameOne.setText("水晶");
+			materialNameTwo.setText("布料");
+			itemNumOne = 40;
+			itemNumTwo = 0;
+			break;
+		}
+		this.getChildren().removeAll(materialOne, materialTwo);
+		
+		materialCircleOne.setFill(GameColor.getMaterialColor(itemNumOne/10));
+		materialCircleTwo.setFill(GameColor.getMaterialColor(itemNumTwo/10));
+		
+		materialOne = new MaterialView(itemNumOne); 
+		materialOne.setLayoutX(125);
+		materialOne.setLayoutY(90);
+		materialOne.setScaleX(0.5);
+		materialOne.setScaleY(0.5);
+		
+		materialTwo = new MaterialView(itemNumTwo); 
+		materialTwo.setLayoutX(245);
+		materialTwo.setLayoutY(90);
+		materialTwo.setScaleX(0.5);
+		materialTwo.setScaleY(0.5);
+		
+		this.getChildren().addAll(materialOne, materialTwo);
 	}
 	
 	public void setAppear(boolean isAppear) {

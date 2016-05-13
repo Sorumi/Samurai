@@ -12,16 +12,22 @@ public class ScoreBoard {
 	public int[] getExperience(int checkPoint, int level, int land1, int land2, int land3, int kill1, int kill2,
 			int kill3) {
 		int[] result = new int[3];
+		System.out.println("land"+land1);
 		result[0] = (land1 + kill1 * 5) * ((checkPoint + level) / 5 + 1);
 		result[1] = (land2 + kill2 * 5) * ((checkPoint + level) / 5 + 1);
 		result[2] = (land3 + kill3 * 5) * ((checkPoint + level) / 5 + 1);
 		return result;
 	}
 
+	public String getRating() {
+		return Rating;
+	}
+
 	public ArrayList<Material> getMaterial() {
+		System.out.println(Rating);
 		int count = 0;
 		ArrayList<Material> materials = new ArrayList<Material>();
-		while (materialTag[count] > 0) {
+		while (materialTag[count] >= 0) {
 			boolean flag = false;
 			int type = 800 + materialTag[count] * 10 + materialItem[count];
 			for (Material material : materials) {
@@ -35,12 +41,15 @@ public class ScoreBoard {
 				Material material = new Material(type, 1);
 				materials.add(material);
 			}
+			count++;
 		}
+		System.out.println("不是我的锅！" + materials.size());
 		return materials;
 	}
 
 	public boolean caculateMaterial(int checkPoint, int level, int block, int ourKill, int enemyKill) {
 		// 判断评级
+		System.out.println("CheckPoint"+checkPoint);
 		if (block >= 60 && ourKill >= 3 && enemyKill == 0) {
 			Rating = "SSS";
 		} else if (block >= 40 && ourKill >= 1 && enemyKill == 0) {
@@ -60,7 +69,7 @@ public class ScoreBoard {
 		}
 		//
 		switch (level) {
-		case 0:
+		case 1:
 			switch (Rating) {
 			case "SSS":
 				lowGain(10, checkPoint);
@@ -83,7 +92,7 @@ public class ScoreBoard {
 				break;
 			}
 			break;
-		case 1:
+		case 2:
 			switch (Rating) {
 			case "SSS":
 				mediumGain(10, checkPoint);
@@ -106,7 +115,7 @@ public class ScoreBoard {
 				break;
 			}
 			break;
-		case 2:
+		case 3:
 			switch (Rating) {
 			case "SSS":
 				highGain(10, checkPoint);
@@ -137,6 +146,13 @@ public class ScoreBoard {
 	}
 
 	private void lowGain(int count, int checkPoint) {
+		int temp=0;
+		if(checkPoint==4){
+			temp=0;
+		}
+		else {
+			temp=checkPoint+1;
+		}
 		for (int i = 0; i < count; i++) {
 			int cache = random.nextInt(100) + 1;
 			if (cache <= 30) {
@@ -146,16 +162,23 @@ public class ScoreBoard {
 				materialTag[i] = checkPoint;
 				materialItem[i] = 1;
 			} else if (cache <= 80) {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 0;
 			} else {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 1;
 			}
 		}
 	}
 
 	private void mediumGain(int count, int checkPoint) {
+		int temp=0;
+		if(checkPoint==4){
+			temp=0;
+		}
+		else {
+			temp=checkPoint+1;
+		}
 		for (int i = 0; i < count; i++) {
 			int cache = random.nextInt(100) + 1;
 			if (cache <= 25) {
@@ -165,22 +188,29 @@ public class ScoreBoard {
 				materialTag[i] = checkPoint;
 				materialItem[i] = 1;
 			} else if (cache <= 65) {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 0;
 			} else if (cache <= 80) {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 1;
 			} else if (cache <= 95) {
 				materialTag[i] = checkPoint;
 				materialItem[i] = 2;
 			} else {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 2;
 			}
 		}
 	}
 
 	private void highGain(int count, int checkPoint) {
+		int temp=0;
+		if(checkPoint==4){
+			temp=0;
+		}
+		else {
+			temp=checkPoint+1;
+		}
 		for (int i = 0; i < count; i++) {
 			int cache = random.nextInt(100) + 1;
 			if (cache <= 20) {
@@ -190,16 +220,16 @@ public class ScoreBoard {
 				materialTag[i] = checkPoint;
 				materialItem[i] = 1;
 			} else if (cache <= 50) {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 0;
 			} else if (cache <= 60) {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 1;
 			} else if (cache <= 80) {
 				materialTag[i] = checkPoint;
 				materialItem[i] = 2;
 			} else if (cache <= 90) {
-				materialTag[i] = checkPoint + 1;
+				materialTag[i] = temp;
 				materialItem[i] = 2;
 			} else {
 				materialTag[i] = checkPoint;

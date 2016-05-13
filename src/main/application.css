@@ -294,6 +294,23 @@
 	-fx-font-weight: 100;
 	-fx-alignment: center-left;
 }
+#state-lable-big{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 24;
+	-fx-font-weight: 100;
+	-fx-alignment: center-left;
+}
+#blood-label{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #9b9b9b;
+	-fx-background-radius: 44;
+	-fx-border-radius: 44;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+}
 #weapon-name{ 
 	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Hiragino Sans GB";
