@@ -52,20 +52,7 @@ public class ChessBoardPanel extends OrderPanel implements Observer{
 	@Override
 	//这方法到底有啥用……
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-//		UpdateMessage notifingObject = (UpdateMessage)arg;
-//		String key = notifingObject.getKey();
-//
-//		//如果听到的消息是‘block’时
-//		if(key.equals("block")){
-//			ActualBlock block = (ActualBlock)notifingObject.getValue();
-//			if((!GameModel.isClient() && !GameModel.isServer()) || this.tmpBlocks.contains(block)) {
-//				System.out.println("block");
-//				int x = block.getX();
-//				int y = block.getY();
-////				blocks[x][y].changeState(block.getState());
-//			}
-//		}
+
 	}
 
 	public void setTmpBlocks(ArrayList<ActualBlock> actualBlocks){
@@ -99,5 +86,9 @@ public class ChessBoardPanel extends OrderPanel implements Observer{
 		for(BlockView blockView : poBlocks){
 			blockView.setHighlight(HL);
 		}
+	}
+
+	public int getState(int x, int y){
+		return this.blocks[x][y].getState();
 	}
 }

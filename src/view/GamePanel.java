@@ -453,16 +453,19 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("samuraiMove")){
 					Position position = (Position)notifingObject.getValue();
 					currentSamurai.move(position.getX(), position.getY());
+					currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
 					if (currentPlayer.getPlayer() == 0) {
 						actionPanel.reset();
 						setOrder();
 					}
+
 				}else if(key.equals("samuraiHide")){
 					currentSamurai.setHide((boolean)notifingObject.getValue());
 					
 				}else if(key.equals("samuraiOccupy")){
 					currentSamurai.occupy((int)notifingObject.getValue());
 					if (currentPlayer.getPlayer() == 0) {
+						currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
 						actionPanel.reset();
 						arrow.setVisible(true);
 					}

@@ -18,7 +18,12 @@ public class ScoreBoard {
 		return result;
 	}
 
+	public String getRating() {
+		return Rating;
+	}
+
 	public ArrayList<Material> getMaterial() {
+		System.out.println(Rating);
 		int count = 0;
 		ArrayList<Material> materials = new ArrayList<Material>();
 		while (materialTag[count] > 0) {
@@ -35,12 +40,15 @@ public class ScoreBoard {
 				Material material = new Material(type, 1);
 				materials.add(material);
 			}
+			count++;
 		}
+		System.out.println("不是我的锅！" + materials.size());
 		return materials;
 	}
 
 	public boolean caculateMaterial(int checkPoint, int level, int block, int ourKill, int enemyKill) {
 		// 判断评级
+		System.out.println("Cal");
 		if (block >= 60 && ourKill >= 3 && enemyKill == 0) {
 			Rating = "SSS";
 		} else if (block >= 40 && ourKill >= 1 && enemyKill == 0) {
@@ -62,71 +70,71 @@ public class ScoreBoard {
 		switch (level) {
 		case 1:
 			switch (Rating) {
-				case "SSS":
-					lowGain(10, checkPoint);
-					break;
-				case "SS":
-					lowGain(8, checkPoint);
-					break;
-				case "S":
-					lowGain(6, checkPoint);
-					break;
-				case "A":
-					lowGain(4, checkPoint);
-					break;
-				case "B":
-					lowGain(2, checkPoint);
-					break;
-				default:
-					// 传送得不到材料的消息
-					System.out.println("Rating is so low that you can't get anything");
-					break;
+			case "SSS":
+				lowGain(10, checkPoint);
+				break;
+			case "SS":
+				lowGain(8, checkPoint);
+				break;
+			case "S":
+				lowGain(6, checkPoint);
+				break;
+			case "A":
+				lowGain(4, checkPoint);
+				break;
+			case "B":
+				lowGain(2, checkPoint);
+				break;
+			default:
+				// 传送得不到材料的消息
+				System.out.println("Rating is so low that you can't get anything");
+				break;
 			}
 			break;
 		case 2:
 			switch (Rating) {
-				case "SSS":
-					mediumGain(10, checkPoint);
-					break;
-				case "SS":
-					mediumGain(8, checkPoint);
-					break;
-				case "S":
-					mediumGain(6, checkPoint);
-					break;
-				case "A":
-					mediumGain(4, checkPoint);
-					break;
-				case "B":
-					mediumGain(2, checkPoint);
-					break;
-				default:
-					// 传送得不到材料的消息
-					System.out.println("Rating is so low that you can't get anything");
-					break;
+			case "SSS":
+				mediumGain(10, checkPoint);
+				break;
+			case "SS":
+				mediumGain(8, checkPoint);
+				break;
+			case "S":
+				mediumGain(6, checkPoint);
+				break;
+			case "A":
+				mediumGain(4, checkPoint);
+				break;
+			case "B":
+				mediumGain(2, checkPoint);
+				break;
+			default:
+				// 传送得不到材料的消息
+				System.out.println("Rating is so low that you can't get anything");
+				break;
 			}
 			break;
 		case 3:
 			switch (Rating) {
-				case "SSS":
-					highGain(10, checkPoint);
-					break;
-				case "SS":
-					highGain(8, checkPoint);
-					break;
-				case "S":
-					highGain(6, checkPoint);
-					break;
-				case "A":
-					highGain(4, checkPoint);
-					break;
-				case "B":
-					highGain(2, checkPoint);
-					break;
-				default:
-					// 传送得不到材料的消息
-					System.out.println("Rating is so low that you can't get anything");
-					break;
+			case "SSS":
+				highGain(10, checkPoint);
+				break;
+			case "SS":
+				highGain(8, checkPoint);
+				break;
+			case "S":
+				highGain(6, checkPoint);
+				break;
+			case "A":
+				highGain(4, checkPoint);
+				break;
+			case "B":
+				highGain(2, checkPoint);
+				break;
+			default:
+				// 传送得不到材料的消息
+				System.out.println("Rating is so low that you can't get anything");
+				break;
 			}
 			break;
 		default:
