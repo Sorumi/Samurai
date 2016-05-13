@@ -28,6 +28,8 @@ public class MenuPanel extends Pane {
 	private Button modeBtn;
 	
 	public DoubleSelectPanel doubleSelectPanel;
+	public StorySelectPanel storySelectPanel;
+	public ArchivePanel archivePanel;
 	
 	private Group samuraiA;
 	private Group samuraiB;
@@ -198,7 +200,11 @@ public class MenuPanel extends Pane {
 		doubleSelectPanel = new DoubleSelectPanel(menuHandler);
 		doubleSelectPanel.setVisible(false);
 		
-		this.getChildren().addAll(doubleSelectPanel, exitBtn);
+		storySelectPanel = new StorySelectPanel(menuHandler);
+		storySelectPanel.setVisible(false);
+		
+		
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn);
 	}
 	public void btnClick(int btn){
 		if(btn == 0){

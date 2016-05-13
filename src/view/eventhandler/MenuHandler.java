@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import main.Main;
 import network.Configure;
+import view.ArchivePanel;
 import view.GamePanelOL;
 import view.MenuPanel;
 
@@ -64,7 +65,8 @@ public class MenuHandler {
 					// TODO Auto-generated method stub
 					switch(mainFrame.menuPanel.modeNum){
 					case 0:
-						mainFrame.startStory();
+						mainFrame.menuPanel.storySelectPanel.setVisible(true);
+//						mainFrame.startStory();
 						break;
 					case 1:
 						mainFrame.startClassicGame();
@@ -75,6 +77,21 @@ public class MenuHandler {
 				}
 				});
 	      }
+	};
+	public EventHandler<MouseEvent> newStoryEvent = new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent event) {
+			mainFrame.startStory();
+		}  
+	};
+	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {
+		@Override
+		public void handle(MouseEvent event) {
+			mainFrame.menuPanel.archivePanel = new ArchivePanel(1);
+			mainFrame.menuPanel.archivePanel.setLayoutX(350);
+			mainFrame.menuPanel.archivePanel.setLayoutY(50);
+			mainFrame.menuPanel.getChildren().add(mainFrame.menuPanel.archivePanel);
+		}  
 	};
 	
 	public EventHandler<MouseEvent> serverEvent = new EventHandler<MouseEvent>() {  
@@ -145,6 +162,30 @@ public class MenuHandler {
 	      }
 	};
 
+	public EventHandler<MouseEvent> newBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnPressed(0);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> newBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnAbled(0);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> oldBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnPressed(1);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> oldBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.storySelectPanel.btnAbled(1);
+	      }
+	};
+	
 	public EventHandler<ActionEvent> exitEvent = new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
