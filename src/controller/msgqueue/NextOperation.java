@@ -9,9 +9,16 @@ import model.GameModelService;
  */
 public class NextOperation extends Operation {
 
-    public void execute(){
+    public void execute() {
         GameModel model = OperationQueue.getGameModel();
-        model.assignNextWithAI();
+        switch (model.getLevel()) {
+            case 0:
+                model.assignNext();
+                break;
+            default:
+                model.assignNextWithAI();
+                break;
+        }
     }
 
 }

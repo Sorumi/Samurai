@@ -74,8 +74,6 @@ public class GameModel extends BaseModel implements Observer {
         }
         isServer = false;
         isClient = false;
-
-//        super.updateChange(new UpdateMessage("pointsTotal",this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
     }
 
     //Story 构造方法
@@ -570,20 +568,25 @@ public class GameModel extends BaseModel implements Observer {
 
         this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
 
-        super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
-        super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
-        super.updateChange(new UpdateMessage("round",this.currentRound));
-        super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
-        this.updateVisible(this.updateVision());
         if(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0){
-
-            super.updateChange(new UpdateMessage("revive",this.samuraiSeq[this.currentSamurai - 1]));
-
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
+
+            super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
+            super.updateChange(new UpdateMessage("samurai",this.samuraiSeq[this.currentSamurai - 1]));
+            super.updateChange(new UpdateMessage("round",this.currentRound));
+            super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
+            super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
+            this.updateVisible(this.updateVision());
         }else{
+
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
 
+            if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
+                super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
+            }
+
             OperationQueue.addOperation(new SkipOperation());
+
         }
     }
 
@@ -610,10 +613,6 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
 //            super.updateChange(new UpdateMessage("healthPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getHealthPoint()));
-
-            System.out.println("Now is :" + this.getSamuraiOfNum(this.getCurrentSamurai()).getNumber());
-            System.out.println("Total Point: " + this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
-            System.out.println("Action Point: " + this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint());
 
             this.updateVisible(this.updateVision());
 
@@ -664,7 +663,6 @@ public class GameModel extends BaseModel implements Observer {
                         case 2:
                             this.samuraiAI[0].getSamuraiPO().setActionPoint(samuraiAI[0].getSamuraiPO().getTotalActionPoint());
                             ArrayList<ActionOperation> operations =  samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), flag ? aidPos : null);
-                            System.out.println("operation size: " + operations.size());
                             for (ActionOperation operation : samuraiAI[0].storyCalculate(i == 0 ? null : this.getSamuraiOfNum(i), flag ? aidPos : null)) {
                                 System.out.println(operation.getActionNum() + " , " + operation.getDirection());
                                 if (operation.getActionNum() == 98) {
@@ -672,7 +670,6 @@ public class GameModel extends BaseModel implements Observer {
                                     aidPos.setY(operation.getDirection() % 100);
                                     flag = true;
                                 } else {
-                                    System.out.println("ADD");
                                     OperationQueue.addOperation(operation);
                                 }
                             }
@@ -712,10 +709,9 @@ public class GameModel extends BaseModel implements Observer {
 
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
 
-//            if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
-//                super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
-//            }
-            System.out.println("--------------------------");
+            if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
+                super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
+            }
 
             OperationQueue.addOperation(new SkipOperation());
         }
@@ -760,6 +756,8 @@ public class GameModel extends BaseModel implements Observer {
         this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
         this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
         this.players[0].getSamuraiOfNum(3).addExperience(experience[2]);
+
+        super.updateChange(new UpdateMessage("experiences",experience));
 
         boolean[] isLevelUp = new boolean[]{this.players[0].getSamuraiOfNum(1).isUpLevel(),this.players[0].getSamuraiOfNum(2).isUpLevel(),
                 this.players[0].getSamuraiOfNum(3).isUpLevel()};

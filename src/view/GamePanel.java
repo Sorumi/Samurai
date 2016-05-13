@@ -558,6 +558,9 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("materials")){
 
+				}else if(key.equals("experiences")){
+					int[] experience = (int [])notifingObject.getValue();
+
 				}else if(key.equals("healthTotal")){
 					int[] t = (int [])notifingObject.getValue();
 					bloodTotal[t[0]] = t[1];
