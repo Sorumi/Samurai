@@ -143,9 +143,7 @@ public class GamePanel extends Pane implements Observer{
 		//round
 		roundPanel = new RoundPanel(roundTotal);
 		this.getChildren().add(roundPanel);
-		
 
-		
 		//player
 		playerA = new PlayerPanel(0, timeTotal);
 		playerB = new PlayerPanel(1, timeTotal);
@@ -233,7 +231,7 @@ public class GamePanel extends Pane implements Observer{
 		
 		
 		//TODO
-//		this.addProp(0, 3, 3);
+//		this.addProp(3, 3, 0);
 	}
 
 	private void addProp(int x, int y, int num) {
@@ -599,7 +597,7 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("prop")){
 					int[] t = (int [])notifingObject.getValue();
-					System.out.println("Position : " + t[0] + " , " + t[1] + " set prop " + t[2]);
+//					System.out.println("Position : " + t[0] + " , " + t[1] + " set prop " + t[2]);
 					addProp(t[0], t[1], t[2] == 0 ? t[2] : 0);
 
 				}else if(key.equals("goodbyeactionpanel")){
