@@ -1,6 +1,8 @@
 package model.po;
 
 import controller.TerritoryController;
+import controller.msgqueue.NextOperation;
+import controller.msgqueue.OperationQueue;
 import model.ChessBoardModel;
 import model.GameModel;
 import model.state.GameState;
@@ -61,8 +63,9 @@ public class Player {
 
     public void setEnableToAction(){
         this.currentSamurai = gameModel.getCurrentSamurai();
-        this.gameModel.actionPerformed(0);
-        this.samuraiPOs[this.currentSamurai].setActionPoint(this.samuraiPOs[this.currentSamurai].getTotalActionPoint());
+//        this.gameModel.actionPerformed(0);
+//        this.samuraiPOs[this.currentSamurai].setActionPoint(this.samuraiPOs[this.currentSamurai].getTotalActionPoint());
+//        this.gameModel.updateVisible(this.gameModel.updateVision());
     }
 
     public ArrayList<ActualBlock> showVision(){
@@ -119,10 +122,10 @@ public class Player {
                                         killedSamurais.add(4);
                                     }
 
-                                    this.gameModel.getChessBoardModel().changeActualBlock(
-                                            this.gameModel.getSamuraiOfNum(4).getHome().getX(),
-                                            this.gameModel.getSamuraiOfNum(4).getHome().getY(),
-                                            false);
+//                                    this.gameModel.getChessBoardModel().changeActualBlock(
+//                                            this.gameModel.getSamuraiOfNum(4).getHome().getX(),
+//                                            this.gameModel.getSamuraiOfNum(4).getHome().getY(),
+//                                            false);
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(5).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(5).getPos().getY()){
@@ -130,10 +133,10 @@ public class Player {
                                         killedSamurais.add(5);
                                     }
 
-                                    this.gameModel.getChessBoardModel().changeActualBlock(
-                                            this.gameModel.getSamuraiOfNum(5).getHome().getX(),
-                                            this.gameModel.getSamuraiOfNum(5).getHome().getY(),
-                                            false);
+//                                    this.gameModel.getChessBoardModel().changeActualBlock(
+//                                            this.gameModel.getSamuraiOfNum(5).getHome().getX(),
+//                                            this.gameModel.getSamuraiOfNum(5).getHome().getY(),
+//                                            false);
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(6).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(6).getPos().getY()){
@@ -141,10 +144,10 @@ public class Player {
                                         killedSamurais.add(6);
                                     }
 
-                                    this.gameModel.getChessBoardModel().changeActualBlock(
-                                            this.gameModel.getSamuraiOfNum(6).getHome().getX(),
-                                            this.gameModel.getSamuraiOfNum(6).getHome().getY(),
-                                            false);
+//                                    this.gameModel.getChessBoardModel().changeActualBlock(
+//                                            this.gameModel.getSamuraiOfNum(6).getHome().getX(),
+//                                            this.gameModel.getSamuraiOfNum(6).getHome().getY(),
+//                                            false);
                                 }
                             }else{
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(1).getPos().getX()
@@ -153,48 +156,48 @@ public class Player {
                                         killedSamurais.add(1);
                                     }
 
-                                    this.gameModel.getChessBoardModel().changeActualBlock(
-                                            this.gameModel.getSamuraiOfNum(1).getHome().getX(),
-                                            this.gameModel.getSamuraiOfNum(1).getHome().getY(),
-                                            false);
+//                                    this.gameModel.getChessBoardModel().changeActualBlock(
+//                                            this.gameModel.getSamuraiOfNum(1).getHome().getX(),
+//                                            this.gameModel.getSamuraiOfNum(1).getHome().getY(),
+//                                            false);
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(2).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(2).getPos().getY()){
                                     if(!killedSamurais.contains(2)) {
                                         killedSamurais.add(2);
                                     }
-                                    this.gameModel.getChessBoardModel().changeActualBlock(
-                                            this.gameModel.getSamuraiOfNum(2).getHome().getX(),
-                                            this.gameModel.getSamuraiOfNum(2).getHome().getY(),
-                                            false);
+//                                    this.gameModel.getChessBoardModel().changeActualBlock(
+//                                            this.gameModel.getSamuraiOfNum(2).getHome().getX(),
+//                                            this.gameModel.getSamuraiOfNum(2).getHome().getY(),
+//                                            false);
                                 }
                                 if(position.getX() == this.gameModel.getSamuraiOfNum(3).getPos().getX()
                                         && position.getY() == this.gameModel.getSamuraiOfNum(3).getPos().getY()){
                                     if(!killedSamurais.contains(3)) {
                                         killedSamurais.add(3);
                                     }
-                                    this.gameModel.getChessBoardModel().changeActualBlock(
-                                            this.gameModel.getSamuraiOfNum(3).getHome().getX(),
-                                            this.gameModel.getSamuraiOfNum(3).getHome().getY(),
-                                            false);
+//                                    this.gameModel.getChessBoardModel().changeActualBlock(
+//                                            this.gameModel.getSamuraiOfNum(3).getHome().getX(),
+//                                            this.gameModel.getSamuraiOfNum(3).getHome().getY(),
+//                                            false);
                                 }
                             }
                         }
                         //去发消息:哪些人被杀了
                         if(killedSamurais.size() > 0) {
 
-                            this.gameModel.getChessBoardModel().changeActualBlock(
-                                    this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getX(),
-                                    this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getY(),
-                                    true);
+//                            this.gameModel.getChessBoardModel().changeActualBlock(
+//                                    this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getX(),
+//                                    this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).getPos().getY(),
+//                                    true);
 
                             for(Integer integer : killedSamurais){
 
-                                try{
-                                    Thread.sleep(1000);
-                                }catch (Exception e){
-                                    e.printStackTrace();
-                                }
+//                                try{
+//                                    Thread.sleep(1000);
+//                                }catch (Exception e){
+//                                    e.printStackTrace();
+//                                }
 
                                 if(this.gameModel.getLevel() < 99 && this.gameModel.getLevel() > 0){
                                     if(this.gameModel.attackSamurai(integer,
@@ -275,6 +278,7 @@ public class Player {
 
     //时间到了或者没点数或者玩家主动放弃的时候调用此方法
     public void actionDone(){
+//        OperationQueue.addOperation(new NextOperation(true));
         this.gameModel.actionDone();
     }
 

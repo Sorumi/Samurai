@@ -71,7 +71,7 @@ public class ActionHandler {
 	    	  ActionButton btn = (ActionButton)event.getSource();
 	    	  action = btn.action;
 	    	  gamePanel.actionPanel.closeSecondary();
-	    	  Operation op = new NextOperation();
+	    	  Operation op = new SkipOperation();
 	    	  OperationQueue.addOperation(op);
 	      }
 	};
