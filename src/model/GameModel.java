@@ -557,6 +557,21 @@ public class GameModel extends BaseModel implements Observer {
         }
     }
 
+    //生成道具随机位置
+    public Position randomPropLocation(){
+        Random random = new Random();
+        boolean flag = false;
+        int x=0, y=0;
+        while(!flag){
+            x = random.nextInt(this.length);
+            y = random.nextInt(this.length);
+            if(this.chessBoardModel.getActualBlockState(x ,y) == 0){
+                flag = true;
+            }
+        }
+        return new Position(x, y);
+    }
+
     //联机模式下
     public void assignNext(){
 
@@ -592,6 +607,8 @@ public class GameModel extends BaseModel implements Observer {
 
     //经典模式下+故事模式下
     public void assignNextWithAI()  {
+
+        this.randomPropLocation();
 
         System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
 
