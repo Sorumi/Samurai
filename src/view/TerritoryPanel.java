@@ -41,7 +41,6 @@ public class TerritoryPanel extends Pane {
 	private TerritoryHandler territoryHandler;
 	private Group territoryGroup;
 	
-	private WeatherHandler weatherHandler;
 	public TerritoryBackground territoryBg;
 	public TerritoryFrontground territoryFg;
 	

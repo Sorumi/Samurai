@@ -132,22 +132,23 @@ public class GamePanelOL extends GamePanel{
 
         }else if(key.equals("samuraiMove")){
             Position position = (Position)notifingObject.getValue();
+            this.currentSamurai.move(position.getX(), position.getY());
+            currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
             int i = this.currentSamurai.getNum();
-//            this.currentSamurai.setActualLocation(position.getX(), position.getY());
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
-                this.currentSamurai.move(position.getX(), position.getY());
                 this.actionPanel.reset();
                 this.setOrder();
             }
 
         }else if(key.equals("samuraiHide")){
-
             int i = this.currentSamurai.getNum();
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
                 this.currentSamurai.setHide((boolean) notifingObject.getValue());
             }
+
         }else if(key.equals("samuraiOccupy")){
 			this.currentSamurai.occupy((int)notifingObject.getValue());
+            currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
             int i = this.currentSamurai.getNum();
             if((GameModel.isServer() && (i / 4) == 0) || (GameModel.isClient() && (i / 4) == 1)) {
                 this.actionPanel.reset();
@@ -155,6 +156,7 @@ public class GamePanelOL extends GamePanel{
             }
 			
         }else if(key.equals("samuraiKilled")){
+            getSamurai((int)notifingObject.getValue()).setInjured(true);
 
         }else if(key.equals("visible")) {
             if(GameModel.isClient() && !GameModel.isServer()) {

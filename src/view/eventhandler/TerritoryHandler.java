@@ -61,7 +61,7 @@ public class TerritoryHandler {
 	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.archivePanel = new ArchivePanel();
+	    	  territoryPanel.archivePanel = new ArchivePanel(0);
 	    	  territoryPanel.archivePanel.setLayoutX(350);
 	    	  territoryPanel.archivePanel.setLayoutY(50);
 	    	  territoryPanel.getChildren().add(territoryPanel.archivePanel);

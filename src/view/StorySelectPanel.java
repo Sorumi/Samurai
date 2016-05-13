@@ -37,18 +37,18 @@ public class StorySelectPanel extends Pane {
 		newBtn.setLayoutX(70);
 		newBtn.setLayoutY(72);
 		newBtn.setId("Aload-btn");
-//		newBtn.setOnMouseEntered(menuHandler.newBtnEnterEvent);
-//		newBtn.setOnMouseExited(menuHandler.newBtnExitEvent);
-//		newBtn.setOnMouseClicked(menuHandler.newStoryEvent);
+		newBtn.setOnMouseEntered(menuHandler.newBtnEnterEvent);
+		newBtn.setOnMouseExited(menuHandler.newBtnExitEvent);
+		newBtn.setOnMouseClicked(menuHandler.newStoryEvent);
 		
 		oldBtn = new Button("继续冒险");
 		oldBtn.setPrefSize(160, 40);
 		oldBtn.setLayoutX(70);
 		oldBtn.setLayoutY(142);
 		oldBtn.setId("Asave-btn");
-//		oldBtn.setOnMouseEntered(menuHandler.oldBtnEnterEvent);
-//		oldBtn.setOnMouseExited(menuHandler.oldBtnExitEvent);
-//		oldBtn.setOnMouseClicked(menuHandler.archiveEvent);
+		oldBtn.setOnMouseEntered(menuHandler.oldBtnEnterEvent);
+		oldBtn.setOnMouseExited(menuHandler.oldBtnExitEvent);
+		oldBtn.setOnMouseClicked(menuHandler.archiveEvent);
 		btnAbled(0);
 		btnAbled(1);
 		

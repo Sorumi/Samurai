@@ -7,36 +7,48 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import view.eventhandler.TerritoryHandler;
 
-
-public class ArchivePanel extends Pane{
+public class ArchivePanel extends Pane {
 	private int width = 500;
 	private int height = 700;
-	
+
+	private int type;
+
 	private SystemButton closeBtn;
-	
+
 	private ArchiveView arcV0;
 	private ArchiveView arcV1;
 	private ArchiveView arcV2;
-	
-	public ArchivePanel(){
+
+	/*
+	 * num: 0: in territoryPanel 1: in menuPanel
+	 */
+	public ArchivePanel(int type) {
+		this.type = type;
+
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
 		this.setId("archive-panel");
-		
-	    closeBtn = new SystemButton(0);
-	    closeBtn.setLayoutX(475);
+
+		closeBtn = new SystemButton(0);
+		closeBtn.setLayoutX(475);
 		closeBtn.setLayoutY(-25);
-		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+		closeBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				TerritoryPanel parent = (TerritoryPanel) ArchivePanel.this.getParent();
-				parent.getChildren().remove(ArchivePanel.this);
-				parent.setBlur(false);
+				if (type == 0) {
+					TerritoryPanel parent = (TerritoryPanel) ArchivePanel.this.getParent();
+					parent.getChildren().remove(ArchivePanel.this);
+					parent.setBlur(false);
+				}else{
+					MenuPanel parent = (MenuPanel) ArchivePanel.this.getParent();
+					parent.getChildren().remove(ArchivePanel.this);
+				}
+
 			}
 		});
 		this.getChildren().add(closeBtn);
-		
+
 		arcV0 = new ArchiveView(0);
 		arcV0.setLayoutX(50);
 		arcV0.setLayoutY(50);
