@@ -9,11 +9,15 @@ public class MaterialView extends StackPane {
 
 	private ImageView imgV;
 	
+	public MaterialView() {
+		this.setPrefSize(100, 100);
+	}
 
 	public MaterialView(int number) {
 		this.num = number;
 
 		this.setPrefSize(100, 100);
+
 
 		if (Images.MATERIAL[number / 10][number % 10] != null) {
 			imgV = new ImageView(Images.MATERIAL[number / 10][number % 10]);
@@ -21,7 +25,6 @@ public class MaterialView extends StackPane {
 			imgV.setSmooth(true);
 		}
 		this.setInit(); 
-
 		this.getChildren().add(imgV);
 		StackPane.setAlignment(imgV, Pos.CENTER);
 

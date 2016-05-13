@@ -49,7 +49,7 @@ public class ResultPanel extends OrderPanel {
 	private BlockArc[] arcsOne;
 	private BlockArc[] arcsTwo;
 	
-	private int[] blocks = {0,20,30,30,40,10,20};
+	private int[] blocks = {0,0,0,0,0,0,0};
 	
 	private Pane samuraiPanel;
 
@@ -402,8 +402,8 @@ public class ResultPanel extends OrderPanel {
 //			}
 
 			MaterialView material = new MaterialView(materialnum);
-//			material.setLayoutX(-23);
-//			material.setLayoutY(-23);
+			material.setLayoutX(-25);
+			material.setLayoutY(-25);
 			material.setScaleX(0.5);
 			material.setScaleY(0.5);
 
