@@ -27,6 +27,8 @@ public class MenuPanel extends Pane {
 	
 	private Button modeBtn;
 	
+	public DoubleSelectPanel doubleSelectPanel;
+	
 	private Group samuraiA;
 	private Group samuraiB;
 	
@@ -193,7 +195,10 @@ public class MenuPanel extends Pane {
 		//TODO
 		isDay = true;
 		
-		this.getChildren().addAll(exitBtn);
+		doubleSelectPanel = new DoubleSelectPanel(menuHandler);
+		doubleSelectPanel.setVisible(false);
+		
+		this.getChildren().addAll(doubleSelectPanel, exitBtn);
 	}
 	public void btnClick(int btn){
 		if(btn == 0){
