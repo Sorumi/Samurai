@@ -35,6 +35,7 @@ public class PropsStore {
 			break;
 		}
 	}
+
 	private void useAPjar(int level, SamuraiPO samuraiPO) {
 		switch (level) {
 		case 1:
@@ -57,6 +58,76 @@ public class PropsStore {
 			} else {
 				samuraiPO.setActionPoint(samuraiPO.getTotalActionPoint());
 			}
+			break;
+
+		default:
+			System.out.println("Props wrong!");
+			break;
+		}
+	}
+
+	public void useAttackPointJar(int level, SamuraiPO samuraiPO) {
+		switch (level) {
+		case 1:
+			samuraiPO.changeAttackPoint(30);
+			break;
+		case 2:
+			samuraiPO.changeAttackPoint(70);
+			break;
+		case 3:
+			samuraiPO.changeAttackPoint(120);
+			break;
+
+		default:
+			System.out.println("Props wrong!");
+			break;
+		}
+	}
+    public void replaceAttackPoint(int level, SamuraiPO samuraiPO) {
+		switch (level) {
+		case 1:
+			samuraiPO.changeAttackPoint(-30);
+			break;
+		case 2:
+			samuraiPO.changeAttackPoint(-70);
+			break;
+		case 3:
+			samuraiPO.changeAttackPoint(-120);
+			break;
+
+		default:
+			System.out.println("Props wrong!");
+			break;
+		}
+    }
+    	
+	public void useCriticalHitRateJar(int level, SamuraiPO samuraiPO) {
+		switch (level) {
+		case 1:
+			samuraiPO.changeCriticalHitRate(10);
+			break;
+		case 2:
+			samuraiPO.changeCriticalHitRate(25);
+			break;
+		case 3:
+			samuraiPO.changeCriticalHitRate(40);
+			break;
+
+		default:
+			System.out.println("Props wrong!");
+			break;
+		}
+	}
+	public void replaceCriticalHitRateJar(int level, SamuraiPO samuraiPO) {
+		switch (level) {
+		case 1:
+			samuraiPO.changeCriticalHitRate(-10);
+			break;
+		case 2:
+			samuraiPO.changeCriticalHitRate(-25);
+			break;
+		case 3:
+			samuraiPO.changeCriticalHitRate(-40);
 			break;
 
 		default:

@@ -748,16 +748,16 @@ public class GameModel extends BaseModel implements Observer {
         int aiKill = this.getSamuraiOfNum(4).getKillNum() + this.getSamuraiOfNum(5).getKillNum() + this.getSamuraiOfNum(6).getKillNum();
         System.out.println("I kill " + myKill + " and AI kill " + aiKill);
 
-        int block = this.chessBoardModel.getStatesOfAllBlocks()[0] + this.chessBoardModel.getStatesOfAllBlocks()[1]
-                + this.chessBoardModel.getStatesOfAllBlocks()[2] - this.chessBoardModel.getStatesOfAllBlocks()[4]
+        int block = this.chessBoardModel.getStatesOfAllBlocks()[1] + this.chessBoardModel.getStatesOfAllBlocks()[2]
+                + this.chessBoardModel.getStatesOfAllBlocks()[3] - this.chessBoardModel.getStatesOfAllBlocks()[4]
                 - this.chessBoardModel.getStatesOfAllBlocks()[5] - this.chessBoardModel.getStatesOfAllBlocks()[6];
 
         scoreBoard.caculateMaterial(level/10 - 1, level%10, block, myKill, aiKill);
         ArrayList<Material> materials = scoreBoard.getMaterial();
         super.updateChange(new UpdateMessage("materials",materials));
 
-        int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[0],
-                this.chessBoardModel.getStatesOfAllBlocks()[1], this.chessBoardModel.getStatesOfAllBlocks()[2],
+        int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],
+                this.chessBoardModel.getStatesOfAllBlocks()[2], this.chessBoardModel.getStatesOfAllBlocks()[3],
                 this.getSamuraiOfNum(1).getKillNum(),this.getSamuraiOfNum(2).getKillNum(),this.getSamuraiOfNum(3).getKillNum());
         this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
         this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);

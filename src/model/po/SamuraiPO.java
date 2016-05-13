@@ -65,7 +65,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
-	//经典模式构造方法
+	// 经典模式构造方法
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor) {
 		this.number = number;
 		this.player = player;
@@ -80,7 +80,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.coldRound = 0;
 		this.healthPoint = 60;
 		this.criticalHitChance = 1;
-		//这里改一下经典模式玩家的点数
+		// 这里改一下经典模式玩家的点数
 		this.totalActionPoint = 30;
 		this.actionPoint = this.totalActionPoint;
 		this.killNum = 0;
@@ -117,19 +117,19 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
-	//故事模式构造方法
+	// 故事模式构造方法
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor, Position home,
 			int actionPoint, int level) {
-		this.level=level;
-		this.totalHealthPoint=60+(level-1)*30;
-		this.healthPoint=totalHealthPoint;
-		this.totalActionPoint=actionPoint;
-		this.actionPoint=actionPoint;
+		this.level = level;
+		this.totalHealthPoint = 60 + (level - 1) * 30;
+		this.healthPoint = totalHealthPoint;
+		this.totalActionPoint = actionPoint;
+		this.actionPoint = actionPoint;
 		//
-		this.criticalHitChance=level<<1;
-		this.dodgeChance=level<<1;
-		this.armorValue= level*5;
-		this.attackValue=level*3;
+		this.criticalHitChance = level << 1;
+		this.dodgeChance = level << 1;
+		this.armorValue = level * 5;
+		this.attackValue = level * 3;
 		//
 		this.number = number;
 		this.player = player;
@@ -149,6 +149,14 @@ public class SamuraiPO implements Serializable, Cloneable {
 		cbm.changeActualBlock(home.getX(), home.getY(), true);
 
 		this.killNum = 0;
+	}
+
+	public void changeAttackPoint(int temp) {
+		this.attackValue = this.attackValue + temp;
+	}
+
+	public void changeCriticalHitRate(int temp) {
+		this.criticalHitChance = this.criticalHitChance + temp;
 	}
 
 	public SamuraiPO(int number, int player, Weapon weapon, int length, Position position, Position home, Armor armor,
@@ -216,12 +224,12 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public void beKilled(ChessBoardModel cbm) {
-		cbm.changeActualBlock(this.pos.getX(),this.pos.getY(),false);
+		cbm.changeActualBlock(this.pos.getX(), this.pos.getY(), false);
 		System.out.println("Home : " + this.home.getX() + " , " + this.home.getY());
 		System.out.println("pos  : " + this.pos.getX() + " , " + this.pos.getY());
 		this.pos.setX(this.home.getX());
 		this.pos.setY(this.home.getY());
-		cbm.changeActualBlock(this.home.getX(),this.home.getY(),true);
+		cbm.changeActualBlock(this.home.getX(), this.home.getY(), true);
 		if (!hide) {
 			cbm.changeActualBlock(this.home.getX(), this.home.getY(), false);
 		}
@@ -1183,9 +1191,11 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public void changeWeapon(Weapon weapon) {
 		this.weapon = weapon;
 	}
-	public void setHealthPoint(int healthPoint){
-		this.healthPoint=healthPoint;
+
+	public void setHealthPoint(int healthPoint) {
+		this.healthPoint = healthPoint;
 	}
+
 	public void changeArmor(Armor armor) {
 		this.armor = armor;
 	}
