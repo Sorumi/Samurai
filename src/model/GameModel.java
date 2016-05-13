@@ -746,7 +746,16 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("over",this.chessBoardModel.getStatesOfAllBlocks()));
 
         ScoreBoard scoreBoard = new ScoreBoard();
-        scoreBoard.caculateMaterial(level/10, level%10, 0, 0, 0);
+
+        int myKill = this.getSamuraiOfNum(1).getKillNum() + this.getSamuraiOfNum(2).getKillNum() + this.getSamuraiOfNum(3).getKillNum();
+        int aiKill = this.getSamuraiOfNum(4).getKillNum() + this.getSamuraiOfNum(5).getKillNum() + this.getSamuraiOfNum(6).getKillNum();
+        System.out.println("I kill " + myKill + " and AI kill " + aiKill);
+
+        int block = this.chessBoardModel.getStatesOfAllBlocks()[0] + this.chessBoardModel.getStatesOfAllBlocks()[1]
+                + this.chessBoardModel.getStatesOfAllBlocks()[2] - this.chessBoardModel.getStatesOfAllBlocks()[4]
+                - this.chessBoardModel.getStatesOfAllBlocks()[5] - this.chessBoardModel.getStatesOfAllBlocks()[6];
+
+        scoreBoard.caculateMaterial(level/10 - 1, level%10, block, myKill, aiKill);
         ArrayList<Material> materials = scoreBoard.getMaterial();
         super.updateChange(new UpdateMessage("materials",materials));
 
