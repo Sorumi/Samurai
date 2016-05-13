@@ -148,7 +148,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.home = home;
 
 		this.pos = home;
-		cbm.changeActualBlock(pos.getX(), pos.getY(), true);
+		cbm.changeActualBlock(home.getX(), home.getY(), true);
 
 		this.killNum = 0;
 	}
@@ -219,11 +219,13 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public void beKilled(ChessBoardModel cbm) {
 		cbm.changeActualBlock(this.pos.getX(),this.pos.getY(),false);
-		Position tmpPos = home;
-		this.pos = home;
-		cbm.changeActualBlock(tmpPos.getX(),tmpPos.getY(),true);
+		System.out.println("Home : " + this.home.getX() + " , " + this.home.getY());
+		System.out.println("pos  : " + this.pos.getX() + " , " + this.pos.getY());
+		this.pos.setX(this.home.getX());
+		this.pos.setY(this.home.getY());
+		cbm.changeActualBlock(this.home.getX(),this.home.getY(),true);
 		if (!hide) {
-			cbm.changeActualBlock(tmpPos.getX(), tmpPos.getY(), false);
+			cbm.changeActualBlock(this.home.getX(), this.home.getY(), false);
 		}
 	}
 

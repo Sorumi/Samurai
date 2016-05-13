@@ -503,6 +503,7 @@ public class GamePanel extends Pane implements Observer{
 						default:
 							break;
 					}
+					System.out.println("GP HOME : " + samuraiPO.getHome().getX() + " , " + samuraiPO.getHome().getY());
 					tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
 					chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
 				}else if(key.equals("occupiedBlocks")){

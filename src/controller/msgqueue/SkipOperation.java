@@ -1,17 +1,15 @@
 package controller.msgqueue;
 
 import model.GameModel;
-import model.GameModelService;
-
 
 /**
- * Created by Kray on 16/4/11.
+ * Created by Kray on 16/5/13.
  */
-public class NextOperation extends Operation {
+public class SkipOperation extends Operation {
 
     public void execute(){
         GameModel model = OperationQueue.getGameModel();
-        model.assignNextWithAI();
+        model.actionDone();
     }
 
 }
