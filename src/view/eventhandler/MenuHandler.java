@@ -66,7 +66,7 @@ public class MenuHandler {
 						mainFrame.startClassicGame();
 						break;
 					case 2:
-						//双人模式
+						mainFrame.menuPanel.doubleSelectPanel.setVisible(true);
 					}
 				}
 				});
@@ -104,8 +104,30 @@ public class MenuHandler {
 	    	  });
 	      }
 	};
+	public EventHandler<MouseEvent> serverBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnPressed(0);
+	      }
+	};
 	
+	public EventHandler<MouseEvent> serverBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnAbled(0);
+	      }
+	};
 	
+	public EventHandler<MouseEvent> clientBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnPressed(1);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> clientBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  mainFrame.menuPanel.doubleSelectPanel.btnAbled(1);
+	      }
+	};
+
 	public EventHandler<ActionEvent> exitEvent = new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
