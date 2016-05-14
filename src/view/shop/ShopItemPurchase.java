@@ -26,12 +26,12 @@ public class ShopItemPurchase extends Pane{
 	
 	private Button buyButton;
 	
-	public ShopItemPurchase(int perPrice, ShopHandler shopHandler){  
+	public ShopItemPurchase(ShopHandler shopHandler){  
 		this.setPrefSize(500, 340);
 		this.setLayoutX(650);
 		this.setLayoutY(270);
 		this.setId("campsite-wrapper");
-		this.perPrice = perPrice;
+//		this.perPrice = perPrice;
 		img1 = new ImageView(Images.COIN);
 		img1.setFitWidth(30);
 		img1.setPreserveRatio(true);
@@ -93,10 +93,24 @@ public class ShopItemPurchase extends Pane{
 		buyButton.setId("buy-btn");
 		buyButton.setLayoutX(50);
 		buyButton.setLayoutY(242);
+		buyButton.setOnMouseEntered(shopHandler.buyBtnEnterEvent);
+		buyButton.setOnMouseExited(shopHandler.buyBtnExitEvent);
+		buyButton.setOnMouseClicked(shopHandler.buyBtnClickEvent);
 		
+		buyBtnAbled();
 		
 		this.getChildren().addAll(img1, img2, perPriceLabel, quantityLabel, totalPriceLabel, plusGroup, minusGroup, buyButton);
 	}
+	
+	public void buyBtnPressed() {
+		buyButton.setLayoutY(246);
+		buyButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 4);");
+	}
+	public void buyBtnAbled() {
+		buyButton.setLayoutY(242);
+		buyButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 8);");
+	}
+	
 	public void setQuantity(int i){  
 		quantityLabel.setText(i + "");
 		totalPriceLabel.setText("- "+perPrice*i); 
@@ -104,4 +118,9 @@ public class ShopItemPurchase extends Pane{
 		this.quantity = i;
 	}
 
+	public void setPrice(int perPrice){
+		this.perPrice = perPrice;
+		perPriceLabel.setText("- "+perPrice);
+		this.setQuantity(0);
+	}
 }
