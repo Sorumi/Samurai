@@ -22,7 +22,7 @@ public class PropView extends Pane{
 			 width = 30;
 			 break;
 		case 2:
-			 width = 70;
+			 width = 50;
 			 break;
 		case 3:
 			 width = 100;

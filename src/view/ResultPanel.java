@@ -269,7 +269,7 @@ public class ResultPanel extends OrderPanel {
 	}
 	
 	public void setLevelUp(int samuraiNum) {
-		Label label = (Label) samuraiPanel.getChildren().get(samuraiNum*3+1);
+		Label label = (Label) samuraiPanel.getChildren().get(samuraiNum*3+2);
 		label.setVisible(true);
 	}
 
