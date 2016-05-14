@@ -1,5 +1,7 @@
 package view;
 
+import java.util.Random;
+
 import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -238,9 +240,9 @@ public class MenuPanel extends Pane {
 				new KeyFrame(Duration.millis(1000), new KeyValue(sARo.angleProperty(), 300, Interpolator.DISCRETE)),
 				new KeyFrame(Duration.millis(1500), new KeyValue(sARo.angleProperty(), 360, Interpolator.EASE_IN))
 			);
-			samuraiA1.setWeapon(25);
-			samuraiA2.setWeapon(126);
-			samuraiA3.setWeapon(215);
+			samuraiA1.setWeapon(setRandomWeapon(0));
+			samuraiA2.setWeapon(setRandomWeapon(1));
+			samuraiA3.setWeapon(setRandomWeapon(2));
 		}else if(modeNum == 0 && targetNum == 1){
 			samuraiTL.getKeyFrames().addAll(
 				new KeyFrame(Duration.millis(500), new KeyValue(sARo.angleProperty(), 300, Interpolator.EASE_IN)),
@@ -277,14 +279,21 @@ public class MenuPanel extends Pane {
 					
 				new KeyFrame(Duration.millis(500), new KeyValue(sBRo.angleProperty(), 60, Interpolator.EASE_IN))
 			);
-			samuraiA1.setWeapon(25);
-			samuraiA2.setWeapon(126);
-			samuraiA3.setWeapon(215);
+			samuraiA1.setWeapon(setRandomWeapon(0));
+			samuraiA2.setWeapon(setRandomWeapon(1));
+			samuraiA3.setWeapon(setRandomWeapon(2));
 		}
 		
 		samuraiTL.play();
 		setDay();
 		this.modeNum = targetNum;
+	}
+	
+	private int setRandomWeapon(int num){
+		Random random = new Random();
+		int x = random.nextInt(3)+1;
+		int y = random.nextInt(2)+5;
+		return num*100 + x*10 + y;
 	}
 	
 	public void leftBtnEnter(){

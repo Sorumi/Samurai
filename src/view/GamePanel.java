@@ -11,8 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Group;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import model.UpdateMessage;
 import model.po.ActualBlock;
@@ -582,6 +580,7 @@ public class GamePanel extends Pane implements Observer{
 					
 				}else if(key.equals("experiences")){
 					resultPanel.setExperiences((int[])notifingObject.getValue());
+					resultPanel.setStart();
 
 				}else if(key.equals("healthTotal")){
 					int[] t = (int [])notifingObject.getValue();
