@@ -1223,15 +1223,19 @@ public class SamuraiPO implements Serializable, Cloneable {
 		int criticalHitRate = criticalHitChance + weapon.getCriticalRate();
 		int armorPenetration = weapon.getArmorPenetration();
 		int[] result = new int[3];
+		result[2]=0;
 		Random random = new Random();
 		if (random.nextInt(100) + 1 <= criticalHitRate) {
+			System.out.println("Critical Hit");
+			System.out.println("attack"+weapon.getAttackPoint()+ "  "+ attackValue);
 			result[0] = (weapon.getAttackPoint() + attackValue) * 2;
 			result[2] = 1;
 		} else {
 			result[0] = weapon.getAttackPoint() + attackValue;
 		}
 		result[1] = armorPenetration;
-		return result;
+		System.out.println("sadehwqheqwhewq"+result[2]);
+		return result.clone();
 	}
 
 	public Weapon getWeapon() {

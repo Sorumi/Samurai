@@ -474,6 +474,9 @@ public class GameModel extends BaseModel implements Observer {
                     double ta = this.players[1].getSamuraiOfNum(4).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (ta / (ta + 100));
+                        System.out.println(ta);
+                        System.out.println(attackPointDouble);
+                        System.out.println(isCritical);
                     }else{
                         attackPointDouble *= 1.5;
                     }

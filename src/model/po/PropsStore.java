@@ -8,7 +8,6 @@ import java.util.Random;
 public class PropsStore implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	ArrayList<Props> props = new ArrayList<Props>();
 	Random random = new Random();
 
 	public String use(int type, SamuraiPO samuraiPO) {
