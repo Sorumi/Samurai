@@ -29,13 +29,12 @@ public class GameModel extends BaseModel implements Observer {
     private SamuraiAI[] samuraiAI;
     private int coldRoundNum;
 
+    private ArrayList<PropsInG> propList;
+
     private boolean flag = false;
     private Position aidPos;
 
-    private Armory armory;
-
     protected ClientService net;
-
     private static boolean isServer = false;
     private static boolean isClient = false;
 
@@ -80,7 +79,7 @@ public class GameModel extends BaseModel implements Observer {
     public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
 
         Thread.currentThread().setPriority(1);
-        this.armory = StoryModel.getStoryModel().getArmory();
+        Armory armory = StoryModel.getStoryModel().getArmory();
         this.aidPos = new Position(length/2 , length/2);
         this.level = level;
         this.length = length;
@@ -97,6 +96,7 @@ public class GameModel extends BaseModel implements Observer {
         this.playerSeq = new int[]{0,1,1,0,0,1};
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
+        this.propList = new ArrayList<>();
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
 
@@ -615,7 +615,9 @@ public class GameModel extends BaseModel implements Observer {
             Random random = new Random();
             if (random.nextInt(1) == 0) {
                 Position position = this.randomPropLocation();
-                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),random.nextInt(6)}));
+                int type = random.nextInt(6);
+                this.propList.add(new PropsInG(position,type));
+                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
             }
         }
 

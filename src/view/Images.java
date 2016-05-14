@@ -29,6 +29,8 @@ public class Images {
 	public static Image LEAF_1 = new Image("/./images/leaf_1.png",true);
 	//lotus
 	public static Image LOTUS_0 = new Image("/./images/lotus_0.png",true);
+	//coin
+	public static Image COIN = new Image("/./images/coin.png",true); 
 	
 	//system
 	public static Image SYSTEM_BACK_BTN = new Image("/./images/system_back_button.png",true);
