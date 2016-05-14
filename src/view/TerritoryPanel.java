@@ -72,7 +72,7 @@ public class TerritoryPanel extends Pane {
 	private GaussianBlur blur;
 
 	private WeatherSelectPanel weatherPanel;
-	
+
 	private int[] samuraiProperties_1;
 	private int[] samuraiProperties_2;
 	private int[] samuraiProperties_3;
@@ -163,12 +163,12 @@ public class TerritoryPanel extends Pane {
 		shopBtn = new Button("shop");
 		shopBtn.setLayoutX(500);
 		shopBtn.setLayoutY(430);
-		shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent); 
-		territoryGroup.getChildren().add(shopBtn);
-		shopPanel = new ShopPanel();
-  	    shopSelectPanel = new ShopSelectPanel(this.shopPanel.shopHandler); 
+		shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent);
 
-		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn);
+		shopSelectPanel = new ShopSelectPanel(territoryHandler);
+		shopSelectPanel.setVisible(false);
+
+		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn, shopBtn);
 		stateHandler = new StateHandler(this);
 		statePanel = new StatePanel(stateHandler, 2);
 		territoryGroup.getChildren().add(statePanel);
@@ -210,9 +210,9 @@ public class TerritoryPanel extends Pane {
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
 
-		this.getChildren().add(territoryGroup);
-		
-		//init
+		this.getChildren().addAll(territoryGroup, shopSelectPanel);
+
+		// init
 		this.set6Properties();
 		this.setBloodTotal();
 		this.setRandomWeather();
@@ -267,29 +267,29 @@ public class TerritoryPanel extends Pane {
 			territoryFg.restartAll();
 		}
 	}
-	
-	public void setSamuraiAnimation(boolean isAnimate){
+
+	public void setSamuraiAnimation(boolean isAnimate) {
 		samurai1.blink(isAnimate);
 		samurai2.blink(isAnimate);
 		samurai3.blink(isAnimate);
 	}
-	
-	public void setRandomWeather(){
+
+	public void setRandomWeather() {
 		Random random = new Random();
-		int x = random.nextInt(5)+1;
+		int x = random.nextInt(5) + 1;
 		setWeather(x);
 	}
 
 	public void setWeather(int num) {
 		switch (num) {
-		case 1://sun
+		case 1:// sun
 			territoryBg.removeAll();
 			territoryFg.removeAll();
 			territoryBg.setSky(0);
 			territoryBg.setSun(true);
 			territoryBg.restartAll();
 			break;
-		case 2://moon and stars
+		case 2:// moon and stars
 			territoryBg.removeAll();
 			territoryFg.removeAll();
 			territoryBg.setSky(1);
@@ -297,20 +297,20 @@ public class TerritoryPanel extends Pane {
 			territoryBg.setStars(true);
 			territoryBg.restartAll();
 			break;
-		case 3://stars
+		case 3:// stars
 			territoryBg.removeAll();
 			territoryFg.removeAll();
 			territoryBg.setSky(1);
 			territoryBg.setStars(true);
 			territoryBg.restartAll();
 			break;
-		case 4://rain
+		case 4:// rain
 			territoryBg.removeAll();
 			territoryFg.removeAll();
 			territoryBg.setSky(2);
 			territoryFg.setRain(700);
 			break;
-		case 5://snow
+		case 5:// snow
 			territoryBg.removeAll();
 			territoryFg.removeAll();
 			territoryBg.setSky(3);

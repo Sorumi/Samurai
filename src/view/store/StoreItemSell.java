@@ -1,4 +1,4 @@
-package view.shop;
+package view.store;
 
 import javafx.scene.Group;
 import javafx.scene.control.Button;
@@ -10,7 +10,7 @@ import javafx.scene.shape.Circle;
 import view.Images;
 import view.eventhandler.ShopHandler;
 
-public class ShopItemSell extends Pane{ 
+public class StoreItemSell extends Pane{ 
 	private ImageView img1;
 	private ImageView img2;
 	
@@ -25,7 +25,7 @@ public class ShopItemSell extends Pane{
 	
 	private Button buyButton;
 	
-	public ShopItemSell(int perPrice, ShopHandler shopHandler){   
+	public StoreItemSell(int perPrice, ShopHandler shopHandler){   
 		this.setPrefSize(500, 340);
 		this.setLayoutX(650);
 		this.setLayoutY(270);
