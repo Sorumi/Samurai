@@ -5,6 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -258,7 +259,35 @@ public class CirclePanel extends Pane {
 			rotator2.setFromAngle(270);
 			rotator2.setToAngle(360);
 			
+			rotator1.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent t) {
+					rotator2.play();
+
+				}
+			});
 			
+			rotator1.play();
+		}else{
+			RotateTransition rotator1 = new RotateTransition(Duration.millis(1000), logo);
+			rotator1.setAxis(Rotate.Y_AXIS);
+			rotator1.setFromAngle(0);
+			rotator1.setToAngle(90);
+			
+			RotateTransition rotator2 = new RotateTransition(Duration.millis(1000), originalLogo);
+			rotator2.setAxis(Rotate.Y_AXIS);
+			rotator2.setFromAngle(270);
+			rotator2.setToAngle(360);
+			
+			rotator1.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent t) {
+					rotator2.play();
+
+				}
+			});
+			
+			rotator1.play();
 		}
 	}
 

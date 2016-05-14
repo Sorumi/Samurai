@@ -422,9 +422,13 @@ public class GamePanel extends Pane implements Observer{
 		if(this.currentPlayer == playerA){
 			playerA.circlePanel.setNewTime(true);
 			playerB.circlePanel.setNewTime(false);
+			playerA.circlePanel.flip(true);
+			playerB.circlePanel.flip(false);
 		}else{
 			playerA.circlePanel.setNewTime(false);
 			playerB.circlePanel.setNewTime(true);
+			playerA.circlePanel.flip(false);
+			playerB.circlePanel.flip(true);
 		}
 	}
 
