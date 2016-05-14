@@ -33,7 +33,7 @@ public class ActionPanel extends OrderPanel {
 	private ActionHandler actionHandler;
 	
 	public ActionPanel(ActionHandler actionHandler){
-		
+
 		this.actionHandler = actionHandler;
 		
 		occupyButton = new ActionButton(0);	

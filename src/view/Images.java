@@ -29,11 +29,14 @@ public class Images {
 	public static Image LEAF_1 = new Image("/./images/leaf_1.png",true);
 	//lotus
 	public static Image LOTUS_0 = new Image("/./images/lotus_0.png",true);
+	//coin
+	public static Image COIN = new Image("/./images/coin.png",true); 
 	
 	//system
-	public static Image SYSTEM_BACK_BTN = new Image("/./images/system_back_button.png",true);
+//	public static Image SYSTEM_BACK_BTN = new Image("/./images/system_back_button.png",true);
 	public static Image SYSTEM_CLOSE_BTN = new Image("/./images/system_close_button.png",true);
 	public static Image SYSTEM_SAVE_BTN = new Image("/./images/system_save_button.png",true);
+	public static Image SYSTEM_HELP_BTN = new Image("/./images/system_help_button.png",true);
 
 	//samurai state
 	public static Image STATE_ICON_1 = new Image("/./images/state_icon_1.png",true);
@@ -61,7 +64,15 @@ public class Images {
 	
 	//resultPanel
 	public static Image A_WIN = new Image("/./images/player_logo_A_big.png",true); 
-	
+	public static Image RATE_SSS = new Image("/./images/rate_sss.png",true); 
+	public static Image RATE_SS = new Image("/./images/rate_ss.png",true); 
+	public static Image RATE_S = new Image("/./images/rate_s.png",true); 
+	public static Image RATE_A = new Image("/./images/rate_a.png",true); 
+	public static Image RATE_B = new Image("/./images/rate_b.png",true); 
+	public static Image RATE_C = new Image("/./images/rate_c.png",true); 
+	public static Image RATE_D = new Image("/./images/rate_d.png",true); 
+	public static Image RATE_F = new Image("/./images/rate_f.png",true); 
+	public static Image[] RATE = {RATE_SSS, RATE_SS, RATE_S, RATE_A, RATE_B, RATE_C, RATE_D, RATE_F};
 	//arrow
 	public static final Image ARROW = new Image("/./images/arrow.png");
 	
@@ -384,5 +395,8 @@ public class Images {
 	public static Image[] MATERIAL_4 = {MATERIAL_40, MATERIAL_41, MATERIAL_42, MATERIAL_43};
 	
 	public static Image[][] MATERIAL = {MATERIAL_0, MATERIAL_1, MATERIAL_2, MATERIAL_3, MATERIAL_4};
+	
+	//prop
+	public static Image PROP_0 = new Image("/./images/prop_0.png",true);
  
 }

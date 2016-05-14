@@ -114,7 +114,4 @@ public class SmithyHandler {
 	      }
 	};
 
-	public SmithyController getSmithyController(){
-		return this.smithyController;
-	}
 }

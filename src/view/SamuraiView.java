@@ -70,6 +70,8 @@ public class SamuraiView extends Pane{
 	private double[] leftLegAngle;
 	private double[] rightLegAngle;
 	
+	private Timeline blinkTL;
+	
 	public SamuraiView(int scale){
 		this.SCALE = scale;
 		this.WIDTH = 60*SCALE;
@@ -213,8 +215,22 @@ public class SamuraiView extends Pane{
 		this.setInjured(false, direction);
 		this.headOccupy.setVisible(false);
 		
+		Random random = new Random();
+		int duration = random.nextInt(2000);
+		blinkTL = new Timeline(
+				new KeyFrame(Duration.ZERO, new KeyValue(eyeLeft.scaleYProperty(), 1)),
+				new KeyFrame(Duration.ZERO, new KeyValue(eyeRight.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(300), new KeyValue(eyeLeft.scaleYProperty(), 0.3)),
+				new KeyFrame(Duration.millis(300), new KeyValue(eyeRight.scaleYProperty(), 0.3)),
+				new KeyFrame(Duration.millis(600), new KeyValue(eyeLeft.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(600), new KeyValue(eyeRight.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(duration+2000), new KeyValue(eyeLeft.scaleYProperty(), 1)),
+				new KeyFrame(Duration.millis(duration+2000), new KeyValue(eyeRight.scaleYProperty(), 1))
+		);
+		blinkTL.setCycleCount(Timeline.INDEFINITE);
+		
 		//TODO
-		this.blink();
+		this.blink(true);
 		this.setRandomAnimation(true);
 	}
 	
@@ -405,22 +421,12 @@ public class SamuraiView extends Pane{
 		this.setScaleX(flip);
 	}
 	
-	public void blink(){
-		Random random = new Random();
-		int duration = random.nextInt(2000);
-		Timeline blinkTL = new Timeline(
-				new KeyFrame(Duration.ZERO, new KeyValue(eyeLeft.scaleYProperty(), 1)),
-				new KeyFrame(Duration.ZERO, new KeyValue(eyeRight.scaleYProperty(), 1)),
-				new KeyFrame(Duration.millis(300), new KeyValue(eyeLeft.scaleYProperty(), 0.3)),
-				new KeyFrame(Duration.millis(300), new KeyValue(eyeRight.scaleYProperty(), 0.3)),
-				new KeyFrame(Duration.millis(600), new KeyValue(eyeLeft.scaleYProperty(), 1)),
-				new KeyFrame(Duration.millis(600), new KeyValue(eyeRight.scaleYProperty(), 1)),
-				new KeyFrame(Duration.millis(duration+2000), new KeyValue(eyeLeft.scaleYProperty(), 1)),
-				new KeyFrame(Duration.millis(duration+2000), new KeyValue(eyeRight.scaleYProperty(), 1))
-		);
-		blinkTL.setCycleCount(Timeline.INDEFINITE);
-		blinkTL.play();
-		
+	public void blink(boolean isBlink){
+		if (isBlink){
+			blinkTL.play();
+		}else{
+			blinkTL.stop();
+		}
 	}
 	
 	public void swing(){

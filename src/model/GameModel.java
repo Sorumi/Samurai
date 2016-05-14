@@ -29,13 +29,12 @@ public class GameModel extends BaseModel implements Observer {
     private SamuraiAI[] samuraiAI;
     private int coldRoundNum;
 
+    private ArrayList<PropsInG> propList;
+
     private boolean flag = false;
     private Position aidPos;
 
-    private Armory armory;
-
     protected ClientService net;
-
     private static boolean isServer = false;
     private static boolean isClient = false;
 
@@ -80,7 +79,7 @@ public class GameModel extends BaseModel implements Observer {
     public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
 
         Thread.currentThread().setPriority(1);
-        this.armory = StoryModel.getStoryModel().getArmory();
+        Armory armory = StoryModel.getStoryModel().getArmory();
         this.aidPos = new Position(length/2 , length/2);
         this.level = level;
         this.length = length;
@@ -97,6 +96,7 @@ public class GameModel extends BaseModel implements Observer {
         this.playerSeq = new int[]{0,1,1,0,0,1};
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
+        this.propList = new ArrayList<>();
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
 
@@ -581,9 +581,12 @@ public class GameModel extends BaseModel implements Observer {
             Operation.setServer(false);
         }
 
+        System.out.println("Now is " + this.getCurrentSamurai());
+
         this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
 
         if(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0){
+
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
 
             super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
@@ -608,7 +611,15 @@ public class GameModel extends BaseModel implements Observer {
     //经典模式下+故事模式下
     public void assignNextWithAI()  {
 
-        this.randomPropLocation();
+        if(this.level != 99) {
+            Random random = new Random();
+            if (random.nextInt(1) == 0) {
+                Position position = this.randomPropLocation();
+                int type = random.nextInt(6);
+                this.propList.add(new PropsInG(position,type));
+                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
+            }
+        }
 
         System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
 
@@ -629,7 +640,7 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("round", this.currentRound));
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-//            super.updateChange(new UpdateMessage("healthPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getHealthPoint()));
+            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.currentSamurai, this.getSamuraiOfNum(this.currentSamurai).getHealthPoint()}));
 
             this.updateVisible(this.updateVision());
 
@@ -736,6 +747,8 @@ public class GameModel extends BaseModel implements Observer {
 
         this.currentTime = this.timeTotal;
 
+        super.updateChange(new UpdateMessage("goodbyeactionpanel",0));
+
         System.out.println("Action Done");
 
         if(this.currentRound < this.totalRound) {
@@ -747,6 +760,13 @@ public class GameModel extends BaseModel implements Observer {
                 this.currentPlayer = 1;
             }
             OperationQueue.addOperation(new NextOperation());
+
+            try{
+                Thread.sleep(100);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
         }else{
             OperationQueue.addOperation(new EndOperation());
         }
@@ -861,7 +881,9 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
+
             this.currentTime--;
+
         }else{
             OperationQueue.addOperation(new SkipOperation());
         }

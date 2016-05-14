@@ -10,6 +10,7 @@ import view.StoryPanel;
 import view.TerritoryPanel;
 import view.TerritoryPanel.TerritoryButton;
 import view.campsite.CampsitePanel;
+import view.shop.ShopPanel;
 import view.smithy.SmithyPanel;
 import view.store.StorePanel;
 
@@ -54,7 +55,17 @@ public class TerritoryHandler {
 	      public void handle(MouseEvent event) {
 	    	  StoryPanel parent = (StoryPanel) territoryPanel.getParent();
 	    	  parent.mapPanel.toFront();
-	    	  territoryPanel.territoryBg.stopAll();
+	    	  territoryPanel.setSamuraiAnimation(false);
+	    	  territoryPanel.territoryBg.removeAll();
+	    	  territoryPanel.territoryFg.removeAll();
+	      }
+	};
+	
+	public EventHandler<MouseEvent> shopEvent = new EventHandler<MouseEvent>() {   
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
+	    	  territoryPanel.shopPanel = new ShopPanel();
+	    	  territoryPanel.getChildren().add(territoryPanel.shopPanel); 
 	      }
 	};
 	

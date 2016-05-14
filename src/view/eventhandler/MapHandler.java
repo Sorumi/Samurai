@@ -31,7 +31,8 @@ public class MapHandler {
 	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
 	    	  parent.territoryPanel.toFront();
 	    	  parent.territoryPanel.updateSamurai();
-	    	  //设置随机天气
+	    	  parent.territoryPanel.setSamuraiAnimation(true);
+	    	  parent.territoryPanel.setRandomWeather();
 	      }
 	};
 	

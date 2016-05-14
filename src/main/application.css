@@ -75,7 +75,39 @@
 	-fx-alignment: center;
 	-fx-text-alignment: center;
 }
-
+/*Shop */
+#perprice-label{ 
+	-fx-text-fill: #987F69;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-weight: 600;
+	-fx-font-size: 20;
+	-fx-alignment: center-left;
+}
+#quantity-label{  
+	-fx-text-fill: #86A1A6;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-weight: 600;
+	-fx-font-size: 20;
+	-fx-alignment: center;
+}
+#plus-label{   
+	-fx-text-fill: #86A1A6;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-weight: 600;
+	-fx-font-size: 20;
+	-fx-alignment: center-left;
+}
+#buy-btn{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: #4792A0;
+	-fx-background-color: #D7ECF0;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+	
+}
 /* Smithy */
 #smithy-wrapper{
 	-fx-background-radius: 0 10 10 10;
@@ -196,12 +228,19 @@
 	-fx-alignment: center-left;
 }
 #amount-label{  
-	-fx-text-fill: #4372C7;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Tsukushi B Round Gothic";
 	-fx-font-weight: 300;
 	-fx-font-size: 14;
 	-fx-alignment: center-left;
 }
+#level-up-label{
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-weight: 300;
+	-fx-font-size: 12;
+	-fx-alignment: center;
+}
+
 /*LevelSelect */
 #level-select-panel{
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);

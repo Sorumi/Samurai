@@ -99,12 +99,15 @@ public class ResultPanel extends OrderPanel {
 		winLabel.setLayoutX(CIRCLE_RADIUS + strokeSize - 148);
 		winLabel.setLayoutY(CIRCLE_RADIUS + strokeSize - 102);
 		winLabel.setId("win-label");
+		winLabel.setVisible(false);
 
 		loseLabel = new Label("Lose");
 		loseLabel.setLayoutX(CIRCLE_RADIUS + strokeSize - 148);
 		loseLabel.setLayoutY(CIRCLE_RADIUS + strokeSize - 102);
 		loseLabel.setId("lose-label");
-		resultGroup.getChildren().addAll(resultCircle, winLabel);
+		loseLabel.setVisible(false);
+		
+		resultGroup.getChildren().addAll(resultCircle, winLabel, loseLabel);
 		resultGroup.setRotationAxis(Rotate.Y_AXIS);
 		resultGroup.setRotate(270);
 
@@ -137,11 +140,19 @@ public class ResultPanel extends OrderPanel {
 			samurai.setPreserveRatio(true);
 			samurai.setLayoutX(140 * (num - 1));
 			samurai.setLayoutY(0);
-			Label samuraiLabel = new Label("230");
+			Label samuraiLabel = new Label("");
 			samuraiLabel.setLayoutX(60 + 140 * (num - 1));
-			samuraiLabel.setLayoutY(25);
+			samuraiLabel.setLayoutY(20);
 			samuraiLabel.setId("amount-label");
-			samuraiPanel.getChildren().addAll(samurai, samuraiLabel);
+			Label levelUpLabel = new Label("Lv. Up!");
+			levelUpLabel.setPrefSize(52, 20);
+			levelUpLabel.setLayoutX(140 * (num - 1));
+			levelUpLabel.setLayoutY(-25);
+			levelUpLabel.setId("level-up-label");
+			levelUpLabel.setTextFill(GameColor.getBlockColor(num));
+			levelUpLabel.setVisible(false);
+			samuraiPanel.getChildren().addAll(samurai, samuraiLabel, levelUpLabel);
+			
 		}
 		samuraiPanel.setLayoutX(120);
 		samuraiPanel.setLayoutY(380);
@@ -198,9 +209,16 @@ public class ResultPanel extends OrderPanel {
 		logo.setLayoutX(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
 		logo.setLayoutY(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
 		this.getChildren().add(logo);
-		this.getChildren().addAll(circle3, resultGroup, materialGroup);		
+		this.getChildren().addAll(circle3, resultGroup, materialGroup);	
+
+		this.setVisible(false);
+	}
+	
+	private void setTimeline(){
 		
 		double startAngle = 90.0;
+		double preAngleOne = 360.0 / (size * size);
+		double preAngleTwo = -360.0 / (size * size);
 		timeline = new Timeline(
 				new KeyFrame(Duration.millis(500), new KeyValue(arcsOne[0].lengthProperty(), preAngleOne * blocks[1])),
 				new KeyFrame(Duration.millis(500), new KeyValue(arcsTwo[0].lengthProperty(), preAngleTwo * blocks[4])),
@@ -222,19 +240,20 @@ public class ResultPanel extends OrderPanel {
 								startAngle + preAngleTwo * blocks[4] + preAngleTwo * blocks[5])),
 				new KeyFrame(Duration.millis(1400), new KeyValue(arcsTwo[2].lengthProperty(), 0)),
 				new KeyFrame(Duration.millis(1900), new KeyValue(arcsTwo[2].lengthProperty(), preAngleTwo * blocks[6])));
-
-		this.setVisible(false);
 	}
 
 	public void setBlocks(int[] results) {
 		for (int i=0; i<results.length; i++) {
-			this.blocks[i] = results[i];
-			System.out.println(results[i]);
+			blocks[i] = results[i];
 		}
-		this.setStart();
+		if((blocks[1]+blocks[2]+blocks[3]) > (blocks[4]+blocks[5]+blocks[6])){
+			winLabel.setVisible(true);
+		}else{
+			loseLabel.setVisible(true);
+		}
 	}
 	
-	public void setMaterials(ArrayList<Material> list){
+	public void setMaterials(ArrayList<Material> list) {
 		for (Material material : list){
 			System.out.println(material.getType() + ": " + material.getNumer());
 			MaterialPanel materialPanel = new MaterialPanel(material.getType(), material.getNumer());
@@ -244,13 +263,19 @@ public class ResultPanel extends OrderPanel {
 	
 	public void setExperiences(int[] expertiences) {
 		for(int i=0; i<expertiences.length; i++){
-			Label label = (Label) samuraiPanel.getChildren().get(i*2+1);
+			Label label = (Label) samuraiPanel.getChildren().get(i*3+1);
 			label.setText(expertiences[i] + "");
 		}
+	}
+	
+	public void setLevelUp(int samuraiNum) {
+		Label label = (Label) samuraiPanel.getChildren().get(samuraiNum*3+1);
+		label.setVisible(true);
 	}
 
 	public void setStart() {
 		this.setVisible(true);
+		this.setTimeline();
 		timeline.play();
 		this.flip();
 	}
@@ -284,7 +309,7 @@ public class ResultPanel extends OrderPanel {
 		rotator4.setToAngle(360);
 
 		Timeline timeline2 = new Timeline(
-				new KeyFrame(Duration.millis(3000), new KeyValue(materialGroup.rotateProperty(), 360)));
+				new KeyFrame(Duration.millis(5000), new KeyValue(materialGroup.rotateProperty(), 360)));
 		// circle2换成circle3
 		RotateTransition rotator5 = new RotateTransition(Duration.millis(1000), materialGroup);
 		rotator5.setAxis(Rotate.Y_AXIS);
@@ -391,15 +416,7 @@ public class ResultPanel extends OrderPanel {
 			circle.setCenterY(25);
 			circle.setRadius(25);
 
-			circle.setFill(GameColor.getMaterialColor(materialnum));
-//			switch (colorNum) {
-//			case 0:
-//				circle.setFill(Color.web("#FFD3D3"));
-//				break;
-//			case 1:
-//				circle.setFill(Color.web("FFFDE1"));
-//				break;
-//			}
+			circle.setFill(GameColor.getMaterialColor(materialnum/10));
 
 			MaterialView material = new MaterialView(materialnum);
 			material.setLayoutX(-25);
@@ -407,7 +424,7 @@ public class ResultPanel extends OrderPanel {
 			material.setScaleX(0.5);
 			material.setScaleY(0.5);
 
-			Label amountLabel = new Label("×" + amount);
+			Label amountLabel = new Label(" × " + amount);
 			amountLabel.setLayoutX(53);
 			amountLabel.setLayoutY(22);
 			amountLabel.setId("amount-label");

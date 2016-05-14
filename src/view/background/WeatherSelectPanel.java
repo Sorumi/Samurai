@@ -52,4 +52,5 @@ public class WeatherSelectPanel extends Pane {
 			}
 		}
 	}
+
 }

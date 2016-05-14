@@ -2,67 +2,44 @@ package view.eventhandler;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import view.background.TerritoryBackground;
-import view.background.TerritoryFrontground;
+import view.TerritoryPanel;
 
 public class WeatherHandler {
-	
-	private TerritoryBackground bg;
-	private TerritoryFrontground fg;
-	
-	public WeatherHandler(TerritoryBackground bg, TerritoryFrontground fg){
-		this.bg = bg;
-		this.fg = fg;
+
+	private TerritoryPanel territoryPanel;
+
+	public WeatherHandler(TerritoryPanel territoryPanel) {
+		this.territoryPanel = territoryPanel;
 	}
-	
-	public EventHandler<MouseEvent> sunEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  bg.removeAll();
-	    	  fg.removeAll();
-	    	  bg.setSky(0);
-	    	  bg.setSun(true);
-	    	  bg.restartAll();
-	      }
+
+	public EventHandler<MouseEvent> sunEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setWeather(1);
+		}
 	};
-	
-	public EventHandler<MouseEvent> moonEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  bg.removeAll();
-	    	  fg.removeAll();
-	    	  bg.setSky(1);
-	    	  bg.setMoon(true);
-	    	  bg.setStars(true);
-	    	  bg.restartAll();
-	      }
+
+	public EventHandler<MouseEvent> moonEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setWeather(2);
+		}
 	};
-	
-	public EventHandler<MouseEvent> starsEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  bg.removeAll();
-	    	  fg.removeAll();
-	    	  bg.setSky(1);
-	    	  bg.setStars(true);
-	    	  bg.restartAll();
-	      }
+
+	public EventHandler<MouseEvent> starsEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setWeather(3);
+		}
 	};
-	
-	public EventHandler<MouseEvent> rainEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  bg.removeAll();
-	    	  bg.setSky(2);
-	    	  fg.removeAll();
-	    	  fg.setRain(700);
-	      }
+
+	public EventHandler<MouseEvent> rainEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setWeather(4);
+		}
 	};
-	
-	public EventHandler<MouseEvent> snowEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  bg.removeAll();
-	    	  bg.setSky(3);
-	    	  fg.removeAll();
-	    	  fg.setSnow(500);
-	      }
+
+	public EventHandler<MouseEvent> snowEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setWeather(5);
+		}
 	};
-	
 
 }
