@@ -669,6 +669,21 @@ public class GameModel extends BaseModel implements Observer {
 
                 super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),PropsInG.getRealType(751)}));
             }
+
+            //把所有道具存货轮数减1,如果是0的就去掉
+            ArrayList<PropsInG> tmp = new ArrayList<>();
+            for(PropsInG propsInG : this.propsInGList){
+                if(propsInG.getExistRound() == 0){
+                    tmp.add(propsInG);
+                }
+                propsInG.minusExistRound();
+            }
+            for (PropsInG propsInG : tmp){
+                this.propsInGList.remove(propsInG);
+            }
+
+            System.out.println("prop size:  " + this.propsInGList.size());
+
         }
 
         System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);

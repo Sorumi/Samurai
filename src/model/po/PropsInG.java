@@ -8,19 +8,29 @@ public class PropsInG extends Props {
     private int type;
     private Position position;
     private int number;
+    private int existRound;
 
     public PropsInG(Position position, int type){
         super();
         this.position = new Position(position.getX(), position.getY());
         this.type = type;
+        this.existRound = 1;
     }
 
     public Position getPosition() {
-        return position;
+        return this.position;
     }
 
     public int getType() {
-        return type;
+        return this.type;
+    }
+
+    public int getExistRound() {
+        return this.existRound;
+    }
+
+    public void minusExistRound() {
+        this.existRound--;
     }
 
     public static int getRealType(int i){
