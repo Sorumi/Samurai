@@ -3,16 +3,14 @@ package view;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 import view.eventhandler.PropHandler;
 
@@ -24,6 +22,8 @@ public class PropPanel extends OrderPanel{
 	private Rectangle bgRect;
 	private Polygon triangle1;
 	private Polygon triangle2;
+	
+	private Group propGroup;
 	
 	private PropHandler propHandler;
 	public PropPanel(){
@@ -58,11 +58,16 @@ public class PropPanel extends OrderPanel{
 		
 		this.getChildren().addAll(bgRect, triangle1, triangle2);
 		
+		propGroup = new Group();
+		//TODO
+//		propGroup.setLayoutX(value);
+//		propGroup.setLayoutY(value);
+		
 		for(int i=0;i<6;i++){
 			PropItem item = new PropItem(0, 3);
-			item.setLayoutX(5+75*i);
-			item.setLayoutY(20);
-			this.getChildren().add(item);
+			item.setLayoutX(5+75*i+35);
+			item.setLayoutY(20+35);
+			propGroup.getChildren().add(item);
 		}
 		
 		this.setOnMouseExited(propHandler.hidePropPanel); 
@@ -103,10 +108,16 @@ public class PropPanel extends OrderPanel{
 			quantityLabel.setId("item-quantity");
 			this.getChildren().add(quantityLabel);
 			StackPane.setAlignment(quantityLabel,Pos.BOTTOM_RIGHT);
-		}
-		
-		
+		}		
 	}
 	
+//	public void addProp(int num){
+//		
+//		PropItem item = new PropItem(0, 3);
+//		item.setLayoutX(5+75*i);
+//		item.setLayoutY(20);
+//		this.getChildren().add(item);
+//	}
+//	
 
 }
