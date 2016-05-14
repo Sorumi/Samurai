@@ -88,6 +88,10 @@ public class StoryModel implements Serializable{
         }
     }
 
+    public PropsStore getPropsStore() {
+        return propsStore;
+    }
+
     public Armory getArmory(){
         return this.armory;
     }

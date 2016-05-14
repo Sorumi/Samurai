@@ -200,7 +200,8 @@ public class Player {
 //                                }
 
                                 if(this.gameModel.getLevel() < 99 && this.gameModel.getLevel() > 0){
-                                    if(this.gameModel.attackSamurai(integer,
+                                    
+                                	if(this.gameModel.attackSamurai(integer,
                                             this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[0],
                                             this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[1],
                                             this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[2]) < 0){
