@@ -200,10 +200,8 @@ public class Player {
 //                                }
 
                                 if(this.gameModel.getLevel() < 99 && this.gameModel.getLevel() > 0){
-                                    if(this.gameModel.attackSamurai(integer,
-                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[0],
-                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[1],
-                                            this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint()[2]) < 0){
+                                    int[] attackPoint = this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint();
+                                    if(this.gameModel.attackSamurai(integer, attackPoint[0], attackPoint[1], attackPoint[2]) < 0){
                                         this.gameModel.updateKilled(integer);
                                         this.gameModel.updateHome(integer);
                                         this.gameModel.updateVisible(this.gameModel.updateVision());
