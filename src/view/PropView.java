@@ -16,10 +16,22 @@ public class PropView extends Pane{
 	private int width = 35;
 	
 	public PropView(int num, int SCALE){
-		this.setPrefSize(width*SCALE, width*SCALE);
+
+		switch(SCALE){
+		case 1:
+			 width = 30;
+			 break;
+		case 2:
+			 width = 70;
+			 break;
+		case 3:
+			 width = 100;
+			 break;
+		}
+		this.setPrefSize(width, width);
 
 		ImageView imgV = new ImageView(Images.PROP_0);
-		imgV.setFitWidth(width*SCALE);
+		imgV.setFitWidth(width);
 		imgV.setPreserveRatio(true);
 		
 		this.getChildren().add(imgV);
@@ -28,7 +40,7 @@ public class PropView extends Pane{
 	public void setActualLocation(int x, int y){
 		this.x = x;
 		this.y = y;
-		this.setLayoutX(chessBoardWidthOffset+ 1050 /2+(y-x)*blockWidthOffset-17.5);
+		this.setLayoutX(chessBoardWidthOffset+ 1050 /2+(y-x)*blockWidthOffset-15);
 		this.setLayoutY(chessBoardHeightOffset+(x+y)*blockHeightOffset-10);
 	}
 }

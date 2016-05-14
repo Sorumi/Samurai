@@ -9,7 +9,7 @@ public class SystemButton extends Button {
 	 * num:
 	 * 0: close exit
 	 * 1: save
-	 * 2:
+	 * 2: help
 	 */
 	public SystemButton(int num){
 		this.setId("system-btn");
@@ -23,6 +23,9 @@ public class SystemButton extends Button {
 		case 1:
 			img = new ImageView(Images.SYSTEM_SAVE_BTN);
 			img.setFitWidth(32);
+		case 2:
+			img = new ImageView(Images.SYSTEM_HELP_BTN);
+			img.setFitWidth(19);
 		}
 		img.setPreserveRatio(true);
 		if(img != null){

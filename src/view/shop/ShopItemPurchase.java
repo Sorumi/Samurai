@@ -43,7 +43,7 @@ public class ShopItemPurchase extends Pane{
 		img2.setLayoutX(50);
 		img2.setLayoutY(110);
 		
-		perPriceLabel = new Label("-"+perPrice);
+		perPriceLabel = new Label("- "+perPrice);
 		perPriceLabel.setLayoutX(93);
 		perPriceLabel.setLayoutY(55);
 		perPriceLabel.setId("perprice-label");
@@ -53,7 +53,7 @@ public class ShopItemPurchase extends Pane{
 		quantityLabel.setLayoutY(112);
 		quantityLabel.setId("quantity-label"); 
 		
-		totalPriceLabel = new Label("-"+perPrice*quantity); 
+		totalPriceLabel = new Label("- "+perPrice*quantity); 
 		totalPriceLabel.setLayoutX(93);
 		totalPriceLabel.setLayoutY(114);
 		totalPriceLabel.setId("perprice-label");
@@ -97,19 +97,10 @@ public class ShopItemPurchase extends Pane{
 		
 		this.getChildren().addAll(img1, img2, perPriceLabel, quantityLabel, totalPriceLabel, plusGroup, minusGroup, buyButton);
 	}
-	public void setNewLabel(int i){  
-		quantityLabel.setVisible(false);
-		quantityLabel = new Label(""+i); 
-		quantityLabel.setLayoutX(384);
-		quantityLabel.setLayoutY(112);
-		quantityLabel.setId("quantity-label");
-		this.getChildren().add(quantityLabel);
-		totalPriceLabel.setVisible(false);
-		totalPriceLabel = new Label("-"+perPrice*i); 
-		totalPriceLabel.setLayoutX(93);
-		totalPriceLabel.setLayoutY(114);
-		totalPriceLabel.setId("perprice-label");
-		this.getChildren().add(totalPriceLabel);
+	public void setQuantity(int i){  
+		quantityLabel.setText(i + "");
+		totalPriceLabel.setText("- "+perPrice*i); 
+
 		this.quantity = i;
 	}
 

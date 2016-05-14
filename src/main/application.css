@@ -78,21 +78,21 @@
 /*Shop */
 #perprice-label{ 
 	-fx-text-fill: #987F69;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "Tsukushi B Round Gothic";
 	-fx-font-weight: 600;
 	-fx-font-size: 20;
 	-fx-alignment: center-left;
 }
 #quantity-label{  
 	-fx-text-fill: #86A1A6;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "Tsukushi B Round Gothic";
 	-fx-font-weight: 600;
 	-fx-font-size: 20;
-	-fx-alignment: center-left;
+	-fx-alignment: center;
 }
 #plus-label{   
 	-fx-text-fill: #86A1A6;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "Tsukushi B Round Gothic";
 	-fx-font-weight: 600;
 	-fx-font-size: 20;
 	-fx-alignment: center-left;

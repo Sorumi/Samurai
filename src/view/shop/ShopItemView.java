@@ -1,9 +1,14 @@
 package view.shop;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import javafx.util.Duration;
 import view.GameColor;
 
 public class ShopItemView extends StackPane {
@@ -21,10 +26,26 @@ public class ShopItemView extends StackPane {
 		bgCircle.setCenterY(RADIUS);
 		bgCircle.setRadius(RADIUS);
 		bgCircle.setFill(Color.web("#E2ECEE"));
-		bgCircle.setStroke(Color.web("#B4D1D6"));
+		bgCircle.setStroke(Color.web("#AECDD2"));
 		bgCircle.setStrokeType(StrokeType.INSIDE);
 		bgCircle.setStrokeWidth(0);
 		this.getChildren().add(bgCircle);
+	}
+	
+	public void setHighlight() {		
+		Timeline tl= new Timeline(
+				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), Color.web("#CFE4E8"),  Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 2, Interpolator.EASE_IN))
+				);
+		tl.play();
+	}
+	
+	public void setNormal(){
+		Timeline tl= new Timeline(
+				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), Color.web("#CFE4E8"),  Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 0, Interpolator.EASE_IN))
+				);
+		tl.play();	
 	}
 
 }

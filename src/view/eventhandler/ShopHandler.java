@@ -15,7 +15,7 @@ public class ShopHandler {
 	      public void handle(MouseEvent event) {
 	    	  int quantity= shopPanel.purchasePanel.quantity+1;
 	    	  if(quantity>=0){
-	    	  shopPanel.purchasePanel.setNewLabel(quantity);
+	    	  shopPanel.purchasePanel.setQuantity(quantity);
 	    	  }
 	      }
 	};
@@ -24,7 +24,7 @@ public class ShopHandler {
 	      public void handle(MouseEvent event) {
 	    	  int quantity= shopPanel.purchasePanel.quantity-1;
 	    	  if(quantity>=0){
-	    	  shopPanel.purchasePanel.setNewLabel(quantity);
+	    	  shopPanel.purchasePanel.setQuantity(quantity);
 	    	  }
 	      }
 	};
