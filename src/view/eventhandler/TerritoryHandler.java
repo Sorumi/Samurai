@@ -11,6 +11,7 @@ import view.TerritoryPanel;
 import view.TerritoryPanel.TerritoryButton;
 import view.campsite.CampsitePanel;
 import view.shop.ShopPanel;
+import view.shop.ShopSelectPanel;
 import view.smithy.SmithyPanel;
 import view.store.StorePanel;
 
@@ -59,13 +60,13 @@ public class TerritoryHandler {
 	    	  territoryPanel.territoryBg.removeAll();
 	    	  territoryPanel.territoryFg.removeAll();
 	      }
-	};
+	}; 
 	
-	public EventHandler<MouseEvent> shopEvent = new EventHandler<MouseEvent>() {   
+	public EventHandler<MouseEvent> shopSelectEvent = new EventHandler<MouseEvent>() {   
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.shopPanel = new ShopPanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.shopPanel); 
+//	    	  territoryPanel.shopSelectPanel = new ShopSelectPanel(territoryPanel.shopPanel.shopHandler); 
+	    	  territoryPanel.getChildren().add(territoryPanel.shopSelectPanel);  
 	      }
 	};
 	

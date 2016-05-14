@@ -436,6 +436,8 @@ public class GamePanel extends Pane implements Observer{
 		return bloodTotal[i];
 	}
 
+//	public void updatePropPanel(int )
+
 	public void update(Observable o, Object arg) {
 		UpdateMessage notifingObject = (UpdateMessage)arg;
 		String key = notifingObject.getKey();
@@ -596,12 +598,21 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("prop")){
 					int[] t = (int [])notifingObject.getValue();
-//					System.out.println("Position : " + t[0] + " , " + t[1] + " set prop " + t[2]);
 					addProp(t[0], t[1], t[2] == 0 ? t[2] : 0);
 
 				}else if(key.equals("goodbyeactionpanel")){
 					actionPanel.setAppear(false,false);
 
+				}else if(key.equals("getProp")){
+					int[] t = (int [])notifingObject.getValue();
+					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop " + t[2]);
+					//等待加入更新 propsPanel 的消息
+
+					//等待加入在 gamePanel 去掉道具的消息
+
+				}else if(key.equals("allProps")){
+					int[] propList = (int [])notifingObject.getValue();
+					//
 				}
 			}
 		});
