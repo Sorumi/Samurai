@@ -63,7 +63,15 @@ public class Images {
 	
 	//resultPanel
 	public static Image A_WIN = new Image("/./images/player_logo_A_big.png",true); 
-	
+	public static Image RATE_SSS = new Image("/./images/rate_sss.png",true); 
+	public static Image RATE_SS = new Image("/./images/rate_ss.png",true); 
+	public static Image RATE_S = new Image("/./images/rate_s.png",true); 
+	public static Image RATE_A = new Image("/./images/rate_a.png",true); 
+	public static Image RATE_B = new Image("/./images/rate_b.png",true); 
+	public static Image RATE_C = new Image("/./images/rate_c.png",true); 
+	public static Image RATE_D = new Image("/./images/rate_d.png",true); 
+	public static Image RATE_F = new Image("/./images/rate_f.png",true); 
+	public static Image[] RATE = {RATE_SSS, RATE_SS, RATE_S, RATE_A, RATE_B, RATE_C, RATE_D, RATE_F};
 	//arrow
 	public static final Image ARROW = new Image("/./images/arrow.png");
 	

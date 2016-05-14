@@ -573,7 +573,7 @@ public class GamePanel extends Pane implements Observer{
 					getSamurai(t[0]).setDoubleAttacked((int)(t[1] / 2));
 					
 				}else if(key.equals("levelup")){
-//					resultPanel.setStart();
+					resultPanel.setLevelUp((int)notifingObject.getValue());
 					
 				}else if(key.equals("materials")){
 					resultPanel.setMaterials((ArrayList<Material>)notifingObject.getValue());

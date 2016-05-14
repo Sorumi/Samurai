@@ -99,12 +99,15 @@ public class ResultPanel extends OrderPanel {
 		winLabel.setLayoutX(CIRCLE_RADIUS + strokeSize - 148);
 		winLabel.setLayoutY(CIRCLE_RADIUS + strokeSize - 102);
 		winLabel.setId("win-label");
+		winLabel.setVisible(false);
 
 		loseLabel = new Label("Lose");
 		loseLabel.setLayoutX(CIRCLE_RADIUS + strokeSize - 148);
 		loseLabel.setLayoutY(CIRCLE_RADIUS + strokeSize - 102);
 		loseLabel.setId("lose-label");
-		resultGroup.getChildren().addAll(resultCircle, winLabel);
+		loseLabel.setVisible(false);
+		
+		resultGroup.getChildren().addAll(resultCircle, winLabel, loseLabel);
 		resultGroup.setRotationAxis(Rotate.Y_AXIS);
 		resultGroup.setRotate(270);
 
@@ -242,6 +245,11 @@ public class ResultPanel extends OrderPanel {
 	public void setBlocks(int[] results) {
 		for (int i=0; i<results.length; i++) {
 			blocks[i] = results[i];
+		}
+		if((blocks[1]+blocks[2]+blocks[3]) > (blocks[4]+blocks[5]+blocks[6])){
+			winLabel.setVisible(true);
+		}else{
+			loseLabel.setVisible(true);
 		}
 	}
 	

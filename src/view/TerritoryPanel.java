@@ -264,6 +264,12 @@ public class TerritoryPanel extends Pane {
 		}
 	}
 	
+	public void setSamuraiAnimation(boolean isAnimate){
+		samurai1.blink(isAnimate);
+		samurai2.blink(isAnimate);
+		samurai3.blink(isAnimate);
+	}
+	
 	public void setRandomWeather(){
 		Random random = new Random();
 		int x = random.nextInt(5)+1;
