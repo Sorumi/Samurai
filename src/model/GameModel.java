@@ -371,6 +371,7 @@ public class GameModel extends BaseModel implements Observer {
 
     public void useProp(int propNum){
         propList[propNum]--;
+        System.out.println("prop : " + propNum + " num " + propList[propNum]);
     }
 
     public void updateOccupy(int direction){

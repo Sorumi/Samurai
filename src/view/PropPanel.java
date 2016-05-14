@@ -69,7 +69,9 @@ public class PropPanel extends OrderPanel{
 			item.setLayoutY(20+35);
 			propGroup.getChildren().add(item);
 		}
-		
+
+		this.setOnMouseClicked(propHandler.itemClickEvent);
+
 		this.setOnMouseExited(propHandler.hidePropPanel); 
 		this.setLayoutX(370);
 		this.setLayoutY(785);
