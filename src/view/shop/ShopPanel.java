@@ -12,18 +12,19 @@ import view.eventhandler.ShopHandler;
 public class ShopPanel extends Pane{
 	private ShopItemsWrapper itemsPanel; 
 	public ShopItemInfo infoPanel; 
-	public ShopItemPurchase purchasePanel; 
+	public ShopItemPurchase purchasePanel;
+	public ShopItemSell sellPanel;
 	private SystemButton closeBtn;  
 	
-	private ShopHandler shopHandler;
+	public ShopHandler shopHandler;
 	public ShopPanel(){
 		this.setPrefSize(1200, 800);
 		this.shopHandler = new ShopHandler(this);
 		
 		itemsPanel = new ShopItemsWrapper();
 		infoPanel = new ShopItemInfo();
-		purchasePanel = new ShopItemPurchase(350,shopHandler); 
-		
+		purchasePanel = new ShopItemPurchase(350,shopHandler);
+		sellPanel = new ShopItemSell(350,shopHandler);
 		
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
@@ -38,8 +39,8 @@ public class ShopPanel extends Pane{
 			}
 		});
 		
-		this.getChildren().addAll(itemsPanel, infoPanel, purchasePanel, closeBtn);
-		this.setVisible(true);
+		this.getChildren().addAll(itemsPanel, infoPanel, closeBtn);
+		this.setVisible(false);
 	}
 
 }

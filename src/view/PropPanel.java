@@ -15,8 +15,8 @@ import javafx.util.Duration;
 import view.eventhandler.PropHandler;
 
 public class PropPanel extends OrderPanel{
-	private int width = 460;
-	private int height = 95;
+	private int width = 390;
+	private int height = 115;
 	
 	
 	private Rectangle bgRect;
@@ -60,10 +60,10 @@ public class PropPanel extends OrderPanel{
 		
 		propGroup = new Group();
 		//TODO
-//		propGroup.setLayoutX(value);
-//		propGroup.setLayoutY(value);
+		propGroup.setLayoutX(5);
+		propGroup.setLayoutY(20);
 		
-		for(int i=0;i<6;i++){
+		for(int i=0; i<7; i++){
 			PropItem item = new PropItem(0, 3);
 			item.setLayoutX(5+75*i+35);
 			item.setLayoutY(20+35);
@@ -91,17 +91,19 @@ public class PropPanel extends OrderPanel{
 	public class PropItem extends StackPane{
 		private Circle bgCircle;
 		private Label quantityLabel;
-		private int RADIUS = 35;
+		private int RADIUS = 25;
 		
 		public PropItem(int itemNum, int quantity){
 			this.setPrefSize(RADIUS*2, RADIUS*2);
 			//圈圈的颜色以后根据传入道具的颜色改
-			bgCircle = new Circle();
-			bgCircle.setCenterX(RADIUS);
-			bgCircle.setCenterY(RADIUS);
-			bgCircle.setRadius(RADIUS);
-			bgCircle.setFill(Color.web("#D8D8D8"));
-			this.getChildren().add(bgCircle);
+//			bgCircle = new Circle();
+//			bgCircle.setCenterX(RADIUS);
+//			bgCircle.setCenterY(RADIUS);
+//			bgCircle.setRadius(RADIUS);
+//			bgCircle.setFill(Color.web("#eeeee"));
+//			this.getChildren().add(bgCircle);
+			
+			PropView prop = new PropView(itemNum, 2);
 			
 			quantityLabel = new Label(quantity+"");
 			quantityLabel.setPrefSize(30, 30);
