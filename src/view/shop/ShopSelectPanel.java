@@ -10,6 +10,7 @@ import view.TerritoryPanel;
 import view.eventhandler.MenuHandler;
 import view.eventhandler.ShopHandler;
 import view.eventhandler.TerritoryHandler;
+import view.smithy.SmithyPanel;
 
 public class ShopSelectPanel extends Pane{
 	private SystemButton closeBtn;
@@ -33,6 +34,8 @@ public class ShopSelectPanel extends Pane{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				ShopSelectPanel.this.setVisible(false);
+				TerritoryPanel parent =  (TerritoryPanel) ShopSelectPanel.this.getParent();
+				parent.setBlur(false);
 			}
 		});
 		this.getChildren().add(closeBtn);

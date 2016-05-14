@@ -2,6 +2,7 @@ package view;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.Event;
@@ -18,6 +19,7 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Font;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class CirclePanel extends Pane {
@@ -35,6 +37,7 @@ public class CirclePanel extends Pane {
 	private int blocksNum;
 	
 	private ImageView logo;
+	private ImageView originalLogo; 
 	private BlockArc[] arcs;
 	private Arc timeArc;
 	private Label blockLabel;
@@ -56,6 +59,15 @@ public class CirclePanel extends Pane {
 		this.logo = new ImageView(image);
 		this.logo.setFitWidth(image.getWidth()/RATIO);
 		this.logo.setPreserveRatio(true);
+		this.logo.setRotationAxis(Rotate.Y_AXIS);
+		this.logo.setRotate(270);
+		
+		this.originalLogo = new ImageView(Images.PLAYER_LOGO_0);
+		this.originalLogo.setFitWidth(image.getWidth()/RATIO);
+		this.originalLogo.setPreserveRatio(true);
+		this.originalLogo.setRotationAxis(Rotate.Y_AXIS);
+		this.originalLogo.setRotate(270);
+		
 		direction = 1;
 		if (player == 1){
 			direction = -1;
@@ -207,7 +219,10 @@ public class CirclePanel extends Pane {
 		//Logo
 		logo.setLayoutX(strokeSize+CIRCLE_RADIUS-image.getWidth()/RATIO/2);
 		logo.setLayoutY(strokeSize+CIRCLE_RADIUS-image.getHeight()/RATIO/2);
-		this.getChildren().add(logo);
+		this.getChildren().add(logo); 
+		originalLogo.setLayoutX(strokeSize+CIRCLE_RADIUS-image.getWidth()/RATIO/2);
+		originalLogo.setLayoutY(strokeSize+CIRCLE_RADIUS-image.getHeight()/RATIO/2);
+		this.getChildren().add(originalLogo);
 		
 	}
 
@@ -228,6 +243,22 @@ public class CirclePanel extends Pane {
 			timeline.stop();
 			this.timeRest = 0;
 			timeArc.setLength(0);
+		}
+	}
+	
+	public void flip(boolean isRotate){
+		if(isRotate){
+			RotateTransition rotator1 = new RotateTransition(Duration.millis(1000), originalLogo);
+			rotator1.setAxis(Rotate.Y_AXIS);
+			rotator1.setFromAngle(0);
+			rotator1.setToAngle(90);
+			
+			RotateTransition rotator2 = new RotateTransition(Duration.millis(1000), logo);
+			rotator2.setAxis(Rotate.Y_AXIS);
+			rotator2.setFromAngle(270);
+			rotator2.setToAngle(360);
+			
+			
 		}
 	}
 

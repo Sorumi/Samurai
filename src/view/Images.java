@@ -60,7 +60,8 @@ public class Images {
 	//player
 	public static final Image PLAYER_LOGO_A = new Image("/./images/PLAYER_LOGO_A.png");
 	public static final Image PLAYER_LOGO_B = new Image("/./images/PLAYER_LOGO_B.png");
-	public static final Image[] PLAYER_LOGO = {PLAYER_LOGO_A, PLAYER_LOGO_B};
+	public static final Image PLAYER_LOGO_0 = new Image("/./images/PLAYER_LOGO.png");
+	public static final Image[] PLAYER_LOGO = {PLAYER_LOGO_A, PLAYER_LOGO_B,PLAYER_LOGO_0};
 	
 	//resultPanel
 	public static Image A_WIN = new Image("/./images/player_logo_A_big.png",true); 

@@ -65,8 +65,6 @@ public class TerritoryHandler {
 	public EventHandler<MouseEvent> shopSelectEvent = new EventHandler<MouseEvent>() {   
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.setBlur(true);
-//	    	  territoryPanel.shopSelectPanel = new ShopSelectPanel(territoryPanel.shopPanel.shopHandler); 
-//	    	  territoryPanel.getChildren().add(territoryPanel.shopSelectPanel);  
 	    	  territoryPanel.shopSelectPanel.setVisible(true);
 	      }
 	};
