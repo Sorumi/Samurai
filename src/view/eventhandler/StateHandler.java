@@ -39,7 +39,6 @@ public class StateHandler {
 
 			  territoryPanel.statePanel.set6Properties(territoryPanel.get6PropertiesOfSamurai(currentSamurai.getNumber()));
 			  territoryPanel.statePanel.setBloodTotal(territoryPanel.getBloodTotalOfSamurai(currentSamurai.getNumber()));
-			  System.out.println("Blood : " + territoryPanel.getBloodTotalOfSamurai(currentSamurai.getNumber()));
 		  }
 	};
 	

@@ -2,11 +2,10 @@ package view.eventhandler;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import view.GamePanel;
 import view.PropPanel;
-import view.SamuraiPanel;
 
 public class PropHandler {
+
 	private PropPanel propPanel;
 	
 	public PropHandler(PropPanel propPanel){

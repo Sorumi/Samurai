@@ -341,7 +341,6 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("samuraiMove",position));
         System.out.println("Update Pos : " + position);
 
-
         if(this.level != 99) {
             ArrayList<PropsInG> tmp = new ArrayList<>();
             //捡到道具
@@ -357,7 +356,9 @@ public class GameModel extends BaseModel implements Observer {
 
                     System.out.println(props.getType() + " number: " + propList[PropsInG.getRealType(props.getType())]);
 
-                    super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY(), PropsInG.getRealType(props.getType())}));
+                    super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY()}));
+
+                    super.updateChange(new UpdateMessage("allProps", this.propList));
                 }
             }
 
@@ -366,6 +367,10 @@ public class GameModel extends BaseModel implements Observer {
             }
         }
 
+    }
+
+    public void useProp(int propNum){
+        propList[propNum]--;
     }
 
     public void updateOccupy(int direction){
@@ -591,12 +596,18 @@ public class GameModel extends BaseModel implements Observer {
     public Position randomPropLocation(){
         Random random = new Random();
         boolean flag = false;
-        int x=0, y=0;
+        int x = 0, y = 0;
         while(!flag){
             x = random.nextInt(this.length);
             y = random.nextInt(this.length);
             if(this.chessBoardModel.getActualBlockState(x ,y) == 0){
                 flag = true;
+            }
+            for(PropsInG propsInG : this.propsInGList){
+                if(propsInG.getPosition().getX() == x && propsInG.getPosition().getY() == y){
+                    flag = false;
+                    break;
+                }
             }
         }
         return new Position(x, y);
@@ -647,7 +658,7 @@ public class GameModel extends BaseModel implements Observer {
             if (random.nextInt(1) == 0) {
 //                Position position = this.randomPropLocation();
                 //暂时固定位置
-                Position position = new Position(2,13);
+                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
 //                int type = random.nextInt(6);
                 //暂时固定type = 13
                 this.propsInGList.add(new PropsInG(position,751));
