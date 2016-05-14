@@ -67,6 +67,7 @@ public class PropPanel extends OrderPanel {
 			item.setLayoutY(55);
 			propGroup.getChildren().add(item);
 		}
+
 		for (int i = 13; i <= 14; i++) {
 			PropItem item = new PropItem(i, 3);
 			item.setLayoutX(55 * 6);
@@ -75,6 +76,12 @@ public class PropPanel extends OrderPanel {
 		}
 		this.getChildren().add(propGroup);
 		this.setOnMouseExited(propHandler.hidePropPanel);
+
+
+		this.setOnMouseClicked(propHandler.itemClickEvent);
+
+		this.setOnMouseExited(propHandler.hidePropPanel); 
+
 		this.setLayoutX(370);
 		this.setLayoutY(785);
 		this.setVisible(true);

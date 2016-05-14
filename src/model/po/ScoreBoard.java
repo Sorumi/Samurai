@@ -63,7 +63,6 @@ public class ScoreBoard {
 			}
 			count++;
 		}
-		System.out.println("不是我的锅！" + materials.size());
 		return materials;
 	}
 

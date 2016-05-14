@@ -594,7 +594,7 @@ public class GamePanel extends Pane implements Observer{
 					bloodRest[t[0]] = t[1];
 
 				}else if(key.equals("rating")){
-					System.out.println("Rating : " + (String)notifingObject.getValue());
+					System.out.println("Rating : " + (int)notifingObject.getValue());
 
 				}else if(key.equals("prop")){
 					int[] t = (int [])notifingObject.getValue();
@@ -605,14 +605,13 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("getProp")){
 					int[] t = (int [])notifingObject.getValue();
-					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop " + t[2]);
-					//等待加入更新 propsPanel 的消息
-
+					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop ");
 					//等待加入在 gamePanel 去掉道具的消息
 
 				}else if(key.equals("allProps")){
 					int[] propList = (int [])notifingObject.getValue();
-					//
+					//等待加入:更新 propPanel 的消息
+					//这也是最后发得到了多少道具的消息
 				}
 			}
 		});
