@@ -29,7 +29,8 @@ public class GameModel extends BaseModel implements Observer {
     private SamuraiAI[] samuraiAI;
     private int coldRoundNum;
 
-    private ArrayList<PropsInG> propList;
+    private ArrayList<PropsInG> propsInGList;
+    private int[] propList;
 
     private boolean flag = false;
     private Position aidPos;
@@ -96,7 +97,9 @@ public class GameModel extends BaseModel implements Observer {
         this.playerSeq = new int[]{0,1,1,0,0,1};
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
-        this.propList = new ArrayList<>();
+
+        this.propList = new int[15];
+        this.propsInGList = new ArrayList<>();
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
 
@@ -336,6 +339,33 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
+        System.out.println("Update Pos : " + position);
+
+
+        if(this.level != 99) {
+            ArrayList<PropsInG> tmp = new ArrayList<>();
+            //捡到道具
+            for (PropsInG props : this.propsInGList) {
+                if (props.getPosition().getX() == position.getX() &&
+                        props.getPosition().getY() == position.getY()) {
+
+                    System.out.println("Get prop!");
+
+                    propList[PropsInG.getRealType(props.getType())]++;
+
+                    tmp.add(props);
+
+                    System.out.println(props.getType() + " number: " + propList[PropsInG.getRealType(props.getType())]);
+
+                    super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY(), PropsInG.getRealType(props.getType())}));
+                }
+            }
+
+            for(PropsInG propsInG : tmp){
+                this.propsInGList.remove(propsInG);
+            }
+        }
+
     }
 
     public void updateOccupy(int direction){
@@ -611,13 +641,18 @@ public class GameModel extends BaseModel implements Observer {
     //经典模式下+故事模式下
     public void assignNextWithAI()  {
 
+        //在 gamePanel 上放道具
         if(this.level != 99) {
             Random random = new Random();
             if (random.nextInt(1) == 0) {
-                Position position = this.randomPropLocation();
-                int type = random.nextInt(6);
-                this.propList.add(new PropsInG(position,type));
-                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
+//                Position position = this.randomPropLocation();
+                //暂时固定位置
+                Position position = new Position(2,13);
+//                int type = random.nextInt(6);
+                //暂时固定type = 13
+                this.propsInGList.add(new PropsInG(position,751));
+
+                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),PropsInG.getRealType(751)}));
             }
         }
 
@@ -803,10 +838,15 @@ public class GameModel extends BaseModel implements Observer {
 
         boolean[] isLevelUp = new boolean[]{this.players[0].getSamuraiOfNum(1).isUpLevel(),this.players[0].getSamuraiOfNum(2).isUpLevel(),
                 this.players[0].getSamuraiOfNum(3).isUpLevel()};
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i <= 2; i++) {
             if(isLevelUp[i]){
                 super.updateChange(new UpdateMessage("levelup",i));
             }
+        }
+
+        if(this.level != 99) {
+            //发送我这局拿到多少道具
+            super.updateChange(new UpdateMessage("allProps", this.propList));
         }
 
         super.updateChange(new UpdateMessage("rating",scoreBoard.getRating()));
