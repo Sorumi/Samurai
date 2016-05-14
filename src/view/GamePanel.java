@@ -113,10 +113,10 @@ public class GamePanel extends Pane implements Observer{
 						MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
 						menu.samuraiTimer.start();
 
-						OperationQueue.addOperation(new EndOperation());
+						OperationQueue.addOperation(new EndOperation(false));
 						break;
 					case 0:
-						OperationQueue.addOperation(new EndOperation());
+						OperationQueue.addOperation(new EndOperation(false));
 						break;
 					default:
 						//TODO
@@ -125,7 +125,7 @@ public class GamePanel extends Pane implements Observer{
 						storyPanel.gamePanel.getChildren().remove(GamePanel.this);
 						storyPanel.gamePanel = null;
 
-						OperationQueue.addOperation(new EndOperation());
+						OperationQueue.addOperation(new EndOperation(false));
 						break;
 				}
 			}
@@ -608,10 +608,13 @@ public class GamePanel extends Pane implements Observer{
 					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop ");
 					//等待加入在 gamePanel 去掉道具的消息
 
-				}else if(key.equals("allProps")){
-					int[] propList = (int [])notifingObject.getValue();
+				}else if(key.equals("allProps")) {
+					int[] propList = (int[]) notifingObject.getValue();
 					//等待加入:更新 propPanel 的消息
 					//这也是最后发得到了多少道具的消息
+				}else if(key.equals("money")){
+					int money = (int)notifingObject.getValue();
+					//发钱的消息
 				}
 			}
 		});

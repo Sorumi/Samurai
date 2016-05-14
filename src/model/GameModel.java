@@ -101,7 +101,8 @@ public class GameModel extends BaseModel implements Observer {
 
         this.propList = new int[15];
         this.propsInGList = new ArrayList<>();
-        this.propsStore = new PropsStore();
+
+        this.propsStore = StoryModel.getStoryModel().getPropsStore();
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
 
@@ -358,6 +359,7 @@ public class GameModel extends BaseModel implements Observer {
 
                     System.out.println(props.getType() + " number: " + propList[PropsInG.getRealType(props.getType())]);
 
+                    //这个消息是用来消失道具的
                     super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY()}));
 
                     super.updateChange(new UpdateMessage("allProps", this.propList));
@@ -670,7 +672,7 @@ public class GameModel extends BaseModel implements Observer {
                 super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),PropsInG.getRealType(751)}));
             }
 
-            //把所有道具存货轮数减1,如果是0的就去掉
+            //把所有道具存活轮数减1,如果是0的就去掉
             ArrayList<PropsInG> tmp = new ArrayList<>();
             for(PropsInG propsInG : this.propsInGList){
                 if(propsInG.getExistRound() == 0){
@@ -679,6 +681,8 @@ public class GameModel extends BaseModel implements Observer {
                 propsInG.minusExistRound();
             }
             for (PropsInG propsInG : tmp){
+                Position position = propsInG.getPosition();
+                super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY()}));
                 this.propsInGList.remove(propsInG);
             }
 
@@ -833,57 +837,67 @@ public class GameModel extends BaseModel implements Observer {
             }
 
         }else{
-            OperationQueue.addOperation(new EndOperation());
+            OperationQueue.addOperation(new EndOperation(true));
         }
 
     }
 
-    public boolean gameOver(){
+    public void gameOver(){
         if(this.timer != null) {
             this.timer.cancel();
         }
         super.updateChange(new UpdateMessage("over",this.chessBoardModel.getStatesOfAllBlocks()));
 
-        ScoreBoard scoreBoard = new ScoreBoard();
-
-        int myKill = this.getSamuraiOfNum(1).getKillNum() + this.getSamuraiOfNum(2).getKillNum() + this.getSamuraiOfNum(3).getKillNum();
-        int aiKill = this.getSamuraiOfNum(4).getKillNum() + this.getSamuraiOfNum(5).getKillNum() + this.getSamuraiOfNum(6).getKillNum();
-        System.out.println("I kill " + myKill + " and AI kill " + aiKill);
-
-        int block = this.chessBoardModel.getStatesOfAllBlocks()[1] + this.chessBoardModel.getStatesOfAllBlocks()[2]
-                + this.chessBoardModel.getStatesOfAllBlocks()[3] - this.chessBoardModel.getStatesOfAllBlocks()[4]
-                - this.chessBoardModel.getStatesOfAllBlocks()[5] - this.chessBoardModel.getStatesOfAllBlocks()[6];
-
-        scoreBoard.caculateMaterial(level/10 - 1, level%10, block, myKill, aiKill);
-        ArrayList<Material> materials = scoreBoard.getMaterial();
-        super.updateChange(new UpdateMessage("materials",materials));
-
-        int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],
-                this.chessBoardModel.getStatesOfAllBlocks()[2], this.chessBoardModel.getStatesOfAllBlocks()[3],
-                this.getSamuraiOfNum(1).getKillNum(),this.getSamuraiOfNum(2).getKillNum(),this.getSamuraiOfNum(3).getKillNum());
-        this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
-        this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
-        this.players[0].getSamuraiOfNum(3).addExperience(experience[2]);
-        super.updateChange(new UpdateMessage("experiences",experience));
-
-        boolean[] isLevelUp = new boolean[]{this.players[0].getSamuraiOfNum(1).isUpLevel(),this.players[0].getSamuraiOfNum(2).isUpLevel(),
-                this.players[0].getSamuraiOfNum(3).isUpLevel()};
-        for (int i = 0; i <= 2; i++) {
-            if(isLevelUp[i]){
-                super.updateChange(new UpdateMessage("levelup",i));
-            }
-        }
-
+        //故事模式时
         if(this.level != 99) {
             //发送我这局拿到多少道具
+            ScoreBoard scoreBoard = new ScoreBoard();
+
+            int myKill = this.getSamuraiOfNum(1).getKillNum() + this.getSamuraiOfNum(2).getKillNum() + this.getSamuraiOfNum(3).getKillNum();
+            int aiKill = this.getSamuraiOfNum(4).getKillNum() + this.getSamuraiOfNum(5).getKillNum() + this.getSamuraiOfNum(6).getKillNum();
+            System.out.println("I kill " + myKill + " and AI kill " + aiKill);
+
+            int block = this.chessBoardModel.getStatesOfAllBlocks()[1] + this.chessBoardModel.getStatesOfAllBlocks()[2]
+                    + this.chessBoardModel.getStatesOfAllBlocks()[3] - this.chessBoardModel.getStatesOfAllBlocks()[4]
+                    - this.chessBoardModel.getStatesOfAllBlocks()[5] - this.chessBoardModel.getStatesOfAllBlocks()[6];
+
+            scoreBoard.caculateMaterial(level/10 - 1, level%10, block, myKill, aiKill);
+            ArrayList<Material> materials = scoreBoard.getMaterial();
+            super.updateChange(new UpdateMessage("materials",materials));
+
+            int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],
+                    this.chessBoardModel.getStatesOfAllBlocks()[2], this.chessBoardModel.getStatesOfAllBlocks()[3],
+                    this.getSamuraiOfNum(1).getKillNum(),this.getSamuraiOfNum(2).getKillNum(),this.getSamuraiOfNum(3).getKillNum());
+            this.players[0].getSamuraiOfNum(1).addExperience(experience[0]);
+            this.players[0].getSamuraiOfNum(2).addExperience(experience[1]);
+            this.players[0].getSamuraiOfNum(3).addExperience(experience[2]);
+            super.updateChange(new UpdateMessage("experiences",experience));
+
+            boolean[] isLevelUp = new boolean[]{this.players[0].getSamuraiOfNum(1).isUpLevel(),this.players[0].getSamuraiOfNum(2).isUpLevel(),
+                    this.players[0].getSamuraiOfNum(3).isUpLevel()};
+            for (int i = 0; i <= 2; i++) {
+                if(isLevelUp[i]){
+                    super.updateChange(new UpdateMessage("levelup",i));
+                }
+            }
+
+            int money = experience[0]+experience[1]+experience[2];
+            this.propsStore.updateMoney(money);
+            super.updateChange(new UpdateMessage("money",money));
+
+            super.updateChange(new UpdateMessage("rating",scoreBoard.getRating()));
+
             super.updateChange(new UpdateMessage("allProps", this.propList));
         }
 
-        super.updateChange(new UpdateMessage("rating",scoreBoard.getRating()));
-
         System.out.println("GAME OVER!");
+    }
 
-        return true;
+    public void exit(){
+        if(this.timer != null) {
+            this.timer.cancel();
+        }
+        System.out.println("GAME EXIT!");
     }
 
     //负责给 player 发消息

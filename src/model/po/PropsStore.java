@@ -9,7 +9,16 @@ public class PropsStore implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	ArrayList<Props> props = new ArrayList<Props>();
+	private int money;
 	Random random = new Random();
+
+	public PropsStore(){
+		this.money = 0;
+	}
+
+	public void updateMoney(int delta){
+		this.money += delta;
+	}
 
 	public String use(int type, SamuraiPO samuraiPO) {
 		int check = (type - 700) / 10;
