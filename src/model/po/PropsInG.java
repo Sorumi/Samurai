@@ -33,6 +33,41 @@ public class PropsInG extends Props {
         }
     }
 
+    public static int get7Type(int i){
+        switch (i){
+            case 1:
+                return 701;
+            case 2:
+                return 702;
+            case 3:
+                return 703;
+            case 4:
+                return 711;
+            case 5:
+                return 712;
+            case 6:
+                return 713;
+            case 7:
+                return 721;
+            case 8:
+                return 722;
+            case 9:
+                return 723;
+            case 10:
+                return 731;
+            case 11:
+                return 732;
+            case 12:
+                return 733;
+            case 13:
+                return 741;
+            case 14:
+                return 751;
+            default:
+                return 999;
+        }
+    }
+
     public void changeNumber(int number) {
         this.number = this.number + number;
     }

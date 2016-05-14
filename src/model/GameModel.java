@@ -31,6 +31,7 @@ public class GameModel extends BaseModel implements Observer {
 
     private ArrayList<PropsInG> propsInGList;
     private int[] propList;
+    private PropsStore propsStore;
 
     private boolean flag = false;
     private Position aidPos;
@@ -100,6 +101,7 @@ public class GameModel extends BaseModel implements Observer {
 
         this.propList = new int[15];
         this.propsInGList = new ArrayList<>();
+        this.propsStore = new PropsStore();
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
 
@@ -372,6 +374,7 @@ public class GameModel extends BaseModel implements Observer {
     public void useProp(int propNum){
         propList[propNum]--;
         System.out.println("prop : " + propNum + " num " + propList[propNum]);
+        this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
     }
 
     public void updateOccupy(int direction){
