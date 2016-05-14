@@ -13,6 +13,7 @@ public class StorePanel extends TransitionPanel{
 	
 	private StoreItemsWrapper itemsPanel;
 	public StoreItemInfo infoPanel;
+	public StoreItemSell sellPanel;//TODO
 	
 	private SystemButton closeBtn;
 	public  StorePanel(){

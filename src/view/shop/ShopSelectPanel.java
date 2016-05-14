@@ -6,16 +6,20 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import view.DoubleSelectPanel;
 import view.SystemButton;
+import view.TerritoryPanel;
 import view.eventhandler.MenuHandler;
 import view.eventhandler.ShopHandler;
+import view.eventhandler.TerritoryHandler;
 
 public class ShopSelectPanel extends Pane{
 	private SystemButton closeBtn;
 	
+//	private ShopHandler shopHandler;
+	
 	public Button buyBtn;
 	public Button sellBtn;
 
-	public ShopSelectPanel(ShopHandler shopHandler) {  
+	public ShopSelectPanel(TerritoryHandler territoryHandler) {  
 		this.setPrefSize(300, 220);
 		this.setLayoutX(450);
 		this.setLayoutY(300);
@@ -38,18 +42,18 @@ public class ShopSelectPanel extends Pane{
 		buyBtn.setLayoutX(70);
 		buyBtn.setLayoutY(72);
 		buyBtn.setId("Aload-btn");
-		buyBtn.setOnMouseEntered(shopHandler.buyBtnEnterEvent);
-		buyBtn.setOnMouseExited(shopHandler.buyBtnExitEvent); 
-		buyBtn.setOnMouseClicked(shopHandler.showBuyPanelEvent); 
+		buyBtn.setOnMouseEntered(territoryHandler.buyBtnEnterEvent);
+		buyBtn.setOnMouseExited(territoryHandler.buyBtnExitEvent); 
+		buyBtn.setOnMouseClicked(territoryHandler.showBuyPanelEvent); 
 		
 		sellBtn = new Button("出售材料");
 		sellBtn.setPrefSize(160, 40);
 		sellBtn.setLayoutX(70);
 		sellBtn.setLayoutY(142);
 		sellBtn.setId("Asave-btn");
-		sellBtn.setOnMouseEntered(shopHandler.sellBtnEnterEvent);
-		sellBtn.setOnMouseExited(shopHandler.sellBtnExitEvent); 
-		sellBtn.setOnMouseClicked(shopHandler.showSellPanelEvent);
+		sellBtn.setOnMouseEntered(territoryHandler.sellBtnEnterEvent);
+		sellBtn.setOnMouseExited(territoryHandler.sellBtnExitEvent); 
+//		sellBtn.setOnMouseClicked(territoryHandler.showSellPanelEvent);
 		btnAbled(0);
 		btnAbled(1);
 		

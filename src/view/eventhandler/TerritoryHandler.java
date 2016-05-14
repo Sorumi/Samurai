@@ -66,7 +66,8 @@ public class TerritoryHandler {
 	      public void handle(MouseEvent event) {
 	    	  territoryPanel.setBlur(true);
 //	    	  territoryPanel.shopSelectPanel = new ShopSelectPanel(territoryPanel.shopPanel.shopHandler); 
-	    	  territoryPanel.getChildren().add(territoryPanel.shopSelectPanel);  
+//	    	  territoryPanel.getChildren().add(territoryPanel.shopSelectPanel);  
+	    	  territoryPanel.shopSelectPanel.setVisible(true);
 	      }
 	};
 	
@@ -102,6 +103,47 @@ public class TerritoryHandler {
 	      }
 	};
 
+	public EventHandler<MouseEvent> buyBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.shopSelectPanel.btnPressed(0);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> buyBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.shopSelectPanel.btnAbled(0);
+	      }
+	};
+	 
+	public EventHandler<MouseEvent> sellBtnEnterEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.shopSelectPanel.btnPressed(1);
+	      }
+	};
+	 
+	public EventHandler<MouseEvent> sellBtnExitEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.shopSelectPanel.btnAbled(1);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> showBuyPanelEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.shopPanel = new ShopPanel();
+	    	  territoryPanel.getChildren().add(territoryPanel.shopPanel);
+	    	  territoryPanel.shopSelectPanel.setVisible(false);
+	    	  }
+	       
+	};
+	
+//	public EventHandler<MouseEvent> showSellPanelEvent = new EventHandler<MouseEvent>() {  
+//	      public void handle(MouseEvent event) {
+//	    	  shopPanel.getChildren().add(shopPanel.sellPanel); 
+//	    	  shopPanel.setVisible(true);
+//	          territoryPanel.shopSelectPanel.setVisible(false);
+//	    	  }
+//	      
+//	};
 	public TerritoryController getTerritoryController(){
 		return this.territoryController;
 	}
