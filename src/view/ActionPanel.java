@@ -30,17 +30,17 @@ public class ActionPanel extends OrderPanel {
 	
 	private SamuraiPanel currentSamurai;
 	
-	private ActionHandler actionHandler;
+//	private ActionHandler actionHandler;
 	
 	public ActionPanel(ActionHandler actionHandler){
 
-		this.actionHandler = actionHandler;
+//		this.actionHandler = actionHandler;
 		
-		occupyButton = new ActionButton(0);	
-		moveButton = new ActionButton(1);
-		hideButton = new ActionButton(2);
-		exitButton = new ActionButton(3);
-		backButton = new ActionButton(4);
+		occupyButton = new ActionButton(0, actionHandler);	
+		moveButton = new ActionButton(1, actionHandler);
+		hideButton = new ActionButton(2, actionHandler);
+		exitButton = new ActionButton(3, actionHandler);
+		backButton = new ActionButton(4, actionHandler);
 
 		this.setPrefWidth(BUTTONPANEL_WIDTH);
 		this.setPrefHeight(BUTTONPANEL_HEIGHT);
@@ -55,11 +55,11 @@ public class ActionPanel extends OrderPanel {
 		directionPanel.setLayoutY(143);
 		directionPanel.setVisible(false);
 		
-		moveButton.setOnMouseClicked(actionHandler.secondaryEvent);
-		occupyButton.setOnMouseClicked(actionHandler.secondaryEvent);
-		hideButton.setOnMouseClicked(actionHandler.hideEvent);
-		exitButton.setOnMouseClicked(actionHandler.exitEvent);
-		backButton.setOnMouseClicked(actionHandler.backEvent);
+//		moveButton.setOnMouseClicked(actionHandler.secondaryEvent);
+//		occupyButton.setOnMouseClicked(actionHandler.secondaryEvent);
+//		hideButton.setOnMouseClicked(actionHandler.hideEvent);
+//		exitButton.setOnMouseClicked(actionHandler.exitEvent);
+//		backButton.setOnMouseClicked(actionHandler.backEvent);
 		
 		this.getChildren().addAll(moveButton, occupyButton, hideButton, exitButton, backButton, directionPanel);
 		
