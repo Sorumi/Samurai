@@ -1,6 +1,10 @@
 package model.po;
 
-public class Props {
+import java.io.Serializable;
+
+public class Props implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int type;
 	private int number;
 
