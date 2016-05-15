@@ -5,10 +5,14 @@ import controller.msgqueue.PropOperation;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import view.PropPanel;
+import view.PropPanel.PropItem;
+import view.shop.ShopItemView;
 
 public class PropHandler {
 
 	private PropPanel propPanel;
+	private int num;
+	private int quantity;
 	
 	public PropHandler(PropPanel propPanel){
 		this.propPanel = propPanel;
@@ -29,7 +33,12 @@ public class PropHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
+			PropItem item = (PropItem) event.getSource();  
+			num = item.getNum();
+			System.out.println("aaa"+num); 
+			quantity = item.getQuantity();
 			OperationQueue.addOperation(new PropOperation(14));
+			
 		}
 	};
 
