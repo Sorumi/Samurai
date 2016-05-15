@@ -95,19 +95,13 @@ public class GameModel extends BaseModel implements Observer {
         this.totalRound = round;
         this.currentSamurai = 1;//1,2,3,4,5,6
         this.samuraiSeq = new int[]{1,4,5,2,3,6};
+
         this.currentPlayer = 1;//1,2,3,4,5,6
         this.playerSeq = new int[]{0,1,1,0,0,1};
         this.players = new Player[2];
         players[0] = new Player(this,0,samuraiPOs);
-
-        this.propList = new int[15];
-        this.propsInGList = new ArrayList<>();
-
-        this.propsStore = StoryModel.getStoryModel().getPropsStore();
-        
-
+        players[0].setSamuraiPOs(samuraiPOs);
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
-
         switch (this.level){
             //TODO
             case 11:
@@ -251,18 +245,56 @@ public class GameModel extends BaseModel implements Observer {
 
         players[1] = new Player(this,1,aiSamuraiPO);
 
-        players[0].setSamuraiPOs(samuraiPOs);
+        Position[] homePosition = new Position[3];
+        //重置每个 samurai 位置
+        switch (this.level / 10) {
+            case 1:
+                homePosition[0] = this.randomHomeLocation(3,3);
+                homePosition[1] = this.randomHomeLocation(5,5);
+                homePosition[2] = this.randomHomeLocation(7,7);
+                break;
+            case 2:
+                homePosition[0] = this.randomHomeLocation(3,3);
+                homePosition[1] = this.randomHomeLocation(5,5);
+                homePosition[2] = this.randomHomeLocation(7,7);
+                break;
+            case 3:
+                homePosition[0] = this.randomHomeLocation(3,3);
+                homePosition[1] = this.randomHomeLocation(5,5);
+                homePosition[2] = this.randomHomeLocation(7,7);
+                break;
+            case 4:
+                homePosition[0] = this.randomHomeLocation(3,3);
+                homePosition[1] = this.randomHomeLocation(5,5);
+                homePosition[2] = this.randomHomeLocation(7,7);
+                break;
+            case 5:
+                homePosition[0] = this.randomHomeLocation(3,3);
+                homePosition[1] = this.randomHomeLocation(5,5);
+                homePosition[2] = this.randomHomeLocation(7,7);
+                break;
+            default:
+                this.getSamuraiOfNum(4).beKilled(chessBoardModel);
+                this.getSamuraiOfNum(5).beKilled(chessBoardModel);
+                this.getSamuraiOfNum(6).beKilled(chessBoardModel);
+        }
 
-        isServer = false;
-        isClient = false;
-
-        //暂时用这个方法重置每个 samurai 位置
+        this.getSamuraiOfNum(1).setHome(homePosition[0]);
+        this.getSamuraiOfNum(2).setHome(homePosition[1]);
+        this.getSamuraiOfNum(3).setHome(homePosition[2]);
         this.getSamuraiOfNum(1).beKilled(chessBoardModel);
         this.getSamuraiOfNum(2).beKilled(chessBoardModel);
         this.getSamuraiOfNum(3).beKilled(chessBoardModel);
-        this.getSamuraiOfNum(4).beKilled(chessBoardModel);
-        this.getSamuraiOfNum(5).beKilled(chessBoardModel);
-        this.getSamuraiOfNum(6).beKilled(chessBoardModel);
+
+        this.propList = new int[15];
+        this.propsInGList = new ArrayList<>();
+        this.propsStore = StoryModel.getStoryModel().getPropsStore();
+        for (int i = 1; i <= 14; i++) {
+            this.propList[i] = this.propsStore.getProps(PropsInG.get7Type(i)).getNumber();
+        }
+
+        isServer = false;
+        isClient = false;
     }
 
     public GameModel(){
@@ -366,7 +398,10 @@ public class GameModel extends BaseModel implements Observer {
 
                     System.out.println("Get prop!" + props.getType());
 
-                    propList[props.getType()]++;
+                    //只有人类玩家才加道具
+                    if(this.samuraiSeq[this.currentSamurai - 1] / 4 == 1) {
+                        propList[props.getType()]++;
+                    }
 
                     tmp.add(props);
 
@@ -612,6 +647,19 @@ public class GameModel extends BaseModel implements Observer {
         }else{
             super.updateChange(new UpdateMessage("a-pseudoOccupy",this.players[this.playerSeq[this.currentPlayer - 1]].pseudoOccupy(direction)));
         }
+    }
+
+    public Position randomHomeLocation(int x, int y){
+        Random random = new Random();
+        boolean flag = false;
+        while(!flag){
+            x = x + random.nextInt(5) - 2;
+            y = y + random.nextInt(5) - 2;
+            if(this.chessBoardModel.getActualBlockState(x ,y) == 0){
+                flag = true;
+            }
+        }
+        return new Position(x, y);
     }
 
     //生成道具随机位置
@@ -911,10 +959,16 @@ public class GameModel extends BaseModel implements Observer {
 
             int money = experience[0]+experience[1]+experience[2];
             this.propsStore.updateMoney(money);
+            //去 propsStore 更新数量
+            for (int i = 1; i <= 14; i++) {
+                this.propsStore.getProps(PropsInG.get7Type(i)).setNumber(this.propList[i]);
+            }
+
             super.updateChange(new UpdateMessage("money",money));
 
             super.updateChange(new UpdateMessage("rating",scoreBoard.getRating()));
 
+            //这是-->这一局<--获得的道具
             super.updateChange(new UpdateMessage("allProps", this.propList));
         }
 
