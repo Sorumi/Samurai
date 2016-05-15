@@ -666,14 +666,13 @@ public class GameModel extends BaseModel implements Observer {
         if(this.level != 99) {
             Random random = new Random();
             if (random.nextInt(1) == 0) {
-//                Position position = this.randomPropLocation();
+                Position position = this.randomPropLocation();
                 //暂时固定位置
-                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
-//                int type = random.nextInt(6);
-                //暂时固定type = 13
-                this.propsInGList.add(new PropsInG(position,751));
+//                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
+                int type = random.nextInt(14) + 1;
+                this.propsInGList.add(new PropsInG(position,type));
 
-                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),PropsInG.getRealType(751)}));
+                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
             }
 
             //把所有道具存活轮数减1,如果是0的就去掉
