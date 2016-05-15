@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
+import model.po.PropsInG;
 import model.po.Weapon;
 import view.TerritoryPanel;
 import view.campsite.CampsiteItemView;
@@ -66,8 +67,7 @@ public class ShopHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			ShopItemView item = (ShopItemView) event.getSource(); 
-			num = item.getNum(); 
-
+			num = item.getNum();
 		} 
 	};
 	
@@ -81,7 +81,9 @@ public class ShopHandler {
 	// 购买按钮
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
-			// TODO
+			System.out.println(quantity);
+			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
+
 		}
 	};
 	public EventHandler<MouseEvent> buyBtnEnterEvent = new EventHandler<MouseEvent>() {
@@ -98,5 +100,13 @@ public class ShopHandler {
 
 	public ShopController getShopController() {
 		return shopController;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public int getNum() {
+		return num;
 	}
 }

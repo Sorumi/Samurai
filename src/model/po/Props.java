@@ -22,6 +22,8 @@ public class Props {
 
 	public void changeNumber(int number) {
 		this.number = this.number + number;
+
+		System.out.println("Prop " + this.type + " number is " + this.number);
 	}
 
 	public void setNumber(int number) {
