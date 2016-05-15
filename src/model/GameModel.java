@@ -296,11 +296,17 @@ public class GameModel extends BaseModel implements Observer {
             }
         }
 
+        System.out.println("Level " + this.getLevel());
+
         super.updateChange(new UpdateMessage("vision", blocks));
 
         for (int i = 1; i <= 6; i++) {
             super.updateChange(new UpdateMessage("healthTotal", new int[]{i, this.getSamuraiOfNum(i).getTotalHealthPoint()}));
             this.updateHome(i);
+//            super.updateChange(new UpdateMessage("revive", i));
+            if(this.getSamuraiOfNum(i).getColdRound() != 0) {
+                this.getSamuraiOfNum(i).setColdRound(0);
+            }
         }
 
         switch (this.level){
@@ -309,6 +315,7 @@ public class GameModel extends BaseModel implements Observer {
                 break;
             case 99:
                 this.assignNextWithAI();
+                break;
             default:
                 this.propsInGList.clear();
                 this.assignNextWithAI();
