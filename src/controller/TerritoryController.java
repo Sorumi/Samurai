@@ -1,6 +1,7 @@
 package controller;
 
 import model.StoryModel;
+import model.po.Armor;
 import model.po.SamuraiPO;
 import model.po.Weapon;
 
@@ -29,6 +30,10 @@ public class TerritoryController{
 
     public Weapon getWeaponOfSamurai(int i){
         return this.storyModel.getSamuraiPO(i).getWeapon();
+    }
+
+    public Armor getArmorOfSamurai(int i){
+        return this.storyModel.getSamuraiPO(i).getArmor();
     }
 
     public static TerritoryController territoryController(){
