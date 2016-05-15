@@ -21,9 +21,9 @@ public class ShopItemsWrapper extends Pane{
 		tile.setVgap(20);
 		tile.setHgap(20);
 		tile.setPrefColumns(4);
-		//10这个数字是暂定的，之后根据道具数量改
-		for(int i=0;i<10;i++){
-			ShopItemView item = new ShopItemView(1);
+		
+		for(int i=1;i<=14;i++){
+			ShopItemView item = new ShopItemView(i);
 			item.setOnMouseEntered(shopHandler.itemEnterEvent);
 			item.setOnMouseExited(shopHandler.itemExitEvent);
 //			item.setOnMouseClicked(shopHandler.itemClickEvent);

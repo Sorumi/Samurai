@@ -38,6 +38,84 @@ public class Images {
 	public static Image SYSTEM_SAVE_BTN = new Image("/./images/system_save_button.png",true);
 	public static Image SYSTEM_HELP_BTN = new Image("/./images/system_help_button.png",true);
 
+	//armor	
+		//1
+		public static Image ARMOR_11_0 = new Image("/./images/armor/armor_11_0_left.png",true);
+		public static Image ARMOR_11_1 = new Image("/./images/armor/armor_11_1_body.png",true);
+		public static Image ARMOR_11_2 = new Image("/./images/armor/armor_11_2_back.png",true);
+		public static Image ARMOR_11_3 = new Image("/./images/armor/armor_11_3_right.png",true);
+		public static Image[] ARMOR_11 = {ARMOR_11_0, ARMOR_11_1, ARMOR_11_2, ARMOR_11_3};
+		public static Image ARMOR_12_0 = new Image("/./images/armor/armor_12_0_left.png",true);
+		public static Image ARMOR_12_1 = new Image("/./images/armor/armor_12_1_body.png",true);
+		public static Image ARMOR_12_2 = new Image("/./images/armor/armor_12_2_back.png",true);
+		public static Image ARMOR_12_3 = new Image("/./images/armor/armor_12_3_right.png",true);
+		public static Image[] ARMOR_12 = {ARMOR_12_0, ARMOR_12_1, ARMOR_12_2, ARMOR_12_3};
+		public static Image ARMOR_13_0 = new Image("/./images/armor/armor_13_0_left.png",true);
+		public static Image ARMOR_13_1 = new Image("/./images/armor/armor_13_1_body.png",true);
+		public static Image ARMOR_13_2 = new Image("/./images/armor/armor_13_2_back.png",true);
+		public static Image ARMOR_13_3 = new Image("/./images/armor/armor_13_3_right.png",true);
+		public static Image[] ARMOR_13 = {ARMOR_13_0, ARMOR_13_1, ARMOR_13_2, ARMOR_13_3};
+		public static Image ARMOR_14_0 = new Image("/./images/armor/armor_14_0_left.png",true);
+		public static Image ARMOR_14_1 = new Image("/./images/armor/armor_14_1_body.png",true);
+		public static Image ARMOR_14_2 = new Image("/./images/armor/armor_14_2_back.png",true);
+		public static Image ARMOR_14_3 = new Image("/./images/armor/armor_14_3_right.png",true);
+		public static Image[] ARMOR_14 = {ARMOR_14_0, ARMOR_14_1, ARMOR_14_2, ARMOR_14_3};
+		public static Image ARMOR_15_0 = new Image("/./images/armor/armor_15_0_left.png",true);
+		public static Image ARMOR_15_1 = new Image("/./images/armor/armor_15_1_body.png",true);
+		public static Image ARMOR_15_2 = new Image("/./images/armor/armor_15_2_back.png",true);
+		public static Image ARMOR_15_3 = new Image("/./images/armor/armor_15_3_right.png",true);
+		public static Image[] ARMOR_15 = {ARMOR_15_0, ARMOR_15_1, ARMOR_15_2, ARMOR_15_3};
+		public static Image ARMOR_16_0 = new Image("/./images/armor/armor_16_0_left.png",true);
+		public static Image ARMOR_16_1 = new Image("/./images/armor/armor_16_1_body.png",true);
+		public static Image ARMOR_16_2 = new Image("/./images/armor/armor_16_2_back.png",true);
+		public static Image ARMOR_16_3 = new Image("/./images/armor/armor_16_3_right.png",true);
+		public static Image[] ARMOR_16 = {ARMOR_16_0, ARMOR_16_1, ARMOR_16_2, ARMOR_16_3};
+		
+		//2
+		public static Image ARMOR_23_0 = new Image("/./images/armor/armor_23_0_left.png",true);
+		public static Image ARMOR_23_1 = new Image("/./images/armor/armor_23_1_body.png",true);
+		public static Image ARMOR_23_2 = new Image("/./images/armor/armor_23_2_back.png",true);
+		public static Image ARMOR_23_3 = new Image("/./images/armor/armor_23_3_right.png",true);
+		public static Image[] ARMOR_23 = {ARMOR_23_0, ARMOR_23_1, ARMOR_23_2, ARMOR_23_3};
+		public static Image ARMOR_24_0 = new Image("/./images/armor/armor_24_0_left.png",true);
+		public static Image ARMOR_24_1 = new Image("/./images/armor/armor_24_1_body.png",true);
+		public static Image ARMOR_24_2 = new Image("/./images/armor/armor_24_2_back.png",true);
+		public static Image ARMOR_24_3 = new Image("/./images/armor/armor_24_3_right.png",true);
+		public static Image[] ARMOR_24 = {ARMOR_24_0, ARMOR_24_1, ARMOR_24_2, ARMOR_24_3};
+		public static Image ARMOR_25_0 = new Image("/./images/armor/armor_25_0_left.png",true);
+		public static Image ARMOR_25_1 = new Image("/./images/armor/armor_25_1_body.png",true);
+		public static Image ARMOR_25_2 = new Image("/./images/armor/armor_25_2_back.png",true);
+		public static Image ARMOR_25_3 = new Image("/./images/armor/armor_25_3_right.png",true);
+		public static Image[] ARMOR_25 = {ARMOR_25_0, ARMOR_25_1, ARMOR_25_2, ARMOR_25_3};
+		public static Image ARMOR_26_0 = new Image("/./images/armor/armor_26_0_left.png",true);
+		public static Image ARMOR_26_1 = new Image("/./images/armor/armor_26_1_body.png",true);
+		public static Image ARMOR_26_2 = new Image("/./images/armor/armor_26_2_back.png",true);
+		public static Image ARMOR_26_3 = new Image("/./images/armor/armor_26_3_right.png",true);
+		public static Image[] ARMOR_26 = {ARMOR_26_0, ARMOR_26_1, ARMOR_26_2, ARMOR_26_3};
+				
+		//3
+		public static Image ARMOR_34_0 = new Image("/./images/armor/armor_34_0_left.png",true);
+		public static Image ARMOR_34_1 = new Image("/./images/armor/armor_34_1_body.png",true);
+		public static Image ARMOR_34_2 = new Image("/./images/armor/armor_34_2_back.png",true);
+		public static Image ARMOR_34_3 = new Image("/./images/armor/armor_34_3_right.png",true);
+		public static Image[] ARMOR_34 = {ARMOR_34_0, ARMOR_34_1, ARMOR_34_2, ARMOR_34_3};
+		public static Image ARMOR_35_0 = new Image("/./images/armor/armor_35_0_left.png",true);
+		public static Image ARMOR_35_1 = new Image("/./images/armor/armor_35_1_body.png",true);
+		public static Image ARMOR_35_2 = new Image("/./images/armor/armor_35_2_back.png",true);
+		public static Image ARMOR_35_3 = new Image("/./images/armor/armor_35_3_right.png",true);
+		public static Image[] ARMOR_35 = {ARMOR_35_0, ARMOR_35_1, ARMOR_35_2, ARMOR_35_3};
+		public static Image ARMOR_36_0 = new Image("/./images/armor/armor_36_0_left.png",true);
+		public static Image ARMOR_36_1 = new Image("/./images/armor/armor_36_1_body.png",true);
+		public static Image ARMOR_36_2 = new Image("/./images/armor/armor_36_2_back.png",true);
+		public static Image ARMOR_36_3 = new Image("/./images/armor/armor_36_3_right.png",true);
+		public static Image[] ARMOR_36 = {ARMOR_36_0, ARMOR_36_1, ARMOR_36_2, ARMOR_36_3};
+
+		public static Image[][] ARMOR_1 = {null, ARMOR_11, ARMOR_12, ARMOR_13, ARMOR_14, ARMOR_15, ARMOR_16};
+		public static Image[][] ARMOR_2 = {null, null, null, ARMOR_23, ARMOR_24, ARMOR_25, ARMOR_26};
+		public static Image[][] ARMOR_3 = {null, null, null, null, ARMOR_34, ARMOR_35, ARMOR_36};
+		
+		
+		public static Image[][][] ARMOR = {null, ARMOR_1, ARMOR_2, ARMOR_3};
 	//samurai state
 	public static Image STATE_ICON_1 = new Image("/./images/state_icon_1.png",true);
 	public static Image STATE_ICON_2 = new Image("/./images/state_icon_2.png",true);

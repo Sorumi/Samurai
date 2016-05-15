@@ -23,12 +23,14 @@ public class SmithyPanel extends TransitionPanel {
 	private SmithyGroup battleaxGroup;
 	private SmithyGroup shurikenGroup;
 	private SmithyGroup bowGroup;
+	private SmithyGroup armorGroup; 
 	
 	public SmithyItemWrapper0 spearPanel;
 	public SmithyItemWrapper1 swordPanel;
 	public SmithyItemWrapper2 battleaxPanel;
 	public SmithyItemWrapper3 shurikenPanel;
 	public SmithyItemWrapper4 bowPanel;
+	public SmithyItemWrapper5 armorPanel;
 	
 	
 	public SmithyBuilder buildPanel;
@@ -52,6 +54,7 @@ public class SmithyPanel extends TransitionPanel {
 		battleaxGroup = new SmithyGroup();
 		shurikenGroup = new SmithyGroup();
 		bowGroup = new SmithyGroup();
+		armorGroup = new SmithyGroup();
 		
 		Button spearBtn = new SmithyButton(0);
 		spearPanel = new SmithyItemWrapper0(smithyHandler);
@@ -73,11 +76,17 @@ public class SmithyPanel extends TransitionPanel {
 		bowPanel = new SmithyItemWrapper4(smithyHandler);
 		bowGroup.getChildren().addAll(bowBtn, bowPanel);
 		
+		Button armorBtn = new SmithyButton(4);
+		armorBtn.setLayoutY(650);
+		armorPanel = new SmithyItemWrapper5(smithyHandler); 
+		armorGroup.getChildren().addAll(armorBtn, armorPanel);
+		
 		spearBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
 		swordBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
 		battleaxBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
 		shurikenBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
 		bowBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent);
+		armorBtn.setOnMouseClicked(smithyHandler.wrapperToFrontEvent); 
 		
 		//closeBtn
 		closeBtn = new SystemButton(0);
@@ -96,7 +105,7 @@ public class SmithyPanel extends TransitionPanel {
 		});
 		
 		routeGroup = new Group();
-		routeGroup.getChildren().addAll(bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn);
+		routeGroup.getChildren().addAll(bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn, armorGroup);
 		this.getChildren().add(routeGroup);
 		
 		smithyWeaponState = new SmithyWeaponState();

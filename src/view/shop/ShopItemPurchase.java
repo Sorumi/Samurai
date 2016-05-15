@@ -131,4 +131,8 @@ public class ShopItemPurchase extends Pane{
 		perPriceLabel.setText("- "+perPrice);
 		this.setQuantity(0);
 	}
+	
+	public int getQuantity(){
+		return this.quantity;
+	}
 }
