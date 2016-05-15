@@ -246,7 +246,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.pos.setX(this.home.getX());
 		this.pos.setY(this.home.getY());
 		cbm.changeActualBlock(this.home.getX(), this.home.getY(), true);
-		if (!hide) {
+		if (hide) {
 			cbm.changeActualBlock(this.home.getX(), this.home.getY(), false);
 		}
 	}
@@ -256,7 +256,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.pos.setX(position.getX());
 		this.pos.setY(position.getY());
 		cbm.changeActualBlock(position.getX(), this.home.getY(), true);
-		if (!hide) {
+		if (hide) {
 			cbm.changeActualBlock(this.home.getX(), this.home.getY(), false);
 		}
 	}

@@ -25,12 +25,17 @@ public class ShopItemPurchase extends Pane{
 	private Group minusGroup;  
 	
 	private Button buyButton;
+
+	private ShopHandler shopHandler;
 	
 	public ShopItemPurchase(ShopHandler shopHandler){  
 		this.setPrefSize(500, 340);
 		this.setLayoutX(650);
 		this.setLayoutY(270);
 		this.setId("campsite-wrapper");
+
+		this.shopHandler = shopHandler;
+
 //		this.perPrice = perPrice;
 		img1 = new ImageView(Images.COIN);
 		img1.setFitWidth(30);
@@ -105,7 +110,10 @@ public class ShopItemPurchase extends Pane{
 	public void buyBtnPressed() {
 		buyButton.setLayoutY(246);
 		buyButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 4);");
+
+//		this.shopHandler.getShopController().getPropsStore().getProps(this.shopHandler)
 	}
+
 	public void buyBtnAbled() {
 		buyButton.setLayoutY(242);
 		buyButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 8);");

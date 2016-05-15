@@ -81,14 +81,6 @@ public class Player {
             positions.addAll(samuraiPOs[3].see());
         }
 
-//        //开挂模式
-//        for(int i = 0; i <= gameModel.getLength(); i++){
-//            for (int j = 0; j <= gameModel.getLength(); j++) {
-//                positions.add(new Position(i,j));
-//            }
-//        }
-
-
         //设为可见
         for(Position position : positions){
             blocks.add(this.chessBoardModel.getActualBlock(position.getX(),position.getY()));
