@@ -82,4 +82,8 @@ public class ShopHandler {
 	    	  shopPanel.purchasePanel.buyBtnAbled();
 	      }
 	};
+
+	public ShopController getShopController() {
+		return shopController;
+	}
 }

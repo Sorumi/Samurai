@@ -18,11 +18,11 @@ public class ShopController extends TerritoryController {
     }
 
     public PropsStore getPropsStore() {
-        return propsStore;
+        return this.propsStore;
     }
 
     public int getMoney() {
-        return money;
+        return this.money;
     }
 
     public void setMoney(int money) {

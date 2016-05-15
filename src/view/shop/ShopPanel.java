@@ -25,7 +25,6 @@ public class ShopPanel extends Pane{
 		infoPanel = new ShopItemInfo();
 		purchasePanel = new ShopItemPurchase(shopHandler);
 
-		
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);

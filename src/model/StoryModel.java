@@ -43,7 +43,7 @@ public class StoryModel implements Serializable{
 
         this.propsStore = new PropsStore();
 
-        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(2,12),30,1);
+        this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(3,12),30,1);
         this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(7,0),30,1);
         this.samuraiPO_3 = new SamuraiPO(3,0,this.armory.getWeapon(211),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(14,0),30,1);
 
