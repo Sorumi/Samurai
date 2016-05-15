@@ -371,23 +371,23 @@ public class Armory implements Serializable {
 		materialTag = new int[] { 0, 1, 1 };
 		materialItem = new int[] { 0, 0, 1 };
 		materialNumber = new int[] { 3, 2, 2 };
-		nextArmor = new int[] { 913, 933 };
+		nextArmor = new int[] { 923, 913 };
 		armorList.add(new Armor(912, 15, 5, materialTag, materialItem, materialNumber, true, nextArmor, 0));
 		materialTag = new int[] { 0, 0, 1, 2 };
 		materialItem = new int[] { 0, 1, 0, 0 };
 		materialNumber = new int[] { 3, 3, 2, 1 };
-		nextArmor = new int[] { 914, 924 };
-		armorList.add(new Armor(913, 27, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		nextArmor = new int[] { 934, 924 };
+		armorList.add(new Armor(923, 27, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 		materialTag = new int[] { 0, 0, 1, 2 };
 		materialItem = new int[] { 0, 1, 1, 0 };
 		materialNumber = new int[] { 3, 3, 2, 1 };
-		nextArmor = new int[] { 934 };
-		armorList.add(new Armor(933, 20, 10, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		nextArmor = new int[] { 914 };
+		armorList.add(new Armor(913, 20, 10, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 		materialTag = new int[] { 0, 0, 1, 1, 3 };
 		materialItem = new int[] { 0, 2, 0, 1, 1 };
 		materialNumber = new int[] { 5, 1, 2, 2, 2 };
-		nextArmor = new int[] { 915 };
-		armorList.add(new Armor(914, 50, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		nextArmor = new int[] { 935 };
+		armorList.add(new Armor(934, 50, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 		materialTag = new int[] { 0, 0, 1, 1, 3 };
 		materialItem = new int[] { 1, 2, 0, 1, 0 };
 		materialNumber = new int[] { 5, 1, 1, 3, 2 };
@@ -396,13 +396,13 @@ public class Armory implements Serializable {
 		materialTag = new int[] { 0, 0, 0, 1, 1 };
 		materialItem = new int[] { 0, 1, 2, 0, 1 };
 		materialNumber = new int[] { 5, 5, 3, 3, 1 };
-		nextArmor = new int[] { 935 };
-		armorList.add(new Armor(934, 25, 15, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		nextArmor = new int[] { 915 };
+		armorList.add(new Armor(914, 25, 15, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 		materialTag = new int[] { 0, 1, 3, 3, 4 };
 		materialItem = new int[] { 2, 2, 0, 1, 0 };
 		materialNumber = new int[] { 2, 2, 3, 3, 1 };
-		nextArmor = new int[] { 916 };
-		armorList.add(new Armor(915, 80, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		nextArmor = new int[] { 936 };
+		armorList.add(new Armor(935, 80, 5, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 		materialTag = new int[] { 0, 1, 3, 3, 4 };
 		materialItem = new int[] { 2, 2, 0, 1, 1 };
 		materialNumber = new int[] { 2, 2, 2, 4, 1 };
@@ -411,13 +411,13 @@ public class Armory implements Serializable {
 		materialTag = new int[] { 0, 0, 1, 3, 3, 4 };
 		materialItem = new int[] { 2, 3, 2, 0, 1, 0 };
 		materialNumber = new int[] { 2, 2, 2, 1, 1, 1 };
-		nextArmor = new int[] { 936 };
-		armorList.add(new Armor(935, 37, 25, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		nextArmor = new int[] { 916 };
+		armorList.add(new Armor(915, 37, 25, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 		materialTag = new int[] { 1, 3, 3, 3, 4 };
 		materialItem = new int[] { 3, 0, 1, 3, 2 };
 		materialNumber = new int[] { 1, 5, 5, 1, 1 };
 		nextArmor = new int[] {};
-		armorList.add(new Armor(916, 120, 10, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		armorList.add(new Armor(936, 120, 10, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 		materialTag = new int[] { 0, 1, 3, 3, 4 };
 		materialItem = new int[] { 3, 3, 0, 1, 2 };
 		materialNumber = new int[] { 2, 1, 2, 2, 1 };
@@ -427,7 +427,7 @@ public class Armory implements Serializable {
 		materialItem = new int[] { 3, 3, 2 };
 		materialNumber = new int[] { 5, 1, 1 };
 		nextArmor = new int[] {};
-		armorList.add(new Armor(936, 40, 40, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		armorList.add(new Armor(916, 40, 40, materialTag, materialItem, materialNumber, false, nextArmor, 0));
 	}
 
 	public Weapon getWeapon(int type) {
