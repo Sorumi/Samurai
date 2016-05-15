@@ -52,16 +52,16 @@ public class PropsStore implements Serializable {
 		int check = (type - 700) / 10;
 		switch (check) {
 			case 0:
-				useHPJar(check % 10, samuraiPO);
+				useHPJar((type - 700) % 10, samuraiPO);
 				break;
 			case 1:
-				useAPJar(check % 10, samuraiPO);
+				useAPJar((type - 700) % 10, samuraiPO);
 				break;
 			case 2:
-				useAttackPointJar(check % 10, samuraiPO);
+				useAttackPointJar((type - 700) % 10, samuraiPO);
 				break;
 			case 3:
-				useCriticalHitRateJar(check % 10, samuraiPO);
+				useCriticalHitRateJar((type - 700) % 10, samuraiPO);
 				break;
 			case 4:
 				if (random.nextBoolean()) {
@@ -87,20 +87,20 @@ public class PropsStore implements Serializable {
 	public String replace(int type, SamuraiPO samuraiPO) {
 		int check = (type - 700) / 10;
 		switch (check) {
-		case 2:
-			replaceAttackPointJar(check % 10, samuraiPO);
-			break;
-		case 3:
-			replaceCriticalHitRateJar(check % 10, samuraiPO);
-			break;
-		case 4:
-			replaceBigSurprise(samuraiPO);
-			break;
-		case 5:
-			replaceSmallSurprise(samuraiPO);
-			break;
-		default:
-			break;
+			case 2:
+				replaceAttackPointJar((type - 700) % 10, samuraiPO);
+				break;
+			case 3:
+				replaceCriticalHitRateJar((type - 700) % 10, samuraiPO);
+				break;
+			case 4:
+				replaceBigSurprise(samuraiPO);
+				break;
+			case 5:
+				replaceSmallSurprise(samuraiPO);
+				break;
+			default:
+				break;
 		}
 		return null;
 	}
