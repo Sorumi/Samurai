@@ -193,7 +193,6 @@ public class TerritoryPanel extends Pane {
 		samurai3.setOnMouseExited(stateHandler.closeStatePanelInT);
 
 		territoryGroup.getChildren().addAll(samurai1, samurai2, samurai3);
-		territoryHandler.updateSamurai();
 
 		// frontground
 		territoryFg = new TerritoryFrontground();
@@ -213,8 +212,7 @@ public class TerritoryPanel extends Pane {
 		this.getChildren().addAll(territoryGroup, shopSelectPanel);
 
 		// init
-		this.set6Properties();
-		this.setBloodTotal();
+		updateSamurai();
 		this.setRandomWeather();
 	}
 

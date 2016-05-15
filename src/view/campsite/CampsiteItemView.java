@@ -51,7 +51,6 @@ public class CampsiteItemView extends StackPane {
 			ArmorView armor = new ArmorView(itemNum);
 			this.getChildren().add(armor);
 			StackPane.setAlignment(armor,Pos.CENTER);
-			System.out.println("armor: " + itemNum);
 		}
 		
 	}

@@ -23,6 +23,10 @@ public class CampsiteSamuraiWrapper extends Pane {
 	private Button setItemBtn;
 	
 	private int samuraiNum;
+	
+	public boolean isWeapon;
+	public boolean isArmor;
+	
 	public int currentWeapon;
 	public int currentArmor;
 	
@@ -60,6 +64,9 @@ public class CampsiteSamuraiWrapper extends Pane {
 		this.getChildren().add(setItemBtn);
 		
 		this.getChildren().add(samurai);
+		
+		isWeapon = false;
+		isArmor = false;
 	}
 	
 	public class SamuraiButton extends Button{
@@ -77,6 +84,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	}
 
 	public void setWeapon(int num) {
+		isWeapon = true;
 		currentWeapon = num;
 		samurai.setWeapon(num);
 		samurai.occupy(2);
@@ -85,6 +93,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	}
 	
 	public void setArmor(int num) {
+		isArmor = true;
 		currentArmor = num;
 		samurai.setArmor(num);
 	}
