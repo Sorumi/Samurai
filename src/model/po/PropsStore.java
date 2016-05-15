@@ -10,7 +10,7 @@ public class PropsStore implements Serializable {
 	private static final long serialVersionUID = 1L;
 	ArrayList<Props> props = new ArrayList<Props>();
 	private int money;
-	Random random = new Random();
+	transient Random random = new Random();
 
 	public PropsStore() {
 		this.money = 0;
@@ -38,6 +38,10 @@ public class PropsStore implements Serializable {
 		}
 		System.out.println("Wrong Props type");
 		return null;
+	}
+
+	public int getMoney() {
+		return money;
 	}
 
 	public void updateMoney(int delta) {

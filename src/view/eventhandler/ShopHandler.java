@@ -70,13 +70,7 @@ public class ShopHandler {
 			num = item.getNum();
 		} 
 	};
-	
-//	public EventHandler<MouseEvent> quantityEvent = new EventHandler<MouseEvent>() {
-//		public void handle(MouseEvent event) {
-//			
-// 
-//		}
-//	};
+
 
 	// 购买按钮
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
@@ -87,6 +81,7 @@ public class ShopHandler {
 
 		}
 	};
+
 	public EventHandler<MouseEvent> buyBtnEnterEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			shopPanel.purchasePanel.buyBtnPressed();
