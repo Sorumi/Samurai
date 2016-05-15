@@ -53,29 +53,6 @@ public class GamePanelSelectHandler implements EventHandler {
 	      }
 	};
 	
-	public EventHandler<MouseEvent> yesBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  gamePanel.selectPanel.btnPressed(0); 
-	      }
-	};
-	
-	public EventHandler<MouseEvent> yesBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  gamePanel.selectPanel.btnAbled(0);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> noBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  gamePanel.selectPanel.btnPressed(1); 
-	      }
-	};
-	
-	public EventHandler<MouseEvent> noBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  gamePanel.selectPanel.btnAbled(1);
-	      }
-	};
 
 	@Override
 	public void handle(Event event) {

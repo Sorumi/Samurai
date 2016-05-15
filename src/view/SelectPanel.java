@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import view.eventhandler.MenuHandler;
+import view.eventhandler.SelectHandler;
 
 public class SelectPanel extends OrderPanel {
 	private SystemButton closeBtn;
@@ -13,12 +14,14 @@ public class SelectPanel extends OrderPanel {
 
 	public Button yesBtn;
 	public Button noBtn;
+	private SelectHandler selectHandler;
 
 	public SelectPanel(EventHandler eventHandler, String message) { 
 		this.setPrefSize(350, 200);
 		this.setLayoutX(450);
 		this.setLayoutY(300);
 		this.setId("archive-view");
+		this.selectHandler = new SelectHandler(this);
 		
 		messageLabel = new Label(message);
 		messageLabel.setPrefSize(300, 50);
@@ -43,12 +46,16 @@ public class SelectPanel extends OrderPanel {
 		yesBtn.setLayoutX(30);
 		yesBtn.setLayoutY(100);				
 		yesBtn.setId("Aload-btn");
+		yesBtn.setOnMouseEntered(selectHandler.yesBtnEnterEvent);
+		yesBtn.setOnMouseEntered(selectHandler.yesBtnExitEvent);
 
 		noBtn = new Button("取 消");
 		noBtn.setPrefSize(90, 50);
 		noBtn.setLayoutX(200);
 		noBtn.setLayoutY(100);
 		noBtn.setId("Asave-btn");
+		noBtn.setOnMouseEntered(selectHandler.noBtnEnterEvent);
+		noBtn.setOnMouseEntered(selectHandler.noBtnExitEvent);
 		
 		btnAbled(0);
 		btnAbled(1);
