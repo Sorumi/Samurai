@@ -74,6 +74,10 @@ public class GameModel extends BaseModel implements Observer {
             default:
                 break;
         }
+        for (int i = 1; i <= 3; i++) {
+            this.getSamuraiOfNum(i).beKilled(chessBoardModel);
+        }
+
         isServer = false;
         isClient = false;
     }
@@ -693,6 +697,7 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
 //            this.updateVisible(this.updateVision());
+
         }else{
 
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
@@ -1034,7 +1039,6 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
-            System.out.println("Time: " + this.currentTime);
             this.currentTime--;
 
         }else{
