@@ -15,6 +15,8 @@ import view.store.StoreItemView;
 public class ShopHandler {
 	private ShopPanel shopPanel;
 	private ShopController shopController;
+	private int num;
+	private int quantity; 
 
 	public ShopHandler(ShopPanel shopPanel) {
 		this.shopPanel = shopPanel;
@@ -64,8 +66,15 @@ public class ShopHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			ShopItemView item = (ShopItemView) event.getSource(); 
-			item.getNum();
+			num = item.getNum(); 
 
+		} 
+	};
+	
+	public EventHandler<MouseEvent> quantityEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			quantity = shopPanel.purchasePanel.getQuantity();
+ 
 		}
 	};
 

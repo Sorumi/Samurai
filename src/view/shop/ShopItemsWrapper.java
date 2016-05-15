@@ -26,7 +26,7 @@ public class ShopItemsWrapper extends Pane{
 			ShopItemView item = new ShopItemView(i);
 			item.setOnMouseEntered(shopHandler.itemEnterEvent);
 			item.setOnMouseExited(shopHandler.itemExitEvent);
-//			item.setOnMouseClicked(shopHandler.itemClickEvent);
+			item.setOnMouseClicked(shopHandler.itemClickEvent);
 			tile.getChildren().add(item);
 		}
 		
