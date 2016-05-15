@@ -18,13 +18,13 @@ public class StoreItemInfo extends Pane{
 		this.setLayoutY(50);
 		this.setId("store-wrapper"); 
 		
-		itemName = new Label("雪山云杉");
+		itemName = new Label("");
 		itemName.setLayoutX(40);
 		itemName.setLayoutY(40);
 		itemName.setId("item-name");
 		this.getChildren().add(itemName);
 		
-		itemDescription = new Label("这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述这是一段很长的描述");
+		itemDescription = new Label();
 		itemDescription.setMaxWidth(400);
 		itemDescription.setId("item-description");
 		
