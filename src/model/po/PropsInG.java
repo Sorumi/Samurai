@@ -33,7 +33,7 @@ public class PropsInG extends Props {
         this.existRound--;
     }
 
-    public static int getRealType(int i){
+    public static int get14Type(int i){
         if(i == 741){
             return 13;
         }else if(i == 751){

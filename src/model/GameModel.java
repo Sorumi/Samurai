@@ -1,10 +1,7 @@
 package model;
 
 import controller.msgqueue.*;
-import main.Main;
 import model.po.*;
-import model.state.GameResultState;
-import model.state.GameState;
 import network.TransformObject;
 import network.client.ClientService;
 import view.GamePanel;
@@ -300,10 +297,10 @@ public class GameModel extends BaseModel implements Observer {
 
         super.updateChange(new UpdateMessage("vision", blocks));
 
+        //重置武士的一些属性
         for (int i = 1; i <= 6; i++) {
             super.updateChange(new UpdateMessage("healthTotal", new int[]{i, this.getSamuraiOfNum(i).getTotalHealthPoint()}));
             this.updateHome(i);
-//            super.updateChange(new UpdateMessage("revive", i));
             if(this.getSamuraiOfNum(i).getColdRound() != 0) {
                 this.getSamuraiOfNum(i).setColdRound(0);
             }
@@ -317,6 +314,7 @@ public class GameModel extends BaseModel implements Observer {
                 this.assignNextWithAI();
                 break;
             default:
+                //故事模式重置道具 list
                 this.propsInGList.clear();
                 this.assignNextWithAI();
                 break;
@@ -361,16 +359,16 @@ public class GameModel extends BaseModel implements Observer {
                 if (props.getPosition().getX() == position.getX() &&
                         props.getPosition().getY() == position.getY()) {
 
-                    System.out.println("Get prop!");
+                    System.out.println("Get prop!" + props.getType());
 
-                    propList[PropsInG.getRealType(props.getType())]++;
+                    propList[props.getType()]++;
 
                     tmp.add(props);
 
-                    System.out.println(props.getType() + " number: " + propList[PropsInG.getRealType(props.getType())]);
+                    System.out.println(props.getType() + " number: " + propList[props.getType()]);
 
                     //这个消息是用来消失道具的
-                    super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY()}));
+                    super.updateChange(new UpdateMessage("getProp", position));
 
                     super.updateChange(new UpdateMessage("allProps", this.propList));
                 }
@@ -386,7 +384,9 @@ public class GameModel extends BaseModel implements Observer {
     public void useProp(int propNum){
         propList[propNum]--;
         System.out.println("prop : " + propNum + " num " + propList[propNum]);
-        this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
+        if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
+            this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum);
+        }
     }
 
     public void updateOccupy(int direction){
@@ -673,9 +673,10 @@ public class GameModel extends BaseModel implements Observer {
         if(this.level != 99) {
             Random random = new Random();
             if (random.nextInt(1) == 0) {
-                Position position = this.randomPropLocation();
+//                Position position = this.randomPropLocation();
                 //暂时固定位置
-//                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
+                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
+                //type 都是1~14的
                 int type = random.nextInt(14) + 1;
                 this.propsInGList.add(new PropsInG(position,type));
 
@@ -697,6 +698,14 @@ public class GameModel extends BaseModel implements Observer {
             }
 
             System.out.println("prop size:  " + this.propsInGList.size());
+
+            int i = this.getSamuraiOfNum(this.getCurrentSamurai()).getProp();
+            if(i != 0){
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(0);
+                if(i != 13) {
+                    this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
+                }
+            }
 
         }
 
