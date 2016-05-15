@@ -7,6 +7,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import view.ArmorView;
 import view.WeaponView;
 
 public class SmithyItemView extends Pane{
@@ -15,7 +16,9 @@ public class SmithyItemView extends Pane{
 	public int itemNum;
 	
 	public WeaponView weapon;
-	public Group weaponGroup;
+	public ArmorView armor;
+	
+	public Group group;
 	private SmithyItemLine line;
 	
 	/*
@@ -45,12 +48,21 @@ public class SmithyItemView extends Pane{
 		fillCircle.setRadius(RADIUS-10);
 		fillCircle.setFill(Color.WHITE);
 		
-		weapon = new WeaponView(itemNum);
-		StackPane.setAlignment(weapon,Pos.CENTER);
+		if (itemNum != 9){
+			weapon = new WeaponView(itemNum);
+			StackPane.setAlignment(weapon,Pos.CENTER);
+			group = new Group();
+			group.getChildren().addAll(strokeCircle, fillCircle, weapon);
+		}else{
+			armor = new ArmorView(itemNum);
+			StackPane.setAlignment(armor,Pos.CENTER);
+			group = new Group();
+			group.getChildren().addAll(strokeCircle, fillCircle, armor);
+		}
 		
-		weaponGroup = new Group();
-		weaponGroup.getChildren().addAll(strokeCircle, fillCircle, weapon);
-		this.getChildren().add(weaponGroup);
+		
+
+		this.getChildren().add(group);
 		
 	}
 	public SmithyItemView(int itemNum, int lineHeight){

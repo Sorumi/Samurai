@@ -46,6 +46,11 @@ public class SamuraiView extends Pane{
 	private OrderImageView eyeLeft;
 	private OrderImageView eyeRight;
 	
+	private SamuraiArmorView armorBody;
+	private SamuraiArmorView armorBack;
+	private SamuraiArmorView armorLeft;
+	private SamuraiArmorView armorRight;
+	
 	private SamuraiWeaponView weapon;
 	private SamuraiWeaponView weaponExtra;
 	
@@ -279,6 +284,35 @@ public class SamuraiView extends Pane{
 		}
 		resetWeapon();
 		
+	}
+	public void setArmor(int number){
+		leftShoulder.setVisible(false);
+		rightShoulder.setVisible(false);
+		body.setVisible(false);
+		
+		group.getChildren().removeAll(armorBody, armorBack, armorLeft, armorRight);
+		orderList.removeAll(armorBody, armorBack, armorLeft, armorRight);
+		
+		armorLeft = new SamuraiArmorView(number*10, SCALE);
+		armorBody = new SamuraiArmorView(number*10+1, SCALE);
+		armorBack = new SamuraiArmorView(number*10+2, SCALE);
+		armorRight = new SamuraiArmorView(number*10+3, SCALE);
+		
+		group.getChildren().addAll(armorBody, armorBack, armorLeft, armorRight);
+		orderList.addAll(armorBody, armorBack, armorLeft, armorRight);
+
+		this.resetArmor();
+	}
+	
+	private void resetArmor(){
+		if(back == 1){
+			armorBody.setVisible(true);
+			armorBack.setVisible(false);
+		}else{
+			armorBody.setVisible(false);
+			armorBack.setVisible(true);
+		}
+		this.setOrder();
 	}
 	
 	public void setDirection(int direction){

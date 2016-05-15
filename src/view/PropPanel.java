@@ -105,8 +105,8 @@ public class PropPanel extends OrderPanel {
 			PropView prop = new PropView(itemNum, 2);
 
 			quantityLabel = new Label(quantity + "");
-			quantityLabel.setPrefSize(30, 30);
-			quantityLabel.setId("item-quantity");
+			quantityLabel.setPrefSize(20, 20);
+			quantityLabel.setId("prop-quantity");
 			this.getChildren().addAll(prop, quantityLabel);
 			StackPane.setAlignment(quantityLabel, Pos.BOTTOM_RIGHT);
 		}
