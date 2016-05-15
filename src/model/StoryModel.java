@@ -21,7 +21,6 @@ public class StoryModel implements Serializable{
     private MaterialLibrary materialLibrary;
     private InformationLibrary informationLibrary;
     private PropsStore propsStore;
-
     private int money;
 
     private static int fileNum;

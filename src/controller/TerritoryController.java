@@ -53,5 +53,4 @@ public class TerritoryController{
         return this.storyModel.getSamuraiPO(samurai).getTotalHealthPoint();
     }
 
-
 }
