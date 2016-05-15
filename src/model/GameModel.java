@@ -307,7 +307,10 @@ public class GameModel extends BaseModel implements Observer {
             case 0:
                 this.assignNext();
                 break;
+            case 99:
+                this.assignNextWithAI();
             default:
+                this.propsInGList.clear();
                 this.assignNextWithAI();
                 break;
         }
@@ -820,6 +823,10 @@ public class GameModel extends BaseModel implements Observer {
 
         System.out.println("Action Done");
 
+        if(this.timer != null){
+            this.timer.cancel();
+        }
+
         if(this.currentRound < this.totalRound) {
             this.currentRound++;
             if((this.currentSamurai++) % 6 == 0){
@@ -965,7 +972,7 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
-
+            System.out.println("Time: " + this.currentTime);
             this.currentTime--;
 
         }else{
