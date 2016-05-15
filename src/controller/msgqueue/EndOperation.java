@@ -18,7 +18,6 @@ public class EndOperation extends Operation {
 
     public void execute() {
         GameModel model = OperationQueue.getGameModel();
-        System.out.println("Lvl " + model.getLevel());
         if(model.getLevel() == 0){
             System.out.println("Close window");
         }

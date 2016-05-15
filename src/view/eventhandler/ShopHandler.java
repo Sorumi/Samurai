@@ -76,9 +76,7 @@ public class ShopHandler {
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			quantity = shopPanel.purchasePanel.getQuantity();
-			System.out.println(quantity);
 			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
-
 		}
 	};
 

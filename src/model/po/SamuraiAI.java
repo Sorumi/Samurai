@@ -56,21 +56,21 @@ public class SamuraiAI {
 	}
 
 	public static void print(ChessBoardModel cbm) {
-		for (int i = 0; i <= 14; i++) {
-			System.out.print(i + ":");
-			for (int x = 0; x <= 14; x++) {
-				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
-			}
-			System.out.println();
-		}
-
-		for (int i = 0; i <= 14; i++) {
-			System.out.print(i + ":");
-			for (int x = 0; x <= 14; x++) {
-				System.out.print(cbm.getActualBlockState(i, x) + " ");
-			}
-			System.out.println();
-		}
+//		for (int i = 0; i <= 14; i++) {
+//			System.out.print(i + ":");
+//			for (int x = 0; x <= 14; x++) {
+//				System.out.print(cbm.getActualBlockOccupied(i, x) + " ");
+//			}
+//			System.out.println();
+//		}
+//
+//		for (int i = 0; i <= 14; i++) {
+//			System.out.print(i + ":");
+//			for (int x = 0; x <= 14; x++) {
+//				System.out.print(cbm.getActualBlockState(i, x) + " ");
+//			}
+//			System.out.println();
+//		}
 	}
 	// by SilverNarcissus
 
@@ -1157,7 +1157,6 @@ public class SamuraiAI {
 			ChessBoardModel cbm2 = cbm1.clone();
 			samuraiPO1.occupied(i, cbm2, true);
 			if (cbm2.getActualBlockState(position.getX(), position.getY()) != 99) {
-				System.out.println("3ouryqwiuacbwq128p9 ovic7");
 				actionOperations.add(new ActionOperation(0, i));
 				//
 				// samuraiPO.occupied(i, chessBoardModel, true);

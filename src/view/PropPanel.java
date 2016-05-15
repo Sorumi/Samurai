@@ -112,7 +112,6 @@ public class PropPanel extends OrderPanel {
 	}
 
 	public void addProp(int propNum, int quantity){
-		System.out.println("Add " + propNum + " , " + quantity);
 		for(PropItem propItem : this.propItems){
 			if(propItem.getNum() == propNum){
 				propItem.updateQuantity(quantity);
@@ -121,7 +120,6 @@ public class PropPanel extends OrderPanel {
 	}
 
 	public void useProp(int propNum){
-		System.out.println("Use " + propNum);
 		for(PropItem propItem : this.propItems){
 			if(propItem.getNum() == propNum){
 				propItem.updateQuantity(-1);

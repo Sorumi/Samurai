@@ -36,7 +36,6 @@ public class PropHandler {
 			PropItem item = (PropItem) event.getSource();  
 			num = item.getNum();
 			quantity = item.getQuantity();
-			System.out.println("N " + num + " Q " + quantity);
 			if(quantity > 0){
 				OperationQueue.addOperation(new PropOperation(num));
 				propPanel.useProp(num);
