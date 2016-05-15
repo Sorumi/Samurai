@@ -4,6 +4,11 @@ public class Props {
 	private int type;
 	private int number;
 
+	public Props(int type, int number) {
+		this.type = type;
+		this.number = number;
+	}
+
 	public int getType() {
 		return type;
 	}
@@ -16,4 +21,7 @@ public class Props {
 		this.number = this.number + number;
 	}
 
+	public void setNumber(int number) {
+		this.number = number;
+	}
 }

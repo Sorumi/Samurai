@@ -12,12 +12,35 @@ public class PropsStore implements Serializable {
 	private int money;
 	Random random = new Random();
 
-	public PropsStore(){
+	public PropsStore() {
 		this.money = 0;
-
+		props.add(new Props(701, 0));
+		props.add(new Props(702, 0));
+		props.add(new Props(703, 0));
+		props.add(new Props(711, 0));
+		props.add(new Props(712, 0));
+		props.add(new Props(713, 0));
+		props.add(new Props(721, 0));
+		props.add(new Props(722, 0));
+		props.add(new Props(723, 0));
+		props.add(new Props(731, 0));
+		props.add(new Props(732, 0));
+		props.add(new Props(733, 0));
+		props.add(new Props(741, 0));
+		props.add(new Props(751, 0));
 	}
 
-	public void updateMoney(int delta){
+	public Props getProps(int type) {
+		for (Props prop : props) {
+			if (prop.getType() == type) {
+				return prop;
+			}
+		}
+		System.out.println("Wrong Props type");
+		return null;
+	}
+
+	public void updateMoney(int delta) {
 		this.money += delta;
 	}
 
@@ -231,11 +254,4 @@ public class PropsStore implements Serializable {
 		samuraiPO.changeCriticalHitRate(-50);
 	}
 
-	public ArrayList<Props> getProps() {
-		return props;
-	}
-
-	public void setProps(ArrayList<Props> props) {
-		this.props = props;
-	}
 }
