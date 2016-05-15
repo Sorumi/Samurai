@@ -90,10 +90,10 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(831, "青铜", "火炉里练出的铜块，包裹一层青色的漆料防止锈蚀，谓之青铜。"));
 		informationLibraries.add(new Information(832, "月之银", "由月神之力凝聚成的秘银，映照着月亮的光辉。"));
 		informationLibraries.add(new Information(833, "日之金", "这种金属的光泽超过了太阳的光辉，有它存在的地方，就有光明与希望。"));
-		informationLibraries.add(new Information(840, "火焰水晶", "840"));
-		informationLibraries.add(new Information(841, "寒冰水晶", "841"));
-		informationLibraries.add(new Information(842, "通灵之晶", "842"));
-		informationLibraries.add(new Information(843, "虚无幻灭", "843"));
+		informationLibraries.add(new Information(840, "火焰水晶", "火焰的种子被封存在这个水晶中，拿着它有种温暖的感觉。"));
+		informationLibraries.add(new Information(841, "寒冰水晶", "寒冰的气息被封存在这个水晶中，它散发出的气势可以扑灭接近它的火焰。"));
+		informationLibraries.add(new Information(842, "通灵之晶", "古灵的灵魂被封存在这个水晶中，夜晚会发出幽幽的光，聚集在一起似乎还能听到灵魂的律动。"));
+		informationLibraries.add(new Information(843, "虚无幻灭", "这颗水晶里似乎什么都没有，存在的极端也许就是虚无吧。"));
 		informationLibraries.add(new Information(911, "911", "911"));
 		informationLibraries.add(new Information(912, "912", "912"));
 		informationLibraries.add(new Information(913, "913", "913"));
