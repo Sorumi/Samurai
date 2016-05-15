@@ -24,6 +24,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	
 	private int samuraiNum;
 	public int currentWeapon;
+	public int currentArmor;
 	
 	public CampsiteSamuraiWrapper(CampsiteHandler campsiteHandler){
 		this.campsiteHandler = campsiteHandler;
@@ -82,13 +83,16 @@ public class CampsiteSamuraiWrapper extends Pane {
 		//TODO
 		//如果库存大于0 则abled 否则unabled
 	}
+	
+	public void setArmor(int num) {
+		currentArmor = num;
+		samurai.setArmor(num);
+	}
 
 	public void setSamurai(int num) {
 		this.samuraiNum = num;
 		samurai.setSamurai(samuraiNum);
 		this.setItemBtnAbled();
-		//TODO
-		//武器
 	}
 
 	public int getSamuraiNum(){
@@ -112,4 +116,5 @@ public class CampsiteSamuraiWrapper extends Pane {
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(-2) +", 0, 0, 0, 4);");
 
 	}
+
 }

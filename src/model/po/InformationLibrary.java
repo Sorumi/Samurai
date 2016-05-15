@@ -99,6 +99,7 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(913, "913", "913"));
 		informationLibraries.add(new Information(933, "933", "933"));
 		informationLibraries.add(new Information(914, "914", "914"));
+		informationLibraries.add(new Information(923, "923", "923"));
 		informationLibraries.add(new Information(924, "924", "924"));
 		informationLibraries.add(new Information(934, "934", "934"));
 		informationLibraries.add(new Information(915, "915", "915"));

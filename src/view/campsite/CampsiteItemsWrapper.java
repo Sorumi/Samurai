@@ -9,6 +9,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import model.po.Armor;
 import model.po.Weapon;
 import view.Images;
 import view.eventhandler.CampsiteHandler;
@@ -44,48 +45,30 @@ public class CampsiteItemsWrapper extends Pane{
 		scroll.setPrefWidth(500);
 		scroll.setPrefHeight(600);
 		this.getChildren().add(scroll);
-		
-		//TODO
-		//增加武器
-//		for (int i=0; i<=2; i++){
-//			for (int j=1; j<=3; j++){
-//				for (int k=1; k<=6; k++){
-//					if(Images.WEAPON[i][j][k] != null){
-//						CampsiteItemView item = new CampsiteItemView(i*100+j*10+k);
-//						item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
-//						item.setOnMouseExited(campsiteHandler.itemExitEvent);
-//						item.setOnMouseClicked(campsiteHandler.itemClickEvent);
-//						tile.getChildren().add(item);
-//					}
-//				}
-//				
-//			}
-//		}
-//		
-//		for (int i=3; i<=4; i++){
-//			for (int j=1; j<=2; j++){
-//				for (int k=1; k<=6; k++){
-//					if(Images.WEAPON[i][j][k] != null){
-//						CampsiteItemView item = new CampsiteItemView(i*100+j*10+k);
-//						item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
-//						item.setOnMouseExited(campsiteHandler.itemExitEvent);
-//						item.setOnMouseClicked(campsiteHandler.itemClickEvent);
-//						tile.getChildren().add(item);
-//					}
-//				}
-//				
-//			}
-//		}
-		
 
 	}
 	
-	public void updateItem(ArrayList<Weapon> list){
+	public void updateWeapon(ArrayList<Weapon> list){
 		
 		for (Weapon weapon : list){
 			int num = weapon.getType();
 			if(Images.WEAPON[num/100][num%100/10][num%10] != null){
 				CampsiteItemView item = new CampsiteItemView(num, weapon.getNumber());
+				item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
+				item.setOnMouseExited(campsiteHandler.itemExitEvent);
+				item.setOnMouseClicked(campsiteHandler.itemClickEvent);
+				tile.getChildren().add(item);
+			}				
+		}
+	}
+	
+	public void updateArmor(ArrayList<Armor> list){
+		
+		for (Armor armor : list){
+			int num9 = armor.getType();
+			int num = (num9-900)*10;
+			if(Images.ARMOR[num/100][num%100/10]!= null){
+				CampsiteItemView item = new CampsiteItemView(num9, armor.getNumber());
 				item.setOnMouseEntered(campsiteHandler.itemEnterEvent);
 				item.setOnMouseExited(campsiteHandler.itemExitEvent);
 				item.setOnMouseClicked(campsiteHandler.itemClickEvent);

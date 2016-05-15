@@ -78,6 +78,7 @@ public class SmithyPanel extends TransitionPanel {
 		
 		Button armorBtn = new SmithyButton(5);
 		armorBtn.setLayoutY(650);
+//		armorBtn.setStyle("-fx-background-color: #dddddd" );
 		armorPanel = new SmithyItemWrapper5(smithyHandler); 
 		armorGroup.getChildren().addAll(armorBtn, armorPanel);
 		

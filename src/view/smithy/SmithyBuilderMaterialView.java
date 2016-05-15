@@ -38,14 +38,22 @@ public class SmithyBuilderMaterialView extends Pane {
 		materialNameLabel.setLayoutX(10);
 		materialNameLabel.setLayoutY(110);
 		materialNameLabel.setId("material-name");
-		materialNameLabel.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(itemNum/100+5));
-		
+		if (itemNum/100 != 9){
+			materialNameLabel.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(itemNum/100+6));
+		}else{
+			materialNameLabel.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(11));
+		}
+
 		materialQuantity = new Label(currentQuantity + " / " + neededQuantity);
 		materialQuantity.setPrefSize(80, 20);
 		materialQuantity.setLayoutX(10);
 		materialQuantity.setLayoutY(140);
 		materialQuantity.setId("material-quantity");
-		materialQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(itemNum/100+10));
+		if (itemNum/100 != 9){
+			materialQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(itemNum/100+12));
+		}else{
+			materialQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(17));
+		}
 
 		this.getChildren().addAll(bgCircle, materialView, materialNameLabel, materialQuantity);
 	}
