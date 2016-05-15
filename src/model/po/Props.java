@@ -4,6 +4,9 @@ public class Props {
 	private int type;
 	private int number;
 
+	public Props() {
+	}
+
 	public Props(int type, int number) {
 		this.type = type;
 		this.number = number;
