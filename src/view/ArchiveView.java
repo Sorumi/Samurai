@@ -15,15 +15,21 @@ public class ArchiveView extends Pane{
 	
 	private ArchiveHandler archiveHandler;
 	
-	private int num;
+	public int type;
 	private Label nameLabel;
 	private Label timeLabel;
 	
 	public Button loadBtn;
 	public Button saveBtn;
 	
-	public ArchiveView(int num){
-		this.num = num;
+	/*
+	 * type:
+	 * 0: in Story
+	 * 1: in Menu
+	 */
+	
+	public ArchiveView(int num, int type){
+		this.type = type;
 		this.archiveHandler = new ArchiveHandler(this, num);
 		
 		this.setPrefWidth(width);
@@ -53,18 +59,20 @@ public class ArchiveView extends Pane{
 		loadBtn.setOnMouseClicked(archiveHandler.loadBtnClickEvent);
 		this.getChildren().add(loadBtn);
 		
-		saveBtn = new Button("保 存");
-		saveBtn.setPrefSize(100, 40);
-		saveBtn.setId("Asave-btn");		
-		saveBtn.setLayoutX(275);
-		saveBtn.setLayoutY(115);
-		saveBtn.setOnMouseEntered(archiveHandler.saveBtnEnterEvent);
-		saveBtn.setOnMouseExited(archiveHandler.saveBtnExitEvent);
-		saveBtn.setOnMouseClicked(archiveHandler.saveBtnClickEvent);
-		this.getChildren().add(saveBtn);
+		if (type == 0){
+			saveBtn = new Button("保 存");
+			saveBtn.setPrefSize(100, 40);
+			saveBtn.setId("Asave-btn");		
+			saveBtn.setLayoutX(275);
+			saveBtn.setLayoutY(115);
+			saveBtn.setOnMouseEntered(archiveHandler.saveBtnEnterEvent);
+			saveBtn.setOnMouseExited(archiveHandler.saveBtnExitEvent);
+			saveBtn.setOnMouseClicked(archiveHandler.saveBtnClickEvent);
+			this.getChildren().add(saveBtn);
+			this.btnAbled(1);
+		}
 		
 		this.btnAbled(0);
-		this.btnAbled(1);
 		
 		this.setVisible(true);
 

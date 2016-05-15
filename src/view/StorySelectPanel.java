@@ -32,7 +32,7 @@ public class StorySelectPanel extends Pane {
 		});
 		this.getChildren().add(closeBtn);
 		
-		newBtn = new Button("新的旅程");
+		newBtn = new Button("新的征程");
 		newBtn.setPrefSize(160, 40);
 		newBtn.setLayoutX(70);
 		newBtn.setLayoutY(72);
