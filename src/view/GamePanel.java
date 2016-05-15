@@ -308,6 +308,29 @@ public class GamePanel extends Pane implements Observer{
 				break;
 		}
 	}
+
+	public void setSamuraiArmor(int samurai, int Armor){
+		switch (samurai) {
+			case 1:
+				this.A1.samuraiV.setArmor(Armor);
+				break;
+			case 2:
+				this.A2.samuraiV.setArmor(Armor);
+				break;
+			case 3:
+				this.A3.samuraiV.setArmor(Armor);
+				break;
+			case 4:
+				this.B1.samuraiV.setArmor(Armor);
+				break;
+			case 5:
+				this.B2.samuraiV.setArmor(Armor);
+				break;
+			case 6:
+				this.B3.samuraiV.setArmor(Armor);
+				break;
+		}
+	}
 	
 	public void setBackground(int level){		
 	    this.setStyle("-fx-background-image: url("+Images.BG[level/10]+") ;"
@@ -444,7 +467,6 @@ public class GamePanel extends Pane implements Observer{
 		return bloodTotal[i];
 	}
 
-//	public void updatePropPanel(int )
 
 	public void update(Observable o, Object arg) {
 		UpdateMessage notifingObject = (UpdateMessage)arg;
@@ -590,7 +612,6 @@ public class GamePanel extends Pane implements Observer{
 					
 				}else if(key.equals("experiences")){
 					resultPanel.setExperiences((int[])notifingObject.getValue());
-					resultPanel.setStart();
 
 				}else if(key.equals("healthTotal")){
 					int[] t = (int [])notifingObject.getValue();
@@ -602,8 +623,10 @@ public class GamePanel extends Pane implements Observer{
 					bloodRest[t[0]] = t[1];
 
 				}else if(key.equals("rating")){
-					System.out.println("Rating : " + (int)notifingObject.getValue());
-
+//					System.out.println("Rating : " + (int)notifingObject.getValue());
+					resultPanel.setRate((int)notifingObject.getValue());
+					resultPanel.setStart();
+					
 				}else if(key.equals("prop")){
 					int[] t = (int [])notifingObject.getValue();
 					addProp(t[0], t[1], t[2]);
