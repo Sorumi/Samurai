@@ -49,14 +49,14 @@ public abstract class SmithyItemWrapper extends Pane{
 	private void showState(){
 		for(int i=0; i<buildGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
-			tmpItem.weaponGroup.setOnMouseEntered(smithyHandler.showStatePanel);
+			tmpItem.group.setOnMouseEntered(smithyHandler.showStatePanel);
 		}
 	}
 	
 	private void closeState(){ 
 		for(int i=0; i<buildGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
-			tmpItem.weaponGroup.setOnMouseExited(smithyHandler.closeStatePanel); 
+			tmpItem.group.setOnMouseExited(smithyHandler.closeStatePanel); 
 		}
 	}
 	 
@@ -64,7 +64,7 @@ public abstract class SmithyItemWrapper extends Pane{
 	private void addClickEvent(){
 		for(int i=0; i<buildGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
-			tmpItem.weaponGroup.setOnMouseClicked(smithyHandler.itemClickEvent);
+			tmpItem.group.setOnMouseClicked(smithyHandler.itemClickEvent);
 			tmpItem.weapon.setOpacity(1);
 		}
 	}
