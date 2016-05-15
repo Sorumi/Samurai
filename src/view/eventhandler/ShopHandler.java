@@ -1,7 +1,9 @@
 package view.eventhandler;
 
+import controller.ShopController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import model.StoryModel;
 import view.TerritoryPanel;
 import view.shop.ShopItemView;
 import view.shop.ShopPanel;
@@ -9,9 +11,19 @@ import view.store.StoreItemView;
 
 public class ShopHandler {
 	private ShopPanel shopPanel;
+	private ShopController shopController;
 
 	public ShopHandler(ShopPanel shopPanel) {
 		this.shopPanel = shopPanel;
+		this.shopController = new ShopController();
+		this.shopController.setStoryModel(StoryModel.getStoryModel());
+
+		this.shopController.setPropsStore();
+
+		//加入更新钱数的方法
+		//this.shopController.getMoney();
+		//加入更新道具数量的方法
+//		this.shopController
 	}
 
 	public EventHandler<MouseEvent> plusQuantityEvent = new EventHandler<MouseEvent>() {
