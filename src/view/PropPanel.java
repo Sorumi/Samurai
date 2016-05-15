@@ -111,18 +111,18 @@ public class PropPanel extends OrderPanel {
 		timeline.play();
 	}
 
-	public void addProp(int propNum, int quantity){
-		for(PropItem propItem : this.propItems){
-			if(propItem.getNum() == propNum){
-				propItem.updateQuantity(quantity);
-			}
-		}
-	}
-
 	public void useProp(int propNum){
 		for(PropItem propItem : this.propItems){
 			if(propItem.getNum() == propNum){
 				propItem.updateQuantity(-1);
+			}
+		}
+	}
+
+	public void setProp(int propNum, int quantity){
+		for(PropItem propItem : this.propItems){
+			if(propItem.getNum() == propNum){
+				propItem.setQuantity(quantity);
 			}
 		}
 	}
@@ -157,6 +157,11 @@ public class PropPanel extends OrderPanel {
 
 		public void updateQuantity(int i) {
 			quantity += i;
+			quantityLabel.setText(quantity + "");
+		}
+
+		public void setQuantity(int i) {
+			quantity = i;
 			quantityLabel.setText(quantity + "");
 		}
 	}

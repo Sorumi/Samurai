@@ -617,7 +617,7 @@ public class GamePanel extends Pane implements Observer{
 					int[] t = (int [])notifingObject.getValue();
 					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop ");
 					int size = propsGroup.getChildren().size();
-					for(int i=0; i<size; i++){
+					for(int i = 0; i < size; i++){
 						PropView prop = (PropView) propsGroup.getChildren().get(i);
 						if(prop.x == t[0] && prop.y == t[1]){
 							propsGroup.getChildren().remove(i);
@@ -627,10 +627,10 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("allProps")) {
 					int[] propList = (int[]) notifingObject.getValue();
-					//等待加入:更新 propPanel 的消息
-					//这也是最后发得到了多少道具的消息
+					//更新 propPanel 的消息
 					for (int i = 1; i <= 14; i++) {
-						propPanel.addProp(i,propList[i]);
+						propPanel.setProp(i,propList[i]);
+						System.out.println("Prop " + i + " have " + propList[i]);
 					}
 				}else if(key.equals("useProp")){
 					propPanel.useProp((int)notifingObject.getValue());

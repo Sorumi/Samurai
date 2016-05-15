@@ -28,7 +28,8 @@ public class CampsiteHandler {
 		campsitePanel.getItemsPanel().updateWeapon(campsiteController.getWeapons());
 		campsitePanel.getItemsPanel().updateArmor(campsiteController.getArmors());
 		campsitePanel.samuraiPanel.setSamurai(1);
-		campsitePanel.samuraiPanel.samurai.setWeapon(campsiteController.getWeaponOfSamurai(1).getType());
+		campsitePanel.samuraiPanel.setWeapon(campsiteController.getWeaponOfSamurai(1).getType());
+		campsitePanel.samuraiPanel.setArmor(campsiteController.getArmorOfSamurai(1).getType() - 900);
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {
@@ -58,8 +59,8 @@ public class CampsiteHandler {
 						information.getDescription(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(),
 						weapon.getCriticalRate(), weapon.getArmorPenetration());
 
-			}else{
-				campsitePanel.samuraiPanel.setArmor(item.getNum()-900);
+			} else {
+				campsitePanel.samuraiPanel.setArmor(item.getNum() - 900);
 
 				Information information = campsiteController.getInformationOfTag(item.getNum());
 				Armor armor = campsiteController.getArmorOfTag(item.getNum());
@@ -83,9 +84,13 @@ public class CampsiteHandler {
 	public EventHandler<MouseEvent> setItemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			// 用 controller 换武器
-			// campsitePanel.samuraiPanel.setItemBtnPressed();
 			campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(),
 					campsitePanel.samuraiPanel.currentWeapon);
+
+			if (campsitePanel.samuraiPanel.isArmor) {
+				campsiteController.changeArmor(campsitePanel.samuraiPanel.getSamuraiNum(),
+						campsitePanel.samuraiPanel.currentArmor+900);
+			}
 		}
 	};
 

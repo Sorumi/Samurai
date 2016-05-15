@@ -5,6 +5,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.geometry.Pos;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -18,6 +19,7 @@ public class ShopItemView extends StackPane {
 	private final int RADIUS = 50;
 	private int itemNum;
 	private Circle bgCircle;
+	private ColorAdjust light;
 	
 	public ShopItemView(int itemNum){
 		this.itemNum = itemNum;
@@ -37,20 +39,21 @@ public class ShopItemView extends StackPane {
 		PropView prop = new PropView(itemNum,3);  
 		this.getChildren().add(prop);
 		StackPane.setAlignment(prop,Pos.CENTER);
+		
+		light = new ColorAdjust();
+		this.setEffect(light);
 	}
 	
 	public void setHighlight() {		
 		Timeline tl= new Timeline(
-				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), Color.web("#CFE4E8"),  Interpolator.EASE_IN)),
-				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 2, Interpolator.EASE_IN))
+				new KeyFrame(Duration.millis(300), new KeyValue(light.brightnessProperty(), 0.4, Interpolator.EASE_IN))
 				);
 		tl.play();
 	}
 	
 	public void setNormal(){
 		Timeline tl= new Timeline(
-				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.fillProperty(), Color.web("#CFE4E8"),  Interpolator.EASE_IN)),
-				new KeyFrame(Duration.millis(300), new KeyValue(bgCircle.strokeWidthProperty(), 0, Interpolator.EASE_IN))
+				new KeyFrame(Duration.millis(300), new KeyValue(light.brightnessProperty(), 0,  Interpolator.EASE_IN))
 				);
 		tl.play();	
 	}
