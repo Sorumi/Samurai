@@ -13,6 +13,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import view.eventhandler.PropHandler;
 
+import java.util.ArrayList;
+
 public class PropPanel extends OrderPanel {
 	private int width = 390;
 	private int height = 130;
@@ -25,7 +27,12 @@ public class PropPanel extends OrderPanel {
 
 	private PropHandler propHandler;
 
+	private ArrayList<PropItem> propItems;
+
 	public PropPanel() {
+
+		System.out.println("Construct PP");
+
 		this.setPrefHeight(height);
 		this.setPrefWidth(width);
 
@@ -55,29 +62,38 @@ public class PropPanel extends OrderPanel {
 		propGroup.setLayoutX(5);
 		propGroup.setLayoutY(20);
 
+		this.propItems = new ArrayList<>();
+
 		for (int i = 1; i <= 6; i++) {
-			PropItem item = new PropItem(i, 3);
+			PropItem item = new PropItem(i, 0);
+			this.propItems.add(item);
 			item.setLayoutX(55 * (i - 1));
 			item.setLayoutY(0);
 			propGroup.getChildren().add(item);
+			item.setOnMouseClicked(propHandler.itemClickEvent); 
 		}
 		for (int i = 1; i <= 6; i++) {
-			PropItem item = new PropItem(i + 6, 3);
+			PropItem item = new PropItem(i + 6, 0);
+			this.propItems.add(item);
 			item.setLayoutX(55 * (i - 1));
 			item.setLayoutY(55);
 			propGroup.getChildren().add(item);
+			item.setOnMouseClicked(propHandler.itemClickEvent);
 		}
 
 		for (int i = 13; i <= 14; i++) {
-			PropItem item = new PropItem(i, 3);
+			PropItem item = new PropItem(i, 0);
+			this.propItems.add(item);
 			item.setLayoutX(55 * 6);
 			item.setLayoutY(55 * (i - 13));
 			propGroup.getChildren().add(item);
+			item.setOnMouseClicked(propHandler.itemClickEvent);
 		}
+
 		this.getChildren().add(propGroup);
 		this.setOnMouseEntered(propHandler.showPropPanel);
 		this.setOnMouseExited(propHandler.hidePropPanel);
-		this.setOnMouseClicked(propHandler.itemClickEvent);
+//		this.setOnMouseClicked(propHandler.itemClickEvent);
 
 		this.setLayoutX(600-width/2);
 		this.setLayoutY(785);
@@ -95,12 +111,32 @@ public class PropPanel extends OrderPanel {
 		timeline.play();
 	}
 
+	public void addProp(int propNum, int quantity){
+		for(PropItem propItem : this.propItems){
+			if(propItem.getNum() == propNum){
+				propItem.updateQuantity(quantity);
+			}
+		}
+	}
+
+	public void useProp(int propNum){
+		for(PropItem propItem : this.propItems){
+			if(propItem.getNum() == propNum){
+				propItem.updateQuantity(-1);
+			}
+		}
+	}
+
 	public class PropItem extends StackPane {
 		private Label quantityLabel;
 		private int RADIUS = 25;
+		private int num;
+		private int quantity;
 
 		public PropItem(int itemNum, int quantity) {
 			this.setPrefSize(RADIUS * 2, RADIUS * 2);
+			this.num = itemNum;
+			this.quantity = quantity;
 
 			PropView prop = new PropView(itemNum, 2);
 
@@ -109,6 +145,19 @@ public class PropPanel extends OrderPanel {
 			quantityLabel.setId("prop-quantity");
 			this.getChildren().addAll(prop, quantityLabel);
 			StackPane.setAlignment(quantityLabel, Pos.BOTTOM_RIGHT);
+		}
+		
+		public int getNum(){
+			return num;
+		}
+		
+		public int getQuantity(){
+			return quantity;
+		}
+
+		public void updateQuantity(int i) {
+			quantity += i;
+			quantityLabel.setText(quantity + "");
 		}
 	}
 

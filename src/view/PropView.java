@@ -18,16 +18,16 @@ public class PropView extends Pane{
 	public PropView(int num, int SCALE){
 
 		switch(SCALE){
-		case 1:
-			 width = 30;
-			 break;
-		case 2:
-			 width = 50;
-			 break;
-		case 3:
-			 width = 100;
-			 break;
-		}
+			case 1:
+				 width = 30;
+				 break;
+			case 2:
+				 width = 50;
+				 break;
+			case 3:
+				 width = 100;
+				 break;
+			}
 		this.setPrefSize(width, width);
 
 		ImageView imgV = new ImageView(Images.PROP[num]); 

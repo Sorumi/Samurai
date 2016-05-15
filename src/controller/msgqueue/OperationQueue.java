@@ -38,7 +38,9 @@ public class OperationQueue implements Runnable, Serializable {
 		while(!Thread.currentThread().isInterrupted()){
 			Operation operation = getNewOperation();
 
-			System.out.println("execute Operation : " + operation.getClass());
+			if(!(operation instanceof TimeOperation)) {
+				System.out.println("execute Operation : " + operation.getClass());
+			}
 
 			UpdateMessage updateMessage = new UpdateMessage("execute", operation);
 
@@ -72,7 +74,7 @@ public class OperationQueue implements Runnable, Serializable {
 
 						System.out.println("wait...");
 						try {
-							Thread.sleep(2400);
+							Thread.sleep(1200);
 						} catch (Exception E) {
 							E.printStackTrace();
 						}

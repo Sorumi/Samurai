@@ -242,13 +242,13 @@ public class SamuraiPO implements Serializable, Cloneable {
 	}
 
 	public void beKilled(ChessBoardModel cbm) {
+		if(hide){
+			show(cbm);
+		}
 		cbm.changeActualBlock(this.pos.getX(), this.pos.getY(), false);
 		this.pos.setX(this.home.getX());
 		this.pos.setY(this.home.getY());
 		cbm.changeActualBlock(this.home.getX(), this.home.getY(), true);
-		if (hide) {
-			cbm.changeActualBlock(this.home.getX(), this.home.getY(), false);
-		}
 	}
 
 	public void beKilledWithPos(ChessBoardModel cbm, Position position){
@@ -256,9 +256,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.pos.setX(position.getX());
 		this.pos.setY(position.getY());
 		cbm.changeActualBlock(position.getX(), this.home.getY(), true);
-		if (hide) {
-			cbm.changeActualBlock(this.home.getX(), this.home.getY(), false);
-		}
 	}
 
 	// 0:up 1:right 2:left 3:down
@@ -438,7 +435,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 						return false;
 					}
 				} else {
-					cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					if(!(pos.getX() == home.getX() && pos.getY() == home.getY())) {
+						cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					}
 					pos.setX(pos.getX() - 1);
 					cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 				}
@@ -467,7 +466,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 						return false;
 					}
 				} else {
-					cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					if(!(pos.getX() == home.getX() && pos.getY() == home.getY())) {
+						cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					}
 					pos.setY(pos.getY() - 1);
 					cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 				}
@@ -496,7 +497,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 						return false;
 					}
 				} else {
-					cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					if(!(pos.getX() == home.getX() && pos.getY() == home.getY())) {
+						cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					}
 					pos.setY(pos.getY() + 1);
 					cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 				}
@@ -525,7 +528,9 @@ public class SamuraiPO implements Serializable, Cloneable {
 						return false;
 					}
 				} else {
-					cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					if(!(pos.getX() == home.getX() && pos.getY() == home.getY())) {
+						cbm.changeActualBlock(pos.getX(), pos.getY(), false);
+					}
 					pos.setX(pos.getX() + 1);
 					cbm.changeActualBlock(pos.getX(), pos.getY(), true);
 				}
@@ -1068,6 +1073,10 @@ public class SamuraiPO implements Serializable, Cloneable {
 
 	public boolean hide(ChessBoardModel cbm) {
 		int state = cbm.getActualBlockState(pos.getX(), pos.getY());
+		//家里不能隐藏
+		if (pos.getX() == home.getX() && pos.getY() == home.getY()) {
+			return false;
+		}
 		if (player == 0) {
 			if (state == 1 || state == 2 || state == 3) {
 				hide = true;

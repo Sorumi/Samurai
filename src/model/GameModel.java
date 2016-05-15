@@ -74,6 +74,10 @@ public class GameModel extends BaseModel implements Observer {
             default:
                 break;
         }
+        for (int i = 1; i <= 3; i++) {
+            this.getSamuraiOfNum(i).beKilled(chessBoardModel);
+        }
+
         isServer = false;
         isClient = false;
     }
@@ -338,8 +342,11 @@ public class GameModel extends BaseModel implements Observer {
                 this.assignNextWithAI();
                 break;
             default:
-                //故事模式重置道具 list
+                //故事模式
+                //重置道具 list
                 this.propsInGList.clear();
+                //更新propPanel
+                super.updateChange(new UpdateMessage("allProps", this.propList));
                 this.assignNextWithAI();
                 break;
         }
@@ -374,7 +381,6 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
-        System.out.println("Update Pos : " + position);
 
         if(this.level != 99) {
             ArrayList<PropsInG> tmp = new ArrayList<>();
@@ -383,10 +389,8 @@ public class GameModel extends BaseModel implements Observer {
                 if (props.getPosition().getX() == position.getX() &&
                         props.getPosition().getY() == position.getY()) {
 
-                    System.out.println("Get prop!" + props.getType());
-
                     //只有人类玩家才加道具
-                    if(this.samuraiSeq[this.currentSamurai - 1] / 4 == 1) {
+                    if(this.getCurrentSamurai()  / 4 == 0) {
                         propList[props.getType()]++;
                     }
 
@@ -395,7 +399,7 @@ public class GameModel extends BaseModel implements Observer {
                     System.out.println(props.getType() + " number: " + propList[props.getType()]);
 
                     //这个消息是用来消失道具的
-                    super.updateChange(new UpdateMessage("getProp", position));
+                    super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY(), props.getType()}));
 
                     super.updateChange(new UpdateMessage("allProps", this.propList));
                 }
@@ -410,9 +414,9 @@ public class GameModel extends BaseModel implements Observer {
 
     public void useProp(int propNum){
         propList[propNum]--;
-        System.out.println("prop : " + propNum + " num " + propList[propNum]);
         if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum);
+            super.updateChange(new UpdateMessage("useProp",propNum));
         }
     }
 
@@ -456,7 +460,6 @@ public class GameModel extends BaseModel implements Observer {
                     double ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (1-(ta / (ta + 100)));
-                        System.out.println(attackPointDouble);
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -693,6 +696,7 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
 //            this.updateVisible(this.updateVision());
+
         }else{
 
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
@@ -717,7 +721,8 @@ public class GameModel extends BaseModel implements Observer {
                 //暂时固定位置
                 Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
                 //type 都是1~14的
-                int type = random.nextInt(14) + 1;
+//                int type = random.nextInt(14) + 1;
+                int type = 12;
                 this.propsInGList.add(new PropsInG(position,type));
 
                 super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
@@ -733,7 +738,7 @@ public class GameModel extends BaseModel implements Observer {
             }
             for (PropsInG propsInG : tmp){
                 Position position = propsInG.getPosition();
-                super.updateChange(new UpdateMessage("getProp", position));
+                super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY(), propsInG.getType()}));
                 this.propsInGList.remove(propsInG);
             }
 
@@ -746,10 +751,9 @@ public class GameModel extends BaseModel implements Observer {
                     this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
                 }
             }
-
         }
 
-        System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
+        System.out.println("Now is " + this.getCurrentSamurai());
 
         if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
 
@@ -762,6 +766,7 @@ public class GameModel extends BaseModel implements Observer {
             }
 
             this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
+            this.getSamuraiOfNum(this.getCurrentSamurai()).setHealthPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint());
 
             super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
             super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
@@ -1034,7 +1039,6 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
-            System.out.println("Time: " + this.currentTime);
             this.currentTime--;
 
         }else{
