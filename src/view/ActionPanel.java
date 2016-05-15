@@ -75,6 +75,8 @@ public class ActionPanel extends OrderPanel {
 		moveButton.setTrue();
 		occupyButton.setTrue();
 		hideButton.setTrue();
+		exitButton.setTrue();
+		backButton.setTrue();
 		if (!this.currentSamurai.isCanHide()) {
 			hideButton.setFalse();
 		}

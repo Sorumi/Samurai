@@ -12,7 +12,7 @@ public class ActionButton extends Pane {
 	private ImageView imageFront;
 	public int pointsCost;
 	public int action;
-	public boolean canAction;
+//	public boolean canAction;
 	private ActionHandler actionHandler;
 
 	public ActionButton(int action, ActionHandler actionHandler) {
@@ -39,11 +39,14 @@ public class ActionButton extends Pane {
 			break;
 		case 3:
 			pointsCost = 0;
-			setOnMouseClicked(actionHandler.backEvent);
+			setOnMouseClicked(actionHandler.exitEvent);
+			break;
+		case 4:
+			this.setOnMouseClicked(actionHandler.backEvent);
 			break;
 		}
 
-		this.canAction = true;
+//		this.canAction = true;
 	}
 
 	private void setHandler() {
@@ -58,7 +61,10 @@ public class ActionButton extends Pane {
 			this.setOnMouseClicked(actionHandler.hideEvent);
 			break;
 		case 3:
-			setOnMouseClicked(actionHandler.backEvent);
+			this.setOnMouseClicked(actionHandler.exitEvent);
+			break;
+		case 4:
+			this.setOnMouseClicked(actionHandler.backEvent);
 			break;
 		}
 	}
@@ -70,12 +76,12 @@ public class ActionButton extends Pane {
 		grayColor.setSaturation(-0.9);
 
 		imageFront.setEffect(grayColor);
-		this.canAction = false;
+//		this.canAction = false;
 	}
 
 	public void setTrue() {
 		imageFront.setEffect(null);
 		this.setHandler();
-		this.canAction = true;
+//		this.canAction = true;
 	}
 }
