@@ -5,7 +5,11 @@ import model.po.*;
 import network.TransformObject;
 import network.client.ClientService;
 import view.GamePanel;
-//import view.MainFrame;
+
+/*
+ * 2016-05-15 1,000 Lines Get!
+ * By KrayC
+ */
 
 import java.util.*;
 
@@ -100,6 +104,7 @@ public class GameModel extends BaseModel implements Observer {
         this.propsInGList = new ArrayList<>();
 
         this.propsStore = StoryModel.getStoryModel().getPropsStore();
+        
 
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
 
@@ -693,7 +698,7 @@ public class GameModel extends BaseModel implements Observer {
             }
             for (PropsInG propsInG : tmp){
                 Position position = propsInG.getPosition();
-                super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY()}));
+                super.updateChange(new UpdateMessage("getProp", position));
                 this.propsInGList.remove(propsInG);
             }
 

@@ -14,6 +14,7 @@ public class PropsStore implements Serializable {
 
 	public PropsStore(){
 		this.money = 0;
+
 	}
 
 	public void updateMoney(int delta){
@@ -228,5 +229,13 @@ public class PropsStore implements Serializable {
 	private void replaceSmallSurprise(SamuraiPO samuraiPO) {
 		samuraiPO.changeAttackPoint(-200);
 		samuraiPO.changeCriticalHitRate(-50);
+	}
+
+	public ArrayList<Props> getProps() {
+		return props;
+	}
+
+	public void setProps(ArrayList<Props> props) {
+		this.props = props;
 	}
 }
