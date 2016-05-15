@@ -74,7 +74,7 @@ public class OperationQueue implements Runnable, Serializable {
 
 						System.out.println("wait...");
 						try {
-							Thread.sleep(2400);
+							Thread.sleep(1200);
 						} catch (Exception E) {
 							E.printStackTrace();
 						}
