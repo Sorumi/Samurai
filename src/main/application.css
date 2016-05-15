@@ -320,10 +320,20 @@
 #blood-label{
 	-fx-background-color: #ffffff;
 	-fx-text-fill: #9b9b9b;
+	-fx-background-radius: 22;
+	-fx-border-radius: 22;
+	-fx-font-family: "Tsukushi B Round Gothic";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+	-fx-text-alignment: center;
+}
+#blood-label-big{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #9b9b9b;
 	-fx-background-radius: 44;
 	-fx-border-radius: 44;
 	-fx-font-family: "Tsukushi B Round Gothic";
-	-fx-font-size: 18;
+	-fx-font-size: 36;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
 }
