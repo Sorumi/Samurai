@@ -20,9 +20,9 @@ public class MapController extends TerritoryController {
         this.gamePanel.setSamuraiWeapon(1,storyModel.getSamuraiPO(1).getWeapon().getType());
         this.gamePanel.setSamuraiWeapon(2,storyModel.getSamuraiPO(2).getWeapon().getType());
         this.gamePanel.setSamuraiWeapon(3,storyModel.getSamuraiPO(3).getWeapon().getType());
-        this.gamePanel.setSamuraiArmor(1,storyModel.getSamuraiPO(1).getArmor().getType());
-        this.gamePanel.setSamuraiArmor(2,storyModel.getSamuraiPO(2).getArmor().getType());
-        this.gamePanel.setSamuraiArmor(3,storyModel.getSamuraiPO(3).getArmor().getType());
+        this.gamePanel.setSamuraiArmor(1,storyModel.getSamuraiPO(1).getArmor().getType() - 900);
+        this.gamePanel.setSamuraiArmor(2,storyModel.getSamuraiPO(2).getArmor().getType() - 900);
+        this.gamePanel.setSamuraiArmor(3,storyModel.getSamuraiPO(3).getArmor().getType() - 900);
 
         for (int i = 1; i <= 3; i++) {
             SamuraiPO tmpPO = storyModel.getSamuraiPO(i);
