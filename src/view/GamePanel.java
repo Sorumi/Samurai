@@ -602,7 +602,7 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("prop")){
 					int[] t = (int [])notifingObject.getValue();
-					addProp(t[0], t[1], t[2] == 0 ? t[2] : 0);
+					addProp(t[0], t[1], t[2]);
 
 				}else if(key.equals("goodbyeactionpanel")){
 					actionPanel.setAppear(false,false);

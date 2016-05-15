@@ -30,7 +30,7 @@ public class PropView extends Pane{
 		}
 		this.setPrefSize(width, width);
 
-		ImageView imgV = new ImageView(Images.PROP_0);
+		ImageView imgV = new ImageView(Images.PROP[num]); 
 		imgV.setFitWidth(width);
 		imgV.setPreserveRatio(true);
 		

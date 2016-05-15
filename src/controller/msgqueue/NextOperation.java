@@ -1,7 +1,6 @@
 package controller.msgqueue;
 
 import model.GameModel;
-import model.GameModelService;
 
 
 /**

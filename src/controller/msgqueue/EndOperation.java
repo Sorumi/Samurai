@@ -26,7 +26,6 @@ public class EndOperation extends Operation {
             model.gameOver();
         }else{
             model.exit();
-            
         }
     }
 }

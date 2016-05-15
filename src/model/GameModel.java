@@ -307,7 +307,10 @@ public class GameModel extends BaseModel implements Observer {
             case 0:
                 this.assignNext();
                 break;
+            case 99:
+                this.assignNextWithAI();
             default:
+                this.propsInGList.clear();
                 this.assignNextWithAI();
                 break;
         }
@@ -418,7 +421,8 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(1).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
+                        System.out.println(attackPointDouble);
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -438,7 +442,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(2).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -458,7 +462,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(3).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -478,7 +482,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(4).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(4).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -498,7 +502,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(5).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(5).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -518,7 +522,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(6).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(6).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -662,14 +666,13 @@ public class GameModel extends BaseModel implements Observer {
         if(this.level != 99) {
             Random random = new Random();
             if (random.nextInt(1) == 0) {
-//                Position position = this.randomPropLocation();
+                Position position = this.randomPropLocation();
                 //暂时固定位置
-                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
-//                int type = random.nextInt(6);
-                //暂时固定type = 13
-                this.propsInGList.add(new PropsInG(position,751));
+//                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
+                int type = random.nextInt(14) + 1;
+                this.propsInGList.add(new PropsInG(position,type));
 
-                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),PropsInG.getRealType(751)}));
+                super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
             }
 
             //把所有道具存活轮数减1,如果是0的就去掉
@@ -820,6 +823,10 @@ public class GameModel extends BaseModel implements Observer {
 
         System.out.println("Action Done");
 
+        if(this.timer != null){
+            this.timer.cancel();
+        }
+
         if(this.currentRound < this.totalRound) {
             this.currentRound++;
             if((this.currentSamurai++) % 6 == 0){
@@ -965,7 +972,7 @@ public class GameModel extends BaseModel implements Observer {
     public void countDown(){
         if(this.currentTime > 0) {
             super.updateChange(new UpdateMessage("time", this.currentTime));
-
+            System.out.println("Time: " + this.currentTime);
             this.currentTime--;
 
         }else{
