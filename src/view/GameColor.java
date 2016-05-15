@@ -80,11 +80,11 @@ public class GameColor {
 		case 13: color = Color.web("#84BFC9");break;//shuriken
 		case 14: color = Color.web("#A592C9");break;//bow and arrow
 		//background
-		case 15: color = Color.web("#E2B2B0");break;//spear
-		case 16: color = Color.web("#EEE0AE");break;//sword
-		case 17: color = Color.web("#DCE2C8");break;//battleax
-		case 18: color = Color.web("#D2E0ED");break;//shuriken
-		case 19: color = Color.web("#DCD5E6");break;//bow and arrow
+//		case 15: color = Color.web("#E2B2B0");break;//spear
+//		case 16: color = Color.web("#EEE0AE");break;//sword
+//		case 17: color = Color.web("#DCE2C8");break;//battleax
+//		case 18: color = Color.web("#D2E0ED");break;//shuriken
+//		case 19: color = Color.web("#DCD5E6");break;//bow and arrow
 	
 		default: color = Color.web("#EEEEEE");
 		}
@@ -135,19 +135,23 @@ public class GameColor {
 			case 2: color = "#DCE2C8";break;//battleax
 			case 3: color = "#D2E0ED";break;//shuriken
 			case 4: color = "#DCD5E6";break;//bow and arrow
+			case 5: color = "#F6ECF8";break;//armor
 			
 			//button
-			case 5: color = "#975C5A";break;//spear
-			case 6: color = "#C9B881";break;//sword
-			case 7: color = "#919B6E";break;//battleax
-			case 8: color = "#6183A2";break;//shuriken
-			case 9: color = "#A593BE";break;//bow and arrow
+			case 6: color = "#975C5A";break;//spear
+			case 7: color = "#C9B881";break;//sword
+			case 8: color = "#919B6E";break;//battleax
+			case 9: color = "#6183A2";break;//shuriken
+			case 10: color = "#A593BE";break;//bow and arrow
+			case 11: color = "#DDCAE1";break;//armor
+			
 			//button shadow
-			case 10: color = "#74403E";break;//spear
-			case 11: color = "#AF9F6B";break;//sword
-			case 12: color = "#798453";break;//battleax
-			case 13: color = "#4A6B8A";break;//shuriken
-			case 14: color = "#846FA1";break;//bow and arrow
+			case 12: color = "#74403E";break;//spear
+			case 13: color = "#AF9F6B";break;//sword
+			case 14: color = "#798453";break;//battleax
+			case 15: color = "#4A6B8A";break;//shuriken
+			case 16: color = "#846FA1";break;//bow and arrow
+			case 17: color = "#B9A0BE";break;//armor
 			
 			//button unabled
 			case -1: color = "#b4b4b4";break;

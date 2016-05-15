@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
+import view.ArmorView;
 import view.GameColor;
 import view.WeaponView;
 
@@ -42,10 +43,17 @@ public class CampsiteItemView extends StackPane {
 		this.getChildren().add(quantityLabel);
 		StackPane.setAlignment(quantityLabel,Pos.BOTTOM_RIGHT);
 		
-		WeaponView weapon = new WeaponView(itemNum);
-		this.getChildren().add(weapon);
-		StackPane.setAlignment(weapon,Pos.CENTER);
-
+		if(itemNum/100 != 9){
+			WeaponView weapon = new WeaponView(itemNum);
+			this.getChildren().add(weapon);
+			StackPane.setAlignment(weapon,Pos.CENTER);
+		}else{
+			ArmorView armor = new ArmorView(itemNum);
+			this.getChildren().add(armor);
+			StackPane.setAlignment(armor,Pos.CENTER);
+			System.out.println("armor: " + itemNum);
+		}
+		
 	}
 
 	public void setHighlight() {

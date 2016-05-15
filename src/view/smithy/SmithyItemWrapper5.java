@@ -6,7 +6,7 @@ import view.eventhandler.SmithyHandler;
 public class SmithyItemWrapper5 extends SmithyItemWrapper {
 	public SmithyItemWrapper5(SmithyHandler smithyHandler) {
 		super(5, smithyHandler);
-
+		
 		SmithyItemView item911 = new SmithyItemView(911, -1);
 		item911.setLayoutY(362.5);
 
@@ -50,10 +50,10 @@ public class SmithyItemWrapper5 extends SmithyItemWrapper {
 		list = FXCollections.observableArrayList(item911, item912, item913, item914, item915, item916, item923, item924,
 				item925, item926, item934, item935, item936);
 
-		// this.buildGroup.getChildren().addAll();
+
 		this.lockGroup.getChildren().addAll(item911, item912, item913, item914, item915, item916, item923, item924,
 				item925, item926, item934, item935, item936);
-
+		
 		this.initWeaponView();
 	}
 

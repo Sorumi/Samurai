@@ -35,7 +35,8 @@ public class ShopItemPurchase extends Pane{
 
 		this.shopHandler = shopHandler;
 
-		this.perPrice = perPrice;
+
+
 		img1 = new ImageView(Images.COIN);
 		img1.setFitWidth(30);
 		img1.setPreserveRatio(true);
