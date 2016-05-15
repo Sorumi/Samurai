@@ -101,17 +101,8 @@ public class LevelSelectPanel extends Pane{
 		materialCircleTwo.setCenterY(140);
 		materialCircleTwo.setRadius(25);
 
-		materialOne = new MaterialView();
-//		materialOne.setLayoutX(125);
-//		materialOne.setLayoutY(90);
-//		materialOne.setScaleX(0.5);
-//		materialOne.setScaleY(0.5);
-		
+		materialOne = new MaterialView();		
 		materialTwo = new MaterialView(); 
-//		materialTwo.setLayoutX(245);
-//		materialTwo.setLayoutY(90);
-//		materialTwo.setScaleX(0.5);
-//		materialTwo.setScaleY(0.5);
 		
 		levelBtnOne = new LevelButton("简 单", 1); 
 		levelBtnTwo = new LevelButton("普 通", 2);
