@@ -748,6 +748,7 @@ public class GameModel extends BaseModel implements Observer {
             if(i != 0){
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(0);
                 if(i != 13) {
+                    System.out.println("replace");
                     this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
                 }
             }

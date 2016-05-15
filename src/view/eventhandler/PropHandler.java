@@ -38,7 +38,6 @@ public class PropHandler {
 			quantity = item.getQuantity();
 			if(quantity > 0){
 				OperationQueue.addOperation(new PropOperation(num));
-				propPanel.useProp(num);
 			}
 		}
 	};

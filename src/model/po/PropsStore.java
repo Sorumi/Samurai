@@ -10,7 +10,6 @@ public class PropsStore implements Serializable {
 	private static final long serialVersionUID = 1L;
 	ArrayList<Props> props = new ArrayList<Props>();
 	private int money;
-	transient Random random = new Random();
 
 	public PropsStore() {
 		this.money = 0;
@@ -50,6 +49,7 @@ public class PropsStore implements Serializable {
 
 	public String use(int type, SamuraiPO samuraiPO) {
 		int check = (type - 700) / 10;
+		Random random = new Random();
 		switch (check) {
 			case 0:
 				useHPJar((type - 700) % 10, samuraiPO);
