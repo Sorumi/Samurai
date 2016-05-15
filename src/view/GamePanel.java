@@ -611,6 +611,14 @@ public class GamePanel extends Pane implements Observer{
 					Position position = (Position)notifingObject.getValue();
 					System.out.println("Position : " + position.getX() + " , " + position.getY() + " get prop ");
 					//等待加入在 gamePanel 去掉道具的消息
+					int size = propsGroup.getChildren().size();
+					for(int i=0; i<size; i++){
+						PropView prop = (PropView) propsGroup.getChildren().get(i);
+						if(prop.x == position.getX() && prop.y == position.getY()){
+							propsGroup.getChildren().remove(i);
+							break;
+						}
+					}
 
 				}else if(key.equals("allProps")) {
 					int[] propList = (int[]) notifingObject.getValue();
