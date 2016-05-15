@@ -71,16 +71,17 @@ public class ShopHandler {
 		} 
 	};
 	
-	public EventHandler<MouseEvent> quantityEvent = new EventHandler<MouseEvent>() {
-		public void handle(MouseEvent event) {
-			quantity = shopPanel.purchasePanel.getQuantity();
- 
-		}
-	};
+//	public EventHandler<MouseEvent> quantityEvent = new EventHandler<MouseEvent>() {
+//		public void handle(MouseEvent event) {
+//			
+// 
+//		}
+//	};
 
 	// 购买按钮
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
+			quantity = shopPanel.purchasePanel.getQuantity();
 			System.out.println(quantity);
 			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
 
