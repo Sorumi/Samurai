@@ -35,7 +35,6 @@ public class PropHandler {
 		public void handle(MouseEvent event) {
 			PropItem item = (PropItem) event.getSource();  
 			num = item.getNum();
-			System.out.println("aaa"+num); 
 			quantity = item.getQuantity();
 			OperationQueue.addOperation(new PropOperation(14));
 			
