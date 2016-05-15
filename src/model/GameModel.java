@@ -342,8 +342,11 @@ public class GameModel extends BaseModel implements Observer {
                 this.assignNextWithAI();
                 break;
             default:
-                //故事模式重置道具 list
+                //故事模式
+                //重置道具 list
                 this.propsInGList.clear();
+                //更新propPanel
+                super.updateChange(new UpdateMessage("allProps", this.propList));
                 this.assignNextWithAI();
                 break;
         }
@@ -390,7 +393,7 @@ public class GameModel extends BaseModel implements Observer {
                     System.out.println("Get prop!" + props.getType());
 
                     //只有人类玩家才加道具
-                    if(this.samuraiSeq[this.currentSamurai - 1] / 4 == 1) {
+                    if(this.getCurrentSamurai()  / 4 == 0) {
                         propList[props.getType()]++;
                     }
 
@@ -399,7 +402,7 @@ public class GameModel extends BaseModel implements Observer {
                     System.out.println(props.getType() + " number: " + propList[props.getType()]);
 
                     //这个消息是用来消失道具的
-                    super.updateChange(new UpdateMessage("getProp", position));
+                    super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY(), props.getType()}));
 
                     super.updateChange(new UpdateMessage("allProps", this.propList));
                 }
@@ -417,6 +420,7 @@ public class GameModel extends BaseModel implements Observer {
         System.out.println("prop : " + propNum + " num " + propList[propNum]);
         if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum);
+            super.updateChange(new UpdateMessage("useProp",propNum));
         }
     }
 
@@ -738,7 +742,7 @@ public class GameModel extends BaseModel implements Observer {
             }
             for (PropsInG propsInG : tmp){
                 Position position = propsInG.getPosition();
-                super.updateChange(new UpdateMessage("getProp", position));
+                super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY(), propsInG.getType()}));
                 this.propsInGList.remove(propsInG);
             }
 
@@ -754,7 +758,7 @@ public class GameModel extends BaseModel implements Observer {
 
         }
 
-        System.out.println("Now is " + this.samuraiSeq[this.currentSamurai - 1]);
+        System.out.println("Now is " + this.getCurrentSamurai());
 
         if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
 
@@ -767,6 +771,7 @@ public class GameModel extends BaseModel implements Observer {
             }
 
             this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
+            this.getSamuraiOfNum(this.getCurrentSamurai()).setHealthPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint());
 
             super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
             super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));

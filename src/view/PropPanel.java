@@ -13,6 +13,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import view.eventhandler.PropHandler;
 
+import java.util.ArrayList;
+
 public class PropPanel extends OrderPanel {
 	private int width = 390;
 	private int height = 130;
@@ -25,7 +27,12 @@ public class PropPanel extends OrderPanel {
 
 	private PropHandler propHandler;
 
+	private ArrayList<PropItem> propItems;
+
 	public PropPanel() {
+
+		System.out.println("Construct PP");
+
 		this.setPrefHeight(height);
 		this.setPrefWidth(width);
 
@@ -55,15 +62,19 @@ public class PropPanel extends OrderPanel {
 		propGroup.setLayoutX(5);
 		propGroup.setLayoutY(20);
 
+		this.propItems = new ArrayList<>();
+
 		for (int i = 1; i <= 6; i++) {
-			PropItem item = new PropItem(i, 3);
+			PropItem item = new PropItem(i, 0);
+			this.propItems.add(item);
 			item.setLayoutX(55 * (i - 1));
 			item.setLayoutY(0);
 			propGroup.getChildren().add(item);
 			item.setOnMouseClicked(propHandler.itemClickEvent); 
 		}
 		for (int i = 1; i <= 6; i++) {
-			PropItem item = new PropItem(i + 6, 3);
+			PropItem item = new PropItem(i + 6, 0);
+			this.propItems.add(item);
 			item.setLayoutX(55 * (i - 1));
 			item.setLayoutY(55);
 			propGroup.getChildren().add(item);
@@ -71,12 +82,14 @@ public class PropPanel extends OrderPanel {
 		}
 
 		for (int i = 13; i <= 14; i++) {
-			PropItem item = new PropItem(i, 3);
+			PropItem item = new PropItem(i, 0);
+			this.propItems.add(item);
 			item.setLayoutX(55 * 6);
 			item.setLayoutY(55 * (i - 13));
 			propGroup.getChildren().add(item);
 			item.setOnMouseClicked(propHandler.itemClickEvent);
 		}
+
 		this.getChildren().add(propGroup);
 		this.setOnMouseEntered(propHandler.showPropPanel);
 		this.setOnMouseExited(propHandler.hidePropPanel);
@@ -96,6 +109,24 @@ public class PropPanel extends OrderPanel {
 	public void hide() {
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 785)));
 		timeline.play();
+	}
+
+	public void addProp(int propNum, int quantity){
+		System.out.println("Add " + propNum + " , " + quantity);
+		for(PropItem propItem : this.propItems){
+			if(propItem.getNum() == propNum){
+				propItem.updateQuantity(quantity);
+			}
+		}
+	}
+
+	public void useProp(int propNum){
+		System.out.println("Use " + propNum);
+		for(PropItem propItem : this.propItems){
+			if(propItem.getNum() == propNum){
+				propItem.updateQuantity(-1);
+			}
+		}
 	}
 
 	public class PropItem extends StackPane {
@@ -124,6 +155,11 @@ public class PropPanel extends OrderPanel {
 		
 		public int getQuantity(){
 			return quantity;
+		}
+
+		public void updateQuantity(int i) {
+			quantity += i;
+			quantityLabel.setText(quantity + "");
 		}
 	}
 

@@ -612,13 +612,12 @@ public class GamePanel extends Pane implements Observer{
 					actionPanel.setAppear(false,false);
 
 				}else if(key.equals("getProp")){
-					Position position = (Position)notifingObject.getValue();
-					System.out.println("Position : " + position.getX() + " , " + position.getY() + " get prop ");
-					//等待加入在 gamePanel 去掉道具的消息
+					int[] t = (int [])notifingObject.getValue();
+					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop ");
 					int size = propsGroup.getChildren().size();
 					for(int i=0; i<size; i++){
 						PropView prop = (PropView) propsGroup.getChildren().get(i);
-						if(prop.x == position.getX() && prop.y == position.getY()){
+						if(prop.x == t[0] && prop.y == t[1]){
 							propsGroup.getChildren().remove(i);
 							break;
 						}
@@ -628,6 +627,12 @@ public class GamePanel extends Pane implements Observer{
 					int[] propList = (int[]) notifingObject.getValue();
 					//等待加入:更新 propPanel 的消息
 					//这也是最后发得到了多少道具的消息
+					for (int i = 1; i <= 14; i++) {
+						propPanel.addProp(i,propList[i]);
+					}
+				}else if(key.equals("useProp")){
+					propPanel.useProp((int)notifingObject.getValue());
+
 				}else if(key.equals("money")){
 					int money = (int)notifingObject.getValue();
 					//发钱的消息
