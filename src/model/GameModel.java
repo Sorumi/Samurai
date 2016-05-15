@@ -252,6 +252,9 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
                 break;
             case 53:
+                homePosition[0] = this.randomHomeLocationWithScale(3,12,0);
+                homePosition[1] = this.randomHomeLocationWithScale(7,0,0);
+                homePosition[2] = this.randomHomeLocationWithScale(14,0,0);
                 aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(126), 14, chessBoardModel, armory.getArmor(926), new Position(0, length), 10, 2);
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(226), 14, chessBoardModel, armory.getArmor(936), new Position(length/2, length), 2, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(16), 14, chessBoardModel, armory.getArmor(916), new Position(length, length), 2, 2);
