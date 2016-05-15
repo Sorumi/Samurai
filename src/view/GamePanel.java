@@ -240,10 +240,6 @@ public class GamePanel extends Pane implements Observer{
 		}
 	}
 
-	private void removeProp(int x, int y){
-
-	}
-
 	public void set6Properties(int samurai, int[] properties){
 		switch (samurai) {
 			case 1:
