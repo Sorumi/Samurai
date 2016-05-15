@@ -170,6 +170,7 @@ public class StatePanel extends OrderPanel {
 			stateLabel4.setId("state-lable-big");
 			stateLabel5.setId("state-lable-big");
 			stateLabel6.setId("state-lable-big");
+			bloodLabel.setId("blood-label-big");
 		}
 		
 		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);

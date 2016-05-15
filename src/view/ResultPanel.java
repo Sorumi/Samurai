@@ -34,10 +34,11 @@ public class ResultPanel extends OrderPanel {
 	private int height;
 
 	private ImageView logo;
+	private ImageView rateImg;
 
 	private Circle resultCircle;
 	private Circle materialCircle;
-	private Circle circle3;
+//	private Circle circle3;
 
 	private Label winLabel;
 	private Label loseLabel;
@@ -64,9 +65,11 @@ public class ResultPanel extends OrderPanel {
 	}
 
 	public ResultPanel(GamePanel gamePanel) {
-		this.logo = new ImageView(Images.A_WIN);
-		this.logo.setFitWidth(504);
-		this.logo.setPreserveRatio(true);
+		logo = new ImageView(Images.A_WIN);
+		logo.setFitWidth(504);
+		logo.setPreserveRatio(true);
+		logo.setLayoutX(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
+		logo.setLayoutY(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
 
 		this.width = this.CIRCLE_RADIUS + this.strokeSize;
 		this.height = this.CIRCLE_RADIUS + this.strokeSize;
@@ -122,14 +125,6 @@ public class ResultPanel extends OrderPanel {
 		tile.setHgap(20);
 		tile.setPrefColumns(4);
 		tile.setPrefRows(2);
-//		for (int i = 0; i < 4; i++) {
-//			MaterialPanel materialPanel = new MaterialPanel(00, 3);
-//			tile.getChildren().add(materialPanel);
-//		}
-//		for (int i = 0; i < 4; i++) {
-//			MaterialPanel materialPanel = new MaterialPanel(00, 3);
-//			tile.getChildren().add(materialPanel);
-//		}
 		tile.setLayoutX(100);
 		tile.setLayoutY(200);
 
@@ -160,13 +155,13 @@ public class ResultPanel extends OrderPanel {
 		materialGroup.setRotationAxis(Rotate.Y_AXIS);
 		materialGroup.setRotate(270);
 
-		circle3 = new Circle();
-		circle3.setCenterX(CIRCLE_RADIUS + strokeSize);
-		circle3.setCenterY(CIRCLE_RADIUS + strokeSize);
-		circle3.setRadius(252);
-		circle3.setFill(Color.PINK);
-		circle3.setRotationAxis(Rotate.Y_AXIS);
-		circle3.setRotate(270);
+//		circle3 = new Circle();
+//		circle3.setCenterX(CIRCLE_RADIUS + strokeSize);
+//		circle3.setCenterY(CIRCLE_RADIUS + strokeSize);
+//		circle3.setRadius(252);
+//		circle3.setFill(Color.PINK);
+//		circle3.setRotationAxis(Rotate.Y_AXIS);
+//		circle3.setRotate(270);
 
 		// player0
 		arcsOne = new BlockArc[3];
@@ -206,10 +201,9 @@ public class ResultPanel extends OrderPanel {
 
 		}
 
-		logo.setLayoutX(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
-		logo.setLayoutY(strokeSize + CIRCLE_RADIUS - 504 / RATIO);
+
 		this.getChildren().add(logo);
-		this.getChildren().addAll(circle3, resultGroup, materialGroup);	
+		this.getChildren().addAll(resultGroup, materialGroup);	
 
 		this.setVisible(false);
 	}
@@ -246,11 +240,6 @@ public class ResultPanel extends OrderPanel {
 		for (int i=0; i<results.length; i++) {
 			blocks[i] = results[i];
 		}
-		if((blocks[1]+blocks[2]+blocks[3]) > (blocks[4]+blocks[5]+blocks[6])){
-			winLabel.setVisible(true);
-		}else{
-			loseLabel.setVisible(true);
-		}
 	}
 	
 	public void setMaterials(ArrayList<Material> list) {
@@ -271,6 +260,23 @@ public class ResultPanel extends OrderPanel {
 	public void setLevelUp(int samuraiNum) {
 		Label label = (Label) samuraiPanel.getChildren().get(samuraiNum*3+2);
 		label.setVisible(true);
+	}
+
+
+	public void setRate(int rate) {
+		rateImg = new ImageView(Images.RATE[rate]);
+		rateImg.setFitWidth(492);
+		rateImg.setPreserveRatio(true);
+		rateImg.setLayoutX(strokeSize + CIRCLE_RADIUS - 492 / RATIO);
+		rateImg.setLayoutY(strokeSize + CIRCLE_RADIUS - 492 / RATIO);
+		rateImg.setRotationAxis(Rotate.Y_AXIS);
+		rateImg.setRotate(270);
+		this.getChildren().add(rateImg);
+		if(rate <= 5){
+			winLabel.setVisible(true);
+		}else{
+			loseLabel.setVisible(true);
+		}
 	}
 
 	public void setStart() {
@@ -316,13 +322,13 @@ public class ResultPanel extends OrderPanel {
 		rotator5.setFromAngle(0);
 		rotator5.setToAngle(90);
 
-		RotateTransition rotator6 = new RotateTransition(Duration.millis(1000), circle3);
+		RotateTransition rotator6 = new RotateTransition(Duration.millis(1000), rateImg);
 		rotator6.setAxis(Rotate.Y_AXIS);
 		rotator6.setFromAngle(270);
 		rotator6.setToAngle(360);
 
 		Timeline timeline3 = new Timeline(
-				new KeyFrame(Duration.millis(3000), new KeyValue(circle3.rotateProperty(), 360)));
+				new KeyFrame(Duration.millis(3000), new KeyValue(rateImg.rotateProperty(), 360)));
 
 		timeline0.setOnFinished(new EventHandler<ActionEvent>() {
 			@Override
@@ -430,10 +436,7 @@ public class ResultPanel extends OrderPanel {
 			amountLabel.setId("amount-label");
 
 			this.getChildren().addAll(circle, amountLabel, material);
-
 		}
 	}
-
-
 
 }

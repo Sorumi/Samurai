@@ -98,9 +98,7 @@ public class GamePanel extends Pane implements Observer{
 		this.setBackground(level);
 		
 		this.selectHandler = new GamePanelSelectHandler(this,level); 
-		this.selectPanel = new SelectPanel(selectHandler);
-		this.selectPanel.setLayoutX(FIELD_WIDTH/2);
-		this.selectPanel.setLayoutY(FIELD_HEIGHT/2);
+		this.selectPanel = new SelectPanel(selectHandler,"你将会丢失当前未存档的所有游戏进度，这样可以吗？");
 		selectPanel.yesBtn.setOnMouseClicked(selectHandler.yesEvent);
 		selectPanel.yesBtn.setOnMouseEntered(selectHandler.yesBtnEnterEvent);
 		selectPanel.yesBtn.setOnMouseEntered(selectHandler.yesBtnExitEvent);
@@ -465,7 +463,6 @@ public class GamePanel extends Pane implements Observer{
 		return bloodTotal[i];
 	}
 
-//	public void updatePropPanel(int )
 
 	public void update(Observable o, Object arg) {
 		UpdateMessage notifingObject = (UpdateMessage)arg;
@@ -611,7 +608,6 @@ public class GamePanel extends Pane implements Observer{
 					
 				}else if(key.equals("experiences")){
 					resultPanel.setExperiences((int[])notifingObject.getValue());
-					resultPanel.setStart();
 
 				}else if(key.equals("healthTotal")){
 					int[] t = (int [])notifingObject.getValue();
@@ -623,8 +619,10 @@ public class GamePanel extends Pane implements Observer{
 					bloodRest[t[0]] = t[1];
 
 				}else if(key.equals("rating")){
-					System.out.println("Rating : " + (int)notifingObject.getValue());
-
+//					System.out.println("Rating : " + (int)notifingObject.getValue());
+					resultPanel.setRate((int)notifingObject.getValue());
+					resultPanel.setStart();
+					
 				}else if(key.equals("prop")){
 					int[] t = (int [])notifingObject.getValue();
 					addProp(t[0], t[1], t[2]);
