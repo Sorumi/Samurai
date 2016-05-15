@@ -34,6 +34,12 @@ public class TerritoryHandler {
 		territoryPanel.samurai1.setWeapon(territoryController.getWeaponOfSamurai(1).getType());
 		territoryPanel.samurai2.setWeapon(territoryController.getWeaponOfSamurai(2).getType());
 		territoryPanel.samurai3.setWeapon(territoryController.getWeaponOfSamurai(3).getType());
+//		if(territoryController.getArmorOfSamurai(1).getType() == null){
+//			System.out.print("null!!!!!");
+//		}
+		territoryPanel.samurai1.setArmor(territoryController.getArmorOfSamurai(1).getType()-900);
+		territoryPanel.samurai2.setArmor(territoryController.getArmorOfSamurai(2).getType()-900);
+		territoryPanel.samurai3.setArmor(territoryController.getArmorOfSamurai(3).getType()-900);
 	}
 	
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  

@@ -8,12 +8,12 @@ public class SmithyItemWrapper5 extends SmithyItemWrapper {
 		super(5, smithyHandler);
 		
 		SmithyItemView item911 = new SmithyItemView(911, -1);
-		item911.setLayoutY(362.5);
+		item911.setLayoutY(237.5);
 
 		SmithyItemView item912 = new SmithyItemView(912, 0);
-		item912.setLayoutY(362.5);
+		item912.setLayoutY(237.5);
 
-		SmithyItemView item913 = new SmithyItemView(913, -312);
+		SmithyItemView item913 = new SmithyItemView(913, -187);
 		item913.setLayoutY(50);
 
 		SmithyItemView item914 = new SmithyItemView(914, 0);
@@ -25,7 +25,7 @@ public class SmithyItemWrapper5 extends SmithyItemWrapper {
 		SmithyItemView item916 = new SmithyItemView(916, 0);
 		item916.setLayoutY(50);
 
-		SmithyItemView item923 = new SmithyItemView(923, 62);
+		SmithyItemView item923 = new SmithyItemView(923, 188);
 		item923.setLayoutY(425);
 
 		SmithyItemView item924 = new SmithyItemView(924, -125);
