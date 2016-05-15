@@ -4,7 +4,10 @@ import controller.ShopController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import model.po.Information;
+import model.po.Weapon;
 import view.TerritoryPanel;
+import view.campsite.CampsiteItemView;
 import view.shop.ShopItemView;
 import view.shop.ShopPanel;
 import view.store.StoreItemView;
@@ -20,10 +23,10 @@ public class ShopHandler {
 
 		this.shopController.setPropsStore();
 
-		//加入更新钱数的方法
-		//this.shopController.getMoney();
-		//加入更新道具数量的方法
-//		this.shopController
+		// 加入更新钱数的方法
+		// this.shopController.getMoney();
+		// 加入更新道具数量的方法
+		// this.shopController
 	}
 
 	public EventHandler<MouseEvent> plusQuantityEvent = new EventHandler<MouseEvent>() {
@@ -60,26 +63,27 @@ public class ShopHandler {
 
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
-			// TODO
-			// 显示价格
+			ShopItemView item = (ShopItemView) event.getSource(); 
+			item.getNum();
+
 		}
 	};
 
 	// 购买按钮
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
-			//TODO
+			// TODO
 		}
 	};
-	public EventHandler<MouseEvent> buyBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  shopPanel.purchasePanel.buyBtnPressed();
-	      }
+	public EventHandler<MouseEvent> buyBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			shopPanel.purchasePanel.buyBtnPressed();
+		}
 	};
-	
-	public EventHandler<MouseEvent> buyBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  shopPanel.purchasePanel.buyBtnAbled();
-	      }
+
+	public EventHandler<MouseEvent> buyBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			shopPanel.purchasePanel.buyBtnAbled();
+		}
 	};
 }
