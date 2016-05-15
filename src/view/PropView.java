@@ -6,8 +6,8 @@ import javafx.scene.layout.Pane;
 public class PropView extends Pane{
 
 	private int num;
-	private int x;
-	private int y;
+	public int x;
+	public int y;
 	
 	private int chessBoardWidthOffset = 150 / 2 ;
 	private int chessBoardHeightOffset = 200 - 20;

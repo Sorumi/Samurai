@@ -8,7 +8,6 @@ public class InformationLibrary implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Information> informationLibraries;
 
-
 	public InformationLibrary() {
 		informationLibraries = new ArrayList<Information>();
 	}
