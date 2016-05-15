@@ -158,7 +158,7 @@ public class SamuraiAI {
 							continue;
 						} else {
 							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
-							if (distance > 1) {
+							if (distance > 1&&!flag) {
 								//
 								// System.out.println(distance);
 								// System.out.println(samuraiPOClone.getActionPoint());
@@ -181,6 +181,7 @@ public class SamuraiAI {
 								}
 							}
 							else{
+								flag=true;
 								int way = leave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
 								if (samuraiPOClone.getActionPoint() < 2) {
 									return actionOperations;
@@ -212,7 +213,7 @@ public class SamuraiAI {
 							continue;
 						} else {
 							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
-							if (distance > 1) {
+							if (distance > 1&&!flag) {
 								//
 								// System.out.println(distance);
 								//
@@ -228,6 +229,7 @@ public class SamuraiAI {
 								}
 							}
 							else {
+								flag=true;
 								int way = leave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
 								if (samuraiPOClone.getActionPoint() < 2) {
 									return actionOperations;
@@ -373,7 +375,7 @@ public class SamuraiAI {
 							continue;
 						} else {
 							int distance = getDistance(samuraiPOClone, enemySamuraiPO.getPos());
-							if (distance > 1) {
+							if (distance > 1&&!flag) {
 								//
 								// System.out.println(distance);
 								//
@@ -388,6 +390,7 @@ public class SamuraiAI {
 									samuraiPOClone.changeActionPoint(2);
 								}
 							} else {
+								flag=true;
 								int way = leave(samuraiPOClone, enemySamuraiPO.getPos(), cbm, actionOperations);
 								if (samuraiPOClone.getActionPoint() < 2) {
 									return actionOperations;
