@@ -384,8 +384,9 @@ public class GameModel extends BaseModel implements Observer {
     public void useProp(int propNum){
         propList[propNum]--;
         System.out.println("prop : " + propNum + " num " + propList[propNum]);
-        this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
-        this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum);
+        if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
+            this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum);
+        }
     }
 
     public void updateOccupy(int direction){
