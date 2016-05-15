@@ -44,7 +44,7 @@ public class StateHandler {
 	
 	public EventHandler<MouseEvent> closeStatePanelInG = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	    	  
+//	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();	    	  
 	    	  gamePanel.statePanel.setAppear(false);
 	    	   
 	      }

@@ -57,6 +57,22 @@ public class Images {
 	public static Image SAMURAI_BTN_3 = new Image("/./images/samurai_btn_3.png",true);
 	public static Image[]  SAMURAI_BTN = {null, SAMURAI_BTN_1, SAMURAI_BTN_2, SAMURAI_BTN_3};
 	
+	//prop
+	public static Image PROP_01 = new Image("/./images/prop/prop_01.png",true);
+	public static Image PROP_02 = new Image("/./images/prop/prop_02.png",true);
+	public static Image PROP_03 = new Image("/./images/prop/prop_03.png",true);
+	public static Image PROP_11 = new Image("/./images/prop/prop_11.png",true);
+	public static Image PROP_12 = new Image("/./images/prop/prop_12.png",true);
+	public static Image PROP_13 = new Image("/./images/prop/prop_13.png",true);
+	public static Image PROP_21 = new Image("/./images/prop/prop_21.png",true);
+	public static Image PROP_22 = new Image("/./images/prop/prop_22.png",true);
+	public static Image PROP_23 = new Image("/./images/prop/prop_23.png",true);
+	public static Image PROP_31 = new Image("/./images/prop/prop_31.png",true);
+	public static Image PROP_32 = new Image("/./images/prop/prop_32.png",true);
+	public static Image PROP_33 = new Image("/./images/prop/prop_33.png",true);
+	public static Image PROP_41 = new Image("/./images/prop/prop_41.png",true);
+	public static Image PROP_51 = new Image("/./images/prop/prop_51.png",true);
+	public static Image[] PROP = {null, PROP_01, PROP_02, PROP_03, PROP_11, PROP_12, PROP_13, PROP_21, PROP_22, PROP_23, PROP_31, PROP_32, PROP_33, PROP_41, PROP_51};
 	//player
 	public static final Image PLAYER_LOGO_A = new Image("/./images/PLAYER_LOGO_A.png");
 	public static final Image PLAYER_LOGO_B = new Image("/./images/PLAYER_LOGO_B.png");
@@ -397,7 +413,6 @@ public class Images {
 	
 	public static Image[][] MATERIAL = {MATERIAL_0, MATERIAL_1, MATERIAL_2, MATERIAL_3, MATERIAL_4};
 	
-	//prop
-	public static Image PROP_0 = new Image("/./images/prop_0.png",true);
+
  
 }

@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import view.Images;
-import view.eventhandler.ShopHandler;
+import view.eventhandler.StoreHandler;
 
 public class StoreItemSell extends Pane{ 
 	private ImageView img1;
@@ -25,12 +25,13 @@ public class StoreItemSell extends Pane{
 	
 	private Button buyButton;
 	
-	public StoreItemSell(int perPrice, ShopHandler shopHandler){   
+	public StoreItemSell(StoreHandler storeHandler){   
+		
 		this.setPrefSize(500, 340);
 		this.setLayoutX(650);
 		this.setLayoutY(270);
 		this.setId("campsite-wrapper");
-		this.perPrice = perPrice;
+//		this.perPrice = perPrice;
 		img1 = new ImageView(Images.COIN);
 		img1.setFitWidth(30);
 		img1.setPreserveRatio(true);
@@ -70,7 +71,7 @@ public class StoreItemSell extends Pane{
 		
 		minusGroup = new Group();
 		minusGroup.getChildren().addAll(circle1, minusLabel);
-		minusGroup.setOnMouseClicked(shopHandler.minusQuantityEvent); 
+		minusGroup.setOnMouseClicked(storeHandler.minusQuantityEvent); 
 		
 		Circle circle2 = new Circle();
 		circle2.setCenterX(435);
@@ -85,7 +86,7 @@ public class StoreItemSell extends Pane{
 		
 		plusGroup = new Group(); 
 		plusGroup.getChildren().addAll(circle2, plusLabel);
-		plusGroup.setOnMouseClicked(shopHandler.plusQuantityEvent);
+		plusGroup.setOnMouseClicked(storeHandler.plusQuantityEvent);
 		
 		buyButton = new Button("出 售");
 		buyButton.setPrefSize(100, 40);

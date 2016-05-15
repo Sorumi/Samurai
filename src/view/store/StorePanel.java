@@ -16,6 +16,9 @@ public class StorePanel extends TransitionPanel{
 	public StoreItemSell sellPanel;//TODO
 	
 	private SystemButton closeBtn;
+	
+//	private boolean canSell;
+	
 	public  StorePanel(){
 		super();
 		
@@ -45,6 +48,9 @@ public class StorePanel extends TransitionPanel{
 		this.transitionAnimation(true);
 	}
 
+	public void setSellPanel(){
+		sellPanel = new StoreItemSell(storeHandler);
+	}
 	public StoreItemsWrapper getItemsPanel(){
 		return this.itemsPanel;
 	}

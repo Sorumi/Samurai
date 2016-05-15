@@ -82,7 +82,7 @@ public class SamuraiView extends Pane{
 		//bounds
 		this.setPrefWidth(WIDTH);
 		this.setPrefHeight(HEIGHT);
-//		this.setStyle("-fx-background-color: #dddddd");
+//		this.setStyle("-fx-background-color: rgba(0,255,0,0.5)");
 
 		this.direction = 2;
 		this.isInjured = false;

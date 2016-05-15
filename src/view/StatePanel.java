@@ -219,7 +219,7 @@ public class StatePanel extends OrderPanel {
 	public void setActualLocationInG(){
 		this.setLayoutX((currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2)*SCALE);
 		if (currentSamurai.getLayoutY()-prefHeight*SCALE+10>0) {		
-			this.setLayoutY(currentSamurai.getLayoutY()-prefHeight*SCALE+10);
+			this.setLayoutY(currentSamurai.getLayoutY()-prefHeight*SCALE-25);
 			this.setUpLocation();
 		}else{
 			this.setLayoutY(currentSamurai.getLayoutY()+currentSamurai.getHeight());
@@ -237,7 +237,7 @@ public class StatePanel extends OrderPanel {
 	public void setActualLocationInT(){
 		this.setLayoutX(currentSamuraiV.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2-70);		
 		if (currentSamuraiV.getLayoutY()-prefHeight*SCALE+10>0) {		
-			this.setLayoutY(currentSamuraiV.getLayoutY()-prefHeight*SCALE+35);
+			this.setLayoutY(currentSamuraiV.getLayoutY()-prefHeight*SCALE+30);
 			this.setUpLocation();
 		}else{
 			this.setLayoutY(currentSamuraiV.getLayoutY()+currentSamuraiV.getHeight());

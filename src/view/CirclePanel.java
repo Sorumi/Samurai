@@ -43,7 +43,9 @@ public class CirclePanel extends Pane {
 	private Arc timeArc;
 	private Label blockLabel;
 	
-	Timeline timeline;
+	private Timeline timeline;
+	
+	private boolean isFront;
 
 	private class BlockArc extends Arc{
 		private int blockNum;
@@ -56,18 +58,20 @@ public class CirclePanel extends Pane {
 	public CirclePanel(int player, int timeTotal) {
 		this.player = player;
 		this.timeTotal = timeTotal;
-		Image image = Images.PLAYER_LOGO[player];
-		this.logo = new ImageView(image);
-		this.logo.setFitWidth(image.getWidth()/RATIO);
-		this.logo.setPreserveRatio(true);
-		this.logo.setRotationAxis(Rotate.Y_AXIS);
-		this.logo.setRotate(270);
 		
-		this.originalLogo = new ImageView(Images.PLAYER_LOGO_0);
-		this.originalLogo.setFitWidth(image.getWidth()/RATIO);
-		this.originalLogo.setPreserveRatio(true);
-		this.originalLogo.setRotationAxis(Rotate.Y_AXIS);
-		this.originalLogo.setRotate(270);
+		Image image = Images.PLAYER_LOGO[player];
+		logo = new ImageView(image);
+		logo.setFitWidth(image.getWidth()/RATIO);
+		logo.setPreserveRatio(true);
+		logo.setRotationAxis(Rotate.Y_AXIS);
+		logo.setRotate(270);
+		
+		originalLogo = new ImageView(Images.PLAYER_LOGO_0);
+		originalLogo.setFitWidth(image.getWidth()/RATIO);
+		originalLogo.setPreserveRatio(true);
+		originalLogo.setRotationAxis(Rotate.Y_AXIS);
+		originalLogo.setRotate(360);
+		
 		
 		direction = 1;
 		if (player == 1){
@@ -76,6 +80,7 @@ public class CirclePanel extends Pane {
 		timeline = new Timeline();
 		//TODO
 		size = 15;
+		isFront = false;
 		
 		//Circle
 		Circle blockCircle = new Circle();
@@ -224,7 +229,7 @@ public class CirclePanel extends Pane {
 		originalLogo.setLayoutX(strokeSize+CIRCLE_RADIUS-image.getWidth()/RATIO/2);
 		originalLogo.setLayoutY(strokeSize+CIRCLE_RADIUS-image.getHeight()/RATIO/2);
 		this.getChildren().add(originalLogo);
-		
+
 	}
 
 	public void setTimeRest(int timeRest) {
@@ -248,7 +253,7 @@ public class CirclePanel extends Pane {
 	}
 	
 	public void flip(boolean isRotate){
-		if(isRotate){
+		if(isRotate && isFront == false){
 			RotateTransition rotator1 = new RotateTransition(Duration.millis(1000), originalLogo);
 			rotator1.setAxis(Rotate.Y_AXIS);
 			rotator1.setFromAngle(0);
@@ -263,12 +268,12 @@ public class CirclePanel extends Pane {
 				@Override
 				public void handle(ActionEvent t) {
 					rotator2.play();
-
+					
 				}
 			});
-			
 			rotator1.play();
-		}else{
+			isFront = true;
+		}else if(!isRotate && isFront == true){
 			RotateTransition rotator1 = new RotateTransition(Duration.millis(1000), logo);
 			rotator1.setAxis(Rotate.Y_AXIS);
 			rotator1.setFromAngle(0);
@@ -283,11 +288,11 @@ public class CirclePanel extends Pane {
 				@Override
 				public void handle(ActionEvent t) {
 					rotator2.play();
-
+					
 				}
 			});
-			
 			rotator1.play();
+			isFront = false;
 		}
 	}
 

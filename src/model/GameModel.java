@@ -421,7 +421,8 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(1).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
+                        System.out.println(attackPointDouble);
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -441,7 +442,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(2).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(2).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -461,7 +462,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[0].getSamuraiOfNum(3).checkMiss()){
                     double ta = this.players[0].getSamuraiOfNum(3).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -481,7 +482,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(4).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(4).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -501,7 +502,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(5).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(5).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -521,7 +522,7 @@ public class GameModel extends BaseModel implements Observer {
                 if(!this.players[1].getSamuraiOfNum(6).checkMiss()){
                     double ta = this.players[1].getSamuraiOfNum(6).getArmorRate() - armorPuncture;
                     if(ta > 0){
-                        attackPointDouble *= (ta / (ta + 100));
+                        attackPointDouble *= (1-(ta / (ta + 100)));
                     }else{
                         attackPointDouble *= 1.5;
                     }

@@ -46,7 +46,7 @@ public class PropPanel extends OrderPanel {
 		triangle2 = new Polygon();
 		triangle2.setFill(Color.web("#F9F1F1"));
 		triangle2.getPoints().addAll(new Double[] { 183.0, 15.0, 207.0, 15.0, 195.0, 3.0 });
-		triangle2.setOnMouseEntered(propHandler.showPropPanel);
+//		triangle2.setOnMouseEntered(propHandler.showPropPanel);
 
 		this.getChildren().addAll(bgRect, triangle1, triangle2);
 
@@ -75,29 +75,24 @@ public class PropPanel extends OrderPanel {
 			propGroup.getChildren().add(item);
 		}
 		this.getChildren().add(propGroup);
+		this.setOnMouseEntered(propHandler.showPropPanel);
 		this.setOnMouseExited(propHandler.hidePropPanel);
-
-
 		this.setOnMouseClicked(propHandler.itemClickEvent);
 
-		this.setOnMouseExited(propHandler.hidePropPanel); 
-
-		this.setLayoutX(370);
+		this.setLayoutX(600-width/2);
 		this.setLayoutY(785);
 		this.setVisible(true);
 
 	}
 
 	public void show() {
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 705)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 670)));
 		timeline.play();
-
 	}
 
 	public void hide() {
 		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 785)));
 		timeline.play();
-
 	}
 
 	public class PropItem extends StackPane {
@@ -117,13 +112,12 @@ public class PropPanel extends OrderPanel {
 		}
 	}
 
-	// public void addProp(int num){
-	//
-	// PropItem item = new PropItem(0, 3);
-	// item.setLayoutX(5+75*i);
-	// item.setLayoutY(20);
-	// this.getChildren().add(item);
-	// }
-	//
+	public void setProp(int num) {
+
+//		PropItem item = new PropItem(0, 3);
+//		item.setLayoutX(5 + 75 * i);
+//		item.setLayoutY(20);
+//		this.getChildren().add(item);
+	}
 
 }

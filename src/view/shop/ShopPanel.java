@@ -16,13 +16,14 @@ public class ShopPanel extends Pane{
 	private SystemButton closeBtn;  
 	
 	public ShopHandler shopHandler;
+	
 	public ShopPanel(){
 		this.setPrefSize(1200, 800);
 		this.shopHandler = new ShopHandler(this);
 		
-		itemsPanel = new ShopItemsWrapper();
+		itemsPanel = new ShopItemsWrapper(shopHandler);
 		infoPanel = new ShopItemInfo();
-		purchasePanel = new ShopItemPurchase(350,shopHandler);
+		purchasePanel = new ShopItemPurchase(shopHandler);
 
 		
 		closeBtn = new SystemButton(0);
