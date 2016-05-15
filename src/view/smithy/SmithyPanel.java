@@ -76,7 +76,7 @@ public class SmithyPanel extends TransitionPanel {
 		bowPanel = new SmithyItemWrapper4(smithyHandler);
 		bowGroup.getChildren().addAll(bowBtn, bowPanel);
 		
-		Button armorBtn = new SmithyButton(4);
+		Button armorBtn = new SmithyButton(5);
 		armorBtn.setLayoutY(650);
 		armorPanel = new SmithyItemWrapper5(smithyHandler); 
 		armorGroup.getChildren().addAll(armorBtn, armorPanel);
@@ -105,7 +105,7 @@ public class SmithyPanel extends TransitionPanel {
 		});
 		
 		routeGroup = new Group();
-		routeGroup.getChildren().addAll(bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn, armorGroup);
+		routeGroup.getChildren().addAll(armorGroup, bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn);
 		this.getChildren().add(routeGroup);
 		
 		smithyWeaponState = new SmithyWeaponState();

@@ -5,45 +5,54 @@ import view.eventhandler.SmithyHandler;
 
 public class SmithyItemWrapper5 extends SmithyItemWrapper {
 	public SmithyItemWrapper5(SmithyHandler smithyHandler) {
-		super(3, smithyHandler);
+		super(5, smithyHandler);
 
-		SmithyItemView item311 = new SmithyItemView(311, -1);
-		item311.setLayoutY(300);
+		SmithyItemView item911 = new SmithyItemView(911, -1);
+		item911.setLayoutY(362.5);
 
-		SmithyItemView item312 = new SmithyItemView(312, 0);
-		item312.setLayoutY(300);
+		SmithyItemView item912 = new SmithyItemView(912, 0);
+		item912.setLayoutY(362.5);
 
-		SmithyItemView item313 = new SmithyItemView(313, -200);
-		item313.setLayoutY(100);
+		SmithyItemView item913 = new SmithyItemView(913, -312);
+		item913.setLayoutY(50);
 
-		SmithyItemView item314 = new SmithyItemView(314, 0);
-		item314.setLayoutY(100);
+		SmithyItemView item914 = new SmithyItemView(914, 0);
+		item914.setLayoutY(50);
 
-		SmithyItemView item315 = new SmithyItemView(315, 0);
-		item315.setLayoutY(100);
+		SmithyItemView item915 = new SmithyItemView(915, 0);
+		item915.setLayoutY(50);
 
-		SmithyItemView item316 = new SmithyItemView(316, 0);
-		item316.setLayoutY(100);
+		SmithyItemView item916 = new SmithyItemView(916, 0);
+		item916.setLayoutY(50);
 
-		SmithyItemView item323 = new SmithyItemView(323, 200);
-		item323.setLayoutY(500);
+		SmithyItemView item923 = new SmithyItemView(923, 62);
+		item923.setLayoutY(425);
 
-		SmithyItemView item324 = new SmithyItemView(324, 0);
-		item324.setLayoutY(500);
+		SmithyItemView item924 = new SmithyItemView(924, -125);
+		item924.setLayoutY(300);
 
-		SmithyItemView item325 = new SmithyItemView(325, 0);
-		item325.setLayoutY(500);
+		SmithyItemView item925 = new SmithyItemView(925, 0);
+		item925.setLayoutY(300);
 
-		SmithyItemView item326 = new SmithyItemView(326, 0);
-		item326.setLayoutY(500);
+		SmithyItemView item926 = new SmithyItemView(926, 0);
+		item926.setLayoutY(300);
+		
+		SmithyItemView item934 = new SmithyItemView(934, 125);
+		item934.setLayoutY(550);
+		
+		SmithyItemView item935 = new SmithyItemView(935, 0);
+		item935.setLayoutY(550);
+		
+		SmithyItemView item936 = new SmithyItemView(936, 0);
+		item936.setLayoutY(550);
 
 		// TODO
-		list = FXCollections.observableArrayList(item311, item312, item313, item314, item315, item316, item323, item324,
-				item325, item326);
+		list = FXCollections.observableArrayList(item911, item912, item913, item914, item915, item916, item923, item924,
+				item925, item926, item934, item935, item936);
 
 		// this.buildGroup.getChildren().addAll();
-		this.lockGroup.getChildren().addAll(item311, item312, item313, item314, item315, item316, item323, item324,
-				item325, item326);
+		this.lockGroup.getChildren().addAll(item911, item912, item913, item914, item915, item916, item923, item924,
+				item925, item926, item934, item935, item936);
 
 		this.initWeaponView();
 	}

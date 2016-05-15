@@ -316,7 +316,7 @@ public class Images {
 	public static Image WEAPON_ICON_2 = new Image("/./images/weapon_icon_2_battleax.png",true);
 	public static Image WEAPON_ICON_3 = new Image("/./images/weapon_icon_3_shuriken.png",true);
 	public static Image WEAPON_ICON_4 = new Image("/./images/weapon_icon_4_bow.png",true);
-	public static Image[] WEAPON_ICON = {WEAPON_ICON_0, WEAPON_ICON_1, WEAPON_ICON_2, WEAPON_ICON_3, WEAPON_ICON_4};
+	public static Image[] WEAPON_ICON = {WEAPON_ICON_0, WEAPON_ICON_1, WEAPON_ICON_2, WEAPON_ICON_3, WEAPON_ICON_4, null};
 	
 	//spear
 	public static Image WEAPON_000 = new Image("/./images/weapon/weapon_000_spear.png",true);

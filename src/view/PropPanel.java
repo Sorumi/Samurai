@@ -60,12 +60,14 @@ public class PropPanel extends OrderPanel {
 			item.setLayoutX(55 * (i - 1));
 			item.setLayoutY(0);
 			propGroup.getChildren().add(item);
+			item.setOnMouseClicked(propHandler.itemClickEvent); 
 		}
 		for (int i = 1; i <= 6; i++) {
 			PropItem item = new PropItem(i + 6, 3);
 			item.setLayoutX(55 * (i - 1));
 			item.setLayoutY(55);
 			propGroup.getChildren().add(item);
+			item.setOnMouseClicked(propHandler.itemClickEvent);
 		}
 
 		for (int i = 13; i <= 14; i++) {
@@ -73,11 +75,12 @@ public class PropPanel extends OrderPanel {
 			item.setLayoutX(55 * 6);
 			item.setLayoutY(55 * (i - 13));
 			propGroup.getChildren().add(item);
+			item.setOnMouseClicked(propHandler.itemClickEvent);
 		}
 		this.getChildren().add(propGroup);
 		this.setOnMouseEntered(propHandler.showPropPanel);
 		this.setOnMouseExited(propHandler.hidePropPanel);
-		this.setOnMouseClicked(propHandler.itemClickEvent);
+//		this.setOnMouseClicked(propHandler.itemClickEvent);
 
 		this.setLayoutX(600-width/2);
 		this.setLayoutY(785);
@@ -98,9 +101,13 @@ public class PropPanel extends OrderPanel {
 	public class PropItem extends StackPane {
 		private Label quantityLabel;
 		private int RADIUS = 25;
+		private int num;
+		private int quantity;
 
 		public PropItem(int itemNum, int quantity) {
 			this.setPrefSize(RADIUS * 2, RADIUS * 2);
+			this.num = itemNum;
+			this.quantity = quantity;
 
 			PropView prop = new PropView(itemNum, 2);
 
@@ -109,6 +116,14 @@ public class PropPanel extends OrderPanel {
 			quantityLabel.setId("prop-quantity");
 			this.getChildren().addAll(prop, quantityLabel);
 			StackPane.setAlignment(quantityLabel, Pos.BOTTOM_RIGHT);
+		}
+		
+		public int getNum(){
+			return num;
+		}
+		
+		public int getQuantity(){
+			return quantity;
 		}
 	}
 

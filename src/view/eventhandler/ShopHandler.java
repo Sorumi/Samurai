@@ -71,6 +71,7 @@ public class ShopHandler {
 		} 
 	};
 
+
 	// 购买按钮
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
