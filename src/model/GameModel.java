@@ -427,7 +427,7 @@ public class GameModel extends BaseModel implements Observer {
     public void useProp(int propNum){
         propList[propNum]--;
         if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
-            this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum);
+            this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
             super.updateChange(new UpdateMessage("useProp",propNum));
         }
     }
@@ -756,12 +756,17 @@ public class GameModel extends BaseModel implements Observer {
 
             System.out.println("prop size:  " + this.propsInGList.size());
 
-            int i = this.getSamuraiOfNum(this.getCurrentSamurai()).getProp();
-            if(i != 0){
-                this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(0);
-                if(i != 13) {
-                    System.out.println("replace");
-                    this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
+            for (int i = 1; i <= 14; i++) {
+                int num = this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[i];
+                if(num != 0){
+                    this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(i, 0);
+                    if(i != 13) {
+                        System.out.println("replace");
+                        while(num > 0) {
+                            this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
+                            num--;
+                        }
+                    }
                 }
             }
         }
@@ -975,6 +980,14 @@ public class GameModel extends BaseModel implements Observer {
         }
 
         System.out.println("GAME OVER!");
+    }
+
+    public void stop(){
+
+    }
+
+    public void goOn(){
+
     }
 
     public void exit(){

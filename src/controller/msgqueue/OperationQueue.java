@@ -1,5 +1,6 @@
 package controller.msgqueue;
 
+import javafx.scene.paint.Stop;
 import model.GameModel;
 import model.UpdateMessage;
 import network.client.ClientService;
@@ -57,8 +58,11 @@ public class OperationQueue implements Runnable, Serializable {
 					Thread.currentThread().interrupt();
 				}
 
-			}else {
+			} else if (operation instanceof StopOperation) {
 
+			} else if (operation instanceof ContinueOperation) {
+
+			} else {
 				if (GameModel.isClient() && !Operation.isServer()) {
 					clientService.submitOperation(operation);
 				} else if (GameModel.isServer() && Operation.isServer()) {
@@ -82,7 +86,6 @@ public class OperationQueue implements Runnable, Serializable {
 				}
 
 				operation.execute();
-
 			}
 		}
 	}
