@@ -110,7 +110,7 @@
 }
 /* Smithy */
 #smithy-wrapper{
-	-fx-background-radius: 0 10 10 10;
+	-fx-background-radius: 0 10 10 0;
 	-fx-border-radius: 0 10 10 10;
 }
 

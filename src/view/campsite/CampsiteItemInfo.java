@@ -23,6 +23,10 @@ public class CampsiteItemInfo extends Pane {
 	private Label weaponState2;
 	private Label weaponState3;
 	
+	private Group armorState;
+	private Label armorState1;
+	private Label armorState2;
+	
 	public CampsiteItemInfo(){
 		this.setPrefSize(500, 230);
 		this.setLayoutX(650);
@@ -51,7 +55,7 @@ public class CampsiteItemInfo extends Pane {
 		descriptionScroll.setPrefHeight(70);
 		this.getChildren().add(descriptionScroll);
 		
-		//stateIcon
+		//weaponStateIcon
 		weaponState = new Group();
 		weaponState.setLayoutX(40);
 		weaponState.setLayoutY(155);
@@ -92,7 +96,40 @@ public class CampsiteItemInfo extends Pane {
 		
 		weaponState.getChildren().addAll(weaponStateIcon1, weaponStateIcon2, weaponStateIcon3, weaponState1, weaponState2, weaponState3);
 		weaponState.setVisible(false);
-		this.getChildren().add(weaponState);
+		
+		//armorStateIcon
+		armorState = new Group();
+		armorState.setLayoutX(40);
+		armorState.setLayoutY(155);
+		
+		ImageView armorStateIcon1 = new ImageView(Images.ARMOR_STATE_1);
+		ImageView armorStateIcon2 = new ImageView(Images.ARMOR_STATE_2);
+		
+		armorStateIcon1.setFitWidth(40);
+		armorStateIcon2.setFitWidth(42);
+		
+		armorStateIcon1.setPreserveRatio(true);
+		armorStateIcon2.setPreserveRatio(true);
+		
+		armorStateIcon1.setLayoutX(0);
+		armorStateIcon1.setLayoutY(0);
+		armorStateIcon2.setLayoutX(190);
+		armorStateIcon2.setLayoutY(-4);
+		
+		armorState1 = new Label("");
+		armorState1.setLayoutX(50);
+		armorState1.setLayoutY(13);
+		armorState1.setId("item-state");
+		
+		armorState2 = new Label("");
+		armorState2.setLayoutX(240);
+		armorState2.setLayoutY(13);
+		armorState2.setId("item-state");
+		
+		armorState.getChildren().addAll(armorStateIcon1, armorStateIcon2, armorState1, armorState2);
+		armorState.setVisible(false);
+		
+		this.getChildren().addAll(weaponState, armorState);
 		
 	}
 	
@@ -104,6 +141,18 @@ public class CampsiteItemInfo extends Pane {
 		weaponState2.setText(criticalRate + " % ");
 		weaponState3.setText(armorPenetration + "");
 		weaponState.setVisible(true);
-		
+		armorState.setVisible(false);
 	}
+	
+	public void setArmorInfo(int armorNum, String name, String description, int armorValue, int dodgeRate) {
+		itemName.setText(name);
+		itemDescription.setText(description);
+		
+
+		armorState1.setText(armorValue + "");
+		armorState2.setText(dodgeRate + " %");
+		weaponState.setVisible(false);
+		armorState.setVisible(true);
+	}
+
 }

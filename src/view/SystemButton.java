@@ -23,6 +23,7 @@ public class SystemButton extends Button {
 		case 1:
 			img = new ImageView(Images.SYSTEM_SAVE_BTN);
 			img.setFitWidth(32);
+			break;
 		case 2:
 			img = new ImageView(Images.SYSTEM_HELP_BTN);
 			img.setFitWidth(19);

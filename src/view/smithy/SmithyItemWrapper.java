@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
+import model.po.Armor;
 import model.po.Weapon;
 import view.GameColor;
 import view.eventhandler.SmithyHandler;
@@ -65,23 +66,48 @@ public abstract class SmithyItemWrapper extends Pane{
 		for(int i=0; i<buildGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
 			tmpItem.group.setOnMouseClicked(smithyHandler.itemClickEvent);
-//			tmpItem.weapon.setOpacity(1);
+			if (num != 5){
+				tmpItem.weapon.setOpacity(1);
+			}else{
+				tmpItem.armor.setOpacity(1);
+			}
+
 		}
 	}
 	
 	private void setLock(){
 		for(int i=0; i<lockGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) lockGroup.getChildren().get(i);
-//			tmpItem.weapon.setOpacity(0.1);
+			if (num != 5){
+				tmpItem.weapon.setOpacity(0.1);
+			}else{
+				tmpItem.armor.setOpacity(0.1);
+			}
+
 		}
 	}
 	
-	public void updateItem(ArrayList<Weapon> weapons) {
+	public void updateWeapon(ArrayList<Weapon> weapons) {
 		// TODO Auto-generated method stub
 		for (Weapon weapon : weapons){
 			if(weapon.getType()/100 == num && weapon.canCreate()){
 				for (SmithyItemView view : list){
 					if (view.itemNum == weapon.getType() && !buildGroup.getChildren().contains(view)){
+						buildGroup.getChildren().add(view);
+						lockGroup.getChildren().remove(view);
+					}
+				}
+			}
+		}
+		initWeaponView();
+	}
+	
+	public void updateArmor(ArrayList<Armor> armors) {
+		// TODO Auto-generated method stub
+		for (Armor armor : armors){
+			if(armor.canCreate()){
+				for (SmithyItemView view : list){
+					if (view.itemNum == armor.getType() && !buildGroup.getChildren().contains(view)){
 						buildGroup.getChildren().add(view);
 						lockGroup.getChildren().remove(view);
 					}

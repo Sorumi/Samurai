@@ -43,4 +43,7 @@ public class CampsiteController extends TerritoryController {
         return storyModel.getArmory().getWeapon(tag);
     }
 
+	public Armor getArmorOfTag(int tag) {
+		return storyModel.getArmory().getArmor(tag);
+	}
 }

@@ -10,6 +10,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import view.ArmorView;
 import view.GameColor;
 import view.SystemButton;
 import view.WeaponView;
@@ -24,6 +25,7 @@ public class SmithyBuilder extends Pane {
 	private int width = 540;
 	private int itemNum;
 	private WeaponView weapon;
+	private ArmorView armor;
 	private Button buildBtn;
 	private SystemButton closeBtn;
 	
@@ -36,7 +38,12 @@ public class SmithyBuilder extends Pane {
 		this.smithyHandler = smithyHandler;
 		
 		this.setLayoutY(50);
-		this.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100));
+		if (itemNum/100 != 9){
+			this.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100));
+		}else{
+			this.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(5));
+		}
+
 		this.setId("smithy-builder");
 		
 		//item circle
@@ -60,11 +67,19 @@ public class SmithyBuilder extends Pane {
 		fillCircle.setRadius(RADIUS-30);
 		fillCircle.setFill(Color.WHITE);
 		circlePane.getChildren().add(fillCircle);
-		
-		weapon = new WeaponView(itemNum, 3);
-		weapon.setGray();
-		circlePane.getChildren().add(weapon);
-		StackPane.setAlignment(weapon,Pos.CENTER);
+	
+		if(itemNum/100 != 9){
+			weapon = new WeaponView(itemNum, 3);
+			weapon.setGray();
+			circlePane.getChildren().add(weapon);
+			StackPane.setAlignment(weapon,Pos.CENTER);
+		}else{
+			armor = new ArmorView(itemNum, 3);
+			armor.setGray();
+			circlePane.getChildren().add(armor);
+			StackPane.setAlignment(armor,Pos.CENTER);
+		}
+
 		
 		this.getChildren().add(circlePane);
 		
@@ -144,18 +159,33 @@ public class SmithyBuilder extends Pane {
 
 	//造武器成功调用此方法
 	public void build(){
-		weapon.setColored();
+		if(itemNum/100 != 9){
+			weapon.setColored();
+		}else{
+			armor.setColored();
+		}
 	}
 
 	public void buildBtnPressed() {
 		buildBtn.setLayoutY(624);
-		buildBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100+5) + ";"
-				+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(itemNum/100+10) +", 0, 0, 0, 4);");
+		if (itemNum/100 != 9){
+			buildBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100+6) + ";"
+					+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(itemNum/100+12) +", 0, 0, 0, 4);");
+		}else{
+			buildBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(11) + ";"
+					+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(17) +", 0, 0, 0, 4);");
+		}
+		
 	}
 	public void buildBtnAbled() {
 		buildBtn.setLayoutY(620);
-		buildBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100+5) + ";"
-				+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(itemNum/100+10) +", 0, 0, 0, 8);");
+		if (itemNum/100 != 9){
+			buildBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(itemNum/100+6) + ";"
+					+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(itemNum/100+12) +", 0, 0, 0, 8);");
+		}else{
+			buildBtn.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(11) + ";"
+					+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(17) +", 0, 0, 0, 8);");
+		}
 	}
 	
 	public void buildBtnUnabled() {

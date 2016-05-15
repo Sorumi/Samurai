@@ -60,6 +60,9 @@ public class Armor implements Serializable{
 	public int[] getMaterialNumber(){
 		return materialNumber;
 	}
+	public int getMaterialQuantity() {
+		return materialTag.length;
+	}
 	public int[] getNextArmor(){
 		return nextArmor;
 	}
