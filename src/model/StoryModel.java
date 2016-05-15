@@ -71,6 +71,23 @@ public class StoryModel implements Serializable{
         }
     }
 
+    public void changeArmor(int samuraiNum, int armorNum){
+        System.out.println("Samurai " + samuraiNum + " is changing to armor " + armorNum);
+        switch (samuraiNum){
+            case 1:
+                this.samuraiPO_1.changeArmor(this.armory.getArmor(armorNum));
+                break;
+            case 2:
+                this.samuraiPO_2.changeArmor(this.armory.getArmor(armorNum));
+                break;
+            case 3:
+                this.samuraiPO_3.changeArmor(this.armory.getArmor(armorNum));
+                break;
+            default:
+                break;
+        }
+    }
+
     public SamuraiPO[] getSamuraiPOs(){
         return new SamuraiPO[]{null,samuraiPO_1,samuraiPO_2,samuraiPO_3};
     }

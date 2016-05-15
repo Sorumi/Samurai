@@ -1,5 +1,6 @@
 package controller;
 
+import model.po.Information;
 import model.po.Props;
 import model.po.PropsStore;
 
@@ -32,4 +33,9 @@ public class ShopController extends TerritoryController {
     public void updateMoney(int delta){
         this.money += delta;
     }
+
+    public Information getInformationOfTag(int tag){
+        return storyModel.getInformationLibrary().getInformationOfTag(tag);
+    }
+
 }

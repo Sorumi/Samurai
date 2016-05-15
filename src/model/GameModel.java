@@ -757,12 +757,9 @@ public class GameModel extends BaseModel implements Observer {
 
         if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
 
-            if (this.currentPlayer == 1 || this.currentPlayer == 3 || this.currentPlayer == 4) {
+            if (this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5) {
                 this.timer = new Timer();
                 this.timer.schedule(new countDownTask(), 0, 1000);
-            }
-            if (this.currentPlayer == 2 || this.currentPlayer == 3 || this.currentPlayer == 6) {
-                this.timer.cancel();
             }
 
             this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
