@@ -308,6 +308,29 @@ public class GamePanel extends Pane implements Observer{
 				break;
 		}
 	}
+
+	public void setSamuraiArmor(int samurai, int Armor){
+		switch (samurai) {
+			case 1:
+				this.A1.samuraiV.setArmor(Armor);
+				break;
+			case 2:
+				this.A2.samuraiV.setArmor(Armor);
+				break;
+			case 3:
+				this.A3.samuraiV.setArmor(Armor);
+				break;
+			case 4:
+				this.B1.samuraiV.setArmor(Armor);
+				break;
+			case 5:
+				this.B2.samuraiV.setArmor(Armor);
+				break;
+			case 6:
+				this.B3.samuraiV.setArmor(Armor);
+				break;
+		}
+	}
 	
 	public void setBackground(int level){		
 	    this.setStyle("-fx-background-image: url("+Images.BG[level/10]+") ;"

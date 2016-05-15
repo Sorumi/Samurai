@@ -31,8 +31,6 @@ public class PropPanel extends OrderPanel {
 
 	public PropPanel() {
 
-		System.out.println("Construct PP");
-
 		this.setPrefHeight(height);
 		this.setPrefWidth(width);
 
