@@ -81,7 +81,7 @@ public class PropsStore implements Serializable {
 				System.out.println("Props wrong");
 				break;
 		}
-		return null;
+		return "";
 	}
 
 	public String replace(int type, SamuraiPO samuraiPO) {

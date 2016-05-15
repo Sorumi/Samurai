@@ -381,7 +381,6 @@ public class GameModel extends BaseModel implements Observer {
 
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
-        System.out.println("Update Pos : " + position);
 
         if(this.level != 99) {
             ArrayList<PropsInG> tmp = new ArrayList<>();
@@ -389,8 +388,6 @@ public class GameModel extends BaseModel implements Observer {
             for (PropsInG props : this.propsInGList) {
                 if (props.getPosition().getX() == position.getX() &&
                         props.getPosition().getY() == position.getY()) {
-
-                    System.out.println("Get prop!" + props.getType());
 
                     //只有人类玩家才加道具
                     if(this.getCurrentSamurai()  / 4 == 0) {
@@ -417,7 +414,6 @@ public class GameModel extends BaseModel implements Observer {
 
     public void useProp(int propNum){
         propList[propNum]--;
-        System.out.println("prop : " + propNum + " num " + propList[propNum]);
         if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum);
             super.updateChange(new UpdateMessage("useProp",propNum));
@@ -464,7 +460,6 @@ public class GameModel extends BaseModel implements Observer {
                     double ta = this.players[0].getSamuraiOfNum(1).getArmorRate() - armorPuncture;
                     if(ta > 0){
                         attackPointDouble *= (1-(ta / (ta + 100)));
-                        System.out.println(attackPointDouble);
                     }else{
                         attackPointDouble *= 1.5;
                     }
@@ -726,7 +721,8 @@ public class GameModel extends BaseModel implements Observer {
                 //暂时固定位置
                 Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
                 //type 都是1~14的
-                int type = random.nextInt(14) + 1;
+//                int type = random.nextInt(14) + 1;
+                int type = 12;
                 this.propsInGList.add(new PropsInG(position,type));
 
                 super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
@@ -755,7 +751,6 @@ public class GameModel extends BaseModel implements Observer {
                     this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
                 }
             }
-
         }
 
         System.out.println("Now is " + this.getCurrentSamurai());
