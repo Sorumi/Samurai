@@ -65,14 +65,14 @@ public abstract class SmithyItemWrapper extends Pane{
 		for(int i=0; i<buildGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) buildGroup.getChildren().get(i);
 			tmpItem.group.setOnMouseClicked(smithyHandler.itemClickEvent);
-			tmpItem.weapon.setOpacity(1);
+//			tmpItem.weapon.setOpacity(1);
 		}
 	}
 	
 	private void setLock(){
 		for(int i=0; i<lockGroup.getChildren().size(); i++){
 			SmithyItemView tmpItem = (SmithyItemView) lockGroup.getChildren().get(i);
-			tmpItem.weapon.setOpacity(0.1);
+//			tmpItem.weapon.setOpacity(0.1);
 		}
 	}
 	

@@ -21,7 +21,7 @@ public class ArmorView extends StackPane {
 		this(number, 1);
 	}
 	public ArmorView(int number, int scale) {
-		number = number - 900;
+		number = (number - 900)*10;
 		this.num = number;
 		this.SCALE = scale;
 		this.BODY_X = 28;
@@ -30,9 +30,9 @@ public class ArmorView extends StackPane {
 		this.setPrefSize(100 * SCALE, 100 * SCALE);
 
 		if (Images.ARMOR[number / 100][number % 100 / 10] != null) {
-			left = new ImageView(Images.WEAPON[number / 100][number % 100 / 10][0]);
-			body = new ImageView(Images.WEAPON[number / 100][number % 100 / 10][1]);
-			right = new ImageView(Images.WEAPON[number / 100][number % 100 / 10][3]);
+			left = new ImageView(Images.ARMOR[number / 100][number % 100 / 10][0]);
+			body = new ImageView(Images.ARMOR[number / 100][number % 100 / 10][1]);
+			right = new ImageView(Images.ARMOR[number / 100][number % 100 / 10][3]);
 			left.setPreserveRatio(true);
 			body.setPreserveRatio(true);
 			right.setPreserveRatio(true);

@@ -105,7 +105,7 @@ public class SmithyPanel extends TransitionPanel {
 		});
 		
 		routeGroup = new Group();
-		routeGroup.getChildren().addAll(bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn, armorGroup);
+		routeGroup.getChildren().addAll(armorGroup, bowGroup, shurikenGroup, battleaxGroup, swordGroup, spearGroup, closeBtn);
 		this.getChildren().add(routeGroup);
 		
 		smithyWeaponState = new SmithyWeaponState();

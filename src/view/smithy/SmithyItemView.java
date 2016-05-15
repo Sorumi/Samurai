@@ -2,6 +2,7 @@ package view.smithy;
 
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -14,7 +15,8 @@ public class SmithyItemView extends Pane{
 
 	private final int RADIUS = 50;
 	public int itemNum;
-	
+//	
+//	public ImageView item;
 	public WeaponView weapon;
 	public ArmorView armor;
 	
@@ -48,7 +50,7 @@ public class SmithyItemView extends Pane{
 		fillCircle.setRadius(RADIUS-10);
 		fillCircle.setFill(Color.WHITE);
 		
-		if (itemNum != 9){
+		if (itemNum/100 != 9){
 			weapon = new WeaponView(itemNum);
 			StackPane.setAlignment(weapon,Pos.CENTER);
 			group = new Group();
