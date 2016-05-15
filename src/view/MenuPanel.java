@@ -332,4 +332,8 @@ public class MenuPanel extends Pane {
 		}
 		isDay = !isDay;
 	}
+	
+	public MenuHandler getMenuHandler(){
+		return this.menuHandler;
+	}
 }

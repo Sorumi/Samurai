@@ -66,7 +66,6 @@ public class MenuHandler {
 					switch(mainFrame.menuPanel.modeNum){
 					case 0:
 						mainFrame.menuPanel.storySelectPanel.setVisible(true);
-//						mainFrame.startStory();
 						break;
 					case 1:
 						mainFrame.startClassicGame();
@@ -81,9 +80,16 @@ public class MenuHandler {
 	public EventHandler<MouseEvent> newStoryEvent = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
-			mainFrame.startStory();
+			startStory();
+			
 		}  
 	};
+	public void startStory(){
+		mainFrame.startStory();
+		mainFrame.menuPanel.getChildren().remove(mainFrame.menuPanel.archivePanel);
+		mainFrame.menuPanel.storySelectPanel.setVisible(false);
+	}
+	
 	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {

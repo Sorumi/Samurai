@@ -49,13 +49,13 @@ public class ArchivePanel extends Pane {
 		});
 		this.getChildren().add(closeBtn);
 
-		arcV0 = new ArchiveView(0);
+		arcV0 = new ArchiveView(0, type);
 		arcV0.setLayoutX(50);
 		arcV0.setLayoutY(50);
-		arcV1 = new ArchiveView(1);
+		arcV1 = new ArchiveView(1, type);
 		arcV1.setLayoutX(50);
 		arcV1.setLayoutY(260);
-		arcV2 = new ArchiveView(2);
+		arcV2 = new ArchiveView(2, type);
 		arcV2.setLayoutX(50);
 		arcV2.setLayoutY(470);
 		this.getChildren().addAll(arcV0, arcV1, arcV2);

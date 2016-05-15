@@ -67,18 +67,21 @@ public class GameColor {
 		case 2: color = Color.web("#E1E6C3");break;//battleax
 		case 3: color = Color.web("#CBE5E9");break;//shuriken
 		case 4: color = Color.web("#E3DBF2");break;//bow and arrow
+		case 5: color = Color.web("#F2E1F3");break;//armor
 		//highlight
-		case 5: color = Color.web("#E46767");break;//spear
-		case 6: color = Color.web("#F7E07B");break;//sword
-		case 7: color = Color.web("#C3D26D");break;//battleax
-		case 8: color = Color.web("#A1E0EB");break;//shuriken
-		case 9: color = Color.web("#C2ABEE");break;//bow and arrow
+		case 6: color = Color.web("#E46767");break;//spear
+		case 7: color = Color.web("#F7E07B");break;//sword
+		case 8: color = Color.web("#C3D26D");break;//battleax
+		case 9: color = Color.web("#A1E0EB");break;//shuriken
+		case 10: color = Color.web("#C2ABEE");break;//bow and arrow
+		case 11: color = Color.web("#E8C6EB");break;//armor
 		//stroke
-		case 10: color = Color.web("#C35050");break;//spear
-		case 11: color = Color.web("#DDC766");break;//sword
-		case 12: color = Color.web("#A4B44B");break;//battleax
-		case 13: color = Color.web("#84BFC9");break;//shuriken
-		case 14: color = Color.web("#A592C9");break;//bow and arrow
+		case 12: color = Color.web("#C35050");break;//spear
+		case 13: color = Color.web("#DDC766");break;//sword
+		case 14: color = Color.web("#A4B44B");break;//battleax
+		case 15: color = Color.web("#84BFC9");break;//shuriken
+		case 16: color = Color.web("#A592C9");break;//bow and arrow
+		case 17: color = Color.web("#C9A0CC");break;//armor
 		//background
 //		case 15: color = Color.web("#E2B2B0");break;//spear
 //		case 16: color = Color.web("#EEE0AE");break;//sword

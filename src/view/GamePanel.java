@@ -25,6 +25,7 @@ import view.background.BackgroundPanel3;
 import view.background.BackgroundPanel4;
 import view.background.BackgroundPanel5;
 import view.eventhandler.ActionHandler;
+import view.eventhandler.GamePanelSelectHandler;
 import view.eventhandler.StateHandler;
 
 public class GamePanel extends Pane implements Observer{
@@ -80,7 +81,8 @@ public class GamePanel extends Pane implements Observer{
 	public ActionPanel actionPanel;
 	protected ActionHandler actionHandler;
 	public StatePanel statePanel;
-	
+	public SelectPanel selectPanel;
+	protected GamePanelSelectHandler selectHandler;
 	protected StateHandler stateHandler;
 	protected ObservableList<OrderPanel>  orderList;
 
@@ -94,7 +96,21 @@ public class GamePanel extends Pane implements Observer{
 		this.size = size;
 		this.level = level; 
 		this.setBackground(level);
-	
+		
+		this.selectHandler = new GamePanelSelectHandler(this,level); 
+		this.selectPanel = new SelectPanel(selectHandler);
+		this.selectPanel.setLayoutX(FIELD_WIDTH/2);
+		this.selectPanel.setLayoutY(FIELD_HEIGHT/2);
+		selectPanel.yesBtn.setOnMouseClicked(selectHandler.yesEvent);
+		selectPanel.yesBtn.setOnMouseEntered(selectHandler.yesBtnEnterEvent);
+		selectPanel.yesBtn.setOnMouseEntered(selectHandler.yesBtnExitEvent);
+		selectPanel.noBtn.setOnMouseClicked(selectHandler.noEvent);
+		selectPanel.noBtn.setOnMouseEntered(selectHandler.noBtnEnterEvent);
+		selectPanel.noBtn.setOnMouseEntered(selectHandler.noBtnExitEvent);
+		selectPanel.setZOrder(999);
+		selectPanel.setVisible(false);
+		this.getChildren().add(selectPanel);
+			
 		//bounds
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -105,27 +121,14 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
+				selectPanel.setVisible(true);
 				System.out.println("LEVEL : " + level);
 				switch(level){
 					case 99:
-						Pane basePanel = (Pane) GamePanel.this.getParent();
-						basePanel.getChildren().remove(GamePanel.this);
-						MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
-						menu.samuraiTimer.start();
-
-						OperationQueue.addOperation(new EndOperation(false));
+						selectHandler.level = 99;
 						break;
 					case 0:
-						OperationQueue.addOperation(new EndOperation(false));
-						break;
-					default:
-						//TODO
-						StoryPanel storyPanel = (StoryPanel) GamePanel.this.getParent();
-						storyPanel.mapPanel.toFront();
-						storyPanel.gamePanel.getChildren().remove(GamePanel.this);
-						storyPanel.gamePanel = null;
-
-						OperationQueue.addOperation(new EndOperation(false));
+						selectHandler.level = 0;
 						break;
 				}
 			}
@@ -221,12 +224,11 @@ public class GamePanel extends Pane implements Observer{
 
 
 		if(level < 99 && level > 0) {
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup,selectPanel);
 		}else{
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel,selectPanel);
 		}
 		this.setOrder();
-		
 		
 		//TODO
 //		this.addProp(3, 3, 0);

@@ -7,6 +7,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import view.ArchiveView;
+import view.MenuPanel;
 
 public class ArchiveHandler {
 
@@ -26,6 +27,10 @@ public class ArchiveHandler {
 	      public void handle(MouseEvent event) {
 			  //读取存档 num
 			  archiveController.load(num);
+			  if(archiveView.type == 1){
+				  MenuPanel menu = (MenuPanel) archiveView.getParent().getParent();
+				  menu.getMenuHandler().startStory();
+			  }
 		  }
 	};
 	
