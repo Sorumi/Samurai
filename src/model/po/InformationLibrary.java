@@ -86,8 +86,8 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(731, "幸运符号", "民间流传的幸运符号，在该回合内暴击率提高10%。"));
 		informationLibraries.add(new Information(732, "光之符号", "蕴藏着光辉的符号，在该回合内暴击率提高25%。"));
 		informationLibraries.add(new Information(733, "圣歌符号", "仔细聆听可以听到神灵的音乐的符号，在该回合内暴击率提高40%。"));
-		informationLibraries.add(new Information(741, "小起小落", "“听过六合彩么？没错，就是它，测试你运气的时候到了哦~”\n                           ---街边小贩"));
-		informationLibraries.add(new Information(751, "大起大落", "“人生不如意之事，十有八九，要么一夜暴富，要么就祭出灵魂！”\n                           ---空灵之音"));
+		informationLibraries.add(new Information(741, "小起小落", "“听过六合彩么？没错，就是它，测试你运气的时候到了哦~”\n                           ——街边小贩"));
+		informationLibraries.add(new Information(751, "大起大落", "“人生不如意之事，十有八九，要么一夜暴富，要么就祭出灵魂！”\n                           ——空灵之音"));
 		informationLibraries.add(new Information(800, "纱布", "战场上用于包扎伤口的粗布，也常常用来给衣物打补丁。"));
 		informationLibraries.add(new Information(801, "纺布", "民间织女纺出来的素布，质地柔韧，由于随处可见并不稀有。"));
 		informationLibraries.add(new Information(802, "丝绸", "从古老的东方国度运来的绸缎，经历了大漠的沧桑，北风的呼啸，海洋的狂澜，高山的巍峨，见证了一个又一个国度的兴起和衰落，是珍贵的皇室用品。"));

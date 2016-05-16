@@ -31,6 +31,7 @@ public class StoreHandler {
 
 	public void update() {
 		storePanel.getItemsPanel().clearAll();
+		this.storeController.getAllMaterial();
 		storePanel.getItemsPanel().updateMaterial(storeController.getMaterials());
 		storePanel.getItemsPanel().updateProp(storeController.getProps());
 	}
@@ -107,6 +108,7 @@ public class StoreHandler {
 			if(num >= 800){
 				storeController.getMaterialLibrary().changeItem(num, -quantity);
 				storeController.updateMoney((MaterialLibrary.priceTable(num) * quantity));
+
 			}else{
 				storeController.getPropsStore().getProps(num).changeNumber(-quantity);
 				storeController.updateMoney((int)(0.6 * storeController.getPropsStore().getProps(num).getPrice()) * quantity);

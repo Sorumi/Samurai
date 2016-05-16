@@ -426,8 +426,13 @@ public class GameModel extends BaseModel implements Observer {
 
     public void useProp(int propNum){
         propList[propNum]--;
-        if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
+        String result = this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
+        System.out.println(result);
+        if(!result.equals("kill") && !result.equals("small")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
+        }else{
+            this.getSamuraiOfNum(this.getCurrentSamurai()).beKilled(this.chessBoardModel);
+            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), 0}));
         }
         SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
         this.updateHealthPoint(tmpPO.getNumber());
@@ -759,21 +764,7 @@ public class GameModel extends BaseModel implements Observer {
 
             System.out.println("prop size:  " + this.propsInGList.size());
 
-            for (int i = 1; i <= 14; i++) {
-                int num = this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[i];
-                if(num != 0){
-                    this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(i, 0);
-                    System.out.println("reset prop");
-                    while(num > 0) {
-                        this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
-                        SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
-                        this.updateHealthPoint(tmpPO.getNumber());
-                        super.updateChange(new UpdateMessage("replace",new int[]{getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
-                                tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
-                        num--;
-                    }
-                }
-            }
+            this.replaceProps();
         }
 
         System.out.println("Now is " + this.getCurrentSamurai());
@@ -902,6 +893,24 @@ public class GameModel extends BaseModel implements Observer {
 
     }
 
+    public void replaceProps(){
+        for (int i = 1; i <= 14; i++) {
+            int num = this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[i];
+            if(num != 0){
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(i, 0);
+                System.out.println("reset prop");
+                while(num > 0) {
+                    this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
+                    SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
+                    this.updateHealthPoint(tmpPO.getNumber());
+                    super.updateChange(new UpdateMessage("replace",new int[]{getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
+                            tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
+                    num--;
+                }
+            }
+        }
+    }
+
     public void actionDone(){
 
         this.currentTime = this.timeTotal;
@@ -961,6 +970,9 @@ public class GameModel extends BaseModel implements Observer {
 
             scoreBoard.caculateMaterial(level / 10 - 1, level % 10, block, myKill, aiKill);
             ArrayList<Material> materials = scoreBoard.getMaterial();
+            for(Material material : materials) {
+                StoryModel.getStoryModel().getMaterialLibrary().changeItem(material.getType(), material.getNumber());
+            }
             super.updateChange(new UpdateMessage("materials",materials));
 
             int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],
@@ -1014,6 +1026,7 @@ public class GameModel extends BaseModel implements Observer {
         if(this.timer != null) {
             this.timer.cancel();
         }
+        this.replaceProps();
         System.out.println("GAME EXIT!");
     }
 
