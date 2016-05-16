@@ -27,6 +27,7 @@ import view.background.TerritoryFrontground;
 import view.background.WeatherSelectPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.StateHandler;
+import view.eventhandler.TerToMenuSelectHandler;
 import view.eventhandler.TerritoryHandler;
 import view.eventhandler.WeatherHandler;
 import view.shop.ShopPanel;
@@ -67,6 +68,8 @@ public class TerritoryPanel extends Pane {
 	public ArchivePanel archivePanel;
 	public StatePanel statePanel;
 	public MoneyPanel moneyPanel;
+	public TerToMenuSelectPanel terToMenuSelectPanel;
+	public TerToMenuSelectHandler terToMenuSelectHandler;
 
 	protected StateHandler stateHandler;
 
@@ -97,6 +100,8 @@ public class TerritoryPanel extends Pane {
 		territoryGroup.getChildren().add(territoryBg);
 
 		territoryHandler = new TerritoryHandler(this);
+		terToMenuSelectHandler = new TerToMenuSelectHandler(this);
+		terToMenuSelectPanel = new TerToMenuSelectPanel(terToMenuSelectHandler);
 
 		// exit btn
 		exitBtn = new SystemButton(0);
@@ -105,11 +110,13 @@ public class TerritoryPanel extends Pane {
 		exitBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				StoryPanel storyPanel = (StoryPanel) TerritoryPanel.this.getParent();
-				Pane basePanel = (Pane) storyPanel.getParent();
-				basePanel.getChildren().remove(storyPanel);
-				MenuPanel menu = (MenuPanel) basePanel.getChildren().get(0);
-				menu.samuraiTimer.start();
+				// StoryPanel storyPanel = (StoryPanel)
+				// TerritoryPanel.this.getParent();
+				// Pane basePanel = (Pane) storyPanel.getParent();
+				// basePanel.getChildren().remove(storyPanel);
+				// MenuPanel menu = (MenuPanel) basePanel.getChildren().get(0);
+				// menu.samuraiTimer.start();
+				TerritoryPanel.this.terToMenuSelectPanel.setVisible(true);
 			}
 		});
 		territoryGroup.getChildren().add(exitBtn);
@@ -154,17 +161,17 @@ public class TerritoryPanel extends Pane {
 		storeBtn.setLayoutY(293);
 		storeBtn.setOnMouseClicked(territoryHandler.storeEvent);
 
-		//shop
+		// shop
 		ImageView shopImg = new ImageView(Images.TERRITORY_SHOP);
 		shopImg.setFitWidth(242);
 		shopImg.setPreserveRatio(true);
-		
+
 		shopBtn = new TerritoryButton();
 		shopBtn.setGraphic(shopImg);
 		shopBtn.setLayoutX(351);
 		shopBtn.setLayoutY(34);
 		shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent);
-		
+
 		// flag
 		ImageView flagImg = new ImageView(Images.TERRITORY_FLAG);
 		flagImg.setFitWidth(95);
@@ -175,7 +182,6 @@ public class TerritoryPanel extends Pane {
 		flagBtn.setLayoutX(882);
 		flagBtn.setLayoutY(446);
 		flagBtn.setOnMouseClicked(territoryHandler.flagEvent);
-
 
 		shopSelectPanel = new ShopSelectPanel(territoryHandler);
 		shopSelectPanel.setVisible(false);
@@ -214,24 +220,26 @@ public class TerritoryPanel extends Pane {
 		WeatherHandler weatherHandler = new WeatherHandler(this);
 		WeatherSelectPanel weatherPanel = new WeatherSelectPanel(weatherHandler);
 		weatherPanel.setLayoutX(1125);
-		weatherPanel.setLayoutY(445);//445
+		weatherPanel.setLayoutY(445);// 445
 		territoryGroup.getChildren().add(weatherPanel);
 
-		//money
+		// money
 		moneyPanel = new MoneyPanel();
 		moneyPanel.setLayoutX(50);
 		moneyPanel.setLayoutY(700);
-		
+
 		// blur
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
 
 		this.getChildren().addAll(territoryGroup, shopSelectPanel, moneyPanel);
-
+		this.getChildren().add(terToMenuSelectPanel);
+		this.terToMenuSelectPanel.setVisible(false);
 		// init
 		updateSamurai();
 		updateMoney();
 		this.setRandomWeather();
+
 	}
 
 	// 内部类
@@ -241,7 +249,7 @@ public class TerritoryPanel extends Pane {
 
 		public TerritoryButton() {
 			shadow.setInput(light);
-			
+
 			this.setEffect(shadow);
 			this.setOnMouseEntered(territoryHandler.buttonEnterEvent);
 			this.setOnMouseExited(territoryHandler.buttonExitEvent);
@@ -249,21 +257,24 @@ public class TerritoryPanel extends Pane {
 
 		public void setHighlight() {
 			Timeline effectTL = new Timeline(
-					new KeyFrame(Duration.millis(300), new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)),
+					new KeyFrame(Duration.millis(300),
+							new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)),
 					new KeyFrame(Duration.millis(300), new KeyValue(shadow.radiusProperty(), 3, Interpolator.EASE_IN)));
 			effectTL.play();
 		}
 
 		public void setNormal() {
 			Timeline effectTL = new Timeline(
-					new KeyFrame(Duration.millis(300), new KeyValue(light.brightnessProperty(), 0, Interpolator.EASE_IN)),
+					new KeyFrame(Duration.millis(300),
+							new KeyValue(light.brightnessProperty(), 0, Interpolator.EASE_IN)),
 					new KeyFrame(Duration.millis(300), new KeyValue(shadow.radiusProperty(), 0, Interpolator.EASE_IN)));
 			effectTL.play();
 		}
 	}
 
-	public void updateMoney(){
-		moneyPanel.setMoney(this.getTerritoryHandler().getTerritoryController().getStoryModel().getPropsStore().getMoney());
+	public void updateMoney() {
+		moneyPanel.setMoney(
+				this.getTerritoryHandler().getTerritoryController().getStoryModel().getPropsStore().getMoney());
 	}
 
 	public void updateSamurai() {
