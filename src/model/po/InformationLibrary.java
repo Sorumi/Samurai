@@ -96,10 +96,9 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(843, "虚无幻灭", "这颗水晶里似乎什么都没有，存在的极端也许就是虚无吧。"));
 		informationLibraries.add(new Information(911, "911", "911"));
 		informationLibraries.add(new Information(912, "912", "912"));
-		informationLibraries.add(new Information(913, "913", "913"));
-		informationLibraries.add(new Information(933, "933", "933"));
-		informationLibraries.add(new Information(914, "914", "914"));
 		informationLibraries.add(new Information(923, "923", "923"));
+		informationLibraries.add(new Information(913, "913", "913"));
+		informationLibraries.add(new Information(914, "914", "914"));
 		informationLibraries.add(new Information(924, "924", "924"));
 		informationLibraries.add(new Information(934, "934", "934"));
 		informationLibraries.add(new Information(915, "915", "915"));

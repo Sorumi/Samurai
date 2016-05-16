@@ -2,7 +2,6 @@ package view.store;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.Pane;
 import view.SystemButton;
 import view.TerritoryPanel;
 import view.TransitionPanel;
@@ -36,7 +35,7 @@ public class StorePanel extends TransitionPanel{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				transitionAnimation(false);
-				TerritoryPanel parent =  (TerritoryPanel) StorePanel.this.getParent();
+				TerritoryPanel parent = (TerritoryPanel) StorePanel.this.getParent();
 				parent.getChildren().remove(StorePanel.this);
 				parent.setBlur(false);
 			}
@@ -50,7 +49,9 @@ public class StorePanel extends TransitionPanel{
 
 	public void setSellPanel(){
 		sellPanel = new StoreItemSell(storeHandler);
+		this.getChildren().add(sellPanel);
 	}
+
 	public StoreItemsWrapper getItemsPanel(){
 		return this.itemsPanel;
 	}

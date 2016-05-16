@@ -24,18 +24,12 @@ public class ShopItemPurchase extends Pane{
 	private Group minusGroup;  
 	
 	private Button buyButton;
-
-	private ShopHandler shopHandler;
 	
 	public ShopItemPurchase(ShopHandler shopHandler){  
 		this.setPrefSize(500, 340);
 		this.setLayoutX(650);
 		this.setLayoutY(270);
 		this.setId("campsite-wrapper");
-
-		this.shopHandler = shopHandler;
-
-
 
 		img1 = new ImageView(Images.COIN);
 		img1.setFitWidth(30);

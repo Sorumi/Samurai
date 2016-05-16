@@ -27,4 +27,9 @@ public class ShopItemInfo extends Pane {
 		this.getChildren().add(itemDescription);
 	}
 
+	public void updatePropInfo(int num, String name, String description) {
+		this.itemName.setText(name);
+		this.itemDescription.setText(description);
+	}
+
 }

@@ -72,6 +72,7 @@ public class MapHandler {
 	      public void handle(MouseEvent event) {
 	    	  LandButton btn = (LandButton) event.getSource();
 	    	  btn.setHighlight();
+	    	  mapPanel.UnlockLevel(2);
 	      }
 	};
 	

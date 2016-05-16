@@ -56,7 +56,7 @@ public class ShopSelectPanel extends Pane{
 		sellBtn.setId("Asave-btn");
 		sellBtn.setOnMouseEntered(territoryHandler.sellBtnEnterEvent);
 		sellBtn.setOnMouseExited(territoryHandler.sellBtnExitEvent); 
-//		sellBtn.setOnMouseClicked(territoryHandler.showSellPanelEvent);
+		sellBtn.setOnMouseClicked(territoryHandler.showSellPanelEvent);
 		btnAbled(0);
 		btnAbled(1);
 		

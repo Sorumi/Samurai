@@ -1,4 +1,4 @@
-package view;
+	package view;
 
 import controller.MapController;
 import javafx.animation.FadeTransition;
@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -34,6 +35,11 @@ public class MapPanel extends Pane {
 	
 	private Group bridgeGroup;
 	private Group cloudGroup;
+	
+	public FogGroup fogs2;
+	public FogGroup fogs3;
+	public FogGroup fogs4;
+	public FogGroup fogs5; 
 	
 	public LevelSelectPanel levelSelectPanel; 
 
@@ -138,11 +144,21 @@ public class MapPanel extends Pane {
 		cloudGroup.getChildren().addAll(cloud0, cloud1, cloud2, cloud3, cloud4);
 		this.getChildren().add(cloudGroup);
 
+		//fog
+		fogs2 = new FogGroup(2);
+		fogs3 = new FogGroup(3);
+		fogs4 = new FogGroup(4);
+		fogs5 = new FogGroup(5);
+		this.getChildren().addAll(fogs2, fogs3, fogs4, fogs5);
+		
 		//select panel
 		levelSelectPanel = new LevelSelectPanel(mapHandler);
 		levelSelectPanel.setLayoutX(400);
 		levelSelectPanel.setLayoutY(250);
 		this.getChildren().add(levelSelectPanel);
+		
+		//TODO
+		updateMap(new boolean[]{true, false, false, false, false});
 	}
 	
 	//内部类
@@ -209,7 +225,7 @@ public class MapPanel extends Pane {
 		public void setAppear(){
 			this.setVisible(true);
 			if (this.opacityProperty().intValue() == 0) {
-				FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
+				FadeTransition ft = new FadeTransition(Duration.millis(2000), this);
 				ft.setFromValue(0);
 				ft.setToValue(1);
 				ft.play();
@@ -217,11 +233,118 @@ public class MapPanel extends Pane {
 		}
 	}
 	
+	public class FogGroup extends Group{
+		public FogGroup(int num){
+			int foglength = Images.MAP_FOG[num-2].length;
+			for(int i=0; i<foglength; i++){
+				ImageView fogImg = init(num, i);
+				this.getChildren().add(fogImg);
+			}
+		}
+		
+		private ImageView init(int num, int i){
+			Image[] fogs = Images.MAP_FOG[num-2];
+			ImageView imgV = new ImageView(fogs[i]);
+			imgV.setPreserveRatio(true);
+			imgV.setSmooth(true);
+			switch(num){
+			case 2:
+				switch(i){
+				case 0:
+					imgV.setFitWidth(835);
+					imgV.setLayoutX(70);
+					imgV.setLayoutY(460);
+					break;
+				case 1:
+					imgV.setFitWidth(831);
+					imgV.setLayoutX(367);
+					imgV.setLayoutY(451);
+				}
+				break;
+			case 3:
+				switch(i){
+				case 0:
+					imgV.setFitWidth(518);
+					imgV.setLayoutX(739-50);
+					imgV.setLayoutY(363-50);
+					break;
+				case 1:
+					imgV.setFitWidth(651);
+					imgV.setLayoutX(748-50);
+					imgV.setLayoutY(239-50);
+					break;
+				}
+				break;
+			case 4:
+				switch(i){
+				case 0:
+					imgV.setFitWidth(518);
+					imgV.setLayoutX(489-50);
+					imgV.setLayoutY(25-50);
+					break;
+				case 1:
+					imgV.setFitWidth(606);
+					imgV.setLayoutX(383-50);
+					imgV.setLayoutY(160-50);
+					break;
+				case 2:
+					imgV.setFitWidth(494);
+					imgV.setLayoutX(537-55);
+					imgV.setLayoutY(288-55);
+					break;
+				}
+				break;
+			case 5:
+				switch(i){
+				case 0:
+					imgV.setFitWidth(518);
+					imgV.setLayoutX(817-50);
+					imgV.setLayoutY(0-50);
+					break;
+				case 1:
+					imgV.setFitWidth(831);
+					imgV.setLayoutX(836-55);
+					imgV.setLayoutY(59-55);
+					break;
+				}
+				break;
+			}
+			return imgV;
+		}
+		
+		public void setFade(){
+			Timeline tl = new Timeline();
+			for(int i=0; i<this.getChildren().size(); i++){
+				if (i%2 == 0){
+					ImageView fog = (ImageView)this.getChildren().get(i);
+					tl.getKeyFrames().add(
+							new KeyFrame(Duration.millis(3000), new KeyValue(fog.layoutXProperty(), -fog.getFitWidth())));
+				}else{
+					ImageView fog = (ImageView)this.getChildren().get(i);
+					tl.getKeyFrames().add(
+							new KeyFrame(Duration.millis(3000), new KeyValue(fog.layoutXProperty(), 1200)));
+				}
+			}
+			tl.play();
+		}
+	}
+	
 	//更新解锁的关卡
 	public void updateMap(boolean[] isUnlock){
-		for (int i=0; i<=5; i++){
+		for (int i=0; i<5; i++){
 			BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(i);
 			bridge.setVisible(isUnlock[i]);
+			if(!isUnlock[i]){
+				bridge.setOpacity(0);
+			}
+		}
+	}
+	
+	public void UnlockLevel(int level){
+		if(level>1 && level<6){
+			fogs2.setFade();
+			BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(level-1);
+			bridge.setAppear();
 		}
 	}
 }

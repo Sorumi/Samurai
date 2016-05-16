@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
+import model.po.PropsInG;
+import view.TerritoryPanel;
 import view.store.StoreItemView;
 import view.store.StorePanel;
 
@@ -12,18 +14,23 @@ public class StoreHandler {
 
 	private StorePanel storePanel;
 	private StoreController storeController;
-
+	private int num;
+	private int quantity; 
+	
 	public StoreHandler(StorePanel storePanel) {
 		this.storePanel = storePanel;
 		this.storeController = new StoreController();
 		this.storeController.setStoryModel(StoryModel.getStoryModel());
+		this.storeController.setPropsStore();
 
 		this.storeController.getAllMaterial();
-		// 加入更新 Panel 数量的方法
+		this.storeController.getAllProps();
+
 	}
 
 	public void update() {
-		storePanel.getItemsPanel().updateItem(storeController.getMaterials());
+		storePanel.getItemsPanel().updateMaterial(storeController.getMaterials());
+		storePanel.getItemsPanel().updateProp(storeController.getProps());
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {
@@ -43,17 +50,27 @@ public class StoreHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			StoreItemView item = (StoreItemView) event.getSource();
-
-			Information information = storeController.getInformationOfTag(item.getNum() + 800);
-			storePanel.infoPanel.updateInfo(information.getTag() - 800, information.getName(),
-					information.getDescription());
+			if (item.getNum() / 100 != 7) {
+				Information information = storeController.getInformationOfTag(item.getNum() + 800);
+				storePanel.infoPanel.updateMaterialInfo(information.getTag() - 800, information.getName(),
+						information.getDescription());
+			}else{
+//				Information information = storeController.getInformationOfTag(item.getNum() + 700);
+//				storePanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
+//						information.getDescription());
+			}
+			if(storePanel.sellPanel != null){
+				storePanel.sellPanel.setQuantity(0);
+				storePanel.sellPanel.quantityTotal = item.quantity;
+			}
+			
 		}
 	};
 
 	public EventHandler<MouseEvent> plusQuantityEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			int quantity = storePanel.sellPanel.quantity + 1;
-			if (quantity >= 0) {
+			if (quantity >= 0 && quantity<=storePanel.sellPanel.quantityTotal) {
 				storePanel.sellPanel.setQuantity(quantity);
 			}
 		}
@@ -68,4 +85,39 @@ public class StoreHandler {
 		}
 	};
 
+	// 贩卖按钮
+	public EventHandler<MouseEvent> sellBtnClickEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			quantity = storePanel.sellPanel.getQuantity();
+			//要分是卖道具还是卖材料
+			//这里的编号要弄弄对
+			System.out.println("N  " + num);
+			storeController.getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(-quantity);
+			storeController.getMaterialLibrary().changeItem(num, -quantity);
+//			加入加钱的方法
+			storeController.updateMoney(1);
+			TerritoryPanel parent =  (TerritoryPanel) storePanel.getParent();
+			parent.updateMoney();
+		}
+	};
+
+	public EventHandler<MouseEvent> sellBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			storePanel.sellPanel.sellBtnPressed();
+		}
+	};
+
+	public EventHandler<MouseEvent> sellBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			storePanel.sellPanel.sellBtnAbled();
+		}
+	};
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public int getNum() {
+		return num;
+	}
 }
