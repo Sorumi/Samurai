@@ -26,7 +26,7 @@ public class StoreHandler {
 	}
 
 	public void update() {
-		storePanel.getItemsPanel().updateItem(storeController.getMaterials());
+		storePanel.getItemsPanel().updateMaterial(storeController.getMaterials());
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {
@@ -46,10 +46,16 @@ public class StoreHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			StoreItemView item = (StoreItemView) event.getSource();
-
-			Information information = storeController.getInformationOfTag(item.getNum() + 800);
-			storePanel.infoPanel.updateInfo(information.getTag() - 800, information.getName(),
-					information.getDescription());
+			if (item.getNum() / 100 != 7) {
+				Information information = storeController.getInformationOfTag(item.getNum() + 800);
+				storePanel.infoPanel.updateMaterialInfo(information.getTag() - 800, information.getName(),
+						information.getDescription());
+			}else{
+				Information information = storeController.getInformationOfTag(item.getNum());
+				storePanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
+						information.getDescription());
+			}
+			
 		}
 	};
 
