@@ -37,6 +37,8 @@ public class GameModel extends BaseModel implements Observer {
     private boolean flag = false;
     private Position aidPos;
 
+    Position[] homePosition = new Position[3];
+
     protected ClientService net;
     private static boolean isServer = false;
     private static boolean isClient = false;
@@ -106,8 +108,6 @@ public class GameModel extends BaseModel implements Observer {
         players[0] = new Player(this,0,samuraiPOs);
         players[0].setSamuraiPOs(samuraiPOs);
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
-
-        Position[] homePosition = new Position[3];
 
         if(this.level % 10 == 1){
             homePosition[0] = new Position(0,0);
@@ -428,11 +428,16 @@ public class GameModel extends BaseModel implements Observer {
         propList[propNum]--;
         String result = this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
         System.out.println(result);
-        if(!result.equals("kill") && !result.equals("small")) {
+        if(result.equals("")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
-        }else{
+        }else if(result.equals("small")){
+
+        }else if(result.equals("kill")){
+            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), -1}));
             this.getSamuraiOfNum(this.getCurrentSamurai()).beKilled(this.chessBoardModel);
-            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), 0}));
+            this.getSamuraiOfNum(this.getCurrentSamurai()).setColdRound(1);
+            super.updateChange(new UpdateMessage("home",this.getSamuraiOfNum(this.getCurrentSamurai())));
+            OperationQueue.addOperation(new SkipOperation());
         }
         SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
         this.updateHealthPoint(tmpPO.getNumber());
