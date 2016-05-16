@@ -426,8 +426,12 @@ public class GameModel extends BaseModel implements Observer {
 
     public void useProp(int propNum){
         propList[propNum]--;
-        if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
+        String result = this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
+        if(!result.equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
+        }else{
+            this.getSamuraiOfNum(this.getCurrentSamurai()).beKilled(this.chessBoardModel);
+            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), 0}));
         }
         SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
         this.updateHealthPoint(tmpPO.getNumber());
@@ -961,6 +965,9 @@ public class GameModel extends BaseModel implements Observer {
 
             scoreBoard.caculateMaterial(level / 10 - 1, level % 10, block, myKill, aiKill);
             ArrayList<Material> materials = scoreBoard.getMaterial();
+            for(Material material : materials) {
+                StoryModel.getStoryModel().getMaterialLibrary().changeItem(material.getType(), material.getNumber());
+            }
             super.updateChange(new UpdateMessage("materials",materials));
 
             int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],
