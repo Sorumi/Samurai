@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
+import model.po.MaterialLibrary;
 import model.po.PropsInG;
 import view.TerritoryPanel;
 import view.store.StoreItemView;
@@ -29,6 +30,7 @@ public class StoreHandler {
 	}
 
 	public void update() {
+		storePanel.getItemsPanel().clearAll();
 		storePanel.getItemsPanel().updateMaterial(storeController.getMaterials());
 		storePanel.getItemsPanel().updateProp(storeController.getProps());
 	}
@@ -51,19 +53,29 @@ public class StoreHandler {
 		public void handle(MouseEvent event) {
 			StoreItemView item = (StoreItemView) event.getSource();
 			if (item.getNum() / 100 != 7) {
-				Information information = storeController.getInformationOfTag(item.getNum() + 800);
+				num = item.getNum()+800;
+				Information information = storeController.getInformationOfTag(num);
 				storePanel.infoPanel.updateMaterialInfo(information.getTag() - 800, information.getName(),
 						information.getDescription());
+				if(storePanel.sellPanel != null){
+					
+					storePanel.sellPanel.setPrice(MaterialLibrary.priceTable(item.getNum() + 800));
+					storePanel.sellPanel.setQuantity(0);
+					storePanel.sellPanel.quantityTotal = item.quantity;
+				}
 			}else{
-//				Information information = storeController.getInformationOfTag(item.getNum() + 700);
-//				storePanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
-//						information.getDescription());
-			}
-			if(storePanel.sellPanel != null){
 				num = item.getNum();
-				storePanel.sellPanel.setQuantity(0);
-				storePanel.sellPanel.quantityTotal = item.quantity;
+				Information information = storeController.getInformationOfTag(item.getNum());
+				storePanel.infoPanel.updatePropInfo(information.getTag(), information.getName(),
+						information.getDescription());
+				if(storePanel.sellPanel != null){
+					
+					storePanel.sellPanel.setPrice((int)(storeController.getPropsStore().getProps(num).getPrice()*0.6));
+					storePanel.sellPanel.setQuantity(0);
+					storePanel.sellPanel.quantityTotal = item.quantity;
+				}
 			}
+			
 			
 		}
 	};
@@ -94,7 +106,7 @@ public class StoreHandler {
 			System.out.println("N  " + num);
 			if(num > 800){
 				storeController.getMaterialLibrary().changeItem(num, -quantity);
-				//材料暂时不能卖
+				storeController.updateMoney((int)(0.6 * MaterialLibrary.priceTable(num) * quantity));
 			}else{
 				storeController.getPropsStore().getProps(num).changeNumber(-quantity);
 				storeController.updateMoney((int)(0.6 * storeController.getPropsStore().getProps(num).getPrice()) * quantity);

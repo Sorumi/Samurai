@@ -942,7 +942,11 @@ public class GameModel extends BaseModel implements Observer {
                     + this.chessBoardModel.getStatesOfAllBlocks()[3] - this.chessBoardModel.getStatesOfAllBlocks()[4]
                     - this.chessBoardModel.getStatesOfAllBlocks()[5] - this.chessBoardModel.getStatesOfAllBlocks()[6];
 
-            scoreBoard.caculateMaterial(level/10 - 1, level%10, block, myKill, aiKill);
+            if(block >= 0 && this.level / 10 == StoryModel.getStoryModel().getLevel()){
+                StoryModel.getStoryModel().updateLevel();
+            }
+
+            scoreBoard.caculateMaterial(level / 10 - 1, level % 10, block, myKill, aiKill);
             ArrayList<Material> materials = scoreBoard.getMaterial();
             super.updateChange(new UpdateMessage("materials",materials));
 

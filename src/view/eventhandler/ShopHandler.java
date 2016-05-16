@@ -6,12 +6,9 @@ import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
 import model.po.PropsInG;
-import model.po.Weapon;
 import view.TerritoryPanel;
-import view.campsite.CampsiteItemView;
 import view.shop.ShopItemView;
 import view.shop.ShopPanel;
-import view.store.StoreItemView;
 
 public class ShopHandler {
 	private ShopPanel shopPanel;
@@ -61,12 +58,13 @@ public class ShopHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			ShopItemView item = (ShopItemView) event.getSource();
-			num = item.getNum();
-
-//			Information information = shopController.getInformationOfTag(item.getNum() + 700);
-//			shopPanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
-//					information.getDescription());
+			num = PropsInG.get7Type(item.getNum());
+			
+			Information information = shopController.getInformationOfTag(num);
+			shopPanel.infoPanel.updatePropInfo(information.getTag(), information.getName(),
+					information.getDescription());
 			// TODO 价格！！！
+			shopPanel.purchasePanel.setPrice(shopController.getPropsStore().getProps(num).getPrice());
 			shopPanel.purchasePanel.setQuantity(0);
 		}
 	};
@@ -74,14 +72,16 @@ public class ShopHandler {
 	// 购买按钮
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
+
 			quantity = shopPanel.purchasePanel.getQuantity();
-			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
-			int total = (shopController.getPropsStore().getProps(PropsInG.get7Type(num)).getPrice()) * quantity;
+
+//			System.out.println(num);
+			getShopController().getPropsStore().getProps(num).changeNumber(quantity);
+			int total = (shopController.getPropsStore().getProps(num).getPrice()) * quantity;
 			if(total > getShopController().getPropsStore().getMoney()){
 				System.out.println("You money isn't enough.");
 			}else {
 				getShopController().updateMoney(-total);
-				// 加入扣钱的方法
 				TerritoryPanel parent = (TerritoryPanel) shopPanel.getParent();
 				parent.updateMoney();
 			}
