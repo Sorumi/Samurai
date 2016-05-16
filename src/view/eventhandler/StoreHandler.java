@@ -107,6 +107,7 @@ public class StoreHandler {
 			if(num > 800){
 				storeController.getMaterialLibrary().changeItem(num, -quantity);
 				storeController.updateMoney((int)(0.6 * MaterialLibrary.priceTable(num) * quantity));
+//				System.out.println(num + " quantity: " + storeController.getMaterialLibrary().getNumber(num));
 			}else{
 				storeController.getPropsStore().getProps(num).changeNumber(-quantity);
 				storeController.updateMoney((int)(0.6 * storeController.getPropsStore().getProps(num).getPrice()) * quantity);
