@@ -162,6 +162,12 @@ public class Images {
 	public static final Image MAP_FOG4_2 = new Image("/./images/map/map_fog4_2.png");
 	public static final Image MAP_FOG5_0 = new Image("/./images/map/map_fog5_0.png");
 	public static final Image MAP_FOG5_1 = new Image("/./images/map/map_fog5_1.png");
+	public static final Image[] MAP_FOG2 = {MAP_FOG2_0, MAP_FOG2_1};
+	public static final Image[] MAP_FOG3 = {MAP_FOG3_0, MAP_FOG3_1};
+	public static final Image[] MAP_FOG4 = {MAP_FOG4_0, MAP_FOG4_1, MAP_FOG4_2};
+	public static final Image[] MAP_FOG5 = {MAP_FOG5_0, MAP_FOG5_1};
+	public static final Image[][] MAP_FOG = {MAP_FOG2, MAP_FOG3, MAP_FOG4, MAP_FOG5};
+	
 	// cloud
 	public static final Image MAP_CLOUD_0 = new Image("/./images/map/map_cloud_0.png");
 	public static final Image MAP_CLOUD_1 = new Image("/./images/map/map_cloud_1.png");
