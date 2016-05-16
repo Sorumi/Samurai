@@ -12,13 +12,17 @@ import view.StoryPanel;
 
 public class GamePanelSelectHandler implements EventHandler {
 	private GamePanel gamePanel;
-	public int level; 
+	public int level;
+	public boolean IsClassic;
 
 	public GamePanelSelectHandler(GamePanel gamePanel,int level){
 		this.gamePanel = gamePanel;
 		this.level = level;
 	}
 	
+	public void updateIsClassic(boolean b){
+		IsClassic = b;
+	}
 	public EventHandler<MouseEvent> yesEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  switch(level){
