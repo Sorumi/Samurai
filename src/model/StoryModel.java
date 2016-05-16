@@ -30,7 +30,7 @@ public class StoryModel implements Serializable{
     private StoryModel(){
         gameModel = new GameModel();
 
-        this.money = 100;
+        this.money = 9999;
 
         this.armory = new Armory();
         this.armory.initialize();
@@ -41,6 +41,7 @@ public class StoryModel implements Serializable{
         this.informationLibrary.initialize();
 
         this.propsStore = new PropsStore();
+        this.propsStore.setMoney(money);
 
         this.samuraiPO_1 = new SamuraiPO(1,0,this.armory.getWeapon(11),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(3,12),30,1);
         this.samuraiPO_2 = new SamuraiPO(2,0,this.armory.getWeapon(111),14,gameModel.getChessBoardModel(),this.armory.getArmor(911),new Position(7,0),30,1);
