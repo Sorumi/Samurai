@@ -523,7 +523,7 @@ public class GamePanel extends Pane implements Observer{
 		                    }
 		                }
 
-						for(PropView propView : propViews){
+						for (PropView propView : propViews) {
 							propView.setVisible(false);
 							if(block.getX() == propView.x && block.getY() == propView.y){
 								propView.setVisible(true);

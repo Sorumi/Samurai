@@ -22,7 +22,7 @@ public class Main extends Application {
 	public GamePanel gamePanel; 
 	public GameModel gameModel;
 	
-	public StoryPanel storyPanel;
+	public StoryPanel storyPanel;  
 
 	public Thread operationThread;
 	
