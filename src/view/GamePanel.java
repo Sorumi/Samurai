@@ -4,6 +4,7 @@ import java.util.*;
 
 import controller.msgqueue.EndOperation;
 import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StopOperation;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -115,8 +116,7 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
-		if(!isOver){
-			System.out.println("aaaaa");
+		if(!isOver){			
 			switch(level){
 			case 0:
 			case 99:
@@ -126,6 +126,7 @@ public class GamePanel extends Pane implements Observer{
 				@Override
 				public void handle(ActionEvent event) {
 					selectPanel.setVisible(true);
+					OperationQueue.addOperation(new StopOperation());
 					System.out.println("LEVEL : " + level);
 					switch(level){
 						case 99:

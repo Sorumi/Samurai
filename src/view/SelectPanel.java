@@ -41,6 +41,7 @@ public class SelectPanel extends OrderPanel {
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				SelectPanel.this.setVisible(false);
+				OperationQueue.addOperation(new ContinueOperation());
 			}
 		});
 		this.getChildren().add(closeBtn);
