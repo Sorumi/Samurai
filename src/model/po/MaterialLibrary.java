@@ -29,14 +29,14 @@ public class MaterialLibrary implements Serializable {
 		wood[3] = 100;
 		stone[2] = 100;
 		stone[3] = 100;
-		metal[0]=100;
-		metal[1]=100;
-		metal[2]=100;
-		metal[3]=100;
-		crystal[0]=100;
-		crystal[1]=100;
-		crystal[2]=100;
-		crystal[3]=100;
+		metal[0] = 100;
+		metal[1] = 100;
+		metal[2] = 100;
+		metal[3] = 100;
+		crystal[0] = 100;
+		crystal[1] = 100;
+		crystal[2] = 100;
+		crystal[3] = 100;
 	}
 
 	// 传入材料的种类、等级
@@ -266,5 +266,54 @@ public class MaterialLibrary implements Serializable {
 			}
 		}
 		return materials;
+	}
+
+	public static int priceTable(int type) {
+		switch (type) {
+		case 800:
+			return 5;
+		case 801:
+			return 5;
+		case 802:
+			return 20;
+		case 803:
+			return 50;
+		case 810:
+			return 8;
+		case 811:
+			return 8;
+		case 812:
+			return 30;
+		case 813:
+			return 80;
+		case 820:
+			return 15;
+		case 821:
+			return 15;
+		case 822:
+			return 50;
+		case 823:
+			return 150;
+		case 830:
+			return 25;
+		case 831:
+			return 25;
+		case 832:
+			return 80;
+		case 833:
+			return 250;
+		case 840:
+			return 40;
+		case 841:
+			return 40;
+		case 842:
+			return 200;
+		case 843:
+			return 1000;
+		default:
+			System.out.println("Material type Wrong!");
+			break;
+		}
+		return 0;
 	}
 }

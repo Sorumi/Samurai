@@ -25,8 +25,8 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(25, "龙啸", "一点寒芒先到，随后枪出如龙，枪出之声，似龙啸也。"));
 		informationLibraries.add(new Information(35, "狂热", "战争中它的影子，就像狂乱的热浪，无形却致命。"));
 		informationLibraries.add(new Information(16, "浩劫", "“感觉像到了世界末日，海啸，地震，太阳都看不见了……”\n                              ——一位幸存者如是说"));
-		informationLibraries.add(new Information(26, "破晓", "26"));
-		informationLibraries.add(new Information(36, "月耀", "36"));
+		informationLibraries.add(new Information(26, "破晓", "“那是一个漫长的黑夜，空气中弥漫着鲜血和杀戮的气息，战士们谁也看不见光明，只见那里有一道光，于是，战争长夜破晓了！”\n                                       ————断臂老兵"));
+		informationLibraries.add(new Information(36, "月耀", "这把武器原本是月亮女神的发簪，直到被某个神偷拿到，经过了多名传奇工匠的打磨，才有了现在的形状。看起来柔美，有着朦胧的神秘光芒，但只有顶级刺客，才感受得到温柔背后寒冰一般的杀意。"));
 		informationLibraries.add(new Information(111, "训练用木剑", "道场内初级剑士的训练用剑，前年过世的剑道馆长坚持亲手用上质桃木制成，现已绝版。"));
 		informationLibraries.add(new Information(112, "燧石长剑", "“哎！为了把这些石头从洞窟里拉回来，我可没少被蝙蝠咬！赚钱真不容易……”\n                                                  ——矮人矿工"));
 		informationLibraries.add(new Information(132, "石制短刀", "打猎时追求极致速度而发明的石制短刀，在对抗野猪时发挥高效的作用。\n                                            “嗷恩啊啊啊啊！！”\n                                                  ——野猪"));
@@ -107,7 +107,7 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(840, "火焰水晶", "火焰的种子被封存在这个水晶中，拿着它有种温暖的感觉。"));
 		informationLibraries.add(new Information(841, "寒冰水晶", "寒冰的气息被封存在这个水晶中，它散发出的气势可以扑灭接近它的火焰。"));
 		informationLibraries.add(new Information(842, "通灵之晶", "古灵的灵魂被封存在这个水晶中，夜晚会发出幽幽的光，聚集在一起似乎还能听到灵魂的律动。"));
-		informationLibraries.add(new Information(843, "虚无幻灭", "这颗水晶里似乎什么都没有，存在的极端也许就是虚无吧。"));
+		informationLibraries.add(new Information(843, "虚无幻灭", "这颗水晶里似乎什么都没有，不，他就是什么都没有，存在的极端也许就是虚无吧。(这个材料不能用于合成任何武器，仅用于收集)"));
 		informationLibraries.add(new Information(911, "911", "911"));
 		informationLibraries.add(new Information(912, "912", "912"));
 		informationLibraries.add(new Information(923, "923", "923"));
