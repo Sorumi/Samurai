@@ -1,5 +1,6 @@
 package view.eventhandler;
 
+import controller.msgqueue.ContinueOperation;
 import controller.msgqueue.EndOperation;
 import controller.msgqueue.OperationQueue;
 import javafx.event.Event;
@@ -54,7 +55,8 @@ public class GamePanelSelectHandler implements EventHandler {
 	
 	public EventHandler<MouseEvent> noEvent = new EventHandler<MouseEvent>() {   
 	      public void handle(MouseEvent event) {
-	    	  gamePanel.selectPanel.setVisible(false);	    	   
+	    	  gamePanel.selectPanel.setVisible(false);	
+	    	  OperationQueue.addOperation(new ContinueOperation());
 	      }
 	};
 
