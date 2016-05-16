@@ -139,7 +139,7 @@ public class SamuraiAI {
 		//
 		case 2:
 			System.out.println(samuraiPOClone.getActionPoint());
-			if (enemySamuraiPO == null) {
+			if (enemySamuraiPO == null||enemySamuraiPO.getHealthPoint()<=0) {
 				actionOperations = greedy(samuraiPOClone, cbm);
 				return actionOperations;
 			} else {
@@ -294,7 +294,7 @@ public class SamuraiAI {
 			}
 			break;
 		case 3:
-			if (enemySamuraiPO == null && aidPosition == null) {
+			if ((enemySamuraiPO == null||enemySamuraiPO.getHealthPoint()<=0) && aidPosition == null) {
 				actionOperations = greedy(samuraiPOClone, cbm);
 				return actionOperations;
 			} else if (enemySamuraiPO != null) {

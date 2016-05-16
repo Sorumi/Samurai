@@ -654,7 +654,12 @@ public class GamePanel extends Pane implements Observer{
 				}
 				
 				if(!key.equals("over")){
-					closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+					switch(level){
+					case 0:
+					case 99:
+						closeBtn.setOnMouseClicked(selectHandler.yesEvent);
+						break;
+					default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 						@Override
 						public void handle(ActionEvent event) {
 							selectPanel.setVisible(true);
@@ -669,6 +674,9 @@ public class GamePanel extends Pane implements Observer{
 							}
 						}
 					});
+					}
+					
+
 				}
 			}
 		});
