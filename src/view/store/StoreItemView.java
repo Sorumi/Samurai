@@ -22,6 +22,7 @@ public class StoreItemView extends StackPane {
 
 	private final int RADIUS = 50;
 	private int itemNum;
+	public int quantity;
 	private Circle bgCircle;
 	private Label quantityLabel;
 	private ColorAdjust light;
@@ -58,7 +59,7 @@ public class StoreItemView extends StackPane {
 			this.getChildren().add(prop);
 			StackPane.setAlignment(prop, Pos.CENTER);
 		}
-		
+		this.quantity = quantity;
 		quantityLabel = new Label(quantity + "");
 		quantityLabel.setPrefSize(30, 30);
 		quantityLabel.setId("item-quantity");

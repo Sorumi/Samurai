@@ -12,7 +12,7 @@ public class PropsStore implements Serializable {
 	private int money;
 
 	public PropsStore() {
-		this.money = 0;
+		this.money = 100;
 		props.add(new Props(701, 0));
 		props.add(new Props(702, 0));
 		props.add(new Props(703, 0));

@@ -69,9 +69,9 @@ public class ShopHandler {
 			ShopItemView item = (ShopItemView) event.getSource();
 			num = item.getNum();
 
-			Information information = shopController.getInformationOfTag(item.getNum() + 700);
-			shopPanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
-					information.getDescription());
+//			Information information = shopController.getInformationOfTag(item.getNum() + 700);
+//			shopPanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
+//					information.getDescription());
 			// TODO 价格！！！
 			shopPanel.purchasePanel.setQuantity(0);
 		}
@@ -82,8 +82,11 @@ public class ShopHandler {
 		public void handle(MouseEvent event) {
 			quantity = shopPanel.purchasePanel.getQuantity();
 			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
-			// 加入扣钱的方法
 			getShopController().updateMoney(-1);
+			// 加入扣钱的方法
+			TerritoryPanel parent =  (TerritoryPanel) shopPanel.getParent();
+			parent.updateMoney();
+
 		}
 	};
 

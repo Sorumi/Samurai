@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
 import model.po.PropsInG;
+import view.TerritoryPanel;
 import view.store.StoreItemView;
 import view.store.StorePanel;
 
@@ -54,12 +55,13 @@ public class StoreHandler {
 				storePanel.infoPanel.updateMaterialInfo(information.getTag() - 800, information.getName(),
 						information.getDescription());
 			}else{
-				Information information = storeController.getInformationOfTag(item.getNum() + 700);
-				storePanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
-						information.getDescription());
+//				Information information = storeController.getInformationOfTag(item.getNum() + 700);
+//				storePanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
+//						information.getDescription());
 			}
 			if(storePanel.sellPanel != null){
 				storePanel.sellPanel.setQuantity(0);
+				storePanel.sellPanel.quantityTotal = item.quantity;
 			}
 			
 		}
@@ -68,7 +70,7 @@ public class StoreHandler {
 	public EventHandler<MouseEvent> plusQuantityEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			int quantity = storePanel.sellPanel.quantity + 1;
-			if (quantity >= 0) {
+			if (quantity >= 0 && quantity<=storePanel.sellPanel.quantityTotal) {
 				storePanel.sellPanel.setQuantity(quantity);
 			}
 		}
@@ -94,6 +96,8 @@ public class StoreHandler {
 			storeController.getMaterialLibrary().changeItem(num, -quantity);
 //			加入加钱的方法
 			storeController.updateMoney(1);
+			TerritoryPanel parent =  (TerritoryPanel) storePanel.getParent();
+			parent.updateMoney();
 		}
 	};
 
@@ -108,4 +112,12 @@ public class StoreHandler {
 			storePanel.sellPanel.sellBtnAbled();
 		}
 	};
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public int getNum() {
+		return num;
+	}
 }

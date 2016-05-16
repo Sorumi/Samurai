@@ -30,7 +30,7 @@ public class StoryModel implements Serializable{
     private StoryModel(){
         gameModel = new GameModel();
 
-        this.money = 0;
+        this.money = 100;
 
         this.armory = new Armory();
         this.armory.initialize();

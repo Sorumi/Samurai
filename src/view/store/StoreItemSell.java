@@ -18,6 +18,7 @@ public class StoreItemSell extends Pane{
 	private Label quantityLabel;
 	private Label totalPriceLabel;
 	
+	public int quantityTotal;
 	public int quantity = 0;
 	private int perPrice;
 	private Group plusGroup;  
