@@ -60,6 +60,7 @@ public class StoreHandler {
 //						information.getDescription());
 			}
 			if(storePanel.sellPanel != null){
+				num = item.getNum();
 				storePanel.sellPanel.setQuantity(0);
 				storePanel.sellPanel.quantityTotal = item.quantity;
 			}
@@ -90,14 +91,17 @@ public class StoreHandler {
 		public void handle(MouseEvent event) {
 			quantity = storePanel.sellPanel.getQuantity();
 			//要分是卖道具还是卖材料
-			//这里的编号要弄弄对
 			System.out.println("N  " + num);
-			storeController.getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(-quantity);
-			storeController.getMaterialLibrary().changeItem(num, -quantity);
-//			加入加钱的方法
-			storeController.updateMoney(1);
-			TerritoryPanel parent =  (TerritoryPanel) storePanel.getParent();
+			if(num > 800){
+				storeController.getMaterialLibrary().changeItem(num, -quantity);
+				//材料暂时不能卖
+			}else{
+				storeController.getPropsStore().getProps(num).changeNumber(-quantity);
+				storeController.updateMoney((int)(0.6 * storeController.getPropsStore().getProps(num).getPrice()) * quantity);
+			}
+			TerritoryPanel parent = (TerritoryPanel) storePanel.getParent();
 			parent.updateMoney();
+			update();
 		}
 	};
 

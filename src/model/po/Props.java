@@ -15,7 +15,7 @@ public class Props implements Serializable {
 	public Props(int type, int number,int price) {
 		this.type = type;
 		this.number = number;
-		this.price=price;
+		this.price = price;
 	}
 
 	public int getType() {
@@ -32,5 +32,9 @@ public class Props implements Serializable {
 
 	public void setNumber(int number) {
 		this.number = number;
+	}
+
+	public int getPrice() {
+		return price;
 	}
 }

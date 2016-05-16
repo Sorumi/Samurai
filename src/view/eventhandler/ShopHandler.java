@@ -23,13 +23,7 @@ public class ShopHandler {
 		this.shopPanel = shopPanel;
 		this.shopController = new ShopController();
 		this.shopController.setStoryModel(StoryModel.getStoryModel());
-
 		this.shopController.setPropsStore();
-
-		// 加入初始化钱数的方法
-		// this.shopController.getMoney();
-		// 加入更新道具数量的方法
-		// this.shopController
 	}
 
 	public EventHandler<MouseEvent> plusQuantityEvent = new EventHandler<MouseEvent>() {
@@ -82,11 +76,15 @@ public class ShopHandler {
 		public void handle(MouseEvent event) {
 			quantity = shopPanel.purchasePanel.getQuantity();
 			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
-			getShopController().updateMoney(-1);
-			// 加入扣钱的方法
-			TerritoryPanel parent =  (TerritoryPanel) shopPanel.getParent();
-			parent.updateMoney();
-
+			int total = (shopController.getPropsStore().getProps(PropsInG.get7Type(num)).getPrice()) * quantity;
+			if(total > getShopController().getPropsStore().getMoney()){
+				System.out.println("You money isn't enough.");
+			}else {
+				getShopController().updateMoney(-total);
+				// 加入扣钱的方法
+				TerritoryPanel parent = (TerritoryPanel) shopPanel.getParent();
+				parent.updateMoney();
+			}
 		}
 	};
 
