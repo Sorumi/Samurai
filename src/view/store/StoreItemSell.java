@@ -121,7 +121,7 @@ public class StoreItemSell extends Pane{
 	}
 	public void setPrice(int perPrice){
 		this.perPrice = perPrice;
-		perPriceLabel.setText("- "+perPrice);
+		perPriceLabel.setText("+ "+perPrice);
 		this.setQuantity(0);
 	}
 	
