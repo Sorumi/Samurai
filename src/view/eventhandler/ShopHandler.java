@@ -59,7 +59,6 @@ public class ShopHandler {
 		public void handle(MouseEvent event) {
 			ShopItemView item = (ShopItemView) event.getSource();
 			num = PropsInG.get7Type(item.getNum());
-//			System.out.println(num);
 			
 			Information information = shopController.getInformationOfTag(num);
 			shopPanel.infoPanel.updatePropInfo(information.getTag(), information.getName(),
@@ -76,9 +75,9 @@ public class ShopHandler {
 
 			quantity = shopPanel.purchasePanel.getQuantity();
 
-			System.out.println(num);
+//			System.out.println(num);
 			getShopController().getPropsStore().getProps(num).changeNumber(quantity);
-			int total = (shopController.getPropsStore().getProps(PropsInG.get7Type(num)).getPrice()) * quantity;
+			int total = (shopController.getPropsStore().getProps(num).getPrice()) * quantity;
 			if(total > getShopController().getPropsStore().getMoney()){
 				System.out.println("You money isn't enough.");
 			}else {

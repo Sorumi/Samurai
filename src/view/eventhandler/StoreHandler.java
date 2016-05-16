@@ -53,19 +53,29 @@ public class StoreHandler {
 		public void handle(MouseEvent event) {
 			StoreItemView item = (StoreItemView) event.getSource();
 			if (item.getNum() / 100 != 7) {
-				Information information = storeController.getInformationOfTag(item.getNum() + 800);
+				num = item.getNum()+800;
+				Information information = storeController.getInformationOfTag(num);
 				storePanel.infoPanel.updateMaterialInfo(information.getTag() - 800, information.getName(),
 						information.getDescription());
+				if(storePanel.sellPanel != null){
+					
+					storePanel.sellPanel.setPrice(MaterialLibrary.priceTable(item.getNum() + 800));
+					storePanel.sellPanel.setQuantity(0);
+					storePanel.sellPanel.quantityTotal = item.quantity;
+				}
 			}else{
-				Information information = storeController.getInformationOfTag(item.getNum() + 700);
+				num = item.getNum();
+				Information information = storeController.getInformationOfTag(item.getNum());
 				storePanel.infoPanel.updatePropInfo(information.getTag(), information.getName(),
 						information.getDescription());
+				if(storePanel.sellPanel != null){
+					
+					storePanel.sellPanel.setPrice((int)(storeController.getPropsStore().getProps(num).getPrice()*0.6));
+					storePanel.sellPanel.setQuantity(0);
+					storePanel.sellPanel.quantityTotal = item.quantity;
+				}
 			}
-			if(storePanel.sellPanel != null){
-				num = item.getNum();
-				storePanel.sellPanel.setQuantity(0);
-				storePanel.sellPanel.quantityTotal = item.quantity;
-			}
+			
 			
 		}
 	};
