@@ -35,9 +35,10 @@ public class StorePanel extends TransitionPanel{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				transitionAnimation(false);
-				TerritoryPanel parent =  (TerritoryPanel) StorePanel.this.getParent();
+				TerritoryPanel parent = (TerritoryPanel) StorePanel.this.getParent();
 				parent.getChildren().remove(StorePanel.this);
 				parent.setBlur(false);
+				parent.updateMoney();
 			}
 		});
 

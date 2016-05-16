@@ -83,7 +83,7 @@ public class ShopHandler {
 			quantity = shopPanel.purchasePanel.getQuantity();
 			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
 			// 加入扣钱的方法
-			// getShopController().updateMoney(9999);
+			getShopController().updateMoney(-1);
 		}
 	};
 

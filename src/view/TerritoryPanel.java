@@ -21,6 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import model.StoryModel;
 import view.background.TerritoryBackground;
 import view.background.TerritoryFrontground;
 import view.background.WeatherSelectPanel;
@@ -65,6 +66,7 @@ public class TerritoryPanel extends Pane {
 
 	public ArchivePanel archivePanel;
 	public StatePanel statePanel;
+	public MoneyPanel moneyPanel;
 
 	protected StateHandler stateHandler;
 
@@ -216,7 +218,7 @@ public class TerritoryPanel extends Pane {
 		territoryGroup.getChildren().add(weatherPanel);
 
 		//money
-		MoneyPanel moneyPanel = new MoneyPanel();
+		moneyPanel = new MoneyPanel();
 		moneyPanel.setLayoutX(50);
 		moneyPanel.setLayoutY(700);
 		
@@ -228,6 +230,7 @@ public class TerritoryPanel extends Pane {
 
 		// init
 		updateSamurai();
+		updateMoney();
 		this.setRandomWeather();
 	}
 
@@ -257,6 +260,10 @@ public class TerritoryPanel extends Pane {
 					new KeyFrame(Duration.millis(300), new KeyValue(shadow.radiusProperty(), 0, Interpolator.EASE_IN)));
 			effectTL.play();
 		}
+	}
+
+	public void updateMoney(){
+		moneyPanel.setMoney(this.getTerritoryHandler().getTerritoryController().getStoryModel().getPropsStore().getMoney());
 	}
 
 	public void updateSamurai() {

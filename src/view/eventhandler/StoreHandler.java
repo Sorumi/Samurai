@@ -89,10 +89,11 @@ public class StoreHandler {
 			quantity = storePanel.sellPanel.getQuantity();
 			//要分是卖道具还是卖材料
 			//这里的编号要弄弄对
+			System.out.println("N  " + num);
 			storeController.getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(-quantity);
 			storeController.getMaterialLibrary().changeItem(num, -quantity);
 //			加入加钱的方法
-//			storeController.updateMoney(9999);
+			storeController.updateMoney(1);
 		}
 	};
 
