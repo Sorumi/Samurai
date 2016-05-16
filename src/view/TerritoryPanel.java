@@ -8,14 +8,17 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import view.background.TerritoryBackground;
@@ -208,15 +211,20 @@ public class TerritoryPanel extends Pane {
 		// weather select
 		WeatherHandler weatherHandler = new WeatherHandler(this);
 		WeatherSelectPanel weatherPanel = new WeatherSelectPanel(weatherHandler);
-		weatherPanel.setLayoutX(25);
-		weatherPanel.setLayoutY(445);
+		weatherPanel.setLayoutX(1125);
+		weatherPanel.setLayoutY(445);//445
 		territoryGroup.getChildren().add(weatherPanel);
 
+		//money
+		MoneyPanel moneyPanel = new MoneyPanel();
+		moneyPanel.setLayoutX(50);
+		moneyPanel.setLayoutY(700);
+		
 		// blur
 		blur = new GaussianBlur(0);
 		territoryGroup.setEffect(blur);
 
-		this.getChildren().addAll(territoryGroup, shopSelectPanel);
+		this.getChildren().addAll(territoryGroup, shopSelectPanel, moneyPanel);
 
 		// init
 		updateSamurai();
@@ -230,25 +238,22 @@ public class TerritoryPanel extends Pane {
 
 		public TerritoryButton() {
 			shadow.setInput(light);
+			
 			this.setEffect(shadow);
 			this.setOnMouseEntered(territoryHandler.buttonEnterEvent);
 			this.setOnMouseExited(territoryHandler.buttonExitEvent);
 		}
 
 		public void setHighlight() {
-			Timeline effectTL = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(light.brightnessProperty(), 0)),
-					new KeyFrame(Duration.ZERO, new KeyValue(shadow.radiusProperty(), 0)),
-					new KeyFrame(Duration.millis(300),
-							new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)),
+			Timeline effectTL = new Timeline(
+					new KeyFrame(Duration.millis(300), new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)),
 					new KeyFrame(Duration.millis(300), new KeyValue(shadow.radiusProperty(), 3, Interpolator.EASE_IN)));
 			effectTL.play();
 		}
 
 		public void setNormal() {
-			Timeline effectTL = new Timeline(new KeyFrame(Duration.ZERO, new KeyValue(light.brightnessProperty(), 0.2)),
-					new KeyFrame(Duration.ZERO, new KeyValue(shadow.radiusProperty(), 3)),
-					new KeyFrame(Duration.millis(300),
-							new KeyValue(light.brightnessProperty(), 0, Interpolator.EASE_IN)),
+			Timeline effectTL = new Timeline(
+					new KeyFrame(Duration.millis(300), new KeyValue(light.brightnessProperty(), 0, Interpolator.EASE_IN)),
 					new KeyFrame(Duration.millis(300), new KeyValue(shadow.radiusProperty(), 0, Interpolator.EASE_IN)));
 			effectTL.play();
 		}

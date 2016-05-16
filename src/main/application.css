@@ -28,6 +28,29 @@
     -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
 }
+/* Territory */
+#money-panel{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 25;
+	-fx-border-radius: 25;
+	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+}
+#money-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 300;
+	-fx-font-size: 18;
+	-fx-alignment: center;
+}
+#territory-btn-name{
+	-fx-background-color: rgba(255,255,255,0.4);
+	-fx-background-radius: 15;
+	-fx-border-radius: 15;
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+}
 /* Campsite */
 #campsite-wrapper{
 	-fx-background-color: #ffffff;
