@@ -6,7 +6,6 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -244,8 +243,8 @@ public class ResultPanel extends OrderPanel {
 	
 	public void setMaterials(ArrayList<Material> list) {
 		for (Material material : list){
-			System.out.println(material.getType() + ": " + material.getNumer());
-			MaterialPanel materialPanel = new MaterialPanel(material.getType(), material.getNumer());
+			System.out.println(material.getType() + ": " + material.getNumber());
+			MaterialPanel materialPanel = new MaterialPanel(material.getType(), material.getNumber());
 			tile.getChildren().add(materialPanel);
 		}
 	}

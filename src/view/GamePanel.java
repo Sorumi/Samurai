@@ -100,7 +100,7 @@ public class GamePanel extends Pane implements Observer{
 		this.setBackground(level);
 		
 		this.selectHandler = new GamePanelSelectHandler(this,level); 
-		this.selectPanel = new SelectPanel(selectHandler,"你将会丢失当前未存档的所有游戏进度(包括已获得的道具)，这样可以吗？");
+		this.selectPanel = new SelectPanel(selectHandler,"确定退出吗?你将会丢失当前未存档的所有游戏进度(包括已获得的道具)!");
 		selectPanel.yesBtn.setOnMouseClicked(selectHandler.yesEvent);
 		selectPanel.noBtn.setOnMouseClicked(selectHandler.noEvent);
 		selectPanel.setZOrder(999);
@@ -523,10 +523,12 @@ public class GamePanel extends Pane implements Observer{
 		                    }
 		                }
 
-						for(PropView propView : propViews){
-							propView.setVisible(false);
-							if(block.getX() == propView.x && block.getY() == propView.y){
-								propView.setVisible(true);
+						if(level != 99) {
+							for (PropView propView : propViews) {
+								propView.setVisible(false);
+								if (block.getX() == propView.x && block.getY() == propView.y) {
+									propView.setVisible(true);
+								}
 							}
 						}
 
@@ -612,7 +614,6 @@ public class GamePanel extends Pane implements Observer{
 					bloodRest[t[0]] = t[1];
 
 				}else if(key.equals("rating")){
-//					System.out.println("Rating : " + (int)notifingObject.getValue());
 					resultPanel.setRate((int)notifingObject.getValue());
 					resultPanel.setStart();
 					
@@ -644,15 +645,21 @@ public class GamePanel extends Pane implements Observer{
 						System.out.println("Prop " + i + " have " + propList[i]);
 					}
 				}else if(key.equals("useProp")){
-					propPanel.useProp((int)notifingObject.getValue());
-
-				}else if(key.equals("money")){
-					int money = (int)notifingObject.getValue();
-					//发钱的消息
+					int[] t = (int [])notifingObject.getValue();
+					propPanel.useProp(t[0]);
+					set6Properties(t[1],new int[]{t[2],t[3],t[4],t[5],t[6],t[7],t[8]});
+				}else if(key.equals("replace")){
+					int[] t = (int [])notifingObject.getValue();
+					set6Properties(t[0],new int[]{t[1],t[2],t[3],t[4],t[5],t[6],t[7]});
 				}
 				
 				if(!key.equals("over")){
-					closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+					switch(level){
+					case 0:
+					case 99:
+						closeBtn.setOnMouseClicked(selectHandler.yesEvent);
+						break;
+					default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 						@Override
 						public void handle(ActionEvent event) {
 							selectPanel.setVisible(true);
@@ -667,6 +674,9 @@ public class GamePanel extends Pane implements Observer{
 							}
 						}
 					});
+					}
+					
+
 				}
 			}
 		});

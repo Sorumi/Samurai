@@ -429,7 +429,10 @@ public class GameModel extends BaseModel implements Observer {
         if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
         }
-        super.updateChange(new UpdateMessage("useProp",propNum));
+        SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
+        this.updateHealthPoint(tmpPO.getNumber());
+        super.updateChange(new UpdateMessage("useProp",new int[]{propNum, getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
+                tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
     }
 
     public void updateOccupy(int direction){
@@ -763,6 +766,10 @@ public class GameModel extends BaseModel implements Observer {
                     System.out.println("reset prop");
                     while(num > 0) {
                         this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
+                        SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
+                        this.updateHealthPoint(tmpPO.getNumber());
+                        super.updateChange(new UpdateMessage("replace",new int[]{getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
+                                tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
                         num--;
                     }
                 }
@@ -778,15 +785,21 @@ public class GameModel extends BaseModel implements Observer {
                 this.timer.schedule(new countDownTask(), 0, 1000);
             }
 
-            this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
-            this.getSamuraiOfNum(this.getCurrentSamurai()).setHealthPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint());
-
             super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
             super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
             super.updateChange(new UpdateMessage("round", this.currentRound));
-            super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
-            super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.currentSamurai, this.getSamuraiOfNum(this.currentSamurai).getHealthPoint()}));
+
+            if(level == 99) {
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(7);
+                super.updateChange(new UpdateMessage("pointsTotal", 7));
+                super.updateChange(new UpdateMessage("actionPoint", 7));
+            }else{
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setHealthPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint());
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
+                super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
+                super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
+                super.updateChange(new UpdateMessage("healthPoint", new int[]{this.currentSamurai, this.getSamuraiOfNum(this.currentSamurai).getHealthPoint()}));
+            }
 
             this.updateVisible(this.updateVision());
 
@@ -948,6 +961,9 @@ public class GameModel extends BaseModel implements Observer {
 
             scoreBoard.caculateMaterial(level / 10 - 1, level % 10, block, myKill, aiKill);
             ArrayList<Material> materials = scoreBoard.getMaterial();
+            for(Material material : materials) {
+                StoryModel.getStoryModel().getMaterialLibrary().changeItem(material.getType(), material.getNumber());
+            }
             super.updateChange(new UpdateMessage("materials",materials));
 
             int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],

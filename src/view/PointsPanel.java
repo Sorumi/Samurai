@@ -65,11 +65,10 @@ public class PointsPanel extends Pane {
 		this.getChildren().add(fillRect);
 		
 		//label		
-		pointsLabel = new Label("10");
+		pointsLabel = new Label("");
 		pointsLabel.setId("point-label");
 		pointsLabel.setTextFill(Color.WHITE);
-		
-		
+
 		pointsLabel.setLayoutY(strokeSize+4);
 		pointsLabel.setPrefWidth(40);
 		if(player == 0){
