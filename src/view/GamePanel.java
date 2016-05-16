@@ -107,7 +107,7 @@ public class GamePanel extends Pane implements Observer{
 		selectPanel.setZOrder(999);
 		selectPanel.setVisible(false);
 		this.getChildren().add(selectPanel);
-			
+		this.isOver = false;
 		//bounds
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -115,7 +115,8 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
-		if(isOver){
+		if(!isOver){
+			System.out.println("aaaaa");
 			switch(level){
 			case 0:
 			case 99:
@@ -477,6 +478,34 @@ public class GamePanel extends Pane implements Observer{
 		isOver = b; 
 		
 	}
+	public void close(){
+		if(!isOver){
+			System.out.println("aaaaa");
+			switch(level){
+			case 0:
+			case 99:
+				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
+				break;
+			default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					selectPanel.setVisible(true);
+					System.out.println("LEVEL : " + level);
+					switch(level){
+						case 99:
+							selectHandler.level = 99;
+							break;
+						case 0:
+							selectHandler.level = 0;
+							break;
+					}
+				}
+			});
+			}
+		}else{
+			closeBtn.setOnMouseClicked(selectHandler.yesEvent);			
+		}
+	}
 
 
 	public void update(Observable o, Object arg) {
@@ -615,7 +644,7 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("over")){
 					resultPanel.setBlocks((int [])notifingObject.getValue());
 					GamePanel.this.updateIsOver(true); 
-					
+					GamePanel.this.close();
 				}else if(key.equals("miss")){
 					getSamurai((int)notifingObject.getValue()).setMiss();
 					
@@ -685,31 +714,7 @@ public class GamePanel extends Pane implements Observer{
 					set6Properties(t[0],new int[]{t[1],t[2],t[3],t[4],t[5],t[6],t[7]});
 				}
 				
-				if(!key.equals("over")){
-					switch(level){
-					case 0:
-					case 99:
-						closeBtn.setOnMouseClicked(selectHandler.yesEvent);
-						break;
-					default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
-						@Override
-						public void handle(ActionEvent event) {
-							selectPanel.setVisible(true);
-							System.out.println("LEVEL : " + level);
-							switch(level){
-								case 99:
-									selectHandler.level = 99;
-									break;
-								case 0:
-									selectHandler.level = 0;
-									break;
-							}
-						}
-					});
-					}
-					
 
-				}
 			}
 		});
 	}

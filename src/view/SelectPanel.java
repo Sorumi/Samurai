@@ -21,7 +21,7 @@ public class SelectPanel extends OrderPanel {
 	private SelectHandler selectHandler;
 
 	public SelectPanel(EventHandler eventHandler, String message) { 
-		this.setPrefSize(350, 300);
+		this.setPrefSize(350, 250);
 		this.setLayoutX(450);
 		this.setLayoutY(300);
 		this.setId("archive-view");
