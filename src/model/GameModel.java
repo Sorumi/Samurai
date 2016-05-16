@@ -778,15 +778,21 @@ public class GameModel extends BaseModel implements Observer {
                 this.timer.schedule(new countDownTask(), 0, 1000);
             }
 
-            this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
-            this.getSamuraiOfNum(this.getCurrentSamurai()).setHealthPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint());
-
             super.updateChange(new UpdateMessage("player", this.playerSeq[this.currentPlayer - 1]));
             super.updateChange(new UpdateMessage("samurai", this.samuraiSeq[this.currentSamurai - 1]));
             super.updateChange(new UpdateMessage("round", this.currentRound));
-            super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
-            super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.currentSamurai, this.getSamuraiOfNum(this.currentSamurai).getHealthPoint()}));
+
+            if(level == 99) {
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(7);
+                super.updateChange(new UpdateMessage("pointsTotal", 7));
+                super.updateChange(new UpdateMessage("actionPoint", 7));
+            }else{
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setHealthPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint());
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
+                super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
+                super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
+                super.updateChange(new UpdateMessage("healthPoint", new int[]{this.currentSamurai, this.getSamuraiOfNum(this.currentSamurai).getHealthPoint()}));
+            }
 
             this.updateVisible(this.updateVision());
 
