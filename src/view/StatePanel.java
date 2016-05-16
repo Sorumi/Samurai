@@ -236,7 +236,7 @@ public class StatePanel extends OrderPanel {
 	}
 	
 	public void setActualLocationInT(){
-		this.setLayoutX(currentSamuraiV.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2-70);		
+		this.setLayoutX(currentSamuraiV.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2-100);		
 		if (currentSamuraiV.getLayoutY()-prefHeight*SCALE+10>0) {		
 			this.setLayoutY(currentSamuraiV.getLayoutY()-prefHeight*SCALE+30);
 			this.setUpLocation();
