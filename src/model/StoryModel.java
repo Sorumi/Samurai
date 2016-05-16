@@ -22,6 +22,7 @@ public class StoryModel implements Serializable{
     private InformationLibrary informationLibrary;
     private PropsStore propsStore;
     private int money;
+    private int level;
 
     private static int fileNum;
 
@@ -31,6 +32,8 @@ public class StoryModel implements Serializable{
         gameModel = new GameModel();
 
         this.money = 9999;
+        //level : 1 ~ 5
+        this.level = 1;
 
         this.armory = new Armory();
         this.armory.initialize();
@@ -102,6 +105,16 @@ public class StoryModel implements Serializable{
                 return samuraiPO_3;
             default:
                 return null;
+        }
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void updateLevel(){
+        if(this.level < 5) {
+            this.level += 1;
         }
     }
 

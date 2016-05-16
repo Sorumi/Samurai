@@ -163,36 +163,41 @@ public class LevelSelectPanel extends Pane{
 		int itemNumOne = 00;
 		int itemNumTwo = 10;
 		switch(level){
-		case 1:
-			materialNameOne.setText("布料");
-			materialNameTwo.setText("木材");
-			itemNumOne = 0;
-			itemNumTwo = 10;
-			break;
-		case 2:
-			materialNameOne.setText("木材");
-			materialNameTwo.setText("石材");
-			itemNumOne = 10;
-			itemNumTwo = 20;
-			break;
-		case 3:
-			materialNameOne.setText("石材");
-			materialNameTwo.setText("金属");
-			itemNumOne = 20;
-			itemNumTwo = 30;
-			break;
-		case 4:
-			materialNameOne.setText("金属");
-			materialNameTwo.setText("水晶");
-			itemNumOne = 30;
-			itemNumTwo = 40;
-			break;
-		case 5:
-			materialNameOne.setText("水晶");
-			materialNameTwo.setText("布料");
-			itemNumOne = 40;
-			itemNumTwo = 0;
-			break;
+			case 1:
+				levelName.setText("盛夏之园");
+				materialNameOne.setText("布料");
+				materialNameTwo.setText("木材");
+				itemNumOne = 0;
+				itemNumTwo = 10;
+				break;
+			case 2:
+				levelName.setText("秋雨之谷");
+				materialNameOne.setText("木材");
+				materialNameTwo.setText("石材");
+				itemNumOne = 10;
+				itemNumTwo = 20;
+				break;
+			case 3:
+				levelName.setText("清莲之塘");
+				materialNameOne.setText("石材");
+				materialNameTwo.setText("金属");
+				itemNumOne = 20;
+				itemNumTwo = 30;
+				break;
+			case 4:
+				levelName.setText("星耀之夜");
+				materialNameOne.setText("金属");
+				materialNameTwo.setText("水晶");
+				itemNumOne = 30;
+				itemNumTwo = 40;
+				break;
+			case 5:
+				levelName.setText("樱花之乡");
+				materialNameOne.setText("水晶");
+				materialNameTwo.setText("布料");
+				itemNumOne = 40;
+				itemNumTwo = 0;
+				break;
 		}
 		this.getChildren().removeAll(materialOne, materialTwo);
 		
