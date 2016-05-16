@@ -21,17 +21,17 @@ public class SelectPanel extends OrderPanel {
 	private SelectHandler selectHandler;
 
 	public SelectPanel(EventHandler eventHandler, String message) { 
-		this.setPrefSize(350, 250);
+		this.setPrefSize(350, 230);
 		this.setLayoutX(450);
 		this.setLayoutY(300);
 		this.setId("archive-view");
 		this.selectHandler = new SelectHandler(this);
 		
 		messageLabel = new Label(message);
-		messageLabel.setPrefSize(250, 50);
+		messageLabel.setPrefSize(250, 100);
 		messageLabel.setLayoutX(50);
 		messageLabel.setLayoutY(50);
-		messageLabel.setId("item-description"); 
+		messageLabel.setId("select-message"); 
 
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(325);
