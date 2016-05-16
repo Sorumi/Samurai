@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class StoreController extends TerritoryController {
 
     private ArrayList<Material> materials;
-    private ArrayList<Props> props;
+    private ArrayList<Props> props = new ArrayList<>();
     private PropsStore propsStore;
 
     public void getAllMaterial() {
@@ -22,14 +22,18 @@ public class StoreController extends TerritoryController {
     public void getAllProps(){
         PropsStore propsStore = storyModel.getPropsStore();
         for (int i = 1; i <= 14; i++) {
-            if(propsStore.getProps(i).getNumber() != 0){
-                props.add(propsStore.getProps(i));
+            if(propsStore.getProps(PropsInG.get7Type(i)).getNumber() != 0){
+                props.add(propsStore.getProps(PropsInG.get7Type(i)));
             }
         }
     }
 
     public void updateMoney(int delta){
         this.propsStore.updateMoney(delta);
+    }
+
+    public ArrayList<Props> getProps() {
+        return props;
     }
 
     public ArrayList<Material> getMaterials() {

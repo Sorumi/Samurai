@@ -72,10 +72,7 @@ public class MapHandler {
 	      public void handle(MouseEvent event) {
 	    	  LandButton btn = (LandButton) event.getSource();
 	    	  btn.setHighlight();
-	    	  mapPanel.fogs2.setFade();
-	    	  mapPanel.fogs3.setFade();
-	    	  mapPanel.fogs4.setFade();
-	    	  mapPanel.fogs5.setFade();
+	    	  mapPanel.UnlockLevel(2);
 	      }
 	};
 	

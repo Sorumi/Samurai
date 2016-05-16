@@ -141,7 +141,7 @@ public class TerritoryHandler {
 	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
 	    	  territoryPanel.storePanel.setSellPanel();
 	          territoryPanel.shopSelectPanel.setVisible(false);
-	    	  }
+		  }
 	      
 	};
 	public TerritoryController getTerritoryController(){

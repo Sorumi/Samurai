@@ -156,6 +156,9 @@ public class MapPanel extends Pane {
 		levelSelectPanel.setLayoutX(400);
 		levelSelectPanel.setLayoutY(250);
 		this.getChildren().add(levelSelectPanel);
+		
+		//TODO
+		updateMap(new boolean[]{true, false, false, false, false});
 	}
 	
 	//内部类
@@ -222,7 +225,7 @@ public class MapPanel extends Pane {
 		public void setAppear(){
 			this.setVisible(true);
 			if (this.opacityProperty().intValue() == 0) {
-				FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
+				FadeTransition ft = new FadeTransition(Duration.millis(2000), this);
 				ft.setFromValue(0);
 				ft.setToValue(1);
 				ft.play();
@@ -328,9 +331,20 @@ public class MapPanel extends Pane {
 	
 	//更新解锁的关卡
 	public void updateMap(boolean[] isUnlock){
-		for (int i=0; i<=5; i++){
+		for (int i=0; i<5; i++){
 			BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(i);
 			bridge.setVisible(isUnlock[i]);
+			if(!isUnlock[i]){
+				bridge.setOpacity(0);
+			}
+		}
+	}
+	
+	public void UnlockLevel(int level){
+		if(level>1 && level<6){
+			fogs2.setFade();
+			BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(level-1);
+			bridge.setAppear();
 		}
 	}
 }

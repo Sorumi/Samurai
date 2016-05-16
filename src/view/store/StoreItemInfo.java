@@ -49,7 +49,7 @@ public class StoreItemInfo extends Pane{
 		
 	}
 
-	public void updateInfo(int itemNum, String itemName, String itemDescription){
+	public void updateMaterialInfo(int itemNum, String itemName, String itemDescription){
 		this.itemName.setText(itemName);
 		this.itemDescription.setText(itemDescription);
 		switch(itemNum%10){
@@ -66,4 +66,8 @@ public class StoreItemInfo extends Pane{
 
 	}
 	
+	public void updatePropInfo(int itemNum, String itemName, String itemDescription){
+		this.itemName.setText(itemName);
+		this.itemDescription.setText(itemDescription);
+	}
 }
