@@ -1,4 +1,4 @@
-package view.course;
+package view.guide;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -9,7 +9,7 @@ import model.po.Position;
 import view.BlockView;
 import view.OrderPanel;
 
-public class ChessBoardCoursePanel extends OrderPanel implements Observer{
+public class ChessBoardGuidePanel extends OrderPanel implements Observer{
 	BlockView[][] blocks;
 
 	private int size;
@@ -25,7 +25,7 @@ public class ChessBoardCoursePanel extends OrderPanel implements Observer{
 
 	private ArrayList<BlockView> tmpBlocks;
 
-	public ChessBoardCoursePanel(int size){
+	public ChessBoardGuidePanel(int size){
 		this.size = size;
 		this.feildWidth = BLOCK_WIDTH * size;
 		this.feildHeight = BLOCK_HEIGHT * size;

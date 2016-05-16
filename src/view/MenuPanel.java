@@ -15,8 +15,8 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import main.Main;
 import view.background.MenuBackground;
-import view.course.CoursePanel;
 import view.eventhandler.MenuHandler;
+import view.guide.GuidePanel;
 
 public class MenuPanel extends Pane {
 	
@@ -34,7 +34,7 @@ public class MenuPanel extends Pane {
 	public DoubleSelectPanel doubleSelectPanel;
 	public StorySelectPanel storySelectPanel;
 	public ArchivePanel archivePanel;
-	public CoursePanel coursePanel;
+	public GuidePanel guidePanel;
 	
 	private Group samuraiA;
 	private Group samuraiB;
@@ -218,9 +218,9 @@ public class MenuPanel extends Pane {
 		storySelectPanel = new StorySelectPanel(menuHandler);
 		storySelectPanel.setVisible(false);
 		
-		coursePanel = new CoursePanel();
-		coursePanel.setVisible(false);
-		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, coursePanel, courseBtn);
+		guidePanel = new GuidePanel();
+		guidePanel.setVisible(false); 
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, guidePanel, courseBtn); 
 	}
 	public void btnClick(int btn){
 		if(btn == 0){

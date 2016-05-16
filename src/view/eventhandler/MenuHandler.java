@@ -202,7 +202,7 @@ public class MenuHandler {
 	public EventHandler<ActionEvent> courseEvent = new EventHandler<ActionEvent>() {
 		@Override 
 		public void handle(ActionEvent e) {
-			mainFrame.menuPanel.coursePanel.setVisible(true);
+			mainFrame.menuPanel.guidePanel.setVisible(true);
 		}
 	};
 }
