@@ -63,7 +63,7 @@ public class ArchivePanel extends Pane {
 		arcV2.setLayoutY(470);
 		this.getChildren().addAll(arcV0, arcV1, arcV2);
 		this.archiveSelectPanel = arcV0.archiveSelectPanel;
-		this.archiveSelectPanel.setLayoutX(50);
+		this.archiveSelectPanel.setLayoutX(75);
 		this.archiveSelectPanel.setLayoutY(250);
 		this.getChildren().add(arcV0.archiveSelectPanel);
 		archiveSelectPanel.setVisible(false);

@@ -429,7 +429,10 @@ public class GameModel extends BaseModel implements Observer {
         if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
         }
-        super.updateChange(new UpdateMessage("useProp",propNum));
+        SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
+        this.updateHealthPoint(tmpPO.getNumber());
+        super.updateChange(new UpdateMessage("useProp",new int[]{propNum, getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
+                tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
     }
 
     public void updateOccupy(int direction){
@@ -763,6 +766,10 @@ public class GameModel extends BaseModel implements Observer {
                     System.out.println("reset prop");
                     while(num > 0) {
                         this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
+                        SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
+                        this.updateHealthPoint(tmpPO.getNumber());
+                        super.updateChange(new UpdateMessage("replace",new int[]{getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
+                                tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
                         num--;
                     }
                 }
