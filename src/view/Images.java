@@ -59,7 +59,10 @@ public class Images {
 	public static Image SAMURAI_BTN_1 = new Image("/./images/samurai_btn_1.png", true);
 	public static Image SAMURAI_BTN_2 = new Image("/./images/samurai_btn_2.png", true);
 	public static Image SAMURAI_BTN_3 = new Image("/./images/samurai_btn_3.png", true);
-	public static Image[] SAMURAI_BTN = { null, SAMURAI_BTN_1, SAMURAI_BTN_2, SAMURAI_BTN_3 };
+	public static Image SAMURAI_BTN_4 = new Image("/./images/samurai_btn_4.png", true);
+	public static Image SAMURAI_BTN_5 = new Image("/./images/samurai_btn_5.png", true);
+	public static Image SAMURAI_BTN_6 = new Image("/./images/samurai_btn_6.png", true);
+	public static Image[] SAMURAI_BTN = { null, SAMURAI_BTN_1, SAMURAI_BTN_2, SAMURAI_BTN_3, SAMURAI_BTN_4, SAMURAI_BTN_5, SAMURAI_BTN_6 };
 
 	// prop
 	public static Image PROP_01 = new Image("/./images/prop/prop_01.png", true);

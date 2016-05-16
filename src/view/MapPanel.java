@@ -35,6 +35,7 @@ public class MapPanel extends Pane {
 	
 	private Group bridgeGroup;
 	private Group cloudGroup;
+	private Group fogGroup;
 	
 	public FogGroup fogs2;
 	public FogGroup fogs3;
@@ -145,11 +146,14 @@ public class MapPanel extends Pane {
 		this.getChildren().add(cloudGroup);
 
 		//fog
+		fogGroup = new Group();
+		
 		fogs2 = new FogGroup(2);
 		fogs3 = new FogGroup(3);
 		fogs4 = new FogGroup(4);
 		fogs5 = new FogGroup(5);
-		this.getChildren().addAll(fogs2, fogs3, fogs4, fogs5);
+		fogGroup.getChildren().addAll(fogs2, fogs3, fogs4, fogs5);
+		this.getChildren().add(fogGroup);
 		
 		//select panel
 		levelSelectPanel = new LevelSelectPanel(mapHandler);
@@ -158,7 +162,7 @@ public class MapPanel extends Pane {
 		this.getChildren().add(levelSelectPanel);
 		
 		//TODO
-		updateMap(new boolean[]{true, false, false, false, false});
+		mapHandler.update();
 	}
 	
 	//内部类
@@ -330,13 +334,21 @@ public class MapPanel extends Pane {
 	}
 	
 	//更新解锁的关卡
-	public void updateMap(boolean[] isUnlock){
-		for (int i=0; i<5; i++){
+	public void updateMap(int level){
+		for (int i=0; i<level; i++){
 			BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(i);
-			bridge.setVisible(isUnlock[i]);
-			if(!isUnlock[i]){
-				bridge.setOpacity(0);
-			}
+			bridge.setVisible(true);		
+		}
+		
+		for (int i=level; i<5; i++){
+			BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(i);
+			bridge.setVisible(false);
+			bridge.setOpacity(0);
+		}
+		
+		for (int i=0; i<level-1; i++){
+			FogGroup fog = (FogGroup) fogGroup.getChildren().get(i);
+			fog.setVisible(false);
 		}
 	}
 	
