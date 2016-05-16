@@ -116,7 +116,6 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
 		if(!isOver){
-			System.out.println("aaaaa");
 			switch(level){
 			case 0:
 			case 99:
@@ -475,9 +474,14 @@ public class GamePanel extends Pane implements Observer{
 	}
 	
 	public void updateIsOver(boolean b){ 
-		isOver = b; 
-		
+		isOver = b;
 	}
+
+	public void setRoundTotal(int roundTotal) {
+		this.roundTotal = roundTotal;
+		this.roundPanel.setRoundTotal(this.roundTotal);
+	}
+
 	public void close(){
 		if(!isOver){
 			System.out.println("aaaaa");
@@ -523,6 +527,9 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("round")){
 					setCurrentRound((int)notifingObject.getValue());
 					
+				}else if(key.equals("totalRound")){
+					setRoundTotal((int)notifingObject.getValue());
+
 				}else if(key.equals("time")){
 					currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
 					

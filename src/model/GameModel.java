@@ -17,7 +17,7 @@ public class GameModel extends BaseModel implements Observer {
     private ChessBoardModel chessBoardModel;
     private int[] samuraiSeq;
     private int currentSamurai;
-    private Player[] players;
+    protected Player[] players;
     private int[] playerSeq;
     private int currentPlayer;
     private int currentRound;
@@ -85,7 +85,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     //Story 构造方法
-    public GameModel(int round, int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
+    public GameModel(int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
 
         Thread.currentThread().setPriority(1);
         Armory armory = StoryModel.getStoryModel().getArmory();
@@ -98,7 +98,21 @@ public class GameModel extends BaseModel implements Observer {
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
         this.currentRound = 1;
-        this.totalRound = round;
+        switch (level % 10){
+            case 1:
+                this.totalRound = 4 * 6;
+                break;
+            case 2:
+                this.totalRound = 7 * 6;
+                break;
+            case 3:
+                this.totalRound = 10 * 6;
+                break;
+            default:
+                this.totalRound = 24;
+                break;
+        }
+
         this.currentSamurai = 1;//1,2,3,4,5,6
         this.samuraiSeq = new int[]{1,4,5,2,3,6};
 
@@ -108,12 +122,6 @@ public class GameModel extends BaseModel implements Observer {
         players[0] = new Player(this,0,samuraiPOs);
         players[0].setSamuraiPOs(samuraiPOs);
         SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
-
-        if(this.level % 10 == 1){
-            homePosition[0] = new Position(0,0);
-            homePosition[1] = new Position(7,0);
-            homePosition[2] = new Position(14,0);
-        }
 
         switch (this.level){
             //TODO
@@ -348,6 +356,7 @@ public class GameModel extends BaseModel implements Observer {
         System.out.println("Level " + this.getLevel());
 
         super.updateChange(new UpdateMessage("vision", blocks));
+        super.updateChange(new UpdateMessage("totalRound",this.totalRound));
 
         //重置武士的一些属性
         for (int i = 1; i <= 6; i++) {
@@ -406,7 +415,7 @@ public class GameModel extends BaseModel implements Observer {
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
 
-        if(this.level != 99) {
+        if(level != 99) {
             ArrayList<PropsInG> tmp = new ArrayList<>();
             //捡到道具
             for (PropsInG props : this.propsInGList) {
