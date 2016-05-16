@@ -24,8 +24,11 @@ public class MapHandler {
 		this.mapPanel = mapPanel;
 		this.mapController = new MapController();
 		this.mapController.setStoryModel(StoryModel.getStoryModel());
+		
 	}
-	
+	public void update(){
+		mapPanel.updateMap(mapController.getStoryModel().getLevel());
+	}
 	public EventHandler<MouseEvent> homeEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {	    	  
 	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
