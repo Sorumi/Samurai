@@ -13,7 +13,7 @@ public class Material {
 		return type;
 	}
 
-	public int getNumer() {
+	public int getNumber() {
 		return number;
 	}
 

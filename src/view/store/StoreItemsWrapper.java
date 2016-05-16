@@ -47,11 +47,10 @@ public class StoreItemsWrapper extends Pane {
 	}
 
 	public void updateMaterial(ArrayList<Material> list) {
-
-		for (Material materail : list) {
-			int num = materail.getType() - 800;
+		for (Material material : list) {
+			int num = material.getType() - 800;
 			if (Images.MATERIAL[num / 10][num % 10] != null) {
-				StoreItemView item = new StoreItemView(num, materail.getNumer());
+				StoreItemView item = new StoreItemView(num, material.getNumber());
 				item.setOnMouseEntered(storeHandler.itemEnterEvent);
 				item.setOnMouseExited(storeHandler.itemExitEvent);
 				item.setOnMouseClicked(storeHandler.itemClickEvent);
@@ -61,16 +60,13 @@ public class StoreItemsWrapper extends Pane {
 	}
 
 	public void updateProp(ArrayList<Props> list) {
-
 		for (Props prop : list) {
 			int num = prop.getType();
-
 			StoreItemView item = new StoreItemView(num, prop.getNumber());
 			item.setOnMouseEntered(storeHandler.itemEnterEvent);
 			item.setOnMouseExited(storeHandler.itemExitEvent);
 			item.setOnMouseClicked(storeHandler.itemClickEvent);
 			tile.getChildren().add(item);
-
 		}
 	}
 
