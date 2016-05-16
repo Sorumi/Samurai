@@ -77,7 +77,7 @@ public class MenuPanel extends Pane {
 		exitBtn.setOnAction(menuHandler.exitEvent);
 		
 		courseBtn = new SystemButton(2);	
-		courseBtn.setLayoutX(5);
+		courseBtn.setLayoutX(25);
 		courseBtn.setLayoutY(25);
 		courseBtn.setOnAction(menuHandler.courseEvent); 
 		

@@ -68,16 +68,17 @@ public class PropsStore implements Serializable {
 			case 3:
 				useCriticalHitRateJar((type - 700) % 10, samuraiPO);
 				break;
-			case 4:
+			case 5:
 				if (random.nextBoolean()) {
 					return "kill";
 				} else {
 					useBigSurprise(samuraiPO);
 				}
 				break;
-			case 5:
+			case 4:
 				if (random.nextBoolean()) {
 					samuraiPO.setHealthPoint(10);
+					return "small";
 				} else {
 					useSmallSurprise(samuraiPO);
 				}
@@ -98,10 +99,10 @@ public class PropsStore implements Serializable {
 			case 3:
 				replaceCriticalHitRateJar((type - 700) % 10, samuraiPO);
 				break;
-			case 4:
+			case 5:
 				replaceBigSurprise(samuraiPO);
 				break;
-			case 5:
+			case 4:
 				replaceSmallSurprise(samuraiPO);
 				break;
 			default:

@@ -85,6 +85,7 @@ public class GamePanel extends Pane implements Observer{
 	protected GamePanelSelectHandler selectHandler;
 	protected StateHandler stateHandler;
 	protected ObservableList<OrderPanel>  orderList;
+	private boolean isOver; 
 
 	private ArrayList<PropView> propViews;
 
@@ -114,6 +115,31 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
+		if(isOver){
+			switch(level){
+			case 0:
+			case 99:
+				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
+				break;
+			default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					selectPanel.setVisible(true);
+					System.out.println("LEVEL : " + level);
+					switch(level){
+						case 99:
+							selectHandler.level = 99;
+							break;
+						case 0:
+							selectHandler.level = 0;
+							break;
+					}
+				}
+			});
+			}
+		}else{
+			closeBtn.setOnMouseClicked(selectHandler.yesEvent);			
+		}
 		OrderPanel systemPanel = new OrderPanel();
 		systemPanel.getChildren().add(closeBtn);
 		this.getChildren().add(systemPanel);
@@ -446,6 +472,11 @@ public class GamePanel extends Pane implements Observer{
 	public int getBloodTotalOfSamurai(int i){
 		return bloodTotal[i];
 	}
+	
+	public void updateIsOver(boolean b){ 
+		isOver = b; 
+		
+	}
 
 
 	public void update(Observable o, Object arg) {
@@ -587,6 +618,7 @@ public class GamePanel extends Pane implements Observer{
 					
 				}else if(key.equals("over")){
 					resultPanel.setBlocks((int [])notifingObject.getValue());
+					GamePanel.this.updateIsOver(true); 
 					
 				}else if(key.equals("miss")){
 					getSamurai((int)notifingObject.getValue()).setMiss();
