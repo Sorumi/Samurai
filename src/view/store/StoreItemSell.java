@@ -23,7 +23,7 @@ public class StoreItemSell extends Pane{
 	private Group plusGroup;  
 	private Group minusGroup;  
 	
-	private Button buyButton;
+	private Button sellButton;
 	
 	public StoreItemSell(StoreHandler storeHandler){   
 		
@@ -31,7 +31,7 @@ public class StoreItemSell extends Pane{
 		this.setLayoutX(650);
 		this.setLayoutY(270);
 		this.setId("campsite-wrapper");
-//		this.perPrice = perPrice;
+
 		img1 = new ImageView(Images.COIN);
 		img1.setFitWidth(30);
 		img1.setPreserveRatio(true);
@@ -88,20 +88,44 @@ public class StoreItemSell extends Pane{
 		plusGroup.getChildren().addAll(circle2, plusLabel);
 		plusGroup.setOnMouseClicked(storeHandler.plusQuantityEvent);
 		
-		buyButton = new Button("出 售");
-		buyButton.setPrefSize(100, 40);
-		buyButton.setId("buy-btn");
-		buyButton.setLayoutX(50);
-		buyButton.setLayoutY(242);
+		sellButton = new Button("出 售");
+		sellButton.setPrefSize(100, 40);
+		sellButton.setId("buy-btn");
+		sellButton.setLayoutX(50);
+		sellButton.setLayoutY(242);
+		sellButton.setOnMouseEntered(storeHandler.sellBtnEnterEvent);
+		sellButton.setOnMouseExited(storeHandler.sellBtnExitEvent);
+		sellButton.setOnMouseClicked(storeHandler.sellBtnClickEvent);
+
+		sellBtnAbled();
 		
-		
-		this.getChildren().addAll(img1, img2, perPriceLabel, quantityLabel, totalPriceLabel, plusGroup, minusGroup, buyButton);
+		this.getChildren().addAll(img1, img2, perPriceLabel, quantityLabel, totalPriceLabel, plusGroup, minusGroup, sellButton);
 	}
+	
+	public void sellBtnPressed() {
+		sellButton.setLayoutY(246);
+		sellButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 4);");
+	}
+
+	public void sellBtnAbled() {
+		sellButton.setLayoutY(242);
+		sellButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 8);");
+	}
+	
 	public void setQuantity(int i){  
 		quantityLabel.setText(i + "");
 		totalPriceLabel.setText("+ "+perPrice*i); 
 
 		this.quantity = i;
+	}
+	public void setPrice(int perPrice){
+		this.perPrice = perPrice;
+		perPriceLabel.setText("- "+perPrice);
+		this.setQuantity(0);
+	}
+	
+	public int getQuantity(){
+		return this.quantity;
 	}
 
 }

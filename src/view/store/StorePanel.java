@@ -50,6 +50,7 @@ public class StorePanel extends TransitionPanel{
 
 	public void setSellPanel(){
 		sellPanel = new StoreItemSell(storeHandler);
+		this.getChildren().add(sellPanel);
 	}
 	public StoreItemsWrapper getItemsPanel(){
 		return this.itemsPanel;

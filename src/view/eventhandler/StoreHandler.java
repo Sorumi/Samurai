@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
+import model.po.PropsInG;
 import view.store.StoreItemView;
 import view.store.StorePanel;
 
@@ -12,7 +13,9 @@ public class StoreHandler {
 
 	private StorePanel storePanel;
 	private StoreController storeController;
-
+	private int num;
+	private int quantity; 
+	
 	public StoreHandler(StorePanel storePanel) {
 		this.storePanel = storePanel;
 		this.storeController = new StoreController();
@@ -68,4 +71,23 @@ public class StoreHandler {
 		}
 	};
 
+	// 购买按钮
+	public EventHandler<MouseEvent> sellBtnClickEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			quantity = storePanel.sellPanel.getQuantity();
+//			getStoreController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
+		}
+	};
+
+	public EventHandler<MouseEvent> sellBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			storePanel.sellPanel.sellBtnPressed();
+		}
+	};
+
+	public EventHandler<MouseEvent> sellBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			storePanel.sellPanel.sellBtnAbled();
+		}
+	};
 }

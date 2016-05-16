@@ -25,9 +25,6 @@ public class TerritoryHandler {
 		this.territoryController = TerritoryController.territoryController();
 
 		this.territoryController.setStoryModel(StoryModel.getStoryModel());
-
-		//在这里可以获取武器
-//		this.territoryController.getWeaponOfSamurai(1);
 	}
 	
 	public void updateSamurai(){
@@ -52,6 +49,14 @@ public class TerritoryHandler {
 	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.smithyPanel = new SmithyPanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.smithyPanel);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> storeEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
+	    	  territoryPanel.storePanel = new StorePanel();
+	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
 	      }
 	};
 	
@@ -81,14 +86,7 @@ public class TerritoryHandler {
 	    	  territoryPanel.getChildren().add(territoryPanel.archivePanel);
 	      }
 	};
-	
-	public EventHandler<MouseEvent> storeEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.storePanel = new StorePanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
-	      }
-	};
+
 	
 	public EventHandler<MouseEvent> buttonEnterEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
@@ -137,14 +135,15 @@ public class TerritoryHandler {
 	       
 	};
 	
-//	public EventHandler<MouseEvent> showSellPanelEvent = new EventHandler<MouseEvent>() {  
-//	      public void handle(MouseEvent event) {
-//	    	  shopPanel.getChildren().add(shopPanel.sellPanel); 
-//	    	  shopPanel.setVisible(true);
-//	          territoryPanel.shopSelectPanel.setVisible(false);
-//	    	  }
-//	      
-//	};
+	public EventHandler<MouseEvent> showSellPanelEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.storePanel = new StorePanel();
+	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
+	    	  territoryPanel.storePanel.setSellPanel();
+	          territoryPanel.shopSelectPanel.setVisible(false);
+	    	  }
+	      
+	};
 	public TerritoryController getTerritoryController(){
 		return this.territoryController;
 	}
