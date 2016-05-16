@@ -41,6 +41,10 @@ public class StoreItemsWrapper extends Pane {
 		this.getChildren().add(scroll);
 
 	}
+	
+	public void clearAll(){
+		tile.getChildren().clear();
+	}
 
 	public void updateMaterial(ArrayList<Material> list) {
 

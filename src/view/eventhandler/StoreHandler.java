@@ -29,6 +29,7 @@ public class StoreHandler {
 	}
 
 	public void update() {
+		storePanel.getItemsPanel().clearAll();
 		storePanel.getItemsPanel().updateMaterial(storeController.getMaterials());
 		storePanel.getItemsPanel().updateProp(storeController.getProps());
 	}
@@ -55,9 +56,9 @@ public class StoreHandler {
 				storePanel.infoPanel.updateMaterialInfo(information.getTag() - 800, information.getName(),
 						information.getDescription());
 			}else{
-//				Information information = storeController.getInformationOfTag(item.getNum() + 700);
-//				storePanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
-//						information.getDescription());
+				Information information = storeController.getInformationOfTag(item.getNum() + 700);
+				storePanel.infoPanel.updatePropInfo(information.getTag(), information.getName(),
+						information.getDescription());
 			}
 			if(storePanel.sellPanel != null){
 				num = item.getNum();
