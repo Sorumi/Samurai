@@ -139,7 +139,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.armor = armor;
 		this.length = length;
 		this.criticalHitChance = 1;
-		this.level = 1;
 		this.dodgeChance = 1;
 		this.attackValue = 5;
 		this.armorValue = 10;
