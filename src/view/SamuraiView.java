@@ -285,6 +285,19 @@ public class SamuraiView extends Pane{
 		resetWeapon();
 		
 	}
+	
+	public void setArmor(boolean isArmor) {
+		if (!isArmor) {
+			group.getChildren().removeAll(armorBody, armorBack, armorLeft, armorRight);
+			orderList.removeAll(armorBody, armorBack, armorLeft, armorRight);
+
+			leftShoulder.setVisible(true);
+			rightShoulder.setVisible(true);
+			body.setVisible(true);
+		}
+
+	}
+	
 	public void setArmor(int number){
 		leftShoulder.setVisible(false);
 		rightShoulder.setVisible(false);

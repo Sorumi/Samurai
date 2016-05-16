@@ -130,6 +130,7 @@ public class Images {
 	public static final Image TERRITORY_CAMPSITE = new Image("/./images/territory_campsite.png");
 	public static final Image TERRITORY_SMITHY = new Image("/./images/territory_smithy.png");
 	public static final Image TERRITORY_STORE = new Image("/./images/territory_store.png");
+	public static final Image TERRITORY_SHOP = new Image("/./images/territory_shop.png");
 	public static final Image TERRITORY_FLAG = new Image("/./images/territory_flag.png");
 
 	// weather

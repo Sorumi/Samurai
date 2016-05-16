@@ -118,37 +118,48 @@ public class TerritoryPanel extends Pane {
 
 		// campsite
 		ImageView campsiteImg = new ImageView(Images.TERRITORY_CAMPSITE);
-		campsiteImg.setFitWidth(287);
+		campsiteImg.setFitWidth(268);
 		campsiteImg.setPreserveRatio(true);
 
 		campsiteBtn = new TerritoryButton();
 		campsiteBtn.setGraphic(campsiteImg);
-		campsiteBtn.setLayoutX(339);
-		campsiteBtn.setLayoutY(130);
+		campsiteBtn.setLayoutX(511);
+		campsiteBtn.setLayoutY(268);
 		campsiteBtn.setOnMouseClicked(territoryHandler.campsiteEvent);
 
 		// smithy
 		ImageView smithyImg = new ImageView(Images.TERRITORY_SMITHY);
-		smithyImg.setFitWidth(324);
+		smithyImg.setFitWidth(302);
 		smithyImg.setPreserveRatio(true);
 
 		smithyBtn = new TerritoryButton();
 		smithyBtn.setGraphic(smithyImg);
-		smithyBtn.setLayoutX(675);
-		smithyBtn.setLayoutY(42);
+		smithyBtn.setLayoutX(680);
+		smithyBtn.setLayoutY(6);
 		smithyBtn.setOnMouseClicked(territoryHandler.smithyEvent);
 
 		// store
 		ImageView storeImg = new ImageView(Images.TERRITORY_STORE);
-		storeImg.setFitWidth(242);
+		storeImg.setFitWidth(227);
 		storeImg.setPreserveRatio(true);
 
 		storeBtn = new TerritoryButton();
 		storeBtn.setGraphic(storeImg);
-		storeBtn.setLayoutX(217);
-		storeBtn.setLayoutY(380);
+		storeBtn.setLayoutX(200);
+		storeBtn.setLayoutY(293);
 		storeBtn.setOnMouseClicked(territoryHandler.storeEvent);
 
+		//shop
+		ImageView shopImg = new ImageView(Images.TERRITORY_SHOP);
+		shopImg.setFitWidth(242);
+		shopImg.setPreserveRatio(true);
+		
+		shopBtn = new TerritoryButton();
+		shopBtn.setGraphic(shopImg);
+		shopBtn.setLayoutX(351);
+		shopBtn.setLayoutY(34);
+		shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent);
+		
 		// flag
 		ImageView flagImg = new ImageView(Images.TERRITORY_FLAG);
 		flagImg.setFitWidth(95);
@@ -156,14 +167,10 @@ public class TerritoryPanel extends Pane {
 
 		flagBtn = new TerritoryButton();
 		flagBtn.setGraphic(flagImg);
-		flagBtn.setLayoutX(926);
-		flagBtn.setLayoutY(368);
+		flagBtn.setLayoutX(882);
+		flagBtn.setLayoutY(446);
 		flagBtn.setOnMouseClicked(territoryHandler.flagEvent);
 
-		shopBtn = new Button("shop");
-		shopBtn.setLayoutX(500);
-		shopBtn.setLayoutY(430);
-		shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent);
 
 		shopSelectPanel = new ShopSelectPanel(territoryHandler);
 		shopSelectPanel.setVisible(false);
@@ -175,20 +182,20 @@ public class TerritoryPanel extends Pane {
 
 		// samurai
 		samurai1 = new SamuraiView(1, 2);
-		samurai1.setLayoutX(800);
-		samurai1.setLayoutY(450);
+		samurai1.setLayoutX(720);
+		samurai1.setLayoutY(520);
 		samurai1.setOnMouseEntered(stateHandler.showStatePanelInT);
 		samurai1.setOnMouseExited(stateHandler.closeStatePanelInT);
 
 		samurai2 = new SamuraiView(2, 2);
-		samurai2.setLayoutX(640);
-		samurai2.setLayoutY(450);
+		samurai2.setLayoutX(560);
+		samurai2.setLayoutY(520);
 		samurai2.setOnMouseEntered(stateHandler.showStatePanelInT);
 		samurai2.setOnMouseExited(stateHandler.closeStatePanelInT);
 
 		samurai3 = new SamuraiView(3, 2);
-		samurai3.setLayoutX(480);
-		samurai3.setLayoutY(450);
+		samurai3.setLayoutX(400);
+		samurai3.setLayoutY(520);
 		samurai3.setOnMouseEntered(stateHandler.showStatePanelInT);
 		samurai3.setOnMouseExited(stateHandler.closeStatePanelInT);
 

@@ -57,6 +57,12 @@ public class MenuPanel extends Pane {
 	//
 	private boolean isDay;
 	
+	private int[] weapon0 = {11, 12, 13, 14, 15, 16, 23, 25, 26, 33, 34, 35, 36};
+	private int[] weapon1 = {111, 112, 113, 114, 115, 116, 124, 125, 126, 132, 133, 134, 135, 136};
+	private int[] weapon2 = {211, 212, 213, 214, 215, 216, 225, 226, 233, 234, 235, 236};
+	private int[][] weapon = {weapon0, weapon1, weapon2};
+	private int[] armor = {11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 34, 35, 36};
+	
 	public MenuPanel(Main mainFrame){
 		this.mainFrame = mainFrame;
 		
@@ -243,6 +249,9 @@ public class MenuPanel extends Pane {
 			samuraiA1.setWeapon(setRandomWeapon(0));
 			samuraiA2.setWeapon(setRandomWeapon(1));
 			samuraiA3.setWeapon(setRandomWeapon(2));
+			samuraiA1.setArmor(setRandomArmor());
+			samuraiA2.setArmor(setRandomArmor());
+			samuraiA3.setArmor(setRandomArmor());
 		}else if(modeNum == 0 && targetNum == 1){
 			samuraiTL.getKeyFrames().addAll(
 				new KeyFrame(Duration.millis(500), new KeyValue(sARo.angleProperty(), 300, Interpolator.EASE_IN)),
@@ -252,6 +261,9 @@ public class MenuPanel extends Pane {
 			samuraiA1.setWeapon(0);
 			samuraiA2.setWeapon(100);
 			samuraiA3.setWeapon(200);
+			samuraiA1.setArmor(false);
+			samuraiA2.setArmor(false);
+			samuraiA3.setArmor(false);
 		}else if(modeNum == 0 && targetNum == 2){
 			samuraiTL.getKeyFrames().addAll(
 				new KeyFrame(Duration.millis(500), new KeyValue(sARo.angleProperty(), 300, Interpolator.EASE_IN)),
@@ -265,6 +277,9 @@ public class MenuPanel extends Pane {
 			samuraiA1.setWeapon(0);
 			samuraiA2.setWeapon(100);
 			samuraiA3.setWeapon(200);
+			samuraiA1.setArmor(false);
+			samuraiA2.setArmor(false);
+			samuraiA3.setArmor(false);
 		}else if(modeNum == 2 && targetNum == 1){
 			samuraiTL.getKeyFrames().addAll(
 				new KeyFrame(Duration.millis(500), new KeyValue(sARo.angleProperty(), 0, Interpolator.EASE_IN)),
@@ -282,6 +297,9 @@ public class MenuPanel extends Pane {
 			samuraiA1.setWeapon(setRandomWeapon(0));
 			samuraiA2.setWeapon(setRandomWeapon(1));
 			samuraiA3.setWeapon(setRandomWeapon(2));
+			samuraiA1.setArmor(setRandomArmor());
+			samuraiA2.setArmor(setRandomArmor());
+			samuraiA3.setArmor(setRandomArmor());
 		}
 		
 		samuraiTL.play();
@@ -291,9 +309,15 @@ public class MenuPanel extends Pane {
 	
 	private int setRandomWeapon(int num){
 		Random random = new Random();
-		int x = random.nextInt(3)+1;
-		int y = random.nextInt(2)+5;
-		return num*100 + x*10 + y;
+
+		int x = random.nextInt(weapon[num].length);
+		return weapon[num][x];
+	}
+	
+	private int setRandomArmor(){
+		Random random = new Random();
+		int x = random.nextInt(armor.length);
+		return armor[x];
 	}
 	
 	public void leftBtnEnter(){
