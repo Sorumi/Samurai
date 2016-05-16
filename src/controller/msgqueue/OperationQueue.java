@@ -58,11 +58,13 @@ public class OperationQueue implements Runnable, Serializable {
 					Thread.currentThread().interrupt();
 				}
 
-			} else if (operation instanceof StopOperation) {
-
-			} else if (operation instanceof ContinueOperation) {
-
-			} else {
+			}
+//			else if (operation instanceof StopOperation) {
+//
+//			} else if (operation instanceof ContinueOperation) {
+//
+//			}
+			else {
 				if (GameModel.isClient() && !Operation.isServer()) {
 					clientService.submitOperation(operation);
 				} else if (GameModel.isServer() && Operation.isServer()) {

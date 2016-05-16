@@ -1,5 +1,9 @@
 package view;
 
+import controller.msgqueue.ContinueOperation;
+import controller.msgqueue.Operation;
+import controller.msgqueue.OperationQueue;
+import controller.msgqueue.StopOperation;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

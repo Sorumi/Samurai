@@ -52,15 +52,11 @@ public class GamePanelSelectHandler implements EventHandler {
 	    	  gamePanel.selectPanel.setVisible(false);	    	   
 	      }
 	};
-	
 
 	@Override
 	public void handle(Event event) {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
-	
 
 }
