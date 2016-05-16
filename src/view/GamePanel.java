@@ -86,6 +86,8 @@ public class GamePanel extends Pane implements Observer{
 	protected StateHandler stateHandler;
 	protected ObservableList<OrderPanel>  orderList;
 
+	private ArrayList<PropView> propViews;
+
 	/*
 	 * level:
 	 * 0: 双人
@@ -205,6 +207,8 @@ public class GamePanel extends Pane implements Observer{
 			propsGroup = new OrderPanel();
 			this.getChildren().add(propsGroup);
 			propsGroup.setZOrder(-3);
+
+			this.propViews = new ArrayList<>();
 		}
 
 		backgroundPanel.setZOrder(-2);
@@ -223,9 +227,6 @@ public class GamePanel extends Pane implements Observer{
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel,selectPanel);
 		}
 		this.setOrder();
-		
-		//TODO
-//		this.addProp(3, 3, 0);
 	}
 
 	private void addProp(int x, int y, int num) {
@@ -233,6 +234,8 @@ public class GamePanel extends Pane implements Observer{
 			PropView prop = new PropView(num, 1);
 			prop.setActualLocation(x, y);
 			propsGroup.getChildren().add(prop);
+			this.propViews.add(prop);
+			prop.setVisible(false);
 		}
 	}
 
@@ -534,7 +537,16 @@ public class GamePanel extends Pane implements Observer{
 		                        B3.setVisible(true);
 		                    }
 		                }
+
+						for(PropView propView : propViews){
+							propView.setVisible(false);
+							if(block.getX() == propView.x && block.getY() == propView.y){
+								propView.setVisible(true);
+							}
+						}
+
 		            }
+
 				}else if(key.equals("vision")){
 					chessBoard.see((ArrayList<ActualBlock>) notifingObject.getValue());
 					chessBoard.setTmpBlocks((ArrayList<ActualBlock>) notifingObject.getValue());
@@ -634,6 +646,7 @@ public class GamePanel extends Pane implements Observer{
 						PropView prop = (PropView) propsGroup.getChildren().get(i);
 						if(prop.x == t[0] && prop.y == t[1]){
 							propsGroup.getChildren().remove(i);
+							propViews.remove(prop);
 							break;
 						}
 					}

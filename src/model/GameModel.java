@@ -428,8 +428,8 @@ public class GameModel extends BaseModel implements Observer {
         propList[propNum]--;
         if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
-            super.updateChange(new UpdateMessage("useProp",propNum));
         }
+        super.updateChange(new UpdateMessage("useProp",propNum));
     }
 
     public void updateOccupy(int direction){
@@ -760,12 +760,10 @@ public class GameModel extends BaseModel implements Observer {
                 int num = this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[i];
                 if(num != 0){
                     this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(i, 0);
-                    if(i != 13) {
-                        System.out.println("replace");
-                        while(num > 0) {
-                            this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
-                            num--;
-                        }
+                    System.out.println("reset prop");
+                    while(num > 0) {
+                        this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
+                        num--;
                     }
                 }
             }
@@ -983,11 +981,16 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public void stop(){
-
+        if(this.timer != null){
+            this.timer.cancel();
+            System.out.println("Stop");
+        }
     }
 
     public void goOn(){
-
+        this.timer = new Timer();
+        this.timer.schedule(new countDownTask(), 0, 1000);
+        System.out.println("GoOn");
     }
 
     public void exit(){
