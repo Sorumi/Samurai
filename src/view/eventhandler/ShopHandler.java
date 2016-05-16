@@ -77,7 +77,7 @@ public class ShopHandler {
 			quantity = shopPanel.purchasePanel.getQuantity();
 
 			System.out.println(num);
-			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
+			getShopController().getPropsStore().getProps(num).changeNumber(quantity);
 			int total = (shopController.getPropsStore().getProps(PropsInG.get7Type(num)).getPrice()) * quantity;
 			if(total > getShopController().getPropsStore().getMoney()){
 				System.out.println("You money isn't enough.");
