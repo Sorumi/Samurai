@@ -426,8 +426,12 @@ public class GameModel extends BaseModel implements Observer {
 
     public void useProp(int propNum){
         propList[propNum]--;
-        if(!this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai())).equals("kill")) {
+        String result = this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
+        if(!result.equals("kill")) {
             this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
+        }else{
+            this.getSamuraiOfNum(this.getCurrentSamurai()).beKilled(this.chessBoardModel);
+            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), 0}));
         }
         SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
         this.updateHealthPoint(tmpPO.getNumber());

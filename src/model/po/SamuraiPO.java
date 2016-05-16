@@ -250,13 +250,6 @@ public class SamuraiPO implements Serializable, Cloneable {
 		cbm.changeActualBlock(this.home.getX(), this.home.getY(), true);
 	}
 
-	public void beKilledWithPos(ChessBoardModel cbm, Position position){
-		cbm.changeActualBlock(this.pos.getX(), this.pos.getY(), false);
-		this.pos.setX(position.getX());
-		this.pos.setY(position.getY());
-		cbm.changeActualBlock(position.getX(), this.home.getY(), true);
-	}
-
 	// 0:up 1:right 2:left 3:down
 	public Position tryMove(int direction) {
 		Position position;
