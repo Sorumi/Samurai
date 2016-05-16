@@ -112,21 +112,6 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
-		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				selectPanel.setVisible(true);
-				System.out.println("LEVEL : " + level);
-				switch(level){
-					case 99:
-						selectHandler.level = 99;
-						break;
-					case 0:
-						selectHandler.level = 0;
-						break;
-				}
-			}
-		});
 		OrderPanel systemPanel = new OrderPanel();
 		systemPanel.getChildren().add(closeBtn);
 		this.getChildren().add(systemPanel);
@@ -651,6 +636,24 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("money")){
 					int money = (int)notifingObject.getValue();
 					//发钱的消息
+				}
+				
+				if(!key.equals("over")){
+					closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+						@Override
+						public void handle(ActionEvent event) {
+							selectPanel.setVisible(true);
+							System.out.println("LEVEL : " + level);
+							switch(level){
+								case 99:
+									selectHandler.level = 99;
+									break;
+								case 0:
+									selectHandler.level = 0;
+									break;
+							}
+						}
+					});
 				}
 			}
 		});
