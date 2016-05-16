@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
+import model.po.MaterialLibrary;
 import model.po.PropsInG;
 import view.TerritoryPanel;
 import view.store.StoreItemView;
@@ -94,7 +95,7 @@ public class StoreHandler {
 			System.out.println("N  " + num);
 			if(num > 800){
 				storeController.getMaterialLibrary().changeItem(num, -quantity);
-				//材料暂时不能卖
+				storeController.updateMoney((int)(0.6 * MaterialLibrary.priceTable(num) * quantity));
 			}else{
 				storeController.getPropsStore().getProps(num).changeNumber(-quantity);
 				storeController.updateMoney((int)(0.6 * storeController.getPropsStore().getProps(num).getPrice()) * quantity);
