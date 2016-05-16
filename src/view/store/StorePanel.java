@@ -2,7 +2,6 @@ package view.store;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.Pane;
 import view.SystemButton;
 import view.TerritoryPanel;
 import view.TransitionPanel;

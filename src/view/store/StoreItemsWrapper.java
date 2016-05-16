@@ -9,7 +9,6 @@ import javafx.scene.layout.TilePane;
 import model.po.Material;
 import model.po.Props;
 import view.Images;
-import view.campsite.CampsiteItemView;
 import view.eventhandler.StoreHandler;
 
 public class StoreItemsWrapper extends Pane {
@@ -62,7 +61,7 @@ public class StoreItemsWrapper extends Pane {
 		for (Props prop : list) {
 			int num = prop.getType();
 
-			StoreItemView item = new StoreItemView(num, prop.getType());
+			StoreItemView item = new StoreItemView(num, prop.getNumber());
 			item.setOnMouseEntered(storeHandler.itemEnterEvent);
 			item.setOnMouseExited(storeHandler.itemExitEvent);
 			item.setOnMouseClicked(storeHandler.itemClickEvent);

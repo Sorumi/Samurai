@@ -28,8 +28,8 @@ public class StoreHandler {
 	}
 
 	public void update() {
-		storePanel.getItemsPanel().updateProp(storeController.getProps());
 		storePanel.getItemsPanel().updateMaterial(storeController.getMaterials());
+		storePanel.getItemsPanel().updateProp(storeController.getProps());
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {
@@ -54,9 +54,12 @@ public class StoreHandler {
 				storePanel.infoPanel.updateMaterialInfo(information.getTag() - 800, information.getName(),
 						information.getDescription());
 			}else{
-				Information information = storeController.getInformationOfTag(item.getNum());
+				Information information = storeController.getInformationOfTag(item.getNum() + 700);
 				storePanel.infoPanel.updatePropInfo(information.getTag() - 700, information.getName(),
 						information.getDescription());
+			}
+			if(storePanel.sellPanel != null){
+				storePanel.sellPanel.setQuantity(0);
 			}
 			
 		}

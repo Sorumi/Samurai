@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
@@ -38,6 +39,8 @@ public class StoreItemView extends StackPane {
 			bgCircle.setFill(GameColor.getMaterialColor(itemNum / 10));
 			bgCircle.setStroke(GameColor.getMaterialColor(itemNum / 10 + 10));
 		}else{
+			bgCircle.setFill(Color.TRANSPARENT);
+//			bgCircle.setStroke(GameColor.getMaterialColor(itemNum / 10 + 10));
 			light = new ColorAdjust();
 			this.setEffect(light);
 		}
@@ -46,21 +49,22 @@ public class StoreItemView extends StackPane {
 		bgCircle.setStrokeWidth(0);
 		this.getChildren().add(bgCircle);
 
-		quantityLabel = new Label(quantity + "");
-		quantityLabel.setPrefSize(30, 30);
-		quantityLabel.setId("item-quantity");
-		this.getChildren().add(quantityLabel);
-		StackPane.setAlignment(quantityLabel, Pos.BOTTOM_RIGHT);
-
 		if (itemNum / 100 != 7) {
 			MaterialView material = new MaterialView(itemNum);
 			this.getChildren().add(material);
 			StackPane.setAlignment(material, Pos.CENTER);
 		} else {
-			PropView prop = new PropView(itemNum - 700, 3);
+			PropView prop = new PropView(itemNum, 3);
 			this.getChildren().add(prop);
 			StackPane.setAlignment(prop, Pos.CENTER);
 		}
+		
+		quantityLabel = new Label(quantity + "");
+		quantityLabel.setPrefSize(30, 30);
+		quantityLabel.setId("item-quantity");
+		this.getChildren().add(quantityLabel);
+		StackPane.setAlignment(quantityLabel, Pos.BOTTOM_RIGHT);
+		
 	}
 
 	public void setHighlight() {

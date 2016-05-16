@@ -2,6 +2,7 @@ package view;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.po.PropsInG;
 
 public class PropView extends Pane{
 
@@ -17,6 +18,9 @@ public class PropView extends Pane{
 	
 	public PropView(int num, int SCALE){
 
+		if(num/100 == 7){
+			num = PropsInG.get14Type(num);
+		}
 		switch(SCALE){
 			case 1:
 				 width = 30;
