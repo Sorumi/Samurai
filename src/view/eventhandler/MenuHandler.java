@@ -198,4 +198,11 @@ public class MenuHandler {
 			System.exit(0);
 		}
 	};
+	
+	public EventHandler<ActionEvent> courseEvent = new EventHandler<ActionEvent>() {
+		@Override 
+		public void handle(ActionEvent e) {
+			mainFrame.menuPanel.coursePanel.setVisible(true);
+		}
+	};
 }
