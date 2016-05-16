@@ -20,13 +20,16 @@ public class StoreHandler {
 		this.storePanel = storePanel;
 		this.storeController = new StoreController();
 		this.storeController.setStoryModel(StoryModel.getStoryModel());
+		this.storeController.setPropsStore();
 
 		this.storeController.getAllMaterial();
-		// 加入更新 Panel 数量的方法
+		this.storeController.getAllProps();
+
 	}
 
 	public void update() {
 		storePanel.getItemsPanel().updateItem(storeController.getMaterials());
+//		storePanel.getItemsPanel().updateItem(storeController.getProps());
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {
@@ -71,11 +74,16 @@ public class StoreHandler {
 		}
 	};
 
-	// 购买按钮
+	// 贩卖按钮
 	public EventHandler<MouseEvent> sellBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			quantity = storePanel.sellPanel.getQuantity();
-//			getStoreController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
+			//要分是卖道具还是卖材料
+			//这里的编号要弄弄对
+			storeController.getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(-quantity);
+			storeController.getMaterialLibrary().changeItem(num, -quantity);
+//			加入加钱的方法
+//			storeController.updateMoney(9999);
 		}
 	};
 

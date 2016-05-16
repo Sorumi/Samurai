@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class ShopController extends TerritoryController {
 
-    private int money;
     private PropsStore propsStore;
 
     public void setPropsStore() {
@@ -22,16 +21,8 @@ public class ShopController extends TerritoryController {
         return this.propsStore;
     }
 
-    public int getMoney() {
-        return this.money;
-    }
-
-    public void setMoney(int money) {
-        this.money = money;
-    }
-
     public void updateMoney(int delta){
-        this.money += delta;
+        this.propsStore.updateMoney(delta);
     }
 
     public Information getInformationOfTag(int tag){

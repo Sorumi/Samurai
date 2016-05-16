@@ -1,8 +1,7 @@
 package controller;
 
-import model.po.Information;
-import model.po.Material;
-import model.po.MaterialLibrary;
+import model.StoryModel;
+import model.po.*;
 
 import java.util.ArrayList;
 
@@ -12,14 +11,41 @@ import java.util.ArrayList;
 public class StoreController extends TerritoryController {
 
     private ArrayList<Material> materials;
+    private ArrayList<Props> props;
+    private PropsStore propsStore;
 
     public void getAllMaterial() {
         MaterialLibrary materialLibrary = storyModel.getMaterialLibrary();
         this.materials = materialLibrary.checkAll();
     }
 
+    public void getAllProps(){
+        PropsStore propsStore = storyModel.getPropsStore();
+        for (int i = 1; i <= 14; i++) {
+            if(propsStore.getProps(i).getNumber() != 0){
+                props.add(propsStore.getProps(i));
+            }
+        }
+    }
+
+    public void updateMoney(int delta){
+        this.propsStore.updateMoney(delta);
+    }
+
     public ArrayList<Material> getMaterials() {
         return materials;
+    }
+
+    public void setPropsStore() {
+        this.propsStore = StoryModel.getStoryModel().getPropsStore();
+    }
+
+    public PropsStore getPropsStore() {
+        return propsStore;
+    }
+
+    public MaterialLibrary getMaterialLibrary(){
+        return StoryModel.getStoryModel().getMaterialLibrary();
     }
 
     public Information getInformationOfTag(int tag){

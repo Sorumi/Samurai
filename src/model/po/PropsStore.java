@@ -40,11 +40,13 @@ public class PropsStore implements Serializable {
 	}
 
 	public int getMoney() {
-		return money;
+		System.out.println("Now I have money : " + this.money);
+		return this.money;
 	}
 
 	public void updateMoney(int delta) {
 		this.money += delta;
+		System.out.println("Now I have money : " + this.money);
 	}
 
 	public String use(int type, SamuraiPO samuraiPO) {

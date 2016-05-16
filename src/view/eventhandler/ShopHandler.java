@@ -26,7 +26,7 @@ public class ShopHandler {
 
 		this.shopController.setPropsStore();
 
-		// 加入更新钱数的方法
+		// 加入初始化钱数的方法
 		// this.shopController.getMoney();
 		// 加入更新道具数量的方法
 		// this.shopController
@@ -77,6 +77,8 @@ public class ShopHandler {
 		public void handle(MouseEvent event) {
 			quantity = shopPanel.purchasePanel.getQuantity();
 			getShopController().getPropsStore().getProps(PropsInG.get7Type(num)).changeNumber(quantity);
+			//加入扣钱的方法
+//			getShopController().updateMoney(9999);
 		}
 	};
 
