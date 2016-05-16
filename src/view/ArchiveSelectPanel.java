@@ -9,6 +9,8 @@ public class ArchiveSelectPanel extends SelectPanel{
 	public ArchiveSelectPanel(ArchiveSelectHandler archiveSelectHandler){
 		super(archiveSelectHandler,"");
 		this.archiveSelectHandler = archiveSelectHandler;
+		this.setPrefSize(350, 230);
+		this.messageLabel.setId("select-message"); 
 		
 	}
 	public void updateIsSave(boolean b){
