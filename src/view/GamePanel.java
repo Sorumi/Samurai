@@ -85,6 +85,7 @@ public class GamePanel extends Pane implements Observer{
 	protected GamePanelSelectHandler selectHandler;
 	protected StateHandler stateHandler;
 	protected ObservableList<OrderPanel>  orderList;
+	private boolean isOver; 
 
 	private ArrayList<PropView> propViews;
 
@@ -106,7 +107,7 @@ public class GamePanel extends Pane implements Observer{
 		selectPanel.setZOrder(999);
 		selectPanel.setVisible(false);
 		this.getChildren().add(selectPanel);
-			
+		this.isOver = false;
 		//bounds
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -114,6 +115,31 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
+		if(!isOver){
+			switch(level){
+			case 0:
+			case 99:
+				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
+				break;
+			default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					selectPanel.setVisible(true);
+					System.out.println("LEVEL : " + level);
+					switch(level){
+						case 99:
+							selectHandler.level = 99;
+							break;
+						case 0:
+							selectHandler.level = 0;
+							break;
+					}
+				}
+			});
+			}
+		}else{
+			closeBtn.setOnMouseClicked(selectHandler.yesEvent);			
+		}
 		OrderPanel systemPanel = new OrderPanel();
 		systemPanel.getChildren().add(closeBtn);
 		this.getChildren().add(systemPanel);
@@ -446,6 +472,44 @@ public class GamePanel extends Pane implements Observer{
 	public int getBloodTotalOfSamurai(int i){
 		return bloodTotal[i];
 	}
+	
+	public void updateIsOver(boolean b){ 
+		isOver = b;
+	}
+
+	public void setRoundTotal(int roundTotal) {
+		this.roundTotal = roundTotal;
+		this.roundPanel.setRoundTotal(this.roundTotal);
+	}
+
+	public void close(){
+		if(!isOver){
+			System.out.println("aaaaa");
+			switch(level){
+			case 0:
+			case 99:
+				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
+				break;
+			default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+				@Override
+				public void handle(ActionEvent event) {
+					selectPanel.setVisible(true);
+					System.out.println("LEVEL : " + level);
+					switch(level){
+						case 99:
+							selectHandler.level = 99;
+							break;
+						case 0:
+							selectHandler.level = 0;
+							break;
+					}
+				}
+			});
+			}
+		}else{
+			closeBtn.setOnMouseClicked(selectHandler.yesEvent);			
+		}
+	}
 
 
 	public void update(Observable o, Object arg) {
@@ -463,6 +527,9 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("round")){
 					setCurrentRound((int)notifingObject.getValue());
 					
+				}else if(key.equals("totalRound")){
+					setRoundTotal((int)notifingObject.getValue());
+
 				}else if(key.equals("time")){
 					currentPlayer.circlePanel.setTimeRest((int) notifingObject.getValue());
 					
@@ -563,6 +630,10 @@ public class GamePanel extends Pane implements Observer{
 						default:
 							break;
 					}
+//					if (currentPlayer.getPlayer() == 0) {
+//						actionPanel.reset();
+//						setOrder();
+//					}
 					tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
 					chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
 					
@@ -583,7 +654,8 @@ public class GamePanel extends Pane implements Observer{
 					
 				}else if(key.equals("over")){
 					resultPanel.setBlocks((int [])notifingObject.getValue());
-					
+					GamePanel.this.updateIsOver(true); 
+					GamePanel.this.close();
 				}else if(key.equals("miss")){
 					getSamurai((int)notifingObject.getValue()).setMiss();
 					
@@ -642,7 +714,6 @@ public class GamePanel extends Pane implements Observer{
 					//更新 propPanel 的消息
 					for (int i = 1; i <= 14; i++) {
 						propPanel.setProp(i,propList[i]);
-						System.out.println("Prop " + i + " have " + propList[i]);
 					}
 				}else if(key.equals("useProp")){
 					int[] t = (int [])notifingObject.getValue();
@@ -653,31 +724,7 @@ public class GamePanel extends Pane implements Observer{
 					set6Properties(t[0],new int[]{t[1],t[2],t[3],t[4],t[5],t[6],t[7]});
 				}
 				
-				if(!key.equals("over")){
-					switch(level){
-					case 0:
-					case 99:
-						closeBtn.setOnMouseClicked(selectHandler.yesEvent);
-						break;
-					default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
-						@Override
-						public void handle(ActionEvent event) {
-							selectPanel.setVisible(true);
-							System.out.println("LEVEL : " + level);
-							switch(level){
-								case 99:
-									selectHandler.level = 99;
-									break;
-								case 0:
-									selectHandler.level = 0;
-									break;
-							}
-						}
-					});
-					}
-					
 
-				}
 			}
 		});
 	}
