@@ -121,6 +121,7 @@ public class GamePanel extends Pane implements Observer{
 			case 99:
 				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
 				break;
+				
 			default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 				@Override
 				public void handle(ActionEvent event) {

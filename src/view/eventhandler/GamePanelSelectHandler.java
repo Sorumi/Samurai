@@ -41,6 +41,7 @@ public class GamePanelSelectHandler implements EventHandler {
 					//TODO
 					StoryPanel storyPanel = (StoryPanel) gamePanel.getParent();
 					storyPanel.mapPanel.toFront();
+					storyPanel.mapPanel.mapHandler.update();
 					storyPanel.gamePanel.getChildren().remove(gamePanel);
 					storyPanel.gamePanel = null;
 

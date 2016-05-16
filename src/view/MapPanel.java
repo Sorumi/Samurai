@@ -22,7 +22,7 @@ import view.eventhandler.MapHandler;
 
 public class MapPanel extends Pane {
 	
-	private MapHandler mapHandler;
+	public MapHandler mapHandler;
 	private MapController mapController;
 	
 	private Group landGroup;
