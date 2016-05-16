@@ -7,13 +7,15 @@ public class Props implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int type;
 	private int number;
+	private int price;
 
 	public Props() {
 	}
 
-	public Props(int type, int number) {
+	public Props(int type, int number,int price) {
 		this.type = type;
 		this.number = number;
+		this.price=price;
 	}
 
 	public int getType() {

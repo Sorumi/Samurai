@@ -13,20 +13,20 @@ public class PropsStore implements Serializable {
 
 	public PropsStore() {
 		this.money = 100;
-		props.add(new Props(701, 0));
-		props.add(new Props(702, 0));
-		props.add(new Props(703, 0));
-		props.add(new Props(711, 0));
-		props.add(new Props(712, 0));
-		props.add(new Props(713, 0));
-		props.add(new Props(721, 0));
-		props.add(new Props(722, 0));
-		props.add(new Props(723, 0));
-		props.add(new Props(731, 0));
-		props.add(new Props(732, 0));
-		props.add(new Props(733, 0));
-		props.add(new Props(741, 0));
-		props.add(new Props(751, 0));
+		props.add(new Props(701, 0,100));
+		props.add(new Props(702, 0,250));
+		props.add(new Props(703, 0,500));
+		props.add(new Props(711, 0,80));
+		props.add(new Props(712, 0,200));
+		props.add(new Props(713, 0,400));
+		props.add(new Props(721, 0,150));
+		props.add(new Props(722, 0,300));
+		props.add(new Props(723, 0,600));
+		props.add(new Props(731, 0,150));
+		props.add(new Props(732, 0,300));
+		props.add(new Props(733, 0,600));
+		props.add(new Props(741, 0,200));
+		props.add(new Props(751, 0,400));
 	}
 
 	public Props getProps(int type) {
