@@ -87,5 +87,9 @@ public class SelectPanel extends OrderPanel {
 			noBtn.setStyle("-fx-effect: dropshadow(gaussian, #DDB4B0, 0, 0, 0, 8);");
 		}
 	}
+	
+	public void updateMessage(String s){
+		messageLabel.setText(s);
+	}
 
 }

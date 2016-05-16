@@ -13,16 +13,15 @@ import view.ArchiveView;
 import view.MenuPanel;
 
 public class ArchiveSelectHandler implements EventHandler {
-	// private ArchiveSelectPanel archiveSelectPanel;
-	// private ArchiveHandler archiveHandler;
 	private ArchiveView archiveView;
 	private int num;
 	private ArchiveController archiveController;
+	public boolean isSave;
 
 	public ArchiveSelectHandler(ArchiveView archiveView, int num) {
 		this.num = num;
 		this.archiveView = archiveView;
-		// this.archiveHandler = archiveView.archiveHandler;
+
 		this.archiveController = new ArchiveController();
 		this.archiveController.setStoryModel(StoryModel.getStoryModel());
 	}
@@ -30,12 +29,21 @@ public class ArchiveSelectHandler implements EventHandler {
 	public EventHandler<MouseEvent> yesEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			// 读取存档 num
-			archiveController.save(num);
-			SimpleDateFormat ft = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
-			archiveView.setTime(ft.format(archiveController.getTime(num)));
-			ArchivePanel archivePanel = (ArchivePanel) archiveView.getParent();
-			archivePanel.archiveSelectPanel.setVisible(false);
-
+			if (isSave) {
+				archiveController.save(num);
+				SimpleDateFormat ft = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+				archiveView.setTime(ft.format(archiveController.getTime(num)));
+				ArchivePanel archivePanel = (ArchivePanel) archiveView.getParent();
+				archivePanel.archiveSelectPanel.setVisible(false);
+			} else {
+				archiveController.load(num);
+				if (archiveView.type == 1) {
+					MenuPanel menu = (MenuPanel) archiveView.getParent().getParent();
+					menu.getMenuHandler().startStory();
+				}
+				ArchivePanel archivePanel = (ArchivePanel) archiveView.getParent();
+				archivePanel.archiveSelectPanel.setVisible(false);
+			}
 		}
 	};
 

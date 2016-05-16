@@ -27,21 +27,18 @@ public class ArchiveHandler {
 	public EventHandler<MouseEvent> loadBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //读取存档 num
-			  archiveController.load(num);
-			  if(archiveView.type == 1){
-				  MenuPanel menu = (MenuPanel) archiveView.getParent().getParent();
-				  menu.getMenuHandler().startStory();
-			  }
+	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
+	    	  archivePanel.archiveSelectPanel.updateIsSave(false);			  
+			  archivePanel.archiveSelectPanel.setVisible(true);
 		  }
 	};
 	
 	public EventHandler<MouseEvent> saveBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //保存存档 num
-			  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
-			  archivePanel.archiveSelectPanel.setVisible(true);
-			  
-			  
+	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
+	    	  archivePanel.archiveSelectPanel.updateIsSave(true); 
+			  archivePanel.archiveSelectPanel.setVisible(true);			  
 	      }
 	};
 	
