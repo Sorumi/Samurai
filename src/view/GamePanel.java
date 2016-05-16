@@ -100,7 +100,7 @@ public class GamePanel extends Pane implements Observer{
 		this.setBackground(level);
 		
 		this.selectHandler = new GamePanelSelectHandler(this,level); 
-		this.selectPanel = new SelectPanel(selectHandler,"你将会丢失当前未存档的所有游戏进度，这样可以吗？");
+		this.selectPanel = new SelectPanel(selectHandler,"你将会丢失当前未存档的所有游戏进度(包括已获得的道具)，这样可以吗？");
 		selectPanel.yesBtn.setOnMouseClicked(selectHandler.yesEvent);
 		selectPanel.noBtn.setOnMouseClicked(selectHandler.noEvent);
 		selectPanel.setZOrder(999);

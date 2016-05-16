@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import view.eventhandler.ArchiveSelectHandler;
 import view.eventhandler.TerritoryHandler;
 
 public class ArchivePanel extends Pane {
@@ -18,6 +19,8 @@ public class ArchivePanel extends Pane {
 	private ArchiveView arcV0;
 	private ArchiveView arcV1;
 	private ArchiveView arcV2;
+
+	public ArchiveSelectPanel archiveSelectPanel;
 
 	/*
 	 * num: 0: in territoryPanel 1: in menuPanel
@@ -40,7 +43,7 @@ public class ArchivePanel extends Pane {
 					TerritoryPanel parent = (TerritoryPanel) ArchivePanel.this.getParent();
 					parent.getChildren().remove(ArchivePanel.this);
 					parent.setBlur(false);
-				}else{
+				} else {
 					MenuPanel parent = (MenuPanel) ArchivePanel.this.getParent();
 					parent.getChildren().remove(ArchivePanel.this);
 				}
@@ -59,6 +62,11 @@ public class ArchivePanel extends Pane {
 		arcV2.setLayoutX(50);
 		arcV2.setLayoutY(470);
 		this.getChildren().addAll(arcV0, arcV1, arcV2);
+		this.archiveSelectPanel = arcV0.archiveSelectPanel;
+		this.archiveSelectPanel.setLayoutX(50);
+		this.archiveSelectPanel.setLayoutY(250);
+		this.getChildren().add(arcV0.archiveSelectPanel);
+		archiveSelectPanel.setVisible(false);
 	}
 
 }

@@ -6,6 +6,7 @@ import controller.ArchiveController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import view.ArchivePanel;
 import view.ArchiveView;
 import view.MenuPanel;
 
@@ -37,9 +38,10 @@ public class ArchiveHandler {
 	public EventHandler<MouseEvent> saveBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //保存存档 num
-			  archiveController.save(num);
-			  SimpleDateFormat ft = new SimpleDateFormat ("yyyy年MM月dd日 HH:mm:ss");
-			  archiveView.setTime(ft.format(archiveController.getTime(num)));
+			  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
+			  archivePanel.archiveSelectPanel.setVisible(true);
+			  
+			  
 	      }
 	};
 	

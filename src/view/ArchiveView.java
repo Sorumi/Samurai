@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import model.StoryModel;
 import view.eventhandler.ArchiveHandler;
+import view.eventhandler.ArchiveSelectHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,7 +14,10 @@ public class ArchiveView extends Pane{
 	private int width = 400;
 	private int height = 180;
 	
-	private ArchiveHandler archiveHandler;
+	public ArchiveHandler archiveHandler; 
+	
+	public ArchiveSelectPanel archiveSelectPanel; 
+	private ArchiveSelectHandler archiveSelectHandler;
 	
 	public int type;
 	private Label nameLabel;
@@ -31,6 +35,8 @@ public class ArchiveView extends Pane{
 	public ArchiveView(int num, int type){
 		this.type = type;
 		this.archiveHandler = new ArchiveHandler(this, num);
+		this.archiveSelectHandler = new ArchiveSelectHandler(this,num);
+		this.archiveSelectPanel = new ArchiveSelectPanel(archiveSelectHandler);
 		
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
@@ -73,8 +79,8 @@ public class ArchiveView extends Pane{
 		}
 		
 		this.btnAbled(0);
-		
 		this.setVisible(true);
+		
 
 		Date time;
 		if(((time = archiveHandler.getArchiveController().getTime(num)) != null)){
