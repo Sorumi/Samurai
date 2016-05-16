@@ -118,9 +118,12 @@ public class GameModel extends BaseModel implements Observer {
         switch (this.level){
             //TODO
             case 11:
-                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(11), 14, chessBoardModel, armory.getArmor(911), new Position(0, length), 10, 2);
-                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(111), 14, chessBoardModel, armory.getArmor(911), new Position(length/2, length), 10, 2);
-                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(211), 14, chessBoardModel, armory.getArmor(911), new Position(length, length), 10, 2);
+                homePosition[0] = this.randomHomeLocationWithScale(2,2,0);
+                homePosition[1] = this.randomHomeLocationWithScale(7,2,0);
+                homePosition[2] = this.randomHomeLocationWithScale(12,2,0);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(11), 14, chessBoardModel, armory.getArmor(911), this.randomHomeLocationWithScale(2,12,0), 10, 2);
+                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(111), 14, chessBoardModel, armory.getArmor(911), this.randomHomeLocationWithScale(7,12,0), 10, 2);
+                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(211), 14, chessBoardModel, armory.getArmor(911), this.randomHomeLocationWithScale(12,12,0), 10, 2);
                 samuraiAI = new SamuraiAI[3];
                 samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],0,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
@@ -151,9 +154,12 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 21:
-                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(12), 14, chessBoardModel, armory.getArmor(912), new Position(0, length), 14, 4);
-                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(112), 14, chessBoardModel, armory.getArmor(912), new Position(length/2, length), 14, 5);
-                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(212), 14, chessBoardModel, armory.getArmor(912), new Position(length, length), 14, 4);
+                homePosition[0] = this.randomHomeLocationWithScale(2,2,0);
+                homePosition[1] = this.randomHomeLocationWithScale(7,2,0);
+                homePosition[2] = this.randomHomeLocationWithScale(2,7,0);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(12), 14, chessBoardModel, armory.getArmor(912), this.randomHomeLocationWithScale(12,12,0), 14, 4);
+                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(112), 14, chessBoardModel, armory.getArmor(912), this.randomHomeLocationWithScale(7,12,0), 14, 5);
+                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(212), 14, chessBoardModel, armory.getArmor(912), this.randomHomeLocationWithScale(12,7,0), 14, 4);
                 samuraiAI = new SamuraiAI[3];
                 samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],0,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
@@ -184,9 +190,12 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],1,this.chessBoardModel,1);
                 break;
             case 31:
-                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(33), 14, chessBoardModel, armory.getArmor(923), new Position(0, length), 16, 8);
-                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(113), 14, chessBoardModel, armory.getArmor(913), new Position(length/2, length), 16, 7);
-                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(323), 14, chessBoardModel, armory.getArmor(923), new Position(length, length), 16, 7);
+                homePosition[0] = this.randomHomeLocationWithScale(12,2,0);
+                homePosition[1] = this.randomHomeLocationWithScale(7,7,0);
+                homePosition[2] = this.randomHomeLocationWithScale(2,12,0);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(33), 14, chessBoardModel, armory.getArmor(923), this.randomHomeLocationWithScale(2,2,0), 16, 8);
+                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(113), 14, chessBoardModel, armory.getArmor(913), this.randomHomeLocationWithScale(7,2,0), 16, 7);
+                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(323), 14, chessBoardModel, armory.getArmor(923), this.randomHomeLocationWithScale(12,12,0), 16, 7);
                 samuraiAI = new SamuraiAI[3];
                 samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],1,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
@@ -217,9 +226,12 @@ public class GameModel extends BaseModel implements Observer {
                 samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
                 break;
             case 41:
-                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(234), 14, chessBoardModel, armory.getArmor(924), new Position(0, length), 18, 10);
-                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(134), 14, chessBoardModel, armory.getArmor(934), new Position(length/2, length), 18,11);
-                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(314), 14, chessBoardModel, armory.getArmor(915), new Position(length, length), 18, 12);
+                homePosition[0] = this.randomHomeLocationWithScale(2,2,0);
+                homePosition[1] = this.randomHomeLocationWithScale(2,12,0);
+                homePosition[2] = this.randomHomeLocationWithScale(12,7,0);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(234), 14, chessBoardModel, armory.getArmor(924), this.randomHomeLocationWithScale(12,2,0), 18, 10);
+                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(134), 14, chessBoardModel, armory.getArmor(934), this.randomHomeLocationWithScale(12,12,0), 18,11);
+                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(314), 14, chessBoardModel, armory.getArmor(915), this.randomHomeLocationWithScale(2,7,0), 18, 12);
                 samuraiAI = new SamuraiAI[3];
                 samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],1,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],2,this.chessBoardModel,1);
@@ -766,8 +778,6 @@ public class GameModel extends BaseModel implements Observer {
                 super.updateChange(new UpdateMessage("getProp", new int[]{position.getX(), position.getY(), propsInG.getType()}));
                 this.propsInGList.remove(propsInG);
             }
-
-            System.out.println("prop size:  " + this.propsInGList.size());
 
             this.replaceProps();
         }
