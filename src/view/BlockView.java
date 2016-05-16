@@ -12,15 +12,15 @@ import javafx.util.Duration;
 
 public class BlockView extends Polygon {
 	
-	private final int FIELD_WIDTH = 1050;
-	private final int FIELD_HEIGHT = 600;
+	private final int BLOCK_WIDTH = 70;
+	private final int BLOCK_HEIGHT = 40;
 	
 	private int x;
 	private int y;
 	private Color color = GameColor.getBlockColor(0); //GameColor.getBlockColor(0);
 	
-	private double width;
-	private double height;
+	private double feildWidth;
+	private double feildHeight;
 	private int stateStrokeSize;
 	private int currentStrokeSize;
 	
@@ -31,24 +31,24 @@ public class BlockView extends Polygon {
 	public BlockView(int x, int y, int size){
 		this.x = x;
 		this.y = y;
-		this.width = FIELD_WIDTH / size;
-		this.height = FIELD_HEIGHT / size;
+		this.feildWidth = BLOCK_WIDTH * size;
+		this.feildHeight = BLOCK_HEIGHT * size;
 		this.stateStrokeSize = 1;
 		
 		//paint
 		this.getPoints().addAll(new Double[]{
-			    0.0, height/2,
-			    width/2, 0.0,
-			    width, height/2,
-			    width/2, height});
+			    0.0, (double)BLOCK_HEIGHT/2,
+			    (double)BLOCK_WIDTH/2, 0.0,
+			    (double)BLOCK_WIDTH, (double)BLOCK_HEIGHT/2,
+			    (double)BLOCK_WIDTH/2,(double)BLOCK_HEIGHT});
 		this.setStroke(Color.WHITE);
 		this.setStrokeType(StrokeType.INSIDE);
 		this.setStrokeWidth(stateStrokeSize);
 		this.setFill(color);
 		
 		//bounds
-		this.setLayoutX(FIELD_WIDTH/2 + (y-x-1)*width/2);
-		this.setLayoutY((x+y)*height/2);
+		this.setLayoutX(feildWidth/2 + (y-x-1)*BLOCK_WIDTH/2);
+		this.setLayoutY((x+y)*BLOCK_HEIGHT/2);
 	}
 
 	public void setInvision(int state){
