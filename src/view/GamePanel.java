@@ -614,7 +614,6 @@ public class GamePanel extends Pane implements Observer{
 					bloodRest[t[0]] = t[1];
 
 				}else if(key.equals("rating")){
-//					System.out.println("Rating : " + (int)notifingObject.getValue());
 					resultPanel.setRate((int)notifingObject.getValue());
 					resultPanel.setStart();
 					
@@ -646,11 +645,12 @@ public class GamePanel extends Pane implements Observer{
 						System.out.println("Prop " + i + " have " + propList[i]);
 					}
 				}else if(key.equals("useProp")){
-					propPanel.useProp((int)notifingObject.getValue());
-
-				}else if(key.equals("money")){
-					int money = (int)notifingObject.getValue();
-					//发钱的消息
+					int[] t = (int [])notifingObject.getValue();
+					propPanel.useProp(t[0]);
+					set6Properties(t[1],new int[]{t[2],t[3],t[4],t[5],t[6],t[7],t[8]});
+				}else if(key.equals("replace")){
+					int[] t = (int [])notifingObject.getValue();
+					set6Properties(t[0],new int[]{t[1],t[2],t[3],t[4],t[5],t[6],t[7]});
 				}
 				
 				if(!key.equals("over")){

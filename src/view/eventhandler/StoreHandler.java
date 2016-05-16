@@ -104,9 +104,9 @@ public class StoreHandler {
 			quantity = storePanel.sellPanel.getQuantity();
 			//要分是卖道具还是卖材料
 			System.out.println("N  " + num);
-			if(num > 800){
+			if(num >= 800){
 				storeController.getMaterialLibrary().changeItem(num, -quantity);
-				storeController.updateMoney((int)(0.6 * MaterialLibrary.priceTable(num) * quantity));
+				storeController.updateMoney((MaterialLibrary.priceTable(num) * quantity));
 			}else{
 				storeController.getPropsStore().getProps(num).changeNumber(-quantity);
 				storeController.updateMoney((int)(0.6 * storeController.getPropsStore().getProps(num).getPrice()) * quantity);

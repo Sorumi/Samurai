@@ -52,7 +52,7 @@ public class ScoreBoard {
 			int type = 800 + materialTag[count] * 10 + materialItem[count];
 			for (Material material : materials) {
 				if (material.getType() == type) {
-					material.setNumber(material.getNumer() + 1);
+					material.setNumber(material.getNumber() + 1);
 					flag = true;
 					break;
 				}
