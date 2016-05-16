@@ -623,6 +623,10 @@ public class GamePanel extends Pane implements Observer{
 						default:
 							break;
 					}
+//					if (currentPlayer.getPlayer() == 0) {
+//						actionPanel.reset();
+//						setOrder();
+//					}
 					tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
 					chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
 					
@@ -703,7 +707,6 @@ public class GamePanel extends Pane implements Observer{
 					//更新 propPanel 的消息
 					for (int i = 1; i <= 14; i++) {
 						propPanel.setProp(i,propList[i]);
-						System.out.println("Prop " + i + " have " + propList[i]);
 					}
 				}else if(key.equals("useProp")){
 					int[] t = (int [])notifingObject.getValue();
