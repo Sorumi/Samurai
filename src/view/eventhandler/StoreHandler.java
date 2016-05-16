@@ -31,6 +31,7 @@ public class StoreHandler {
 
 	public void update() {
 		storePanel.getItemsPanel().clearAll();
+		this.storeController.getAllMaterial();
 		storePanel.getItemsPanel().updateMaterial(storeController.getMaterials());
 		storePanel.getItemsPanel().updateProp(storeController.getProps());
 	}

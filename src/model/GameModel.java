@@ -961,6 +961,9 @@ public class GameModel extends BaseModel implements Observer {
 
             scoreBoard.caculateMaterial(level / 10 - 1, level % 10, block, myKill, aiKill);
             ArrayList<Material> materials = scoreBoard.getMaterial();
+            for(Material material : materials) {
+                StoryModel.getStoryModel().getMaterialLibrary().changeItem(material.getType(), material.getNumber());
+            }
             super.updateChange(new UpdateMessage("materials",materials));
 
             int[] experience = scoreBoard.getExperience(level/10, level%10, this.chessBoardModel.getStatesOfAllBlocks()[1],
