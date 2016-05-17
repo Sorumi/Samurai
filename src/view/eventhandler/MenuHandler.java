@@ -77,13 +77,14 @@ public class MenuHandler {
 				});
 	      }
 	};
+
 	public EventHandler<MouseEvent> newStoryEvent = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
 			startStory();
-			
 		}  
 	};
+
 	public void startStory(){
 		mainFrame.startStory();
 		mainFrame.menuPanel.getChildren().remove(mainFrame.menuPanel.archivePanel);

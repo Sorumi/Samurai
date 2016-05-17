@@ -415,7 +415,7 @@ public class GameModel extends BaseModel implements Observer {
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
 
-        if(level != 99) {
+        if(level != 99 && level != 0) {
             ArrayList<PropsInG> tmp = new ArrayList<>();
             //捡到道具
             for (PropsInG props : this.propsInGList) {
@@ -763,12 +763,8 @@ public class GameModel extends BaseModel implements Observer {
         if(this.level != 99) {
             Random random = new Random();
             if (random.nextInt(1) == 0) {
-//                Position position = this.randomPropLocation();
-                //暂时固定位置
-                Position position = new Position(2 + random.nextInt(2) + 1,12 + random.nextInt(2) + 1);
-                //type 都是1~14的
-//                int type = random.nextInt(14) + 1;
-                int type = 12;
+                Position position = this.randomPropLocation();
+                int type = random.nextInt(14) + 1;
                 this.propsInGList.add(new PropsInG(position,type));
 
                 super.updateChange(new UpdateMessage("prop",new int[]{position.getX(),position.getY(),type}));
@@ -1050,7 +1046,9 @@ public class GameModel extends BaseModel implements Observer {
         if(this.timer != null) {
             this.timer.cancel();
         }
-        this.replaceProps();
+        if(this.level != 99 && this.level != 0) {
+            this.replaceProps();
+        }
         System.out.println("GAME EXIT!");
     }
 
