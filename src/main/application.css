@@ -36,6 +36,22 @@
 	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
 	
 }
+#main-label{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 800;
+	-fx-font-size: 20;
+	-fx-alignment: center-left;
+	-fx-wrap-text: true;
+}
+#explain-label{ 
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 100;
+	-fx-font-size: 18;
+	-fx-alignment: center-left;
+	-fx-wrap-text: true;
+}
 /* Territory */
 #money-panel{
 	-fx-background-color: #ffffff;
