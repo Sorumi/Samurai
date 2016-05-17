@@ -1188,13 +1188,11 @@ public class SamuraiPO implements Serializable, Cloneable {
 	public boolean isUpLevel() {
 		double cache = Math.pow(level, 1.5);
 		int upLevelExp = (int) (cache * 50);
-//		if (experience >= upLevelExp) {
-//			upLevel();
-//			return true;
-//		}
-		upLevel();
-		System.out.println("LEVEL UP!!!!!!!");
-		return true;
+		if (experience >= upLevelExp) {
+			upLevel();
+			return true;
+		}
+		return false;
 	}
 
 	public int getNextLevelExperience() {
