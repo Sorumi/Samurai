@@ -5,6 +5,7 @@ import controller.msgqueue.OperationQueue;
 import controller.msgqueue.SkipOperation;
 import model.po.ActualBlock;
 import view.GamePanel;
+import view.guide.GameGuidePanel;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ public class GameModelGuide extends GameModel {
     private int length;
     private ChessBoardModel chessBoardModel;
 
-    public GameModelGuide(GamePanel gamePanel){
+    public GameModelGuide(GameGuidePanel gamePanel){
         super();
         this.length = 11;
         this.chessBoardModel = new ChessBoardModel(this.length);

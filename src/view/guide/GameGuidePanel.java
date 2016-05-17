@@ -17,7 +17,7 @@ public class GameGuidePanel extends Pane implements Observer {
 	private int feildWidth;
 	private int feildHeight;
 
-	private ChessBoardGuidePanel chessBoard;
+	public ChessBoardGuidePanel chessBoard;
 	private SamuraiGuidePanel samurai;
 	
 	public ActionPanel actionPanel;
