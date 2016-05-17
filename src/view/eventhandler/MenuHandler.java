@@ -204,10 +204,11 @@ public class MenuHandler {
 		}
 	};
 	
-	public EventHandler<ActionEvent> courseEvent = new EventHandler<ActionEvent>() {
+	public EventHandler<ActionEvent> guideEvent = new EventHandler<ActionEvent>() {
 		@Override 
 		public void handle(ActionEvent e) {
 			mainFrame.menuPanel.guideGroup.setVisible(true);
+			mainFrame.menuPanel.samuraiTimer.stop();
 		}
 	};
 }

@@ -80,7 +80,7 @@ public class MenuPanel extends Pane {
 		courseBtn = new SystemButton(2);	
 		courseBtn.setLayoutX(25);
 		courseBtn.setLayoutY(25);
-		courseBtn.setOnAction(menuHandler.courseEvent); 
+		courseBtn.setOnAction(menuHandler.guideEvent); 
 		
 		//bg
 		menuBg = new MenuBackground();
