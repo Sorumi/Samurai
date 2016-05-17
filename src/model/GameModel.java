@@ -635,7 +635,7 @@ public class GameModel extends BaseModel implements Observer {
         ArrayList<ActualBlock> blocks;
         if(actionNum == 1 || actionNum == 0) {
             blocks = this.updateVision();
-            this.updateVisible(blocks);
+            updateVisible(blocks);
         }
         //要更新一下actionPoint
         super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getActionPoint()));
@@ -923,8 +923,8 @@ public class GameModel extends BaseModel implements Observer {
                     this.propsStore.replace(PropsInG.get7Type(i), this.getSamuraiOfNum(this.getCurrentSamurai()));
                     SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
                     this.updateHealthPoint(tmpPO.getNumber());
-                    super.updateChange(new UpdateMessage("replace",new int[]{getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
-                            tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
+                    super.updateChange(new UpdateMessage("replace",new int[]{getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],
+                            tmpPO.getAttackValue()[1], tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
                     num--;
                 }
             }
@@ -1054,11 +1054,11 @@ public class GameModel extends BaseModel implements Observer {
 
     //负责给 player 发消息
     public void sendMsg(int actionNum, int direction){
-        this.players[this.playerSeq[this.currentPlayer - 1]].actionPerformed(actionNum, direction);
+        players[playerSeq[currentPlayer - 1]].actionPerformed(actionNum, direction);
     }
 
     public int getCurrentSamurai(){
-        return this.samuraiSeq[this.currentSamurai - 1];
+        return samuraiSeq[currentSamurai - 1];
     }
 
     public int getLength(){
@@ -1092,7 +1092,7 @@ public class GameModel extends BaseModel implements Observer {
     }
 
     public ChessBoardModel getChessBoardModel(){
-        return this.chessBoardModel;
+        return chessBoardModel;
     }
 
     public static boolean isServer() {
@@ -1116,7 +1116,7 @@ public class GameModel extends BaseModel implements Observer {
 
     public void countDown(){
         if(this.currentTime > 0) {
-            super.updateChange(new UpdateMessage("time", this.currentTime));
+            super.updateChange(new UpdateMessage("time", currentTime));
             this.currentTime--;
 
         }else{
