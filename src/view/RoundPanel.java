@@ -19,7 +19,7 @@ public class RoundPanel extends OrderPanel{
 	
 	private Label roundTotal;
 	private Label roundCurrent;
-	private Circle currentRing;
+	public Circle currentRing;
 	private int currentSamurai;
 
 	public RoundPanel(int total){

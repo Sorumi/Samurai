@@ -30,6 +30,7 @@ public class PointsPanel extends Pane {
 	private boolean isShow;
 	
 	public Rectangle fillRect; 
+	public Rectangle bgRect;
 	public Label pointsLabel; 
 	
 	public PointsPanel(int player) {
@@ -41,7 +42,7 @@ public class PointsPanel extends Pane {
 		this.setVisible(false);
 		
 		//bg
-		Rectangle bgRect = new Rectangle();
+		bgRect = new Rectangle();
 		bgRect.setX(strokeSize);
 		bgRect.setY(strokeSize);
 		bgRect.setWidth(PANEL_WIDTH);
