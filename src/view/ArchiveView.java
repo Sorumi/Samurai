@@ -54,16 +54,19 @@ public class ArchiveView extends Pane{
 		timeLabel.setLayoutY(60);
 		timeLabel.setId("Atime-label");
 		this.getChildren().add(timeLabel);
-		
-		loadBtn = new Button("读 取");
-		loadBtn.setPrefSize(100, 40);
-		loadBtn.setId("Aload-btn");		
-		loadBtn.setLayoutX(25);
-		loadBtn.setLayoutY(115);
-		loadBtn.setOnMouseEntered(archiveHandler.loadBtnEnterEvent);
-		loadBtn.setOnMouseExited(archiveHandler.loadBtnExitEvent);
-		loadBtn.setOnMouseClicked(archiveHandler.loadBtnClickEvent);
-		this.getChildren().add(loadBtn);
+
+		if (type == 1) {
+			loadBtn = new Button("读 取");
+			loadBtn.setPrefSize(100, 40);
+			loadBtn.setId("Aload-btn");
+			loadBtn.setLayoutX(25);
+			loadBtn.setLayoutY(115);
+			loadBtn.setOnMouseEntered(archiveHandler.loadBtnEnterEvent);
+			loadBtn.setOnMouseExited(archiveHandler.loadBtnExitEvent);
+			loadBtn.setOnMouseClicked(archiveHandler.loadBtnClickEvent);
+			this.getChildren().add(loadBtn);
+			this.btnAbled(0);
+		}
 		
 		if (type == 0){
 			saveBtn = new Button("保 存");
@@ -77,10 +80,8 @@ public class ArchiveView extends Pane{
 			this.getChildren().add(saveBtn);
 			this.btnAbled(1);
 		}
-		
-		this.btnAbled(0);
+
 		this.setVisible(true);
-		
 
 		Date time;
 		if(((time = archiveHandler.getArchiveController().getTime(num)) != null)){

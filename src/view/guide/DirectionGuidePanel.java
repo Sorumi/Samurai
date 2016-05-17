@@ -1,9 +1,11 @@
-package view;
+package view.guide;
 
 import javafx.scene.layout.Pane;
+import view.DirectionButton;
+import view.eventhandler.ActionGuideHandler;
 import view.eventhandler.ActionHandler;
 
-public class DirectionPanel extends Pane {
+public class DirectionGuidePanel extends Pane {
 	
 	private final int DIRECTION_WIDTH = 49;
 	private final int DIRECTION_HEIGHT = 35;
@@ -16,7 +18,7 @@ public class DirectionPanel extends Pane {
 	private DirectionButton downButton;
 	private DirectionButton[] buttons;
 	
-	public DirectionPanel(ActionHandler actionHandler){
+	public DirectionGuidePanel(ActionGuideHandler actionHandler){
 
 		upButton = new DirectionButton(0);
 		leftButton = new DirectionButton(1);

@@ -18,7 +18,7 @@ public class ChessBoardGuidePanel extends OrderPanel implements Observer{
 	private final int WINDOW_HEIGHT = 700;
 	private final int BLOCK_WIDTH = 70;
 	private final int BLOCK_HEIGHT = 40;
-	private final int FIELD_FIX = 20;
+	private final int FIELD_FIX = 80;
 
 	private int feildWidth;
 	private int feildHeight;
