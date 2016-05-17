@@ -102,7 +102,7 @@ public class GamePanel extends Pane implements Observer{
 		this.setBackground(level);
 		
 		this.selectHandler = new GamePanelSelectHandler(this,level); 
-		this.selectPanel = new SelectPanel(selectHandler,"确定退出吗?你将会丢失当前未存档的所有游戏进度(包括已获得的道具)!");
+		this.selectPanel = new SelectPanel("确定退出吗?你将会丢失当前未存档的所有游戏进度(包括已获得的道具)!");
 		selectPanel.yesBtn.setOnMouseClicked(selectHandler.yesEvent);
 		selectPanel.noBtn.setOnMouseClicked(selectHandler.noEvent);
 		selectPanel.setZOrder(999);

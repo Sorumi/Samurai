@@ -12,16 +12,15 @@ import view.ArchiveSelectPanel;
 import view.ArchiveView;
 import view.MenuPanel;
 
-public class ArchiveSelectHandler implements EventHandler {
-	private ArchiveView archiveView;
-	private int num;
+public class ArchiveSelectHandler{
+	private ArchivePanel archivePanel;
+	public int num;
 	private ArchiveController archiveController;
 	public boolean isSave;
 
-	public ArchiveSelectHandler(ArchiveView archiveView, int num) {
-		this.num = num;
-		this.archiveView = archiveView;
-
+	public ArchiveSelectHandler(ArchivePanel archivePanel) {
+		this.archivePanel = archivePanel;
+		
 		this.archiveController = new ArchiveController();
 		this.archiveController.setStoryModel(StoryModel.getStoryModel());
 	}
@@ -31,17 +30,23 @@ public class ArchiveSelectHandler implements EventHandler {
 			// 读取存档 num
 			if (isSave) {
 				archiveController.save(num);
+//				System.out.println("save: " + num);
+				ArchiveView archiveView = (ArchiveView) archivePanel.archiveGroup.getChildren().get(num);
+				
 				SimpleDateFormat ft = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 				archiveView.setTime(ft.format(archiveController.getTime(num)));
-				ArchivePanel archivePanel = (ArchivePanel) archiveView.getParent();
+				
 				archivePanel.archiveSelectPanel.setVisible(false);
 			} else {
 				archiveController.load(num);
+//				System.out.println("load: " + num);
+				ArchiveView archiveView = (ArchiveView) archivePanel.archiveGroup.getChildren().get(num);
+				
 				if (archiveView.type == 1) {
 					MenuPanel menu = (MenuPanel) archiveView.getParent().getParent();
 					menu.getMenuHandler().startStory();
 				}
-				ArchivePanel archivePanel = (ArchivePanel) archiveView.getParent();
+				
 				archivePanel.archiveSelectPanel.setVisible(false);
 			}
 		}
@@ -50,15 +55,8 @@ public class ArchiveSelectHandler implements EventHandler {
 	public EventHandler<MouseEvent> noEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			// 读取存档 num
-			ArchivePanel archivePanel = (ArchivePanel) archiveView.getParent();
 			archivePanel.archiveSelectPanel.setVisible(false);
 		}
 	};
-
-	@Override
-	public void handle(Event event) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

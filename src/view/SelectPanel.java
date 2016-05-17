@@ -20,7 +20,7 @@ public class SelectPanel extends OrderPanel {
 	public Button noBtn;
 	private SelectHandler selectHandler;
 
-	public SelectPanel(EventHandler eventHandler, String message) { 
+	public SelectPanel(String message) { 
 		this.setPrefSize(350, 230);
 		this.setLayoutX(450);
 		this.setLayoutY(300);

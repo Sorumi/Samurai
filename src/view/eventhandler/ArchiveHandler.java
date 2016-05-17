@@ -27,7 +27,8 @@ public class ArchiveHandler {
 	public EventHandler<MouseEvent> loadBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //读取存档 num
-	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
+	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent().getParent();
+	    	  archivePanel.archiveSelectPanel.archiveSelectHandler.num = archiveView.num;
 	    	  archivePanel.archiveSelectPanel.updateIsSave(false);			  
 			  archivePanel.archiveSelectPanel.setVisible(true);
 		  }
@@ -36,7 +37,8 @@ public class ArchiveHandler {
 	public EventHandler<MouseEvent> saveBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //保存存档 num
-	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
+	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent().getParent();
+	    	  archivePanel.archiveSelectPanel.archiveSelectHandler.num = archiveView.num;
 	    	  archivePanel.archiveSelectPanel.updateIsSave(true); 
 			  archivePanel.archiveSelectPanel.setVisible(true);			  
 	      }
