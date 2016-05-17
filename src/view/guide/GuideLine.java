@@ -9,7 +9,7 @@ public class GuideLine extends Pane {
 	private int height = 42;
 	private int straightLineLength = 120;
 	private int brokenLineWidth = 40;
-	private int STROKE_WIDTH = 3;
+	private int STROKE_WIDTH = 1;
 
 	// 第一个数字：0表示直线在斜线左边，1表示直线在斜线右边
 	// 第二个数字：0表示斜线斜向下，1表示斜向上
