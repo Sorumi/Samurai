@@ -2,7 +2,9 @@ package view;
 
 import java.util.*;
 
+import controller.msgqueue.ContinueOperation;
 import controller.msgqueue.OperationQueue;
+import controller.msgqueue.SkipOperation;
 import controller.msgqueue.StopOperation;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
@@ -126,7 +128,7 @@ public class GamePanel extends Pane implements Observer{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				
+				OperationQueue.addOperation(new StopOperation());
 			}
 		});
 		continueBtn = new SystemButton(4);
@@ -136,7 +138,7 @@ public class GamePanel extends Pane implements Observer{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				
+				OperationQueue.addOperation(new ContinueOperation());
 			}
 		});
 		
