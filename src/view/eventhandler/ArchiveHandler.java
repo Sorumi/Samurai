@@ -14,21 +14,21 @@ public class ArchiveHandler {
 
 	private ArchiveView archiveView;
 	private ArchiveController archiveController;
-	private int num;
 	
 	public ArchiveHandler(ArchiveView archiveView, int num){
 		this.archiveView = archiveView;
-		this.num = num;
 		this.archiveController = new ArchiveController();
-		this.archiveController.setStoryModel(StoryModel.getStoryModel());
+		this.archiveController.setStoryModel(StoryModel.loadStoryModel(num));
 
 	}
 	
 	public EventHandler<MouseEvent> loadBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //读取存档 num
-	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
-	    	  archivePanel.archiveSelectPanel.updateIsSave(false);			  
+	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent().getParent();
+	    	  archivePanel.archiveSelectPanel.archiveSelectHandler.num = archiveView.num;
+			  archivePanel.archiveSelectPanel.archiveSelectHandler.setStoryModel();
+			  archivePanel.archiveSelectPanel.updateIsSave(false);
 			  archivePanel.archiveSelectPanel.setVisible(true);
 		  }
 	};
@@ -36,7 +36,8 @@ public class ArchiveHandler {
 	public EventHandler<MouseEvent> saveBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 			  //保存存档 num
-	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent();
+	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent().getParent();
+	    	  archivePanel.archiveSelectPanel.archiveSelectHandler.num = archiveView.num;
 	    	  archivePanel.archiveSelectPanel.updateIsSave(true); 
 			  archivePanel.archiveSelectPanel.setVisible(true);			  
 	      }

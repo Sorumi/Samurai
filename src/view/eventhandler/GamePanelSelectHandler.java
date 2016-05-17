@@ -11,7 +11,7 @@ import view.GamePanel;
 import view.MenuPanel;
 import view.StoryPanel;
 
-public class GamePanelSelectHandler implements EventHandler {
+public class GamePanelSelectHandler {
 	private GamePanel gamePanel;
 	public int level;
 	public boolean IsClassic;
@@ -59,11 +59,4 @@ public class GamePanelSelectHandler implements EventHandler {
 	    	  OperationQueue.addOperation(new ContinueOperation());
 	      }
 	};
-
-	@Override
-	public void handle(Event event) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

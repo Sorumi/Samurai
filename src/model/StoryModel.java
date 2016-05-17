@@ -24,8 +24,6 @@ public class StoryModel implements Serializable{
     private int money;
     private int level;
 
-    private static int fileNum;
-
     private Date time;
 
     private StoryModel(){
@@ -154,7 +152,6 @@ public class StoryModel implements Serializable{
     //用序列化读取整个StoryModel
     public static StoryModel loadStoryModel(int num){
         try{
-            fileNum = num;
 
             String fileName = "Samurai_StoryModel_" + num + ".ser";
             FileInputStream fileInputStream = new FileInputStream(fileName);
@@ -162,7 +159,9 @@ public class StoryModel implements Serializable{
             Object thisObject = objectInputStream.readObject();
             objectInputStream.close();
 
-            System.out.println("load successfully : " + StoryModel.fileNum);
+            System.out.println("load successfully : " + num);
+
+            setStoryModel((StoryModel) thisObject);
 
             return (StoryModel) thisObject;
         }catch (Exception e){
@@ -198,15 +197,21 @@ public class StoryModel implements Serializable{
         storyModel.samuraiPO_3 = sModel.samuraiPO_3;
         storyModel.time = sModel.time;
         storyModel.money = sModel.money;
+        storyModel.level = sModel.level;
     }
 
     //单例模式用于取唯一的storyModel
     public static StoryModel getStoryModel(){
         if(storyModel == null){
-            storyModel = loadStoryModel(0);
+            storyModel = new StoryModel();
         }
-        setStoryModel(storyModel);
         return storyModel;
+    }
+
+    public static void newStoryModel(){
+        if(storyModel != null){
+            storyModel = null;
+        }
     }
 
 }

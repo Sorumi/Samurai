@@ -38,7 +38,14 @@ public class MapHandler {
 	    	  parent.territoryPanel.setRandomWeather();
 	      }
 	};
-	
+	public EventHandler<MouseEvent> levelSelectEvent= new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  LandButton btn = (LandButton) event.getSource();
+	    	  mapPanel.levelSelectPanel.setLevel(btn.levelNum);
+	    	  mapPanel.levelSelectPanel.setVisible(true);
+	    	  
+	      }
+	};
 	public EventHandler<MouseEvent> startGameEvent= new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  LevelButton btn = (LevelButton) event.getSource();
@@ -54,7 +61,7 @@ public class MapHandler {
 	    	  StoryPanel storyPanel =  (StoryPanel) mapPanel.getParent();
 	    	  LevelSelectPanel selectPanel = (LevelSelectPanel)btn.getParent();
 	    	  int num = selectPanel.level*10 + btn.num;
-	    	  
+	    	  selectPanel.setVisible(false);
 	    	  Platform.runLater(new Runnable(){
 					@Override
 					public void run() {
@@ -86,14 +93,7 @@ public class MapHandler {
 	      }
 	};
 	
-	public EventHandler<MouseEvent> levelSelectEvent= new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  LandButton btn = (LandButton) event.getSource();
-	    	  mapPanel.levelSelectPanel.setLevel(btn.levelNum);
-	    	  mapPanel.levelSelectPanel.setAppear(true); 
-	    	  
-	      }
-	};
+
 	
 	public EventHandler<MouseEvent> levelBtnEnterEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {

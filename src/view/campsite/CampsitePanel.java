@@ -41,8 +41,6 @@ public class CampsitePanel extends TransitionPanel{
 				TerritoryPanel parent =  (TerritoryPanel) CampsitePanel.this.getParent();
 				parent.getChildren().remove(CampsitePanel.this);
 				parent.setBlur(false);
-				//退出时保存storyModel
-//				campsiteHandler.getCampsiteController().save(StoryModel.getFileNum());
 				parent.getTerritoryHandler().updateSamurai();
 			}
 		});

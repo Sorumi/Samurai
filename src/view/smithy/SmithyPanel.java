@@ -100,8 +100,6 @@ public class SmithyPanel extends TransitionPanel {
 				TerritoryPanel parent =  (TerritoryPanel) SmithyPanel.this.getParent();
 				parent.getChildren().remove(SmithyPanel.this);
 				parent.setBlur(false);
-				//退出时候保存StoryModel
-//				smithyHandler.getSmithyController().save(StoryModel.getFileNum());
 			}
 		});
 		

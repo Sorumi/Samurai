@@ -10,7 +10,7 @@ import view.StoryPanel;
 import view.TerToMenuSelectPanel;
 import view.TerritoryPanel;
 
-public class TerToMenuSelectHandler implements EventHandler{
+public class TerToMenuSelectHandler {
 	private TerritoryPanel territoryPanel;
 	
 	public TerToMenuSelectHandler(TerritoryPanel territoryPanel){
@@ -35,16 +35,5 @@ public class TerToMenuSelectHandler implements EventHandler{
 			territoryPanel.terToMenuSelectPanel.setVisible(false); 
 		}
 	};
-
-	@Override
-	public void handle(Event event) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	
-	
 
 }

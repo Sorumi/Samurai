@@ -16,11 +16,12 @@ import javafx.util.Duration;
 import main.Main;
 import view.background.MenuBackground;
 import view.eventhandler.MenuHandler;
+import view.guide.GuideGroup;
 import view.guide.GuidePanel;
 
 public class MenuPanel extends Pane {
 	
-	private Main mainFrame;
+//	private Main mainFrame;
 	private MenuHandler menuHandler;
 
 	private SystemButton exitBtn;
@@ -34,7 +35,7 @@ public class MenuPanel extends Pane {
 	public DoubleSelectPanel doubleSelectPanel;
 	public StorySelectPanel storySelectPanel;
 	public ArchivePanel archivePanel;
-	public GuidePanel guidePanel;
+	public GuideGroup guideGroup;
 	
 	private Group samuraiA;
 	private Group samuraiB;
@@ -57,8 +58,6 @@ public class MenuPanel extends Pane {
 	
 	public AnimationTimer samuraiTimer;
 	private int times;
-	//
-	private boolean isDay;
 	
 	private int[] weapon0 = {11, 12, 13, 14, 15, 16, 23, 25, 26, 33, 34, 35, 36};
 	private int[] weapon1 = {111, 112, 113, 114, 115, 116, 124, 125, 126, 132, 133, 134, 135, 136};
@@ -66,8 +65,10 @@ public class MenuPanel extends Pane {
 	private int[][] weapon = {weapon0, weapon1, weapon2};
 	private int[] armor = {11, 12, 13, 14, 15, 16, 23, 24, 25, 26, 34, 35, 36};
 	
+	private Random random = new Random();
+	
 	public MenuPanel(Main mainFrame){
-		this.mainFrame = mainFrame;
+//		this.mainFrame = mainFrame;
 		
 		menuHandler = new MenuHandler(mainFrame);
 		
@@ -140,7 +141,6 @@ public class MenuPanel extends Pane {
 		this.getChildren().addAll(samuraiA, samuraiB);
 		
 		times = 0;
-		final long startNanoTime = System.nanoTime();
 		samuraiTimer = new AnimationTimer() {
             @Override
             public void handle(long currentNanoTime) {
@@ -209,8 +209,6 @@ public class MenuPanel extends Pane {
 				);
 		this.leftBtnExit();
 		this.rightBtnExit();
-		//TODO
-		isDay = true;
 		
 		doubleSelectPanel = new DoubleSelectPanel(menuHandler);
 		doubleSelectPanel.setVisible(false);
@@ -218,9 +216,9 @@ public class MenuPanel extends Pane {
 		storySelectPanel = new StorySelectPanel(menuHandler);
 		storySelectPanel.setVisible(false);
 		
-		guidePanel = new GuidePanel();
-		guidePanel.setVisible(false); 
-		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, guidePanel, courseBtn); 
+		guideGroup = new GuideGroup();
+		guideGroup.setVisible(false); 
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, guideGroup, courseBtn); 
 	}
 	public void btnClick(int btn){
 		if(btn == 0){
@@ -311,19 +309,17 @@ public class MenuPanel extends Pane {
 		}
 		
 		samuraiTL.play();
-		setDay();
+		//random weather
+		menuBg.setDay(random.nextInt(4));
 		this.modeNum = targetNum;
 	}
 	
 	private int setRandomWeapon(int num){
-		Random random = new Random();
-
 		int x = random.nextInt(weapon[num].length);
 		return weapon[num][x];
 	}
 	
 	private int setRandomArmor(){
-		Random random = new Random();
 		int x = random.nextInt(armor.length);
 		return armor[x];
 	}
@@ -335,7 +331,6 @@ public class MenuPanel extends Pane {
 		leftTL.play();
 	}
 	public void rightBtnEnter(){
-
 		rightTL.setAutoReverse(true);
 		rightTL.setCycleCount(Timeline.INDEFINITE);
 		rightBtn.setOpacity(1);
@@ -350,19 +345,6 @@ public class MenuPanel extends Pane {
 		rightTL.stop();
 		rightBtn.setOpacity(0.7);
 		rightBtn.setLayoutX(1097);
-	}
-	//TODO
-	public void setDay(){
-		if(!isDay){
-			this.menuBg.setSun(true);
-			this.menuBg.setMoon(false);
-			this.menuBg.setSky(0);
-		}else{
-			this.menuBg.setSun(false);
-			this.menuBg.setMoon(true);
-			this.menuBg.setSky(1);
-		}
-		isDay = !isDay;
 	}
 	
 	public MenuHandler getMenuHandler(){

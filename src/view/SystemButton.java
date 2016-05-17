@@ -13,21 +13,28 @@ public class SystemButton extends Button {
 	 */
 	public SystemButton(int num){
 		this.setId("system-btn");
-		ImageView img = null;
+		ImageView img = new ImageView(Images.SYSTEM_BTN[num]);
+//		img.setFitWidth(Images.SYSTEM_BTN[num].widthProperty().intValue()/2);
 
 		switch(num){
-		case 0:
-			img = new ImageView(Images.SYSTEM_CLOSE_BTN);
+		case 0://close
 			img.setFitWidth(25);
 			break;
-		case 1:
-			img = new ImageView(Images.SYSTEM_SAVE_BTN);
+		case 1://save
 			img.setFitWidth(32);
 			break;
-		case 2:
-			img = new ImageView(Images.SYSTEM_HELP_BTN);
+		case 2://help
 			img.setFitWidth(19);
+			break;
+		case 3://pause
+			img.setFitWidth(19);
+			break;
+		case 4://continue
+			img.setFitWidth(19);
+			break;
+			
 		}
+		
 		img.setPreserveRatio(true);
 		if(img != null){
 			this.setGraphic(img);

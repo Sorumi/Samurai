@@ -16,9 +16,10 @@ public class ArchiveView extends Pane{
 	
 	public ArchiveHandler archiveHandler; 
 	
-	public ArchiveSelectPanel archiveSelectPanel; 
-	private ArchiveSelectHandler archiveSelectHandler;
+//	public ArchiveSelectPanel archiveSelectPanel; 
+//	private ArchiveSelectHandler archiveSelectHandler;
 	
+	public int num;
 	public int type;
 	private Label nameLabel;
 	private Label timeLabel;
@@ -33,10 +34,9 @@ public class ArchiveView extends Pane{
 	 */
 	
 	public ArchiveView(int num, int type){
+		this.num = num;
 		this.type = type;
 		this.archiveHandler = new ArchiveHandler(this, num);
-		this.archiveSelectHandler = new ArchiveSelectHandler(this,num);
-		this.archiveSelectPanel = new ArchiveSelectPanel(archiveSelectHandler);
 		
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);

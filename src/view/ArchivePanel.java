@@ -2,6 +2,7 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -19,6 +20,7 @@ public class ArchivePanel extends Pane {
 	private ArchiveView arcV0;
 	private ArchiveView arcV1;
 	private ArchiveView arcV2;
+	public Group archiveGroup;
 
 	public ArchiveSelectPanel archiveSelectPanel;
 
@@ -61,11 +63,16 @@ public class ArchivePanel extends Pane {
 		arcV2 = new ArchiveView(2, type);
 		arcV2.setLayoutX(50);
 		arcV2.setLayoutY(470);
-		this.getChildren().addAll(arcV0, arcV1, arcV2);
-		this.archiveSelectPanel = arcV0.archiveSelectPanel;
-		this.archiveSelectPanel.setLayoutX(75);
-		this.archiveSelectPanel.setLayoutY(250);
-		this.getChildren().add(arcV0.archiveSelectPanel);
+		
+		archiveGroup = new Group();
+		
+		archiveGroup.getChildren().addAll(arcV0, arcV1, arcV2);
+		
+		archiveSelectPanel = new ArchiveSelectPanel(this);
+		archiveSelectPanel.setLayoutX(75);
+		archiveSelectPanel.setLayoutY(250);
+		
+		this.getChildren().addAll(archiveGroup, archiveSelectPanel);
 		archiveSelectPanel.setVisible(false);
 	}
 

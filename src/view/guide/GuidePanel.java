@@ -8,11 +8,11 @@ public class GuidePanel extends Pane{
 	
 	public GuidePanel(){
 		this.setPrefSize(WIDTH, HEIGHT);
+		this.setLayoutX(50);
+		this.setLayoutY(50);
+		this.setId("guide-panel");
 		
-		ChessBoardGuidePanel chessBoardCoursePanel = new ChessBoardGuidePanel(11);
-		this.getChildren().add(chessBoardCoursePanel);
-		
-		this.setVisible(true);
+//		this.setVisible(true);
 	}
 
 }

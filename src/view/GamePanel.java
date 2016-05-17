@@ -2,9 +2,6 @@ package view;
 
 import java.util.*;
 
-import controller.msgqueue.EndOperation;
-import controller.msgqueue.OperationQueue;
-import controller.msgqueue.StopOperation;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,6 +39,8 @@ public class GamePanel extends Pane implements Observer{
 	protected int blockHeight;
 
 	protected SystemButton closeBtn;
+	protected SystemButton pauseBtn;
+	protected SystemButton continueBtn;
 	protected BackgroundPanel backgroundPanel;
 	public ChessBoardPanel chessBoard;
 
@@ -102,7 +101,7 @@ public class GamePanel extends Pane implements Observer{
 		this.setBackground(level);
 		
 		this.selectHandler = new GamePanelSelectHandler(this,level); 
-		this.selectPanel = new SelectPanel(selectHandler,"确定退出吗?你将会丢失当前未存档的所有游戏进度(包括已获得的道具)!");
+		this.selectPanel = new SelectPanel("确定退出吗?你将会丢失当前未存档的所有游戏进度(包括已获得的道具)!");
 		selectPanel.yesBtn.setOnMouseClicked(selectHandler.yesEvent);
 		selectPanel.noBtn.setOnMouseClicked(selectHandler.noEvent);
 		selectPanel.setZOrder(999);
@@ -116,35 +115,31 @@ public class GamePanel extends Pane implements Observer{
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
 		closeBtn.setLayoutY(25);
-		if(!isOver){
-			switch(level){
-			case 0:
-			case 99:
-				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
-				break;
+		this.close();
+		
+		pauseBtn = new SystemButton(3);
+		pauseBtn.setLayoutX(1050);
+		pauseBtn.setLayoutY(25);
+		pauseBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
 				
-			default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
-				@Override
-				public void handle(ActionEvent event) {
-					selectPanel.setVisible(true);
-					OperationQueue.addOperation(new StopOperation());
-					System.out.println("LEVEL : " + level);
-					switch(level){
-						case 99:
-							selectHandler.level = 99;
-							break;
-						case 0:
-							selectHandler.level = 0;
-							break;
-					}
-				}
-			});
 			}
-		}else{
-			closeBtn.setOnMouseClicked(selectHandler.yesEvent);			
-		}
+		});
+		continueBtn = new SystemButton(4);
+		continueBtn.setLayoutX(1050);
+		continueBtn.setLayoutY(25);
+		continueBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		OrderPanel systemPanel = new OrderPanel();
-		systemPanel.getChildren().add(closeBtn);
+		systemPanel.getChildren().addAll(closeBtn, continueBtn, pauseBtn);
 		this.getChildren().add(systemPanel);
 
 		//chessboard
@@ -487,13 +482,13 @@ public class GamePanel extends Pane implements Observer{
 
 	public void close(){
 		if(!isOver){
-			System.out.println("aaaaa");
 			switch(level){
 			case 0:
 			case 99:
 				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
 				break;
-			default:closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+			default:
+				closeBtn.setOnAction(new EventHandler<ActionEvent>(){
 				@Override
 				public void handle(ActionEvent event) {
 					selectPanel.setVisible(true);

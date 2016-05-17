@@ -7,12 +7,15 @@ import javafx.event.EventHandler;
 import view.eventhandler.ArchiveSelectHandler;
 
 public class ArchiveSelectPanel extends SelectPanel{
-	public boolean isSave; 
-	private ArchiveSelectHandler archiveSelectHandler;
 	
-	public ArchiveSelectPanel(ArchiveSelectHandler archiveSelectHandler){
-		super(archiveSelectHandler,"");
-		this.archiveSelectHandler = archiveSelectHandler;
+//	public int num;
+	public boolean isSave; 
+	public ArchiveSelectHandler archiveSelectHandler;
+	
+	public ArchiveSelectPanel(ArchivePanel archivePanel){
+		super("");
+		archiveSelectHandler = new ArchiveSelectHandler(archivePanel);
+		
 		this.setPrefSize(350, 230);
 		this.messageLabel.setId("select-message");
 		this.close();
