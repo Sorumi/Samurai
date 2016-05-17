@@ -306,7 +306,7 @@
 	-fx-font-family: "Hiragino Sans GB";
 	-fx-font-weight: 600;
 	-fx-font-size: 18;
-	-fx-alignment: center-left;
+	-fx-alignment: center;
 }
 #materialName-label{
 	-fx-text-fill: #9b9b9b;

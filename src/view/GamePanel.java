@@ -129,6 +129,7 @@ public class GamePanel extends Pane implements Observer{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				OperationQueue.addOperation(new StopOperation());
+				pauseBtn.setVisible(false);
 			}
 		});
 		continueBtn = new SystemButton(4);
@@ -139,6 +140,7 @@ public class GamePanel extends Pane implements Observer{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				OperationQueue.addOperation(new ContinueOperation());
+				pauseBtn.setVisible(true);
 			}
 		});
 		

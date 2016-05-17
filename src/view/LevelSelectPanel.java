@@ -72,7 +72,8 @@ public class LevelSelectPanel extends Pane{
 		centralCircle.setFill(Color.WHITE);
 		
 		levelName = new Label("关卡名称");
-		levelName.setLayoutX(152);
+		levelName.setPrefSize(80, 30);
+		levelName.setLayoutX(160);
 		levelName.setLayoutY(70);
 		levelName.setId("LevelName-label");
 		
