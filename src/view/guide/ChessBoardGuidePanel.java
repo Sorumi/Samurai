@@ -20,8 +20,8 @@ public class ChessBoardGuidePanel extends OrderPanel implements Observer{
 	private final int BLOCK_HEIGHT = 40;
 	private final int FIELD_FIX = 20;
 
-	private  int feildWidth;
-	private  int feildHeight;
+	private int feildWidth;
+	private int feildHeight;
 
 	private ArrayList<BlockView> tmpBlocks;
 
@@ -33,7 +33,7 @@ public class ChessBoardGuidePanel extends OrderPanel implements Observer{
 		this.setPrefSize(feildWidth, feildHeight);
 		this.setLayoutX((WINDOW_WIDTH-feildWidth)/2);
 		this.setLayoutY(WINDOW_HEIGHT-feildHeight-FIELD_FIX);
-		this.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
+//		this.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
 
 		//blocks
 		blocks = new BlockView[size][size];

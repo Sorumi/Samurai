@@ -16,6 +16,7 @@ import javafx.util.Duration;
 import main.Main;
 import view.background.MenuBackground;
 import view.eventhandler.MenuHandler;
+import view.guide.GuideGroup;
 import view.guide.GuidePanel;
 
 public class MenuPanel extends Pane {
@@ -34,7 +35,7 @@ public class MenuPanel extends Pane {
 	public DoubleSelectPanel doubleSelectPanel;
 	public StorySelectPanel storySelectPanel;
 	public ArchivePanel archivePanel;
-	public GuidePanel guidePanel;
+	public GuideGroup guideGroup;
 	
 	private Group samuraiA;
 	private Group samuraiB;
@@ -215,9 +216,9 @@ public class MenuPanel extends Pane {
 		storySelectPanel = new StorySelectPanel(menuHandler);
 		storySelectPanel.setVisible(false);
 		
-		guidePanel = new GuidePanel();
-		guidePanel.setVisible(false); 
-		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, guidePanel, courseBtn); 
+		guideGroup = new GuideGroup();
+		guideGroup.setVisible(false); 
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, guideGroup, courseBtn); 
 	}
 	public void btnClick(int btn){
 		if(btn == 0){
