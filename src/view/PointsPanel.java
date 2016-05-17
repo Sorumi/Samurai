@@ -29,8 +29,8 @@ public class PointsPanel extends Pane {
 	private int currentSamurai;
 	private boolean isShow;
 	
-	private Rectangle fillRect;
-	private Label pointsLabel;
+	public Rectangle fillRect; 
+	public Label pointsLabel; 
 	
 	public PointsPanel(int player) {
 		this.player = player;

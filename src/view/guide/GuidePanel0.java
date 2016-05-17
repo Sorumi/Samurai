@@ -59,12 +59,31 @@ public class GuidePanel0 extends GuidePanel {
 		explainLabel3.setLayoutY(532);
 		explainLabel3.setId("explain-label");
 		this.getChildren().addAll(bgRect, mainLabel1, mainLabel2, explainLabel1, explainLabel2, explainLabel3);
-		
+
 		for (int num = 1; num <= 6; num++) {
 			ImageView samurai = new ImageView(Images.SAMURAI_BTN[num]);
 			samurai.setFitWidth(52);
 			samurai.setPreserveRatio(true);
-			samurai.setLayoutX(305 + 110 * (num - 1));
+			switch (num) {
+			case 1:
+				samurai.setLayoutX(305);
+				break;
+			case 2:
+				samurai.setLayoutX(305 + 110 * 3);
+				break;
+			case 3:
+				samurai.setLayoutX(305 + 110 * 4);
+				break;
+			case 4:
+				samurai.setLayoutX(305 + 110 * 1);
+				break;
+			case 5:
+				samurai.setLayoutX(305 + 110 * 2);
+				break;
+			case 6:
+				samurai.setLayoutX(305 + 110 * 5);
+				break;
+			}
 			samurai.setLayoutY(516);
 			this.getChildren().add(samurai);
 		}

@@ -1,49 +1,43 @@
 package view.guide;
 
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-public class GuideLine {
-	
-	public GuideLine(int height){
-		if (height == 0){
-			this.straightLine();
-		}else{
-//			this.brokenLine(height);
+public class GuideLine extends Pane {
+	private int width = 160;
+	private int height = 42;
+	private int straightLineLength = 120;
+	private int brokenLineWidth = 40;
+	private int STROKE_WIDTH = 3;
+
+	// 第一个数字：0表示直线在斜线右边，1表示斜线在直线左边
+	// 第二个数字：0表示斜线斜向上，1表示斜向下
+	public GuideLine(int i, int j) {
+		Line line1 = new Line();
+		Line line2 = new Line();
+		line1.setStartY(j * height);
+		line1.setEndY(j * height);
+		if (i == 0) {
+			line1.setStartX(0);
+			line1.setEndX(straightLineLength);
+			line2.setStartX(straightLineLength);
+			line2.setStartY(0);
+			line2.setEndX(width);
+			line2.setEndY(height);
+		} else if (i == 1) {
+			line1.setStartX(brokenLineWidth);
+			line1.setEndX(width);
+			line2.setStartX(0);
+			line2.setStartY(height);
+			line2.setEndX(brokenLineWidth);
+			line2.setEndY(0);
 		}
+		line1.setStroke(Color.web("#DDDDDD"));
+		line1.setStrokeWidth(STROKE_WIDTH);
+		line2.setStroke(Color.web("#DDDDDD"));
+		line2.setStrokeWidth(STROKE_WIDTH);
+		this.getChildren().addAll(line1, line2);
 	}
-	
-	
-	private void straightLine(){
-		Line line = new Line();
-		line.setStartX(0);
-		line.setStartY(0);
-		line.setEndX(46);
-		line.setEndY(0);
-		line.setFill(Color.web("#DDDDDD"));
-//		line.setStroke(Color.WHITE);
-//		line.setStrokeWidth(STROKE_WIDTH);
-//		this.getChildren().add(line);
-	}
-	
-//	private void brokenLine(int height){
-//		Line line1 = new Line();
-//		line1.setStartX(-WIDTH/2);
-//		line1.setStartY(0);
-//		line1.setEndX(0);
-//		line1.setEndY(0);
-//		line1.setStroke(Color.WHITE);
-//		line1.setStrokeWidth(STROKE_WIDTH);
-//		this.getChildren().add(line1);
-//		
-//		Line line2 = new Line();
-//		line2.setStartX(-WIDTH);
-//		line2.setStartY(-height);
-//		line2.setEndX(-WIDTH/2);
-//		line2.setEndY(-height);
-//		line2.setStroke(Color.WHITE);
-//		line2.setStrokeWidth(STROKE_WIDTH);
-//		this.getChildren().add(line2);
-//	}
 
 }
