@@ -37,10 +37,10 @@ public class CirclePanel extends Pane {
 
 	private int blocksNum;
 	
-	private ImageView logo;
+	public ImageView logo; 
 	private ImageView originalLogo; 
-	private BlockArc[] arcs;
-	private Arc timeArc;
+	public BlockArc[] arcs;
+	public Arc timeArc; 
 	private Label blockLabel;
 	
 	private Timeline timeline;

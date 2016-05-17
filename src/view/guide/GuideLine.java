@@ -11,28 +11,23 @@ public class GuideLine extends Pane {
 	private int brokenLineWidth = 40;
 	private int STROKE_WIDTH = 3;
 
-	// 第一个数字：0表示直线在斜线右边，1表示斜线在直线左边
-	// 第二个数字：0表示斜线斜向上，1表示斜向下
-	public GuideLine(int i, int j) {
+	// 第一个数字：0表示直线在斜线左边，1表示直线在斜线右边
+	// 第二个数字：0表示斜线斜向下，1表示斜向上
+	// 第三个数字：0表示直线在斜线上边，1表示直线在斜线下边
+	public GuideLine(int i, int j, int z) {
 		Line line1 = new Line();
 		Line line2 = new Line();
-		line1.setStartY(j * height);
-		line1.setEndY(j * height);
-		if (i == 0) {
-			line1.setStartX(0);
-			line1.setEndX(straightLineLength);
-			line2.setStartX(straightLineLength);
-			line2.setStartY(0);
-			line2.setEndX(width);
-			line2.setEndY(height);
-		} else if (i == 1) {
-			line1.setStartX(brokenLineWidth);
-			line1.setEndX(width);
-			line2.setStartX(0);
-			line2.setStartY(height);
-			line2.setEndX(brokenLineWidth);
-			line2.setEndY(0);
-		}
+		
+		line1.setStartX(i * brokenLineWidth);
+		line1.setEndX(i * brokenLineWidth + straightLineLength);
+		line1.setStartY(z * height);
+		line1.setEndY(z * height);
+
+		line2.setStartX((1-i) * straightLineLength);
+		line2.setEndX((1-i) * straightLineLength + brokenLineWidth);
+		line2.setStartY(j * height);
+		line2.setEndY(height - j * height);
+
 		line1.setStroke(Color.web("#DDDDDD"));
 		line1.setStrokeWidth(STROKE_WIDTH);
 		line2.setStroke(Color.web("#DDDDDD"));
