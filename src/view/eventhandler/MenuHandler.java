@@ -2,6 +2,7 @@ package view.eventhandler;
 
 import controller.ClientController;
 import controller.HostController;
+import controller.TerritoryController;
 import controller.msgqueue.OperationQueue;
 import controller.msgqueue.StartGameOperation;
 import javafx.application.Platform;
@@ -83,6 +84,7 @@ public class MenuHandler {
 		@Override
 		public void handle(MouseEvent event) {
 			StoryModel.newStoryModel();
+			TerritoryController.territoryController().setStoryModel(StoryModel.getStoryModel());
 			startStory();
 		}  
 	};
