@@ -96,7 +96,6 @@ public class CirclePanel extends Pane {
 		
 		blockLabel = new Label("");
 		blockLabel.setId("block-label");
-		blockLabel.setTextFill(GameColor.getOtherColor(2));
 		blockLabel.setPrefWidth(30);
 		if (player == 0){
 			blockLabel.setLayoutX(6);
@@ -105,7 +104,6 @@ public class CirclePanel extends Pane {
 		}
 		
 		blockLabel.setLayoutY(14);
-		blockLabel.setAlignment(Pos.CENTER);
 		this.getChildren().add(blockLabel);
 		
 		Circle bgCircle = new Circle();

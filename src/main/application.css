@@ -323,7 +323,8 @@
 	-fx-font-weight: 100;
 	-fx-alignment: center;
 }
-#block-Lable{
+#block-label{
+	-fx-text-fill: #9b9b9b;
 	-fx-font-family: "Tsukushi B Round Gothic";
 	-fx-font-size: 14;
 	-fx-font-weight: 100;
