@@ -7,6 +7,5 @@ public class GuidePanel3 extends GuidePanel {
 //		this.getChildren().add(chessBoardCoursePanel);
 		GameGuidePanel gamePanel = new GameGuidePanel(11);
 		this.getChildren().add(gamePanel);
-		this.setVisible(false);  
 	}
 }

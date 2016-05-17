@@ -45,7 +45,7 @@ public class GuidePanel0 extends GuidePanel {
 
 		explainLabel1 = new Label("本游戏是一个即时战略类的战棋类游戏，通过游戏双方操控自己的三个武士进行武装占领和互相作战，争取最大的领地，登上王者的宝座。游戏终了时，通过判断领地的多少来决定胜负。");
 		explainLabel1.setLayoutX(50);
-		explainLabel1.setLayoutY(70);
+		explainLabel1.setLayoutY(100);
 		explainLabel1.setPrefSize(1000, 100);
 		explainLabel1.setId("explain-label");
 
@@ -93,7 +93,7 @@ public class GuidePanel0 extends GuidePanel {
 		for (int i = 0; i < 5; i++) {
 			lineGroup group = new lineGroup();
 			group.setLayoutX(370 + 110 * i);
-			group.setLayoutY(582);
+			group.setLayoutY(482);
 			this.getChildren().add(group);
 		}
 	}
@@ -108,7 +108,6 @@ public class GuidePanel0 extends GuidePanel {
 			line1.setStroke(Color.web("#DDDDDD"));
 			line1.setStrokeWidth(3);
 			line1.setStrokeLineCap(StrokeLineCap.ROUND);
-//			line1.setStrokeLineJoin(StrokeLineJoin.ROUND);
 
 			Line line2 = new Line();
 			line2.setStartX(25);
