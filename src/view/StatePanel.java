@@ -16,7 +16,7 @@ import view.eventhandler.StateHandler;
 
 public class StatePanel extends OrderPanel { 
 	private final int SAMURAI_WIDTH = 60;
-	private int prefWidth = 270;
+	private int prefWidth = 230;
 	private int prefHeight = 157;
 	private int strokeWidth = 2;
 	private int SCALE = 1;
@@ -92,10 +92,9 @@ public class StatePanel extends OrderPanel {
 		bloodArc.setRadiusX(25*SCALE);
 		bloodArc.setRadiusY(25*SCALE);
 		bloodArc.setStartAngle(0);
-//		bloodArc.setLength();
 		bloodArc.setType(ArcType.ROUND);
 		bloodArc.setFill(GameColor.getOtherColor(3));
-		//这个圆以后换成图片
+		
 		bloodLabel = new Label("");
 		bloodLabel.setId("blood-label");
 		bloodLabel.setPrefSize(44*SCALE, 44*SCALE);
@@ -103,7 +102,7 @@ public class StatePanel extends OrderPanel {
 		
 		//icon
 		iconGroup = new Group();
-		iconGroup.setLayoutX(15*SCALE);
+		iconGroup.setLayoutX(10*SCALE);
 		
 		stateIcon1.setFitWidth(25*SCALE);
 		stateIcon2.setFitWidth(25*SCALE);
@@ -121,30 +120,29 @@ public class StatePanel extends OrderPanel {
 		
 		stateIcon1.setLayoutX(0);
 		stateIcon1.setLayoutY(0);
-		stateIcon2.setLayoutX(80*SCALE);
+		stateIcon2.setLayoutX(70*SCALE);
 		stateIcon2.setLayoutY(0);
-		stateIcon3.setLayoutX(175*SCALE);
+		stateIcon3.setLayoutX(150*SCALE);
 		stateIcon3.setLayoutY(0);
 		stateIcon4.setLayoutX(-2*SCALE);
 		stateIcon4.setLayoutY(43*SCALE);
-		stateIcon5.setLayoutX(79*SCALE);
+		stateIcon5.setLayoutX(69*SCALE);
 		stateIcon5.setLayoutY(42*SCALE);
-		stateIcon6.setLayoutX(175*SCALE);
+		stateIcon6.setLayoutX(150*SCALE);
 		stateIcon6.setLayoutY(43*SCALE);
 		
-
 		stateLabel1 = new Label("");
 		stateLabel1.setLayoutX(30*SCALE);
 		stateLabel1.setLayoutY(7*SCALE);
 		stateLabel1.setId("state-lable");
 		
 		stateLabel2 = new Label("");
-		stateLabel2.setLayoutX(110*SCALE);
+		stateLabel2.setLayoutX(100*SCALE);
 		stateLabel2.setLayoutY(7*SCALE);
 		stateLabel2.setId("state-lable");
 		
 		stateLabel3 = new Label("");
-		stateLabel3.setLayoutX(210*SCALE);
+		stateLabel3.setLayoutX(180*SCALE);
 		stateLabel3.setLayoutY(7*SCALE);
 		stateLabel3.setId("state-lable");
 	
@@ -154,12 +152,12 @@ public class StatePanel extends OrderPanel {
 		stateLabel4.setId("state-lable");
 		
 		stateLabel5 = new Label("");
-		stateLabel5.setLayoutX(110*SCALE);
+		stateLabel5.setLayoutX(100*SCALE);
 		stateLabel5.setLayoutY(52*SCALE);
 		stateLabel5.setId("state-lable");
 		
 		stateLabel6 = new Label("");
-		stateLabel6.setLayoutX(210*SCALE);
+		stateLabel6.setLayoutX(180*SCALE);
 		stateLabel6.setLayoutY(52*SCALE);
 		stateLabel6.setId("state-lable");
 		
@@ -171,6 +169,35 @@ public class StatePanel extends OrderPanel {
 			stateLabel5.setId("state-lable-big");
 			stateLabel6.setId("state-lable-big");
 			bloodLabel.setId("blood-label-big");
+			
+			//经验值
+			bgRect.setHeight(120*SCALE+40);
+			//bg
+			Rectangle exRect = new Rectangle();
+			exRect.setX(20);
+			exRect.setY(170);
+			exRect.setWidth(380);
+			exRect.setHeight(20);
+			exRect.setArcWidth(20);
+			exRect.setArcHeight(20);
+			exRect.setFill(Color.web("#f9f9f9"));
+			
+			//fill		
+			Rectangle fillRect = new Rectangle();
+			fillRect.setX(20);
+			fillRect.setY(170);
+			fillRect.setWidth(200);
+			fillRect.setHeight(20);
+			fillRect.setArcWidth(20);
+			fillRect.setArcHeight(20);
+			fillRect.setFill(Color.web("#ddedff"));
+			
+			Label exTotalLabel = new Label();
+			
+			
+			iconGroup.getChildren().addAll(exRect, fillRect);
+			
+			
 		}
 		
 		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);
@@ -238,7 +265,7 @@ public class StatePanel extends OrderPanel {
 	public void setActualLocationInT(){
 		this.setLayoutX(currentSamuraiV.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2-100);		
 		if (currentSamuraiV.getLayoutY()-prefHeight*SCALE+10>0) {		
-			this.setLayoutY(currentSamuraiV.getLayoutY()-prefHeight*SCALE+30);
+			this.setLayoutY(currentSamuraiV.getLayoutY()-prefHeight*SCALE-10);
 			this.setUpLocation();
 		}else{
 			this.setLayoutY(currentSamuraiV.getLayoutY()+currentSamuraiV.getHeight());

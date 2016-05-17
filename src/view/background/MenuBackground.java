@@ -274,8 +274,8 @@ public class MenuBackground extends Pane{
 			setMoon(false);
 			break;
 		case 1:
-			setSun(true);
-			setMoon(false);
+			setSun(false);
+			setMoon(true);
 			break;
 		case 2:
 		case 3:
