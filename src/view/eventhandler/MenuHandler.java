@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import main.Main;
+import model.StoryModel;
 import network.Configure;
 import view.ArchivePanel;
 import view.GamePanelOL;
@@ -81,6 +82,7 @@ public class MenuHandler {
 	public EventHandler<MouseEvent> newStoryEvent = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
+			StoryModel.newStoryModel();
 			startStory();
 		}  
 	};
