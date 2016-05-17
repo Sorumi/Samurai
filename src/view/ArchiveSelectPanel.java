@@ -1,5 +1,9 @@
 package view;
 
+import controller.msgqueue.ContinueOperation;
+import controller.msgqueue.OperationQueue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import view.eventhandler.ArchiveSelectHandler;
 
 public class ArchiveSelectPanel extends SelectPanel{
@@ -10,8 +14,19 @@ public class ArchiveSelectPanel extends SelectPanel{
 		super(archiveSelectHandler,"");
 		this.archiveSelectHandler = archiveSelectHandler;
 		this.setPrefSize(350, 230);
-		this.messageLabel.setId("select-message"); 
-		
+		this.messageLabel.setId("select-message");
+		this.close();
+	}
+	
+	public void close(){
+		closeBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				ArchiveSelectPanel.this.setVisible(false);
+//				OperationQueue.addOperation(new ContinueOperation());
+			}
+		});
 	}
 	public void updateIsSave(boolean b){
 		this.isSave = b;
