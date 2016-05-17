@@ -13,7 +13,7 @@ import view.eventhandler.MenuHandler;
 import view.eventhandler.SelectHandler;
 
 public class SelectPanel extends OrderPanel {
-	private SystemButton closeBtn;
+	public SystemButton closeBtn;
 	public Label messageLabel;
 
 	public Button yesBtn;
@@ -36,14 +36,14 @@ public class SelectPanel extends OrderPanel {
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(325);
 		closeBtn.setLayoutY(-25);
-		closeBtn.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				SelectPanel.this.setVisible(false);
-				OperationQueue.addOperation(new ContinueOperation());
-			}
-		});
+//		closeBtn.setOnAction(new EventHandler<ActionEvent>() {
+//			@Override
+//			public void handle(ActionEvent event) {
+//				// TODO Auto-generated method stub
+//				SelectPanel.this.setVisible(false);
+//				OperationQueue.addOperation(new ContinueOperation());
+//			}
+//		});
 		this.getChildren().add(closeBtn);
 
 		yesBtn = new Button("确 认");
@@ -66,6 +66,7 @@ public class SelectPanel extends OrderPanel {
 		btnAbled(1);
 
 		this.getChildren().addAll(yesBtn, noBtn, messageLabel);
+		this.close();
 
 	}
 
@@ -91,6 +92,17 @@ public class SelectPanel extends OrderPanel {
 	
 	public void updateMessage(String s){
 		messageLabel.setText(s);
+	}
+	
+	public void close(){
+		closeBtn.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				SelectPanel.this.setVisible(false);
+				OperationQueue.addOperation(new ContinueOperation());
+			}
+		});
 	}
 
 }

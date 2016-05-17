@@ -161,6 +161,8 @@ public class StoryModel implements Serializable{
 
             System.out.println("load successfully : " + num);
 
+            setStoryModel((StoryModel) thisObject);
+
             return (StoryModel) thisObject;
         }catch (Exception e){
             System.out.println("load failed");
@@ -203,8 +205,13 @@ public class StoryModel implements Serializable{
         if(storyModel == null){
             storyModel = new StoryModel();
         }
-        setStoryModel(storyModel);
         return storyModel;
+    }
+
+    public static void newStoryModel(){
+        if(storyModel != null){
+            storyModel = null;
+        }
     }
 
 }

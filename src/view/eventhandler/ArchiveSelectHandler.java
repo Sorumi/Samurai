@@ -20,9 +20,11 @@ public class ArchiveSelectHandler{
 
 	public ArchiveSelectHandler(ArchivePanel archivePanel) {
 		this.archivePanel = archivePanel;
-		
 		this.archiveController = new ArchiveController();
-		this.archiveController.setStoryModel(StoryModel.getStoryModel());
+	}
+
+	public void setStoryModel(){
+		this.archiveController.setStoryModel(StoryModel.loadStoryModel(num));
 	}
 
 	public EventHandler<MouseEvent> yesEvent = new EventHandler<MouseEvent>() {
@@ -44,7 +46,8 @@ public class ArchiveSelectHandler{
 					MenuPanel menu = (MenuPanel) archiveView.getParent().getParent().getParent();
 					menu.getMenuHandler().startStory();
 				}
-				archiveController.load(num);
+
+//				archiveController.load(num);
 //				System.out.println("load: " + num);
 
 				archivePanel.archiveSelectPanel.setVisible(false);

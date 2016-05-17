@@ -14,13 +14,11 @@ public class ArchiveHandler {
 
 	private ArchiveView archiveView;
 	private ArchiveController archiveController;
-	private int num;
 	
 	public ArchiveHandler(ArchiveView archiveView, int num){
 		this.archiveView = archiveView;
-		this.num = num;
 		this.archiveController = new ArchiveController();
-		this.archiveController.setStoryModel(StoryModel.getStoryModel());
+		this.archiveController.setStoryModel(StoryModel.loadStoryModel(num));
 
 	}
 	
@@ -29,7 +27,8 @@ public class ArchiveHandler {
 			  //读取存档 num
 	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent().getParent();
 	    	  archivePanel.archiveSelectPanel.archiveSelectHandler.num = archiveView.num;
-	    	  archivePanel.archiveSelectPanel.updateIsSave(false);			  
+			  archivePanel.archiveSelectPanel.archiveSelectHandler.setStoryModel();
+			  archivePanel.archiveSelectPanel.updateIsSave(false);
 			  archivePanel.archiveSelectPanel.setVisible(true);
 		  }
 	};
