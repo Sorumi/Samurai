@@ -7,12 +7,9 @@ import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
 import model.po.SamuraiPO;
-import view.eventhandler.ActionHandler;
-
 import javafx.beans.value.ChangeListener;
 import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Created by Kray on 16/4/18.

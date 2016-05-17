@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import javafx.scene.layout.Pane;
 import view.ActionPanel;
-import view.eventhandler.ActionHandler;
+import view.eventhandler.ActionGuideHandler;
 
 public class GameGuidePanel extends Pane implements Observer {
 	private final int WINDOW_WIDTH = 1100;
@@ -20,8 +20,8 @@ public class GameGuidePanel extends Pane implements Observer {
 	private ChessBoardGuidePanel chessBoard;
 	private SamuraiGuidePanel samurai;
 	
-	public ActionPanel actionPanel;
-	private ActionHandler actionHandler;
+	public ActionGuidePanel actionPanel;
+	private ActionGuideHandler actionHandler;
 	
 	public GameGuidePanel(int size) {
 		this.size = size;
@@ -32,10 +32,25 @@ public class GameGuidePanel extends Pane implements Observer {
 
 		chessBoard = new ChessBoardGuidePanel(size);
 		this.getChildren().add(chessBoard);
+		
+		//actionHandler
+		actionHandler = new ActionGuideHandler(this);
+		this.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
 
+		//actionpanel
+		actionPanel = new ActionGuidePanel(actionHandler);
+		actionPanel.setSize(this.size);
+		this.getChildren().add(actionPanel);
+		
+		
 		// samurai
 		samurai = new SamuraiGuidePanel(1, size);
+		samurai.samuraiV.setRandomAnimation(false);
+		samurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		this.getChildren().add(samurai);
+		
+		actionPanel.setCurrentSamurai(samurai);
+		
 		
 		//TODO
 		samurai.setActualLocation(3, 3);
