@@ -1,14 +1,11 @@
 package view.eventhandler;
 
-import java.text.SimpleDateFormat;
-
 import controller.ArchiveController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import view.ArchivePanel;
 import view.ArchiveView;
-import view.MenuPanel;
 
 public class ArchiveHandler {
 
@@ -18,8 +15,7 @@ public class ArchiveHandler {
 	public ArchiveHandler(ArchiveView archiveView, int num){
 		this.archiveView = archiveView;
 		this.archiveController = new ArchiveController();
-		this.archiveController.setStoryModel(StoryModel.loadStoryModel(num));
-
+		this.archiveController.setStoryModel(StoryModel.getStoryModel());
 	}
 	
 	public EventHandler<MouseEvent> loadBtnClickEvent = new EventHandler<MouseEvent>() {  

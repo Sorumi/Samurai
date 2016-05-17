@@ -25,14 +25,14 @@ public class ArchiveSelectHandler{
 
 	public void setStoryModel(){
 		this.archiveController.setStoryModel(StoryModel.loadStoryModel(num));
+		this.archiveController.load(num);
 	}
 
 	public EventHandler<MouseEvent> yesEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
-			// 读取存档 num
 			if (isSave) {
+				archiveController.setStoryModel(StoryModel.getStoryModel());
 				archiveController.save(num);
-//				System.out.println("save: " + num);
 				ArchiveView archiveView = (ArchiveView) archivePanel.archiveGroup.getChildren().get(num);
 				
 				SimpleDateFormat ft = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
@@ -47,9 +47,6 @@ public class ArchiveSelectHandler{
 					menu.getMenuHandler().startStory();
 				}
 
-//				archiveController.load(num);
-//				System.out.println("load: " + num);
-
 				archivePanel.archiveSelectPanel.setVisible(false);
 			}
 		}
@@ -57,7 +54,6 @@ public class ArchiveSelectHandler{
 
 	public EventHandler<MouseEvent> noEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
-			// 读取存档 num
 			archivePanel.archiveSelectPanel.setVisible(false);
 		}
 	};
