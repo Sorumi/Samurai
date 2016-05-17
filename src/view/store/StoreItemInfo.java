@@ -63,11 +63,12 @@ public class StoreItemInfo extends Pane{
 		}
 		this.levelLable.setStyle("-fx-background-color: " + GameColor.getMaterialColorString(itemNum%10) + ";"
 			+ "-fx-text-fill: " + GameColor.getMaterialColorString(itemNum%10+4) );
-
+		levelLable.setVisible(true);
 	}
 	
 	public void updatePropInfo(int itemNum, String itemName, String itemDescription){
 		this.itemName.setText(itemName);
 		this.itemDescription.setText(itemDescription);
+		levelLable.setVisible(false);
 	}
 }

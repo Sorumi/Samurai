@@ -265,7 +265,6 @@ public class MenuBackground extends Pane{
 	
 	//TODO
 	public void setDay(int num){
-		System.out.println(num);
 		setSky(num);
 		
 		switch(num){
@@ -284,31 +283,7 @@ public class MenuBackground extends Pane{
 			break;
 		}
 
-//		isDay = !isDay;
+
 	}
-	
-//	public void setStars(boolean isStars){
-//		stars.setVisible(isStars);
-//		starCircles.setVisible(isStars);
-//		if (isStars){
-//			for(int i=0; i<stars.getChildren().size(); i++){
-//				Star star = (Star) stars.getChildren().get(i);
-//				timeline.getKeyFrames().addAll(star.lightAnimation());
-//			}
-//		}
-//	}
-	
-//	public void removeAll() {
-//		this.setSun(false);
-//		this.setMoon(false);
-//		this.setStars(false);
-//		timeline = new Timeline();
-//	}
-//	public void stopAll() {
-//		timeline.stop();
-//	}
-//	
-//	public void restartAll(){
-//		timeline.play();
-//	}
+
 }

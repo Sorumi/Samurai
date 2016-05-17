@@ -261,8 +261,14 @@ public class Images {
 	public static final Image WEAPON_ICON_3 = new Image("/./images/weapon_icon_3_shuriken.png", true);
 	public static final Image WEAPON_ICON_4 = new Image("/./images/weapon_icon_4_bow.png", true);
 	public static final Image WEAPON_ICON_5 = new Image("/./images/weapon_icon_5_armor.png", true);
+	public static final Image WEAPON_ICON_6 = new Image("/./images/weapon_icon_6_spear.png", true);
+	public static final Image WEAPON_ICON_7 = new Image("/./images/weapon_icon_7_sword.png", true);
+	public static final Image WEAPON_ICON_8 = new Image("/./images/weapon_icon_8_battleax.png", true);
+	public static final Image WEAPON_ICON_9 = new Image("/./images/weapon_icon_9_shuriken.png", true);
+	public static final Image WEAPON_ICON_10 = new Image("/./images/weapon_icon_10_bow.png", true);
+	public static final Image WEAPON_ICON_11 = new Image("/./images/weapon_icon_11_armor.png", true);
 	public static final Image[] WEAPON_ICON = { WEAPON_ICON_0, WEAPON_ICON_1, WEAPON_ICON_2, WEAPON_ICON_3, WEAPON_ICON_4,
-			WEAPON_ICON_5 };
+			WEAPON_ICON_5, WEAPON_ICON_6, WEAPON_ICON_7, WEAPON_ICON_8, WEAPON_ICON_9, WEAPON_ICON_10, WEAPON_ICON_11 };
 
 	// spear
 	public static final Image WEAPON_000 = new Image("/./images/weapon/weapon_000_spear.png", true);

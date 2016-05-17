@@ -13,6 +13,7 @@ import view.DirectionButton;
 import view.SamuraiPanel;
 import view.guide.ActionGuideButton;
 import view.guide.GameGuidePanel;
+import view.guide.GameGuidePanel.WeaponButton;
 import view.guide.SamuraiGuidePanel;
 
 public class ActionGuideHandler {
@@ -104,6 +105,13 @@ public class ActionGuideHandler {
 			  }
 
 	      }
+	};
+	
+	public EventHandler<MouseEvent> weaponEvent = new EventHandler<MouseEvent>() { 
+		public void handle(MouseEvent event) {
+			WeaponButton btn = (WeaponButton) event.getSource();
+			System.out.println(btn.num);
+		}
 	};
 
 }
