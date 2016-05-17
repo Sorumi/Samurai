@@ -37,8 +37,6 @@ public class ArchiveView extends Pane{
 		this.num = num;
 		this.type = type;
 		this.archiveHandler = new ArchiveHandler(this, num);
-//		this.archiveSelectHandler = new ArchiveSelectHandler(this,num);
-//		this.archiveSelectPanel = new ArchiveSelectPanel(archiveSelectHandler);
 		
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);

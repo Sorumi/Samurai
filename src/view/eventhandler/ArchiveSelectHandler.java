@@ -38,15 +38,15 @@ public class ArchiveSelectHandler{
 				
 				archivePanel.archiveSelectPanel.setVisible(false);
 			} else {
-				archiveController.load(num);
-//				System.out.println("load: " + num);
 				ArchiveView archiveView = (ArchiveView) archivePanel.archiveGroup.getChildren().get(num);
 				
 				if (archiveView.type == 1) {
 					MenuPanel menu = (MenuPanel) archiveView.getParent().getParent();
 					menu.getMenuHandler().startStory();
 				}
-				
+				archiveController.load(num);
+//				System.out.println("load: " + num);
+
 				archivePanel.archiveSelectPanel.setVisible(false);
 			}
 		}

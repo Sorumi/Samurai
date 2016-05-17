@@ -22,7 +22,7 @@ public class LevelSelectPanel extends Pane{
 	public int level;
 	private int strokeWidth = 3;
 	
-	private boolean isAppear;
+//	private boolean isAppear;
 	
 	private SystemButton closeBtn; 
 	
@@ -218,11 +218,4 @@ public class LevelSelectPanel extends Pane{
 		
 		this.getChildren().addAll(materialOne, materialTwo);
 	}
-	
-	public void setAppear(boolean isAppear) {
-		// TODO Auto-generated method stub
-		this.isAppear = isAppear;
-		this.setVisible(isAppear);
-	}
-
 }

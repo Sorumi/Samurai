@@ -41,6 +41,9 @@ public class MenuBackground extends Pane{
 	private Group stars;
 	private Group starCircles;
 	
+	private boolean isSun;
+	private boolean isMoon;
+	
 	private Rotate sunRo;
 	private Rotate moonRo;
 	private Rotate starRo;
@@ -179,13 +182,14 @@ public class MenuBackground extends Pane{
 		sunRo.pivotYProperty().bind(sun.centerYProperty().add(1290));
 		sunRo.setAngle(-20);
 		sun.getTransforms().add(sunRo);
+		isSun = true;
 		
 		moonRo = new Rotate();
 		moonRo.pivotXProperty().bind(sun.centerXProperty());
 		moonRo.pivotYProperty().bind(sun.centerYProperty().add(1290));
 		moonRo.setAngle(-200);
 		moon.getTransforms().add(moonRo);
-		
+		isMoon = false;
 		
 		starRo = new Rotate();
 		starRo.pivotXProperty().bind(stars.layoutXProperty().add(600));
@@ -205,10 +209,6 @@ public class MenuBackground extends Pane{
 		
 		this.getChildren().addAll(skyGroup, mountains, sun, moon, stars, starCircles, land);
 		
-//		timeline = new Timeline();
-//		timeline.setCycleCount(Timeline.INDEFINITE);
-		
-//		timeline.play();
 	}
 	
 	public void setSky(int num){
@@ -225,35 +225,66 @@ public class MenuBackground extends Pane{
 	}
 	
 	public void setSun(boolean isSun){
-		Timeline sunTL= new Timeline(
-				new KeyFrame(Duration.millis(2000), new KeyValue(sunRo.angleProperty(), sunRo.angleProperty().intValue()+180, Interpolator.EASE_IN))
-				);
-		if (!isSun) {
-			sunTL.setOnFinished(new EventHandler<ActionEvent>(){
-				@Override
-				public void handle(ActionEvent event) {
-					sunRo.setAngle(-200);
-				}
-			});
+		if(this.isSun != isSun){
+			Timeline sunTL= new Timeline(
+					new KeyFrame(Duration.millis(2000), new KeyValue(sunRo.angleProperty(), sunRo.angleProperty().intValue()+180, Interpolator.EASE_IN))
+					);
+			if (!isSun) {
+				sunTL.setOnFinished(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+						sunRo.setAngle(-200);
+					}
+				});
+			}
+			sunTL.play();
+			this.isSun = isSun;
 		}
-		sunTL.play();
 	}
 	
 	public void setMoon(boolean isMoon){
-		Timeline moonTL= new Timeline(
-				new KeyFrame(Duration.millis(2000), new KeyValue(moonRo.angleProperty(), moonRo.angleProperty().intValue()+180, Interpolator.EASE_IN)),
-				new KeyFrame(Duration.millis(2000), new KeyValue(starRo.angleProperty(), starRo.angleProperty().intValue()+180, Interpolator.EASE_IN))
-				);
-		if (!isMoon) {
-			moonTL.setOnFinished(new EventHandler<ActionEvent>(){
-				@Override
-				public void handle(ActionEvent event) {
-					moonRo.setAngle(-200);
-					starRo.setAngle(-180);
-				}
-			});
+		if(this.isMoon != isMoon){
+			Timeline moonTL= new Timeline(
+					new KeyFrame(Duration.millis(2000), new KeyValue(moonRo.angleProperty(), moonRo.angleProperty().intValue()+180, Interpolator.EASE_IN)),
+					new KeyFrame(Duration.millis(2000), new KeyValue(starRo.angleProperty(), starRo.angleProperty().intValue()+180, Interpolator.EASE_IN))
+					);
+			if (!isMoon) {
+				moonTL.setOnFinished(new EventHandler<ActionEvent>(){
+					@Override
+					public void handle(ActionEvent event) {
+						moonRo.setAngle(-200);
+						starRo.setAngle(-180);
+					}
+				});
+			}
+			moonTL.play();
+			this.isMoon = isMoon;
 		}
-		moonTL.play();
+		
+	}
+	
+	//TODO
+	public void setDay(int num){
+		System.out.println(num);
+		setSky(num);
+		
+		switch(num){
+		case 0:
+			setSun(true);
+			setMoon(false);
+			break;
+		case 1:
+			setSun(true);
+			setMoon(false);
+			break;
+		case 2:
+		case 3:
+			setSun(false);
+			setMoon(false);
+			break;
+		}
+
+//		isDay = !isDay;
 	}
 	
 //	public void setStars(boolean isStars){
