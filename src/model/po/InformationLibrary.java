@@ -108,19 +108,19 @@ public class InformationLibrary implements Serializable {
 		informationLibraries.add(new Information(841, "寒冰水晶", "寒冰的气息被封存在这个水晶中，它散发出的气势可以扑灭接近它的火焰。"));
 		informationLibraries.add(new Information(842, "通灵之晶", "古灵的灵魂被封存在这个水晶中，夜晚会发出幽幽的光，聚集在一起似乎还能听到灵魂的律动。"));
 		informationLibraries.add(new Information(843, "虚无幻灭", "这颗水晶里似乎什么都没有，不，他就是什么都没有，存在的极端也许就是虚无吧。(这个材料不能用于合成任何武器，仅用于收集)"));
-		informationLibraries.add(new Information(911, "911", "911"));
-		informationLibraries.add(new Information(912, "912", "912"));
-		informationLibraries.add(new Information(923, "923", "923"));
-		informationLibraries.add(new Information(913, "913", "913"));
-		informationLibraries.add(new Information(914, "914", "914"));
-		informationLibraries.add(new Information(924, "924", "924"));
-		informationLibraries.add(new Information(934, "934", "934"));
-		informationLibraries.add(new Information(915, "915", "915"));
-		informationLibraries.add(new Information(925, "925", "925"));
-		informationLibraries.add(new Information(935, "935", "935"));
-		informationLibraries.add(new Information(916, "916", "916"));
-		informationLibraries.add(new Information(926, "926", "926"));
-		informationLibraries.add(new Information(936, "936", "936"));
+		informationLibraries.add(new Information(911, "平民服","冬暖夏凉，老少皆宜，深受广大平民喜爱的服装。不过除了挡风好像没有什么防御力的样子。"));
+		informationLibraries.add(new Information(912, "武夫简装","武士中流行的服装，轻便、坚韧、最重要的是有型。"));
+		informationLibraries.add(new Information(923, "猎人皮衣","猎人狩猎时穿着的皮衣，不仅能够抵抗森林中的湿气，也能抵御雪山上的寒冷。"));
+		informationLibraries.add(new Information(913, "精灵披风","擅长使用弓箭射击的精灵族所穿的布甲披风，隐蔽性强，便于与大自然融为一体"));
+		informationLibraries.add(new Information(914, "仙隐道袍","浅蓝色的道袍，附有古代仙灵的祝语，浩瀚山巅之灵融于一体，增强装备者的速度与敏捷。"));
+		informationLibraries.add(new Information(924, "巨犀韧甲","击杀荒漠巨犀后用极度锋利的利刃剥取最坚硬且最具有韧性部分的皮革所制作的皮甲，装备者将获得与巨犀相似的压迫力和耐力。"));
+		informationLibraries.add(new Information(934, "骑士胸甲","装备精良的骑士所配备的制式盔甲，抛弃敏捷而专注于防御力，普通的武器根本无法轻易穿透。"));
+		informationLibraries.add(new Information(915, "炎魔披肩","远古火山炎魔王所穿戴的披肩，对友善阵营的人仅仅只是柔和的温暖，却能对敌方产生极度危险的致命高温，其高温甚至能够扭曲空间致使敌方难以捕获装备者的方位，从而轻松闪避化解攻击"));
+		informationLibraries.add(new Information(925, "噬骨反甲","从魔窟中讨伐魔兽后的骨、皮、血等素材铸成的坚固甲胄，能够赐予使用者巨大的力量，同时也会被巨大的愤怒和怨恨所影响。倘若心智不坚，终将自取灭亡，被普通武士所忌惮的受诅咒的护甲。"));
+		informationLibraries.add(new Information(935, "龙鳞护心","龙骑士教团在经历三个月的鏖战中终于砍下了赤炎龙的头颅，高挂于王都城墙之上。损失惨重的骑士团，将从龙蛋开始就培养的战死的坐骑埋于龙骨墓地。下葬之前剥下龙心前保护生命之源的鳞片，将这些鳞片收集并且与赤炎龙鳞共同炼制了这件重甲。龙鳞蕴含的生命力量能够减免任何伤害。"));
+		informationLibraries.add(new Information(916, "虚空星纱","采虚空之星辰，凝银河之魂魄而织成的薄纱。看似轻薄实则蕴含巨大能量。能够扭曲时间，致使原本可以命中的攻击被化解仿佛不曾命中。"));
+		informationLibraries.add(new Information(926, "沉沙折戟","从本源中散发出古朴厚重气息的甲胄，仿佛叹息着战场厮杀无奈，每一寸都散发着无法侵犯的古老气息。折戟沉沙铁未销，自将磨洗认前朝。战争的物是人非，常人终将湮灭在铁蹄剑鸣之中，唯有此甲，代表着战争其本身，将永远存留下去，无法破坏。"));
+		informationLibraries.add(new Information(936, "泰坦之魂","远古泰坦族守护世界亿年之后逝去将会残留一份精魄，其守护之力足以匹配世界级的能量，龙人族的第一匠人，用尽毕生心血锻造高达千米的巨盔和甲胄，再由精灵族的数十位长老施加将其浓缩至常人能够穿戴的尺寸，最后在所有种族领袖的见证下将其封印在世界山巅的最高处。倘若世界遇到巨大的危机，将由有判断力的万族族长选出最适合这件神装的拯救者，颁布于他泰坦一族的使命——守护世界。"));
 
 	}
 
