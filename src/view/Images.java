@@ -6,66 +6,65 @@ import javafx.scene.image.Image;
 public class Images {
 
 	// menu
-	public static final Image MENU_BTN = ImageManager.getImage("menu_button.png");
+	public static final Image MENU_BTN = ImageManager.getImage("main/menu_button.png");
 
 	// BG
-	public static final String BG_0 = ImageManager.getResource("bg_0.png");
-	public static final String BG_1 = ImageManager.getResource("bg_1.png");
-	public static final String BG_2 = ImageManager.getResource("bg_2.png");
-	public static final String BG_3 = ImageManager.getResource("bg_3.png");
-	public static final String BG_4 = ImageManager.getResource("bg_4.png");
-	public static final String BG_5 = ImageManager.getResource("bg_5.png");
+	public static final String BG_0 = ImageManager.getResource("main/bg_0.png");
+	public static final String BG_1 = ImageManager.getResource("main/bg_1.png");
+	public static final String BG_2 = ImageManager.getResource("main/bg_2.png");
+	public static final String BG_3 = ImageManager.getResource("main/bg_3.png");
+	public static final String BG_4 = ImageManager.getResource("main/bg_4.png");
+	public static final String BG_5 = ImageManager.getResource("main/bg_5.png");
 	public static final String[] BG = { BG_0, BG_1, BG_2, BG_3, BG_4, BG_5, null, null, null, BG_0 };
 	// cloud
-	public static final Image CLOUD_0 = ImageManager.getImage("cloud_0.png");
-	public static final Image CLOUD_1 = ImageManager.getImage("cloud_1.png");
-	public static final Image CLOUD_2 = ImageManager.getImage("cloud_2.png");
+	public static final Image CLOUD_0 = ImageManager.getImage("main/cloud_0.png");
+	public static final Image CLOUD_1 = ImageManager.getImage("main/cloud_1.png");
+	public static final Image CLOUD_2 = ImageManager.getImage("main/cloud_2.png");
 	// fish
-	public static final Image FISH_0 = ImageManager.getImage("fish_0.png");
-	public static final Image FISH_1 = ImageManager.getImage("fish_1.png");
-	public static final Image FISH_2 = ImageManager.getImage("fish_2.png");
-	public static final Image FISH_3 = ImageManager.getImage("fish_3.png");
+	public static final Image FISH_0 = ImageManager.getImage("main/fish_0.png");
+	public static final Image FISH_1 = ImageManager.getImage("main/fish_1.png");
+	public static final Image FISH_2 = ImageManager.getImage("main/fish_2.png");
+	public static final Image FISH_3 = ImageManager.getImage("main/fish_3.png");
 	// leaf
-	public static final Image LEAF_0 = ImageManager.getImage("leaf_0.png");
-	public static final Image LEAF_1 = ImageManager.getImage("leaf_1.png");
+	public static final Image LEAF_0 = ImageManager.getImage("main/leaf_0.png");
+	public static final Image LEAF_1 = ImageManager.getImage("main/leaf_1.png");
 	// lotus
-	public static final Image LOTUS_0 = ImageManager.getImage("lotus_0.png");
+	public static final Image LOTUS_0 = ImageManager.getImage("main/lotus_0.png");
 	// coin
-	public static final Image COIN = ImageManager.getImage("coin.png");
+	public static final Image COIN = ImageManager.getImage("main/coin.png");
 
 	// system
-	public static final Image SYSTEM_CLOSE_BTN = ImageManager.getImage("system_close_button.png");
-	public static final Image SYSTEM_SAVE_BTN = ImageManager.getImage("system_save_button.png");
-	public static final Image SYSTEM_HELP_BTN = ImageManager.getImage("system_help_button.png");
-	public static final Image SYSTEM_PAUSE_BTN = ImageManager.getImage("system_pause_button.png");
-	public static final Image SYSTEM_CONTINUE_BTN = ImageManager.getImage("system_continue_button.png");
+	public static final Image SYSTEM_CLOSE_BTN = ImageManager.getImage("main/system_close_button.png");
+	public static final Image SYSTEM_SAVE_BTN = ImageManager.getImage("main/system_save_button.png");
+	public static final Image SYSTEM_HELP_BTN = ImageManager.getImage("main/system_help_button.png");
+	public static final Image SYSTEM_PAUSE_BTN = ImageManager.getImage("main/system_pause_button.png");
+	public static final Image SYSTEM_CONTINUE_BTN = ImageManager.getImage("main/system_continue_button.png");
 	public static final Image[] SYSTEM_BTN = {SYSTEM_CLOSE_BTN, SYSTEM_SAVE_BTN, SYSTEM_HELP_BTN, SYSTEM_PAUSE_BTN, SYSTEM_CONTINUE_BTN};
 
 	// samurai state
-	public static final Image STATE_ICON_1 = ImageManager.getImage("state_icon_1.png");
-	public static final Image STATE_ICON_2 = ImageManager.getImage("state_icon_2.png");
-	public static final Image STATE_ICON_3 = ImageManager.getImage("state_icon_3.png");
-	public static final Image STATE_ICON_4 = ImageManager.getImage("state_icon_4.png");
-	public static final Image STATE_ICON_5 = ImageManager.getImage("state_icon_5.png");
-	public static final Image STATE_ICON_6 = ImageManager.getImage("state_icon_6.png");
+	public static final Image STATE_ICON_1 = ImageManager.getImage("main/state_icon_1.png");
+	public static final Image STATE_ICON_2 = ImageManager.getImage("main/state_icon_2.png");
+	public static final Image STATE_ICON_3 = ImageManager.getImage("main/state_icon_3.png");
+	public static final Image STATE_ICON_4 = ImageManager.getImage("main/state_icon_4.png");
+	public static final Image STATE_ICON_5 = ImageManager.getImage("main/state_icon_5.png");
+	public static final Image STATE_ICON_6 = ImageManager.getImage("main/state_icon_6.png");
 	public static final Image[] STATE_ICON = {STATE_ICON_1, STATE_ICON_2, STATE_ICON_3, STATE_ICON_4, STATE_ICON_5, STATE_ICON_6};
-
-
 	// weapon state
-	public static final Image WEAPON_STATE_1 = ImageManager.getImage("weapon_state_1.png");
-	public static final Image WEAPON_STATE_2 = ImageManager.getImage("weapon_state_2.png");
-	public static final Image WEAPON_STATE_3 = ImageManager.getImage("weapon_state_3.png");
+	public static final Image WEAPON_STATE_1 = ImageManager.getImage("main/weapon_state_1.png");
+	public static final Image WEAPON_STATE_2 = ImageManager.getImage("main/weapon_state_2.png");
+	public static final Image WEAPON_STATE_3 = ImageManager.getImage("main/weapon_state_3.png");
 	// armor state
-	public static final Image ARMOR_STATE_1 = ImageManager.getImage("armor_state_1.png");
-	public static final Image ARMOR_STATE_2 = ImageManager.getImage("armor_state_2.png");
+	public static final Image ARMOR_STATE_1 = ImageManager.getImage("main/armor_state_1.png");
+	public static final Image ARMOR_STATE_2 = ImageManager.getImage("main/armor_state_2.png");
 
 	// samurai btn
-	public static final Image SAMURAI_BTN_1 = ImageManager.getImage("samurai_btn_1.png");
-	public static final Image SAMURAI_BTN_2 = ImageManager.getImage("samurai_btn_2.png");
-	public static final Image SAMURAI_BTN_3 = ImageManager.getImage("samurai_btn_3.png");
-	public static final Image SAMURAI_BTN_4 = ImageManager.getImage("samurai_btn_4.png");
-	public static final Image SAMURAI_BTN_5 = ImageManager.getImage("samurai_btn_5.png");
-	public static final Image SAMURAI_BTN_6 = ImageManager.getImage("samurai_btn_6.png");
+	public static final Image SAMURAI_BTN_1 = ImageManager.getImage("main/samurai_btn_1.png");
+	public static final Image SAMURAI_BTN_2 = ImageManager.getImage("main/samurai_btn_2.png");
+	public static final Image SAMURAI_BTN_3 = ImageManager.getImage("main/samurai_btn_3.png");
+	public static final Image SAMURAI_BTN_4 = ImageManager.getImage("main/samurai_btn_4.png");
+	public static final Image SAMURAI_BTN_5 = ImageManager.getImage("main/samurai_btn_5.png");
+	public static final Image SAMURAI_BTN_6 = ImageManager.getImage("main/samurai_btn_6.png");
+
 	public static final Image[] SAMURAI_BTN = { null, SAMURAI_BTN_1, SAMURAI_BTN_2, SAMURAI_BTN_3, SAMURAI_BTN_4, SAMURAI_BTN_5, SAMURAI_BTN_6 };
 
 	// prop
@@ -86,66 +85,68 @@ public class Images {
 	public static final Image[] PROP = { null, PROP_01, PROP_02, PROP_03, PROP_11, PROP_12, PROP_13, PROP_21, PROP_22,
 			PROP_23, PROP_31, PROP_32, PROP_33, PROP_41, PROP_51 };
 	// player
-	public static final Image PLAYER_LOGO_A = ImageManager.getImage("player_logo_A.png");
-	public static final Image PLAYER_LOGO_B = ImageManager.getImage("player_logo_B.png");
-	public static final Image PLAYER_LOGO_0 = ImageManager.getImage("player_logo.png");
+
+	public static final Image PLAYER_LOGO_A = ImageManager.getImage("main/player_logo_A.png");
+	public static final Image PLAYER_LOGO_B = ImageManager.getImage("main/player_logo_B.png");
+	public static final Image PLAYER_LOGO_0 = ImageManager.getImage("main/player_logo.png");
 	public static final Image[] PLAYER_LOGO = { PLAYER_LOGO_A, PLAYER_LOGO_B, PLAYER_LOGO_0 };
 
 	// resultPanel
-	public static final Image A_WIN = ImageManager.getImage("player_logo_A_big.png");
-	public static final Image RATE_SSS = ImageManager.getImage("rate_sss.png");
-	public static final Image RATE_SS = ImageManager.getImage("rate_ss.png");
-	public static final Image RATE_S = ImageManager.getImage("rate_s.png");
-	public static final Image RATE_A = ImageManager.getImage("rate_a.png");
-	public static final Image RATE_B = ImageManager.getImage("rate_b.png");
-	public static final Image RATE_C = ImageManager.getImage("rate_c.png");
-	public static final Image RATE_D = ImageManager.getImage("rate_d.png");
-	public static final Image RATE_F = ImageManager.getImage("rate_f.png");
+	public static final Image A_WIN = ImageManager.getImage("main/player_logo_A_big.png");
+	public static final Image RATE_SSS = ImageManager.getImage("main/rate_sss.png");
+	public static final Image RATE_SS = ImageManager.getImage("main/rate_ss.png");
+	public static final Image RATE_S = ImageManager.getImage("main/rate_s.png");
+	public static final Image RATE_A = ImageManager.getImage("main/rate_a.png");
+	public static final Image RATE_B = ImageManager.getImage("main/rate_b.png");
+	public static final Image RATE_C = ImageManager.getImage("main/rate_c.png");
+	public static final Image RATE_D = ImageManager.getImage("main/rate_d.png");
+	public static final Image RATE_F = ImageManager.getImage("main/rate_f.png");
 	public static final Image[] RATE = { RATE_SSS, RATE_SS, RATE_S, RATE_A, RATE_B, RATE_C, RATE_D, RATE_F };
 	// arrow
-	public static final Image ARROW = ImageManager.getImage("arrow.png");
+	public static final Image ARROW = ImageManager.getImage("main/arrow.png");
 
 	// button
-	public static final Image BUTTON_OCCUPY = ImageManager.getImage("button_occupy.png");
-	public static final Image BUTTON_MOVE = ImageManager.getImage("button_move.png");
-	public static final Image BUTTON_HIDE = ImageManager.getImage("button_hide.png");
-	public static final Image BUTTON_EXIT = ImageManager.getImage("button_exit.png");
-	public static final Image BUTTON_BACK = ImageManager.getImage("button_back.png");
+	public static final Image BUTTON_OCCUPY = ImageManager.getImage("main/button_occupy.png");
+	public static final Image BUTTON_MOVE = ImageManager.getImage("main/button_move.png");
+	public static final Image BUTTON_HIDE = ImageManager.getImage("main/button_hide.png");
+	public static final Image BUTTON_EXIT = ImageManager.getImage("main/button_exit.png");
+	public static final Image BUTTON_BACK = ImageManager.getImage("main/button_back.png");
 	public static final Image ACTION_BUTTON[] = { BUTTON_OCCUPY, BUTTON_MOVE, BUTTON_HIDE, BUTTON_EXIT, BUTTON_BACK };
 
 	// direction
-	public static final Image DIRECTION_0 = ImageManager.getImage("direction_0.png");
-	public static final Image DIRECTION_1 = ImageManager.getImage("direction_1.png");
-	public static final Image DIRECTION_2 = ImageManager.getImage("direction_2.png");
-	public static final Image DIRECTION_3 = ImageManager.getImage("direction_3.png");
+	public static final Image DIRECTION_0 = ImageManager.getImage("main/direction_0.png");
+	public static final Image DIRECTION_1 = ImageManager.getImage("main/direction_1.png");
+	public static final Image DIRECTION_2 = ImageManager.getImage("main/direction_2.png");
+	public static final Image DIRECTION_3 = ImageManager.getImage("main/direction_3.png");
 	public static final Image[] DIRECTION = { DIRECTION_0, DIRECTION_1, DIRECTION_2, DIRECTION_3 };
-	public static final Image DIRECTION_HL_0 = ImageManager.getImage("direction_highlight_0.png");
-	public static final Image DIRECTION_HL_1 = ImageManager.getImage("direction_highlight_1.png");
-	public static final Image DIRECTION_HL_2 = ImageManager.getImage("direction_highlight_2.png");
-	public static final Image DIRECTION_HL_3 = ImageManager.getImage("direction_highlight_3.png");
+	public static final Image DIRECTION_HL_0 = ImageManager.getImage("main/direction_highlight_0.png");
+	public static final Image DIRECTION_HL_1 = ImageManager.getImage("main/direction_highlight_1.png");
+	public static final Image DIRECTION_HL_2 = ImageManager.getImage("main/direction_highlight_2.png");
+	public static final Image DIRECTION_HL_3 = ImageManager.getImage("main/direction_highlight_3.png");
 	public static final Image[] DIRECTION_HL = { DIRECTION_HL_0, DIRECTION_HL_1, DIRECTION_HL_2, DIRECTION_HL_3 };
 
 	// territory
-	public static final Image TERRITORY_BG = ImageManager.getImage("territory_bg.png");
-	public static final Image TERRITORY_MOUNTAIN = ImageManager.getImage("territory_mountain.png");
-	public static final Image TERRITORY_LAND_0 = ImageManager.getImage("territory_land_0.png");
-	public static final Image TERRITORY_LAND_1 = ImageManager.getImage("territory_land_1.png");
-	public static final Image TERRITORY_LAND_2 = ImageManager.getImage("territory_land_2.png");
-	public static final Image TERRITORY_LAND_3 = ImageManager.getImage("territory_land_3.png");
+	public static final Image TERRITORY_BG = ImageManager.getImage("main/territory_bg.png");
+	public static final Image TERRITORY_MOUNTAIN = ImageManager.getImage("main/territory_mountain.png");
+	public static final Image TERRITORY_LAND_0 = ImageManager.getImage("main/territory_land_0.png");
+	public static final Image TERRITORY_LAND_1 = ImageManager.getImage("main/territory_land_1.png");
+	public static final Image TERRITORY_LAND_2 = ImageManager.getImage("main/territory_land_2.png");
+	public static final Image TERRITORY_LAND_3 = ImageManager.getImage("main/territory_land_3.png");
 
-	public static final Image TERRITORY_ITEMS = ImageManager.getImage("territory_items.png");
-	public static final Image TERRITORY_CAMPSITE = ImageManager.getImage("territory_campsite.png");
-	public static final Image TERRITORY_SMITHY = ImageManager.getImage("territory_smithy.png");
-	public static final Image TERRITORY_STORE = ImageManager.getImage("territory_store.png");
-	public static final Image TERRITORY_SHOP = ImageManager.getImage("territory_shop.png");
-	public static final Image TERRITORY_FLAG = ImageManager.getImage("territory_flag.png");
+	public static final Image TERRITORY_ITEMS = ImageManager.getImage("main/territory_items.png");
+	public static final Image TERRITORY_CAMPSITE = ImageManager.getImage("main/territory_campsite.png");
+	public static final Image TERRITORY_SMITHY = ImageManager.getImage("main/territory_smithy.png");
+	public static final Image TERRITORY_STORE = ImageManager.getImage("main/territory_store.png");
+	public static final Image TERRITORY_SHOP = ImageManager.getImage("main/territory_shop.png");
+	public static final Image TERRITORY_FLAG = ImageManager.getImage("main/territory_flag.png");
 
 	// weather
-	public static final Image WEATHER_1 = ImageManager.getImage("weather_1_sun.png");
-	public static final Image WEATHER_2 = ImageManager.getImage("weather_2_moon.png");
-	public static final Image WEATHER_3 = ImageManager.getImage("weather_3_stars.png");
-	public static final Image WEATHER_4 = ImageManager.getImage("weather_4_rain.png");
-	public static final Image WEATHER_5 = ImageManager.getImage("weather_5_snow.png");
+	public static final Image WEATHER_1 = ImageManager.getImage("main/weather_1_sun.png");
+	public static final Image WEATHER_2 = ImageManager.getImage("main/weather_2_moon.png");
+	public static final Image WEATHER_3 = ImageManager.getImage("main/weather_3_stars.png");
+	public static final Image WEATHER_4 = ImageManager.getImage("main/weather_4_rain.png");
+	public static final Image WEATHER_5 = ImageManager.getImage("main/weather_5_snow.png");
+
 	public static final Image[] WEATHER = { null, WEATHER_1, WEATHER_2, WEATHER_3, WEATHER_4, WEATHER_5 };
 
 	// map
@@ -174,7 +175,7 @@ public class Images {
 	public static final Image[] MAP_FOG4 = {MAP_FOG4_0, MAP_FOG4_1, MAP_FOG4_2};
 	public static final Image[] MAP_FOG5 = {MAP_FOG5_0, MAP_FOG5_1};
 	public static final Image[][] MAP_FOG = {MAP_FOG2, MAP_FOG3, MAP_FOG4, MAP_FOG5};
-	
+
 	// cloud
 	public static final Image MAP_CLOUD_0 = ImageManager.getImage("map/map_cloud_0.png");
 	public static final Image MAP_CLOUD_1 = ImageManager.getImage("map/map_cloud_1.png");
@@ -204,53 +205,55 @@ public class Images {
 	public static final Image[] SAMURAI_1 = { null, SAMURAI_101, SAMURAI_102, SAMURAI_003, SAMURAI_0040, SAMURAI_0041,
 			SAMURAI_005, SAMURAI_106, SAMURAI_107, SAMURAI_108, SAMURAI_109, SAMURAI_010, SAMURAI_111 };
 
-	public static final Image SAMURAI_201 = ImageManager.getImage("samurai/SAMURAI_201_helmet_back.png");
-	public static final Image SAMURAI_202 = ImageManager.getImage("samurai/SAMURAI_202_leftshoulder.png");
-	public static final Image SAMURAI_206 = ImageManager.getImage("samurai/SAMURAI_206_body.png");
-	public static final Image SAMURAI_207 = ImageManager.getImage("samurai/SAMURAI_207_leftleg.png");
-	public static final Image SAMURAI_208 = ImageManager.getImage("samurai/SAMURAI_208_rightleg.png");
-	public static final Image SAMURAI_209 = ImageManager.getImage("samurai/SAMURAI_209_rightshoulder.png");
-	public static final Image SAMURAI_211 = ImageManager.getImage("samurai/SAMURAI_211_helmet.png");
+
+	public static final Image SAMURAI_201 = ImageManager.getImage("samurai/samurai_201_helmet_back.png");
+	public static final Image SAMURAI_202 = ImageManager.getImage("samurai/samurai_202_leftshoulder.png");
+	public static final Image SAMURAI_206 = ImageManager.getImage("samurai/samurai_206_body.png");
+	public static final Image SAMURAI_207 = ImageManager.getImage("samurai/samurai_207_leftleg.png");
+	public static final Image SAMURAI_208 = ImageManager.getImage("samurai/samurai_208_rightleg.png");
+	public static final Image SAMURAI_209 = ImageManager.getImage("samurai/samurai_209_rightshoulder.png");
+	public static final Image SAMURAI_211 = ImageManager.getImage("samurai/samurai_211_helmet.png");
 	public static final Image[] SAMURAI_2 = { null, SAMURAI_201, SAMURAI_202, SAMURAI_003, SAMURAI_0040, SAMURAI_0041,
 			SAMURAI_005, SAMURAI_206, SAMURAI_207, SAMURAI_208, SAMURAI_209, SAMURAI_010, SAMURAI_211 };
 
-	public static final Image SAMURAI_301 = ImageManager.getImage("samurai/SAMURAI_301_helmet_back.png");
-	public static final Image SAMURAI_302 = ImageManager.getImage("samurai/SAMURAI_302_leftshoulder.png");
-	public static final Image SAMURAI_306 = ImageManager.getImage("samurai/SAMURAI_306_body.png");
-	public static final Image SAMURAI_307 = ImageManager.getImage("samurai/SAMURAI_307_leftleg.png");
-	public static final Image SAMURAI_308 = ImageManager.getImage("samurai/SAMURAI_308_rightleg.png");
-	public static final Image SAMURAI_309 = ImageManager.getImage("samurai/SAMURAI_309_rightshoulder.png");
-	public static final Image SAMURAI_311 = ImageManager.getImage("samurai/SAMURAI_311_helmet.png");
+	public static final Image SAMURAI_301 = ImageManager.getImage("samurai/samurai_301_helmet_back.png");
+	public static final Image SAMURAI_302 = ImageManager.getImage("samurai/samurai_302_leftshoulder.png");
+	public static final Image SAMURAI_306 = ImageManager.getImage("samurai/samurai_306_body.png");
+	public static final Image SAMURAI_307 = ImageManager.getImage("samurai/samurai_307_leftleg.png");
+	public static final Image SAMURAI_308 = ImageManager.getImage("samurai/samurai_308_rightleg.png");
+	public static final Image SAMURAI_309 = ImageManager.getImage("samurai/samurai_309_rightshoulder.png");
+	public static final Image SAMURAI_311 = ImageManager.getImage("samurai/samurai_311_helmet.png");
 	public static final Image[] SAMURAI_3 = { null, SAMURAI_301, SAMURAI_302, SAMURAI_003, SAMURAI_0040, SAMURAI_0041,
 			SAMURAI_005, SAMURAI_306, SAMURAI_307, SAMURAI_308, SAMURAI_309, SAMURAI_010, SAMURAI_311 };
 
-	public static final Image SAMURAI_401 = ImageManager.getImage("samurai/SAMURAI_401_helmet_back.png");
-	public static final Image SAMURAI_402 = ImageManager.getImage("samurai/SAMURAI_402_leftshoulder.png");
-	public static final Image SAMURAI_406 = ImageManager.getImage("samurai/SAMURAI_406_body.png");
-	public static final Image SAMURAI_407 = ImageManager.getImage("samurai/SAMURAI_407_leftleg.png");
-	public static final Image SAMURAI_408 = ImageManager.getImage("samurai/SAMURAI_408_rightleg.png");
-	public static final Image SAMURAI_409 = ImageManager.getImage("samurai/SAMURAI_409_rightshoulder.png");
-	public static final Image SAMURAI_411 = ImageManager.getImage("samurai/SAMURAI_411_helmet.png");
+	public static final Image SAMURAI_401 = ImageManager.getImage("samurai/samurai_401_helmet_back.png");
+	public static final Image SAMURAI_402 = ImageManager.getImage("samurai/samurai_402_leftshoulder.png");
+	public static final Image SAMURAI_406 = ImageManager.getImage("samurai/samurai_406_body.png");
+	public static final Image SAMURAI_407 = ImageManager.getImage("samurai/samurai_407_leftleg.png");
+	public static final Image SAMURAI_408 = ImageManager.getImage("samurai/samurai_408_rightleg.png");
+	public static final Image SAMURAI_409 = ImageManager.getImage("samurai/samurai_409_rightshoulder.png");
+	public static final Image SAMURAI_411 = ImageManager.getImage("samurai/samurai_411_helmet.png");
 	public static final Image[] SAMURAI_4 = { null, SAMURAI_401, SAMURAI_402, SAMURAI_003, SAMURAI_0040, SAMURAI_0041,
 			SAMURAI_005, SAMURAI_406, SAMURAI_407, SAMURAI_408, SAMURAI_409, SAMURAI_010, SAMURAI_411 };
 
-	public static final Image SAMURAI_501 = ImageManager.getImage("samurai/SAMURAI_501_helmet_back.png");
-	public static final Image SAMURAI_502 = ImageManager.getImage("samurai/SAMURAI_502_leftshoulder.png");
-	public static final Image SAMURAI_506 = ImageManager.getImage("samurai/SAMURAI_506_body.png");
-	public static final Image SAMURAI_507 = ImageManager.getImage("samurai/SAMURAI_507_leftleg.png");
-	public static final Image SAMURAI_508 = ImageManager.getImage("samurai/SAMURAI_508_rightleg.png");
-	public static final Image SAMURAI_509 = ImageManager.getImage("samurai/SAMURAI_509_rightshoulder.png");
-	public static final Image SAMURAI_511 = ImageManager.getImage("samurai/SAMURAI_511_helmet.png");
+	public static final Image SAMURAI_501 = ImageManager.getImage("samurai/samurai_501_helmet_back.png");
+	public static final Image SAMURAI_502 = ImageManager.getImage("samurai/samurai_502_leftshoulder.png");
+	public static final Image SAMURAI_506 = ImageManager.getImage("samurai/samurai_506_body.png");
+	public static final Image SAMURAI_507 = ImageManager.getImage("samurai/samurai_507_leftleg.png");
+	public static final Image SAMURAI_508 = ImageManager.getImage("samurai/samurai_508_rightleg.png");
+	public static final Image SAMURAI_509 = ImageManager.getImage("samurai/samurai_509_rightshoulder.png");
+	public static final Image SAMURAI_511 = ImageManager.getImage("samurai/samurai_511_helmet.png");
 	public static final Image[] SAMURAI_5 = { null, SAMURAI_501, SAMURAI_502, SAMURAI_003, SAMURAI_0040, SAMURAI_0041,
 			SAMURAI_005, SAMURAI_506, SAMURAI_507, SAMURAI_508, SAMURAI_509, SAMURAI_010, SAMURAI_511 };
 
-	public static final Image SAMURAI_601 = ImageManager.getImage("samurai/SAMURAI_601_helmet_back.png");
-	public static final Image SAMURAI_602 = ImageManager.getImage("samurai/SAMURAI_602_leftshoulder.png");
-	public static final Image SAMURAI_606 = ImageManager.getImage("samurai/SAMURAI_606_body.png");
-	public static final Image SAMURAI_607 = ImageManager.getImage("samurai/SAMURAI_607_leftleg.png");
-	public static final Image SAMURAI_608 = ImageManager.getImage("samurai/SAMURAI_608_rightleg.png");
-	public static final Image SAMURAI_609 = ImageManager.getImage("samurai/SAMURAI_609_rightshoulder.png");
-	public static final Image SAMURAI_611 = ImageManager.getImage("samurai/SAMURAI_611_helmet.png");
+	public static final Image SAMURAI_601 = ImageManager.getImage("samurai/samurai_601_helmet_back.png");
+	public static final Image SAMURAI_602 = ImageManager.getImage("samurai/samurai_602_leftshoulder.png");
+	public static final Image SAMURAI_606 = ImageManager.getImage("samurai/samurai_606_body.png");
+	public static final Image SAMURAI_607 = ImageManager.getImage("samurai/samurai_607_leftleg.png");
+	public static final Image SAMURAI_608 = ImageManager.getImage("samurai/samurai_608_rightleg.png");
+	public static final Image SAMURAI_609 = ImageManager.getImage("samurai/samurai_609_rightshoulder.png");
+	public static final Image SAMURAI_611 = ImageManager.getImage("samurai/samurai_611_helmet.png");
+
 	public static final Image[] SAMURAI_6 = { null, SAMURAI_601, SAMURAI_602, SAMURAI_003, SAMURAI_0040, SAMURAI_0041,
 			SAMURAI_005, SAMURAI_606, SAMURAI_607, SAMURAI_608, SAMURAI_609, SAMURAI_010, SAMURAI_611 };
 
@@ -258,18 +261,18 @@ public class Images {
 
 	// weapon
 	// icon
-	public static final Image WEAPON_ICON_0 = ImageManager.getImage("weapon_icon_0_spear.png");
-	public static final Image WEAPON_ICON_1 = ImageManager.getImage("weapon_icon_1_sword.png");
-	public static final Image WEAPON_ICON_2 = ImageManager.getImage("weapon_icon_2_battleax.png");
-	public static final Image WEAPON_ICON_3 = ImageManager.getImage("weapon_icon_3_shuriken.png");
-	public static final Image WEAPON_ICON_4 = ImageManager.getImage("weapon_icon_4_bow.png");
-	public static final Image WEAPON_ICON_5 = ImageManager.getImage("weapon_icon_5_armor.png");
-	public static final Image WEAPON_ICON_6 = ImageManager.getImage("weapon_icon_6_spear.png");
-	public static final Image WEAPON_ICON_7 = ImageManager.getImage("weapon_icon_7_sword.png");
-	public static final Image WEAPON_ICON_8 = ImageManager.getImage("weapon_icon_8_battleax.png");
-	public static final Image WEAPON_ICON_9 = ImageManager.getImage("weapon_icon_9_shuriken.png");
-	public static final Image WEAPON_ICON_10 = ImageManager.getImage("weapon_icon_10_bow.png");
-	public static final Image WEAPON_ICON_11 = ImageManager.getImage("weapon_icon_11_armor.png");
+	public static final Image WEAPON_ICON_0 = ImageManager.getImage("main/weapon_icon_0_spear.png");
+	public static final Image WEAPON_ICON_1 = ImageManager.getImage("main/weapon_icon_1_sword.png");
+	public static final Image WEAPON_ICON_2 = ImageManager.getImage("main/weapon_icon_2_battleax.png");
+	public static final Image WEAPON_ICON_3 = ImageManager.getImage("main/weapon_icon_3_shuriken.png");
+	public static final Image WEAPON_ICON_4 = ImageManager.getImage("main/weapon_icon_4_bow.png");
+	public static final Image WEAPON_ICON_5 = ImageManager.getImage("main/weapon_icon_5_armor.png");
+	public static final Image WEAPON_ICON_6 = ImageManager.getImage("main/weapon_icon_6_spear.png");
+	public static final Image WEAPON_ICON_7 = ImageManager.getImage("main/weapon_icon_7_sword.png");
+	public static final Image WEAPON_ICON_8 = ImageManager.getImage("main/weapon_icon_8_battleax.png");
+	public static final Image WEAPON_ICON_9 = ImageManager.getImage("main/weapon_icon_9_shuriken.png");
+	public static final Image WEAPON_ICON_10 = ImageManager.getImage("main/weapon_icon_10_bow.png");
+	public static final Image WEAPON_ICON_11 = ImageManager.getImage("main/weapon_icon_11_armor.png");
 	public static final Image[] WEAPON_ICON = { WEAPON_ICON_0, WEAPON_ICON_1, WEAPON_ICON_2, WEAPON_ICON_3, WEAPON_ICON_4,
 			WEAPON_ICON_5, WEAPON_ICON_6, WEAPON_ICON_7, WEAPON_ICON_8, WEAPON_ICON_9, WEAPON_ICON_10, WEAPON_ICON_11 };
 
@@ -525,3 +528,4 @@ public class Images {
 	public static final Image[][] MATERIAL = { MATERIAL_0, MATERIAL_1, MATERIAL_2, MATERIAL_3, MATERIAL_4 };
 
 }
+

@@ -16,7 +16,6 @@ public class CampsiteController extends TerritoryController {
         storyModel.changeWeapon(samuraiNum,weaponNum);
     }
 
-
     public void changeArmor(int samuraiNum, int armorNum){
         storyModel.changeArmor(samuraiNum, armorNum);
     }
