@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ScoreBoard {
-	private int[] materialTag = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
-	private int[] materialItem = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+	private int[] materialTag = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
+	private int[] materialItem = { -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1 };
 	private String Rating;
 	private Random random = new Random();
 
