@@ -84,6 +84,7 @@ public class ShopHandler {
 				getShopController().updateMoney(-total);
 				TerritoryPanel parent = (TerritoryPanel) shopPanel.getParent();
 				parent.updateMoney();
+				shopPanel.successPanel.setVisible(true);
 			}
 		}
 	};
