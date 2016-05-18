@@ -62,7 +62,7 @@ public class Main extends Application {
 	public void startGame(){
 		menuPanel.samuraiTimer.stop();
 		basePanel.getChildren().add(gamePanel);
-		this.gameModel = new GameModel(24, 14, gamePanel, 0);
+		this.gameModel = new GameModel(120, 14, gamePanel, 0);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
