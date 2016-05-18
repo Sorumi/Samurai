@@ -217,14 +217,14 @@ public class MenuHandler {
 		@Override 
 		public void handle(ActionEvent e) {
 			Musics.THEME.pause();
-			mainFrame.menuPanel.nomusicBtn.setVisible(true);
+			mainFrame.menuPanel.musicBtn.setVisible(false);
 		}
 	};
 	public EventHandler<ActionEvent> nomusicEvent = new EventHandler<ActionEvent>() {
 		@Override 
 		public void handle(ActionEvent e) {
 			Musics.THEME.play();
-			mainFrame.menuPanel.nomusicBtn.setVisible(false);
+			mainFrame.menuPanel.musicBtn.setVisible(true);
 		}
 	};
 }

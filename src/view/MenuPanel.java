@@ -26,8 +26,8 @@ public class MenuPanel extends Pane {
 
 	private SystemButton exitBtn;
 	private SystemButton courseBtn;
-	private SystemButton musicBtn;
-	public SystemButton nomusicBtn;
+	public SystemButton musicBtn;
+	private SystemButton nomusicBtn;
 	
 	private MenuBackground menuBg;
 	public int modeNum;
