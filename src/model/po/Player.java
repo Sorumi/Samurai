@@ -251,6 +251,9 @@ public class Player {
 
             //若是人类操纵,那么点数为零的时候自动跳转下一局
             if(this.playerNum == 0) {
+
+                OperationQueue.EmptyQueue();
+
                 this.actionDone();
             }
 

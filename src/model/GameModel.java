@@ -951,12 +951,6 @@ public class GameModel extends BaseModel implements Observer {
             }
             OperationQueue.addOperation(new NextOperation());
 
-            try{
-                Thread.sleep(100);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
         }else{
             OperationQueue.addOperation(new EndOperation(true));
         }
