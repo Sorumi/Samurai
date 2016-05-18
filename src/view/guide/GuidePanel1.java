@@ -7,7 +7,7 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
 import view.GameColor;
-import images.Images;
+import view.Images;
 import view.PlayerPanel;
 import view.RoundPanel;
 

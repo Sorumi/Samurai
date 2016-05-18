@@ -1,6 +1,5 @@
 package view;
 
-import images.Images;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;

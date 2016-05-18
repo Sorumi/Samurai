@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import images.Images;
+import view.Images;
 
 public class BackgroundPanel0 extends BackgroundPanel{
 

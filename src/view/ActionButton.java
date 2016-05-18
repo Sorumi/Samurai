@@ -6,7 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import view.eventhandler.ActionHandler;
-import images.Images;
 
 public class ActionButton extends Pane {
 

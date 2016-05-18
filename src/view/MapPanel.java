@@ -1,7 +1,6 @@
 	package view;
 
 import controller.MapController;
-import images.Images;
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;

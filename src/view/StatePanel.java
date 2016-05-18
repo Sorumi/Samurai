@@ -10,7 +10,6 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
-import images.Images;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.StateHandler;
 

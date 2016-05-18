@@ -10,7 +10,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import view.GameColor;
-import images.Images;
+import view.Images;
 
 public class GuidePanel4 extends GuidePanel{
 	private Label mainLabel1;

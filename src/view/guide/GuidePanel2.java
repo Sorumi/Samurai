@@ -2,7 +2,7 @@ package view.guide;
 
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import images.Images;
+import view.Images;
 
 public class GuidePanel2 extends GuidePanel {
 	private Label mainLabel;

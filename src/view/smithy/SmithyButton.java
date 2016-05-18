@@ -3,7 +3,7 @@ package view.smithy;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import view.GameColor;
-import images.Images;
+import view.Images;
 
 public class SmithyButton extends Button {
 

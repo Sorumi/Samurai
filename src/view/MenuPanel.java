@@ -2,7 +2,6 @@ package view;
 
 import java.util.Random;
 
-import images.Images;
 import javafx.animation.AnimationTimer;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;

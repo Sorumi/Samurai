@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.po.Armor;
 import model.po.Weapon;
-import images.Images;
+import view.Images;
 import view.eventhandler.CampsiteHandler;
 import view.store.StoreItemView;
 

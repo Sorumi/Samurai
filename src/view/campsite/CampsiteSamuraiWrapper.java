@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import view.GameColor;
-import images.Images;
+import view.Images;
 import view.SamuraiView;
 import view.eventhandler.CampsiteHandler;
 

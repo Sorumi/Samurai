@@ -2,7 +2,7 @@ package view.guide;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import images.Images;
+import view.Images;
 import view.eventhandler.ActionGuideHandler;
 
 public class ActionGuideButton extends Pane {
