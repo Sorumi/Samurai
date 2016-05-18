@@ -216,14 +216,14 @@ public class MenuHandler {
 	public EventHandler<ActionEvent> musicEvent = new EventHandler<ActionEvent>() {
 		@Override 
 		public void handle(ActionEvent e) {
-			Musics.THEME.play();
+			Musics.THEME.pause();
 			mainFrame.menuPanel.nomusicBtn.setVisible(true);
 		}
 	};
 	public EventHandler<ActionEvent> nomusicEvent = new EventHandler<ActionEvent>() {
 		@Override 
 		public void handle(ActionEvent e) {
-			Musics.THEME.pause();
+			Musics.THEME.play();
 			mainFrame.menuPanel.nomusicBtn.setVisible(false);
 		}
 	};

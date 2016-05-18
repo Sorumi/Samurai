@@ -230,7 +230,7 @@ public class MenuPanel extends Pane {
 		
 		guideGroup = new GuideGroup();
 		guideGroup.setVisible(false); 
-		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, musicBtn, nomusicBtn, guideGroup); 
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, nomusicBtn, musicBtn, guideGroup); 
 	}
 	public void btnClick(int btn){
 		if(btn == 0){

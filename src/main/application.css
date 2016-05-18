@@ -15,7 +15,7 @@
 	-fx-pref-height: 50;
 	-fx-background-radius: 25;
 	-fx-border-radius: 25;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 #mode-btn{
 	-fx-background-color: rgba(255,255,255,0.5);
@@ -26,15 +26,13 @@
 	-fx-font-weight: 600;
     -fx-text-fill: #fff;
     -fx-alignment: center;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+    -fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 /* Guide */
 #guide-panel{
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
-	
 }
 #main-label{ 
 	-fx-text-fill: #9b9b9b;
@@ -57,7 +55,7 @@
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 25;
 	-fx-border-radius: 25;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 #money-label{
 	-fx-text-fill: #9b9b9b;
@@ -103,7 +101,7 @@
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 
 #item-quantity{
@@ -193,7 +191,7 @@
 	-fx-background-color: #dddddd;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 #build-btn{
 	-fx-background-radius: 10;
@@ -210,7 +208,7 @@
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 #material-name{
 	-fx-background-color: #ffffff;
@@ -237,13 +235,13 @@
 	-fx-background-color: #f9f9f9;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 #archive-view{
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 #Aname-label{
 	-fx-text-fill: #9b9b9b;
@@ -313,7 +311,7 @@
 
 /*LevelSelect */
 #level-select-panel{
-	-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }
 #LevelName-label{
 	-fx-text-fill: #9b9b9b;

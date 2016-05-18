@@ -21,6 +21,7 @@ public class GuideGroup extends Group {
 	
 	public GuideGroup(){
 		
+		this.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 2, 0, 0, 1);");
 		currentPage = 0;
 		
 		guideHandler = new GuideHandler(this);
