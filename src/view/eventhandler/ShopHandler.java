@@ -26,7 +26,8 @@ public class ShopHandler {
 	public EventHandler<MouseEvent> plusQuantityEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			int quantity = shopPanel.purchasePanel.quantity + 1;
-			if (quantity >= 0) {
+			int total = (shopController.getPropsStore().getProps(num).getPrice()) * quantity;
+			if (total < getShopController().getPropsStore().getMoney()) {
 				shopPanel.purchasePanel.setQuantity(quantity);
 			}
 		}
@@ -35,7 +36,8 @@ public class ShopHandler {
 	public EventHandler<MouseEvent> minusQuantityEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			int quantity = shopPanel.purchasePanel.quantity - 1;
-			if (quantity >= 0) {
+			if (quantity > 0) {
+				shopPanel.purchasePanel.buyBtnAbled();
 				shopPanel.purchasePanel.setQuantity(quantity);
 			}
 		}
@@ -59,13 +61,19 @@ public class ShopHandler {
 		public void handle(MouseEvent event) {
 			ShopItemView item = (ShopItemView) event.getSource();
 			num = PropsInG.get7Type(item.getNum());
-			
+
 			Information information = shopController.getInformationOfTag(num);
 			shopPanel.infoPanel.updatePropInfo(information.getTag(), information.getName(),
 					information.getDescription());
-			// TODO 价格！！！
 			shopPanel.purchasePanel.setPrice(shopController.getPropsStore().getProps(num).getPrice());
-			shopPanel.purchasePanel.setQuantity(0);
+			shopPanel.purchasePanel.setQuantity(1);
+
+			int total = shopController.getPropsStore().getProps(num).getPrice();
+			if (total > getShopController().getPropsStore().getMoney()) {
+				shopPanel.purchasePanel.buyBtnUnable();
+			} else {
+				shopPanel.purchasePanel.buyBtnAbled();
+			}
 		}
 	};
 
@@ -75,12 +83,12 @@ public class ShopHandler {
 
 			quantity = shopPanel.purchasePanel.getQuantity();
 
-//			System.out.println(num);
+			// System.out.println(num);
 			getShopController().getPropsStore().getProps(num).changeNumber(quantity);
 			int total = (shopController.getPropsStore().getProps(num).getPrice()) * quantity;
-			if(total > getShopController().getPropsStore().getMoney()){
+			if (total > getShopController().getPropsStore().getMoney()) {
 				System.out.println("You money isn't enough.");
-			}else {
+			} else {
 				getShopController().updateMoney(-total);
 				TerritoryPanel parent = (TerritoryPanel) shopPanel.getParent();
 				parent.updateMoney();
