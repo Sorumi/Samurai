@@ -40,7 +40,7 @@ public class DoubleSelectPanel extends Pane {
 		serverBtn.setOnMouseExited(menuHandler.serverBtnExitEvent);
 		serverBtn.setOnMouseClicked(menuHandler.serverEvent);
 		
-		clientBtn = new Button("寻找链接");
+		clientBtn = new Button("寻找连接");
 		clientBtn.setPrefSize(160, 40);
 		clientBtn.setLayoutX(70);
 		clientBtn.setLayoutY(142);
