@@ -61,7 +61,7 @@ public class StoreHandler {
 				if(storePanel.sellPanel != null){
 					
 					storePanel.sellPanel.setPrice(MaterialLibrary.priceTable(item.getNum() + 800));
-					storePanel.sellPanel.setQuantity(0);
+					storePanel.sellPanel.setQuantity(1);
 					storePanel.sellPanel.quantityTotal = item.quantity;
 				}
 			}else{
@@ -72,11 +72,10 @@ public class StoreHandler {
 				if(storePanel.sellPanel != null){
 					
 					storePanel.sellPanel.setPrice((int)(storeController.getPropsStore().getProps(num).getPrice()*0.6));
-					storePanel.sellPanel.setQuantity(0);
+					storePanel.sellPanel.setQuantity(1);
 					storePanel.sellPanel.quantityTotal = item.quantity;
 				}
 			}
-			
 			
 		}
 	};
@@ -84,7 +83,7 @@ public class StoreHandler {
 	public EventHandler<MouseEvent> plusQuantityEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			int quantity = storePanel.sellPanel.quantity + 1;
-			if (quantity >= 0 && quantity<=storePanel.sellPanel.quantityTotal) {
+			if (quantity > 0 && quantity<=storePanel.sellPanel.quantityTotal) {
 				storePanel.sellPanel.setQuantity(quantity);
 			}
 		}
@@ -93,7 +92,7 @@ public class StoreHandler {
 	public EventHandler<MouseEvent> minusQuantityEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			int quantity = storePanel.sellPanel.quantity - 1;
-			if (quantity >= 0) {
+			if (quantity > 0) {
 				storePanel.sellPanel.setQuantity(quantity);
 			}
 		}
