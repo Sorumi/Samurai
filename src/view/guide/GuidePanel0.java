@@ -46,7 +46,7 @@ public class GuidePanel0 extends GuidePanel {
 		explainLabel1 = new Label("本游戏是一个即时战略类的战棋类游戏，通过游戏双方操控自己的三个武士进行武装占领和互相作战，争取最大的领地，登上王者的宝座。游戏终了时，通过判断领地的多少来决定胜负。");
 		explainLabel1.setLayoutX(50);
 		explainLabel1.setLayoutY(100);
-		explainLabel1.setPrefSize(1000, 100);
+		explainLabel1.setPrefSize(800, 100);
 		explainLabel1.setId("explain-label");
 
 		explainLabel2 = new Label(
