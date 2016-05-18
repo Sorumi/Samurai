@@ -7,7 +7,7 @@ public class GameColor {
 		Color color;
 		
 		switch(x) {
-			case 0: color = Color.rgb(200,200,200,0.7);break;//gray
+			case 0: color = Color.rgb(200,200,200,0.3);break;//gray
 			case 1: color = Color.web("#DB7164");break;
 			case 2: color = Color.web("#E09767");break;
 			case 3: color = Color.web("#E2B66B");break;
@@ -15,7 +15,7 @@ public class GameColor {
 			case 5: color = Color.web("#6AA0D5");break;
 			case 6: color = Color.web("#6ABEDD");break;
 			//highlight
-			case 7: color = Color.rgb(230,230,230,0.7);break;
+			case 7: color = Color.rgb(230,230,230,0.5);break;
 			case 8: color = Color.web("#FF8A7D");break;
 			case 9: color = Color.web("#FFB27F");break;
 			case 10: color = Color.web("#FFCE7B");break;

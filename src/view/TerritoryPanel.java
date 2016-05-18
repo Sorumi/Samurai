@@ -236,7 +236,7 @@ public class TerritoryPanel extends Pane {
 		this.getChildren().add(terToMenuSelectPanel);
 		this.terToMenuSelectPanel.setVisible(false);
 		// init
-		// updateSamurai();
+		 updateSamurai();
 		updateMoney();
 		this.setRandomWeather();
 
