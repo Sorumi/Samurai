@@ -216,9 +216,9 @@ public class StatePanel extends OrderPanel {
 		this.setVisible(false);  
 		
 		//TODO
-		if(SCALE == 2){
-			this.setExperience(30, 50);
-		}
+//		if(SCALE == 2){
+//			this.setExperience(30, 50);
+//		}
 	}
 
 	private void setUpLocation(){
@@ -325,10 +325,19 @@ public class StatePanel extends OrderPanel {
 		bloodArc.setLength(- (float) bloodRest / bloodTotal * 360);
 	}
 	
-	public void setExperience(int current, int rest){
+//	public void setExperience(int current, int rest){
+//		exTotalLabel.setText(current + "");
+//		exRestLabel.setText(rest + "");
+//		double x = (double)current/(current+rest)*400;
+//		exFillRect.setWidth(x);
+//	}
+
+	public void setExperience(int[] experienceOfSamurai) {
+		int current = experienceOfSamurai[0];
+		int total = experienceOfSamurai[1];
 		exTotalLabel.setText(current + "");
-		exRestLabel.setText(rest + "");
-		double x = (double)current/(current+rest)*400;
+		exRestLabel.setText(total-current + "");
+		double x = (double)current/total*400;
 		exFillRect.setWidth(x);
 	}
 }

@@ -36,6 +36,14 @@ public class TerritoryController{
         return this.storyModel.getSamuraiPO(i).getArmor();
     }
 
+    public int getExperienceOfSamurai(int i){
+    	return this.storyModel.getSamuraiPO(i).getExperience();
+    }
+    
+    public int getNextLevelExperienceOfSamurai(int i){
+    	return this.storyModel.getSamuraiPO(i).getNextLevelExperience();
+    }
+    
     public static TerritoryController territoryController(){
         if(territoryController == null){
             territoryController = new TerritoryController();

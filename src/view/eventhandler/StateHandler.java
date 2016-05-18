@@ -37,8 +37,10 @@ public class StateHandler {
 	    	  territoryPanel.statePanel.setCurrentSamuraiInT(currentSamurai);
 	    	  territoryPanel.statePanel.setAppear(true);
 
-			  territoryPanel.statePanel.set6Properties(territoryPanel.get6PropertiesOfSamurai(currentSamurai.getNumber()));
-			  territoryPanel.statePanel.setBloodTotal(territoryPanel.getBloodTotalOfSamurai(currentSamurai.getNumber()));
+	    	  int i = currentSamurai.getNumber();
+			  territoryPanel.statePanel.set6Properties(territoryPanel.get6PropertiesOfSamurai(i));
+			  territoryPanel.statePanel.setBloodTotal(territoryPanel.getBloodTotalOfSamurai(i));
+			  territoryPanel.statePanel.setExperience(territoryPanel.getExperienceOfSamurai(i));
 		  }
 	};
 	

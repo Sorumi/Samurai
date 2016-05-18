@@ -236,7 +236,7 @@ public class TerritoryPanel extends Pane {
 		this.getChildren().add(terToMenuSelectPanel);
 		this.terToMenuSelectPanel.setVisible(false);
 		// init
-		updateSamurai();
+		// updateSamurai();
 		updateMoney();
 		this.setRandomWeather();
 
@@ -279,8 +279,6 @@ public class TerritoryPanel extends Pane {
 
 	public void updateSamurai() {
 		territoryHandler.updateSamurai();
-		this.set6Properties();
-		this.setBloodTotal();
 	}
 
 	public void setBlur(boolean isBlur) {
@@ -348,33 +346,36 @@ public class TerritoryPanel extends Pane {
 	}
 
 	public int[] get6PropertiesOfSamurai(int i) {
-		switch (i) {
-		case 1:
-			return this.samuraiProperties_1;
-		case 2:
-			return this.samuraiProperties_2;
-		case 3:
-			return this.samuraiProperties_3;
-		default:
+		if (i > 0 && i < 4) {
+			return this.territoryHandler.getTerritoryController().get6Properties(i);
+		} else {
 			return new int[] { 0 };
 		}
 	}
 
-	public void set6Properties() {
-		this.samuraiProperties_1 = this.territoryHandler.getTerritoryController().get6Properties(1);
-		this.samuraiProperties_2 = this.territoryHandler.getTerritoryController().get6Properties(2);
-		this.samuraiProperties_3 = this.territoryHandler.getTerritoryController().get6Properties(3);
-	}
-
-	public void setBloodTotal() {
-		for (int i = 1; i <= 3; i++) {
-			this.bloodTotal[i] = this.territoryHandler.getTerritoryController().getBlood(i);
-		}
-	}
-
 	public int getBloodTotalOfSamurai(int samurai) {
-		return this.bloodTotal[samurai];
+		return this.territoryHandler.getTerritoryController().getBlood(samurai);
 	}
+
+	public int[] getExperienceOfSamurai(int i) {
+		return new int[] { this.territoryHandler.getTerritoryController().getExperienceOfSamurai(i),
+				this.territoryHandler.getTerritoryController().getNextLevelExperienceOfSamurai(i) };
+	}
+
+	// public void set6Properties() {
+	// this.samuraiProperties_1 =
+	// this.territoryHandler.getTerritoryController().get6Properties(1);
+	// this.samuraiProperties_2 =
+	// this.territoryHandler.getTerritoryController().get6Properties(2);
+	// this.samuraiProperties_3 =
+	// this.territoryHandler.getTerritoryController().get6Properties(3);
+	// }
+
+	// public void setBloodTotal() {
+	// for (int i = 1; i <= 3; i++) {
+	// this.bloodTotal[i] =
+	// }
+	// }
 
 	public TerritoryHandler getTerritoryHandler() {
 		return this.territoryHandler;

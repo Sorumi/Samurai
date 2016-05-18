@@ -27,7 +27,7 @@ public class CampsiteHandler {
 	public void update() {
 		campsitePanel.getItemsPanel().updateWeapon(campsiteController.getWeapons());
 		campsitePanel.getItemsPanel().updateArmor(campsiteController.getArmors());
-//		campsitePanel.getItemsPanel().u
+
 		campsitePanel.samuraiPanel.setSamurai(1);
 		campsitePanel.samuraiPanel.setWeapon(campsiteController.getWeaponOfSamurai(1).getType());
 		campsitePanel.samuraiPanel.setArmor(campsiteController.getArmorOfSamurai(1).getType() - 900);
