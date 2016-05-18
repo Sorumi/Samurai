@@ -931,6 +931,8 @@ public class GameModel extends BaseModel implements Observer {
 
     public void actionDone(){
 
+        OperationQueue.EmptyQueue();
+
         this.currentTime = this.timeTotal;
 
         super.updateChange(new UpdateMessage("goodbyeactionpanel",0));
