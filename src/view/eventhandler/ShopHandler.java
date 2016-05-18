@@ -80,15 +80,13 @@ public class ShopHandler {
 	// 购买按钮
 	public EventHandler<MouseEvent> buyBtnClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
-
 			quantity = shopPanel.purchasePanel.getQuantity();
 
-			// System.out.println(num);
-			getShopController().getPropsStore().getProps(num).changeNumber(quantity);
 			int total = (shopController.getPropsStore().getProps(num).getPrice()) * quantity;
 			if (total > getShopController().getPropsStore().getMoney()) {
 				System.out.println("You money isn't enough.");
-			} else {
+			}else {
+				getShopController().getPropsStore().getProps(num).changeNumber(quantity);
 				getShopController().updateMoney(-total);
 				TerritoryPanel parent = (TerritoryPanel) shopPanel.getParent();
 				parent.updateMoney();
