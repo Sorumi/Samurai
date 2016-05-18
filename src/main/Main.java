@@ -12,6 +12,16 @@ import javafx.scene.layout.Pane;
 import view.MenuPanel;
 import view.StoryPanel;
 
+/*
+	*********************
+	*    Produced by    *
+	*       Sorumi      *
+	*       KrayC       *
+	*  SilverNarcissus  *
+	*     Vivian-SJ     *
+	*********************
+ */
+
 public class Main extends Application {
 	
 	private Scene scene;
