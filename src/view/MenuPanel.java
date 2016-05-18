@@ -26,6 +26,8 @@ public class MenuPanel extends Pane {
 
 	private SystemButton exitBtn;
 	private SystemButton courseBtn;
+	private SystemButton musicBtn;
+	public SystemButton nomusicBtn;
 	
 	private MenuBackground menuBg;
 	public int modeNum;
@@ -77,10 +79,20 @@ public class MenuPanel extends Pane {
 		exitBtn.setLayoutY(25);
 		exitBtn.setOnAction(menuHandler.exitEvent);
 		
-		courseBtn = new SystemButton(2);	
+		courseBtn = new SystemButton(2);
 		courseBtn.setLayoutX(25);
 		courseBtn.setLayoutY(25);
-		courseBtn.setOnAction(menuHandler.guideEvent); 
+		courseBtn.setOnAction(menuHandler.guideEvent);
+		
+		musicBtn = new SystemButton(5);
+		musicBtn.setLayoutX(100);
+		musicBtn.setLayoutY(25);
+		musicBtn.setOnAction(menuHandler.musicEvent);
+		
+		nomusicBtn = new SystemButton(6);
+		nomusicBtn.setLayoutX(100);
+		nomusicBtn.setLayoutY(25);
+		nomusicBtn.setOnAction(menuHandler.nomusicEvent);
 		
 		//bg
 		menuBg = new MenuBackground();
@@ -218,7 +230,7 @@ public class MenuPanel extends Pane {
 		
 		guideGroup = new GuideGroup();
 		guideGroup.setVisible(false); 
-		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, guideGroup); 
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, musicBtn, nomusicBtn, guideGroup); 
 	}
 	public void btnClick(int btn){
 		if(btn == 0){

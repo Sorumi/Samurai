@@ -39,7 +39,9 @@ public class Images {
 	public static final Image SYSTEM_HELP_BTN = ImageManager.getImage("main/system_help_button.png");
 	public static final Image SYSTEM_PAUSE_BTN = ImageManager.getImage("main/system_pause_button.png");
 	public static final Image SYSTEM_CONTINUE_BTN = ImageManager.getImage("main/system_continue_button.png");
-	public static final Image[] SYSTEM_BTN = {SYSTEM_CLOSE_BTN, SYSTEM_SAVE_BTN, SYSTEM_HELP_BTN, SYSTEM_PAUSE_BTN, SYSTEM_CONTINUE_BTN};
+	public static final Image SYSTEM_MUSIC_BTN = ImageManager.getImage("main/system_music_button.png");
+	public static final Image SYSTEM_NOMUSIC_BTN = ImageManager.getImage("main/system_nomusic_button.png");
+	public static final Image[] SYSTEM_BTN = {SYSTEM_CLOSE_BTN, SYSTEM_SAVE_BTN, SYSTEM_HELP_BTN, SYSTEM_PAUSE_BTN, SYSTEM_CONTINUE_BTN, SYSTEM_MUSIC_BTN, SYSTEM_NOMUSIC_BTN};
 
 	// samurai state
 	public static final Image STATE_ICON_1 = ImageManager.getImage("main/state_icon_1.png");

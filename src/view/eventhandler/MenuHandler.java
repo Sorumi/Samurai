@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import main.Main;
 import model.StoryModel;
+import musics.Musics;
 import network.Configure;
 import view.ArchivePanel;
 import view.GamePanelOL;
@@ -209,6 +210,21 @@ public class MenuHandler {
 		public void handle(ActionEvent e) {
 			mainFrame.menuPanel.guideGroup.setVisible(true);
 			mainFrame.menuPanel.samuraiTimer.stop();
+		}
+	};
+	
+	public EventHandler<ActionEvent> musicEvent = new EventHandler<ActionEvent>() {
+		@Override 
+		public void handle(ActionEvent e) {
+			Musics.THEME.play();
+			mainFrame.menuPanel.nomusicBtn.setVisible(true);
+		}
+	};
+	public EventHandler<ActionEvent> nomusicEvent = new EventHandler<ActionEvent>() {
+		@Override 
+		public void handle(ActionEvent e) {
+			Musics.THEME.pause();
+			mainFrame.menuPanel.nomusicBtn.setVisible(false);
 		}
 	};
 }
