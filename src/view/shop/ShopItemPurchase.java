@@ -7,10 +7,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import view.GameColor;
 import view.Images;
 import view.eventhandler.ShopHandler;
 
 public class ShopItemPurchase extends Pane{
+	private ShopHandler shopHandler;
+	
 	private ImageView img1;
 	private ImageView img2;
 	
@@ -26,6 +29,8 @@ public class ShopItemPurchase extends Pane{
 	private Button buyButton;
 	
 	public ShopItemPurchase(ShopHandler shopHandler){  
+		this.shopHandler = shopHandler;
+		
 		this.setPrefSize(500, 340);
 		this.setLayoutX(650);
 		this.setLayoutY(270);
@@ -104,15 +109,27 @@ public class ShopItemPurchase extends Pane{
 	public void buyBtnPressed() {
 		buyButton.setLayoutY(246);
 		buyButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 4);");
-
-//		this.shopHandler.getShopController().getPropsStore().getProps(this.shopHandler)
 	}
 
 	public void buyBtnAbled() {
 		buyButton.setLayoutY(242);
 		buyButton.setStyle("-fx-effect: dropshadow(gaussian, #B4D1D6, 0, 0, 0, 8);");
+		buyButton.setOnMouseEntered(shopHandler.buyBtnEnterEvent);
+		buyButton.setOnMouseExited(shopHandler.buyBtnExitEvent);
+		buyButton.setOnMouseClicked(shopHandler.buyBtnClickEvent);
 	}
 	
+
+	public void buyBtnUnable() {
+		buyButton.setLayoutY(246);
+		buyButton.setStyle("-fx-background-color: " + GameColor.getWeaponColorString(-1) + ";"
+				+ "-fx-effect: dropshadow(gaussian," + GameColor.getWeaponColorString(-2) + ", 0, 0, 0, 4);"
+				+ "-fx-text-fill: #ffffff;");
+		buyButton.setOnMouseEntered(null);
+		buyButton.setOnMouseExited(null);
+		buyButton.setOnMouseClicked(null);
+		
+	}
 	public void setQuantity(int i){  
 		quantityLabel.setText(i + "");
 		totalPriceLabel.setText("- "+perPrice*i); 
@@ -129,4 +146,5 @@ public class ShopItemPurchase extends Pane{
 	public int getQuantity(){
 		return this.quantity;
 	}
+
 }
