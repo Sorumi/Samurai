@@ -14,7 +14,7 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 import view.GameColor;
-import view.Images;
+import images.Images;
 
 public class BackgroundPanel3 extends BackgroundPanel {
 	private ImageView bg;

@@ -1,5 +1,6 @@
 package view;
 
+import images.Images;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;

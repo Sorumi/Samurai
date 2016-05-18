@@ -2,6 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
+import images.Images;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.RotateTransition;

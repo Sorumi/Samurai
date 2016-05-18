@@ -8,7 +8,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeLineJoin;
-import view.Images;
+import images.Images;
 
 public class GuidePanel0 extends GuidePanel {
 	private Rectangle bgRect;

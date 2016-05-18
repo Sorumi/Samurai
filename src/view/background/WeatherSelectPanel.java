@@ -3,7 +3,7 @@ package view.background;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import view.Images;
+import images.Images;
 import view.eventhandler.WeatherHandler;
 
 public class WeatherSelectPanel extends Pane {

@@ -12,7 +12,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import view.GameColor;
-import view.Images;
+import images.Images;
 import view.SamuraiPanel;
 import view.eventhandler.SmithyHandler;
 import view.eventhandler.StateHandler;

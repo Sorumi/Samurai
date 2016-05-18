@@ -1,5 +1,6 @@
 package view;
 
+import images.Images;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;

@@ -1,5 +1,7 @@
 package view;
 
+import images.Images;
+
 public class SamuraiArmorView extends OrderImageView {
 	
 	private int SCALE;

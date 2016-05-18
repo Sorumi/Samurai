@@ -6,6 +6,7 @@ import controller.msgqueue.ContinueOperation;
 import controller.msgqueue.OperationQueue;
 import controller.msgqueue.SkipOperation;
 import controller.msgqueue.StopOperation;
+import images.Images;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
