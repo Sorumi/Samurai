@@ -66,7 +66,7 @@ public class RoundPanel extends OrderPanel{
 		roundTotal.setPrefWidth(50);
 		this.getChildren().add(roundTotal);
 		
-		roundCurrent = new Label("30");
+		roundCurrent = new Label("20");
 		roundCurrent.setId("round-current");
 		roundCurrent.setLayoutX(2);
 		roundCurrent.setLayoutY(22);
