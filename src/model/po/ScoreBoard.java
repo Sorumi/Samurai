@@ -91,18 +91,21 @@ public class ScoreBoard {
 		case 1:
 			switch (Rating) {
 			case "SSS":
-				lowGain(10, checkPoint);
+				lowGain(12, checkPoint);
 				break;
 			case "SS":
-				lowGain(8, checkPoint);
+				lowGain(10, checkPoint);
 				break;
 			case "S":
-				lowGain(6, checkPoint);
+				lowGain(8, checkPoint);
 				break;
 			case "A":
-				lowGain(4, checkPoint);
+				lowGain(6, checkPoint);
 				break;
 			case "B":
+				lowGain(4, checkPoint);
+				break;
+			case "C":
 				lowGain(2, checkPoint);
 				break;
 			default:
@@ -114,18 +117,21 @@ public class ScoreBoard {
 		case 2:
 			switch (Rating) {
 			case "SSS":
-				mediumGain(10, checkPoint);
+				mediumGain(12, checkPoint);
 				break;
 			case "SS":
-				mediumGain(8, checkPoint);
+				mediumGain(10, checkPoint);
 				break;
 			case "S":
-				mediumGain(6, checkPoint);
+				mediumGain(8, checkPoint);
 				break;
 			case "A":
-				mediumGain(4, checkPoint);
+				mediumGain(6, checkPoint);
 				break;
 			case "B":
+				mediumGain(4, checkPoint);
+				break;
+			case "C":
 				mediumGain(2, checkPoint);
 				break;
 			default:
@@ -137,18 +143,21 @@ public class ScoreBoard {
 		case 3:
 			switch (Rating) {
 			case "SSS":
-				highGain(10, checkPoint);
+				highGain(12, checkPoint);
 				break;
 			case "SS":
-				highGain(8, checkPoint);
+				highGain(10, checkPoint);
 				break;
 			case "S":
-				highGain(6, checkPoint);
+				highGain(8, checkPoint);
 				break;
 			case "A":
-				highGain(4, checkPoint);
+				highGain(6, checkPoint);
 				break;
 			case "B":
+				highGain(4, checkPoint);
+				break;
+			case "C":
 				highGain(2, checkPoint);
 				break;
 			default:

@@ -93,6 +93,7 @@ public class ArchiveView extends Pane {
 				this.btnUnabled(0);
 				loadBtn.setOnMouseEntered(null);
 				loadBtn.setOnMouseExited(null);
+				loadBtn.setOnMouseClicked(null);
 			}
 		}
 

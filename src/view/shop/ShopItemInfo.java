@@ -13,13 +13,13 @@ public class ShopItemInfo extends Pane {
 		this.setLayoutY(50);
 		this.setId("campsite-wrapper");
 		
-		itemName = new Label("大起大落");
+		itemName = new Label("");
 		itemName.setLayoutX(50);
 		itemName.setLayoutY(50);
 		itemName.setId("item-name");
 		this.getChildren().add(itemName);
 		
-		itemDescription = new Label("描述");
+		itemDescription = new Label("");
 		itemDescription.setMaxWidth(400);
 		itemDescription.setLayoutX(50);
 		itemDescription.setLayoutY(90);
