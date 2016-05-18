@@ -595,16 +595,18 @@ public class GamePanel extends Pane implements Observer{
 		                    }
 		                }
 
-						if(level != 99) {
-							for (PropView propView : propViews) {
-								propView.setVisible(false);
+		            }
+					if(level != 99) {
+						for (PropView propView : propViews) {
+							propView.setVisible(false);
+							for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()){
 								if (block.getX() == propView.x && block.getY() == propView.y) {
+									System.out.println("ADD PROP");
 									propView.setVisible(true);
 								}
 							}
 						}
-
-		            }
+					}
 
 				}else if(key.equals("vision")){
 					chessBoard.see((ArrayList<ActualBlock>) notifingObject.getValue());

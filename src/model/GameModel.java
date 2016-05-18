@@ -423,7 +423,7 @@ public class GameModel extends BaseModel implements Observer {
                         props.getPosition().getY() == position.getY()) {
 
                     //只有人类玩家才加道具
-                    if(this.getCurrentSamurai()  / 4 == 0) {
+                    if(this.getCurrentSamurai() / 4 == 0) {
                         propList[props.getType()]++;
                     }
 
@@ -445,25 +445,27 @@ public class GameModel extends BaseModel implements Observer {
 
     }
 
-    public void useProp(int propNum){
-        propList[propNum]--;
-        String result = this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
-        System.out.println(result);
-        if(result.equals("")) {
-            this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
-        }else if(result.equals("small")){
+    public void useProp(int propNum) {
+        if (this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5){
+            propList[propNum]--;
+            String result = this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
+            System.out.println(result);
+            if (result.equals("")) {
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
+            } else if (result.equals("small")) {
 
-        }else if(result.equals("kill")){
-            super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), -1}));
-            this.getSamuraiOfNum(this.getCurrentSamurai()).beKilled(this.chessBoardModel);
-            this.getSamuraiOfNum(this.getCurrentSamurai()).setColdRound(1);
-            super.updateChange(new UpdateMessage("home",this.getSamuraiOfNum(this.getCurrentSamurai())));
-            OperationQueue.addOperation(new SkipOperation());
+            } else if (result.equals("kill")) {
+                super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), -1}));
+                this.getSamuraiOfNum(this.getCurrentSamurai()).beKilled(this.chessBoardModel);
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setColdRound(1);
+                super.updateChange(new UpdateMessage("home", this.getSamuraiOfNum(this.getCurrentSamurai())));
+                OperationQueue.addOperation(new SkipOperation());
+            }
+            SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
+            this.updateHealthPoint(tmpPO.getNumber());
+            super.updateChange(new UpdateMessage("useProp", new int[]{propNum, getCurrentSamurai(), tmpPO.getLevel(), tmpPO.getAttackValue()[0], tmpPO.getAttackValue()[1],
+                    tmpPO.getArmorValue(), tmpPO.getCriticalHitRate(), tmpPO.getDodgeRate(), tmpPO.getArmorPenetration()}));
         }
-        SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
-        this.updateHealthPoint(tmpPO.getNumber());
-        super.updateChange(new UpdateMessage("useProp",new int[]{propNum, getCurrentSamurai(), tmpPO.getLevel(),tmpPO.getAttackValue()[0],tmpPO.getAttackValue()[1],
-                tmpPO.getArmorValue(),tmpPO.getCriticalHitRate(),tmpPO.getDodgeRate(),tmpPO.getArmorPenetration()}));
     }
 
     public void updateOccupy(int direction){
@@ -648,25 +650,24 @@ public class GameModel extends BaseModel implements Observer {
 
         ArrayList<ActualBlock> blocks = new ArrayList<>();
 
-        for(int x = 0; x <= this.length; x++){
-            for (int y = 0; y <= this.length; y++) {
-                blocks.add(this.chessBoardModel.getActualBlock(x,y));
-            }
+//        for(int x = 0; x <= this.length; x++){
+//            for (int y = 0; y <= this.length; y++) {
+//                blocks.add(this.chessBoardModel.getActualBlock(x,y));
+//            }
+//        }
+//        super.updateChange(new UpdateMessage("vision", blocks));
+//        return blocks;
+
+        if(GameModel.isClient() && !GameModel.isServer()){
+            blocks = this.players[1].showVision();
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
+        }else{
+            blocks = this.players[0].showVision();
+            super.updateChange(new UpdateMessage("vision", blocks));
+            return blocks;
         }
 
-//        if(GameModel.isClient() && !GameModel.isServer()){
-//            blocks = this.players[1].showVision();
-//            super.updateChange(new UpdateMessage("vision", blocks));
-//            return blocks;
-//        }else{
-//            blocks = this.players[0].showVision();
-//            super.updateChange(new UpdateMessage("vision", blocks));
-//            return blocks;
-//        }
-
-
-        super.updateChange(new UpdateMessage("vision", blocks));
-        return blocks;
     }
 
     public void updateVisible(ArrayList<ActualBlock> blocks){
@@ -706,7 +707,7 @@ public class GameModel extends BaseModel implements Observer {
         while(!flag){
             x = random.nextInt(this.length);
             y = random.nextInt(this.length);
-            if(this.chessBoardModel.getActualBlockState(x ,y) == 0){
+            if(!this.chessBoardModel.getActualBlockOccupied(x , y)){
                 flag = true;
             }
             for(PropsInG propsInG : this.propsInGList){

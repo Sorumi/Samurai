@@ -14,7 +14,7 @@ public class PropsInG extends Props {
         super();
         this.position = new Position(position.getX(), position.getY());
         this.type = type;
-        this.existRound = 1;
+        this.existRound = 6;
     }
 
     public Position getPosition() {
