@@ -474,7 +474,7 @@ public class Armory implements Serializable {
 		System.out.println("No such weapon!");
 		return null;
 	}
-   
+
 	public ArrayList<Armor> checkAllArmor() {
 		ArrayList<Armor> armors = new ArrayList<Armor>();
 		for (Armor armor : armorList) {
@@ -484,6 +484,7 @@ public class Armory implements Serializable {
 		}
 		return armors;
 	}
+
 	public ArrayList<Armor> checkAllAvailableArmor() {
 		ArrayList<Armor> armors = new ArrayList<Armor>();
 		for (Armor armor : armorList) {
@@ -523,6 +524,7 @@ public class Armory implements Serializable {
 		}
 		return weapons;
 	}
+
 	public ArrayList<Weapon> checkAllAvailableWeapon() {
 		ArrayList<Weapon> weapons = new ArrayList<Weapon>();
 		for (Weapon weapon : spearList) {
@@ -562,6 +564,24 @@ public class Armory implements Serializable {
 		return null;
 	}
 
+	public boolean canBuideWeapon(int type,MaterialLibrary materialLibrary){
+    	Weapon weapon = getWeapon(type);
+    	if (weapon.canCreate()){
+		return materialLibrary.checkEnough(weapon.getMaterialTag(), weapon.getMaterialItem(),weapon.getMaterialNumber());
+    }
+    	else {
+			return false;
+		}
+	}
+	public boolean canBuideArmor(int type,MaterialLibrary materialLibrary){
+    	Armor armor=getArmor(type);
+    	if (armor.canCreate()){
+		return materialLibrary.checkEnough(armor.getMaterialTag(), armor.getMaterialItem(),armor.getMaterialNumber());
+    }
+    	else {
+			return false;
+		}
+	}
 	// 制造武器的方法 如果制造成功 返回true 否则返回false
 	public boolean buildWeapon(int type, MaterialLibrary materialLibrary) {
 		Weapon weapon = getWeapon(type);
