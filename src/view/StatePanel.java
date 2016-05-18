@@ -216,7 +216,9 @@ public class StatePanel extends OrderPanel {
 		this.setVisible(false);  
 		
 		//TODO
-		this.setExperience(30, 50);
+		if(SCALE == 2){
+			this.setExperience(30, 50);
+		}
 	}
 
 	private void setUpLocation(){

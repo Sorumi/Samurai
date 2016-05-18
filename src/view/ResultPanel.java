@@ -124,7 +124,7 @@ public class ResultPanel extends OrderPanel {
 		tile.setHgap(20);
 		tile.setPrefColumns(4);
 		tile.setPrefRows(2);
-		tile.setLayoutX(100);
+		tile.setLayoutX(50);
 		tile.setLayoutY(200);
 
 		samuraiPanel = new Pane();
