@@ -47,6 +47,8 @@ public class Images {
 	public static final Image STATE_ICON_4 = new Image("/./images/state_icon_4.png", true);
 	public static final Image STATE_ICON_5 = new Image("/./images/state_icon_5.png", true);
 	public static final Image STATE_ICON_6 = new Image("/./images/state_icon_6.png", true);
+	
+	public static final Image[] STATE_ICON = {STATE_ICON_1, STATE_ICON_2, STATE_ICON_3, STATE_ICON_4, STATE_ICON_5, STATE_ICON_6};
 
 	// weapon state
 	public static final Image WEAPON_STATE_1 = new Image("/./images/weapon_state_1.png", true);
