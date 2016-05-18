@@ -36,10 +36,17 @@ public class GamePanelSelectHandler {
 					OperationQueue.addOperation(new EndOperation(false));
 					break;
 				case 0:
+					basePanel = (Pane) gamePanel.getParent();
+					basePanel.getChildren().remove(gamePanel);
+					menu = (MenuPanel)basePanel.getChildren().get(0);
+					menu.samuraiTimer.start();
+
+
 					OperationQueue.addOperation(new EndOperation(false));
+
+
 					break;
 				default:
-					//TODO
 					StoryPanel storyPanel = (StoryPanel) gamePanel.getParent();
 					storyPanel.mapPanel.toFront();
 					storyPanel.mapPanel.mapHandler.update();

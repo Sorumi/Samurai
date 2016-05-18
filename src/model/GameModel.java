@@ -347,6 +347,7 @@ public class GameModel extends BaseModel implements Observer {
         System.out.println("I'm " + isServer() + " a server.");
         System.out.println("I'm " + isClient() + " a client.");
         ArrayList<ActualBlock> blocks = new ArrayList<>();
+
         for(int x = 0; x <= this.length; x++){
             for (int y = 0; y <= this.length; y++) {
                 blocks.add(this.chessBoardModel.getActualBlock(x,y));
@@ -646,17 +647,7 @@ public class GameModel extends BaseModel implements Observer {
     //单机模式也是只能看见自己这方的 block
     public ArrayList<ActualBlock> updateVision(){
 
-        //开挂模式
-
         ArrayList<ActualBlock> blocks = new ArrayList<>();
-
-//        for(int x = 0; x <= this.length; x++){
-//            for (int y = 0; y <= this.length; y++) {
-//                blocks.add(this.chessBoardModel.getActualBlock(x,y));
-//            }
-//        }
-//        super.updateChange(new UpdateMessage("vision", blocks));
-//        return blocks;
 
         if(GameModel.isClient() && !GameModel.isServer()){
             blocks = this.players[1].showVision();
@@ -742,7 +733,7 @@ public class GameModel extends BaseModel implements Observer {
             super.updateChange(new UpdateMessage("round",this.currentRound));
             super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
             super.updateChange(new UpdateMessage("actionPoint",this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-//            this.updateVisible(this.updateVision());
+            this.updateVisible(this.updateVision());
 
         }else{
 
@@ -763,7 +754,8 @@ public class GameModel extends BaseModel implements Observer {
         //在 gamePanel 上放道具
         if(this.level != 99) {
             Random random = new Random();
-            if (random.nextInt(1) == 0) {
+            //概率 : 10% 掉道具
+            if (random.nextInt(10) == 0) {
                 Position position = this.randomPropLocation();
                 int type = random.nextInt(14) + 1;
                 this.propsInGList.add(new PropsInG(position,type));
@@ -810,7 +802,6 @@ public class GameModel extends BaseModel implements Observer {
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
                 super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
                 super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-//                super.updateChange(new UpdateMessage("healthPoint", new int[]{this.currentSamurai, this.getSamuraiOfNum(this.currentSamurai).getHealthPoint()}));
             }
 
             this.updateVisible(this.updateVision());
