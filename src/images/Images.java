@@ -48,6 +48,8 @@ public class Images {
 	public static final Image STATE_ICON_4 = ImageManager.getImage("state_icon_4.png");
 	public static final Image STATE_ICON_5 = ImageManager.getImage("state_icon_5.png");
 	public static final Image STATE_ICON_6 = ImageManager.getImage("state_icon_6.png");
+	public static final Image[] STATE_ICON = {STATE_ICON_1, STATE_ICON_2, STATE_ICON_3, STATE_ICON_4, STATE_ICON_5, STATE_ICON_6};
+
 
 	// weapon state
 	public static final Image WEAPON_STATE_1 = ImageManager.getImage("weapon_state_1.png");
@@ -84,9 +86,9 @@ public class Images {
 	public static final Image[] PROP = { null, PROP_01, PROP_02, PROP_03, PROP_11, PROP_12, PROP_13, PROP_21, PROP_22,
 			PROP_23, PROP_31, PROP_32, PROP_33, PROP_41, PROP_51 };
 	// player
-	public static final Image PLAYER_LOGO_A = ImageManager.getImage("PLAYER_LOGO_A.png");
-	public static final Image PLAYER_LOGO_B = ImageManager.getImage("PLAYER_LOGO_B.png");
-	public static final Image PLAYER_LOGO_0 = ImageManager.getImage("PLAYER_LOGO.png");
+	public static final Image PLAYER_LOGO_A = ImageManager.getImage("player_logo_A.png");
+	public static final Image PLAYER_LOGO_B = ImageManager.getImage("player_logo_B.png");
+	public static final Image PLAYER_LOGO_0 = ImageManager.getImage("player_logo.png");
 	public static final Image[] PLAYER_LOGO = { PLAYER_LOGO_A, PLAYER_LOGO_B, PLAYER_LOGO_0 };
 
 	// resultPanel

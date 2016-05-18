@@ -46,12 +46,12 @@ public class GuidePanel0 extends GuidePanel {
 		explainLabel1 = new Label("本游戏是一个即时战略类的战棋类游戏，通过游戏双方操控自己的三个武士进行武装占领和互相作战，争取最大的领地，登上王者的宝座。游戏终了时，通过判断领地的多少来决定胜负。");
 		explainLabel1.setLayoutX(50);
 		explainLabel1.setLayoutY(100);
-		explainLabel1.setPrefSize(1000, 100);
+		explainLabel1.setPrefSize(800, 100);
 		explainLabel1.setId("explain-label");
 
 		explainLabel2 = new Label(
 				"作战区域：战场上15*15的区域，武士任何的行为都要在该区域之内。" + "\n" + "视野：每个武士有自己能看到的视野范围，每个玩家的三个武士可以共享视野范围，视野之外的地图将显示为灰色空白。"
-						+ "\n" + "出生地：每个武士有自己的出生位置，该位置仅用于出生和复活，一旦离开，便不能反回。" + "\n" + "冻结轮数：武士被击退后，会在复活点处休息一定回合，不能操作。");
+						+ "\n" + "出生地：每个武士有自己的出生位置，该位置仅用于出生和复活，一旦离开，便不能返回。" + "\n" + "冻结轮数：武士被击退后，会在复活点处休息一定回合，不能操作。");
 		explainLabel2.setLayoutX(50);
 		explainLabel2.setLayoutY(300);
 		explainLabel2.setId("explain-label");

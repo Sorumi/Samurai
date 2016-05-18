@@ -30,7 +30,7 @@ public class GuidePanel1 extends GuidePanel {
 		playerPanel.pointsPanel.setIsShow(true);
 
 		playerPanel.setLayoutX(450);
-		playerPanel.setLayoutY(417);
+		playerPanel.setLayoutY(367);
 
 		Label label1 = new Label("当前回合数");
 		label1.setLayoutX(360);
@@ -39,13 +39,13 @@ public class GuidePanel1 extends GuidePanel {
 
 		Label label2 = new Label("行动时间");
 		label2.setLayoutX(330);
-		label2.setLayoutY(427);
+		label2.setLayoutY(377);
 		label2.setId("explain-label");
 
 		Label label3 = new Label("每个武士每回合有一定时间来执行操作，时间终了时，操作权将交给下一位武士。");
 		label3.setPrefSize(230, 120);
 		label3.setLayoutX(185);
-		label3.setLayoutY(480);
+		label3.setLayoutY(430);
 		label3.setId("explain-label");
 
 		Label label4 = new Label("总回合数");
@@ -55,24 +55,24 @@ public class GuidePanel1 extends GuidePanel {
 
 		Label label5 = new Label("领地");
 		label5.setLayoutX(671);
-		label5.setLayoutY(335);
+		label5.setLayoutY(293);
 		label5.setId("explain-label");
 
 		Label label6 = new Label("武士通过占领获得的与自己颜色相同的地区，是判定胜负的决定性因素。移动到扇形图上可显示已占领的地区数。");
 		label6.setPrefSize(300, 100);
 		label6.setLayoutX(667);
-		label6.setLayoutY(385);
+		label6.setLayoutY(346);
 		label6.setId("explain-label");
 
 		Label label7 = new Label("行动点");
 		label7.setLayoutX(838);
-		label7.setLayoutY(510);
+		label7.setLayoutY(470);
 		label7.setId("explain-label");
 
 		Label label8 = new Label("武士的不同行为需要消耗不同的行动点。");
 		label8.setPrefSize(200, 100);
 		label8.setLayoutX(842);
-		label8.setLayoutY(566);
+		label8.setLayoutY(523);
 		label8.setId("explain-label");
 
 		GuideLine guideLine1 = new GuideLine(0, 1, 1);
@@ -81,7 +81,7 @@ public class GuidePanel1 extends GuidePanel {
 		
 		GuideLine guideLine2 = new GuideLine(0, 0, 0);
 		guideLine2.setLayoutX(302);
-		guideLine2.setLayoutY(464);
+		guideLine2.setLayoutY(414);
 		
 		GuideLine guideLine3 = new GuideLine(1, 1, 0);
 		guideLine3.setLayoutX(625);
@@ -89,11 +89,11 @@ public class GuidePanel1 extends GuidePanel {
 		
 		GuideLine guideLine4 = new GuideLine(1, 1, 0);
 		guideLine4.setLayoutX(618);
-		guideLine4.setLayoutY(380);
+		guideLine4.setLayoutY(330);
 		
 		GuideLine guideLine5 = new GuideLine(1, 1, 0);
 		guideLine5.setLayoutX(785);
-		guideLine5.setLayoutY(557);
+		guideLine5.setLayoutY(507);
 
 		this.getChildren().addAll(roundPanel, playerPanel, label1, label2, label3, label4, label5, label6, label7,
 				label8, guideLine1, guideLine2, guideLine3, guideLine4, guideLine5);
