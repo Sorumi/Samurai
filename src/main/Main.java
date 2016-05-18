@@ -15,6 +15,7 @@ import view.StoryPanel;
 
 /*
 	*********************
+	*     SamuraINF     *
 	*    Produced by    *
 	*       Sorumi      *
 	*       KrayC       *
