@@ -138,7 +138,7 @@ public class StoryModel implements Serializable{
             this.money = this.getPropsStore().getMoney();
             this.time = new Date();
 
-            String fileName = "Samurai_StoryModel_" + num + ".ser";
+            String fileName = "savedata/Samurai_StoryModel_" + num + ".ser";
             FileOutputStream fileOutputStream = new FileOutputStream(fileName);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(this);
@@ -154,7 +154,7 @@ public class StoryModel implements Serializable{
     public static StoryModel loadStoryModel(int num){
         try{
 
-            String fileName = "Samurai_StoryModel_" + num + ".ser";
+            String fileName = "savedata/Samurai_StoryModel_" + num + ".ser";
             FileInputStream fileInputStream = new FileInputStream(fileName);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object thisObject = objectInputStream.readObject();
@@ -175,7 +175,7 @@ public class StoryModel implements Serializable{
 
     public static Date getTimeOfNum(int num){
         try{
-            String fileName = "Samurai_StoryModel_" + num + ".ser";
+            String fileName = "savedata/Samurai_StoryModel_" + num + ".ser";
             FileInputStream fileInputStream = new FileInputStream(fileName);
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object thisObject = objectInputStream.readObject();
