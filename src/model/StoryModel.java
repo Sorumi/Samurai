@@ -29,7 +29,7 @@ public class StoryModel implements Serializable{
     private StoryModel(){
         gameModel = new GameModel();
 
-        this.money = 9999;
+        this.money = 1000;
         //level : 1 ~ 5
         this.level = 1;
 
