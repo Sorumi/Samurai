@@ -19,8 +19,6 @@ public class Player {
     private int currentSamurai;
     private ChessBoardModel chessBoardModel;
 
-    private boolean isAI = false;
-
     //classic 和 online 的构造方法
     public Player(GameModel model, int playerNum){
         this.playerNum = playerNum;
@@ -35,10 +33,6 @@ public class Player {
             samuraiPOs[4] = new SamuraiPO(4,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor());
             samuraiPOs[5] = new SamuraiPO(5,playerNum,new Weapon(1),this.gameModel.getLength(),this.chessBoardModel,new Armor());
             samuraiPOs[6] = new SamuraiPO(6,playerNum,new Weapon(2),this.gameModel.getLength(),this.chessBoardModel,new Armor());
-        }
-
-        if(gameModel.getLevel() != 0){
-            this.isAI = true;
         }
     }
 
@@ -56,7 +50,6 @@ public class Player {
             this.samuraiPOs[4] = sPOs[0];
             this.samuraiPOs[5] = sPOs[1];
             this.samuraiPOs[6] = sPOs[2];
-            this.isAI = true;
         }
 
     }
@@ -257,7 +250,7 @@ public class Player {
             }
 
             //若是人类操纵,那么点数为零的时候自动跳转下一局
-            if(!this.isAI) {
+            if(this.playerNum == 0) {
                 this.actionDone();
             }
 
