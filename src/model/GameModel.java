@@ -931,6 +931,8 @@ public class GameModel extends BaseModel implements Observer {
 
     public void actionDone(){
 
+        OperationQueue.EmptyQueue();
+
         this.currentTime = this.timeTotal;
 
         super.updateChange(new UpdateMessage("goodbyeactionpanel",0));
@@ -950,12 +952,6 @@ public class GameModel extends BaseModel implements Observer {
                 this.currentPlayer = 1;
             }
             OperationQueue.addOperation(new NextOperation());
-
-            try{
-                Thread.sleep(100);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
 
         }else{
             OperationQueue.addOperation(new EndOperation(true));

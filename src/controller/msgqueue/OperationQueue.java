@@ -112,6 +112,16 @@ public class OperationQueue implements Runnable, Serializable {
 		return operation;
 	}
 
+	public static void EmptyQueue(){
+		while(!queue.isEmpty()){
+			try {
+				queue.take();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public static GameModel getGameModel(){
 		return gameModel;
 	}

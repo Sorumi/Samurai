@@ -17,21 +17,21 @@ public class MaterialLibrary implements Serializable {
 	private int[] crystal = new int[4];
 
 	public MaterialLibrary() {
-		cloth[0] = 10;
-		cloth[1] = 10;
-		wood[0] = 10;
-		wood[1] = 10;
-		stone[0] = 10;
-		stone[1] = 10;
-		cloth[2] = 10;
+		cloth[0] = 8;
+		cloth[1] = 8;
+		wood[0] = 8;
+		wood[1] = 8;
+		stone[0] = 8;
+		stone[1] = 8;
+		cloth[2] = 2;
 		cloth[3] = 0;
-		wood[2] = 10;
+		wood[2] = 2;
 		wood[3] = 0;
-		stone[2] = 10;
+		stone[2] = 2;
 		stone[3] = 0;
-		metal[0] = 10;
-		metal[1] = 10;
-		metal[2] = 10;
+		metal[0] = 5;
+		metal[1] = 5;
+		metal[2] = 0;
 		metal[3] = 0;
 		crystal[0] = 0;
 		crystal[1] = 0;
