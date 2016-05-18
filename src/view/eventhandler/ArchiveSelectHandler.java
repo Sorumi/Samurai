@@ -37,7 +37,7 @@ public class ArchiveSelectHandler{
 				
 				SimpleDateFormat ft = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 				archiveView.setTime(ft.format(archiveController.getTime(num)));
-				
+				archivePanel.successPanel.setVisible(true); 
 				archivePanel.archiveSelectPanel.setVisible(false);
 			} else {
 				ArchiveView archiveView = (ArchiveView) archivePanel.archiveGroup.getChildren().get(num);

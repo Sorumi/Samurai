@@ -20,6 +20,7 @@ public class ArchivePanel extends Pane {
 	private ArchiveView arcV0;
 	private ArchiveView arcV1;
 	private ArchiveView arcV2;
+	public SuccessPanel successPanel;
 	public Group archiveGroup;
 
 	public ArchiveSelectPanel archiveSelectPanel;
@@ -72,7 +73,11 @@ public class ArchivePanel extends Pane {
 		archiveSelectPanel.setLayoutX(75);
 		archiveSelectPanel.setLayoutY(250);
 		
-		this.getChildren().addAll(archiveGroup, archiveSelectPanel);
+		successPanel = new SuccessPanel("存档成功！");
+		successPanel.setLayoutX(width/2-175);
+		successPanel.setLayoutY(260); 
+		successPanel.setVisible(false);
+		this.getChildren().addAll(archiveGroup, archiveSelectPanel, successPanel); 
 		archiveSelectPanel.setVisible(false);
 	}
 
