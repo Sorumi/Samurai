@@ -83,7 +83,7 @@ public class SamuraiPO implements Serializable, Cloneable {
 		this.healthPoint = 60;
 		this.criticalHitChance = 1;
 		// 这里改一下经典模式玩家的点数
-		this.totalActionPoint = 30;
+		this.totalActionPoint = 7;
 		this.actionPoint = this.totalActionPoint;
 		this.killNum = 0;
 		if (number == 1 && player == 0) {
