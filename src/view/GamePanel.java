@@ -52,7 +52,7 @@ public class GamePanel extends Pane implements Observer{
 	protected int timeTotal = 30;
 	protected int roundTotal = 24;
 
-	protected SamuraiPanel currentSamurai; //0：无 1 2 3 4 5 6
+	public SamuraiPanel currentSamurai; //0：无 1 2 3 4 5 6
 
 	protected SamuraiPanel A1;
 	protected SamuraiPanel A2;
@@ -103,6 +103,9 @@ public class GamePanel extends Pane implements Observer{
 		this.size = size;
 		this.level = level; 
 		this.setBackground(level);
+
+		//bounds
+		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		
 		this.selectHandler = new GamePanelSelectHandler(this,level); 
 		this.selectPanel = new SelectPanel("确定退出吗?你将会丢失当前未存档的所有游戏进度(包括已获得的道具)!");
@@ -112,9 +115,7 @@ public class GamePanel extends Pane implements Observer{
 		selectPanel.setVisible(false);
 		this.getChildren().add(selectPanel);
 		this.isOver = false;
-		//bounds
-		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-
+		
 		//systembutton
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(1125);
@@ -168,6 +169,7 @@ public class GamePanel extends Pane implements Observer{
 		//actionHandler
 		actionHandler = new ActionHandler(this);
 		this.setOnMouseClicked(actionHandler.actionPanelDisappearEvent);
+//		this.setOnKeyPressed(actionHandler.keyEvent);
 
 		//actionpanel
 		actionPanel = new ActionPanel(actionHandler);
