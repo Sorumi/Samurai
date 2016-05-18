@@ -91,6 +91,12 @@ public class ShopHandler {
 				TerritoryPanel parent = (TerritoryPanel) shopPanel.getParent();
 				parent.updateMoney();
 				shopPanel.successPanel.setVisible(true);
+				//add
+				shopPanel.purchasePanel.setQuantity(1);
+				total = shopController.getPropsStore().getProps(num).getPrice();
+				if (total > getShopController().getPropsStore().getMoney()) {
+					shopPanel.purchasePanel.buyBtnUnable();
+				}
 			}
 		}
 	};

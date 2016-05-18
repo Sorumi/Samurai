@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import model.GameModel;
+import musics.Musics;
 import view.GamePanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -49,6 +50,8 @@ public class Main extends Application {
 		menuPanel.setPrefWidth(1200);
 		menuPanel.setPrefHeight(800);
 		basePanel.getChildren().add(menuPanel);
+		
+		Musics.THEME.play();
 		
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);

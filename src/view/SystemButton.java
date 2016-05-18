@@ -10,6 +10,10 @@ public class SystemButton extends Button {
 	 * 0: close exit
 	 * 1: save
 	 * 2: help
+	 * 3: pause
+	 * 4: continue
+	 * 5: music
+	 * 6: no music
 	 */
 	public SystemButton(int num){
 		this.setId("system-btn");
@@ -31,6 +35,12 @@ public class SystemButton extends Button {
 			break;
 		case 4://continue
 			img.setFitWidth(19);
+			break;
+		case 5://music
+			img.setFitWidth(24);
+			break;
+		case 6://no music
+			img.setFitWidth(33);
 			break;
 			
 		}
