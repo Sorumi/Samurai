@@ -26,10 +26,11 @@ public class GuideGroup extends Group {
 		guideHandler = new GuideHandler(this);
 		GuidePanel guidePanel0= new GuidePanel0();		
 		GuidePanel guidePanel1= new GuidePanel1();
+		GuidePanel guidePanel2= new GuidePanel2();
 		GuidePanel guidePanel3= new GuidePanel3();
 		
-		pages = new GuidePanel[]{guidePanel0, guidePanel1, guidePanel3};
-		this.getChildren().addAll(guidePanel3, guidePanel1, guidePanel0);
+		pages = new GuidePanel[]{guidePanel0, guidePanel1, guidePanel2, guidePanel3};
+		this.getChildren().addAll(guidePanel3, guidePanel2, guidePanel1, guidePanel0);
 		
 		buttonGroup = new Group();
 		
