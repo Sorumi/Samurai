@@ -50,7 +50,7 @@ public class GamePanel extends Pane implements Observer{
 
 	//TODO
 	protected int timeTotal = 30;
-	protected int roundTotal = 24;
+	protected int roundTotal = 120;
 
 	public SamuraiPanel currentSamurai; //0：无 1 2 3 4 5 6
 
