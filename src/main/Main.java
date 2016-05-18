@@ -75,7 +75,7 @@ public class Main extends Application {
 		gamePanel = new GamePanel(15, 99);
 		
 		basePanel.getChildren().add(gamePanel);
-		this.gameModel = new GameModel(24, 14, gamePanel, 99);
+		this.gameModel = new GameModel(120, 14, gamePanel, 99);
 		this.gameModel.addObserver(this.gamePanel);
 		this.gameModel.getChessBoardModel().addObserver(this.gamePanel);
 		OperationQueue operationQueue = new OperationQueue(this.gameModel,this.gamePanel);
