@@ -2,6 +2,7 @@ package view.eventhandler;
 
 import controller.msgqueue.*;
 import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import view.ActionButton;
@@ -18,6 +19,8 @@ public class ActionHandler {
 	public ActionHandler(GamePanel gamePanel){
 		this.gamePanel = gamePanel;
 	}
+	
+//	public EventHandler<KeyEvent> keyEvent = 
 	
 	public EventHandler<MouseEvent> samuraiEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
