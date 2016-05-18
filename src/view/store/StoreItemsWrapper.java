@@ -8,7 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import model.po.Material;
 import model.po.Props;
-import view.Images;
+import images.Images;
 import view.eventhandler.StoreHandler;
 
 public class StoreItemsWrapper extends Pane {

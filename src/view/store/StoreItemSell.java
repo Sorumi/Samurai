@@ -7,7 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import view.Images;
+import images.Images;
 import view.eventhandler.StoreHandler;
 
 public class StoreItemSell extends Pane{ 

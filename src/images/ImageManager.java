@@ -41,7 +41,6 @@ import javafx.scene.image.Image;
 public class ImageManager {
 
     public static String getResource(String resource) {
-//        System.out.println(resource);
         return ImageManager.class.getResource(resource).toExternalForm();
     }
     

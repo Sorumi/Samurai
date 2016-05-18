@@ -1,5 +1,6 @@
 package view;
 
+import images.Images;
 import javafx.geometry.Pos;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;

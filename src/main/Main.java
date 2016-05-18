@@ -31,7 +31,7 @@ public class Main extends Application {
 
 		basePanel = new Pane();
 		scene = new Scene(basePanel);
-		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
 		
 		menuPanel = new MenuPanel(this);
 		menuPanel.setPrefWidth(1200);

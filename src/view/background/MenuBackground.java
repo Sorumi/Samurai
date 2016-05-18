@@ -17,7 +17,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
-import view.Images;
+import images.Images;
 import view.items.Moon;
 import view.items.Star;
 import view.items.StarCircle;
