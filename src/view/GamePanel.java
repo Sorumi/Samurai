@@ -129,8 +129,10 @@ public class GamePanel extends Pane implements Observer{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				OperationQueue.addOperation(new StopOperation());
-				pauseBtn.setVisible(false);
+				if (currentSamurai.getNum()/4 == 0){
+					OperationQueue.addOperation(new StopOperation());
+					pauseBtn.setVisible(false);
+				}
 			}
 		});
 		continueBtn = new SystemButton(4);
