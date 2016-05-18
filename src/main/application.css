@@ -75,6 +75,20 @@
 	-fx-font-size: 18;
 	-fx-alignment: center;
 }
+#ex-total{
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 300;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+}
+#ex-rest{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-weight: 300;
+	-fx-font-size: 14;
+	-fx-alignment: center-right;
+}
 /*Select */
 #select-message{ 
 	-fx-text-fill: #9b9b9b;

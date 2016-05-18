@@ -27,36 +27,36 @@ public class GuidePanel4 extends GuidePanel{
 	private Group stateExplain; 
 	public GuidePanel4(){
 		mainLabel1 = new Label("故事模式");
-		mainLabel1.setLayoutX(100);
-		mainLabel1.setLayoutY(100);
+		mainLabel1.setLayoutX(50);
+		mainLabel1.setLayoutY(50);
 		mainLabel1.setId("main-label");
 		
 		mainLabel2 = new Label("属性参数");
-		mainLabel2.setLayoutX(100);
-		mainLabel2.setLayoutY(250);
+		mainLabel2.setLayoutX(50);
+		mainLabel2.setLayoutY(180);
 		mainLabel2.setId("main-label");
 		
 		explainLabel1 = new Label("故事模式是一个在游戏中可以得到道具，材料，进行武器、护甲合成的冒险剧情模式，其中物品的描述满足了许多玩家的收集欲望。");
-		explainLabel1.setLayoutX(100);
-		explainLabel1.setLayoutY(130);
-		explainLabel1.setPrefSize(800, 172);
+		explainLabel1.setLayoutX(50);
+		explainLabel1.setLayoutY(100);
+		explainLabel1.setPrefSize(1000, 172);
 		explainLabel1.setId("explain-label");
 		
 		explainLabel2 = new Label("HP值：武士的生命值，小于等于零之后武士将会被击退。");
-		explainLabel2.setLayoutX(200);
-		explainLabel2.setLayoutY(290);
+		explainLabel2.setLayoutX(150);
+		explainLabel2.setLayoutY(240);
 		explainLabel2.setPrefSize(400, 80);
 		explainLabel2.setId("explain-label");
 		
 		explainLabel3 = new Label("金钱：用来购买道具。");
-		explainLabel3.setLayoutX(200);
-		explainLabel3.setLayoutY(430);
+		explainLabel3.setLayoutX(150);
+		explainLabel3.setLayoutY(380);
 		explainLabel3.setPrefSize(400, 41);
 		explainLabel3.setId("explain-label");
 		
 		explainLabel4 = new Label("经验值：决定武士是否可以升级。");
-		explainLabel4.setLayoutX(200);
-		explainLabel4.setLayoutY(554);
+		explainLabel4.setLayoutX(150);
+		explainLabel4.setLayoutY(504);
 		explainLabel4.setPrefSize(400, 40);
 		explainLabel4.setId("explain-label");
 		
@@ -83,14 +83,14 @@ public class GuidePanel4 extends GuidePanel{
 		centerCircle.setFill(Color.WHITE);
 		HP = new Group();
 		HP.getChildren().addAll(bgCircle, bloodArc, centerCircle); 
-		HP.setLayoutX(100);
-		HP.setLayoutY(320);
+		HP.setLayoutX(50);
+		HP.setLayoutY(270);
 		
 		coin = new ImageView(Images.COIN);
 		coin.setFitWidth(30);
 		coin.setPreserveRatio(true);
-		coin.setLayoutX(109);
-		coin.setLayoutY(426);
+		coin.setLayoutX(59);
+		coin.setLayoutY(376);
 		
 		Rectangle exRect = new Rectangle();
 		exRect.setWidth(60);
@@ -107,12 +107,12 @@ public class GuidePanel4 extends GuidePanel{
 		fillRect.setFill(Color.web("#ddedff"));
 		experience = new Group();
 		experience.getChildren().addAll(exRect, fillRect);
-		experience.setLayoutX(103);
-		experience.setLayoutY(552);
+		experience.setLayoutX(53);
+		experience.setLayoutY(502);
 				
 		stateIconGroup = new Group();
-		stateIconGroup.setLayoutX(629);
-		stateIconGroup.setLayoutY(295);
+		stateIconGroup.setLayoutX(579);
+		stateIconGroup.setLayoutY(245);
 		for(int i=0;i<6;i++){
 			ImageView stateIcon = new ImageView(Images.STATE_ICON[i]);
 			stateIcon.setFitWidth(25);
@@ -123,8 +123,8 @@ public class GuidePanel4 extends GuidePanel{
 		}
 		
 		stateExplain = new Group();
-		stateExplain.setLayoutX(687);
-		stateExplain.setLayoutY(295);
+		stateExplain.setLayoutX(637);
+		stateExplain.setLayoutY(245);
 		for(int i=0;i<6;i++){
 			Label state = new Label();
 			switch(i){

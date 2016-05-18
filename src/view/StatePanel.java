@@ -15,7 +15,7 @@ import view.eventhandler.StateHandler;
 
 public class StatePanel extends OrderPanel { 
 	private final int SAMURAI_WIDTH = 60;
-	private int prefWidth = 230;
+	private int prefWidth = 220;
 	private int prefHeight = 157;
 	private int strokeWidth = 2;
 	private int SCALE = 1;
@@ -30,6 +30,10 @@ public class StatePanel extends OrderPanel {
 	private Circle bgCircle;
 	private Arc bloodArc;
 	private Label bloodLabel;
+	
+	private Label exTotalLabel;
+	private Label exRestLabel;
+	private Rectangle exFillRect;
 
 	private Group iconGroup;
 	private ImageView stateIcon1;
@@ -173,29 +177,37 @@ public class StatePanel extends OrderPanel {
 			bgRect.setHeight(120*SCALE+40);
 			//bg
 			Rectangle exRect = new Rectangle();
-			exRect.setX(20);
+			exRect.setX(0);
 			exRect.setY(170);
-			exRect.setWidth(380);
+			exRect.setWidth(400);
 			exRect.setHeight(20);
 			exRect.setArcWidth(20);
 			exRect.setArcHeight(20);
 			exRect.setFill(Color.web("#f9f9f9"));
 			
 			//fill		
-			Rectangle fillRect = new Rectangle();
-			fillRect.setX(20);
-			fillRect.setY(170);
-			fillRect.setWidth(200);
-			fillRect.setHeight(20);
-			fillRect.setArcWidth(20);
-			fillRect.setArcHeight(20);
-			fillRect.setFill(Color.web("#ddedff"));
+			exFillRect = new Rectangle();
+			exFillRect.setX(0);
+			exFillRect.setY(170);
+//			exFillRect.setWidth(200);
+			exFillRect.setHeight(20);
+			exFillRect.setArcWidth(20);
+			exFillRect.setArcHeight(20);
+			exFillRect.setFill(Color.web("#ddedff"));
 			
-			Label exTotalLabel = new Label();
+			exTotalLabel = new Label("");
+			exTotalLabel.setId("ex-total");
+			exTotalLabel.setPrefWidth(60);
+			exTotalLabel.setLayoutX(5);
+			exTotalLabel.setLayoutY(173);
 			
+			exRestLabel = new Label("");
+			exRestLabel.setId("ex-rest");
+			exRestLabel.setPrefWidth(60);
+			exRestLabel.setLayoutX(330);
+			exRestLabel.setLayoutY(173);
 			
-			iconGroup.getChildren().addAll(exRect, fillRect);
-			
+			iconGroup.getChildren().addAll(exRect, exFillRect, exTotalLabel, exRestLabel);
 			
 		}
 		
@@ -203,6 +215,8 @@ public class StatePanel extends OrderPanel {
 		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, bloodLabel, iconGroup);
 		this.setVisible(false);  
 		
+		//TODO
+		this.setExperience(30, 50);
 	}
 
 	private void setUpLocation(){
@@ -307,5 +321,12 @@ public class StatePanel extends OrderPanel {
 		this.bloodRest = rest;
 		bloodLabel.setText(rest + "");
 		bloodArc.setLength(- (float) bloodRest / bloodTotal * 360);
+	}
+	
+	public void setExperience(int current, int rest){
+		exTotalLabel.setText(current + "");
+		exRestLabel.setText(rest + "");
+		double x = (double)current/(current+rest)*400;
+		exFillRect.setWidth(x);
 	}
 }
