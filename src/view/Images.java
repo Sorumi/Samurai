@@ -177,7 +177,6 @@ public class Images {
 	public static final Image[] MAP_FOG4 = {MAP_FOG4_0, MAP_FOG4_1, MAP_FOG4_2};
 	public static final Image[] MAP_FOG5 = {MAP_FOG5_0, MAP_FOG5_1};
 	public static final Image[][] MAP_FOG = {MAP_FOG2, MAP_FOG3, MAP_FOG4, MAP_FOG5};
-
 	// cloud
 	public static final Image MAP_CLOUD_0 = ImageManager.getImage("map/map_cloud_0.png");
 	public static final Image MAP_CLOUD_1 = ImageManager.getImage("map/map_cloud_1.png");
@@ -185,6 +184,13 @@ public class Images {
 	public static final Image MAP_CLOUD_3 = ImageManager.getImage("map/map_cloud_3.png");
 	public static final Image MAP_CLOUD_4 = ImageManager.getImage("map/map_cloud_4.png");
 	public static final Image[] MAP_CLOUD = { MAP_CLOUD_0, MAP_CLOUD_1, MAP_CLOUD_2, MAP_CLOUD_3, MAP_CLOUD_4 };
+	//icon
+	public static final Image MAP_ICON1 = ImageManager.getImage("map/map_icon1_leaf.png");
+	public static final Image MAP_ICON2 = ImageManager.getImage("map/map_icon2_maple.png");
+	public static final Image MAP_ICON3 = ImageManager.getImage("map/map_icon3_lotus.png");
+	public static final Image MAP_ICON4 = ImageManager.getImage("map/map_icon4_moon.png");
+	public static final Image MAP_ICON5 = ImageManager.getImage("map/map_icon5_sakura.png");
+	public static final Image[] MAP_ICON = {null, MAP_ICON1, MAP_ICON2, MAP_ICON3, MAP_ICON4, MAP_ICON5};
 
 	// samurai
 	public static final Image SAMURAI_0042 = ImageManager.getImage("samurai/samurai_004_eyeleft.png");

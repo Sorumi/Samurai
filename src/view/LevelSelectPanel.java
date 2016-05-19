@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -20,14 +21,13 @@ public class LevelSelectPanel extends Pane{
 	private MapHandler mapHandler;
 	
 	public int level;
-	private int strokeWidth = 3;
 	
 //	private boolean isAppear;
 	
 	private SystemButton closeBtn; 
 	
 	private Rectangle bgRect;
-	private Circle centralCircle;	 
+	private StackPane iconCircle;	 
 	private Circle materialCircleOne;
 	private Circle materialCircleTwo;
 	
@@ -63,13 +63,12 @@ public class LevelSelectPanel extends Pane{
 		bgRect.setArcHeight(10);
 		bgRect.setFill(Color.WHITE);
 		
-		centralCircle = new Circle();
-		centralCircle.setCenterX(200.0);
-		centralCircle.setRadius(50);
-		centralCircle.setStroke(Color.web("#eeeeee"));
-		centralCircle.setStrokeWidth(strokeWidth);
-		centralCircle.setStrokeType(StrokeType.INSIDE);
-		centralCircle.setFill(Color.WHITE);
+		iconCircle = new StackPane();
+		iconCircle.setPrefSize(100, 100);
+		iconCircle.setLayoutX(150.0);
+		iconCircle.setLayoutY(-50);
+		iconCircle.setId("icon-pane");
+//		iconCircle.getChildren().add(icon);
 		
 		levelName = new Label("关卡名称");
 		levelName.setPrefSize(80, 30);
@@ -120,7 +119,7 @@ public class LevelSelectPanel extends Pane{
 				}
 		});
 		
-		this.getChildren().addAll(bgRect, centralCircle, levelName, materialGet, materialNameOne, materialNameTwo, materialCircleOne, materialCircleTwo, materialOne, materialTwo, levelBtnOne, levelBtnTwo, levelBtnThree, closeBtn);
+		this.getChildren().addAll(bgRect, iconCircle, levelName, materialGet, materialNameOne, materialNameTwo, materialCircleOne, materialCircleTwo, materialOne, materialTwo, levelBtnOne, levelBtnTwo, levelBtnThree, closeBtn);
 		this.setVisible(false);
 	}
 	
@@ -163,6 +162,12 @@ public class LevelSelectPanel extends Pane{
 		
 		int itemNumOne = 00;
 		int itemNumTwo = 10;
+		this.getChildren().removeAll(materialOne, materialTwo);
+		iconCircle.getChildren().clear();
+		
+		ImageView icon = new ImageView(Images.MAP_ICON[level]);
+		icon.setPreserveRatio(true);
+		
 		switch(level){
 			case 1:
 				levelName.setText("盛夏之园");
@@ -170,6 +175,7 @@ public class LevelSelectPanel extends Pane{
 				materialNameTwo.setText("木材");
 				itemNumOne = 0;
 				itemNumTwo = 10;
+				icon.setFitWidth(48);
 				break;
 			case 2:
 				levelName.setText("秋雨之谷");
@@ -177,6 +183,7 @@ public class LevelSelectPanel extends Pane{
 				materialNameTwo.setText("石材");
 				itemNumOne = 10;
 				itemNumTwo = 20;
+				icon.setFitWidth(78);
 				break;
 			case 3:
 				levelName.setText("清莲之塘");
@@ -184,6 +191,7 @@ public class LevelSelectPanel extends Pane{
 				materialNameTwo.setText("金属");
 				itemNumOne = 20;
 				itemNumTwo = 30;
+				icon.setFitWidth(76);
 				break;
 			case 4:
 				levelName.setText("星耀之夜");
@@ -191,6 +199,7 @@ public class LevelSelectPanel extends Pane{
 				materialNameTwo.setText("水晶");
 				itemNumOne = 30;
 				itemNumTwo = 40;
+				icon.setFitWidth(60);
 				break;
 			case 5:
 				levelName.setText("樱花之乡");
@@ -198,9 +207,10 @@ public class LevelSelectPanel extends Pane{
 				materialNameTwo.setText("布料");
 				itemNumOne = 40;
 				itemNumTwo = 0;
+				icon.setFitWidth(68);
 				break;
 		}
-		this.getChildren().removeAll(materialOne, materialTwo);
+		
 		
 		materialCircleOne.setFill(GameColor.getMaterialColor(itemNumOne/10));
 		materialCircleTwo.setFill(GameColor.getMaterialColor(itemNumTwo/10));
@@ -217,6 +227,7 @@ public class LevelSelectPanel extends Pane{
 		materialTwo.setScaleX(0.5);
 		materialTwo.setScaleY(0.5);
 		
+		iconCircle.getChildren().add(icon);
 		this.getChildren().addAll(materialOne, materialTwo);
 	}
 }

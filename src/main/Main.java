@@ -52,7 +52,7 @@ public class Main extends Application {
 		menuPanel.setPrefHeight(800);
 		basePanel.getChildren().add(menuPanel);
 		
-		Musics.THEME.play();
+//		Musics.THEME.play();
 		
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);

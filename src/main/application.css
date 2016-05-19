@@ -310,6 +310,13 @@
 }
 
 /*LevelSelect */
+#icon-pane{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #eeeeee;
+	-fx-border-width: 3;
+	-fx-background-radius: 50;
+	-fx-border-radius: 50;
+}
 #level-select-panel{
 	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
 }

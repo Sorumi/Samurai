@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import main.Main;
@@ -18,6 +19,7 @@ import view.background.MenuBackground;
 import view.eventhandler.MenuHandler;
 import view.guide.GuideGroup;
 import view.guide.GuidePanel;
+import view.items.CircleLight;
 
 public class MenuPanel extends Pane {
 	
@@ -230,7 +232,14 @@ public class MenuPanel extends Pane {
 		
 		guideGroup = new GuideGroup();
 		guideGroup.setVisible(false); 
-		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, nomusicBtn, musicBtn, guideGroup); 
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, nomusicBtn, musicBtn, guideGroup);
+		
+		//test
+		
+//		CircleLight light = new CircleLight(3);
+//		light.setLayoutX(400);
+//		light.setLayoutY(100);
+//		this.getChildren().add(light);
 	}
 	public void btnClick(int btn){
 		if(btn == 0){
