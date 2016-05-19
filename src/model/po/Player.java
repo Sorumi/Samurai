@@ -216,20 +216,26 @@ public class Player {
                 }
                 break;
             case 2:
+                int i = 1;
+                if(this.gameModel.getLevel() == 99 || this.gameModel.getLevel() == 0){
+                    i = 1;
+                }else {
+                    i = 3;
+                }
                 if(this.samuraiPOs[this.currentSamurai].getHide()) {
-                    if (this.samuraiPOs[this.currentSamurai].getActionPoint() >= 1) {
+                    if (this.samuraiPOs[this.currentSamurai].getActionPoint() >= i) {
                         if(this.samuraiPOs[this.currentSamurai].show(this.chessBoardModel)) {
                             this.gameModel.updateHide(false);
                             done = true;
-                            this.samuraiPOs[this.currentSamurai].changeActionPoint(1);
+                            this.samuraiPOs[this.currentSamurai].changeActionPoint(i);
                         }
                     }
                 }else{
-                    if(this.samuraiPOs[this.currentSamurai].getActionPoint() >= 1){
+                    if(this.samuraiPOs[this.currentSamurai].getActionPoint() >= i){
                         if(this.samuraiPOs[this.currentSamurai].hide(this.chessBoardModel)) {
                             this.gameModel.updateHide(true);
                             done = true;
-                            this.samuraiPOs[this.currentSamurai].changeActionPoint(1);
+                            this.samuraiPOs[this.currentSamurai].changeActionPoint(i);
                         }
                     }
                 }

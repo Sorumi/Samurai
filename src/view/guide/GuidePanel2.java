@@ -29,7 +29,7 @@ public class GuidePanel2 extends GuidePanel {
 		explainLabel2.setPrefSize(900, 102);
 		explainLabel2.setId("explain-label");
 
-		explainLabel3 = new Label("隐身：消耗一个行动点，武士可以在自己的领地内隐身，隐身的武士不会被敌人发现，隐身的武士可以与未隐身的武士在同一块土地上，隐身的武士不能走出自己的领地。" + "\n"
+		explainLabel3 = new Label("隐身：消耗一个行动点，武士可以在己方的领地内隐身，隐身的武士不会被敌人发现，隐身的武士可以与未隐身的武士在同一块土地上，隐身的武士不能走出己方的领地。" + "\n"
 				+ "现身：消耗一个行动点，如果武士处于隐身状态，再次点击则会现身，回到正常状态，隐身武士不能在有现身武士的格子里现身。");
 		explainLabel3.setLayoutX(130);
 		explainLabel3.setLayoutY(330);

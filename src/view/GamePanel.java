@@ -404,7 +404,7 @@ public class GamePanel extends Pane implements Observer{
 		
 		this.currentSamurai = getSamurai(num);
 		currentSamurai.samuraiV.setRandomAnimation(false);
-		currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
+		currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) / 4 == currentSamurai.getNum() / 4);
 
 		roundPanel.setCurrentSamurai(currentSamurai.getNum());
 		playerA.pointsPanel.setCurrentSamurai(currentSamurai.getNum());
@@ -556,7 +556,7 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("samuraiMove")){
 					Position position = (Position)notifingObject.getValue();
 					currentSamurai.move(position.getX(), position.getY());
-					currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
+					currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) / 4 == currentSamurai.getNum() / 4);
 					if (currentPlayer.getPlayer() == 0) {
 						actionPanel.reset();
 						setOrder();
@@ -568,7 +568,7 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("samuraiOccupy")){
 					currentSamurai.occupy((int)notifingObject.getValue());
 					if (currentPlayer.getPlayer() == 0) {
-						currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) == currentSamurai.getNum());
+						currentSamurai.setCanHide(chessBoard.getState(currentSamurai.x, currentSamurai.y) / 4 == currentSamurai.getNum() / 4);
 						actionPanel.reset();
 						arrow.setVisible(true);
 					}
