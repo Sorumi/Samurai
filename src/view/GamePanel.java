@@ -88,10 +88,12 @@ public class GamePanel extends Pane implements Observer{
 	public SelectPanel selectPanel;
 	protected GamePanelSelectHandler selectHandler;
 	protected StateHandler stateHandler;
-	protected ObservableList<OrderPanel>  orderList;
+	public ObservableList<OrderPanel>  orderList;
 	private boolean isOver; 
 
 	private ArrayList<PropView> propViews;
+	
+	public GameOverlayPanel overlayPanel;
 
 	/*
 	 * level:
@@ -190,7 +192,7 @@ public class GamePanel extends Pane implements Observer{
 		B2 = new SamuraiPanel(5, size);
 		B3 = new SamuraiPanel(6, size);
 		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
-
+		
 		//只有故事模式有 statePanel 和 resultPanel 和 propPanel
 		if(level < 99 && level > 0) {
 			//stateHandler
@@ -230,6 +232,11 @@ public class GamePanel extends Pane implements Observer{
 			this.propViews = new ArrayList<>();
 		}
 
+		//overlay
+		overlayPanel = new GameOverlayPanel();
+		overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
+		this.getChildren().add(overlayPanel);
+		
 		backgroundPanel.setZOrder(-2);
 		systemPanel.setZOrder(-1);
 		chessBoard.setZOrder(-4);
@@ -238,12 +245,12 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
-
+		overlayPanel.setZOrder(1000);
 
 		if(level < 99 && level > 0) {
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup,selectPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel);
 		}else{
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel,selectPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel, overlayPanel);
 		}
 		this.setOrder();
 	}

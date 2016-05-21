@@ -36,7 +36,7 @@
 }
 #main-label{ 
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Medium";
 	-fx-font-weight: 800;
 	-fx-font-size: 20;
 	-fx-alignment: center-left;
@@ -44,7 +44,7 @@
 }
 #explain-label{ 
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 100;
 	-fx-font-size: 18;
 	-fx-alignment: top-left;
@@ -59,7 +59,7 @@
 }
 #money-label{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 300;
 	-fx-font-size: 18;
 	-fx-alignment: center;
@@ -69,20 +69,20 @@
 	-fx-background-radius: 15;
 	-fx-border-radius: 15;
 	-fx-text-fill: #ffffff;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 18;
 	-fx-alignment: center;
 }
 #ex-total{
 	-fx-text-fill: #ffffff;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 300;
 	-fx-font-size: 14;
 	-fx-alignment: center-left;
 }
 #ex-rest{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 300;
 	-fx-font-size: 14;
 	-fx-alignment: center-right;
@@ -90,7 +90,7 @@
 /*Select */
 #select-message{ 
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 100;
 	-fx-font-size: 18;
 	-fx-alignment: top-left;
@@ -115,16 +115,16 @@
 }
 #item-name{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 600;
 	-fx-font-size: 20;
 	-fx-alignment: center-left;
 }
 #item-description{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-weight: 100;
-	-fx-font-size: 14;
+	-fx-font-size: 16;
 	-fx-alignment: center-left;
 	-fx-wrap-text: true;
 }
@@ -138,7 +138,7 @@
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
 	-fx-text-fill: #ffffff;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 18;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
@@ -170,7 +170,7 @@
 	-fx-border-radius: 10;
 	-fx-text-fill: #4792A0;
 	-fx-background-color: #D7ECF0;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 18;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
@@ -197,7 +197,7 @@
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
 	-fx-text-fill: #ffffff;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 18;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
@@ -214,19 +214,19 @@
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 14;
 	-fx-alignment: center;
 }
 #material-quantity{
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 14;
 	-fx-alignment: center;
 }
 #material-levelLable{
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 14;
 	-fx-alignment: center;
 }
@@ -245,14 +245,14 @@
 }
 #Aname-label{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 600;
 	-fx-font-size: 18;
 	-fx-alignment: center-left;
 }
 #Atime-label{ 
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-weight: 100;
 	-fx-font-size: 14;
 	-fx-alignment: center-left;
@@ -263,7 +263,7 @@
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
 	-fx-text-fill: #4AC0D2; 
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-size: 18;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
@@ -274,7 +274,7 @@
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
 	-fx-text-fill: #B54A3F;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-size: 18;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
@@ -322,14 +322,14 @@
 }
 #LevelName-label{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 600;
 	-fx-font-size: 18;
 	-fx-alignment: center;
 }
 #materialName-label{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 600;
 	-fx-font-size: 14;
 	-fx-alignment: center-left;
@@ -337,12 +337,30 @@
 #level-btn{
 	-fx-background-radius: 10;
 	-fx-border-radius: 10;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 18;
 	-fx-alignment: center;
 	-fx-text-alignment: center;
 }
 /* Game */
+#overlay-level-num{
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "MFLangQian_Noncommercial-Regular";
+	-fx-font-size: 20;
+	-fx-alignment: center;
+}
+#overlay-level-name{
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "MFLangQian_Noncommercial-Regular";
+	-fx-font-size: 24;
+	-fx-alignment: center;
+}
+#overlay-level-description{
+	-fx-text-fill: #ffffff;
+	-fx-font-family: "PingFang SC Regular";
+	-fx-font-size: 18;
+	-fx-alignment: center;
+}
 #prop-quantity{
 	-fx-background-color: #ffffff;
 	-fx-background-radius: 10;
@@ -381,14 +399,14 @@
 }
 #state-lable{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-size: 12;
 	-fx-font-weight: 100;
 	-fx-alignment: center-left;
 }
 #state-lable-big{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-size: 24;
 	-fx-font-weight: 100;
 	-fx-alignment: center-left;
@@ -415,21 +433,21 @@
 }
 #weapon-name{ 
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Regular";
 	-fx-font-weight: 600;
 	-fx-font-size: 18;
 	-fx-alignment: center-left;
 }
 #weaponamount-lable{ 
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-weight: 100;
 	-fx-font-size: 14;
 	-fx-alignment: center-left;
 }
 #weaponstate-lable{
 	-fx-text-fill: #9b9b9b;
-	-fx-font-family: "Hiragino Sans GB";
+	-fx-font-family: "PingFang SC Light";
 	-fx-font-size: 12;
 	-fx-font-weight: 100;
 	-fx-alignment: center-left;

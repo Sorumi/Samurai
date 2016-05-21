@@ -136,32 +136,32 @@ public class StatePanel extends OrderPanel {
 		
 		stateLabel1 = new Label("");
 		stateLabel1.setLayoutX(30*SCALE);
-		stateLabel1.setLayoutY(7*SCALE);
+		stateLabel1.setLayoutY(5*SCALE);
 		stateLabel1.setId("state-lable");
 		
 		stateLabel2 = new Label("");
 		stateLabel2.setLayoutX(100*SCALE);
-		stateLabel2.setLayoutY(7*SCALE);
+		stateLabel2.setLayoutY(5*SCALE);
 		stateLabel2.setId("state-lable");
 		
 		stateLabel3 = new Label("");
 		stateLabel3.setLayoutX(180*SCALE);
-		stateLabel3.setLayoutY(7*SCALE);
+		stateLabel3.setLayoutY(5*SCALE);
 		stateLabel3.setId("state-lable");
 	
 		stateLabel4 = new Label("");
 		stateLabel4.setLayoutX(30*SCALE);
-		stateLabel4.setLayoutY(52*SCALE);
+		stateLabel4.setLayoutY(50*SCALE);
 		stateLabel4.setId("state-lable");
 		
 		stateLabel5 = new Label("");
 		stateLabel5.setLayoutX(100*SCALE);
-		stateLabel5.setLayoutY(52*SCALE);
+		stateLabel5.setLayoutY(50*SCALE);
 		stateLabel5.setId("state-lable");
 		
 		stateLabel6 = new Label("");
 		stateLabel6.setLayoutX(180*SCALE);
-		stateLabel6.setLayoutY(52*SCALE);
+		stateLabel6.setLayoutY(50*SCALE);
 		stateLabel6.setId("state-lable");
 		
 		if(SCALE == 2){

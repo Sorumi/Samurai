@@ -99,17 +99,17 @@ public class SmithyWeaponState extends Pane {
 
 		stateLabel2 = new Label("100-900");
 		stateLabel2.setLayoutX(30);
-		stateLabel2.setLayoutY(52);
+		stateLabel2.setLayoutY(50);
 		stateLabel2.setId("weaponstate-lable");
 
 		stateLabel4 = new Label("100-900");
 		stateLabel4.setLayoutX(125);
-		stateLabel4.setLayoutY(52);
+		stateLabel4.setLayoutY(50);
 		stateLabel4.setId("weaponstate-lable");
 
 		stateLabel6 = new Label("100-900");
 		stateLabel6.setLayoutX(220);
-		stateLabel6.setLayoutY(52);
+		stateLabel6.setLayoutY(50);
 		stateLabel6.setId("weaponstate-lable");
 
 		weaponStateGroup.getChildren().addAll(stateIcon2, stateIcon4, stateIcon6, stateLabel2, stateLabel4, stateLabel6);

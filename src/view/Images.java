@@ -5,6 +5,13 @@ import javafx.scene.image.Image;
 
 public class Images {
 
+	// start logo
+	public static final Image LOGO_0 = ImageManager.getImage("main/start_logo_0.png");
+	public static final Image LOGO_1 = ImageManager.getImage("main/start_logo_1.png");
+	public static final Image LOGO_2 = ImageManager.getImage("main/start_logo_2.png");
+	public static final Image LOGO_3 = ImageManager.getImage("main/start_logo_3.png");
+	public static final Image LOGO_4 = ImageManager.getImage("main/start_logo_4.png");
+	
 	// menu
 	public static final Image MENU_BTN = ImageManager.getImage("main/menu_button.png");
 

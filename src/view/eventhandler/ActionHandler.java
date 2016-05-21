@@ -1,15 +1,23 @@
 package view.eventhandler;
 
 import controller.msgqueue.*;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import view.ActionButton;
 import view.DirectionButton;
 import view.GamePanel;
 import view.SamuraiPanel;
+import view.StartLogoPanel;
 
 public class ActionHandler {
 
@@ -107,6 +115,24 @@ public class ActionHandler {
 //		}
 //
 //	};
+	
+	public EventHandler<MouseEvent> overlayEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			Timeline tl = new Timeline(
+					new KeyFrame(Duration.millis(2000), new KeyValue(gamePanel.overlayPanel.opacityProperty(), 0, Interpolator.EASE_IN))
+					);
+			tl.play();
+			tl.setOnFinished(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				gamePanel.orderList.remove(gamePanel.overlayPanel);
+				gamePanel.setOrder();
+			}
+			
+		});
+
+		}
+	};
 
 	public EventHandler<MouseEvent> samuraiEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {

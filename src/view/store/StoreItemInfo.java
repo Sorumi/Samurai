@@ -43,7 +43,7 @@ public class StoreItemInfo extends Pane{
 		levelLable = new Label("");
 		levelLable.setPrefSize(50, 20);
 		levelLable.setLayoutX(180);
-		levelLable.setLayoutY(40);
+		levelLable.setLayoutY(42);
 		levelLable.setId("material-levelLable");
 		this.getChildren().add(levelLable);
 		
