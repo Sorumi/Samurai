@@ -72,7 +72,8 @@ public class MenuPanel extends Pane {
 	private Random random = new Random();
 	
 	public MenuPanel(Main mainFrame){
-//		this.mainFrame = mainFrame;
+		this.setPrefWidth(1200);
+		this.setPrefHeight(800);
 		
 		menuHandler = new MenuHandler(mainFrame);
 		
@@ -177,7 +178,7 @@ public class MenuPanel extends Pane {
             	 }
             }
         };
-        samuraiTimer.start();
+//        samuraiTimer.start();
 		
         modeBtn = new Button("经典模式");
         modeBtn.setId("mode-btn");

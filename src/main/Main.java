@@ -11,6 +11,7 @@ import view.GamePanel;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import view.MenuPanel;
+import view.StartLogoPanel;
 import view.StoryPanel;
 
 /*
@@ -31,6 +32,7 @@ public class Main extends Application {
 	private Scene scene;
 	public Pane basePanel;
 	
+	public StartLogoPanel logoPanel;
 	public MenuPanel menuPanel; 
 	
 	public GamePanel gamePanel; 
@@ -47,10 +49,10 @@ public class Main extends Application {
 		scene = new Scene(basePanel);
 		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
 		
+		logoPanel = new StartLogoPanel();
 		menuPanel = new MenuPanel(this);
-		menuPanel.setPrefWidth(1200);
-		menuPanel.setPrefHeight(800);
-		basePanel.getChildren().add(menuPanel);
+		
+		basePanel.getChildren().addAll(menuPanel, logoPanel);//TODO 
 		
 //		Musics.THEME.play();
 		
