@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import main.Main;
 import view.items.Ring;
 
 public class StartLogoPanel extends Pane{
@@ -26,7 +27,7 @@ public class StartLogoPanel extends Pane{
 	private ImageView logoSwordRight;
 	private ImageView logoBelow;
 	
-	public StartLogoPanel(){
+	public StartLogoPanel(Main mainFrame){
 		this.setPrefSize(1200, 800);
 		this.setStyle("-fx-background-color: #ffffff");
 		
@@ -94,16 +95,16 @@ public class StartLogoPanel extends Pane{
 				new KeyFrame(Duration.millis(5000), new KeyValue(logoText.opacityProperty(), 1, Interpolator.EASE_IN)),
 				
 				new KeyFrame(Duration.millis(6000), new KeyValue(this.opacityProperty(), 1)),
-				new KeyFrame(Duration.millis(8000), new KeyValue(this.opacityProperty(), 0, Interpolator.EASE_IN))
+				new KeyFrame(Duration.millis(7000), new KeyValue(this.opacityProperty(), 0, Interpolator.EASE_IN))
 				);
 
 		tl.setOnFinished(new EventHandler<ActionEvent>(){
 
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				Pane parent = (Pane) StartLogoPanel.this.getParent();
 				parent.getChildren().remove(StartLogoPanel.this);
+				mainFrame.setMenu();
 			}
 			
 		});
