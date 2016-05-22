@@ -30,4 +30,8 @@ public class GuideController {
         gameModelGuide.changeWeapon(weaponNum);
     }
 
+    public static void changeArmor(){
+        gameModelGuide.changeArmor();
+    }
+
 }

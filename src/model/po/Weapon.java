@@ -47,6 +47,10 @@ public class Weapon implements Cloneable, Serializable {
 		this.genre = genre;
 	}
 
+	public void changeHave() {
+		isHave = true;
+	}
+
 	public int getGenre() {
 		return genre;
 	}
