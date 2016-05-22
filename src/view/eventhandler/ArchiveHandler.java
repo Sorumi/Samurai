@@ -4,6 +4,7 @@ import controller.ArchiveController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import musics.Musics;
 import view.ArchivePanel;
 import view.ArchiveView;
 
@@ -26,6 +27,7 @@ public class ArchiveHandler {
 			  archivePanel.archiveSelectPanel.archiveSelectHandler.setStoryModel();
 			  archivePanel.archiveSelectPanel.updateIsSave(false);
 			  archivePanel.archiveSelectPanel.setVisible(true);
+			  Musics.playEffectMusic(1);
 		  }
 	};
 	
@@ -35,7 +37,8 @@ public class ArchiveHandler {
 	    	  ArchivePanel archivePanel = (ArchivePanel)archiveView.getParent().getParent();
 	    	  archivePanel.archiveSelectPanel.archiveSelectHandler.num = archiveView.num;
 	    	  archivePanel.archiveSelectPanel.updateIsSave(true); 
-			  archivePanel.archiveSelectPanel.setVisible(true);			  
+			  archivePanel.archiveSelectPanel.setVisible(true);
+			  Musics.playEffectMusic(1);
 	      }
 	};
 	

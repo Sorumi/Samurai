@@ -89,6 +89,7 @@ public class GameGuidePanel extends Pane implements Observer {
 		}
 	}
 
+
 	public void update(Observable o, Object arg) {
 
 		UpdateMessage notifingObject = (UpdateMessage)arg;
@@ -133,6 +134,9 @@ public class GameGuidePanel extends Pane implements Observer {
 
 				} else if(key.equals("a-pseudoOccupy")) {
 					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
+
+				} else if(key.equals("weapon")){
+					samurai.setWeapon((int)notifingObject.getValue());
 
 				}
 

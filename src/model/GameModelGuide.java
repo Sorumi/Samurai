@@ -71,6 +71,13 @@ public class GameModelGuide extends BaseModel{
         this.updateVisible(this.updateVision());
     }
 
+    public void changeWeapon(int weapon){
+        //底层改武器
+        this.player.getSamuraiPO().changeWeapon(new Weapon(weapon));
+        //上层改武器
+        super.updateChange(new UpdateMessage("weapon",weapon));
+    }
+
     public void updateOccupy(int direction){
         super.updateChange(new UpdateMessage("samuraiOccupy",direction));
     }
@@ -82,7 +89,6 @@ public class GameModelGuide extends BaseModel{
     public ArrayList<ActualBlock> updateVision(){
         ArrayList<ActualBlock> blocks;
         blocks = this.player.showVision();
-        System.out.println("BS : " + blocks.size());
         super.updateChange(new UpdateMessage("vision", blocks));
         return blocks;
     }

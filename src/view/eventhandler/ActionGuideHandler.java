@@ -100,7 +100,7 @@ public class ActionGuideHandler {
 	public EventHandler<MouseEvent> weaponEvent = new EventHandler<MouseEvent>() { 
 		public void handle(MouseEvent event) {
 			WeaponButton btn = (WeaponButton) event.getSource();
-			System.out.println(btn.num);
+			GuideController.changeWeapon(btn.num);
 		}
 	};
 

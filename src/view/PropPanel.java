@@ -94,7 +94,7 @@ public class PropPanel extends OrderPanel {
 //		this.setOnMouseClicked(propHandler.itemClickEvent);
 
 		this.setLayoutX(600-width/2);
-		this.setLayoutY(785);
+		this.setLayoutY(685);
 		this.setVisible(true);
 
 	}
@@ -105,7 +105,7 @@ public class PropPanel extends OrderPanel {
 	}
 
 	public void hide() {
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 785)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 685)));
 		timeline.play();
 	}
 
