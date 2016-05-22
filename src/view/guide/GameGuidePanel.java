@@ -1,24 +1,30 @@
 package view.guide;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import controller.GuideController;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import model.UpdateMessage;
+import model.po.ActualBlock;
+import model.po.Material;
+import model.po.Position;
+import model.po.SamuraiPO;
 import view.Images;
+import view.PropView;
+import view.SamuraiPanel;
 import view.eventhandler.ActionGuideHandler;
 
 public class GameGuidePanel extends Pane implements Observer {
 	private final int WINDOW_WIDTH = 1100;
 	private final int WINDOW_HEIGHT = 700;
-//	private final int BLOCK_WIDTH = 70;
-//	private final int BLOCK_HEIGHT = 40;
 
 	private int size;
-//	private int feildWidth;
-//	private int feildHeight;
 
 	public ChessBoardGuidePanel chessBoard;
 	private SamuraiGuidePanel samurai;
@@ -30,8 +36,6 @@ public class GameGuidePanel extends Pane implements Observer {
 	
 	public GameGuidePanel(int size) {
 		this.size = size;
-//		this.feildWidth = BLOCK_WIDTH * size;
-//		this.feildHeight = BLOCK_HEIGHT * size;
 
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 
@@ -86,9 +90,49 @@ public class GameGuidePanel extends Pane implements Observer {
 			this.setOnMouseClicked(actionHandler.weaponEvent);
 		}
 	}
-	@Override
+
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 
+		UpdateMessage notifingObject = (UpdateMessage)arg;
+		String key = notifingObject.getKey();
+
+		Platform.runLater(new Runnable(){
+			public void run() {
+				if (key.equals("samuraiMove")) {
+					Position position = (Position) notifingObject.getValue();
+					samurai.move(position.getX(), position.getY());
+					samurai.setCanHide(chessBoard.getState(samurai.x, samurai.y) / 4 == samurai.getNum() / 4);
+					actionPanel.reset();
+
+				} else if (key.equals("samuraiHide")) {
+					samurai.setHide((boolean) notifingObject.getValue());
+
+				} else if (key.equals("samuraiOccupy")) {
+					samurai.occupy((int) notifingObject.getValue());
+					samurai.setCanHide(chessBoard.getState(samurai.x, samurai.y) / 4 == samurai.getNum() / 4);
+					actionPanel.reset();
+
+				} else if (key.equals("visible")) {
+					samurai.setVisible(true);
+
+				} else if (key.equals("vision")) {
+					chessBoard.see((ArrayList<ActualBlock>) notifingObject.getValue());
+					chessBoard.setTmpBlocks((ArrayList<ActualBlock>) notifingObject.getValue());
+
+				} else if (key.equals("pseudoOccupy")) {
+					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
+
+				} else if (key.equals("a-pseudoOccupy")) {
+					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), false);
+
+				} else if(key.equals("home")){
+					SamuraiPO samuraiPO = (SamuraiPO)notifingObject.getValue();
+					samurai.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
+					chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
+
+				}
+			}
+		});
 	}
 }
