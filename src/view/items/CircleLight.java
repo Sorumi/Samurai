@@ -8,8 +8,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 import view.GameColor;
+import view.OrderPanel;
 
-public class CircleLight extends Pane{
+public class CircleLight extends OrderPanel{ 
 	
 	private final int RADIOUS = 70;
 	
@@ -18,7 +19,6 @@ public class CircleLight extends Pane{
 
 	public CircleLight(){
 		this.setPrefSize(RADIOUS*2, RADIOUS*2);
-		
 		stroke = new Circle();
 		stroke.setFill(null);
 		stroke.setStroke(Color.WHITE);
@@ -45,6 +45,12 @@ public class CircleLight extends Pane{
 			tl.getKeyFrames().addAll(circle.getFrames());
 		}
 		tl.play();
+		System.out.println(num); 
+	}
+	
+	public void setActualacation(double x, double y){ 
+		this.setLayoutX(x);
+		this.setLayoutY(y);
 	}
 	
 	public class CirclePart extends Circle{

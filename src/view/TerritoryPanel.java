@@ -22,6 +22,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 import model.StoryModel;
+import musics.Musics;
 import view.background.TerritoryBackground;
 import view.background.TerritoryFrontground;
 import view.background.WeatherSelectPanel;
@@ -304,6 +305,9 @@ public class TerritoryPanel extends Pane {
 		Random random = new Random();
 		int x = random.nextInt(5) + 1;
 		setWeather(x);
+		if(x==4){
+			Musics.playEffectMusic(0);
+		}
 	}
 
 	public void setWeather(int num) {

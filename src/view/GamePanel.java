@@ -30,6 +30,7 @@ import view.background.BackgroundPanel5;
 import view.eventhandler.ActionHandler;
 import view.eventhandler.GamePanelSelectHandler;
 import view.eventhandler.StateHandler;
+import view.items.CircleLight;
 
 public class GamePanel extends Pane implements Observer{
 
@@ -81,6 +82,7 @@ public class GamePanel extends Pane implements Observer{
 	protected ResultPanel resultPanel;
 
 	protected OrderPanel propsGroup;
+	protected CircleLight circleLight;
 	
 	public Arrow arrow;
 	public ActionPanel actionPanel;
@@ -231,6 +233,10 @@ public class GamePanel extends Pane implements Observer{
 			propsGroup.setZOrder(-3);
 
 			this.propViews = new ArrayList<>();
+			
+			this.circleLight = new CircleLight();
+			this.getChildren().add(circleLight);
+			circleLight.setZOrder(-1);
 		}
 
 		//overlay
@@ -249,7 +255,7 @@ public class GamePanel extends Pane implements Observer{
 		overlayPanel.setZOrder(1000);
 
 		if(level < 99 && level > 0) {
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel, circleLight);
 		}else{
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel, overlayPanel);
 		}
@@ -500,8 +506,9 @@ public class GamePanel extends Pane implements Observer{
 
 	public void useProp(int num){
 		//TODO
-		PropsInG.get7Type(num);
-		
+		num = PropsInG.get7Type(num);		
+		this.circleLight.setActualacation(this.currentSamurai.getLayoutX()-40, this.currentSamurai.getLayoutY());
+		this.circleLight.setNum(num/10%10);		
 	}
 	
 	public void close(){
@@ -743,6 +750,7 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("useProp")){
 					int[] t = (int [])notifingObject.getValue();
 					propPanel.useProp(t[0]);
+					useProp(t[0]);
 					set6Properties(t[1],new int[]{t[2],t[3],t[4],t[5],t[6],t[7],t[8]});
 					
 				}else if(key.equals("replace")){
