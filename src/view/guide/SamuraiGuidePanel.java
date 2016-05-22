@@ -1,5 +1,7 @@
 package view.guide;
 
+import java.util.Random;
+
 import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -63,7 +65,6 @@ public class SamuraiGuidePanel extends OrderPanel {
 		
 		this.setPrefWidth(SAMURAI_WIDTH);
 		this.setPrefHeight(SAMURAI_HEIGHT);
-//		this.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
 		
 		this.samuraiV = new SamuraiView(number, 1);
 		this.isHide = false;
@@ -72,27 +73,7 @@ public class SamuraiGuidePanel extends OrderPanel {
 		
 		this.getChildren().add(samuraiV);
 
-		if(number < 4){
-			samuraiV.setDirection(2);
-		}else{
-			samuraiV.setDirection(1);
-		}
-		
-		//TODO
-		switch(number){
-		case 1:
-		case 4:
-			samuraiV.setWeapon(000);
-			break;
-		case 2:
-		case 5:
-			samuraiV.setWeapon(100);
-			break;
-		case 3:
-		case 6:
-			samuraiV.setWeapon(200);
-			break;
-		}
+		samuraiV.setDirection(2);
 		
 		//text
 		missText = new Text("Miss");
@@ -183,6 +164,14 @@ public class SamuraiGuidePanel extends OrderPanel {
 
 	public void setWeapon(int weapon){
 		samuraiV.setWeapon(weapon * 100 + 11);
+	}
+	
+	public void setRandomArmor(){
+		int armor[] = {11, 23, 34};
+		Random random = new Random();
+		int x = random.nextInt(3);
+		System.out.println(armor[x]);
+		samuraiV.setArmor(armor[x]);
 	}
 
 	public BooleanProperty canActionProperty(){

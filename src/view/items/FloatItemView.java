@@ -74,7 +74,7 @@ public class FloatItemView extends ImageView{
 		tt.setToY(toY);
 		tt.setCycleCount(Timeline.INDEFINITE);
 		if(num < 3){
-			tt.setDelay(Duration.millis(random.nextInt(num*2+4)*500));
+			tt.setDelay(Duration.millis(random.nextInt(num*2+4)*2000));
 		}else if(num < 6){
 			tt.setDelay(Duration.millis(random.nextInt(num*2+1)*6000+3000));
 		}else{

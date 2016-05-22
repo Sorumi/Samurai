@@ -80,7 +80,7 @@ public class GameModelGuide extends BaseModel{
 
     public void changeArmor(){
         //只要上层改护甲
-        super.updateChange(new UpdateMessage("Armor",0));
+        super.updateChange(new UpdateMessage("armor",0));
     }
 
     public void updateOccupy(int direction){

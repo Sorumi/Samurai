@@ -1,6 +1,7 @@
 package view.guide;
 
 import javafx.animation.Interpolator;
+import javafx.animation.ParallelTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -129,43 +130,40 @@ public class ActionGuidePanel extends Pane{
 		}
 		if (isAppear) {
 			this.setVisible(isAppear);
+			
+			ParallelTransition pt = new ParallelTransition();
+			
 			TranslateTransition tt1 = new TranslateTransition(Duration.millis(500), occupyButton);
 			tt1.setFromX((BUTTONPANEL_WIDTH - BUTTON_WIDTH) / 2);
 			tt1.setFromY(BUTTON_Y);
 			tt1.setToX(0);
 			tt1.setToY(60);
 			tt1.setInterpolator(Interpolator.EASE_BOTH);
-			tt1.play();
 
 			TranslateTransition tt2 = new TranslateTransition(Duration.millis(500), moveButton);
 			tt2.setFromX((BUTTONPANEL_WIDTH - BUTTON_WIDTH) / 2);
 			tt2.setFromY(BUTTON_Y);
 			tt2.setToX(40);
 			tt2.setToY(0);
-			tt2.play();
 
 			TranslateTransition tt3 = new TranslateTransition(Duration.millis(500), hideButton);
 			tt3.setFromX((BUTTONPANEL_WIDTH - BUTTON_WIDTH) / 2);
 			tt3.setFromY(BUTTON_Y);
 			tt3.setToX(110);
 			tt3.setToY(0);
-			tt3.play();
-
-//			TranslateTransition tt4 = new TranslateTransition(Duration.millis(500), exitButton);
-//			tt4.setFromX((BUTTONPANEL_WIDTH - BUTTON_WIDTH) / 2);
-//			tt4.setFromY(BUTTON_Y);
-//			tt4.setToX(150);
-//			tt4.setToY(60);
-//			tt4.play();
 
 			TranslateTransition tt5 = new TranslateTransition(Duration.millis(500), backButton);
 			tt5.setFromX((BUTTONPANEL_WIDTH - BUTTON_WIDTH) / 2);
 			tt5.setFromY(BUTTON_Y);
 			tt5.setToX(150);
 			tt5.setToY(60);
-			tt5.play();
 
+			pt.getChildren().addAll(tt1, tt2, tt3, tt5);
+			pt.play();
+			
 		} else {
+			ParallelTransition pt = new ParallelTransition();
+			
 			TranslateTransition tt1 = new TranslateTransition(Duration.millis(500), occupyButton);
 			tt1.setFromX(0);
 			tt1.setFromY(60);
@@ -187,13 +185,6 @@ public class ActionGuidePanel extends Pane{
 			tt3.setToY(BUTTON_Y);
 			tt3.play();
 
-//			TranslateTransition tt4 = new TranslateTransition(Duration.millis(500), exitButton);
-//			tt4.setFromX(150);
-//			tt4.setFromY(60);
-//			tt4.setToX((BUTTONPANEL_WIDTH - BUTTON_WIDTH) / 2);
-//			tt4.setToY(BUTTON_Y);
-//			tt4.play();
-
 			TranslateTransition tt5 = new TranslateTransition(Duration.millis(500), backButton);
 			tt5.setFromX(150);
 			tt5.setFromY(60);
@@ -208,6 +199,9 @@ public class ActionGuidePanel extends Pane{
 					ActionGuidePanel.this.setVisible(isAppear);
 				}
 			});
+			
+			pt.getChildren().addAll(tt1, tt2, tt3, tt5);
+			pt.play();
 		}
 	}
 
