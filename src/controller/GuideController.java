@@ -26,4 +26,8 @@ public class GuideController {
         gameModelGuide.updatePseudo0ccupy(isEnter, direction);
     }
 
+    public static void changeWeapon(int weaponNum){
+        gameModelGuide.changeWeapon(weaponNum);
+    }
+
 }
