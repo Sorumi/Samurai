@@ -784,6 +784,12 @@ public class GameModel extends BaseModel implements Observer {
             }
 
             this.replaceProps();
+
+            if(this.currentRound == 1){
+                this.currentTime = 31;
+            }else{
+                this.currentTime = 30;
+            }
         }
 
         System.out.println("Now is " + this.getCurrentSamurai());

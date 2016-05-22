@@ -127,6 +127,8 @@ public class ActionHandler {
 			public void handle(ActionEvent event) {
 				gamePanel.orderList.remove(gamePanel.overlayPanel);
 				gamePanel.setOrder();
+
+				OperationQueue.addOperation(new ContinueOperation());
 			}
 			
 		});

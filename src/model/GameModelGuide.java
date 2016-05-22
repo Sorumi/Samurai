@@ -1,10 +1,6 @@
 package model;
 
-import controller.msgqueue.Operation;
-import controller.msgqueue.OperationQueue;
-import controller.msgqueue.SkipOperation;
-import model.po.ActualBlock;
-import view.GamePanel;
+import model.po.*;
 import view.guide.GameGuidePanel;
 
 import java.util.ArrayList;
@@ -12,16 +8,18 @@ import java.util.ArrayList;
 /**
  * Created by Kray on 16/5/16.
  */
-public class GameModelGuide extends GameModel {
+public class GameModelGuide extends BaseModel{
 
     private int length;
     private ChessBoardModel chessBoardModel;
+    private PlayerGuide player;
 
-    public GameModelGuide(GameGuidePanel gamePanel){
-        super();
-        this.length = 11;
+    public GameModelGuide(GameGuidePanel gameGuidePanel){
+//        super();
+        this.length = 10;
         this.chessBoardModel = new ChessBoardModel(this.length);
-        this.chessBoardModel.addObserver(gamePanel.chessBoard);
+        this.chessBoardModel.addObserver(gameGuidePanel.chessBoard);
+        this.player = new PlayerGuide(this);
     }
 
     public boolean gameStart(){
@@ -32,29 +30,87 @@ public class GameModelGuide extends GameModel {
             }
         }
 
+        System.out.println("Guide start!");
+
+        super.updateChange(new UpdateMessage("home",this.player.getSamuraiPO()));
+
         super.updateChange(new UpdateMessage("vision", blocks));
 
-        for (int i = 1; i <= 6; i++) {
-            updateHome(i);
-        }
-
-        this.assignNext();
+        this.updateVision();
 
         return true;
     }
 
-    public void assignNext(){
-
-        this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
-
-        players[0].setEnableToAction();
-
-        super.updateChange(new UpdateMessage("player",players[0]));
-        super.updateChange(new UpdateMessage("samurai",getSamuraiOfNum(0)));
-        super.updateChange(new UpdateMessage("round",1));
-        super.updateChange(new UpdateMessage("pointsTotal", getSamuraiOfNum(getCurrentSamurai()).getTotalActionPoint()));
-        super.updateChange(new UpdateMessage("actionPoint",getSamuraiOfNum(getCurrentSamurai()).getActionPoint()));
-
+    public void actionPerformed(int actionNum, int direction) {
+        //actionNum:动作编号
+        //0:occupy 1:move 2:show / hide
+        switch (actionNum) {
+            case 0:
+                this.player.getSamuraiPO().occupied(direction, this.chessBoardModel, true);
+                this.updateOccupy(direction);
+                break;
+            case 1:
+                if (this.player.getSamuraiPO().move(direction, this.chessBoardModel)) {
+                    this.updatePosition(this.player.getSamuraiPO().getPos());
+                }
+                break;
+            case 2:
+                if (this.player.getSamuraiPO().getHide()) {
+                    if (this.player.getSamuraiPO().show(this.chessBoardModel)) {
+                        this.updateHide(false);
+                    }
+                } else {
+                    if (this.player.getSamuraiPO().hide(this.chessBoardModel)) {
+                        this.updateHide(true);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        this.updateVisible(this.updateVision());
     }
 
+    public void updateOccupy(int direction){
+        super.updateChange(new UpdateMessage("samuraiOccupy",direction));
+    }
+
+    public void updateHide(boolean isHide){
+        super.updateChange(new UpdateMessage("samuraiHide",isHide));
+    }
+
+    public ArrayList<ActualBlock> updateVision(){
+        ArrayList<ActualBlock> blocks;
+        blocks = this.player.showVision();
+        System.out.println("BS : " + blocks.size());
+        super.updateChange(new UpdateMessage("vision", blocks));
+        return blocks;
+    }
+
+    public void updateVisible(ArrayList<ActualBlock> blocks){
+        super.updateChange(new UpdateMessage("visible", blocks));
+    }
+
+    public void updatePosition(Position position){
+        super.updateChange(new UpdateMessage("samuraiMove",position));
+    }
+
+    public void updatePseudo0ccupy(boolean HL, int direction) {
+        if(HL) {
+            super.updateChange(new UpdateMessage("pseudoOccupy",this.player.pseudoOccupy(direction)));
+        }else{
+            super.updateChange(new UpdateMessage("a-pseudoOccupy",this.player.pseudoOccupy(direction)));
+        }
+    }
+
+    public ChessBoardModel getChessBoardModel(){
+        return this.chessBoardModel;
+    }
+
+    public int getLength() {
+        return length;
+    }
 }
+
+
+

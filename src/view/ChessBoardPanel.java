@@ -89,6 +89,6 @@ public class ChessBoardPanel extends OrderPanel implements Observer{
 	}
 
 	public int getState(int x, int y){
-		return this.blocks[x][y].getState();
+		return blocks[x][y].getState();
 	}
 }

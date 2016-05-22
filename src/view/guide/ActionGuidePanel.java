@@ -211,4 +211,17 @@ public class ActionGuidePanel extends Pane{
 		}
 	}
 
+	public void reset() {
+		this.setAppear(false, false);
+		this.closeSecondary();
+		this.setActualLocation();
+		moveButton.setTrue();
+		occupyButton.setTrue();
+		hideButton.setTrue();
+		backButton.setTrue();
+		if (!this.currentSamurai.isCanHide()) {
+			hideButton.setFalse();
+		}
+	}
+
 }

@@ -2,6 +2,7 @@ package controller;
 
 import controller.msgqueue.OperationQueue;
 import controller.msgqueue.StartGameOperation;
+import controller.msgqueue.StopOperation;
 import model.GameModel;
 import model.po.Position;
 import model.po.SamuraiPO;
@@ -62,7 +63,7 @@ public class MapController extends TerritoryController {
         operationThread.start();
 
         OperationQueue.addOperation(new StartGameOperation());
-
+        OperationQueue.addOperation(new StopOperation());
     }
 
 }
