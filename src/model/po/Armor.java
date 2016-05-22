@@ -49,6 +49,10 @@ public class Armor implements Serializable {
 		}
 	}
 
+	public void changeHave() {
+		isHave = true;
+	}
+
 	public boolean isHave() {
 		return isHave;
 	}

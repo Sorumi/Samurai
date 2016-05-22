@@ -428,6 +428,12 @@ public class Armory implements Serializable {
 		materialNumber = new int[] { 5, 1, 1 };
 		nextArmor = new int[] {};
 		armorList.add(new Armor(916, 40, 40, materialTag, materialItem, materialNumber, false, nextArmor, 0));
+		getWeapon(11).changeHave();
+		getWeapon(111).changeHave();
+		getWeapon(211).changeHave();
+		getWeapon(311).changeHave();
+		getWeapon(411).changeHave();
+		getArmor(911).changeHave();
 	}
 
 	public Weapon getWeapon(int type) {
