@@ -24,6 +24,7 @@ public class Weapon implements Cloneable, Serializable {
 	private boolean canCreate;
 	private int number;
 	private int[] nextWeapon;
+	private boolean isHave;
 
 	public Weapon(int genre, int type, int lowAttackPoint, int highAttackPoint, int criticalHitRate,
 			int armorPenetration, int[] materialTag, int[] materialItem, int[] materialNumber, boolean canCreate,
@@ -86,11 +87,16 @@ public class Weapon implements Cloneable, Serializable {
 
 	public boolean create() {
 		number++;
+		isHave = true;
 		if (number == 1) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public boolean isHave() {
+		return isHave;
 	}
 
 	public boolean canCreate() {

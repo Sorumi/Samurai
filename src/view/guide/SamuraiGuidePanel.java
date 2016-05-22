@@ -180,56 +180,9 @@ public class SamuraiGuidePanel extends OrderPanel {
 			}
 		});
 	}
-	
-	public void setInjured(boolean isInjured){
-		if ( number/4 == 0 ){
-			samuraiV.setInjured(isInjured, 2);
-		}else{
-			samuraiV.setInjured(isInjured, 3);
-		}
-	}
-	
-	public void setMiss(){
-		Timeline missTL= new Timeline(
-				//text
-				new KeyFrame(Duration.ZERO, new KeyValue(missText.opacityProperty(), 1)),
-				new KeyFrame(Duration.millis(800), new KeyValue(missText.opacityProperty(), 1)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(missText.opacityProperty(), 0, Interpolator.EASE_IN)),
-				new KeyFrame(Duration.ZERO, new KeyValue(missText.yProperty(), 10)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(missText.yProperty(), -20, Interpolator.EASE_IN))
-				);
-		missTL.play();
-		samuraiV.setMiss();
-	}
-	
-	public void setAttacked(int num){
-		attackedText.setText("- " + num);//TODO
-		Timeline attackTL= new Timeline(
-				//text
-				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.opacityProperty(), 1)),
-				new KeyFrame(Duration.millis(800), new KeyValue(attackedText.opacityProperty(), 1)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.opacityProperty(), 0, Interpolator.EASE_IN)),
-				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.yProperty(), 10)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.yProperty(), -20, Interpolator.EASE_IN))
-				);
-		attackTL.play();
-		samuraiV.setAttacked();
-	}
 
-	public void setDoubleAttacked(int num){
-		attackedText.setText("- " + num + "×2");//TODO
-
-		Timeline attackTL= new Timeline(
-				//text
-				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.opacityProperty(), 1)),
-				new KeyFrame(Duration.millis(800), new KeyValue(attackedText.opacityProperty(), 1)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.opacityProperty(), 0, Interpolator.EASE_IN)),
-				new KeyFrame(Duration.ZERO, new KeyValue(attackedText.yProperty(), 10)),
-				new KeyFrame(Duration.millis(1200), new KeyValue(attackedText.yProperty(), -20, Interpolator.EASE_IN))
-				
-				);
-		attackTL.play();
-		samuraiV.setDoubleAttacked();
+	public void setWeapon(int weapon){
+		samuraiV.setWeapon(weapon);
 	}
 
 	public BooleanProperty canActionProperty(){

@@ -60,7 +60,7 @@ public class MenuPanel extends Pane {
 	private SamuraiView samuraiB2;
 	private SamuraiView samuraiB3;
 	
-	public AnimationTimer samuraiTimer;
+	private AnimationTimer samuraiTimer;
 	private int times;
 	
 	private int[] weapon0 = {11, 12, 13, 14, 15, 16, 23, 25, 26, 33, 34, 35, 36};
@@ -235,12 +235,6 @@ public class MenuPanel extends Pane {
 		guideGroup.setVisible(false); 
 		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, nomusicBtn, musicBtn, guideGroup);
 		
-		//test
-		
-//		CircleLight light = new CircleLight(3);
-//		light.setLayoutX(400);
-//		light.setLayoutY(100);
-//		this.getChildren().add(light);
 	}
 	public void btnClick(int btn){
 		if(btn == 0){
@@ -344,6 +338,16 @@ public class MenuPanel extends Pane {
 	private int setRandomArmor(){
 		int x = random.nextInt(armor.length);
 		return armor[x];
+	}
+	
+	public void setAllAnimation(Boolean isAnimated){
+		if(isAnimated){
+			samuraiTimer.start();
+			menuBg.floatBg.pt.play();
+		}else{
+			samuraiTimer.stop();
+			menuBg.floatBg.pt.pause();
+		}
 	}
 	
 	public void leftBtnEnter(){

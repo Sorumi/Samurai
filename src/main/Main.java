@@ -65,10 +65,10 @@ public class Main extends Application {
 	}
 	
 	public void setMenu(){
-		menuPanel.samuraiTimer.start();
+		menuPanel.setAllAnimation(true);
 	}
 	public void startGame(){
-		menuPanel.samuraiTimer.stop();
+		menuPanel.setAllAnimation(false);
 		basePanel.getChildren().add(gamePanel);
 		this.gameModel = new GameModel(24, 14, gamePanel, 0);
 		this.gameModel.addObserver(this.gamePanel);
@@ -79,7 +79,7 @@ public class Main extends Application {
 	}
 
 	public void startClassicGame(){
-		menuPanel.samuraiTimer.stop();
+		menuPanel.setAllAnimation(false);
 		gamePanel = new GamePanel(15, 99);
 		
 		basePanel.getChildren().add(gamePanel);
@@ -94,7 +94,7 @@ public class Main extends Application {
 	}
 	
 	public void startStory(){
-		menuPanel.samuraiTimer.stop();
+		menuPanel.setAllAnimation(false);
 		this.storyPanel = new StoryPanel();
 		basePanel.getChildren().add(storyPanel);
 	}

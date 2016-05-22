@@ -133,7 +133,7 @@ public class GameModel extends BaseModel implements Observer {
                 aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(111), 14, chessBoardModel, armory.getArmor(911), this.randomHomeLocationWithScale(7,12,0), 10, 2);
                 aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(211), 14, chessBoardModel, armory.getArmor(911), this.randomHomeLocationWithScale(12,12,0), 10, 2);
                 samuraiAI = new SamuraiAI[3];
-                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],0,this.chessBoardModel,1);
+                samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],1,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],1,this.chessBoardModel,1);
                 samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],0,this.chessBoardModel,1);
                 break;
@@ -784,6 +784,12 @@ public class GameModel extends BaseModel implements Observer {
             }
 
             this.replaceProps();
+
+            if(this.currentRound == 1){
+                this.currentTime = 31;
+            }else{
+                this.currentTime = 30;
+            }
         }
 
         System.out.println("Now is " + this.getCurrentSamurai());
