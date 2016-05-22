@@ -182,7 +182,7 @@ public class SamuraiGuidePanel extends OrderPanel {
 	}
 
 	public void setWeapon(int weapon){
-		samuraiV.setWeapon(weapon);
+		samuraiV.setWeapon(weapon * 100 + 11);
 	}
 
 	public BooleanProperty canActionProperty(){
