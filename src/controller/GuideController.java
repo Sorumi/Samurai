@@ -15,7 +15,6 @@ public class GuideController {
     }
 
     public static void sendMsg(int actionNum, int direction){
-        System.out.println("SM : " +actionNum + " , " + direction);
         gameModelGuide.actionPerformed(actionNum, direction);
     }
 
@@ -23,5 +22,8 @@ public class GuideController {
         gameModelGuide.gameStart();
     }
 
+    public static void pseudoOccupy(boolean isEnter, int direction){
+        gameModelGuide.updatePseudo0ccupy(isEnter, direction);
+    }
 
 }

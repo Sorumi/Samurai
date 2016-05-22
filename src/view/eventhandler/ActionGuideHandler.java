@@ -51,8 +51,7 @@ public class ActionGuideHandler {
 	      public void handle(MouseEvent event) {
 	    	  ActionGuideButton btn = (ActionGuideButton)event.getSource();
 	    	  action = btn.action;
-//	    	  Operation op = new ActionOperation(action, 0);
-//	    	  OperationQueue.addOperation(op);
+			  GuideController.sendMsg(action, direction);
 	      }
 	};
 	
@@ -68,9 +67,7 @@ public class ActionGuideHandler {
 	      public void handle(MouseEvent event) {
 	    	  DirectionButton btn = (DirectionButton)event.getSource();
 	    	  direction = btn.direction;
-//	    	  Operation op = new ActionOperation(action, direction);
-//	    	  OperationQueue.addOperation(op);
-				GuideController.sendMsg(action, direction);
+			  GuideController.sendMsg(action, direction);
 	      }
 	};
 	
@@ -81,8 +78,7 @@ public class ActionGuideHandler {
 
 			  if(action == 0) {
 				  direction = btn.direction;
-//				  Operation op = new PseudoOccupyOperation(true, direction);
-//				  OperationQueue.addOperation(op);
+				  GuideController.pseudoOccupy(true,direction);
 			  }
 
 	      }
@@ -95,8 +91,7 @@ public class ActionGuideHandler {
 
 			  if(action == 0) {
 				  direction = btn.direction;
-//				  Operation op = new PseudoOccupyOperation(false, direction);
-//				  OperationQueue.addOperation(op);
+				  GuideController.pseudoOccupy(false,direction);
 			  }
 
 	      }
