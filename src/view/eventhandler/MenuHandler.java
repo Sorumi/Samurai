@@ -87,6 +87,7 @@ public class MenuHandler {
 			StoryModel.newStoryModel();
 			TerritoryController.territoryController().setStoryModel(StoryModel.getStoryModel());
 			startStory();
+			Musics.playEffectMusic(1);
 		}  
 	};
 
@@ -103,6 +104,7 @@ public class MenuHandler {
 			mainFrame.menuPanel.archivePanel.setLayoutX(350);
 			mainFrame.menuPanel.archivePanel.setLayoutY(50);
 			mainFrame.menuPanel.getChildren().add(mainFrame.menuPanel.archivePanel);
+			Musics.playEffectMusic(1);
 		}  
 	};
 	

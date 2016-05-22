@@ -7,6 +7,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import musics.Musics;
 import view.ArchivePanel;
 import view.ArchiveSelectPanel;
 import view.ArchiveView;
@@ -49,12 +50,14 @@ public class ArchiveSelectHandler{
 
 				archivePanel.archiveSelectPanel.setVisible(false);
 			}
+			Musics.playEffectMusic(1);
 		}
 	};
 
 	public EventHandler<MouseEvent> noEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			archivePanel.archiveSelectPanel.setVisible(false);
+			Musics.playEffectMusic(1);
 		}
 	};
 
