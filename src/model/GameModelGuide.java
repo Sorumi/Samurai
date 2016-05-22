@@ -34,7 +34,9 @@ public class GameModelGuide extends BaseModel{
 
         super.updateChange(new UpdateMessage("home",this.player.getSamuraiPO()));
 
-        this.updateVisible(this.updateVision());
+        super.updateChange(new UpdateMessage("vision", blocks));
+
+        this.updateVision();
 
         return true;
     }
