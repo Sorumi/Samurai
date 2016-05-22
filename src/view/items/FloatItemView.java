@@ -11,18 +11,20 @@ import view.Images;
 
 public class FloatItemView extends ImageView{
 	
+	private int type;
 	private int num;
 	
-	public FloatItemView(int num){
-		super(Images.FLOAT[num]);
+	public FloatItemView(int type, int num){
+		super(Images.FLOAT[type]);
 		
+		this.type = type;
 		this.num = num;
 		this.setPreserveRatio(true);
 		init();
 	}
 	
 	public void init(){
-		switch(num){
+		switch(type){
 		case 0:
 			this.setFitWidth(54);
 			break;
@@ -52,7 +54,7 @@ public class FloatItemView extends ImageView{
 	
 	public RotateTransition getRotateAnimation(){
 		Random random = new Random();
-		int time = random.nextInt(1000)+2000;
+		int time = random.nextInt(1000)+4000;
 		RotateTransition rt = new RotateTransition(Duration.millis(time), this);
 		rt.setByAngle(360);
 		rt.setCycleCount(Timeline.INDEFINITE);
@@ -61,16 +63,24 @@ public class FloatItemView extends ImageView{
 	
 	public TranslateTransition getTranslateAnimation(){
 		Random random = new Random();
-		TranslateTransition tt = new TranslateTransition(Duration.millis(30000), this);
-		int fromX = (random.nextInt(60)-60)*20;
-		int toX = fromX + (random.nextInt(60)+60)*20;
-		int fromY = (random.nextInt(25)-20)*20;
+		TranslateTransition tt = new TranslateTransition(Duration.millis(20000), this);
+		int fromX = -100;
+		int toX = random.nextInt(600) + 1200;
+		int fromY = (random.nextInt(25)-5)*20;
 		int toY = random.nextInt(600)+200;
 		tt.setFromX(fromX);
 		tt.setFromY(fromY);
 		tt.setToX(toX);
 		tt.setToY(toY);
 		tt.setCycleCount(Timeline.INDEFINITE);
+		if(num < 3){
+			tt.setDelay(Duration.millis(random.nextInt(num*2+4)*500));
+		}else if(num < 6){
+			tt.setDelay(Duration.millis(random.nextInt(num*2+1)*6000+3000));
+		}else{
+			tt.setDelay(Duration.millis(random.nextInt(200)*50+10000));
+		}
+
 		return tt;
 	}
 	

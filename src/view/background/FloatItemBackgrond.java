@@ -17,19 +17,20 @@ public class FloatItemBackgrond extends Pane {
 		pt = new ParallelTransition();
 	}
 	
-	public void setNum(int num){
+	public void setNum(int type){
+		pt.stop();
 		this.getChildren().clear();
 		pt.getChildren().clear();
 		
 		items = new FloatItemView[size];
 		
 		for(int i=0; i<size; i++){
-			items[i] = new FloatItemView(num);
+			items[i] = new FloatItemView(type, i);
+			items[i].setLayoutX(-100);
 			this.getChildren().add(items[i]);
 			pt.getChildren().addAll(items[i].getRotateAnimation(), items[i].getTranslateAnimation());
 		}
 		pt.setCycleCount(Timeline.INDEFINITE);
-		pt.play();
 	}
 	
 	

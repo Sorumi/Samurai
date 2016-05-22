@@ -199,7 +199,6 @@ public class MenuBackground extends Pane{
 		
 		//float
 		floatBg = new FloatItemBackgrond();
-		floatBg.setNum(0);
 		
 		//land
 		land = new Circle();

@@ -22,8 +22,7 @@ import view.guide.GuidePanel;
 import view.items.CircleLight;
 
 public class MenuPanel extends Pane {
-	
-//	private Main mainFrame;
+
 	private MenuHandler menuHandler;
 
 	private SystemButton exitBtn;
@@ -232,6 +231,8 @@ public class MenuPanel extends Pane {
 
 		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, nomusicBtn, musicBtn);
 		
+		//float
+		menuBg.floatBg.setNum(random.nextInt(8));
 	}
 	public void btnClick(int btn){
 		if(btn == 0){
@@ -325,6 +326,9 @@ public class MenuPanel extends Pane {
 		//random weather
 		menuBg.setDay(random.nextInt(4));
 		this.modeNum = targetNum;
+		//random float
+		menuBg.floatBg.setNum(random.nextInt(8));
+		menuBg.floatBg.pt.play();
 	}
 	
 	private int setRandomWeapon(int num){
