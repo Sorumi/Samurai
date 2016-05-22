@@ -14,19 +14,24 @@ public class CircleLight extends Pane{
 	private final int RADIOUS = 70;
 	
 //	private Circle[] circles;
+	private Circle stroke;
 
-	public CircleLight(int num){
-		
+	public CircleLight(){
 		this.setPrefSize(RADIOUS*2, RADIOUS*2);
 		
-		Color color = GameColor.getLightColor(num);
-		Circle stroke = new Circle();
+		stroke = new Circle();
 		stroke.setFill(null);
 		stroke.setStroke(Color.WHITE);
 		stroke.setCenterX(RADIOUS);
 		stroke.setCenterY(RADIOUS);
-		this.getChildren().add(stroke);
+	}
+	
+	public void setNum(int num){
 		
+		this.getChildren().clear();
+		
+		this.getChildren().add(stroke);
+		Color color = GameColor.getLightColor(num);
 		Timeline tl = new Timeline(
 				new KeyFrame(Duration.millis(0), new KeyValue(stroke.radiusProperty(), 0)),
 				new KeyFrame(Duration.millis(0), new KeyValue(stroke.opacityProperty(), 0.9)),
@@ -39,9 +44,7 @@ public class CircleLight extends Pane{
 			this.getChildren().add(circle);
 			tl.getKeyFrames().addAll(circle.getFrames());
 		}
-		
 		tl.play();
-		
 	}
 	
 	public class CirclePart extends Circle{

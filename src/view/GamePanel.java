@@ -497,6 +497,10 @@ public class GamePanel extends Pane implements Observer{
 		this.roundPanel.setRoundTotal(this.roundTotal);
 	}
 
+	public void useProp(int num){
+		//TODO
+	}
+	
 	public void close(){
 		if(!isOver){
 			switch(level){
@@ -737,6 +741,7 @@ public class GamePanel extends Pane implements Observer{
 					int[] t = (int [])notifingObject.getValue();
 					propPanel.useProp(t[0]);
 					set6Properties(t[1],new int[]{t[2],t[3],t[4],t[5],t[6],t[7],t[8]});
+					
 				}else if(key.equals("replace")){
 					int[] t = (int [])notifingObject.getValue();
 					set6Properties(t[0],new int[]{t[1],t[2],t[3],t[4],t[5],t[6],t[7]});
