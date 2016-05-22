@@ -77,6 +77,7 @@ public class GameGuidePanel extends Pane implements Observer {
 		public int num;
 		
 		public WeaponButton(int num){
+			this.num = num;
 			ImageView imgV = new ImageView(Images.WEAPON_ICON[num+6]);
 			imgV.setFitWidth(60);
 			imgV.setPreserveRatio(true);

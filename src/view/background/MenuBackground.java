@@ -51,7 +51,7 @@ public class MenuBackground extends Pane{
 	private Circle land;
 	private Color[] landColor;
 	
-	private FloatItemBackgrond floatBg;
+	public FloatItemBackgrond floatBg;
 	
 	public MenuBackground(){
 		Stop[] stops;

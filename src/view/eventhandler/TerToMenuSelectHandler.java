@@ -25,7 +25,7 @@ public class TerToMenuSelectHandler {
 			Pane basePanel = (Pane) storyPanel.getParent();
 			basePanel.getChildren().remove(storyPanel);
 			MenuPanel menu = (MenuPanel) basePanel.getChildren().get(0);
-			menu.samuraiTimer.start();
+			menu.setAllAnimation(true);
 		}
 	};
 	

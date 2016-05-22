@@ -46,7 +46,7 @@ public class GuideGroup extends Group {
 				// TODO Auto-generated method stub
 				GuideGroup.this.setVisible(false);
 				MenuPanel menu = (MenuPanel) GuideGroup.this.getParent();
-				menu.samuraiTimer.start();
+				menu.setAllAnimation(true);
 			}
 		});
 		
