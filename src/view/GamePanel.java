@@ -18,6 +18,7 @@ import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Material;
 import model.po.Position;
+import model.po.PropsInG;
 import model.po.SamuraiPO;
 import view.background.BackgroundPanel;
 import view.background.BackgroundPanel0;
@@ -499,6 +500,8 @@ public class GamePanel extends Pane implements Observer{
 
 	public void useProp(int num){
 		//TODO
+		PropsInG.get7Type(num);
+		
 	}
 	
 	public void close(){

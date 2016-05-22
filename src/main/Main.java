@@ -52,11 +52,11 @@ public class Main extends Application {
 		scene = new Scene(basePanel);
 		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
 		
-		logoPanel = new StartLogoPanel(this);
+//		logoPanel = new StartLogoPanel(this);
 		menuPanel = new MenuPanel(this);
 		
-		basePanel.getChildren().addAll(menuPanel, logoPanel);//TODO 
-		
+		basePanel.getChildren().addAll(menuPanel);//TODO logoPanel
+		setMenu();
 //		Musics.THEME.play();
 		
 		primaryStage.setScene(scene);
