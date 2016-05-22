@@ -178,7 +178,6 @@ public class MenuPanel extends Pane {
             	 }
             }
         };
-//        samuraiTimer.start();
 		
         modeBtn = new Button("经典模式");
         modeBtn.setId("mode-btn");
@@ -230,10 +229,8 @@ public class MenuPanel extends Pane {
 		
 		storySelectPanel = new StorySelectPanel(menuHandler);
 		storySelectPanel.setVisible(false);
-		
-		guideGroup = new GuideGroup();
-		guideGroup.setVisible(false); 
-		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, nomusicBtn, musicBtn, guideGroup);
+
+		this.getChildren().addAll(doubleSelectPanel, storySelectPanel, exitBtn, courseBtn, nomusicBtn, musicBtn);
 		
 	}
 	public void btnClick(int btn){

@@ -1048,6 +1048,7 @@ public class GameModel extends BaseModel implements Observer {
         if(this.level != 99 && this.level != 0) {
             this.replaceProps();
         }
+        this.deleteObservers();
         System.out.println("GAME EXIT!");
     }
 

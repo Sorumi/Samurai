@@ -44,8 +44,9 @@ public class GuideGroup extends Group {
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				GuideGroup.this.setVisible(false);
+//				GuideGroup.this.setVisible(false);
 				MenuPanel menu = (MenuPanel) GuideGroup.this.getParent();
+				menu.getChildren().remove(menu.guideGroup);
 				menu.setAllAnimation(true);
 			}
 		});

@@ -17,6 +17,7 @@ import network.Configure;
 import view.ArchivePanel;
 import view.GamePanelOL;
 import view.MenuPanel;
+import view.guide.GuideGroup;
 
 public class MenuHandler {
 	
@@ -210,8 +211,10 @@ public class MenuHandler {
 	public EventHandler<ActionEvent> guideEvent = new EventHandler<ActionEvent>() {
 		@Override 
 		public void handle(ActionEvent e) {
-			mainFrame.menuPanel.guideGroup.setVisible(true);
+//			mainFrame.menuPanel.guideGroup.setVisible(true);
 			mainFrame.menuPanel.setAllAnimation(false);
+			mainFrame.menuPanel.guideGroup = new GuideGroup();
+			mainFrame.menuPanel.getChildren().add(mainFrame.menuPanel.guideGroup);
 		}
 	};
 	
