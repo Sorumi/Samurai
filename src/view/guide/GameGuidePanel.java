@@ -138,6 +138,8 @@ public class GameGuidePanel extends Pane implements Observer {
 				} else if(key.equals("weapon")){
 					samurai.setWeapon((int)notifingObject.getValue());
 
+				} else if(key.equals("armor")){
+					//等待换护甲
 				}
 
 			}

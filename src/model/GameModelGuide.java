@@ -78,6 +78,11 @@ public class GameModelGuide extends BaseModel{
         super.updateChange(new UpdateMessage("weapon",weapon));
     }
 
+    public void changeArmor(){
+        //只要上层改护甲
+        super.updateChange(new UpdateMessage("Armor",0));
+    }
+
     public void updateOccupy(int direction){
         super.updateChange(new UpdateMessage("samuraiOccupy",direction));
     }
