@@ -50,6 +50,7 @@ public class GameGuidePanel extends Pane implements Observer {
 		// samurai
 		samurai = new SamuraiGuidePanel(1, size);
 		samurai.samuraiV.setRandomAnimation(false);
+		samurai.samuraiV.setWeapon(11);
 		samurai.setOnMouseClicked(actionHandler.samuraiEvent);
 		this.getChildren().add(samurai);
 		
