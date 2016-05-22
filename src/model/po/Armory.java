@@ -478,7 +478,7 @@ public class Armory implements Serializable {
 	public ArrayList<Armor> checkAllArmor() {
 		ArrayList<Armor> armors = new ArrayList<Armor>();
 		for (Armor armor : armorList) {
-			if (armor.getNumber() > 0) {
+			if (armor.isHave()) {
 				armors.add(armor);
 			}
 		}
@@ -498,27 +498,27 @@ public class Armory implements Serializable {
 	public ArrayList<Weapon> checkAllWeapon() {
 		ArrayList<Weapon> weapons = new ArrayList<Weapon>();
 		for (Weapon weapon : spearList) {
-			if (weapon.getNumber() > 0) {
+			if (weapon.isHave()) {
 				weapons.add(weapon);
 			}
 		}
 		for (Weapon weapon : swordList) {
-			if (weapon.getNumber() > 0) {
+			if (weapon.isHave()) {
 				weapons.add(weapon);
 			}
 		}
 		for (Weapon weapon : axeList) {
-			if (weapon.getNumber() > 0) {
+			if (weapon.isHave()) {
 				weapons.add(weapon);
 			}
 		}
 		for (Weapon weapon : shurikenList) {
-			if (weapon.getNumber() > 0) {
+			if (weapon.isHave()) {
 				weapons.add(weapon);
 			}
 		}
 		for (Weapon weapon : bowList) {
-			if (weapon.getNumber() > 0) {
+			if (weapon.isHave()) {
 				weapons.add(weapon);
 			}
 		}

@@ -118,7 +118,7 @@ public class SamuraiAI {
 			int moveDirection;
 			int occupyDirection;
 			while (samuraiPOClone.getActionPoint() >= 2) {
-				if (random.nextBoolean()) {
+				if (random.nextInt(2) == 1) {
 					if (samuraiPOClone.getActionPoint() >= 4) {
 						do {
 							occupyDirection = random.nextInt(4);
@@ -598,27 +598,26 @@ public class SamuraiAI {
 	}
 
 	private int sumArea(ChessBoardModel cbm) {
-		int result = 0;
-		if (player == 0) {
-			for (int x = 0; x <= samuraiPO.getLength(); x++) {
-				for (int y = 0; y <= samuraiPO.getLength(); y++) {
-					if (cbm.getActualBlockState(x, y) == 1 || cbm.getActualBlockState(x, y) == 2
-							|| cbm.getActualBlockState(x, y) == 3) {
-						result++;
-					}
-				}
-			}
-		} else {
-			for (int x = 0; x <= samuraiPO.getLength(); x++) {
-				for (int y = 0; y <= samuraiPO.getLength(); y++) {
-					if (cbm.getActualBlockState(x, y) == 4 || cbm.getActualBlockState(x, y) == 5
-							|| cbm.getActualBlockState(x, y) == 6) {
-						result++;
-					}
+		int result1 = 0;
+		int result2 = 0;
+		for (int x = 0; x <= samuraiPO.getLength(); x++) {
+			for (int y = 0; y <= samuraiPO.getLength(); y++) {
+				if (cbm.getActualBlockState(x, y) == 1 || cbm.getActualBlockState(x, y) == 2
+						|| cbm.getActualBlockState(x, y) == 3) {
+					result1++;
 				}
 			}
 		}
-		return result;
+		for (int x = 0; x <= samuraiPO.getLength(); x++) {
+			for (int y = 0; y <= samuraiPO.getLength(); y++) {
+				if (cbm.getActualBlockState(x, y) == 4 || cbm.getActualBlockState(x, y) == 5
+						|| cbm.getActualBlockState(x, y) == 6) {
+					result2++;
+				}
+			}
+		}
+
+		return result2-result1;
 	}
 
 	private ArrayList<ActionOperation> greedy(SamuraiPO samuraiPO1, ChessBoardModel chessBoardModel1) {
@@ -650,14 +649,16 @@ public class SamuraiAI {
 						int temp = random.nextInt(2);
 						switch (temp) {
 						case 1:
-							if ((samuraiPO1.getPos().getX() <= samuraiPO1.getLength() / 2)&&(random.nextInt(100)<=70)||random.nextInt(100)<=30){
+							if ((samuraiPO1.getPos().getX() <= samuraiPO1.getLength() / 2)
+									&& (random.nextInt(100) <= 70) || random.nextInt(100) <= 30) {
 								moveDirection1 = 3;
 							} else {
 								moveDirection1 = 0;
 							}
 							break;
 						default:
-							if ((samuraiPO1.getPos().getY() <= samuraiPO1.getLength() / 2)&&(random.nextInt(100)<=70)||random.nextInt(100)<=30) {
+							if ((samuraiPO1.getPos().getY() <= samuraiPO1.getLength() / 2)
+									&& (random.nextInt(100) <= 70) || random.nextInt(100) <= 30) {
 								moveDirection1 = 2;
 							} else {
 								moveDirection1 = 1;
@@ -682,14 +683,16 @@ public class SamuraiAI {
 						int temp = random.nextInt(2);
 						switch (temp) {
 						case 1:
-							if ((samuraiPO1.getPos().getX() <= samuraiPO1.getLength() / 2)&&(random.nextInt(100)<=70)||random.nextInt(100)<=30) {
+							if ((samuraiPO1.getPos().getX() <= samuraiPO1.getLength() / 2)
+									&& (random.nextInt(100) <= 70) || random.nextInt(100) <= 30) {
 								moveDirection1 = 3;
 							} else {
 								moveDirection1 = 0;
 							}
 							break;
 						default:
-							if ((samuraiPO1.getPos().getY() <= samuraiPO1.getLength() / 2)&&(random.nextInt(100)<=70)||random.nextInt(100)<=30) {
+							if ((samuraiPO1.getPos().getY() <= samuraiPO1.getLength() / 2)
+									&& (random.nextInt(100) <= 70) || random.nextInt(100) <= 30) {
 								moveDirection1 = 2;
 							} else {
 								moveDirection1 = 1;
