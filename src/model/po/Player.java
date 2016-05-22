@@ -24,6 +24,7 @@ public class Player {
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
+        System.out.println(this.chessBoardModel.getLength() + "!");
         this.samuraiPOs = new SamuraiPO[7];
         if(playerNum == 0){
             samuraiPOs[1] = new SamuraiPO(1,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor());

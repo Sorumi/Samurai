@@ -37,6 +37,18 @@ public class Images {
 	public static final Image LEAF_1 = ImageManager.getImage("main/leaf_1.png");
 	// lotus
 	public static final Image LOTUS_0 = ImageManager.getImage("main/lotus_0.png");
+	
+	//float
+	public static final Image FLOAT_0 = ImageManager.getImage("bg/float_0.png");
+	public static final Image FLOAT_1 = ImageManager.getImage("bg/float_1.png");
+	public static final Image FLOAT_2 = ImageManager.getImage("bg/float_2.png");
+	public static final Image FLOAT_3 = ImageManager.getImage("bg/float_3.png");
+	public static final Image FLOAT_4 = ImageManager.getImage("bg/float_4.png");
+	public static final Image FLOAT_5 = ImageManager.getImage("bg/float_5.png");
+	public static final Image FLOAT_6 = ImageManager.getImage("bg/float_6.png");
+	public static final Image FLOAT_7 = ImageManager.getImage("bg/float_7.png");
+	public static final Image[] FLOAT = {FLOAT_0, FLOAT_1, FLOAT_2, FLOAT_3, FLOAT_4, FLOAT_5, FLOAT_6, FLOAT_7};	
+	
 	// coin
 	public static final Image COIN = ImageManager.getImage("main/coin.png");
 

@@ -51,7 +51,7 @@ public class MenuBackground extends Pane{
 	private Circle land;
 	private Color[] landColor;
 	
-	private Timeline timeline;
+	private FloatItemBackgrond floatBg;
 	
 	public MenuBackground(){
 		Stop[] stops;
@@ -174,7 +174,6 @@ public class MenuBackground extends Pane{
 		starC13.setLayoutX(1174);
 		starC13.setLayoutY(695);
 		starCircles.getChildren().addAll(starC1, starC2, starC3, starC4, starC5, starC6, starC7, starC8, starC9, starC10, starC11, starC12, starC13);
-//		starCircles.setVisible(false);
 		
 		//rotate
 		sunRo = new Rotate();
@@ -198,6 +197,10 @@ public class MenuBackground extends Pane{
 		stars.getTransforms().add(starRo);
 		starCircles.getTransforms().add(starRo);
 		
+		//float
+		floatBg = new FloatItemBackgrond();
+		floatBg.setNum(0);
+		
 		//land
 		land = new Circle();
 		land.setRadius(900);
@@ -207,7 +210,7 @@ public class MenuBackground extends Pane{
 		
 		landColor = new Color[]{Color.web("#DEE6D6"), Color.web("#AFCBC8"), Color.web("#D2D6CD"), Color.web("#D5CED8")};
 		
-		this.getChildren().addAll(skyGroup, mountains, sun, moon, stars, starCircles, land);
+		this.getChildren().addAll(skyGroup, mountains, sun, moon, stars, starCircles, floatBg, land);
 		
 	}
 	
