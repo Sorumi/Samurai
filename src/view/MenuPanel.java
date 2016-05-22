@@ -237,10 +237,12 @@ public class MenuPanel extends Pane {
 		
 		//test
 		
-//		CircleLight light = new CircleLight(3);
+//		CircleLight light = new CircleLight();
+//
 //		light.setLayoutX(400);
 //		light.setLayoutY(100);
 //		this.getChildren().add(light);
+//		light.setNum(3);
 	}
 	public void btnClick(int btn){
 		if(btn == 0){
