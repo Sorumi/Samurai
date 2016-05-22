@@ -31,7 +31,7 @@ public class GamePanelSelectHandler {
 					Pane basePanel = (Pane) gamePanel.getParent(); 
 					basePanel.getChildren().remove(gamePanel);
 					MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
-					menu.samuraiTimer.start();
+					menu.setAllAnimation(true);
 
 					OperationQueue.addOperation(new EndOperation(false));
 					break;
@@ -39,7 +39,7 @@ public class GamePanelSelectHandler {
 					basePanel = (Pane) gamePanel.getParent();
 					basePanel.getChildren().remove(gamePanel);
 					menu = (MenuPanel)basePanel.getChildren().get(0);
-					menu.samuraiTimer.start();
+					menu.setAllAnimation(true);
 
 
 					OperationQueue.addOperation(new EndOperation(false));

@@ -9,7 +9,7 @@ public class FloatItemBackgrond extends Pane {
 
 	private final int size = 10;
 	private FloatItemView[] items;
-	private ParallelTransition pt;
+	public ParallelTransition pt;
 	
 	public FloatItemBackgrond(){
 		this.setPrefSize(1200, 800);

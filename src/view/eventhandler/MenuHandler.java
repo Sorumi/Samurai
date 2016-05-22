@@ -141,7 +141,7 @@ public class MenuHandler {
 								Pane basePanel = (Pane) mainFrame.gamePanel.getParent();
 								basePanel.getChildren().remove(mainFrame.gamePanel);
 								MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
-								menu.samuraiTimer.start();
+								menu.setAllAnimation(true);
 							}
 						} catch (Exception e){
 //							e.printStackTrace();
@@ -209,7 +209,7 @@ public class MenuHandler {
 		@Override 
 		public void handle(ActionEvent e) {
 			mainFrame.menuPanel.guideGroup.setVisible(true);
-			mainFrame.menuPanel.samuraiTimer.stop();
+			mainFrame.menuPanel.setAllAnimation(false);
 		}
 	};
 	
