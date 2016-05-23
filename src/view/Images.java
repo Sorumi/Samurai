@@ -16,28 +16,29 @@ public class Images {
 	public static final Image MENU_BTN = ImageManager.getImage("main/menu_button.png");
 
 	// BG
-	public static final String BG_0 = ImageManager.getResource("main/bg_0.png");
-	public static final String BG_1 = ImageManager.getResource("main/bg_1.png");
-	public static final String BG_2 = ImageManager.getResource("main/bg_2.png");
-	public static final String BG_3 = ImageManager.getResource("main/bg_3.png");
-	public static final String BG_4 = ImageManager.getResource("main/bg_4.png");
-	public static final String BG_5 = ImageManager.getResource("main/bg_5.png");
+	public static final String BG_0 = ImageManager.getResource("bg/bg_0.png");
+	public static final String BG_1 = ImageManager.getResource("bg/bg_1.png");
+	public static final String BG_2 = ImageManager.getResource("bg/bg_2.png");
+	public static final String BG_3 = ImageManager.getResource("bg/bg_3.png");
+	public static final String BG_4 = ImageManager.getResource("bg/bg_4.png");
+	public static final String BG_5 = ImageManager.getResource("bg/bg_5.png");
 	public static final String[] BG = { BG_0, BG_1, BG_2, BG_3, BG_4, BG_5, null, null, null, BG_0 };
 	// cloud
-	public static final Image CLOUD_0 = ImageManager.getImage("main/cloud_0.png");
-	public static final Image CLOUD_1 = ImageManager.getImage("main/cloud_1.png");
-	public static final Image CLOUD_2 = ImageManager.getImage("main/cloud_2.png");
+	public static final Image CLOUD_0 = ImageManager.getImage("bg/cloud_0.png");
+	public static final Image CLOUD_1 = ImageManager.getImage("bg/cloud_1.png");
+	public static final Image CLOUD_2 = ImageManager.getImage("bg/cloud_2.png");
 	// fish
-	public static final Image FISH_0 = ImageManager.getImage("main/fish_0.png");
-	public static final Image FISH_1 = ImageManager.getImage("main/fish_1.png");
-	public static final Image FISH_2 = ImageManager.getImage("main/fish_2.png");
-	public static final Image FISH_3 = ImageManager.getImage("main/fish_3.png");
+	public static final Image FISH_0 = ImageManager.getImage("bg/fish_0.png");
+	public static final Image FISH_1 = ImageManager.getImage("bg/fish_1.png");
+	public static final Image FISH_2 = ImageManager.getImage("bg/fish_2.png");
+	public static final Image FISH_3 = ImageManager.getImage("bg/fish_3.png");
 	// leaf
-	public static final Image LEAF_0 = ImageManager.getImage("main/leaf_0.png");
-	public static final Image LEAF_1 = ImageManager.getImage("main/leaf_1.png");
+	public static final Image LEAF_0 = ImageManager.getImage("bg/leaf_0.png");
+	public static final Image LEAF_1 = ImageManager.getImage("bg/leaf_1.png");
 	// lotus
-	public static final Image LOTUS_0 = ImageManager.getImage("main/lotus_0.png");
-	
+	public static final Image LOTUS_0 = ImageManager.getImage("bg/lotus_0.png");
+	//meter
+	public static final Image METEOR = ImageManager.getImage("bg/meteor_0.png"); 
 	//float
 	public static final Image FLOAT_0 = ImageManager.getImage("bg/float_0.png");
 	public static final Image FLOAT_1 = ImageManager.getImage("bg/float_1.png");
