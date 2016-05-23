@@ -28,7 +28,7 @@ public class Musics {
 	
 	public static void playEffectMusic(int num){
 		if(isEffectMusic){
-			effectMusic[num].play();
+			effectMusic[num].play(); 
 		}
 	}
 	
