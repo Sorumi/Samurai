@@ -30,6 +30,7 @@ public class GamePanelSelectHandler {
 	    	  case 99:
 					Pane basePanel = (Pane) gamePanel.getParent(); 
 					basePanel.getChildren().remove(gamePanel);
+					gamePanel = null;
 					MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
 					menu.setAllAnimation(true);
 

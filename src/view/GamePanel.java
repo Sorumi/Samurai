@@ -237,13 +237,14 @@ public class GamePanel extends Pane implements Observer{
 			this.circleLight = new CircleLight();
 			this.getChildren().add(circleLight);
 			circleLight.setZOrder(-1);
+			
+			//overlay
+			overlayPanel = new GameOverlayPanel();
+			overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
+			this.getChildren().add(overlayPanel);
+			overlayPanel.setZOrder(1000);
 		}
 
-		//overlay
-		overlayPanel = new GameOverlayPanel();
-		overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
-		this.getChildren().add(overlayPanel);
-		
 		backgroundPanel.setZOrder(-2);
 		systemPanel.setZOrder(-1);
 		chessBoard.setZOrder(-4);
@@ -252,12 +253,12 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
-		overlayPanel.setZOrder(1000);
+		
 
 		if(level < 99 && level > 0) {
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel, circleLight);
 		}else{
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel, overlayPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel);
 		}
 		this.setOrder();
 	}
