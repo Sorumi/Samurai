@@ -48,6 +48,10 @@ public class CampsiteItemsWrapper extends Pane{
 
 	}
 	
+	public void clearAll(){
+		tile.getChildren().clear();
+	}
+	
 	public void updateWeapon(ArrayList<Weapon> list){
 		
 		for (Weapon weapon : list){

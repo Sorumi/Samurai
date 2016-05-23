@@ -24,13 +24,19 @@ public class CampsiteHandler {
 		this.campsiteController.setWeaponNum();
 	}
 
-	public void update() {
+	public void updateWeaponArmor() {
+		campsitePanel.getItemsPanel().clearAll();
 		campsitePanel.getItemsPanel().updateWeapon(campsiteController.getWeapons());
 		campsitePanel.getItemsPanel().updateArmor(campsiteController.getArmors());
+	}
 
-		campsitePanel.samuraiPanel.setSamurai(1);
-		campsitePanel.samuraiPanel.setWeapon(campsiteController.getWeaponOfSamurai(1).getType());
-		campsitePanel.samuraiPanel.setArmor(campsiteController.getArmorOfSamurai(1).getType() - 900);
+	public void updateSamurai(int num) {
+		campsitePanel.samuraiPanel.setSamurai(num);
+		campsitePanel.samuraiPanel.setWeapon(campsiteController.getWeaponOfSamurai(num).getType());
+		campsitePanel.samuraiPanel.setArmor(campsiteController.getArmorOfSamurai(num).getType() - 900);
+		campsitePanel.samuraiPanel.lastWeapon = campsiteController.getWeaponOfSamurai(num).getType();
+		campsitePanel.samuraiPanel.lastArmor = campsiteController.getArmorOfSamurai(num).getType() - 900;
+
 	}
 
 	public EventHandler<MouseEvent> itemEnterEvent = new EventHandler<MouseEvent>() {
@@ -50,7 +56,7 @@ public class CampsiteHandler {
 	public EventHandler<MouseEvent> itemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			CampsiteItemView item = (CampsiteItemView) event.getSource();
-			if (item.getNum() / 100 != 9) {
+			if (item.getNum() / 100 != 9) {// weapon
 				campsitePanel.samuraiPanel.setWeapon(item.getNum());
 
 				Information information = campsiteController.getInformationOfTag(item.getNum());
@@ -59,8 +65,14 @@ public class CampsiteHandler {
 				campsitePanel.infoPanel.setWeaponInfo(information.getTag(), information.getName(),
 						information.getDescription(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(),
 						weapon.getCriticalRate(), weapon.getArmorPenetration());
+				
+				if (weapon.getNumber() == 0){
+					campsitePanel.samuraiPanel.setItemBtnUnabled();
+				} else {
+					campsitePanel.samuraiPanel.setItemBtnAbled();
+				}
 
-			} else {
+			} else {// armor
 				campsitePanel.samuraiPanel.setArmor(item.getNum() - 900);
 
 				Information information = campsiteController.getInformationOfTag(item.getNum());
@@ -68,6 +80,12 @@ public class CampsiteHandler {
 
 				campsitePanel.infoPanel.setArmorInfo(information.getTag(), information.getName(),
 						information.getDescription(), armor.getArmorValue(), armor.getDodgeRate());
+				
+				if (armor.getNumber() == 0){
+					campsitePanel.samuraiPanel.setItemBtnUnabled();
+				} else {
+					campsitePanel.samuraiPanel.setItemBtnAbled();
+				}
 			}
 		}
 	};
@@ -75,9 +93,7 @@ public class CampsiteHandler {
 	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			SamuraiButton samurai = (SamuraiButton) event.getSource();
-			// 换装备 显示名字描述属性
-			campsitePanel.samuraiPanel.setSamurai(samurai.num);
-			campsitePanel.samuraiPanel.samurai.setWeapon(campsiteController.getWeaponOfSamurai(samurai.num).getType());
+			updateSamurai(samurai.num);
 		}
 	};
 
@@ -85,13 +101,31 @@ public class CampsiteHandler {
 	public EventHandler<MouseEvent> setItemClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			// 用 controller 换武器
-			campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(),
-					campsitePanel.samuraiPanel.currentWeapon);
+			if (campsitePanel.samuraiPanel.isWeapon) {
+				campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(),
+						campsitePanel.samuraiPanel.currentWeapon);
+				//数量修正
+				Weapon currentWeapon = campsiteController.getWeaponOfTag(campsitePanel.samuraiPanel.currentWeapon);
+				currentWeapon.setNumber(currentWeapon.getNumber() - 1);
+				Weapon lastWeapon = campsiteController.getWeaponOfTag(campsitePanel.samuraiPanel.lastWeapon);
+				lastWeapon.setNumber(lastWeapon.getNumber() + 1);
 
+			}
+			
 			if (campsitePanel.samuraiPanel.isArmor) {
 				campsiteController.changeArmor(campsitePanel.samuraiPanel.getSamuraiNum(),
-						campsitePanel.samuraiPanel.currentArmor+900);
+						campsitePanel.samuraiPanel.currentArmor + 900);
+
+				//数量修正
+				Armor currentArmor = campsiteController.getArmorOfTag(campsitePanel.samuraiPanel.currentArmor + 900);
+				currentArmor.setNumber(currentArmor.getNumber() - 1);
+				Armor lastArmor = campsiteController.getArmorOfTag(campsitePanel.samuraiPanel.lastArmor + 900);
+				lastArmor.setNumber(lastArmor.getNumber() + 1);
 			}
+			
+			campsitePanel.samuraiPanel.setItemBtnUnabled();
+			updateWeaponArmor();
+			updateSamurai(campsitePanel.samuraiPanel.samuraiNum);
 		}
 	};
 

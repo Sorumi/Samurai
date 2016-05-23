@@ -57,7 +57,7 @@ public class Main extends Application {
 		
 		basePanel.getChildren().addAll(menuPanel );//TODO logoPanel
 		setMenu();
-		Musics.playBgMusic(0);
+//		Musics.playBgMusic(0);
 		
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);

@@ -49,6 +49,10 @@ public class Images {
 	public static final Image FLOAT_7 = ImageManager.getImage("bg/float_7.png");
 	public static final Image[] FLOAT = {FLOAT_0, FLOAT_1, FLOAT_2, FLOAT_3, FLOAT_4, FLOAT_5, FLOAT_6, FLOAT_7};	
 	
+	//story
+	public static final Image NUMEN = ImageManager.getImage("main/numen.png");
+	public static final Image NUMEN_LIGHT = ImageManager.getImage("main/numen_light.png");
+	
 	// coin
 	public static final Image COIN = ImageManager.getImage("main/coin.png");
 

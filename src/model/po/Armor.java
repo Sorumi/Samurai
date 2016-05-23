@@ -96,6 +96,10 @@ public class Armor implements Serializable {
 	public int getNumber() {
 		return number;
 	}
+	
+	public void setNumber(int num) {
+		number = num;
+	}
 
 	public Armor clone() {
 		try {

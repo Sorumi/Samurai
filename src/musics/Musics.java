@@ -15,7 +15,10 @@ public class Musics {
 	public static final MediaPlayer[] bgMusic = {THEME};
 	public static final MediaPlayer[] effectMusic = {RAIN, CLICK}; 
 	
-	//0是雨声，1是按键声
+	/*
+	 * bg music
+	 * 0: theme
+	 */
 	public static void playBgMusic(int num){
 		if(isBgMusic){
 			for(int i=0;i<bgMusic.length;i++){
@@ -26,9 +29,15 @@ public class Musics {
 		}
 	}
 	
+	/*
+	 * effect music
+	 * 0: rain
+	 * 1: click
+	 */
 	public static void playEffectMusic(int num){
 		if(isEffectMusic){
-			effectMusic[num].play(); 
+			effectMusic[num].seek(effectMusic[num].getStartTime());
+			effectMusic[num].play();
 		}
 	}
 	

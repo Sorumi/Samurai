@@ -126,6 +126,10 @@ public class Weapon implements Cloneable, Serializable {
 	public int getNumber() {
 		return number;
 	}
+	
+	public void setNumber(int num) {
+		number = num;
+	}
 
 	public Weapon clone() {
 		try {

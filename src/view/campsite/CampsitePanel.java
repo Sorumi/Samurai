@@ -47,7 +47,8 @@ public class CampsitePanel extends TransitionPanel{
 
 		this.getChildren().addAll(itemsPanel, infoPanel, samuraiPanel, closeBtn);
 		
-		campsiteHandler.update();
+		campsiteHandler.updateWeaponArmor();
+		campsiteHandler.updateSamurai(1);
 		this.transitionAnimation(true);
 	}
 
