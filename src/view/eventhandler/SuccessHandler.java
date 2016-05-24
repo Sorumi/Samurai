@@ -2,6 +2,7 @@ package view.eventhandler;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import musics.Musics;
 import view.SuccessPanel;
 
 public class SuccessHandler {
@@ -26,6 +27,7 @@ public class SuccessHandler {
 	public EventHandler<MouseEvent> yesBtnClickedEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  successPanel.setVisible(false); 
+	    	  Musics.playEffectMusic(1);
 	      }
 	};
 
