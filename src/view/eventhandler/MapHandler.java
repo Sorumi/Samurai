@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 import model.StoryModel;
+import musics.Musics;
 import view.LevelSelectPanel;
 import view.LevelSelectPanel.LevelButton;
 import view.GamePanel;
@@ -72,6 +73,7 @@ public class MapHandler {
 						  mapController.setGamePanel(storyPanel.gamePanel);
 						  mapController.startGameAtLevel(num);
 						  storyPanel.gamePanel.toFront();
+						  Musics.playEffectMusic(1);
 					}
 	    	  });
 

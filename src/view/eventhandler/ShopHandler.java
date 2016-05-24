@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import model.po.Information;
 import model.po.PropsInG;
+import musics.Musics;
 import view.TerritoryPanel;
 import view.shop.ShopItemView;
 import view.shop.ShopPanel;
@@ -74,6 +75,7 @@ public class ShopHandler {
 			} else {
 				shopPanel.purchasePanel.buyBtnAbled();
 			}
+			Musics.playEffectMusic(1);
 		}
 	};
 
@@ -98,6 +100,7 @@ public class ShopHandler {
 					shopPanel.purchasePanel.buyBtnUnable();
 				}
 			}
+			Musics.playEffectMusic(1);
 		}
 	};
 

@@ -9,6 +9,7 @@ import model.StoryModel;
 import model.po.Armor;
 import model.po.Information;
 import model.po.Weapon;
+import musics.Musics;
 import view.SamuraiPanel;
 import view.smithy.SmithyBuilder;
 import view.smithy.SmithyItemView;
@@ -139,6 +140,7 @@ public class SmithyHandler {
 			} else {
 				updateBuilderArmor(num);
 			}
+			Musics.playEffectMusic(1);
 
 		}
 	};

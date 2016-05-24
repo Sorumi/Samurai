@@ -7,6 +7,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import musics.Musics;
 import view.GamePanel;
 import view.MenuPanel;
 import view.StoryPanel;
@@ -57,6 +58,7 @@ public class GamePanelSelectHandler {
 					OperationQueue.addOperation(new EndOperation(false));
 					break;
 	    	  }
+	    	  Musics.playEffectMusic(1);
 
 	      }
 	};
@@ -65,6 +67,7 @@ public class GamePanelSelectHandler {
 	      public void handle(MouseEvent event) {
 	    	  gamePanel.selectPanel.setVisible(false);	
 	    	  OperationQueue.addOperation(new ContinueOperation());
+	    	  Musics.playEffectMusic(1);
 	      }
 	};
 }
