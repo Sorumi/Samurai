@@ -50,6 +50,16 @@
 	-fx-alignment: top-left;
 	-fx-wrap-text: true;
 }
+/* Story */
+#dialog-text{
+	-fx-background-color: #ffffff;
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "PingFang SC Regular";
+	-fx-font-weight: 100;
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
+	-fx-wrap-text: true;
+}
 /* Territory */
 #money-panel{
 	-fx-background-color: #ffffff;

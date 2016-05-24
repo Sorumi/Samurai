@@ -4,6 +4,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import musics.Musics;
 import view.ArchivePanel;
 import view.MenuPanel;
 import view.StoryPanel;
@@ -26,6 +27,7 @@ public class TerToMenuSelectHandler {
 			basePanel.getChildren().remove(storyPanel);
 			MenuPanel menu = (MenuPanel) basePanel.getChildren().get(0);
 			menu.setAllAnimation(true);
+			Musics.playEffectMusic(1);
 		}
 	};
 	
@@ -33,6 +35,7 @@ public class TerToMenuSelectHandler {
 		public void handle(MouseEvent event) {
 			// 读取存档 num
 			territoryPanel.terToMenuSelectPanel.setVisible(false); 
+			Musics.playEffectMusic(1);
 		}
 	};
 

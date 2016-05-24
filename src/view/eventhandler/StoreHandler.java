@@ -7,6 +7,7 @@ import model.StoryModel;
 import model.po.Information;
 import model.po.MaterialLibrary;
 import model.po.PropsInG;
+import musics.Musics;
 import view.TerritoryPanel;
 import view.store.StoreItemView;
 import view.store.StorePanel;
@@ -115,6 +116,7 @@ public class StoreHandler {
 			TerritoryPanel parent = (TerritoryPanel) storePanel.getParent();
 			parent.updateMoney();
 			update();
+			Musics.playEffectMusic(1);
 		}
 	};
 
