@@ -7,6 +7,7 @@ import model.StoryModel;
 import model.po.Armor;
 import model.po.Information;
 import model.po.Weapon;
+import musics.Musics;
 import view.campsite.CampsiteItemView;
 import view.campsite.CampsitePanel;
 import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
@@ -87,7 +88,7 @@ public class CampsiteHandler {
 					campsitePanel.samuraiPanel.setItemBtnAbled();
 				}
 			}
-		}
+		}		
 	};
 
 	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {
@@ -126,6 +127,7 @@ public class CampsiteHandler {
 			campsitePanel.samuraiPanel.setItemBtnUnabled();
 			updateWeaponArmor();
 			updateSamurai(campsitePanel.samuraiPanel.samuraiNum);
+			Musics.playEffectMusic(1);
 		}
 	};
 

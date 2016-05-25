@@ -2,6 +2,7 @@ package view.eventhandler;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import musics.Musics;
 import view.guide.GuideGroup;
 
 public class GuideHandler {
@@ -15,11 +16,13 @@ public class GuideHandler {
 	public EventHandler<MouseEvent> previousBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  guideGroup.setPage(guideGroup.currentPage-1);
+	    	  Musics.playEffectMusic(1);
 	      }
 	};
 	public EventHandler<MouseEvent> nextBtnClickEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  guideGroup.setPage(guideGroup.currentPage+1);
+	    	  Musics.playEffectMusic(1);
 	      }
 	};
 	public EventHandler<MouseEvent> previousBtnEnterEvent = new EventHandler<MouseEvent>() {  
