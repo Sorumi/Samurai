@@ -1,19 +1,25 @@
 package view;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.po.Position;
 import view.eventhandler.CustomizeHandler;
+import view.smithy.SmithyPanel;
 
 public class CustomizePanel extends Pane {
 	
 	private CustomizeHandler customizeHandler;
 	
+	private SystemButton closeBtn;
+	
 	public ChessBoardPanel chessBoard;
 	
 	private Button startBtn;
+	private Button campsiteBtn;
 	
 	private SamuraiView A1;
 	private SamuraiView A2;
@@ -32,6 +38,19 @@ public class CustomizePanel extends Pane {
 		
 		customizeHandler = new CustomizeHandler(this);
 		
+		closeBtn = new SystemButton(0);
+		closeBtn.setLayoutX(1125);
+		closeBtn.setLayoutY(25);
+		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				StoryPanel storyPanel =  (StoryPanel) CustomizePanel.this.getParent();
+				storyPanel.getChildren().remove(storyPanel.customizePanel);
+				storyPanel.customizePanel = null;
+			}
+		});
+		
 		//chessBoard
 		chessBoard = new ChessBoardPanel(15);
 		
@@ -42,6 +61,14 @@ public class CustomizePanel extends Pane {
         startBtn.setLayoutX(530);
         startBtn.setLayoutY(50);
         startBtn.setOnMouseClicked(customizeHandler.startEvent);
+        
+        
+        campsiteBtn = new Button("换装备");
+        campsiteBtn.setId("customize-start-btn");
+        campsiteBtn.setPrefSize(140, 50);
+        campsiteBtn.setLayoutX(530);
+        campsiteBtn.setLayoutY(50);
+        campsiteBtn.setOnMouseClicked(customizeHandler.campsiteEvent);
         
 		//samuraiWrapper
 		Rectangle rect1= new Rectangle(280, 160);
@@ -80,7 +107,7 @@ public class CustomizePanel extends Pane {
 			positions[i] = new Position(-1, -1);
 		}
 		
-		this.getChildren().addAll(chessBoard, rect1, rect2, A1, A2, A3, B1, B2, B3, startBtn);
+		this.getChildren().addAll(chessBoard, rect1, rect2, A1, A2, A3, B1, B2, B3, startBtn, closeBtn);
 	}
 	
 	public void setDraggableSamurai(SamuraiView samurai){

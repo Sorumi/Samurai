@@ -57,15 +57,15 @@ public class TerritoryPanel extends Pane {
 	private TerritoryButton campsiteBtn;
 	private TerritoryButton smithyBtn;
 	private TerritoryButton storeBtn;
+	private TerritoryButton shopBtn;
 	private TerritoryButton flagBtn;
 	private Button customizeBtn;
-	private TerritoryButton shopBtn;
+
 
 	public CampsitePanel campsitePanel;
 	public SmithyPanel smithyPanel;
 	public StorePanel storePanel;
 	public ShopPanel shopPanel;
-	public CustomizePanel customizePanel;
 	public ShopSelectPanel shopSelectPanel;
 
 	public ArchivePanel archivePanel;
@@ -298,11 +298,13 @@ public class TerritoryPanel extends Pane {
 			this.blur.setRadius(7);
 			territoryBg.stopAll();
 			territoryFg.stopAll();
+			setSamuraiAnimation(false);
 		} else {
 			updateSamurai();
 			this.blur.setRadius(0);
 			territoryBg.restartAll();
 			territoryFg.restartAll();
+			setSamuraiAnimation(true);
 		}
 	}
 

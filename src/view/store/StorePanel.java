@@ -38,6 +38,7 @@ public class StorePanel extends TransitionPanel{
 				TerritoryPanel parent = (TerritoryPanel) StorePanel.this.getParent();
 				parent.getChildren().remove(StorePanel.this);
 				parent.setBlur(false);
+				parent.storePanel = null;
 			}
 		});
 

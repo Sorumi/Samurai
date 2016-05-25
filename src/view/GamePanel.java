@@ -515,8 +515,10 @@ public class GamePanel extends Pane implements Observer{
 	public void close(){
 		if(!isOver){
 			switch(level){
+			case -1:
 			case 0:
 			case 99:
+
 				closeBtn.setOnMouseClicked(selectHandler.yesEvent);
 				break;
 			default:

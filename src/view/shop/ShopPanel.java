@@ -39,6 +39,7 @@ public class ShopPanel extends Pane{
 				TerritoryPanel parent =  (TerritoryPanel) ShopPanel.this.getParent();
 				parent.getChildren().remove(ShopPanel.this); 
 				parent.setBlur(false);
+				parent.shopPanel = null;
 			}
 		});
 		

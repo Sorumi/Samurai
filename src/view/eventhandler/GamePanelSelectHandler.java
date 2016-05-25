@@ -37,6 +37,7 @@ public class GamePanelSelectHandler {
 
 					OperationQueue.addOperation(new EndOperation(false));
 					break;
+					
 				case 0:
 					basePanel = (Pane) gamePanel.getParent();
 					basePanel.getChildren().remove(gamePanel);
@@ -45,14 +46,22 @@ public class GamePanelSelectHandler {
 
 
 					OperationQueue.addOperation(new EndOperation(false));
-
-
 					break;
-				default:
+					
+				case -1:
 					StoryPanel storyPanel = (StoryPanel) gamePanel.getParent();
+					storyPanel.territoryPanel.toFront();
+					storyPanel.getChildren().remove(gamePanel);
+					storyPanel.gamePanel = null;
+					
+//					OperationQueue.addOperation(new EndOperation(false));
+					break;
+					
+				default:
+					storyPanel = (StoryPanel) gamePanel.getParent();
 					storyPanel.mapPanel.toFront();
 					storyPanel.mapPanel.mapHandler.update();
-					storyPanel.gamePanel.getChildren().remove(gamePanel);
+					storyPanel.getChildren().remove(gamePanel);
 					storyPanel.gamePanel = null;
 
 					OperationQueue.addOperation(new EndOperation(false));

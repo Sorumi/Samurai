@@ -67,7 +67,7 @@ public class CampsiteHandler {
 						information.getDescription(), weapon.getLowAttackPoint(), weapon.getHighAttackPoint(),
 						weapon.getCriticalRate(), weapon.getArmorPenetration());
 				
-				if (weapon.getNumber() == 0){
+				if (weapon.getNumber() == 0 && !campsitePanel.isCustomized){
 					campsitePanel.samuraiPanel.setItemBtnUnabled();
 				} else {
 					campsitePanel.samuraiPanel.setItemBtnAbled();
@@ -82,7 +82,7 @@ public class CampsiteHandler {
 				campsitePanel.infoPanel.setArmorInfo(information.getTag(), information.getName(),
 						information.getDescription(), armor.getArmorValue(), armor.getDodgeRate());
 				
-				if (armor.getNumber() == 0){
+				if (armor.getNumber() == 0 && !campsitePanel.isCustomized){
 					campsitePanel.samuraiPanel.setItemBtnUnabled();
 				} else {
 					campsitePanel.samuraiPanel.setItemBtnAbled();

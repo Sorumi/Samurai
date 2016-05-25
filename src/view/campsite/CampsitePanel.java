@@ -9,6 +9,7 @@ import view.SystemButton;
 import view.TerritoryPanel;
 import view.TransitionPanel;
 import view.eventhandler.CampsiteHandler;
+import view.eventhandler.CustomizeCampsiteHandler;
 
 public class CampsitePanel extends TransitionPanel{
 
@@ -19,6 +20,8 @@ public class CampsitePanel extends TransitionPanel{
 	public CampsiteSamuraiWrapper samuraiPanel;
 	
 	private SystemButton closeBtn;
+	
+	public boolean isCustomized;
 	
 	public CampsitePanel(){
 		super();
@@ -42,6 +45,7 @@ public class CampsitePanel extends TransitionPanel{
 				parent.getChildren().remove(CampsitePanel.this);
 				parent.setBlur(false);
 				parent.getTerritoryHandler().updateSamurai();
+				parent.campsitePanel = null;
 			}
 		});
 
@@ -50,6 +54,8 @@ public class CampsitePanel extends TransitionPanel{
 		campsiteHandler.updateWeaponArmor();
 		campsiteHandler.updateSamurai(1);
 		this.transitionAnimation(true);
+		
+		isCustomized = false;
 	}
 
 	public CampsiteHandler getCampsiteHandler() {
@@ -58,5 +64,12 @@ public class CampsitePanel extends TransitionPanel{
 	
 	public CampsiteItemsWrapper getItemsPanel(){
 		return this.itemsPanel;
+	}
+	
+	
+	public void setCustomized(){
+		isCustomized = true;
+		CustomizeCampsiteHandler customizeCampsiteHandler = new CustomizeCampsiteHandler(this);
+		samuraiPanel.setCustomized(customizeCampsiteHandler);
 	}
 }

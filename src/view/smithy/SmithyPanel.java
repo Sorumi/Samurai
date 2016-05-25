@@ -36,8 +36,6 @@ public class SmithyPanel extends TransitionPanel {
 	public SmithyBuilder buildPanel;
 	public SmithyWeaponState smithyWeaponState;
 	
-	
-	
 	public SystemButton closeBtn;
 	
 	public SmithyPanel(){
@@ -46,8 +44,6 @@ public class SmithyPanel extends TransitionPanel {
 		this.setPrefSize(1200, 800);
 		
 		smithyHandler = new SmithyHandler(this);
-//		smithyWeaponState = new SmithyWeaponState();
-//		this.getChildren().add(smithyWeaponState);
 
 		spearGroup = new SmithyGroup();
 		swordGroup = new SmithyGroup();
@@ -78,7 +74,6 @@ public class SmithyPanel extends TransitionPanel {
 		
 		Button armorBtn = new SmithyButton(5);
 		armorBtn.setLayoutY(650);
-//		armorBtn.setStyle("-fx-background-color: #dddddd" );
 		armorPanel = new SmithyItemWrapper5(smithyHandler); 
 		armorGroup.getChildren().addAll(armorBtn, armorPanel);
 		
@@ -100,6 +95,7 @@ public class SmithyPanel extends TransitionPanel {
 				TerritoryPanel parent =  (TerritoryPanel) SmithyPanel.this.getParent();
 				parent.getChildren().remove(SmithyPanel.this);
 				parent.setBlur(false);
+				parent.smithyPanel = null;
 			}
 		});
 		

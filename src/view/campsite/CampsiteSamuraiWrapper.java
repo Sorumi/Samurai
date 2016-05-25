@@ -8,6 +8,7 @@ import view.GameColor;
 import view.Images;
 import view.SamuraiView;
 import view.eventhandler.CampsiteHandler;
+import view.eventhandler.CustomizeCampsiteHandler;
 
 public class CampsiteSamuraiWrapper extends Pane {
 
@@ -15,10 +16,16 @@ public class CampsiteSamuraiWrapper extends Pane {
 	
 	public SamuraiView samurai;
 	
-	private Group samuraiBtns;
+	private Group samuraiBtnA;
+	private Group samuraiBtnB;
+	
 	private SamuraiButton samuraiBtn1;
 	private SamuraiButton samuraiBtn2;
 	private SamuraiButton samuraiBtn3;
+
+	private SamuraiButton samuraiBtn4;
+	private SamuraiButton samuraiBtn5;
+	private SamuraiButton samuraiBtn6;
 	
 	private Button setItemBtn;
 	
@@ -45,16 +52,16 @@ public class CampsiteSamuraiWrapper extends Pane {
 		samurai.setLayoutX(30);
 		samurai.setLayoutY(60);
 		
-		samuraiBtns = new Group();
-		samuraiBtns.setLayoutX(280);
-		samuraiBtns.setLayoutY(30);
+		samuraiBtnA = new Group();
+		samuraiBtnA.setLayoutX(280);
+		samuraiBtnA.setLayoutY(30);
 		
 		samuraiBtn1 = new SamuraiButton(1);
 		samuraiBtn2 = new SamuraiButton(2);
 		samuraiBtn3 = new SamuraiButton(3);
 		
-		samuraiBtns.getChildren().addAll(samuraiBtn1, samuraiBtn2, samuraiBtn3);
-		this.getChildren().add(samuraiBtns);
+		samuraiBtnA.getChildren().addAll(samuraiBtn1, samuraiBtn2, samuraiBtn3);
+		this.getChildren().add(samuraiBtnA);
 		
 		setItemBtn = new Button("确 定");
 		setItemBtn.setPrefSize(100, 40);
@@ -128,6 +135,28 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setOnMouseEntered(null);
 		setItemBtn.setOnMouseExited(null);
 		setItemBtn.setOnMouseClicked(null);
+	}
+	
+	public void setCustomized(CustomizeCampsiteHandler customizeCampsiteHandler){
+		samuraiBtnB = new Group();
+		samuraiBtnB.setLayoutX(280);
+		samuraiBtnB.setLayoutY(30);
+		samuraiBtnA.setLayoutX(30);
+		
+		samuraiBtn4 = new SamuraiButton(4);
+		samuraiBtn5 = new SamuraiButton(5);
+		samuraiBtn6 = new SamuraiButton(6);
+		
+		samuraiBtn1.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
+		samuraiBtn2.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
+		samuraiBtn3.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
+		samuraiBtn4.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
+		samuraiBtn5.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
+		samuraiBtn6.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
+		
+		setItemBtn.setOnMouseClicked(customizeCampsiteHandler.setItemClickEvent);
+		
+		samuraiBtnB.getChildren().addAll(samuraiBtn4, samuraiBtn5, samuraiBtn6);
 	}
 
 }

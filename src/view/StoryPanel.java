@@ -12,6 +12,7 @@ public class StoryPanel extends Pane {
 	 
 	 public StartStoryPanel startPanel;
 	 public TerritoryPanel territoryPanel;
+	 public CustomizePanel customizePanel;
 	 public MapPanel mapPanel;
 	 public GamePanel gamePanel;
 

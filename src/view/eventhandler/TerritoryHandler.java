@@ -63,9 +63,14 @@ public class TerritoryHandler {
 	
 	public EventHandler<MouseEvent> customizeEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.customizePanel = new CustomizePanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.customizePanel);
+	    	  StoryPanel storyPanel = (StoryPanel) territoryPanel.getParent();
+	    	  storyPanel.customizePanel = new CustomizePanel();
+	    	  storyPanel.getChildren().add(storyPanel.customizePanel);
+	    	  storyPanel.customizePanel.toFront();
+	    	  
+	    	  territoryPanel.setSamuraiAnimation(false);
+	    	  territoryPanel.territoryBg.removeAll();
+	    	  territoryPanel.territoryFg.removeAll();
 	      }
 	};
 	
