@@ -4,6 +4,7 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -216,7 +217,7 @@ public class MenuBackground extends Pane{
 		landColor = new Color[]{Color.web("#DEE6D6"), Color.web("#AFCBC8"), Color.web("#D2D6CD"), Color.web("#D5CED8")};
 		
 		this.getChildren().addAll(skyGroup, mountains, sun, moon, stars, starCircles, floatBg, land);
-		
+
 	}
 	
 	public void setSky(int num){
