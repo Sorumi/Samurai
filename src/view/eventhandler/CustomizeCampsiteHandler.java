@@ -1,9 +1,7 @@
 package view.eventhandler;
 
-import controller.CampsiteController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import model.StoryModel;
 import musics.Musics;
 import view.CustomizePanel;
 import view.campsite.CampsitePanel;
@@ -13,25 +11,18 @@ public class CustomizeCampsiteHandler {
 
 	private CustomizePanel customizePanel;
 	private CampsitePanel campsitePanel;
-	private CampsiteController campsiteController;
+
 	
 	public CustomizeCampsiteHandler(CampsitePanel campsitePanel, CustomizePanel customizePanel) {
 		this.campsitePanel = campsitePanel;
 		this.customizePanel = customizePanel;
-		
-		this.campsiteController = new CampsiteController();
-		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
-
-		this.campsiteController.setWeaponNum();
+	
 	}
 	
 	public void updateSamurai(int num) {
 		campsitePanel.samuraiPanel.setSamurai(num);
 		campsitePanel.samuraiPanel.setWeapon(customizePanel.weapons[num]);
 		campsitePanel.samuraiPanel.setArmor(customizePanel.armors[num]);
-//		campsitePanel.samuraiPanel.lastWeapon = campsiteController.getWeaponOfSamurai(num).getType();
-//		campsitePanel.samuraiPanel.lastArmor = campsiteController.getArmorOfSamurai(num).getType() - 900;
-
 	}
 	
 	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {
@@ -44,16 +35,13 @@ public class CustomizeCampsiteHandler {
 	// 设置武器按钮
 		public EventHandler<MouseEvent> setItemClickEvent = new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				// 用 controller 换武器
+				int num = campsitePanel.samuraiPanel.getSamuraiNum();
 				if (campsitePanel.samuraiPanel.isWeapon) {
-//					campsiteController.changeWeapon(campsitePanel.samuraiPanel.getSamuraiNum(),
-//							campsitePanel.samuraiPanel.currentWeapon);
-					//customize
+					customizePanel.weapons[num] = campsitePanel.samuraiPanel.currentWeapon;
 				}
 				
 				if (campsitePanel.samuraiPanel.isArmor) {
-//					campsiteController.changeArmor(campsitePanel.samuraiPanel.getSamuraiNum(),
-//							campsitePanel.samuraiPanel.currentArmor + 900);
+					customizePanel.armors[num] = campsitePanel.samuraiPanel.currentArmor;
 				}
 
 				updateSamurai(campsitePanel.samuraiPanel.samuraiNum);

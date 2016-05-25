@@ -13,6 +13,7 @@ import view.eventhandler.CustomizeCampsiteHandler;
 public class CampsiteSamuraiWrapper extends Pane {
 
 	private CampsiteHandler campsiteHandler;
+	private CustomizeCampsiteHandler customizeCampsiteHandler;
 	
 	public SamuraiView samurai;
 	
@@ -39,6 +40,8 @@ public class CampsiteSamuraiWrapper extends Pane {
 	
 	public int lastWeapon;
 	public int lastArmor;
+	
+	private boolean isCustomized;
 	
 	public CampsiteSamuraiWrapper(CampsiteHandler campsiteHandler){
 		this.campsiteHandler = campsiteHandler;
@@ -70,6 +73,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 		
 		this.getChildren().addAll(samurai, setItemBtn, samuraiBtnA);
 
+		isCustomized = false;
 	}
 	
 	public class SamuraiButton extends Button{
@@ -95,6 +99,11 @@ public class CampsiteSamuraiWrapper extends Pane {
 		isWeapon = true;
 		currentWeapon = num;
 		samurai.setWeapon(num);
+
+	}
+	
+	public void setWeaponWithAnimation(int num) {
+		setWeapon(num);
 		samurai.occupy(2);
 	}
 	
@@ -127,7 +136,12 @@ public class CampsiteSamuraiWrapper extends Pane {
 				+ "-fx-effect: dropshadow(gaussian," + GameColor.getSamuraiColorString(samuraiNum+6) +", 0, 0, 0, 8);");
 		setItemBtn.setOnMouseEntered(campsiteHandler.setItemEnterEvent);
 		setItemBtn.setOnMouseExited(campsiteHandler.setItemExitEvent);
-		setItemBtn.setOnMouseClicked(campsiteHandler.setItemClickEvent);
+		if(isCustomized){
+			setItemBtn.setOnMouseClicked(customizeCampsiteHandler.setItemClickEvent);
+		}else{
+			setItemBtn.setOnMouseClicked(campsiteHandler.setItemClickEvent);
+		}
+		
 	}
 	
 	public void setItemBtnUnabled() {
@@ -141,6 +155,9 @@ public class CampsiteSamuraiWrapper extends Pane {
 	
 	public void setCustomized(CustomizeCampsiteHandler customizeCampsiteHandler){
 //		System.out.println("I'm customized campsite!");
+		this.customizeCampsiteHandler = customizeCampsiteHandler;
+		isCustomized = true;
+		
 		samuraiBtnB = new Group();
 		samuraiBtnB.setLayoutX(280);
 		samuraiBtnB.setLayoutY(30);
@@ -159,7 +176,6 @@ public class CampsiteSamuraiWrapper extends Pane {
 
 		samuraiBtnB.getChildren().addAll(samuraiBtn4, samuraiBtn5, samuraiBtn6);
 		this.getChildren().add(samuraiBtnB);
-		
 		setItemBtn.setOnMouseClicked(customizeCampsiteHandler.setItemClickEvent);
 	}
 

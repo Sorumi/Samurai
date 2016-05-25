@@ -80,6 +80,7 @@ public class CampsitePanel extends TransitionPanel{
 				CustomizePanel parent =  (CustomizePanel) CampsitePanel.this.getParent();
 				parent.getChildren().remove(CampsitePanel.this);
 				parent.setBlur(false);
+				parent.updateSamurais();
 				parent.campsitePanel = null;
 			}
 		});

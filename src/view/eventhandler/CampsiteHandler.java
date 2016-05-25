@@ -58,7 +58,7 @@ public class CampsiteHandler {
 		public void handle(MouseEvent event) {
 			CampsiteItemView item = (CampsiteItemView) event.getSource();
 			if (item.getNum() / 100 != 9) {// weapon
-				campsitePanel.samuraiPanel.setWeapon(item.getNum());
+				campsitePanel.samuraiPanel.setWeaponWithAnimation(item.getNum());
 
 				Information information = campsiteController.getInformationOfTag(item.getNum());
 				Weapon weapon = campsiteController.getWeaponOfTag(item.getNum());
