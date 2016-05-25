@@ -58,12 +58,14 @@ public class TerritoryPanel extends Pane {
 	private TerritoryButton smithyBtn;
 	private TerritoryButton storeBtn;
 	private TerritoryButton flagBtn;
-	private Button shopBtn;
+	private Button customizeBtn;
+	private TerritoryButton shopBtn;
 
 	public CampsitePanel campsitePanel;
 	public SmithyPanel smithyPanel;
 	public StorePanel storePanel;
 	public ShopPanel shopPanel;
+	public CustomizePanel customizePanel;
 	public ShopSelectPanel shopSelectPanel;
 
 	public ArchivePanel archivePanel;
@@ -173,6 +175,15 @@ public class TerritoryPanel extends Pane {
 		shopBtn.setLayoutY(34);
 		shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent);
 
+		//customize
+		customizeBtn = new Button("Customize");
+//		customizeBtn.setGraphic(customizeImg);
+		customizeBtn.setLayoutX(500);
+		customizeBtn.setLayoutY(500);
+		customizeBtn.setOnMouseClicked(territoryHandler.customizeEvent);
+
+		
+		
 		// flag
 		ImageView flagImg = new ImageView(Images.TERRITORY_FLAG);
 		flagImg.setFitWidth(95);
@@ -187,7 +198,7 @@ public class TerritoryPanel extends Pane {
 		shopSelectPanel = new ShopSelectPanel(territoryHandler);
 		shopSelectPanel.setVisible(false);
 
-		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn, shopBtn);
+		territoryGroup.getChildren().addAll(campsiteBtn, smithyBtn, storeBtn, flagBtn, shopBtn, customizeBtn);
 		stateHandler = new StateHandler(this);
 		statePanel = new StatePanel(stateHandler, 2);
 		territoryGroup.getChildren().add(statePanel);

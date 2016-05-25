@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import view.ArchivePanel;
+import view.CustomizePanel;
 import view.MapPanel;
 import view.StoryPanel;
 import view.TerritoryPanel;
@@ -57,6 +58,14 @@ public class TerritoryHandler {
 	    	  territoryPanel.setBlur(true);
 	    	  territoryPanel.storePanel = new StorePanel();
 	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
+	      }
+	};
+	
+	public EventHandler<MouseEvent> customizeEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
+	    	  territoryPanel.customizePanel = new CustomizePanel();
+	    	  territoryPanel.getChildren().add(territoryPanel.customizePanel);
 	      }
 	};
 	

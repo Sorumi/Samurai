@@ -106,6 +106,24 @@
 	-fx-alignment: top-left;
 	-fx-wrap-text: true;
 }
+/* Customize */
+#customize-start-btn{
+	-fx-background-color: #ffffff;
+	-fx-background-radius: 30;
+	-fx-border-radius: 30;
+	-fx-font-family: "FZZhengHeiS-EL-GB";
+	-fx-font-size: 24;
+	-fx-font-weight: 600;
+    -fx-text-fill: #9b9b9b;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
+}
+#shadow-rect{
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-effect: dropshadow(gaussian, rgb(150,150,150), 2, 0, 0, 1);
+}
+
 /* Campsite */
 #campsite-wrapper{
 	-fx-background-color: #ffffff;

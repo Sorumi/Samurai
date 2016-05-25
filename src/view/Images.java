@@ -38,7 +38,7 @@ public class Images {
 	// lotus
 	public static final Image LOTUS_0 = ImageManager.getImage("bg/lotus_0.png");
 	//meter
-	public static final Image METEOR = ImageManager.getImage("bg/meteor_0.png"); 
+	public static final Image METEOR = ImageManager.getImage("bg/meteor.png"); 
 	//float
 	public static final Image FLOAT_0 = ImageManager.getImage("bg/float_0.png");
 	public static final Image FLOAT_1 = ImageManager.getImage("bg/float_1.png");
