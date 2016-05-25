@@ -181,8 +181,6 @@ public class TerritoryPanel extends Pane {
 		customizeBtn.setLayoutX(500);
 		customizeBtn.setLayoutY(500);
 		customizeBtn.setOnMouseClicked(territoryHandler.customizeEvent);
-
-		
 		
 		// flag
 		ImageView flagImg = new ImageView(Images.TERRITORY_FLAG);

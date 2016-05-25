@@ -10,6 +10,7 @@ import view.CustomizePanel;
 import view.GamePanel;
 import view.SamuraiView;
 import view.StoryPanel;
+import view.campsite.CampsitePanel;
 
 public class CustomizeHandler {
 
@@ -55,10 +56,12 @@ public class CustomizeHandler {
 	};
 
 	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {
-
 		@Override
 		public void handle(MouseEvent event) {
-
+			customizePanel.setBlur(true);
+			customizePanel.campsitePanel = new CampsitePanel();
+			customizePanel.campsitePanel.setCustomized(customizePanel);
+			customizePanel.getChildren().add(customizePanel.campsitePanel);
 		}
 
 	};
@@ -92,9 +95,9 @@ public class CustomizeHandler {
 
 		@Override
 		public void handle(MouseEvent t) {
-			SamuraiView node = (SamuraiView) (t.getSource());
-			double layoutX = node.getLayoutX() + node.getTranslateX();
-			double layoutY = node.getLayoutY() + node.getTranslateY();
+			SamuraiView samurai = (SamuraiView) (t.getSource());
+			double layoutX = samurai.getLayoutX() + samurai.getTranslateX();
+			double layoutY = samurai.getLayoutY() + samurai.getTranslateY();
 			int positionX = -1;
 			int positionY = -1;
 			double minOffsetX = 1200;
@@ -117,17 +120,17 @@ public class CustomizeHandler {
 			}
 			if (positionX >= 0 && positionY >= 0) {
 				double translateX = chessBoardWidthOffset + FIELD_WIDTH / 2 + (positionY - positionX) * blockWidthOffset
-						+ selfWidthOffset - node.getLayoutX();
+						+ selfWidthOffset - samurai.getLayoutX();
 				double translateY = chessBoardHeightOffset + (positionX + positionY) * blockHeightOffset
-						+ selfHeightOffset - node.getLayoutY();
-				node.setTranslateX(translateX);
-				node.setTranslateY(translateY);
-				customizePanel.positions[node.getNumber() - 1].setX(positionX);
-				customizePanel.positions[node.getNumber() - 1].setY(positionY);
+						+ selfHeightOffset - samurai.getLayoutY();
+				samurai.setTranslateX(translateX);
+				samurai.setTranslateY(translateY);
+				customizePanel.positions[samurai.getNumber()].setX(positionX);
+				customizePanel.positions[samurai.getNumber()].setY(positionY);
 
 			} else {
-				node.setTranslateX(0);
-				node.setTranslateY(0);
+				samurai.setTranslateX(0);
+				samurai.setTranslateY(0);
 			}
 
 		}

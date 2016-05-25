@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import model.StoryModel;
+import view.CustomizePanel;
 import view.StoryPanel;
 import view.SystemButton;
 import view.TerritoryPanel;
@@ -67,9 +68,22 @@ public class CampsitePanel extends TransitionPanel{
 	}
 	
 	
-	public void setCustomized(){
+	public void setCustomized(CustomizePanel customizePanel){
 		isCustomized = true;
-		CustomizeCampsiteHandler customizeCampsiteHandler = new CustomizeCampsiteHandler(this);
+		CustomizeCampsiteHandler customizeCampsiteHandler = new CustomizeCampsiteHandler(this, customizePanel);
 		samuraiPanel.setCustomized(customizeCampsiteHandler);
+		
+		closeBtn.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				CustomizePanel parent =  (CustomizePanel) CampsitePanel.this.getParent();
+				parent.getChildren().remove(CampsitePanel.this);
+				parent.setBlur(false);
+				parent.campsitePanel = null;
+			}
+		});
+		
+		customizeCampsiteHandler.updateSamurai(1);
 	}
 }

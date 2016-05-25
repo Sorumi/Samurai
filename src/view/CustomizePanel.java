@@ -2,13 +2,15 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import model.po.Position;
+import view.campsite.CampsitePanel;
 import view.eventhandler.CustomizeHandler;
-import view.smithy.SmithyPanel;
 
 public class CustomizePanel extends Pane {
 	
@@ -17,6 +19,7 @@ public class CustomizePanel extends Pane {
 	private SystemButton closeBtn;
 	
 	public ChessBoardPanel chessBoard;
+	public CampsitePanel campsitePanel;
 	
 	private Button startBtn;
 	private Button campsiteBtn;
@@ -29,6 +32,11 @@ public class CustomizePanel extends Pane {
 	private SamuraiView B3;
 	
 	public Position[] positions;
+	public int[] weapons;
+	public int[] armors;
+	
+	private Group customizeGroup;
+	private GaussianBlur blur;
 	
 	public CustomizePanel(){
 		
@@ -59,15 +67,15 @@ public class CustomizePanel extends Pane {
         startBtn.setId("customize-start-btn");
         startBtn.setPrefSize(140, 50);
         startBtn.setLayoutX(530);
-        startBtn.setLayoutY(50);
+        startBtn.setLayoutY(20);
         startBtn.setOnMouseClicked(customizeHandler.startEvent);
         
         
-        campsiteBtn = new Button("换装备");
+        campsiteBtn = new Button("更换装备");
         campsiteBtn.setId("customize-start-btn");
         campsiteBtn.setPrefSize(140, 50);
         campsiteBtn.setLayoutX(530);
-        campsiteBtn.setLayoutY(50);
+        campsiteBtn.setLayoutY(80);
         campsiteBtn.setOnMouseClicked(customizeHandler.campsiteEvent);
         
 		//samuraiWrapper
@@ -102,12 +110,25 @@ public class CustomizePanel extends Pane {
 		setDraggableSamurai(B2);
 		setDraggableSamurai(B3);
 		
-		positions = new Position[6];
-		for(int i=0; i<6; i++){
+		positions = new Position[7];
+		weapons = new int[7];
+		armors = new int[7];
+		
+		positions[0] = new Position(0, 0);
+		for(int i=1; i<7; i++){
 			positions[i] = new Position(-1, -1);
+			weapons[i] = 11;
+			armors[i] = 11;
 		}
 		
-		this.getChildren().addAll(chessBoard, rect1, rect2, A1, A2, A3, B1, B2, B3, startBtn, closeBtn);
+		customizeGroup = new Group();
+		customizeGroup.getChildren().addAll(chessBoard, rect1, rect2, A1, A2, A3, B1, B2, B3, startBtn, campsiteBtn, closeBtn);
+		
+		// blur
+		blur = new GaussianBlur(0);
+		customizeGroup.setEffect(blur);
+		
+		this.getChildren().add(customizeGroup);
 	}
 	
 	public void setDraggableSamurai(SamuraiView samurai){
@@ -124,6 +145,14 @@ public class CustomizePanel extends Pane {
 		samurai.setOnMousePressed(customizeHandler.samuraiOnMousePressedEventHandler);
 		samurai.setOnMouseDragged(customizeHandler.samuraiOnMouseDraggedEventHandler);
 		samurai.setOnMouseReleased(customizeHandler.samuraiOnMouseReleasedEventHandler);
+	}
+	
+	public void setBlur(boolean isBlur){
+		if(isBlur){
+			this.blur.setRadius(7);
+		}else{
+			this.blur.setRadius(0);
+		}
 	}
 	
 }

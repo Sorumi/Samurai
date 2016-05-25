@@ -61,7 +61,6 @@ public class CampsiteSamuraiWrapper extends Pane {
 		samuraiBtn3 = new SamuraiButton(3);
 		
 		samuraiBtnA.getChildren().addAll(samuraiBtn1, samuraiBtn2, samuraiBtn3);
-		this.getChildren().add(samuraiBtnA);
 		
 		setItemBtn = new Button("确 定");
 		setItemBtn.setPrefSize(100, 40);
@@ -69,9 +68,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 		setItemBtn.setLayoutY(360);
 		setItemBtn.setId("set-item-btn");
 		
-		this.getChildren().add(setItemBtn);
-		
-		this.getChildren().add(samurai);
+		this.getChildren().addAll(samurai, setItemBtn, samuraiBtnA);
 
 	}
 	
@@ -83,7 +80,12 @@ public class CampsiteSamuraiWrapper extends Pane {
 			btnV.setFitWidth(52);
 			btnV.setPreserveRatio(true);
 			this.setGraphic(btnV);
-			this.setLayoutX(70*(num-1));
+			if (num<4){
+				this.setLayoutX(70*(num-1));
+			}else{
+				this.setLayoutX(70*(num-4));
+			}
+
 			this.setLayoutY(0);
 			this.setOnMouseClicked(campsiteHandler.samuraiClickEvent);
 		}
@@ -138,6 +140,7 @@ public class CampsiteSamuraiWrapper extends Pane {
 	}
 	
 	public void setCustomized(CustomizeCampsiteHandler customizeCampsiteHandler){
+//		System.out.println("I'm customized campsite!");
 		samuraiBtnB = new Group();
 		samuraiBtnB.setLayoutX(280);
 		samuraiBtnB.setLayoutY(30);
@@ -153,10 +156,11 @@ public class CampsiteSamuraiWrapper extends Pane {
 		samuraiBtn4.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
 		samuraiBtn5.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
 		samuraiBtn6.setOnMouseClicked(customizeCampsiteHandler.samuraiClickEvent);
+
+		samuraiBtnB.getChildren().addAll(samuraiBtn4, samuraiBtn5, samuraiBtn6);
+		this.getChildren().add(samuraiBtnB);
 		
 		setItemBtn.setOnMouseClicked(customizeCampsiteHandler.setItemClickEvent);
-		
-		samuraiBtnB.getChildren().addAll(samuraiBtn4, samuraiBtn5, samuraiBtn6);
 	}
 
 }

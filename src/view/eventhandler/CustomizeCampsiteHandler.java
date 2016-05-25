@@ -5,16 +5,19 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import musics.Musics;
+import view.CustomizePanel;
 import view.campsite.CampsitePanel;
 import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
 
 public class CustomizeCampsiteHandler {
 
+	private CustomizePanel customizePanel;
 	private CampsitePanel campsitePanel;
 	private CampsiteController campsiteController;
 	
-	public CustomizeCampsiteHandler(CampsitePanel campsitePanel) {
+	public CustomizeCampsiteHandler(CampsitePanel campsitePanel, CustomizePanel customizePanel) {
 		this.campsitePanel = campsitePanel;
+		this.customizePanel = customizePanel;
 		
 		this.campsiteController = new CampsiteController();
 		this.campsiteController.setStoryModel(StoryModel.getStoryModel());
@@ -24,8 +27,8 @@ public class CustomizeCampsiteHandler {
 	
 	public void updateSamurai(int num) {
 		campsitePanel.samuraiPanel.setSamurai(num);
-//		campsitePanel.samuraiPanel.setWeapon(campsiteController.getWeaponOfSamurai(num).getType());
-//		campsitePanel.samuraiPanel.setArmor(campsiteController.getArmorOfSamurai(num).getType() - 900);
+		campsitePanel.samuraiPanel.setWeapon(customizePanel.weapons[num]);
+		campsitePanel.samuraiPanel.setArmor(customizePanel.armors[num]);
 //		campsitePanel.samuraiPanel.lastWeapon = campsiteController.getWeaponOfSamurai(num).getType();
 //		campsitePanel.samuraiPanel.lastArmor = campsiteController.getArmorOfSamurai(num).getType() - 900;
 
@@ -34,7 +37,7 @@ public class CustomizeCampsiteHandler {
 	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			SamuraiButton samurai = (SamuraiButton) event.getSource();
-//			updateSamurai(samurai.num);
+			updateSamurai(samurai.num);
 		}
 	};
 	
