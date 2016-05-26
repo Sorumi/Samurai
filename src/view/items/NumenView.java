@@ -12,6 +12,7 @@ public class NumenView extends Group{
 	private ImageView light;
 	private ImageView numen;
 	private FadeTransition ft;
+	private DialogView dialog;
 	
 	public NumenView(){
 		light = new ImageView(Images.NUMEN_LIGHT);
@@ -33,6 +34,18 @@ public class NumenView extends Group{
 		ft.setCycleCount(Timeline.INDEFINITE);
 		
 		ft.play();
+	}
+	
+	public void setDialog(int i, String text){
+		this.getChildren().remove(dialog);
+		dialog = new DialogView(i, text);
+		dialog.setLayoutX(180 -i*50);
+		dialog.setLayoutY(-50);
+		this.getChildren().add(dialog);
+	}
+	
+	public void removeDialog(){
+		this.getChildren().remove(dialog);
 	}
 	
 	

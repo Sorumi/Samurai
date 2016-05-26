@@ -11,7 +11,16 @@ public class StoryHandler {
 	public StoryHandler(StoryPanel storyPanel){
 		this.storyPanel = storyPanel;
 	}
-	public EventHandler<MouseEvent> startGameEvent = new EventHandler<MouseEvent>() {
+	
+	public EventHandler<MouseEvent> nextEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			if(storyPanel.startPanel.storyNum > 0){
+				storyPanel.startPanel.setDialog();
+			}
+		}
+	};
+	
+	public EventHandler<MouseEvent> skipStoryEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			storyPanel.getChildren().remove(storyPanel.startPanel);
 			storyPanel.startPanel = null;

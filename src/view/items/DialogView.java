@@ -14,11 +14,11 @@ public class DialogView extends Group {
 	// 1:0.65
 	public DialogView(int size, String text) {
 		int width = size * 100;
-		int height = size * 66;
+		int height = 80;
 
 		Rectangle rect = new Rectangle(width, height);
-		rect.setArcWidth(width/2);
-		rect.setArcHeight(height/2);
+		rect.setArcWidth(20);
+		rect.setArcHeight(20);
 		rect.setFill(Color.web("#eeeeee"));
 		
 //		Arc arc = new Arc();
@@ -39,9 +39,9 @@ public class DialogView extends Group {
 		polygon.setFill(Color.web("eeeeee"));
 		
 		Label textLabel = new Label(text);
-		textLabel.setPrefSize(size*90, size*60);
+		textLabel.setPrefSize(size*90, 70);
 		textLabel.setLayoutX(size*5);
-		textLabel.setLayoutY(size*3);
+		textLabel.setLayoutY(5);
 		textLabel.setId("dialog-text");
 		
 		this.getChildren().addAll(rect, polygon, textLabel);
