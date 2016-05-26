@@ -59,7 +59,7 @@ public class TerritoryPanel extends Pane {
 	private TerritoryButton storeBtn;
 	private TerritoryButton shopBtn;
 	private TerritoryButton flagBtn;
-	private Button customizeBtn;
+	private TerritoryButton customizeBtn;
 
 
 	public CampsitePanel campsitePanel;
@@ -133,53 +133,57 @@ public class TerritoryPanel extends Pane {
 
 		// campsite
 		ImageView campsiteImg = new ImageView(Images.TERRITORY_CAMPSITE);
-		campsiteImg.setFitWidth(268);
+		campsiteImg.setFitWidth(214);
 		campsiteImg.setPreserveRatio(true);
 
 		campsiteBtn = new TerritoryButton();
 		campsiteBtn.setGraphic(campsiteImg);
-		campsiteBtn.setLayoutX(511);
-		campsiteBtn.setLayoutY(268);
+		campsiteBtn.setLayoutX(497);
+		campsiteBtn.setLayoutY(262);
 		campsiteBtn.setOnMouseClicked(territoryHandler.campsiteEvent);
 
 		// smithy
 		ImageView smithyImg = new ImageView(Images.TERRITORY_SMITHY);
-		smithyImg.setFitWidth(302);
+		smithyImg.setFitWidth(242);
 		smithyImg.setPreserveRatio(true);
 
 		smithyBtn = new TerritoryButton();
 		smithyBtn.setGraphic(smithyImg);
-		smithyBtn.setLayoutX(680);
-		smithyBtn.setLayoutY(6);
+		smithyBtn.setLayoutX(678);
+		smithyBtn.setLayoutY(43);
 		smithyBtn.setOnMouseClicked(territoryHandler.smithyEvent);
 
 		// store
 		ImageView storeImg = new ImageView(Images.TERRITORY_STORE);
-		storeImg.setFitWidth(227);
+		storeImg.setFitWidth(182);
 		storeImg.setPreserveRatio(true);
 
 		storeBtn = new TerritoryButton();
 		storeBtn.setGraphic(storeImg);
-		storeBtn.setLayoutX(200);
-		storeBtn.setLayoutY(293);
+		storeBtn.setLayoutX(377);
+		storeBtn.setLayoutY(51);
 		storeBtn.setOnMouseClicked(territoryHandler.storeEvent);
 
 		// shop
 		ImageView shopImg = new ImageView(Images.TERRITORY_SHOP);
-		shopImg.setFitWidth(242);
+		shopImg.setFitWidth(194);
 		shopImg.setPreserveRatio(true);
 
 		shopBtn = new TerritoryButton();
 		shopBtn.setGraphic(shopImg);
-		shopBtn.setLayoutX(351);
-		shopBtn.setLayoutY(34);
+		shopBtn.setLayoutX(787);
+		shopBtn.setLayoutY(274);
 		shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent);
 
 		//customize
-		customizeBtn = new Button("Customize");
-//		customizeBtn.setGraphic(customizeImg);
-		customizeBtn.setLayoutX(500);
-		customizeBtn.setLayoutY(500);
+		ImageView dojoImg = new ImageView(Images.TERRITORY_DOJO);
+		dojoImg.setFitWidth(234);
+		dojoImg.setPreserveRatio(true);
+		
+		customizeBtn = new TerritoryButton();
+		customizeBtn.setGraphic(dojoImg);
+		customizeBtn.setLayoutX(184);
+		customizeBtn.setLayoutY(300);
 		customizeBtn.setOnMouseClicked(territoryHandler.customizeEvent);
 		
 		// flag
@@ -189,8 +193,8 @@ public class TerritoryPanel extends Pane {
 
 		flagBtn = new TerritoryButton();
 		flagBtn.setGraphic(flagImg);
-		flagBtn.setLayoutX(882);
-		flagBtn.setLayoutY(446);
+		flagBtn.setLayoutX(711);
+		flagBtn.setLayoutY(442);
 		flagBtn.setOnMouseClicked(territoryHandler.flagEvent);
 
 		shopSelectPanel = new ShopSelectPanel(territoryHandler);
@@ -203,19 +207,19 @@ public class TerritoryPanel extends Pane {
 
 		// samurai
 		samurai1 = new SamuraiView(1, 2);
-		samurai1.setLayoutX(720);
+		samurai1.setLayoutX(580);
 		samurai1.setLayoutY(520);
 		samurai1.setOnMouseEntered(stateHandler.showStatePanelInT);
 		samurai1.setOnMouseExited(stateHandler.closeStatePanelInT);
 
 		samurai2 = new SamuraiView(2, 2);
-		samurai2.setLayoutX(560);
+		samurai2.setLayoutX(440);
 		samurai2.setLayoutY(520);
 		samurai2.setOnMouseEntered(stateHandler.showStatePanelInT);
 		samurai2.setOnMouseExited(stateHandler.closeStatePanelInT);
 
 		samurai3 = new SamuraiView(3, 2);
-		samurai3.setLayoutX(400);
+		samurai3.setLayoutX(300);
 		samurai3.setLayoutY(520);
 		samurai3.setOnMouseEntered(stateHandler.showStatePanelInT);
 		samurai3.setOnMouseExited(stateHandler.closeStatePanelInT);

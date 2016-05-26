@@ -461,6 +461,10 @@ public class GamePanel extends Pane implements Observer{
 								}
 							}else{
 								currentSamurai.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+								if(currentPlayer == playerA) {
+									arrow.setActualLocation();
+									arrow.setAppear(true);
+								}
 							}
 						} else {
 							arrow.setAppear(false);

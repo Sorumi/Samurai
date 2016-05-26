@@ -170,6 +170,7 @@ public class Images {
 	public static final Image TERRITORY_SMITHY = ImageManager.getImage("main/territory_smithy.png");
 	public static final Image TERRITORY_STORE = ImageManager.getImage("main/territory_store.png");
 	public static final Image TERRITORY_SHOP = ImageManager.getImage("main/territory_shop.png");
+	public static final Image TERRITORY_DOJO = ImageManager.getImage("main/territory_dojo.png");
 	public static final Image TERRITORY_FLAG = ImageManager.getImage("main/territory_flag.png");
 
 	// weather

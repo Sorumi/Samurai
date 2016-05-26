@@ -42,6 +42,7 @@ public class Arrow extends OrderPanel{
 		if(isAppear){
 			this.setZOrder(900);
 			this.setVisible(true);
+			this.setActualLocation();
 			tt.play();
 		}else{
 			this.setZOrder(-1);
