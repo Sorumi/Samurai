@@ -47,6 +47,7 @@ public class GameModel extends BaseModel implements Observer {
     //0     : Online
     //11--- : Story Mode, Level from 1 ~ 5, each have 3 difficulties
     //99    : Classic
+    //-1    : Custom
 
     //Classic 和 Online 构造方法
     public GameModel(int round, int length, GamePanel gamePanel, int level){
@@ -84,10 +85,41 @@ public class GameModel extends BaseModel implements Observer {
         isClient = false;
     }
 
+    //Custom 构造方法
+    public GameModel(GamePanel gamePanel, Position[] positions, int round, int[] aiLevel){
+        this.level = -1;
+        this.length = 14;
+        this.chessBoardModel = new ChessBoardModel(this.length);
+        this.chessBoardModel.addObserver(gamePanel.chessBoard);
+        this.timeTotal = 30;
+        this.coldRoundNum = 1;
+        this.currentTime = this.timeTotal;
+        this.currentRound = 1;
+        this.totalRound = round;
+        this.currentSamurai = 1;//1,2,3,4,5,6
+        this.samuraiSeq = new int[]{1,4,5,2,3,6};
+        this.currentPlayer = 1;//1,2,3,4,5,6
+        this.playerSeq = new int[]{0,1,1,0,0,1};
+        this.players = new Player[2];
+        players[0] = new Player(this,0,positions);
+        players[1] = new Player(this,1,positions);
+        //放AI
+        samuraiAI = new SamuraiAI[3];
+        samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
+        samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
+        samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+        //重置家的位置
+        for (int i = 1; i <= 6; i++) {
+            this.getSamuraiOfNum(i).setHome(positions[i]);
+            this.getSamuraiOfNum(i).beKilled(chessBoardModel);
+        }
+
+        isServer = false;
+        isClient = false;
+    }
+
     //Story 构造方法
     public GameModel(int length, GamePanel gamePanel, int level, SamuraiPO[] samuraiPOs){
-
-        Thread.currentThread().setPriority(1);
         Armory armory = StoryModel.getStoryModel().getArmory();
         this.aidPos = new Position(length/2 , length/2);
         this.level = level;
@@ -369,6 +401,7 @@ public class GameModel extends BaseModel implements Observer {
         for (int i = 1; i <= 6; i++) {
             super.updateChange(new UpdateMessage("healthTotal", new int[]{i, this.getSamuraiOfNum(i).getTotalHealthPoint()}));
             this.updateHome(i);
+            System.out.println(this.getSamuraiOfNum(i).getHome().getX() + "," + this.getSamuraiOfNum(i).getHome().getY());
             if(this.getSamuraiOfNum(i).getColdRound() != 0) {
                 this.getSamuraiOfNum(i).setColdRound(0);
             }
@@ -379,6 +412,7 @@ public class GameModel extends BaseModel implements Observer {
                 this.assignNext();
                 break;
             case 99:
+            case -1:
                 this.assignNextWithAI();
                 break;
             default:
@@ -422,7 +456,7 @@ public class GameModel extends BaseModel implements Observer {
     public void updatePosition(Position position){
         super.updateChange(new UpdateMessage("samuraiMove",position));
 
-        if(level != 99 && level != 0) {
+        if(level != 99 && level != 0 && level != -1) {
             ArrayList<PropsInG> tmp = new ArrayList<>();
             //捡到道具
             for (PropsInG props : this.propsInGList) {
@@ -758,7 +792,7 @@ public class GameModel extends BaseModel implements Observer {
     public void assignNextWithAI()  {
 
         //在 gamePanel 上放道具
-        if(this.level != 99) {
+        if(this.level != 99 && this.level != -1) {
             Random random = new Random();
             //概率 : 10% 掉道具
             if (random.nextInt(10) == 0) {
@@ -809,6 +843,10 @@ public class GameModel extends BaseModel implements Observer {
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(7);
                 super.updateChange(new UpdateMessage("pointsTotal", 7));
                 super.updateChange(new UpdateMessage("actionPoint", 7));
+            }else if(level == -1){
+                    this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(15);
+                    super.updateChange(new UpdateMessage("pointsTotal", 15));
+                    super.updateChange(new UpdateMessage("actionPoint", 15));
             }else{
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
                 super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
@@ -971,7 +1009,7 @@ public class GameModel extends BaseModel implements Observer {
         super.updateChange(new UpdateMessage("over",this.chessBoardModel.getStatesOfAllBlocks()));
 
         //故事模式时
-        if(this.level != 99) {
+        if(this.level != 99 && this.level != -1) {
             //发送我这局拿到多少道具
             ScoreBoard scoreBoard = new ScoreBoard();
 
@@ -1045,7 +1083,7 @@ public class GameModel extends BaseModel implements Observer {
         if(this.timer != null) {
             this.timer.cancel();
         }
-        if(this.level != 99 && this.level != 0) {
+        if(this.level != 99 && this.level != 0 && this.level != -1) {
             this.replaceProps();
         }
         this.deleteObservers();

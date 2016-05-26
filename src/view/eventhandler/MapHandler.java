@@ -67,7 +67,7 @@ public class MapHandler {
 					@Override
 					public void run() {
 						// TODO Auto-generated method stub
-						storyPanel.gamePanel = new GamePanel(15, num);
+						  storyPanel.gamePanel = new GamePanel(15, num);
 				    	  storyPanel.getChildren().add(storyPanel.gamePanel);
 
 						  mapController.setGamePanel(storyPanel.gamePanel);

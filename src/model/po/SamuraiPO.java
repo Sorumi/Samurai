@@ -119,6 +119,30 @@ public class SamuraiPO implements Serializable, Cloneable {
 		}
 	}
 
+	// Custom 构造方法
+	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor, Position homePos) {
+		this.number = number;
+		this.player = player;
+		this.weapon = weapon;
+		this.armor = armor;
+		this.length = length;
+		this.criticalHitChance = 1;
+		this.level = 1;
+		this.dodgeChance = 1;
+		this.attackValue = 5;
+		this.armorValue = 10;
+		this.coldRound = 0;
+		this.healthPoint = 60;
+		this.criticalHitChance = 1;
+		this.totalActionPoint = 15;
+		this.actionPoint = this.totalActionPoint;
+		this.killNum = 0;
+		this.pos = new Position(homePos.getX(), homePos.getY());
+		cbm.changeActualBlock(homePos.getX(), homePos.getY(), true);
+		cbm.changeActualBlock(homePos.getX(), homePos.getY(), number);
+		this.home = pos.clone();
+	}
+
 	// 故事模式构造方法
 	public SamuraiPO(int number, int player, Weapon weapon, int length, ChessBoardModel cbm, Armor armor, Position home,
 			int actionPoint, int level) {
