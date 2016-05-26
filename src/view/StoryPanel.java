@@ -30,9 +30,12 @@ public class StoryPanel extends Pane {
 	 }
 	 
 	 public void startGame(){
+		 
 		 territoryPanel = new TerritoryPanel();
 		 mapPanel = new MapPanel();
 		 
 		 this.getChildren().addAll(mapPanel, territoryPanel);
+		 this.getChildren().remove(startPanel);
+		 startPanel = null;
 	 }
 }

@@ -84,11 +84,11 @@ public class TerritoryPanel extends Pane {
 
 	private WeatherSelectPanel weatherPanel;
 
-	private int[] samuraiProperties_1;
-	private int[] samuraiProperties_2;
-	private int[] samuraiProperties_3;
+//	private int[] samuraiProperties_1;
+//	private int[] samuraiProperties_2;
+//	private int[] samuraiProperties_3;
 
-	private int[] bloodTotal = new int[4];
+//	private int[] bloodTotal = new int[4];
 
 	// weather
 	// private RainGroup rain;

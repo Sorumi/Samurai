@@ -15,71 +15,76 @@ import model.StoryModel;
 import musics.Musics;
 import network.Configure;
 import view.ArchivePanel;
+import view.BasePanel;
 import view.GamePanelOL;
 import view.MenuPanel;
 import view.guide.GuideGroup;
 
 public class MenuHandler {
-	
-	private Main mainFrame;
 
-	public MenuHandler(Main mainFrame){
-		this.mainFrame = mainFrame;
+	private MenuPanel menuPanel;
+	// private BasePanel basePanel;
+
+	public MenuHandler(MenuPanel menuPanel) {
+		this.menuPanel = menuPanel;
+//		this.basePanel = (BasePanel) menuPanel.getParent();
 	}
-	
-	public EventHandler<MouseEvent> leftClickEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.btnClick(0);
-	      }
+
+	public EventHandler<MouseEvent> leftClickEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.btnClick(0);
+		}
 	};
-	public EventHandler<MouseEvent> rightClickEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.btnClick(1);
-	      }
+	public EventHandler<MouseEvent> rightClickEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.btnClick(1);
+		}
 	};
-	
-	public EventHandler<MouseEvent> leftBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.leftBtnEnter();
-	      }
+
+	public EventHandler<MouseEvent> leftBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.leftBtnEnter();
+		}
 	};
-	public EventHandler<MouseEvent> rightBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.rightBtnEnter();
-	      }
+	public EventHandler<MouseEvent> rightBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.rightBtnEnter();
+		}
 	};
-	public EventHandler<MouseEvent> leftBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.leftBtnExit();
-	      }
+	public EventHandler<MouseEvent> leftBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.leftBtnExit();
+		}
 	};
-	public EventHandler<MouseEvent> rightBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.rightBtnExit();
-	      }
+	public EventHandler<MouseEvent> rightBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.rightBtnExit();
+		}
 	};
-	
-	
+
 	//
-	public EventHandler<MouseEvent> btnEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  	Platform.runLater(new Runnable(){
+	public EventHandler<MouseEvent> btnEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			BasePanel basePanel = (BasePanel) menuPanel.getParent();
+
+			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					switch(mainFrame.menuPanel.modeNum){
+					switch (menuPanel.modeNum) {
 					case 0:
-						mainFrame.menuPanel.storySelectPanel.setVisible(true);
+						menuPanel.storySelectPanel.setVisible(true);
 						break;
 					case 1:
-						mainFrame.startClassicGame();
+//						basePanel = (BasePanel) menuPanel.getParent();
+						basePanel.startClassicGame();
 						break;
 					case 2:
-						mainFrame.menuPanel.doubleSelectPanel.setVisible(true);
+						menuPanel.doubleSelectPanel.setVisible(true);
 					}
 				}
-				});
-	      }
+			});
+		}
 	};
 
 	public EventHandler<MouseEvent> newStoryEvent = new EventHandler<MouseEvent>() {
@@ -89,147 +94,148 @@ public class MenuHandler {
 			TerritoryController.territoryController().setStoryModel(StoryModel.getStoryModel());
 			startStory();
 			Musics.playEffectMusic(1);
-		}  
+		}
 	};
 
-	public void startStory(){
-		mainFrame.startStory();
-		mainFrame.menuPanel.getChildren().remove(mainFrame.menuPanel.archivePanel);
-		mainFrame.menuPanel.storySelectPanel.setVisible(false);
+	public void startStory() {
+		BasePanel basePanel = (BasePanel) menuPanel.getParent();
+		basePanel.startStory();
+		menuPanel.getChildren().remove(menuPanel.archivePanel);
+		menuPanel.storySelectPanel.setVisible(false);
 	}
-	
+
 	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
-			mainFrame.menuPanel.archivePanel = new ArchivePanel(1);
-			mainFrame.menuPanel.archivePanel.setLayoutX(350);
-			mainFrame.menuPanel.archivePanel.setLayoutY(50);
-			mainFrame.menuPanel.getChildren().add(mainFrame.menuPanel.archivePanel);
+			menuPanel.archivePanel = new ArchivePanel(1);
+			menuPanel.archivePanel.setLayoutX(350);
+			menuPanel.archivePanel.setLayoutY(50);
+			menuPanel.getChildren().add(menuPanel.archivePanel);
 			Musics.playEffectMusic(1);
-		}  
+		}
 	};
-	
-	public EventHandler<MouseEvent> serverEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  Platform.runLater(new Runnable(){
-		  			@Override
-		  			public void run() {
-						mainFrame.gamePanel = new GamePanelOL(15);
-						mainFrame.startGame();
 
-						System.out.println("Waiting for client...");
-						HostController hostController = new HostController();
-						hostController.serviceSetupHost(mainFrame);
-		  			}
-	    	  });
-	    	 
-	      }
+	public EventHandler<MouseEvent> serverEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					
+					BasePanel basePanel = (BasePanel) menuPanel.getParent();
+					basePanel.startDoubleGame();
+
+					System.out.println("Waiting for client...");
+					HostController hostController = new HostController();
+					hostController.serviceSetupHost(basePanel);
+				}
+			});
+
+		}
 	};
-	
-	public EventHandler<MouseEvent> clientEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  Platform.runLater(new Runnable(){
-		  			@Override
-		  			public void run() {
 
-						mainFrame.gamePanel = new GamePanelOL(15);
+	public EventHandler<MouseEvent> clientEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			Platform.runLater(new Runnable() {
+				@Override
+				public void run() {
+					BasePanel basePanel = (BasePanel) menuPanel.getParent();
 
-						try {
-							mainFrame.startGame();
-							ClientController clientController = new ClientController();
-							if(clientController.setupClient(Configure.SERVER_ADDRESS)) {
-								OperationQueue.addOperation(new StartGameOperation());
-							}else{
-								System.out.println("fail to connect server");
-								Pane basePanel = (Pane) mainFrame.gamePanel.getParent();
-								basePanel.getChildren().remove(mainFrame.gamePanel);
-								MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
-								menu.setAllAnimation(true);
-							}
-						} catch (Exception e){
-//							e.printStackTrace();
+					try {
+						basePanel.startDoubleGame();
+						ClientController clientController = new ClientController();
+						if (clientController.setupClient(Configure.SERVER_ADDRESS)) {
+							OperationQueue.addOperation(new StartGameOperation());
+						} else {
+							System.out.println("fail to connect server");
+							basePanel.getChildren().remove(basePanel.gamePanel);
+							MenuPanel menu = (MenuPanel) basePanel.getChildren().get(0);
+							menu.setAllAnimation(true);
 						}
-		  			}
-	    	  });
-	      }
+					} catch (Exception e) {
+						// e.printStackTrace();
+					}
+				}
+			});
+		}
 	};
-	public EventHandler<MouseEvent> serverBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.doubleSelectPanel.btnPressed(0);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> serverBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.doubleSelectPanel.btnAbled(0);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> clientBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.doubleSelectPanel.btnPressed(1);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> clientBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.doubleSelectPanel.btnAbled(1);
-	      }
+	public EventHandler<MouseEvent> serverBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.doubleSelectPanel.btnPressed(0);
+		}
 	};
 
-	public EventHandler<MouseEvent> newBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.storySelectPanel.btnPressed(0);
-	      }
+	public EventHandler<MouseEvent> serverBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.doubleSelectPanel.btnAbled(0);
+		}
 	};
-	
-	public EventHandler<MouseEvent> newBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.storySelectPanel.btnAbled(0);
-	      }
+
+	public EventHandler<MouseEvent> clientBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.doubleSelectPanel.btnPressed(1);
+		}
 	};
-	
-	public EventHandler<MouseEvent> oldBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.storySelectPanel.btnPressed(1);
-	      }
+
+	public EventHandler<MouseEvent> clientBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.doubleSelectPanel.btnAbled(1);
+		}
 	};
-	
-	public EventHandler<MouseEvent> oldBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  mainFrame.menuPanel.storySelectPanel.btnAbled(1);
-	      }
+
+	public EventHandler<MouseEvent> newBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.storySelectPanel.btnPressed(0);
+		}
 	};
-	
+
+	public EventHandler<MouseEvent> newBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.storySelectPanel.btnAbled(0);
+		}
+	};
+
+	public EventHandler<MouseEvent> oldBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.storySelectPanel.btnPressed(1);
+		}
+	};
+
+	public EventHandler<MouseEvent> oldBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			menuPanel.storySelectPanel.btnAbled(1);
+		}
+	};
+
 	public EventHandler<ActionEvent> exitEvent = new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
 			System.exit(0);
 		}
 	};
-	
+
 	public EventHandler<ActionEvent> guideEvent = new EventHandler<ActionEvent>() {
-		@Override 
+		@Override
 		public void handle(ActionEvent e) {
-//			mainFrame.menuPanel.guideGroup.setVisible(true);
-			mainFrame.menuPanel.setAllAnimation(false);
-			mainFrame.menuPanel.guideGroup = new GuideGroup();
-			mainFrame.menuPanel.getChildren().add(mainFrame.menuPanel.guideGroup);
+			// menuPanel.guideGroup.setVisible(true);
+			menuPanel.setAllAnimation(false);
+			menuPanel.guideGroup = new GuideGroup();
+			menuPanel.getChildren().add(menuPanel.guideGroup);
 		}
 	};
-	
+
 	public EventHandler<ActionEvent> musicEvent = new EventHandler<ActionEvent>() {
-		@Override 
+		@Override
 		public void handle(ActionEvent e) {
 			Musics.THEME.pause();
-			mainFrame.menuPanel.musicBtn.setVisible(false);
+			menuPanel.musicBtn.setVisible(false);
 		}
 	};
 	public EventHandler<ActionEvent> nomusicEvent = new EventHandler<ActionEvent>() {
-		@Override 
+		@Override
 		public void handle(ActionEvent e) {
 			Musics.THEME.play();
-			mainFrame.menuPanel.musicBtn.setVisible(true);
+			menuPanel.musicBtn.setVisible(true);
 		}
 	};
 }

@@ -14,15 +14,15 @@ public class ShopItemInfo extends Pane {
 		this.setId("campsite-wrapper");
 		
 		itemName = new Label("");
-		itemName.setLayoutX(50);
-		itemName.setLayoutY(50);
+		itemName.setLayoutX(40);
+		itemName.setLayoutY(40);
 		itemName.setId("item-name");
 		this.getChildren().add(itemName);
 		
 		itemDescription = new Label("");
 		itemDescription.setMaxWidth(400);
-		itemDescription.setLayoutX(50);
-		itemDescription.setLayoutY(90);
+		itemDescription.setLayoutX(40);
+		itemDescription.setLayoutY(70);
 		itemDescription.setId("item-description");
 		this.getChildren().add(itemDescription);
 	}

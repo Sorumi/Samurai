@@ -37,7 +37,7 @@ public class StoreItemInfo extends Pane{
 		descriptionScroll.setHbarPolicy(ScrollBarPolicy.NEVER);
 		descriptionScroll.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		descriptionScroll.setPrefWidth(430);
-		descriptionScroll.setPrefHeight(70);
+		descriptionScroll.setPrefHeight(80);
 		this.getChildren().add(descriptionScroll);
 		
 		levelLable = new Label("");

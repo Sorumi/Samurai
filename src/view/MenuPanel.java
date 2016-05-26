@@ -70,11 +70,11 @@ public class MenuPanel extends Pane {
 	
 	private Random random = new Random();
 	
-	public MenuPanel(Main mainFrame){
+	public MenuPanel(){
 		this.setPrefWidth(1200);
 		this.setPrefHeight(800);
 		
-		menuHandler = new MenuHandler(mainFrame);
+		menuHandler = new MenuHandler(this);
 		
 		exitBtn = new SystemButton(0);	
 		exitBtn.setLayoutX(1125);

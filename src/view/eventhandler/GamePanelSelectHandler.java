@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import musics.Musics;
+import view.BasePanel;
 import view.GamePanel;
 import view.MenuPanel;
 import view.StoryPanel;
@@ -29,23 +30,29 @@ public class GamePanelSelectHandler {
 	      public void handle(MouseEvent event) {
 	    	  switch(level){
 	    	  case 99:
-					Pane basePanel = (Pane) gamePanel.getParent(); 
+					BasePanel basePanel = (BasePanel) gamePanel.getParent(); 
 					basePanel.getChildren().remove(gamePanel);
-					gamePanel = null;
-					MenuPanel menu = (MenuPanel)basePanel.getChildren().get(0);
-					menu.setAllAnimation(true);
+					basePanel.setMenu();
+//					MenuPanel menu = (MenuPanel)basePanel.menuPanel;
+//					menu.setAllAnimation(true);
 
 					OperationQueue.addOperation(new EndOperation(false));
+					gamePanel = null;
+					basePanel.operationThread = null;
+					
 					break;
 					
 				case 0:
-					basePanel = (Pane) gamePanel.getParent();
+					basePanel = (BasePanel) gamePanel.getParent();
 					basePanel.getChildren().remove(gamePanel);
-					menu = (MenuPanel)basePanel.getChildren().get(0);
-					menu.setAllAnimation(true);
-
+					basePanel.setMenu();
+//					menu = (MenuPanel)basePanel.menuPanel;
+//					menu.setAllAnimation(true);
 
 					OperationQueue.addOperation(new EndOperation(false));
+					gamePanel = null;
+					basePanel.operationThread = null;
+					
 					break;
 					
 				case -1:
@@ -65,6 +72,7 @@ public class GamePanelSelectHandler {
 					storyPanel.gamePanel = null;
 
 					OperationQueue.addOperation(new EndOperation(false));
+					
 					break;
 	    	  }
 	    	  Musics.playEffectMusic(1);

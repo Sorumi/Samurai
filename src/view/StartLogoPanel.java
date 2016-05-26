@@ -27,7 +27,7 @@ public class StartLogoPanel extends Pane{
 	private ImageView logoSwordRight;
 	private ImageView logoBelow;
 	
-	public StartLogoPanel(Main mainFrame){
+	public StartLogoPanel(BasePanel basePanel){
 		this.setPrefSize(1200, 800);
 		this.setStyle("-fx-background-color: #ffffff");
 		
@@ -102,9 +102,9 @@ public class StartLogoPanel extends Pane{
 
 			@Override
 			public void handle(ActionEvent event) {
-				Pane parent = (Pane) StartLogoPanel.this.getParent();
-				parent.getChildren().remove(StartLogoPanel.this);
-				mainFrame.setMenu();
+				BasePanel basePanel = (BasePanel) StartLogoPanel.this.getParent();
+				basePanel.getChildren().remove(StartLogoPanel.this);
+				basePanel.setMenu();
 			}
 			
 		});
