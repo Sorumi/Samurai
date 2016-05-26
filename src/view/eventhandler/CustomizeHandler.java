@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import model.StoryModel;
+import model.po.Position;
 import musics.Musics;
 import view.CustomizePanel;
 import view.GamePanel;
@@ -42,22 +43,45 @@ public class CustomizeHandler {
 
 		@Override
 		public void handle(MouseEvent event) {
-			StoryPanel storyPanel = (StoryPanel) customizePanel.getParent();
-			storyPanel.getChildren().remove(storyPanel.customizePanel);
-			storyPanel.customizePanel = null;
-
-			Platform.runLater(new Runnable() {
-				@Override
-				public void run() {
-					storyPanel.gamePanel = new GamePanel(15, -1);
-					storyPanel.getChildren().add(storyPanel.gamePanel);
-
-					System.out.println("BEGIN CUSTOM GAME");
-					customContoller.startGameWithPos(storyPanel.gamePanel, customizePanel.positions, customizePanel.weapons, customizePanel.armors);
-
-					storyPanel.gamePanel.toFront();
+			boolean canStart = true;
+			//检查坐标
+			for (int i = 1; i < 7; i++) {
+				Position p1 = customizePanel.positions[i];
+				if (p1.getX()<0 || p1.getY()<0){
+					canStart = false;
+					break;
 				}
-			});
+				for (int j = 1; j < 7; j++) {
+					Position p2 = customizePanel.positions[j];
+					if (i!=j && p1.getX()==p2.getX() && p1.getY()==p2.getY()){
+						canStart = false;
+						break;
+					}
+				}
+
+			}
+			if(canStart){
+				StoryPanel storyPanel = (StoryPanel) customizePanel.getParent();
+				storyPanel.getChildren().remove(storyPanel.customizePanel);
+				storyPanel.customizePanel = null;
+
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						storyPanel.gamePanel = new GamePanel(15, -1);
+						storyPanel.getChildren().add(storyPanel.gamePanel);
+
+						System.out.println("BEGIN CUSTOM GAME");
+						customContoller.startGameWithPos(storyPanel.gamePanel, customizePanel.positions,
+								customizePanel.weapons, customizePanel.armors);
+
+						storyPanel.gamePanel.toFront();
+					}
+				});
+			}else{
+				customizePanel.hintPanel.setVisible(true);
+			}
+			
 		}
 
 	};
@@ -133,12 +157,13 @@ public class CustomizeHandler {
 				samurai.setTranslateY(translateY);
 				customizePanel.positions[samurai.getNumber()].setX(positionX);
 				customizePanel.positions[samurai.getNumber()].setY(positionY);
-
+				samurai.setZOrder(positionX + positionY);
 			} else {
 				samurai.setTranslateX(0);
 				samurai.setTranslateY(0);
+				samurai.setZOrder(0);
 			}
-
+			customizePanel.setOrder();
 		}
 	};
 }

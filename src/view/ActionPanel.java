@@ -30,11 +30,9 @@ public class ActionPanel extends OrderPanel {
 
 	private SamuraiPanel currentSamurai;
 
-	// private ActionHandler actionHandler;
 
 	public ActionPanel(ActionHandler actionHandler) {
 
-		// this.actionHandler = actionHandler;
 
 		occupyButton = new ActionButton(0, actionHandler);
 		moveButton = new ActionButton(1, actionHandler);
@@ -46,7 +44,6 @@ public class ActionPanel extends OrderPanel {
 		this.setPrefHeight(BUTTONPANEL_HEIGHT);
 		this.setVisible(false);
 		this.isAppear = false;
-		// this.setStyle("-fx-background-color: #DDDDDD");
 
 		backButton.setVisible(false);
 
@@ -123,6 +120,7 @@ public class ActionPanel extends OrderPanel {
 	}
 
 	public void setAppear(boolean isAppear, boolean animation) {
+		System.out.println(isAppear);
 		if (isAppear == this.isAppear) {
 			return;
 		}
@@ -144,11 +142,8 @@ public class ActionPanel extends OrderPanel {
 		return isAppear;
 	}
 
-	public void setAppearAnimation(boolean isAppear) {
+	private void setAppearAnimation(boolean isAppear) {
 
-		if (isAppear == this.isAppear) {
-			return;
-		}
 		if (isAppear) {
 			this.setVisible(isAppear);
 			TranslateTransition tt1 = new TranslateTransition(Duration.millis(500), occupyButton);

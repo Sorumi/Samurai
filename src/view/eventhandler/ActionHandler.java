@@ -136,14 +136,28 @@ public class ActionHandler {
 		}
 	};
 
-	public EventHandler<MouseEvent> samuraiEvent = new EventHandler<MouseEvent>() {
+	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();
-			if (currentSamurai.canActionProperty().get()) {
+			if (currentSamurai.canActionProperty().get() && event.getButton() == MouseButton.PRIMARY) {
 				gamePanel.actionPanel.setAppear(true, true);
 				gamePanel.arrow.setAppear(false);
 				gamePanel.setOrder();
 			}
+		}
+	};
+	
+	public EventHandler<MouseEvent> samuraiEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			SamuraiPanel samurai = (SamuraiPanel) event.getSource();
+			samurai.setHighlight();
+		}
+	};
+	
+	public EventHandler<MouseEvent> samuraiExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			SamuraiPanel samurai = (SamuraiPanel) event.getSource();
+			samurai.setNormal();
 		}
 	};
 

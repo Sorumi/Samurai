@@ -1,5 +1,10 @@
 package view;
 
+import java.util.Collections;
+
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -17,12 +22,13 @@ public class CustomizePanel extends Pane {
 	private CustomizeHandler customizeHandler;
 
 	private SystemButton closeBtn;
+	private SystemButton startBtn;
+	private SystemButton campsiteBtn;
+	private OrderPanel systemPanel;
 
 	public ChessBoardPanel chessBoard;
 	public CampsitePanel campsitePanel;
-
-	private Button startBtn;
-	private Button campsiteBtn;
+	public SuccessPanel hintPanel;
 
 	private SamuraiView A1;
 	private SamuraiView A2;
@@ -39,6 +45,8 @@ public class CustomizePanel extends Pane {
 
 	private Group customizeGroup;
 	private GaussianBlur blur;
+
+	private ObservableList<OrderPanel> orderList;
 
 	public CustomizePanel() {
 
@@ -60,23 +68,18 @@ public class CustomizePanel extends Pane {
 			}
 		});
 
-		// chessBoard
-		chessBoard = new ChessBoardPanel(15);
-
-		// btn
-		startBtn = new Button("开始游戏");
-		startBtn.setId("customize-start-btn");
-		startBtn.setPrefSize(140, 50);
-		startBtn.setLayoutX(530);
-		startBtn.setLayoutY(20);
+		startBtn = new SystemButton(8);
+		startBtn.setLayoutX(25);
+		startBtn.setLayoutY(25);
 		startBtn.setOnMouseClicked(customizeHandler.startEvent);
 
-		campsiteBtn = new Button("更换装备");
-		campsiteBtn.setId("customize-start-btn");
-		campsiteBtn.setPrefSize(140, 50);
-		campsiteBtn.setLayoutX(530);
-		campsiteBtn.setLayoutY(80);
+		campsiteBtn = new SystemButton(9);
+		campsiteBtn.setLayoutX(100);
+		campsiteBtn.setLayoutY(25);
 		campsiteBtn.setOnMouseClicked(customizeHandler.campsiteEvent);
+
+		// chessBoard
+		chessBoard = new ChessBoardPanel(15);
 
 		// samuraiWrapper
 		Rectangle rect1 = new Rectangle(300, 160);
@@ -125,21 +128,37 @@ public class CustomizePanel extends Pane {
 				break;
 			}
 			armors[i] = 11;
+			samurais[i].blink(false);
 			setDraggableSamurai(samurais[i]);
 			samurais[i].setWeapon(weapons[i]);
 			samurais[i].setArmor(armors[i]);
-
 		}
 
+		//hint
+		hintPanel = new SuccessPanel("请将武士放在棋盘上的正确位置（不能在同一坐标）");
+		hintPanel.setVisible(false);
+		//
+		systemPanel = new OrderPanel();
+		systemPanel.getChildren().addAll(rect1, rect2, closeBtn, startBtn, campsiteBtn);
+
 		customizeGroup = new Group();
-		customizeGroup.getChildren().addAll(chessBoard, rect1, rect2, A1, A2, A3, B1, B2, B3, startBtn, campsiteBtn,
-				closeBtn);
+		customizeGroup.getChildren().addAll(chessBoard, systemPanel, A1, A2, A3, B1, B2, B3);
+
+		orderList = FXCollections.observableArrayList(chessBoard, systemPanel, A1, A2, A3, B1, B2, B3);
+
+		chessBoard.setZOrder(-2);
+		systemPanel.setZOrder(-1);
+
+		this.getChildren().addAll(customizeGroup, hintPanel);
 
 		// blur
 		blur = new GaussianBlur(0);
 		customizeGroup.setEffect(blur);
+	}
 
-		this.getChildren().add(customizeGroup);
+	public void setOrder() {
+		Collections.sort(orderList);
+		customizeGroup.getChildren().setAll(orderList);
 	}
 
 	public void updateSamurais() {

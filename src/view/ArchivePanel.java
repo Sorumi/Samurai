@@ -73,7 +73,7 @@ public class ArchivePanel extends Pane {
 		archiveSelectPanel.setLayoutX(75);
 		archiveSelectPanel.setLayoutY(250);
 		
-		successPanel = new SuccessPanel("  存档成功");
+		successPanel = new SuccessPanel("存档成功");
 		successPanel.setLayoutX(width/2-175);
 		successPanel.setLayoutY(260); 
 		successPanel.setVisible(false);

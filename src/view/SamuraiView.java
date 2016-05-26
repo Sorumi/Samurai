@@ -18,7 +18,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
-public class SamuraiView extends Pane{
+public class SamuraiView extends OrderPanel{
 	//add
 	public boolean state;
 	

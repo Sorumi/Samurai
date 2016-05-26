@@ -9,6 +9,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -45,6 +47,9 @@ public class SamuraiPanel extends OrderPanel {
 	
 	private Text missText;
 	private Text attackedText;
+	
+	private DropShadow shadow = new DropShadow(BlurType.GAUSSIAN, Color.WHITE, 0, 1, 0, 0);
+	private ColorAdjust light = new ColorAdjust();
 	
 	public SamuraiPanel(int number, int size){
 		this.number = number;
@@ -84,6 +89,9 @@ public class SamuraiPanel extends OrderPanel {
 			samuraiV.setWeapon(200);
 			break;
 		}
+		
+		shadow.setInput(light);
+		this.setEffect(shadow);
 		
 		//text
 		missText = new Text("Miss");
@@ -221,6 +229,22 @@ public class SamuraiPanel extends OrderPanel {
 				);
 		attackTL.play();
 		samuraiV.setDoubleAttacked();
+	}
+	
+	public void setHighlight() {
+		Timeline effectTL = new Timeline(
+				new KeyFrame(Duration.millis(300),
+						new KeyValue(light.brightnessProperty(), 0.2, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(shadow.radiusProperty(), 2, Interpolator.EASE_IN)));
+		effectTL.play();
+	}
+
+	public void setNormal() {
+		Timeline effectTL = new Timeline(
+				new KeyFrame(Duration.millis(300),
+						new KeyValue(light.brightnessProperty(), 0, Interpolator.EASE_IN)),
+				new KeyFrame(Duration.millis(300), new KeyValue(shadow.radiusProperty(), 0, Interpolator.EASE_IN)));
+		effectTL.play();
 	}
 
 	public BooleanProperty canActionProperty(){

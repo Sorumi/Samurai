@@ -45,6 +45,12 @@ public class SystemButton extends Button {
 		case 7://skip
 			img.setFitWidth(24);
 			break;
+		case 8://start
+			img.setFitWidth(31);
+			break;
+		case 9://setting
+			img.setFitWidth(34);
+			break;
 		}
 		
 		img.setPreserveRatio(true);

@@ -216,30 +216,44 @@ public class GamePanel extends Pane implements Observer{
 			B3.setOnMouseEntered(stateHandler.showStatePanelInG);
 			B3.setOnMouseExited(stateHandler.closeStatePanelInG);
 
-			if(level < 99 && level > 0) {
-				//resultpanel
-				resultPanel = new ResultPanel(this);
-				this.getChildren().add(resultPanel);
-				resultPanel.setZOrder(999);
-				//proppanel
-				propPanel = new PropPanel();
-				this.getChildren().add(propPanel);
-				propPanel.setZOrder(999);
+			//resultpanel
+			resultPanel = new ResultPanel(this);
+			this.getChildren().add(resultPanel);
+			resultPanel.setZOrder(999);
+			
+			//proppanel
+			propPanel = new PropPanel();
+			this.getChildren().add(propPanel);
+			propPanel.setZOrder(999);
+			
+			propsGroup = new OrderPanel();
+			this.getChildren().add(propsGroup);
+			propsGroup.setZOrder(-3);
 
-				propsGroup = new OrderPanel();
-				this.getChildren().add(propsGroup);
-				propsGroup.setZOrder(-3);
-				this.propViews = new ArrayList<>();
-
-				this.circleLight = new CircleLight();
-				this.getChildren().add(circleLight);
-				circleLight.setZOrder(-1);
-				//overlay
-				overlayPanel = new GameOverlayPanel();
-				overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
-				this.getChildren().add(overlayPanel);
-				overlayPanel.setZOrder(1000);
-			}
+			this.propViews = new ArrayList<>();
+			
+			this.circleLight = new CircleLight();
+			this.getChildren().add(circleLight);
+			circleLight.setZOrder(-1);
+			
+			//overlay
+			overlayPanel = new GameOverlayPanel();
+			overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
+			this.getChildren().add(overlayPanel);
+			overlayPanel.setZOrder(1000);
+		}else{
+			A1.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			A1.setOnMouseExited(actionHandler.samuraiExitEvent);
+			A2.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			A2.setOnMouseExited(actionHandler.samuraiExitEvent);
+			A3.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			A3.setOnMouseExited(actionHandler.samuraiExitEvent);
+			B1.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			B1.setOnMouseExited(actionHandler.samuraiExitEvent);
+			B2.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			B2.setOnMouseExited(actionHandler.samuraiExitEvent);
+			B3.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			B3.setOnMouseExited(actionHandler.samuraiExitEvent);
 		}
 
 		backgroundPanel.setZOrder(-2);
@@ -424,11 +438,11 @@ public class GamePanel extends Pane implements Observer{
 
 		if(currentPlayer == playerA) {
 			currentSamurai.setCanActionProperty(true);
-			currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
+			currentSamurai.setOnMouseClicked(actionHandler.samuraiClickEvent);
 			actionPanel.setCurrentSamurai(currentSamurai);
             arrow.setCurrentSamurai(currentSamurai);
 		}else{
-			actionPanel.setAppear(false,true);
+			actionPanel.setAppear(false, false);
 		}
 
 		//add
@@ -444,11 +458,13 @@ public class GamePanel extends Pane implements Observer{
 								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 								if(currentPlayer == playerA) {
 									arrow.setActualLocation();
-									arrow.setVisible(true);
+									arrow.setAppear(true);
 								}
+							}else{
+								currentSamurai.setOnMouseEntered(actionHandler.samuraiEnterEvent);
 							}
 						} else {
-							arrow.setVisible(false);
+							arrow.setAppear(false);
 							currentSamurai.setOnMouseEntered(null);
 						}
 					}
