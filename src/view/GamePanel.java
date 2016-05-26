@@ -195,7 +195,7 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
 		
 		//只有故事模式有 statePanel 和 resultPanel 和 propPanel
-		if(level < 99 && level > 0) {
+		if(level < 99 && level > 0 || level == -1) {
 			//stateHandler
 			stateHandler = new StateHandler(this);
 			//statepanel
@@ -264,10 +264,11 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
-		
 
 		if(level < 99 && level > 0) {
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel, circleLight);
+		}else if(level == -1){
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, selectPanel);
 		}else{
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel);
 		}
@@ -453,7 +454,7 @@ public class GamePanel extends Pane implements Observer{
 						// TODO Auto-generated method stub
 						boolean canAction = (boolean) newVal;
 						if (canAction) {
-							if(level < 99 && level > 0) {
+							if(level < 99 && level > 0 || level == -1) {
 								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 								if(currentPlayer == playerA) {
 									arrow.setActualLocation();
