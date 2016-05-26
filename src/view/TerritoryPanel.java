@@ -259,7 +259,6 @@ public class TerritoryPanel extends Pane {
 
 		public TerritoryButton() {
 			shadow.setInput(light);
-
 			this.setEffect(shadow);
 			this.setOnMouseEntered(territoryHandler.buttonEnterEvent);
 			this.setOnMouseExited(territoryHandler.buttonExitEvent);

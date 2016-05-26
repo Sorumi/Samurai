@@ -243,17 +243,17 @@ public class GamePanel extends Pane implements Observer{
 			overlayPanel.setZOrder(1000);
 		}else{
 			A1.setOnMouseEntered(actionHandler.samuraiEnterEvent);
-			A1.setOnMouseExited(actionHandler.samuraiEnterEvent);
-			A2.setOnMouseEntered(actionHandler.samuraiExitEvent);
-			A2.setOnMouseExited(actionHandler.samuraiEnterEvent);
-			A3.setOnMouseEntered(actionHandler.samuraiExitEvent);
-			A3.setOnMouseExited(actionHandler.samuraiEnterEvent);
-			B1.setOnMouseEntered(actionHandler.samuraiExitEvent);
-			B1.setOnMouseExited(actionHandler.samuraiEnterEvent);
-			B2.setOnMouseEntered(actionHandler.samuraiExitEvent);
-			B2.setOnMouseExited(actionHandler.samuraiEnterEvent);
-			B3.setOnMouseEntered(actionHandler.samuraiExitEvent);
-			B3.setOnMouseExited(actionHandler.samuraiEnterEvent);
+			A1.setOnMouseExited(actionHandler.samuraiExitEvent);
+			A2.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			A2.setOnMouseExited(actionHandler.samuraiExitEvent);
+			A3.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			A3.setOnMouseExited(actionHandler.samuraiExitEvent);
+			B1.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			B1.setOnMouseExited(actionHandler.samuraiExitEvent);
+			B2.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			B2.setOnMouseExited(actionHandler.samuraiExitEvent);
+			B3.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			B3.setOnMouseExited(actionHandler.samuraiExitEvent);
 		}
 
 		backgroundPanel.setZOrder(-2);
@@ -441,7 +441,7 @@ public class GamePanel extends Pane implements Observer{
 			actionPanel.setCurrentSamurai(currentSamurai);
             arrow.setCurrentSamurai(currentSamurai);
 		}else{
-			actionPanel.setAppear(false,true);
+			actionPanel.setAppear(false, false);
 		}
 
 		//add
@@ -457,11 +457,13 @@ public class GamePanel extends Pane implements Observer{
 								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 								if(currentPlayer == playerA) {
 									arrow.setActualLocation();
-									arrow.setVisible(true);
+									arrow.setAppear(true);
 								}
+							}else{
+								currentSamurai.setOnMouseEntered(actionHandler.samuraiEnterEvent);
 							}
 						} else {
-							arrow.setVisible(false);
+							arrow.setAppear(false);
 							currentSamurai.setOnMouseEntered(null);
 						}
 					}

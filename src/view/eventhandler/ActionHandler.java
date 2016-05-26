@@ -139,7 +139,7 @@ public class ActionHandler {
 	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();
-			if (currentSamurai.canActionProperty().get()) {
+			if (currentSamurai.canActionProperty().get() && event.getButton() == MouseButton.PRIMARY) {
 				gamePanel.actionPanel.setAppear(true, true);
 				gamePanel.arrow.setAppear(false);
 				gamePanel.setOrder();

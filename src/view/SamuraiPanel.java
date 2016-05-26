@@ -90,6 +90,9 @@ public class SamuraiPanel extends OrderPanel {
 			break;
 		}
 		
+		shadow.setInput(light);
+		this.setEffect(shadow);
+		
 		//text
 		missText = new Text("Miss");
 		missText.setId("text-miss");
