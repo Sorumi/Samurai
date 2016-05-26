@@ -102,12 +102,11 @@ public class SamuraiAI {
 		// samuraiPO.setActionPoint(10);
 		//
 		if (enemySamuraiPO != null) {
-			System.out.println(enemySamuraiPO.getPos().getX() + "sadasdas" + enemySamuraiPO.getPos().getY());
+//			System.out.println(enemySamuraiPO.getPos().getX() + "sadasdas" + enemySamuraiPO.getPos().getY());
 		}
 		ArrayList<ActionOperation> actionOperations = new ArrayList<ActionOperation>();
 		if (enemySamuraiPO != null) {
-			System.out
-					.println("enemy location" + enemySamuraiPO.getPos().getX() + " " + enemySamuraiPO.getPos().getY());
+//			System.out.println("enemy location" + enemySamuraiPO.getPos().getX() + " " + enemySamuraiPO.getPos().getY());
 		}
 		Random random = new Random();
 

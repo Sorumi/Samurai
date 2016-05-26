@@ -195,7 +195,7 @@ public class GamePanel extends Pane implements Observer{
 		this.getChildren().addAll(A1, A2, A3, B1, B2, B3);
 		
 		//只有故事模式有 statePanel 和 resultPanel 和 propPanel
-		if(level < 99 && level > 0) {
+		if(level < 99 && level > 0 || level == -1) {
 			//stateHandler
 			stateHandler = new StateHandler(this);
 			//statepanel
@@ -216,31 +216,30 @@ public class GamePanel extends Pane implements Observer{
 			B3.setOnMouseEntered(stateHandler.showStatePanelInG);
 			B3.setOnMouseExited(stateHandler.closeStatePanelInG);
 
-			//resultpanel
-			resultPanel = new ResultPanel(this);
-			this.getChildren().add(resultPanel);
-			resultPanel.setZOrder(999);
-			
-			//proppanel
-			propPanel = new PropPanel();
-			this.getChildren().add(propPanel);
-			propPanel.setZOrder(999);
-			
-			propsGroup = new OrderPanel();
-			this.getChildren().add(propsGroup);
-			propsGroup.setZOrder(-3);
+			if(level < 99 && level > 0) {
+				//resultpanel
+				resultPanel = new ResultPanel(this);
+				this.getChildren().add(resultPanel);
+				resultPanel.setZOrder(999);
+				//proppanel
+				propPanel = new PropPanel();
+				this.getChildren().add(propPanel);
+				propPanel.setZOrder(999);
 
-			this.propViews = new ArrayList<>();
-			
-			this.circleLight = new CircleLight();
-			this.getChildren().add(circleLight);
-			circleLight.setZOrder(-1);
-			
-			//overlay
-			overlayPanel = new GameOverlayPanel();
-			overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
-			this.getChildren().add(overlayPanel);
-			overlayPanel.setZOrder(1000);
+				propsGroup = new OrderPanel();
+				this.getChildren().add(propsGroup);
+				propsGroup.setZOrder(-3);
+				this.propViews = new ArrayList<>();
+
+				this.circleLight = new CircleLight();
+				this.getChildren().add(circleLight);
+				circleLight.setZOrder(-1);
+				//overlay
+				overlayPanel = new GameOverlayPanel();
+				overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
+				this.getChildren().add(overlayPanel);
+				overlayPanel.setZOrder(1000);
+			}
 		}
 
 		backgroundPanel.setZOrder(-2);
@@ -251,10 +250,11 @@ public class GamePanel extends Pane implements Observer{
 		playerA.setZOrder(999);
 		playerB.setZOrder(999);
 		roundPanel.setZOrder(999);
-		
 
 		if(level < 99 && level > 0) {
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel, circleLight);
+		}else if(level == -1){
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, selectPanel);
 		}else{
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel);
 		}
@@ -440,7 +440,7 @@ public class GamePanel extends Pane implements Observer{
 						// TODO Auto-generated method stub
 						boolean canAction = (boolean) newVal;
 						if (canAction) {
-							if(level < 99 && level > 0) {
+							if(level < 99 && level > 0 || level == -1) {
 								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 								if(currentPlayer == playerA) {
 									arrow.setActualLocation();
