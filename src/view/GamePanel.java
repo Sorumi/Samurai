@@ -166,7 +166,8 @@ public class GamePanel extends Pane implements Observer{
 		playerA = new PlayerPanel(0, timeTotal);
 		playerB = new PlayerPanel(1, timeTotal);
 		this.getChildren().addAll(playerA, playerB);
-
+//		currentPlayer = playerA;
+		
 		//arrow
 		arrow = new Arrow();
 		this.getChildren().add(arrow);
@@ -589,11 +590,9 @@ public class GamePanel extends Pane implements Observer{
 				}else if(key.equals("actionPoint")){
 					currentPlayer.pointsPanel.setPointsRest((int)notifingObject.getValue());
 					actionPanel.setPointsRest((int)notifingObject.getValue());
-//					System.out.println("rest: " + (int)notifingObject.getValue());
 					
 				}else if(key.equals("pointsTotal")){
 					currentPlayer.pointsPanel.setPointsTotal((int)notifingObject.getValue());
-//					System.out.println("total: " + (int)notifingObject.getValue());
 					
 				}else if(key.equals("samuraiMove")){
 					Position position = (Position)notifingObject.getValue();
@@ -647,7 +646,7 @@ public class GamePanel extends Pane implements Observer{
 							propView.setVisible(false);
 							for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()){
 								if (block.getX() == propView.x && block.getY() == propView.y) {
-									System.out.println("ADD PROP");
+//									System.out.println("ADD PROP");
 									propView.setVisible(true);
 								}
 							}
@@ -751,7 +750,7 @@ public class GamePanel extends Pane implements Observer{
 
 				}else if(key.equals("getProp")){
 					int[] t = (int [])notifingObject.getValue();
-					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop ");
+//					System.out.println("Position : " + t[0] + " , " + t[1] + " get prop ");
 					int size = propsGroup.getChildren().size();
 					for(int i = 0; i < size; i++){
 						PropView prop = (PropView) propsGroup.getChildren().get(i);

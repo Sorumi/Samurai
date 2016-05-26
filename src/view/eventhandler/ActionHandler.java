@@ -26,113 +26,115 @@ public class ActionHandler {
 	private int direction;
 
 	// add
-//	private boolean isAction;
-//	private boolean isDirection;
+	// private boolean isAction;
+	// private boolean isDirection;
 
 	public ActionHandler(GamePanel gamePanel) {
 		this.gamePanel = gamePanel;
-//		isAction = false;
-//		isDirection = false;
+		// isAction = false;
+		// isDirection = false;
 	}
 
-//	public EventHandler<KeyEvent> keyEvent = new EventHandler<KeyEvent>() {
-//
-//		@Override
-//		public void handle(KeyEvent event) {
-//			// TODO Auto-generated method stub
-//			switch (event.getCode()) {
-//			case SPACE:
-//				SamuraiPanel currentSamurai = gamePanel.currentSamurai;
-//				if (currentSamurai.canActionProperty().get()) {
-//					if (!isAction) {
-//						gamePanel.actionPanel.setAppear(true, true);
-//						gamePanel.arrow.setAppear(false);
-//						gamePanel.setOrder();
-//						isAction = true;
-//					} else {
-//						gamePanel.actionPanel.setAppear(false, true);
-//						gamePanel.arrow.setAppear(true);
-//						gamePanel.setOrder();
-//					}
-//				}
-//				break;
-//			case O:
-//				if (isAction) {
-//					action = 0;
-//					gamePanel.actionPanel.setSecondary(new boolean[] { true, true, true, true });// TODO
-//				}
-//				break;
-//			case M:
-//				if (isAction) {
-//					action = 1;
-//					gamePanel.actionPanel.setSecondary(new boolean[] { true, true, true, true });// TODO
-//				}
-//				break;
-//			case H:
-//				if (isAction) {
-//					Operation op = new ActionOperation(2, 0);
-//					OperationQueue.addOperation(op);
-//				}
-//				break;
-//			case X:
-//				if (isAction) {
-//					gamePanel.actionPanel.closeSecondary();
-//					Operation op1 = new SkipOperation();
-//					OperationQueue.addOperation(op1);
-//				}
-//				break;
-//			case B:
-//				if(isAction){
-//					gamePanel.actionPanel.closeSecondary();
-//				}
-//				break;
-//			case UP:
-//				if(isDirection){
-//					Operation op = new ActionOperation(action, 0);
-//					OperationQueue.addOperation(op);
-//				}
-//				break;
-//			case LEFT:
-//				if(isDirection){
-//					Operation op = new ActionOperation(action, 1);
-//					OperationQueue.addOperation(op);
-//				}
-//				break;
-//			case RIGHT:
-//				if(isDirection){
-//					Operation op = new ActionOperation(action, 2);
-//					OperationQueue.addOperation(op);
-//				}
-//				break;
-//			case DOWN:
-//				if(isDirection){
-//					Operation op = new ActionOperation(action, 3);
-//					OperationQueue.addOperation(op);
-//				}
-//				break;
-//			}
-//
-//		}
-//
-//	};
-	
+	// public EventHandler<KeyEvent> keyEvent = new EventHandler<KeyEvent>() {
+	//
+	// @Override
+	// public void handle(KeyEvent event) {
+	// // TODO Auto-generated method stub
+	// switch (event.getCode()) {
+	// case SPACE:
+	// SamuraiPanel currentSamurai = gamePanel.currentSamurai;
+	// if (currentSamurai.canActionProperty().get()) {
+	// if (!isAction) {
+	// gamePanel.actionPanel.setAppear(true, true);
+	// gamePanel.arrow.setAppear(false);
+	// gamePanel.setOrder();
+	// isAction = true;
+	// } else {
+	// gamePanel.actionPanel.setAppear(false, true);
+	// gamePanel.arrow.setAppear(true);
+	// gamePanel.setOrder();
+	// }
+	// }
+	// break;
+	// case O:
+	// if (isAction) {
+	// action = 0;
+	// gamePanel.actionPanel.setSecondary(new boolean[] { true, true, true, true
+	// });// TODO
+	// }
+	// break;
+	// case M:
+	// if (isAction) {
+	// action = 1;
+	// gamePanel.actionPanel.setSecondary(new boolean[] { true, true, true, true
+	// });// TODO
+	// }
+	// break;
+	// case H:
+	// if (isAction) {
+	// Operation op = new ActionOperation(2, 0);
+	// OperationQueue.addOperation(op);
+	// }
+	// break;
+	// case X:
+	// if (isAction) {
+	// gamePanel.actionPanel.closeSecondary();
+	// Operation op1 = new SkipOperation();
+	// OperationQueue.addOperation(op1);
+	// }
+	// break;
+	// case B:
+	// if(isAction){
+	// gamePanel.actionPanel.closeSecondary();
+	// }
+	// break;
+	// case UP:
+	// if(isDirection){
+	// Operation op = new ActionOperation(action, 0);
+	// OperationQueue.addOperation(op);
+	// }
+	// break;
+	// case LEFT:
+	// if(isDirection){
+	// Operation op = new ActionOperation(action, 1);
+	// OperationQueue.addOperation(op);
+	// }
+	// break;
+	// case RIGHT:
+	// if(isDirection){
+	// Operation op = new ActionOperation(action, 2);
+	// OperationQueue.addOperation(op);
+	// }
+	// break;
+	// case DOWN:
+	// if(isDirection){
+	// Operation op = new ActionOperation(action, 3);
+	// OperationQueue.addOperation(op);
+	// }
+	// break;
+	// }
+	//
+	// }
+	//
+	// };
+
 	public EventHandler<MouseEvent> overlayEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
-			Timeline tl = new Timeline(
-					new KeyFrame(Duration.millis(2000), new KeyValue(gamePanel.overlayPanel.opacityProperty(), 0, Interpolator.EASE_IN))
-					);
-			tl.play();
-			tl.setOnFinished(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent event) {
-				gamePanel.orderList.remove(gamePanel.overlayPanel);
-				gamePanel.setOrder();
-
-				OperationQueue.addOperation(new ContinueOperation());
-			}
+			Timeline tl = new Timeline(new KeyFrame(Duration.millis(2000),
+					new KeyValue(gamePanel.overlayPanel.opacityProperty(), 0, Interpolator.EASE_IN)));
+			gamePanel.overlayPanel.setOnMouseClicked(null);
 			
-		});
+			tl.setOnFinished(new EventHandler<ActionEvent>() {
+				@Override
+				public void handle(ActionEvent event) {
+					gamePanel.orderList.remove(gamePanel.overlayPanel);
+					gamePanel.setOrder();
 
+					OperationQueue.addOperation(new ContinueOperation());
+				}
+
+			});
+			tl.play();
 		}
 	};
 
@@ -146,14 +148,14 @@ public class ActionHandler {
 			}
 		}
 	};
-	
+
 	public EventHandler<MouseEvent> samuraiEnterEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			SamuraiPanel samurai = (SamuraiPanel) event.getSource();
 			samurai.setHighlight();
 		}
 	};
-	
+
 	public EventHandler<MouseEvent> samuraiExitEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			SamuraiPanel samurai = (SamuraiPanel) event.getSource();

@@ -120,7 +120,6 @@ public class ActionPanel extends OrderPanel {
 	}
 
 	public void setAppear(boolean isAppear, boolean animation) {
-		System.out.println(isAppear);
 		if (isAppear == this.isAppear) {
 			return;
 		}
