@@ -21,10 +21,10 @@ public class SuccessPanel extends Pane{
 		 
 		messageLabel = new Label(message); 
 		messageLabel.setPrefSize(250, 100);
-		messageLabel.setLayoutX(120);
+		messageLabel.setLayoutX(50);
 		messageLabel.setLayoutY(50);
 		messageLabel.setId("select-message");
-		messageLabel.setStyle("-fx-alignment: center-left;");  
+		messageLabel.setStyle("-fx-alignment: top-center;");  
 		
 		closeBtn = new SystemButton(0);
 		closeBtn.setLayoutX(325);
