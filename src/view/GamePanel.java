@@ -102,6 +102,7 @@ public class GamePanel extends Pane implements Observer{
 	 * 0: 双人
 	 * 99:经典
 	 * 11-53:故事
+	 * -1:自定义
 	 */
 	public GamePanel(int size, int level){
 		this.size = size;
@@ -132,7 +133,6 @@ public class GamePanel extends Pane implements Observer{
 		pauseBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				if (currentSamurai.getNum()/4 == 0){
 					OperationQueue.addOperation(new StopOperation());
 					pauseBtn.setVisible(false);
@@ -145,7 +145,6 @@ public class GamePanel extends Pane implements Observer{
 		continueBtn.setOnAction(new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				OperationQueue.addOperation(new ContinueOperation());
 				pauseBtn.setVisible(true);
 			}
@@ -623,7 +622,7 @@ public class GamePanel extends Pane implements Observer{
 		                }
 
 		            }
-					if(level != 99) {
+					if(level != 99 && level != -1) {
 						for (PropView propView : propViews) {
 							propView.setVisible(false);
 							for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()){

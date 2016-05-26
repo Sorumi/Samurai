@@ -52,7 +52,23 @@ public class Player {
             this.samuraiPOs[5] = sPOs[1];
             this.samuraiPOs[6] = sPOs[2];
         }
+    }
 
+    //自定义模式构造方法
+    public Player(GameModel model, int playerNum, Position[] positions){
+        this.playerNum = playerNum;
+        this.gameModel = model;
+        this.chessBoardModel = this.gameModel.getChessBoardModel();
+        this.samuraiPOs = new SamuraiPO[7];
+        if(playerNum == 0){
+            this.samuraiPOs[1] = new SamuraiPO(1,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[1]);
+            this.samuraiPOs[2] = new SamuraiPO(2,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[2]);
+            this.samuraiPOs[3] = new SamuraiPO(3,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[3]);
+        }else if(playerNum == 1) {
+            this.samuraiPOs[4] = new SamuraiPO(4,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[4]);
+            this.samuraiPOs[5] = new SamuraiPO(5,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[5]);
+            this.samuraiPOs[6] = new SamuraiPO(6,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[6]);
+        }
     }
 
     public void setEnableToAction(){

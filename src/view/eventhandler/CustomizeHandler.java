@@ -1,10 +1,12 @@
 package view.eventhandler;
 
+import controller.CustomContoller;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import model.StoryModel;
 import musics.Musics;
 import view.CustomizePanel;
 import view.GamePanel;
@@ -15,6 +17,7 @@ import view.campsite.CampsitePanel;
 public class CustomizeHandler {
 
 	private CustomizePanel customizePanel;
+	private CustomContoller customContoller;
 
 	private final int FIELD_WIDTH = 1050;
 	private final int FIELD_HEIGHT = 600;
@@ -31,6 +34,8 @@ public class CustomizeHandler {
 
 	public CustomizeHandler(CustomizePanel customizePanel) {
 		this.customizePanel = customizePanel;
+		this.customContoller = new CustomContoller();
+		this.customContoller.setStoryModel(StoryModel.getStoryModel());
 	}
 
 	public EventHandler<MouseEvent> startEvent = new EventHandler<MouseEvent>() {
@@ -44,9 +49,11 @@ public class CustomizeHandler {
 			Platform.runLater(new Runnable() {
 				@Override
 				public void run() {
-					// TODO Auto-generated method stub
 					storyPanel.gamePanel = new GamePanel(15, -1);
 					storyPanel.getChildren().add(storyPanel.gamePanel);
+
+					System.out.println("BEGIN CUSTOM GAME");
+					customContoller.startGameWithPos(storyPanel.gamePanel, customizePanel.positions, customizePanel.weapons, customizePanel.armors);
 
 					storyPanel.gamePanel.toFront();
 				}
@@ -63,7 +70,6 @@ public class CustomizeHandler {
 			customizePanel.campsitePanel.setCustomized(customizePanel);
 			customizePanel.getChildren().add(customizePanel.campsitePanel);
 		}
-
 	};
 
 	public EventHandler<MouseEvent> samuraiOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
