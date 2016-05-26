@@ -42,7 +42,9 @@ public class SystemButton extends Button {
 		case 6://no music
 			img.setFitWidth(33);
 			break;
-			
+		case 7://skip
+			img.setFitWidth(24);
+			break;
 		}
 		
 		img.setPreserveRatio(true);

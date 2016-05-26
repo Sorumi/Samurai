@@ -35,16 +35,6 @@ public class Main extends Application {
 	private Scene scene;
 	public BasePanel basePanel;
 	
-//	public StartLogoPanel logoPanel;
-//	public MenuPanel menuPanel; 
-//	
-//	public GamePanel gamePanel; 
-//	public GameModel gameModel;
-//	
-//	public StoryPanel storyPanel;  
-//
-//	public Thread operationThread;
-	
 	@Override
 	public void start(Stage primaryStage) {
 		FontManager.loadAllFont();
@@ -53,23 +43,10 @@ public class Main extends Application {
 		scene = new Scene(basePanel);
 		scene.getStylesheets().add(Main.class.getResource("application.css").toExternalForm());
 		
-////		logoPanel = new StartLogoPanel(this);
-//		menuPanel = new MenuPanel(this);
-//		
-//		basePanel.getChildren().addAll(menuPanel );//TODO logoPanel
-//		setMenu();
-////		Musics.playBgMusic(0);
-		
 		primaryStage.setScene(scene);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
 		primaryStage.show();
 	}
-	
-//	public void setMenu(){
-//		menuPanel.setAllAnimation(true);
-//		logoPanel = null;
-//	}
-	
 
 	public static void main(String[] args) {
 		launch(args);

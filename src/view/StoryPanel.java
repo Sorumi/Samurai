@@ -24,9 +24,12 @@ public class StoryPanel extends Pane {
 	 }
 	 
 	 public void startStory(){
-		 startPanel = new StartStoryPanel();
+		 startPanel = new StartStoryPanel(storyHandler);
 		 this.getChildren().add(startPanel);
-		 startPanel.setOnMouseClicked(storyHandler.startGameEvent);
+	 }
+	 
+	 public void startIntroduction(){
+		 
 	 }
 	 
 	 public void startGame(){
