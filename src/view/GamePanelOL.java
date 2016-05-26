@@ -44,7 +44,7 @@ public class GamePanelOL extends GamePanel{
                 this.currentSamurai = B3;
                 break;
         }
-        currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
+        currentSamurai.setOnMouseClicked(actionHandler.samuraiClickEvent);
         currentSamurai.setCanActionProperty(true);
         currentSamurai.samuraiV.setRandomAnimation(false);
 

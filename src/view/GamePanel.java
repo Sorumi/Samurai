@@ -242,6 +242,19 @@ public class GamePanel extends Pane implements Observer{
 			overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
 			this.getChildren().add(overlayPanel);
 			overlayPanel.setZOrder(1000);
+		}else{
+			A1.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+			A1.setOnMouseExited(actionHandler.samuraiEnterEvent);
+			A2.setOnMouseEntered(actionHandler.samuraiExitEvent);
+			A2.setOnMouseExited(actionHandler.samuraiEnterEvent);
+			A3.setOnMouseEntered(actionHandler.samuraiExitEvent);
+			A3.setOnMouseExited(actionHandler.samuraiEnterEvent);
+			B1.setOnMouseEntered(actionHandler.samuraiExitEvent);
+			B1.setOnMouseExited(actionHandler.samuraiEnterEvent);
+			B2.setOnMouseEntered(actionHandler.samuraiExitEvent);
+			B2.setOnMouseExited(actionHandler.samuraiEnterEvent);
+			B3.setOnMouseEntered(actionHandler.samuraiExitEvent);
+			B3.setOnMouseExited(actionHandler.samuraiEnterEvent);
 		}
 
 		backgroundPanel.setZOrder(-2);
@@ -425,7 +438,7 @@ public class GamePanel extends Pane implements Observer{
 
 		if(currentPlayer == playerA) {
 			currentSamurai.setCanActionProperty(true);
-			currentSamurai.setOnMouseClicked(actionHandler.samuraiEvent);
+			currentSamurai.setOnMouseClicked(actionHandler.samuraiClickEvent);
 			actionPanel.setCurrentSamurai(currentSamurai);
             arrow.setCurrentSamurai(currentSamurai);
 		}else{
