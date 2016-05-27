@@ -89,6 +89,7 @@ public class GameModel extends BaseModel implements Observer {
     public GameModel(GamePanel gamePanel, Position[] positions, int round, int[] level, Weapon[] weapons, Armor[] armors){
         this.level = -1;
         this.length = 14;
+        this.aidPos = new Position(length/2 , length/2);
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(gamePanel.chessBoard);
         this.timeTotal = 30;
@@ -408,7 +409,6 @@ public class GameModel extends BaseModel implements Observer {
             if(this.getSamuraiOfNum(i).getColdRound() != 0) {
                 this.getSamuraiOfNum(i).setColdRound(0);
             }
-            System.out.println("Samurai level : " + i + " : " + this.getSamuraiOfNum(i).getLevel());
         }
 
         switch (this.level){
@@ -770,6 +770,8 @@ public class GameModel extends BaseModel implements Observer {
 
         if(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0){
 
+            super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
+
             this.players[this.playerSeq[this.currentPlayer - 1]].setEnableToAction();
 
             super.updateChange(new UpdateMessage("player",this.playerSeq[this.currentPlayer - 1]));
@@ -783,9 +785,9 @@ public class GameModel extends BaseModel implements Observer {
 
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
 
-            if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
-                super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
-            }
+//            if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
+//                super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
+//            }
 
             OperationQueue.addOperation(new SkipOperation());
 
@@ -833,6 +835,8 @@ public class GameModel extends BaseModel implements Observer {
         System.out.println("Now is " + this.getCurrentSamurai());
 
         if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
+
+            super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
 
             if (this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5) {
                 this.timer = new Timer();
@@ -948,10 +952,6 @@ public class GameModel extends BaseModel implements Observer {
         } else {
 
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
-
-            if (this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() == 0) {
-                super.updateChange(new UpdateMessage("revive", this.samuraiSeq[this.currentSamurai - 1]));
-            }
 
             OperationQueue.addOperation(new SkipOperation());
         }
