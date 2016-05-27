@@ -823,7 +823,7 @@ public class SamuraiView extends OrderPanel{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				headInjured.setVisible(false);
+				headInjured.setVisible(isInjured);
 			}
 		});
 		attackTL.play();
@@ -845,7 +845,7 @@ public class SamuraiView extends OrderPanel{
 			@Override
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
-				headInjured.setVisible(false);
+				headInjured.setVisible(isInjured);
 			}
 		});
 		attackTL.play();
