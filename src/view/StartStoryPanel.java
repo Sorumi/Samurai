@@ -80,6 +80,8 @@ public class StartStoryPanel extends Pane {
 	}
 
 	public void setPathAnimation() {
+		numen.getFt().play();
+		
 		// numen path
 		Path path = new Path();
 		path.getElements().add(new MoveTo(211, 285));

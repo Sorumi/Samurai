@@ -22,19 +22,19 @@ public class SystemButton extends Button {
 
 		switch(num){
 		case 0://close
-			img.setFitWidth(25);
+			img.setFitWidth(24);
 			break;
 		case 1://save
-			img.setFitWidth(32);
+			img.setFitWidth(30);
 			break;
 		case 2://help
 			img.setFitWidth(19);
 			break;
 		case 3://pause
-			img.setFitWidth(19);
+			img.setFitWidth(15);
 			break;
 		case 4://continue
-			img.setFitWidth(19);
+			img.setFitWidth(22);
 			break;
 		case 5://music
 			img.setFitWidth(24);

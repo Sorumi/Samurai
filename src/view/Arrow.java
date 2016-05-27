@@ -25,6 +25,7 @@ public class Arrow extends OrderPanel{
 		tt.setInterpolator(Interpolator.EASE_BOTH);
 		tt.setCycleCount(Timeline.INDEFINITE);
 		tt.setAutoReverse(true);
+		tt.play();
 	}
 	
 	public void setCurrentSamurai(SamuraiPanel samurai){
@@ -43,7 +44,6 @@ public class Arrow extends OrderPanel{
 			this.setZOrder(900);
 			this.setVisible(true);
 			this.setActualLocation();
-			tt.play();
 		}else{
 			this.setZOrder(-1);
 			this.setVisible(false);

@@ -20,16 +20,11 @@ public class StoryPanel extends Pane {
 		 this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
 		 
 		 storyHandler = new StoryHandler(this);
-		 startStory();
 	 }
 	 
 	 public void startStory(){
 		 startPanel = new StartStoryPanel(storyHandler);
 		 this.getChildren().add(startPanel);
-	 }
-	 
-	 public void startIntroduction(){
-		 
 	 }
 	 
 	 public void startGame(){

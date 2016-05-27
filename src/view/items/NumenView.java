@@ -26,6 +26,9 @@ public class NumenView extends Group{
 		numen.setLayoutY(146);
 		
 		this.getChildren().addAll(light, numen);
+	}
+	
+	public FadeTransition getFt(){
 		
 		ft = new FadeTransition(Duration.millis(3000), light);
 		ft.setFromValue(0.7);
@@ -33,14 +36,20 @@ public class NumenView extends Group{
 		ft.setAutoReverse(true);
 		ft.setCycleCount(Timeline.INDEFINITE);
 		
-		ft.play();
+		return ft;
 	}
 	
-	public void setDialog(int i, String text){
+	public void setDialog(int size, String text){
 		this.getChildren().remove(dialog);
-		dialog = new DialogView(i, text);
-		dialog.setLayoutX(180 -i*50);
-		dialog.setLayoutY(-50);
+		dialog = new DialogView(size, text);
+		if (size > 3){
+			dialog.setLayoutX(30);
+			dialog.setLayoutY(-90);
+		}else{
+			dialog.setLayoutX(180 -size*50);
+			dialog.setLayoutY(-50);
+		}
+
 		this.getChildren().add(dialog);
 	}
 	

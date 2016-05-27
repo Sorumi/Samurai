@@ -1,8 +1,10 @@
 package view.background;
 
+import javafx.animation.TranslateTransition;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import view.Images;
 import view.eventhandler.WeatherHandler;
 
@@ -14,11 +16,16 @@ public class WeatherSelectPanel extends Pane {
 		this.weatherHandler = weatherHandler;
 		
 		this.setPrefSize(50, 330);
+		
 		for (int i=1; i<=5; i++){
 			WeatherButton btn = new WeatherButton(i);
-			btn.setLayoutY(70*(i-1));
+			btn.setLayoutY(75*(i-1));
 			this.getChildren().add(btn);
 		}
+		
+		this.setOnMouseEntered(weatherHandler.enterEvent);
+		this.setOnMouseExited(weatherHandler.exitEvent);
+		
 	}
 
 	public class WeatherButton extends Button{
@@ -51,6 +58,18 @@ public class WeatherSelectPanel extends Pane {
 			case 5: this.setOnMouseClicked(weatherHandler.snowEvent);break;
 			}
 		}
+	}
+	
+	public void show(){
+		TranslateTransition showTt= new TranslateTransition(Duration.millis(1000), this);
+		showTt.setToY(-300);
+		showTt.play();
+	}
+	
+	public void hide(){
+		TranslateTransition hideTt= new TranslateTransition(Duration.millis(1000), this);
+		hideTt.setToY(0);
+		hideTt.play();
 	}
 
 }

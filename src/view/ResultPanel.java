@@ -243,7 +243,6 @@ public class ResultPanel extends OrderPanel {
 	
 	public void setMaterials(ArrayList<Material> list) {
 		for (Material material : list){
-			System.out.println(material.getType() + ": " + material.getNumber());
 			MaterialPanel materialPanel = new MaterialPanel(material.getType(), material.getNumber());
 			tile.getChildren().add(materialPanel);
 		}

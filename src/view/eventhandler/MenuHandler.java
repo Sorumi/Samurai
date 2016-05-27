@@ -76,7 +76,6 @@ public class MenuHandler {
 						menuPanel.storySelectPanel.setVisible(true);
 						break;
 					case 1:
-//						basePanel = (BasePanel) menuPanel.getParent();
 						basePanel.startClassicGame();
 						break;
 					case 2:
@@ -92,14 +91,24 @@ public class MenuHandler {
 		public void handle(MouseEvent event) {
 			StoryModel.newStoryModel();
 			TerritoryController.territoryController().setStoryModel(StoryModel.getStoryModel());
-			startStory();
+			startNewStory();
 			Musics.playEffectMusic(1);
 		}
 	};
 
-	public void startStory() {
+	public void startNewStory() {
 		BasePanel basePanel = (BasePanel) menuPanel.getParent();
 		basePanel.startStory();
+		basePanel.storyPanel.startStory();
+		menuPanel.getChildren().remove(menuPanel.archivePanel);
+		menuPanel.storySelectPanel.setVisible(false);
+	}
+	
+	public void startOldStory() {
+		BasePanel basePanel = (BasePanel) menuPanel.getParent();
+		basePanel.startStory();
+		basePanel.storyPanel.startGame();
+		basePanel.storyPanel.territoryPanel.resetButtons();
 		menuPanel.getChildren().remove(menuPanel.archivePanel);
 		menuPanel.storySelectPanel.setVisible(false);
 	}

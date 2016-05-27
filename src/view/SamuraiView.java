@@ -468,6 +468,9 @@ public class SamuraiView extends OrderPanel{
 		this.setScaleX(flip);
 	}
 	
+	public Timeline getBlinkTL(){
+		return blinkTL;
+	}
 	public void blink(boolean isBlink){
 		if (isBlink){
 			blinkTL.play();
