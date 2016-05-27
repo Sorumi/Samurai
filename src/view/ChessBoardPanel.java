@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javafx.scene.layout.Pane;
-import javafx.scene.shape.Polygon;
-import model.GameModel;
-import model.UpdateMessage;
 import model.po.ActualBlock;
 import model.po.Position;
 

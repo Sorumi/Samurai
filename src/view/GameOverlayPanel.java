@@ -85,7 +85,7 @@ public class GameOverlayPanel extends OrderPanel {
 		case 2:
 			levelNum = "II";
 			levelName = "秋雨之谷";
-			levelDescription = "骄阳之下，密林之中，蝉鸣之时";
+			levelDescription = "秋雨绵绵，滴滴牵魂，鸿雁阵阵，声声入梦";
 			break;
 		case 3:
 			levelNum = "III";

@@ -1,7 +1,5 @@
 package view;
 
-import controller.msgqueue.ContinueOperation;
-import controller.msgqueue.OperationQueue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.eventhandler.ArchiveSelectHandler;
