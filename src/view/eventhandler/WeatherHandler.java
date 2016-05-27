@@ -12,6 +12,18 @@ public class WeatherHandler {
 	public WeatherHandler(TerritoryPanel territoryPanel) {
 		this.territoryPanel = territoryPanel;
 	}
+	
+	public EventHandler<MouseEvent> enterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.weatherPanel.show();
+		}
+	};
+	
+	public EventHandler<MouseEvent> exitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.weatherPanel.hide();
+		}
+	};
 
 	public EventHandler<MouseEvent> sunEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {

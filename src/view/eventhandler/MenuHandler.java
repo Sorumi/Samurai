@@ -76,7 +76,6 @@ public class MenuHandler {
 						menuPanel.storySelectPanel.setVisible(true);
 						break;
 					case 1:
-//						basePanel = (BasePanel) menuPanel.getParent();
 						basePanel.startClassicGame();
 						break;
 					case 2:
@@ -109,6 +108,7 @@ public class MenuHandler {
 		BasePanel basePanel = (BasePanel) menuPanel.getParent();
 		basePanel.startStory();
 		basePanel.storyPanel.startGame();
+		basePanel.storyPanel.territoryPanel.resetButtons();
 		menuPanel.getChildren().remove(menuPanel.archivePanel);
 		menuPanel.storySelectPanel.setVisible(false);
 	}

@@ -5,6 +5,7 @@ import java.util.Random;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -80,13 +81,13 @@ public class TerritoryPanel extends Pane {
 	public SamuraiView samurai1;
 	public SamuraiView samurai2;
 	public SamuraiView samurai3;
-
 	private NumenView numen;
-	private TranslateTransition numenTt;
+	
+	private ParallelTransition allAnimation;
 
 	private GaussianBlur blur;
 
-	private WeatherSelectPanel weatherPanel;
+	public WeatherSelectPanel weatherPanel;
 
 	public TerritoryPanel() {
 		this.setPrefSize(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -209,26 +210,33 @@ public class TerritoryPanel extends Pane {
 		samurai3.setOnMouseEntered(stateHandler.showStatePanelInT);
 		samurai3.setOnMouseExited(stateHandler.closeStatePanelInT);
 
+		samurai1.blink(false);
+		samurai2.blink(false);
+		samurai3.blink(false);
+		
 		// numen
 		numen = new NumenView();
 		numen.setLayoutY(500);
-		numenTt = new TranslateTransition(Duration.millis(2000), numen);
-		numenTt.setFromX(750);
-		numenTt.setToX(850);
-		numenTt.setInterpolator(Interpolator.EASE_BOTH);
-		numenTt.setCycleCount(Timeline.INDEFINITE);
-		numenTt.setAutoReverse(true);
-		numenTt.play();
+		TranslateTransition tt = new TranslateTransition(Duration.millis(2000), numen);
+		tt.setFromX(750);
+		tt.setToX(850);
+		tt.setInterpolator(Interpolator.EASE_BOTH);
+		tt.setCycleCount(Timeline.INDEFINITE);
+		tt.setAutoReverse(true);
+		
+		allAnimation = new ParallelTransition(); 
+		allAnimation.getChildren().addAll(tt, samurai1.getBlinkTL(), samurai2.getBlinkTL(), samurai3.getBlinkTL());
+		allAnimation.play();
 		
 		// frontground
 		territoryFg = new TerritoryFrontground();
 
 		// weather select
 		WeatherHandler weatherHandler = new WeatherHandler(this);
-		WeatherSelectPanel weatherPanel = new WeatherSelectPanel(weatherHandler);
+		weatherPanel = new WeatherSelectPanel(weatherHandler);
 		weatherPanel.setLayoutX(1125);
-		weatherPanel.setLayoutY(445);
-
+		weatherPanel.setLayoutY(725);
+		
 		// money
 		moneyPanel = new MoneyPanel();
 		moneyPanel.setLayoutX(50);
@@ -298,11 +306,11 @@ public class TerritoryPanel extends Pane {
 			smithyBtn.setOnMouseClicked(territoryHandler.smithyEvent);
 			break;
 		case 2:
-			numen.setDialog(3, "材料是所有物质的最小单元，什么？你说你的物理老师不是这么说的？不对不对，这里可是武士的世界。这里就是存放材料的地方，快来欣赏一下你的战利品吧~");
+			numen.setDialog(4, "材料是所有物质的最小单元，什么？你说你的物理老师不是这么说的？不对不对，这里可是武士的世界。这里就是存放材料的地方，快来欣赏一下你的战利品吧~");
 			storeBtn.setOnMouseClicked(territoryHandler.storeEvent);
 			break;
 		case 3:
-			numen.setDialog(3, "这里是商店，在敌我双方势均力敌的情况下，道具往往是致胜的关键~有不需要的材料也可以在这里出售，有句话怎么说的来着？在口袋里的钱才是真的钱~");
+			numen.setDialog(4, "这里是商店，在敌我双方势均力敌的情况下，道具往往是致胜的关键~有不需要的材料也可以在这里出售，有句话怎么说的来着？在口袋里的钱才是真的钱~");
 			shopBtn.setOnMouseClicked(territoryHandler.shopSelectEvent);
 			break;
 		case 4:
@@ -316,7 +324,7 @@ public class TerritoryPanel extends Pane {
 		}
 	}
 	
-	private void resetButtons(){
+	public void resetButtons(){
 		campsiteBtn.setOnMouseClicked(territoryHandler.campsiteEvent);
 		smithyBtn.setOnMouseClicked(territoryHandler.smithyEvent);
 		storeBtn.setOnMouseClicked(territoryHandler.storeEvent);
@@ -350,13 +358,11 @@ public class TerritoryPanel extends Pane {
 	}
 
 	public void setSamuraiAnimation(boolean isAnimate) {
-		samurai1.blink(isAnimate);
-		samurai2.blink(isAnimate);
-		samurai3.blink(isAnimate);
+
 		if(isAnimate){
-			numenTt.play();
+			allAnimation.play();
 		}else{
-			numenTt.pause();
+			allAnimation.pause();
 			numen.removeDialog();
 		}
 	}
