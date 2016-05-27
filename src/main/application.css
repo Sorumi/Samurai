@@ -159,6 +159,20 @@
 	-fx-alignment: center;
 	-fx-text-alignment: center;
 }
+#set-level-des-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "PingFang SC Regular";
+	-fx-font-weight: 600;
+	-fx-font-size: 18;
+	-fx-alignment: center-left;
+}
+#level-label{
+	-fx-text-fill: #9b9b9b;
+	-fx-font-family: "PingFang SC Regular";
+	-fx-font-weight: 600;
+	-fx-font-size: 18;
+	-fx-alignment: center;
+}
 /*Shop */
 #perprice-label{ 
 	-fx-text-fill: #987F69;
