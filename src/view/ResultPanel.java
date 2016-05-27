@@ -21,6 +21,7 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import model.po.Material;
+import musics.Musics;
 
 public class ResultPanel extends OrderPanel {
 
@@ -282,6 +283,7 @@ public class ResultPanel extends OrderPanel {
 		this.setTimeline();
 		timeline.play();
 		this.flip();
+		Musics.playEffectMusic(5);
 	}
 
 	private void flip() {
