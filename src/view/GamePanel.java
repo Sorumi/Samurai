@@ -646,7 +646,6 @@ public class GamePanel extends Pane implements Observer{
 							propView.setVisible(false);
 							for (ActualBlock block : (ArrayList<ActualBlock>) notifingObject.getValue()){
 								if (block.getX() == propView.x && block.getY() == propView.y) {
-//									System.out.println("ADD PROP");
 									propView.setVisible(true);
 								}
 							}
@@ -695,8 +694,8 @@ public class GamePanel extends Pane implements Observer{
 					playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
 					
 				}else if(key.equals("revive")){
-		            System.out.println("Samurai revive!" + (int)notifingObject.getValue());
-		            getSamurai((int)notifingObject.getValue()).setInjured(false);
+					System.out.println("Samurai Revive! " + (int)notifingObject.getValue());
+					getSamurai((int)notifingObject.getValue()).setInjured(false);
 		            
 		        }else if(key.equals("pseudoOccupy")){
 					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);
