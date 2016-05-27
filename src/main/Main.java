@@ -1,21 +1,11 @@
 package main;
 
-import controller.msgqueue.OperationQueue;
-import controller.msgqueue.StartGameOperation;
 import fonts.FontManager;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.GameModel;
-import musics.Musics;
 import view.BasePanel;
-import view.GamePanel;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import view.MenuPanel;
-import view.StartLogoPanel;
-import view.StoryPanel;
 
 /*
 	*********************

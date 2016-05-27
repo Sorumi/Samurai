@@ -69,7 +69,6 @@ public class LevelSelectPanel extends Pane{
 		iconCircle.setLayoutX(150.0);
 		iconCircle.setLayoutY(-50);
 		iconCircle.setId("icon-pane");
-//		iconCircle.getChildren().add(icon);
 		
 		levelName = new Label("关卡名称");
 		levelName.setPrefSize(80, 30);
@@ -207,7 +206,7 @@ public class LevelSelectPanel extends Pane{
 				Musics.playBgMusic(5);
 				break;
 			case 5:
-				levelName.setText("樱花之乡");
+				levelName.setText("樱花之源");
 				materialNameOne.setText("水晶");
 				materialNameTwo.setText("布料");
 				itemNumOne = 40;

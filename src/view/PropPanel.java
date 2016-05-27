@@ -94,7 +94,7 @@ public class PropPanel extends OrderPanel {
 //		this.setOnMouseClicked(propHandler.itemClickEvent);
 
 		this.setLayoutX(600-width/2);
-		this.setLayoutY(685);
+		this.setLayoutY(785);
 		this.setVisible(true);
 
 	}
@@ -105,7 +105,7 @@ public class PropPanel extends OrderPanel {
 	}
 
 	public void hide() {
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 685)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.layoutYProperty(), 785)));
 		timeline.play();
 	}
 
@@ -162,14 +162,6 @@ public class PropPanel extends OrderPanel {
 			quantity = i;
 			quantityLabel.setText(quantity + "");
 		}
-	}
-
-	public void setProp(int num) {
-
-//		PropItem item = new PropItem(0, 3);
-//		item.setLayoutX(5 + 75 * i);
-//		item.setLayoutY(20);
-//		this.getChildren().add(item);
 	}
 
 }

@@ -238,7 +238,7 @@ public class GamePanel extends Pane implements Observer{
 			circleLight.setZOrder(-1);
 			
 			//overlay
-			overlayPanel = new GameOverlayPanel();
+			overlayPanel = new GameOverlayPanel(level/10);
 			overlayPanel.setOnMouseClicked(actionHandler.overlayEvent);
 			this.getChildren().add(overlayPanel);
 			overlayPanel.setZOrder(1000);

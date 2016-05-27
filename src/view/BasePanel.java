@@ -20,13 +20,12 @@ public class BasePanel extends Pane {
 	
 	public BasePanel(){
 		this.setPrefSize(1200, 800); 
-		setMenu();
+		startLogo();
 	}
 	
 	public void startLogo(){
 		logoPanel = new StartLogoPanel(this);
-		
-		this.getChildren().addAll(logoPanel);//TODO 
+		this.getChildren().addAll(logoPanel);
 	}
 	
 	public void setMenu(){
