@@ -17,7 +17,7 @@ public class CustomContoller extends TerritoryController{
 
     private GameModel gameModel;
 
-    public void startGameWithPos(GamePanel gamePanel, Position[] positions, int[] weapons, int[] armors){
+    public void startGameWithPos(GamePanel gamePanel, Position[] positions, int[] weapons, int[] armors, int[] levels){
 
         Weapon[] weapons1 = new Weapon[6];
         Armor[] armors1 = new Armor[6];
@@ -26,7 +26,7 @@ public class CustomContoller extends TerritoryController{
             weapons1[i-1] = storyModel.getArmory().getWeapon(weapons[i]);
             armors1[i-1] = storyModel.getArmory().getArmor(armors[i] + 900);
         }
-        this.gameModel = new GameModel(gamePanel, positions, 20, new int[]{1,2,3,4,5,6}, weapons1, armors1);
+        this.gameModel = new GameModel(gamePanel, positions, 20, levels, weapons1, armors1);
         this.gameModel.addObserver(gamePanel);
         this.gameModel.getChessBoardModel().addObserver(gamePanel);
 

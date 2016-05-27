@@ -2,8 +2,11 @@ package view.campsite;
 
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import view.GameColor;
 import view.Images;
 import view.SamuraiView;
@@ -42,6 +45,13 @@ public class CampsiteSamuraiWrapper extends Pane {
 	public int lastArmor;
 	
 	private boolean isCustomized;
+	
+	public int currentLevel;
+	private Group levelGroup;
+	private Polygon polygonUp;
+	private Polygon polygonDown;
+	private Label levelLabel;
+	
 	
 	public CampsiteSamuraiWrapper(CampsiteHandler campsiteHandler){
 		this.campsiteHandler = campsiteHandler;
@@ -177,6 +187,51 @@ public class CampsiteSamuraiWrapper extends Pane {
 		samuraiBtnB.getChildren().addAll(samuraiBtn4, samuraiBtn5, samuraiBtn6);
 		this.getChildren().add(samuraiBtnB);
 		setItemBtn.setOnMouseClicked(customizeCampsiteHandler.setItemClickEvent);
+		
+		//level
+		polygonUp = new Polygon();
+		polygonUp.getPoints().addAll(new Double[] {
+				0.0, 12.0,
+				11.0, 0.0,
+				22.0, 12.0});
+		polygonUp.setLayoutX(446);
+		polygonUp.setLayoutY(270);
+		polygonUp.setOnMouseClicked(customizeCampsiteHandler.levelUpEvent);
+		
+		polygonDown = new Polygon();
+		polygonDown.getPoints().addAll(new Double[] {
+				0.0, 0.0,
+				11.0, 12.0,
+				22.0, 0.0});
+		polygonDown.setLayoutX(446);
+		polygonDown.setLayoutY(335);
+		polygonDown.setOnMouseClicked(customizeCampsiteHandler.levelDownEvent);
+		
+		Label desLabel = new Label("等级：");
+		desLabel.setId("set-level-des-label");
+		desLabel.setLayoutX(370);
+		desLabel.setLayoutY(297);
+		
+		levelLabel = new Label("3");
+		levelLabel.setId("level-label");
+		levelLabel.setPrefSize(14, 22);
+		levelLabel.setLayoutX(450);
+		levelLabel.setLayoutY(297);
+		
+		Group levelGroup = new Group();
+		levelGroup.getChildren().addAll(polygonUp, polygonDown, desLabel, levelLabel);
+		this.getChildren().add(levelGroup);
+	}
+
+	public void updatePolygonColor(int num){
+		polygonUp.setFill(Color.web(GameColor.getSamuraiColorString(num)));
+		polygonDown.setFill(Color.web(GameColor.getSamuraiColorString(num)));
+	}
+	public void setlevel(int i) {
+		if(i>0 && i<10){
+			currentLevel = i;
+			levelLabel.setText(i + "");
+		}
 	}
 
 }

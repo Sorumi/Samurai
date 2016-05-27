@@ -21,7 +21,6 @@ public class DialogView extends Group {
 			width = size * 100;
 			height = 80;
 		}
-		
 
 		Rectangle rect = new Rectangle(width, height);
 		rect.setArcWidth(20);

@@ -42,6 +42,7 @@ public class CustomizePanel extends Pane {
 	public Position[] positions;
 	public int[] weapons;
 	public int[] armors;
+	public int[] levels;
 
 	private Group customizeGroup;
 	private GaussianBlur blur;
@@ -65,6 +66,7 @@ public class CustomizePanel extends Pane {
 				StoryPanel storyPanel = (StoryPanel) CustomizePanel.this.getParent();
 				storyPanel.getChildren().remove(storyPanel.customizePanel);
 				storyPanel.customizePanel = null;
+				storyPanel.territoryPanel.setSamuraiAnimation(true);
 			}
 		});
 
@@ -111,7 +113,8 @@ public class CustomizePanel extends Pane {
 		positions = new Position[7];
 		weapons = new int[7];
 		armors = new int[7];
-
+		levels = new int[6];
+		
 		positions[0] = new Position(0, 0);
 
 		for (int i = 1; i < 7; i++) {
@@ -128,6 +131,7 @@ public class CustomizePanel extends Pane {
 				break;
 			}
 			armors[i] = 11;
+			levels[i-1] = 1;
 			samurais[i].blink(false);
 			setDraggableSamurai(samurais[i]);
 			samurais[i].setWeapon(weapons[i]);
