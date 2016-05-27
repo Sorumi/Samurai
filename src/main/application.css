@@ -248,10 +248,15 @@
 	-fx-font-size: 14;
 	-fx-alignment: center;
 }
-#material-quantity{
+#material-current-quantity{
 	-fx-font-family: "PingFang SC Regular";
 	-fx-font-size: 14;
-	-fx-alignment: center;
+	-fx-alignment: center-right;
+}
+#material-needed-quantity{
+	-fx-font-family: "PingFang SC Regular";
+	-fx-font-size: 14;
+	-fx-alignment: center-left;
 }
 #material-levelLable{
 	-fx-background-radius: 10;

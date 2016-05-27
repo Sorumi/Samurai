@@ -15,7 +15,8 @@ public class SmithyBuilderMaterialView extends Pane {
 	 * currentQuantity: 目前拥有的数量
 	 * neededQuantity: 需要的数量
 	 */
-	private Label materialQuantity;
+	private Label materialCurrentQuantity;
+	private Label materialNeededQuantity;
 	private Label materialNameLabel;
 	
 	public SmithyBuilderMaterialView(int itemNum){
@@ -43,19 +44,32 @@ public class SmithyBuilderMaterialView extends Pane {
 		}else{
 			materialNameLabel.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(11));
 		}
-
-		materialQuantity = new Label(currentQuantity + " / " + neededQuantity);
-		materialQuantity.setPrefSize(80, 20);
-		materialQuantity.setLayoutX(10);
-		materialQuantity.setLayoutY(140);
-		materialQuantity.setId("material-quantity");
+		
+		materialCurrentQuantity = new Label(currentQuantity + " ");
+		materialCurrentQuantity.setPrefSize(50, 20);
+		materialCurrentQuantity.setLayoutX(0);
+		materialCurrentQuantity.setLayoutY(140);
+		materialCurrentQuantity.setId("material-current-quantity");	
+		
+		materialNeededQuantity = new Label("/ " + neededQuantity);
+		materialNeededQuantity.setPrefSize(50, 20);
+		materialNeededQuantity.setLayoutX(50);
+		materialNeededQuantity.setLayoutY(140);
+		materialNeededQuantity.setId("material-needed-quantity");
+		
 		if (itemNum/100 != 9){
-			materialQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(itemNum/100+12));
+			materialNeededQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(itemNum/100+12));
+			materialCurrentQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(itemNum/100+12));
 		}else{
-			materialQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(17));
+			materialNeededQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(17));
+			materialCurrentQuantity.setStyle("-fx-text-fill: " + GameColor.getWeaponColorString(17));
+		}
+		
+		if(currentQuantity < neededQuantity){
+			materialCurrentQuantity.setStyle("-fx-text-fill: #ffffff");
 		}
 
-		this.getChildren().addAll(bgCircle, materialView, materialNameLabel, materialQuantity);
+		this.getChildren().addAll(bgCircle, materialView, materialNameLabel, materialCurrentQuantity, materialNeededQuantity);
 	}
 	
 	public void setMaterial(int currentQuantity){
