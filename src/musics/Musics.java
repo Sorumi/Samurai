@@ -11,13 +11,14 @@ public class Musics {
 	public static final MediaPlayer SWORD_ATTACK = MusicManager.getMediaPlayer("main/sword_attack.mp3");
 	public static final MediaPlayer CLICK = MusicManager.getMediaPlayer("main/click.mp3");
 	public static final MediaPlayer FOOTSTEP = MusicManager.getMediaPlayer("main/footstep.mp3");
-	public static final MediaPlayer RAIN = MusicManager.getMediaPlayer("main/rain.mp3"); 
+	public static final MediaPlayer RAIN = MusicManager.getMediaPlayer("main/rain.mp3");
+	public static final MediaPlayer VICTORY = MusicManager.getMediaPlayer("main/Coeur De Pirate-Victory.mp3"); 
 	public static final MediaPlayer[] bgMusic = {THEME};
-	public static final MediaPlayer[] effectMusic = {RAIN, CLICK, FOOTSTEP, BOW_ATTACK, SWORD_ATTACK}; 
+	public static final MediaPlayer[] effectMusic = {RAIN, CLICK, FOOTSTEP, BOW_ATTACK, SWORD_ATTACK, VICTORY}; 
 	
 	/*
 	 * bg music
-	 * 0: theme
+	 * 0: theme 
 	 */
 	public static void playBgMusic(int num){
 		if(isBgMusic){
@@ -36,6 +37,7 @@ public class Musics {
 	 * 2:footstep 
 	 * 3:bow_attack
 	 * 4:sword_attack
+	 * 5:victory 
 	 */
 	public static void playEffectMusic(int num){
 		if(isEffectMusic){

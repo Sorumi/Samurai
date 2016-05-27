@@ -131,7 +131,7 @@ public class SamuraiAI {
 							moveDirection = random.nextInt(4);
 						} while (!samuraiPOClone.move(moveDirection, cbm));
 						samuraiPOClone.changeActionPoint(2);
-						actionOperations.add(new ActionOperation(0, moveDirection));
+						actionOperations.add(new ActionOperation(1, moveDirection));
 					}
 				}
 			}
