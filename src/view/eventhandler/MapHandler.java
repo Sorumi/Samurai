@@ -34,6 +34,7 @@ public class MapHandler {
 	      public void handle(MouseEvent event) {	    	  
 	    	  StoryPanel parent =  (StoryPanel) mapPanel.getParent();
 	    	  parent.territoryPanel.toFront();
+	    	  parent.territoryPanel.updateMoney();
 	    	  parent.territoryPanel.updateSamurai();
 	    	  parent.territoryPanel.setSamuraiAnimation(true);
 	    	  parent.territoryPanel.setRandomWeather();
