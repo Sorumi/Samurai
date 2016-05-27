@@ -508,6 +508,7 @@ public class GameModel extends BaseModel implements Observer {
             }
             SamuraiPO tmpPO = this.getSamuraiOfNum(this.getCurrentSamurai());
             this.updateHealthPoint(tmpPO.getNumber());
+            super.updateChange(new UpdateMessage("actionPoint",tmpPO.getActionPoint()));
             super.updateChange(new UpdateMessage("useProp", new int[]{propNum, getCurrentSamurai(), tmpPO.getLevel(), tmpPO.getAttackValue()[0], tmpPO.getAttackValue()[1],
                     tmpPO.getArmorValue(), tmpPO.getCriticalHitRate(), tmpPO.getDodgeRate(), tmpPO.getArmorPenetration()}));
         }
