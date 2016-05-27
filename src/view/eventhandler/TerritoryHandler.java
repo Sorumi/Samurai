@@ -61,6 +61,13 @@ public class TerritoryHandler {
 	      }
 	};
 	
+	public EventHandler<MouseEvent> shopSelectEvent = new EventHandler<MouseEvent>() {   
+	      public void handle(MouseEvent event) {
+	    	  territoryPanel.setBlur(true);
+	    	  territoryPanel.shopSelectPanel.setVisible(true);
+	      }
+	};
+	
 	public EventHandler<MouseEvent> customizeEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  StoryPanel storyPanel = (StoryPanel) territoryPanel.getParent();
@@ -84,12 +91,13 @@ public class TerritoryHandler {
 	      }
 	}; 
 	
-	public EventHandler<MouseEvent> shopSelectEvent = new EventHandler<MouseEvent>() {   
+//场景介绍
+	public EventHandler<MouseEvent> introduceEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.shopSelectPanel.setVisible(true);
+	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
+	    	  territoryPanel.startIntroduction(btn.num);
 	      }
-	};
+	}; 
 	
 	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {

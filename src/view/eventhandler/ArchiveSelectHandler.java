@@ -45,7 +45,7 @@ public class ArchiveSelectHandler{
 				
 				if (archiveView.type == 1) {
 					MenuPanel menu = (MenuPanel) archiveView.getParent().getParent().getParent();
-					menu.getMenuHandler().startStory();
+					menu.getMenuHandler().startOldStory();
 				}
 
 				archivePanel.archiveSelectPanel.setVisible(false);
