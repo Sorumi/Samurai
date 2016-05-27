@@ -5,6 +5,7 @@ import controller.msgqueue.NextOperation;
 import controller.msgqueue.OperationQueue;
 import model.ChessBoardModel;
 import model.GameModel;
+import model.StoryModel;
 import model.state.GameState;
 
 import java.util.ArrayList;
@@ -55,19 +56,19 @@ public class Player {
     }
 
     //自定义模式构造方法
-    public Player(GameModel model, int playerNum, Position[] positions){
+    public Player(GameModel model, int playerNum, Position[] positions, int[] level, Weapon[] weapons, Armor[] armors){
         this.playerNum = playerNum;
         this.gameModel = model;
         this.chessBoardModel = this.gameModel.getChessBoardModel();
         this.samuraiPOs = new SamuraiPO[7];
         if(playerNum == 0){
-            this.samuraiPOs[1] = new SamuraiPO(1,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[1]);
-            this.samuraiPOs[2] = new SamuraiPO(2,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[2]);
-            this.samuraiPOs[3] = new SamuraiPO(3,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[3]);
+            this.samuraiPOs[1] = new SamuraiPO(1,playerNum,weapons[0],this.gameModel.getLength(),this.chessBoardModel, armors[0], positions[1], level[0]);
+            this.samuraiPOs[2] = new SamuraiPO(2,playerNum,weapons[1],this.gameModel.getLength(),this.chessBoardModel, armors[1], positions[2], level[1]);
+            this.samuraiPOs[3] = new SamuraiPO(3,playerNum,weapons[2],this.gameModel.getLength(),this.chessBoardModel, armors[2], positions[3], level[2]);
         }else if(playerNum == 1) {
-            this.samuraiPOs[4] = new SamuraiPO(4,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[4]);
-            this.samuraiPOs[5] = new SamuraiPO(5,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[5]);
-            this.samuraiPOs[6] = new SamuraiPO(6,playerNum,new Weapon(0),this.gameModel.getLength(),this.chessBoardModel,new Armor(), positions[6]);
+            this.samuraiPOs[4] = new SamuraiPO(4,playerNum,weapons[3],this.gameModel.getLength(),this.chessBoardModel, armors[3], positions[4], level[0]);
+            this.samuraiPOs[5] = new SamuraiPO(5,playerNum,weapons[4],this.gameModel.getLength(),this.chessBoardModel, armors[4], positions[5], level[1]);
+            this.samuraiPOs[6] = new SamuraiPO(6,playerNum,weapons[5],this.gameModel.getLength(),this.chessBoardModel, armors[5], positions[6], level[2]);
         }
     }
 
@@ -204,18 +205,18 @@ public class Player {
                                 if(this.gameModel.getLevel() < 99 && this.gameModel.getLevel() > 0){
                                     int[] attackPoint = this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint();
                                     if(this.gameModel.attackSamurai(integer, attackPoint[0], attackPoint[1], attackPoint[2]) < 0){
-                                        this.gameModel.updateKilled(integer);
                                         this.gameModel.updateHome(integer);
                                         this.gameModel.updateVisible(this.gameModel.updateVision());
                                         this.gameModel.getSamuraiOfNum(integer).beKilled(this.chessBoardModel);
                                         this.gameModel.getSamuraiOfNum(this.gameModel.getCurrentSamurai()).updateKillNum(1);
+                                        this.gameModel.updateKilled(integer);
                                     }
                                     //要更新血量
                                     this.gameModel.updateHealthPoint(integer);
                                 }else {
-                                    this.gameModel.updateKilled(integer);
                                     this.gameModel.updateHome(integer);
                                     this.gameModel.updateVisible(this.gameModel.updateVision());
+                                    this.gameModel.updateKilled(integer);
                                 }
 
                             }
