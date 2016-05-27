@@ -76,6 +76,7 @@ public class GamePanelSelectHandler {
 					break;
 	    	  }
 	    	  Musics.playEffectMusic(1);
+	    	  Musics.playBgMusic(0);
 
 	      }
 	};
