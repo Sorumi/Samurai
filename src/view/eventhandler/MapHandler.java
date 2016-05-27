@@ -75,8 +75,16 @@ public class MapHandler {
 						  mapController.startGameAtLevel(num);
 						  storyPanel.gamePanel.toFront();
 						  Musics.playEffectMusic(1);
+						  
 					}
 	    	  });
+	    	  switch(selectPanel.level){
+	    	  case 1: Musics.playBgMusic(2);break;
+	    	  case 2: Musics.playBgMusic(3);break;
+	    	  case 3: Musics.playBgMusic(4);break;
+	    	  case 4: Musics.playBgMusic(5);break;
+	    	  case 5: Musics.playBgMusic(6);break;
+	    	  }
 
 	      }
 	};
