@@ -7,22 +7,28 @@ public class Musics {
 	private static boolean isBgMusic = true;
 	private static boolean isEffectMusic = true;  
 	public static final MediaPlayer THEME = MusicManager.getMediaPlayer("main/theme.mp3");
-	public static final MediaPlayer BOW_ATTACK = MusicManager.getMediaPlayer("main/bow_attack.mp3");
+	public static final MediaPlayer SPEAR_ATTACK = MusicManager.getMediaPlayer("main/spear_attack.wav"); 
 	public static final MediaPlayer SWORD_ATTACK = MusicManager.getMediaPlayer("main/sword_attack.mp3");
-	public static final MediaPlayer CLICK = MusicManager.getMediaPlayer("main/click.mp3");
+	public static final MediaPlayer BATTLEAX_ATTACK = MusicManager.getMediaPlayer("main/battleax_attack.wav");
+	public static final MediaPlayer ARROW_ATTACK = MusicManager.getMediaPlayer("main/arrow_attack.wav");
+	public static final MediaPlayer SHURIKEN_ATTACK = MusicManager.getMediaPlayer("main/shuriken_attack.mp3"); 
+	public static final MediaPlayer CLICK = MusicManager.getMediaPlayer("main/click.wav"); 
 	public static final MediaPlayer FOOTSTEP = MusicManager.getMediaPlayer("main/footstep.mp3");
 	public static final MediaPlayer RAIN = MusicManager.getMediaPlayer("main/rain.mp3");
-	public static final MediaPlayer VICTORY = MusicManager.getMediaPlayer("main/Coeur De Pirate-Victory.mp3"); 
-	public static final MediaPlayer[] bgMusic = {THEME};
-	public static final MediaPlayer[] effectMusic = {RAIN, CLICK, FOOTSTEP, BOW_ATTACK, SWORD_ATTACK, VICTORY}; 
+	public static final MediaPlayer VICTORY = MusicManager.getMediaPlayer("main/victory.mp3"); 
+	public static final MediaPlayer ATTACKED = MusicManager.getMediaPlayer("main/attacked.wav"); 
+	public static final MediaPlayer KILLED = MusicManager.getMediaPlayer("main/killed.wav");
+	public static final MediaPlayer MONEY = MusicManager.getMediaPlayer("main/money.wav");
+	public static final MediaPlayer[] bgMusic = {THEME, VICTORY};
+	public static final MediaPlayer[] effectMusic = {RAIN, CLICK, FOOTSTEP, SPEAR_ATTACK, SWORD_ATTACK, BATTLEAX_ATTACK, SHURIKEN_ATTACK, ARROW_ATTACK, ATTACKED, KILLED, MONEY};  
 	
 	/*
 	 * bg music
 	 * 0: theme 
-	 */
+	 */ 
 	public static void playBgMusic(int num){
 		if(isBgMusic){
-			for(int i=0;i<bgMusic.length;i++){
+			for(int i=0;i<bgMusic.length;i++){ 
 				bgMusic[i].stop();  
 			}
 			bgMusic[num].play();
@@ -34,10 +40,12 @@ public class Musics {
 	 * effect music
 	 * 0: rain
 	 * 1: click
-	 * 2:footstep 
-	 * 3:bow_attack
+	 * 2:footstep  
+	 * 3:spear_attack
 	 * 4:sword_attack
-	 * 5:victory 
+	 * 5:battleax_attack
+	 * 6:shuriken_attack
+	 * 7:arrow_attack
 	 */
 	public static void playEffectMusic(int num){
 		if(isEffectMusic){

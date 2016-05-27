@@ -283,7 +283,7 @@ public class ResultPanel extends OrderPanel {
 		this.setTimeline();
 		timeline.play();
 		this.flip();
-		Musics.playEffectMusic(5);
+		Musics.playBgMusic(1);
 	}
 
 	private void flip() {

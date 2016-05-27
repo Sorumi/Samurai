@@ -77,7 +77,6 @@ public class StoreHandler {
 					storePanel.sellPanel.quantityTotal = item.quantity;
 				}
 			}
-			
 		}
 	};
 
@@ -117,6 +116,7 @@ public class StoreHandler {
 			parent.updateMoney();
 			update();
 			Musics.playEffectMusic(1);
+			Musics.playEffectMusic(10);
 		}
 	};
 

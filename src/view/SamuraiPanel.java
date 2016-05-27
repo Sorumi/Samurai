@@ -151,8 +151,11 @@ public class SamuraiPanel extends OrderPanel {
 	public void occupy(int direction){
 		samuraiV.occupy(direction);
 		switch(samuraiV.getWeaponNumber()/100){
+		case 0: Musics.playEffectMusic(3);break;
 		case 1: Musics.playEffectMusic(4);break;
-		case 4: Musics.playEffectMusic(3);break;
+		case 2: Musics.playEffectMusic(5);break;
+		case 3: Musics.playEffectMusic(6);break;
+		case 4: Musics.playEffectMusic(7);break;
 		
 		}
 	}
@@ -193,6 +196,7 @@ public class SamuraiPanel extends OrderPanel {
 		}else{
 			samuraiV.setInjured(isInjured, 3);
 		}
+		Musics.playEffectMusic(9); 
 	}
 	
 	public void setMiss(){
@@ -220,6 +224,7 @@ public class SamuraiPanel extends OrderPanel {
 				);
 		attackTL.play();
 		samuraiV.setAttacked();
+		Musics.playEffectMusic(8);
 	}
 
 	public void setDoubleAttacked(int num){
@@ -236,6 +241,7 @@ public class SamuraiPanel extends OrderPanel {
 				);
 		attackTL.play();
 		samuraiV.setDoubleAttacked();
+		Musics.playEffectMusic(8);
 	}
 	
 	public void setHighlight() {
