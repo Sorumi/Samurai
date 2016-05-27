@@ -73,7 +73,7 @@ public class CustomizeHandler {
 
 						System.out.println("BEGIN CUSTOM GAME");
 						customContoller.startGameWithPos(storyPanel.gamePanel, customizePanel.positions,
-								customizePanel.weapons, customizePanel.armors);
+								customizePanel.weapons, customizePanel.armors, customizePanel.levels);
 
 						storyPanel.gamePanel.toFront();
 					}
