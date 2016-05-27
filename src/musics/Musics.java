@@ -9,6 +9,7 @@ public class Musics {
 	public static final MediaPlayer THEME = MusicManager.getMediaPlayer("main/theme.mp3");
 	public static final MediaPlayer BG1 = MusicManager.getMediaPlayer("main/bg1.mp3");
 	public static final MediaPlayer BG2 = MusicManager.getMediaPlayer("main/bg2.mp3");
+	public static final MediaPlayer BG3 = MusicManager.getMediaPlayer("main/bg3.mp3");
 	public static final MediaPlayer BG4 = MusicManager.getMediaPlayer("main/bg4.mp3");
 	public static final MediaPlayer BG5 = MusicManager.getMediaPlayer("main/bg5.mp3");
 	public static final MediaPlayer SPEAR_ATTACK = MusicManager.getMediaPlayer("main/spear_attack.wav"); 
@@ -23,7 +24,7 @@ public class Musics {
 	public static final MediaPlayer ATTACKED = MusicManager.getMediaPlayer("main/attacked.wav"); 
 	public static final MediaPlayer KILLED = MusicManager.getMediaPlayer("main/killed.wav");
 	public static final MediaPlayer MONEY = MusicManager.getMediaPlayer("main/money.wav");
-	public static final MediaPlayer[] bgMusic = {THEME, VICTORY, BG1, BG2, BG4, BG5};
+	public static final MediaPlayer[] bgMusic = {THEME, VICTORY, BG1, BG2, BG3, BG4, BG5};
 	public static final MediaPlayer[] effectMusic = {RAIN, CLICK, FOOTSTEP, SPEAR_ATTACK, SWORD_ATTACK, BATTLEAX_ATTACK, SHURIKEN_ATTACK, ARROW_ATTACK, ATTACKED, KILLED, MONEY};  
 	
 	/*
