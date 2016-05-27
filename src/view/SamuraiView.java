@@ -854,4 +854,8 @@ public class SamuraiView extends OrderPanel{
 	public int getNumber() {
 		return number;
 	}
+	
+	public int getWeaponNumber(){
+		return weaponNum;
+	}
 }

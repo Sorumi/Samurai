@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.po.Position;
+import musics.Musics;
 
 public class SamuraiPanel extends OrderPanel {
 
@@ -149,6 +150,11 @@ public class SamuraiPanel extends OrderPanel {
 
 	public void occupy(int direction){
 		samuraiV.occupy(direction);
+		switch(samuraiV.getWeaponNumber()/100){
+		case 1: Musics.playEffectMusic(4);break;
+		case 4: Musics.playEffectMusic(3);break;
+		
+		}
 	}
 	
 	public void move(int x, int y){
@@ -178,6 +184,7 @@ public class SamuraiPanel extends OrderPanel {
 				canAction.setValue(true);
 			}
 		});
+		Musics.playEffectMusic(2);
 	}
 	
 	public void setInjured(boolean isInjured){
