@@ -4,6 +4,7 @@ import controller.TerritoryController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
+import musics.Musics;
 import view.ArchivePanel;
 import view.CustomizePanel;
 import view.MapPanel;
@@ -88,6 +89,7 @@ public class TerritoryHandler {
 	    	  territoryPanel.setSamuraiAnimation(false);
 	    	  territoryPanel.territoryBg.removeAll();
 	    	  territoryPanel.territoryFg.removeAll();
+	    	  Musics.effectMusic[0].stop();
 	      }
 	}; 
 	
