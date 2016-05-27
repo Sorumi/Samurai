@@ -176,7 +176,6 @@ public class LevelSelectPanel extends Pane{
 				itemNumOne = 0;
 				itemNumTwo = 10;
 				icon.setFitWidth(48);
-				Musics.playBgMusic(2);
 				break;
 			case 2:
 				levelName.setText("秋雨之谷");
@@ -184,8 +183,6 @@ public class LevelSelectPanel extends Pane{
 				materialNameTwo.setText("石材");
 				itemNumOne = 10;
 				itemNumTwo = 20;
-				icon.setFitWidth(78);
-				Musics.playBgMusic(3);
 				break;
 			case 3:
 				levelName.setText("清莲之塘");
@@ -194,7 +191,6 @@ public class LevelSelectPanel extends Pane{
 				itemNumOne = 20;
 				itemNumTwo = 30;
 				icon.setFitWidth(76);
-				Musics.playBgMusic(4);
 				break;
 			case 4:
 				levelName.setText("星耀之夜");
@@ -203,7 +199,6 @@ public class LevelSelectPanel extends Pane{
 				itemNumOne = 30;
 				itemNumTwo = 40;
 				icon.setFitWidth(60);
-				Musics.playBgMusic(5);
 				break;
 			case 5:
 				levelName.setText("樱花之源");
@@ -212,7 +207,6 @@ public class LevelSelectPanel extends Pane{
 				itemNumOne = 40;
 				itemNumTwo = 0;
 				icon.setFitWidth(68);
-				Musics.playBgMusic(6);
 				break;
 		}
 		
