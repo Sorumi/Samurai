@@ -61,7 +61,7 @@ public class GamePanelSelectHandler {
 					storyPanel.getChildren().remove(gamePanel);
 					storyPanel.gamePanel = null;
 					
-//					OperationQueue.addOperation(new EndOperation(false));
+					OperationQueue.addOperation(new EndOperation(false));
 					break;
 					
 				default:
