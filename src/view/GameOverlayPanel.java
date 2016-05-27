@@ -7,11 +7,11 @@ import javafx.scene.shape.Polyline;
 
 public class GameOverlayPanel extends OrderPanel {
 
-	private Label levelNum;
-	private Label levelName;
-	private Label levelDescription;
+	private Label levelNumLabel;
+	private Label levelNameLabel;
+	private Label levelDescriptionLabel;
 	
-	public GameOverlayPanel(){
+	public GameOverlayPanel(int num){
 		this.setPrefSize(1200, 800);
 		this.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
 		
@@ -31,25 +31,26 @@ public class GameOverlayPanel extends OrderPanel {
 		line.setEndY(380);
 		line.setStroke(Color.WHITE);
 		
-		levelNum = new Label("I");
-		levelNum.setId("overlay-level-num");
-		levelNum.setPrefSize(20, 30);
-		levelNum.setLayoutX(590);
-		levelNum.setLayoutY(190);
+		levelNumLabel = new Label();
+		levelNumLabel.setId("overlay-level-num");
+		levelNumLabel.setPrefSize(20, 30);
+		levelNumLabel.setLayoutX(590);
+		levelNumLabel.setLayoutY(190);
 		
-		levelName = new Label("盛夏之园");
-		levelName.setId("overlay-level-name");
-		levelName.setPrefSize(100, 30);
-		levelName.setLayoutX(550);
-		levelName.setLayoutY(230);
+		levelNameLabel = new Label();
+		levelNameLabel.setId("overlay-level-name");
+		levelNameLabel.setPrefSize(100, 30);
+		levelNameLabel.setLayoutX(550);
+		levelNameLabel.setLayoutY(230);
 		
-		levelDescription = new Label("这是写剧情的地方");
-		levelDescription.setId("overlay-level-description");
-		levelDescription.setPrefSize(600, 100);
-		levelDescription.setLayoutX(300);
-		levelDescription.setLayoutY(470);
+		levelDescriptionLabel = new Label();
+		levelDescriptionLabel.setId("overlay-level-description");
+		levelDescriptionLabel.setPrefSize(600, 100);
+		levelDescriptionLabel.setLayoutX(300);
+		levelDescriptionLabel.setLayoutY(470);
 		
-		this.getChildren().addAll(lineTop, lineDown, line, levelNum, levelName, levelDescription);
+		setLevel(num);
+		this.getChildren().addAll(lineTop, lineDown, line, levelNumLabel, levelNameLabel, levelDescriptionLabel);
 	}
 	
 	public class OverlayLine extends Polyline{
@@ -68,5 +69,43 @@ public class GameOverlayPanel extends OrderPanel {
 				    800.0, 80.0});
 			this.setStroke(Color.WHITE);
 		}
+	}
+	
+	private void setLevel(int num){
+		String levelNum = "";
+		String levelName = "";
+		String levelDescription = "";
+		
+		switch(num){
+		case 1:
+			levelNum = "I";
+			levelName = "盛夏之园";
+			levelDescription = "骄阳之下，密林之中，蝉鸣之时";
+			break;
+		case 2:
+			levelNum = "II";
+			levelName = "秋雨之谷";
+			levelDescription = "骄阳之下，密林之中，蝉鸣之时";
+			break;
+		case 3:
+			levelNum = "III";
+			levelName = "清莲之塘";
+			levelDescription = "舞蹈吧，让水面波澜；歌唱吧，让花瓣缤纷";
+			break;
+		case 4:
+			levelNum = "IV";
+			levelName = "星耀之夜";
+			levelDescription = "从赤手空拳，到顶盔掼甲，让苍穹见证你们的胜利";
+			break;
+		case 5:
+			levelNum = "V";
+			levelName = "樱花之源";
+			levelDescription = "二月初开，四月落得一地缤纷，这生命短暂，却在凋落之时最为绚烂";
+			break;
+		}
+		
+		levelNumLabel.setText(levelNum);
+		levelNameLabel.setText(levelName);
+		levelDescriptionLabel.setText(levelDescription);
 	}
 }
