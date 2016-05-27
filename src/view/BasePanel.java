@@ -4,6 +4,7 @@ import controller.msgqueue.OperationQueue;
 import controller.msgqueue.StartGameOperation;
 import javafx.scene.layout.Pane;
 import model.GameModel;
+import musics.Musics;
 
 public class BasePanel extends Pane {
 	public StartLogoPanel logoPanel;
@@ -33,7 +34,7 @@ public class BasePanel extends Pane {
 		menuPanel.setAllAnimation(true);
 		this.getChildren().add(menuPanel);
 		logoPanel = null;
-//		Musics.playBgMusic(0);
+		Musics.playBgMusic(0);
 	}
 	
 	public void startDoubleGame(){
