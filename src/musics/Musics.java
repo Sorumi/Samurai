@@ -13,7 +13,7 @@ public class Musics {
 	public static final MediaPlayer FOOTSTEP = MusicManager.getMediaPlayer("main/footstep.mp3");
 	public static final MediaPlayer RAIN = MusicManager.getMediaPlayer("main/rain.mp3"); 
 	public static final MediaPlayer[] bgMusic = {THEME};
-	public static final MediaPlayer[] effectMusic = {RAIN, CLICK}; 
+	public static final MediaPlayer[] effectMusic = {RAIN, CLICK, FOOTSTEP, BOW_ATTACK, SWORD_ATTACK}; 
 	
 	/*
 	 * bg music
@@ -33,6 +33,9 @@ public class Musics {
 	 * effect music
 	 * 0: rain
 	 * 1: click
+	 * 2:footstep 
+	 * 3:bow_attack
+	 * 4:sword_attack
 	 */
 	public static void playEffectMusic(int num){
 		if(isEffectMusic){
