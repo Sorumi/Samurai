@@ -104,18 +104,14 @@ public class GameModel extends BaseModel implements Observer {
         players[0] = new Player(this,0,positions,new int[]{level[0], level[1], level[2]},weapons,armors);
         players[1] = new Player(this,1,positions,new int[]{level[3], level[4], level[5]},weapons,armors);
         //放AI
-//        SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
-//        aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(126), 14, chessBoardModel, armory.getArmor(926), his.randomHomeLocationWithScale(2,12,2)t, 10, 20);
-//        aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(226), 14, chessBoardModel, armory.getArmor(936), this.randomHomeLocationWithScale(7,12,2), 2, 22);
-//        aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(16), 14, chessBoardModel, armory.getArmor(916), this.randomHomeLocationWithScale(12,7,2), 2, 20);
-//        samuraiAI = new SamuraiAI[3];
-//        samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],3,this.chessBoardModel,1);
-//        samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],3,this.chessBoardModel,1);
-//        samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
+        SamuraiPO[] aiSamuraiPO = new SamuraiPO[3];
+        aiSamuraiPO[0] = new SamuraiPO(4, 1, weapons[3], 14, chessBoardModel, armors[3], positions[4], 24, 10);
+        aiSamuraiPO[1] = new SamuraiPO(5, 1, weapons[4], 14, chessBoardModel, armors[4], positions[5], 24, 10);
+        aiSamuraiPO[2] = new SamuraiPO(6, 1, weapons[5], 14, chessBoardModel, armors[5], positions[6], 24, 10);
         samuraiAI = new SamuraiAI[3];
-        samuraiAI[0] = new SamuraiAI(players[1].getSamuraiOfNum(4),1,this.chessBoardModel,1);
-        samuraiAI[1] = new SamuraiAI(players[1].getSamuraiOfNum(5),1,this.chessBoardModel,1);
-        samuraiAI[2] = new SamuraiAI(players[1].getSamuraiOfNum(6),1,this.chessBoardModel,1);
+        samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],3,this.chessBoardModel,1);
+        samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],3,this.chessBoardModel,1);
+        samuraiAI[2] = new SamuraiAI(aiSamuraiPO[2],3,this.chessBoardModel,1);
         //重置家的位置
         for (int i = 1; i <= 6; i++) {
             this.getSamuraiOfNum(i).setHome(positions[i]);
@@ -336,9 +332,9 @@ public class GameModel extends BaseModel implements Observer {
                 homePosition[0] = this.randomHomeLocationWithScale(2,2,2);
                 homePosition[1] = this.randomHomeLocationWithScale(7,2,2);
                 homePosition[2] = this.randomHomeLocationWithScale(12,12,2);
-                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(126), 14, chessBoardModel, armory.getArmor(926), this.randomHomeLocationWithScale(2,12,2), 10, 20);
-                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(226), 14, chessBoardModel, armory.getArmor(936), this.randomHomeLocationWithScale(7,12,2), 2, 22);
-                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(16), 14, chessBoardModel, armory.getArmor(916), this.randomHomeLocationWithScale(12,7,2), 2, 20);
+                aiSamuraiPO[0] = new SamuraiPO(4, 1, armory.getWeapon(126), 14, chessBoardModel, armory.getArmor(926), this.randomHomeLocationWithScale(2,12,2), 26, 20);
+                aiSamuraiPO[1] = new SamuraiPO(5, 1, armory.getWeapon(226), 14, chessBoardModel, armory.getArmor(936), this.randomHomeLocationWithScale(7,12,2), 26, 22);
+                aiSamuraiPO[2] = new SamuraiPO(6, 1, armory.getWeapon(16), 14, chessBoardModel, armory.getArmor(916), this.randomHomeLocationWithScale(12,7,2), 26, 20);
                 samuraiAI = new SamuraiAI[3];
                 samuraiAI[0] = new SamuraiAI(aiSamuraiPO[0],3,this.chessBoardModel,1);
                 samuraiAI[1] = new SamuraiAI(aiSamuraiPO[1],3,this.chessBoardModel,1);
@@ -852,9 +848,9 @@ public class GameModel extends BaseModel implements Observer {
                 super.updateChange(new UpdateMessage("pointsTotal", 7));
                 super.updateChange(new UpdateMessage("actionPoint", 7));
             }else if(level == -1){
-                    this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(15);
-                    super.updateChange(new UpdateMessage("pointsTotal", 15));
-                    super.updateChange(new UpdateMessage("actionPoint", 15));
+                    this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(20);
+                    super.updateChange(new UpdateMessage("pointsTotal", 20));
+                    super.updateChange(new UpdateMessage("actionPoint", 20));
             }else{
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
                 super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
