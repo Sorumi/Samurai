@@ -87,6 +87,7 @@ public class ShopHandler {
 			int total = (shopController.getPropsStore().getProps(num).getPrice()) * quantity;
 			if (total > getShopController().getPropsStore().getMoney()) {
 				System.out.println("You money isn't enough.");
+				Musics.playEffectMusic(1);
 			}else {
 				getShopController().getPropsStore().getProps(num).changeNumber(quantity);
 				getShopController().updateMoney(-total);
@@ -99,8 +100,9 @@ public class ShopHandler {
 				if (total > getShopController().getPropsStore().getMoney()) {
 					shopPanel.purchasePanel.buyBtnUnable();
 				}
+				Musics.playEffectMusic(1);
 			}
-			Musics.playEffectMusic(1);
+			Musics.playEffectMusic(10);
 		}
 	};
 

@@ -202,9 +202,10 @@ public class Player {
 //                                    e.printStackTrace();
 //                                }
 
-                                if(this.gameModel.getLevel() < 99 && this.gameModel.getLevel() > 0){
+                                if(this.gameModel.getLevel() < 99 && this.gameModel.getLevel() > 0 || this.gameModel.getLevel() == -1){
                                     int[] attackPoint = this.gameModel.getSamuraiOfNum(this.currentSamurai).getAttackPoint();
-                                    if(this.gameModel.attackSamurai(integer, attackPoint[0], attackPoint[1], attackPoint[2]) < 0){
+                                    if(this.gameModel.getSamuraiOfNum(integer).getHealthPoint() > 0 &&
+                                            this.gameModel.attackSamurai(integer, attackPoint[0], attackPoint[1], attackPoint[2]) < 0){
                                         this.gameModel.updateHome(integer);
                                         this.gameModel.updateVisible(this.gameModel.updateVision());
                                         this.gameModel.getSamuraiOfNum(integer).beKilled(this.chessBoardModel);
