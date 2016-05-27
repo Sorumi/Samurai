@@ -3,9 +3,7 @@ package view;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import model.StoryModel;
 import view.eventhandler.ArchiveHandler;
-import view.eventhandler.ArchiveSelectHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

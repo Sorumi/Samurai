@@ -4,10 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import view.eventhandler.ArchiveSelectHandler;
-import view.eventhandler.TerritoryHandler;
 
 public class ArchivePanel extends Pane {
 	private int width = 500;

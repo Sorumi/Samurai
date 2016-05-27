@@ -6,9 +6,7 @@ import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,7 +17,6 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
-import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 

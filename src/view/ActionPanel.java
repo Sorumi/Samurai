@@ -4,7 +4,6 @@ import javafx.animation.Interpolator;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import model.po.Position;
 import view.eventhandler.ActionHandler;

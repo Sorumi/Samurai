@@ -1,8 +1,6 @@
 package view;
 
-import javafx.scene.control.Button;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import view.eventhandler.ActionHandler;

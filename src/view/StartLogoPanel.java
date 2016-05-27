@@ -1,7 +1,5 @@
 package view;
 
-import java.util.Random;
-
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -10,10 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
-import main.Main;
-import view.items.Ring;
 
 public class StartLogoPanel extends Pane{
 	
@@ -109,18 +104,6 @@ public class StartLogoPanel extends Pane{
 			
 		});
 
-//		Color color = Color.web("#ADC0AB");
-//		
-//		Random random = new Random();
-//		
-//		for (int i=0; i<30; i++){
-//			Ring ring = new Ring(color);
-//			ring.setLayoutX(random.nextInt(450)+x+30);
-//			ring.setLayoutY(random.nextInt(450)+y+30);
-//			this.getChildren().add(ring);
-//			tl.getKeyFrames().addAll(ring.getFrames());
-//		}
-		
 		tl.play();
 	}
 
