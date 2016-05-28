@@ -513,6 +513,17 @@ public class SamuraiView extends OrderPanel{
 				new KeyFrame(Duration.millis(2000), new KeyValue(rightLegRo.angleProperty(), 0))
 				);
 		swingTL.play();
+		swingTL.setOnFinished(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (weapon != null) {
+					resetWeapon();
+				}
+				if (armorBody != null) {
+					resetArmor();
+				}
+			}
+		});
 	}
 	
 	public void jump(){
@@ -544,6 +555,17 @@ public class SamuraiView extends OrderPanel{
 				new KeyFrame(Duration.millis(1700), new KeyValue(rightLegRo.angleProperty(), 0))
 		);
 		jumpTL.play();
+		jumpTL.setOnFinished(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (weapon != null) {
+					resetWeapon();
+				}
+				if (armorBody != null) {
+					resetArmor();
+				}
+			}
+		});
 	}
 	
 	public void walk(int num){
