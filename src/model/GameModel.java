@@ -853,13 +853,15 @@ public class GameModel extends BaseModel implements Observer {
                 super.updateChange(new UpdateMessage("pointsTotal", 7));
                 super.updateChange(new UpdateMessage("actionPoint", 7));
             }else if(level == -1){
-                    this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(20);
-                    super.updateChange(new UpdateMessage("pointsTotal", 20));
-                    super.updateChange(new UpdateMessage("actionPoint", 20));
+                this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(20);
+                super.updateChange(new UpdateMessage("pointsTotal", 20));
+                super.updateChange(new UpdateMessage("actionPoint", 20));
+                super.updateChange(new UpdateMessage("healthTotal", new int[]{this.getCurrentSamurai(), this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint()}));
             }else{
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
                 super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
                 super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
+                super.updateChange(new UpdateMessage("healthTotal", new int[]{this.getCurrentSamurai(), this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint()}));
             }
 
             this.updateVisible(this.updateVision());
