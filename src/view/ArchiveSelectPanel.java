@@ -6,7 +6,6 @@ import view.eventhandler.ArchiveSelectHandler;
 
 public class ArchiveSelectPanel extends SelectPanel{
 	
-//	public int num;
 	public boolean isSave; 
 	public ArchiveSelectHandler archiveSelectHandler;
 	
@@ -23,9 +22,7 @@ public class ArchiveSelectPanel extends SelectPanel{
 		closeBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
 				ArchiveSelectPanel.this.setVisible(false);
-//				OperationQueue.addOperation(new ContinueOperation());
 			}
 		});
 	}

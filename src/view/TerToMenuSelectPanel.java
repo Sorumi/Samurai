@@ -20,12 +20,8 @@ public class TerToMenuSelectPanel extends SelectPanel{
 			public void handle(ActionEvent event) {
 				// TODO Auto-generated method stub
 				TerToMenuSelectPanel.this.setVisible(false);
-//				OperationQueue.addOperation(new ContinueOperation());
 			}
 		});
 	}
-
-
-	
 
 }

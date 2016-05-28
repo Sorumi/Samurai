@@ -86,6 +86,7 @@ public class GamePanel extends Pane implements Observer{
 	public Arrow arrow;
 	public ActionPanel actionPanel;
 	protected ActionHandler actionHandler;
+	protected ChangeListener actionListener;
 	public StatePanel statePanel;
 	public SelectPanel selectPanel;
 	protected GamePanelSelectHandler selectHandler;
@@ -96,6 +97,7 @@ public class GamePanel extends Pane implements Observer{
 	private ArrayList<PropView> propViews;
 	
 	public GameOverlayPanel overlayPanel;
+	public OrderPanel pausePanel;
 
 	/*
 	 * level:
@@ -116,7 +118,7 @@ public class GamePanel extends Pane implements Observer{
 		this.selectPanel = new SelectPanel("确定退出吗?你将会丢失当前未存档的所有游戏进度(包括已获得的道具)!");
 		selectPanel.yesBtn.setOnMouseClicked(selectHandler.yesEvent);
 		selectPanel.noBtn.setOnMouseClicked(selectHandler.noEvent);
-		selectPanel.setZOrder(999);
+		selectPanel.closeBtn.setOnMouseClicked(selectHandler.noEvent);
 		selectPanel.setVisible(false);
 		this.getChildren().add(selectPanel);
 		this.isOver = false;
@@ -135,6 +137,7 @@ public class GamePanel extends Pane implements Observer{
 			public void handle(ActionEvent event) {
 				if (currentSamurai.getNum()/4 == 0){
 					OperationQueue.addOperation(new StopOperation());
+					pausePanel.setVisible(true);
 					pauseBtn.setVisible(false);
 				}
 			}
@@ -146,6 +149,7 @@ public class GamePanel extends Pane implements Observer{
 			@Override
 			public void handle(ActionEvent event) {
 				OperationQueue.addOperation(new ContinueOperation());
+				pausePanel.setVisible(false);
 				pauseBtn.setVisible(true);
 			}
 		});
@@ -257,23 +261,61 @@ public class GamePanel extends Pane implements Observer{
 			B3.setOnMouseExited(actionHandler.samuraiExitEvent);
 		}
 
+		//pause Panel
+		pausePanel = new OrderPanel();
+		pausePanel.setPrefSize(1200, 800);
+		pausePanel.setVisible(false);
+		
 		backgroundPanel.setZOrder(-2);
-		systemPanel.setZOrder(-1);
 		chessBoard.setZOrder(-4);
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
-		playerA.setZOrder(999);
-		playerB.setZOrder(999);
-		roundPanel.setZOrder(999);
+		playerA.setZOrder(99);
+		playerB.setZOrder(99);
+		roundPanel.setZOrder(99);
+		pausePanel.setZOrder(100);
+		systemPanel.setZOrder(101);
+		selectPanel.setZOrder(101);
 
 		if(level < 99 && level > 0) {
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel, circleLight);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, resultPanel, propPanel, propsGroup, selectPanel, overlayPanel, circleLight, pausePanel);
 		}else if(level == -1){
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, selectPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, statePanel, playerA, playerB, roundPanel, systemPanel, selectPanel, pausePanel);
 		}else{
-			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel);
+			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3, arrow, actionPanel, playerA, playerB, roundPanel, systemPanel, selectPanel, pausePanel);
 		}
 		this.setOrder();
+		
+		//
+		actionListener = new ChangeListener(){
+			public void changed(ObservableValue o,Object oldVal,Object newVal){
+				Platform.runLater(new Runnable(){
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						boolean canAction = (boolean) newVal;
+						if (canAction) {
+							if(level < 99 && level > 0 || level == -1) {
+								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
+								if(currentPlayer == playerA) {
+									arrow.setActualLocation();
+									arrow.setAppear(true);
+								}
+							}else{
+								currentSamurai.setOnMouseEntered(actionHandler.samuraiEnterEvent);
+								if(currentPlayer == playerA) {
+									arrow.setActualLocation();
+									arrow.setAppear(true);
+								}
+							}
+						} else {
+							arrow.setAppear(false);
+							currentSamurai.setOnMouseEntered(null);
+						}
+					}
+				});
+			}
+		};
 	}
 
 	private void addProp(int x, int y, int num) {
@@ -426,6 +468,10 @@ public class GamePanel extends Pane implements Observer{
 	
 	public void setCurrentSamurai(int num){
 		if(currentSamurai != null){
+
+			currentSamurai.canActionProperty().removeListener(actionListener);
+			currentSamurai.setCanActionProperty(true);
+			currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 			currentSamurai.setOnMouseClicked(null);
 			currentSamurai.samuraiV.setRandomAnimation(true);
 		}
@@ -447,35 +493,7 @@ public class GamePanel extends Pane implements Observer{
 		}
 
 		//add
-		currentSamurai.canActionProperty().addListener(new ChangeListener(){
-			public void changed(ObservableValue o,Object oldVal,Object newVal){
-				Platform.runLater(new Runnable(){
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						boolean canAction = (boolean) newVal;
-						if (canAction) {
-							if(level < 99 && level > 0 || level == -1) {
-								currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
-								if(currentPlayer == playerA) {
-									arrow.setActualLocation();
-									arrow.setAppear(true);
-								}
-							}else{
-								currentSamurai.setOnMouseEntered(actionHandler.samuraiEnterEvent);
-								if(currentPlayer == playerA) {
-									arrow.setActualLocation();
-									arrow.setAppear(true);
-								}
-							}
-						} else {
-							arrow.setAppear(false);
-							currentSamurai.setOnMouseEntered(null);
-						}
-					}
-				});
-			}
-		});
+		currentSamurai.canActionProperty().addListener(actionListener);
 	}
 
 	public void setCurrentPlayer(int player){
@@ -546,7 +564,8 @@ public class GamePanel extends Pane implements Observer{
 				public void handle(ActionEvent event) {
 					selectPanel.setVisible(true);
 					OperationQueue.addOperation(new StopOperation());
-					System.out.println("LEVEL : " + level);
+					pausePanel.setVisible(true);
+//					System.out.println("LEVEL : " + level);
 					switch(level){
 						case 99:
 							selectHandler.level = 99;
@@ -614,7 +633,9 @@ public class GamePanel extends Pane implements Observer{
 						arrow.setVisible(true);
 					}
 				}else if(key.equals("samuraiKilled")){
-					getSamurai((int)notifingObject.getValue()).setInjured(true);
+					int samuraiNum = (int)notifingObject.getValue();
+					getSamurai(samuraiNum).setInjured(true);
+					getSamurai(samuraiNum).samuraiV.setRandomAnimation(false);
 					
 				}else if(key.equals("visible")){
 		            A1.setVisible(true);
@@ -694,8 +715,10 @@ public class GamePanel extends Pane implements Observer{
 					playerB.circlePanel.setBlocks(new int[]{n[4], n[5], n[6]});
 					
 				}else if(key.equals("revive")){
-					System.out.println("Samurai Revive! " + (int)notifingObject.getValue());
-					getSamurai((int)notifingObject.getValue()).setInjured(false);
+					int samuraiNum = (int)notifingObject.getValue();
+					System.out.println("Samurai Revive! " + samuraiNum);
+					getSamurai(samuraiNum).setInjured(false);
+					getSamurai(samuraiNum).samuraiV.setRandomAnimation(true);
 		            
 		        }else if(key.equals("pseudoOccupy")){
 					chessBoard.pseudoOccupy((ArrayList<Position>) notifingObject.getValue(), true);

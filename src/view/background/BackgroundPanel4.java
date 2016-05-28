@@ -18,10 +18,12 @@ public class BackgroundPanel4 extends BackgroundPanel{
 		meteor.setFitWidth(196);
 		this.getChildren().add(meteor);
 		
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), new KeyValue(meteor.layoutXProperty(), 1182)),
+		Timeline timeline = new Timeline(
+				new KeyFrame(Duration.millis(1000), new KeyValue(meteor.layoutXProperty(), 1182)),
 				new KeyFrame(Duration.millis(1000), new KeyValue(meteor.layoutYProperty(), 318)),
-				new KeyFrame(Duration.millis(3000), new KeyValue(meteor.layoutXProperty(), 1182)),
-				new KeyFrame(Duration.millis(3000), new KeyValue(meteor.layoutYProperty(), 318)));
+				new KeyFrame(Duration.millis(10000), new KeyValue(meteor.layoutXProperty(), 1182)),
+				new KeyFrame(Duration.millis(10000), new KeyValue(meteor.layoutYProperty(), 318))
+				);
 		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
 		}

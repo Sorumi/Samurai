@@ -214,17 +214,12 @@ public class StatePanel extends OrderPanel {
 		iconGroup.getChildren().addAll(stateIcon1, stateIcon2, stateIcon3, stateIcon4, stateIcon5, stateIcon6, stateLabel1, stateLabel2, stateLabel3, stateLabel4, stateLabel5, stateLabel6);
 		this.getChildren().addAll(bgRect, triangle, bgCircle, bloodArc, bloodLabel, iconGroup);
 		this.setVisible(false);  
-		
-		//TODO
-//		if(SCALE == 2){
-//			this.setExperience(30, 50);
-//		}
+
 	}
 
 	private void setUpLocation(){
 		bgRect.setY((25+strokeWidth)*SCALE);  
 
-		
 		triangle.getPoints().addAll(new Double[]{
 			(double)(prefWidth/2-5)*SCALE, 147.0*SCALE,
 			(double)(prefWidth/2+5)*SCALE, 147.0*SCALE,
@@ -252,17 +247,14 @@ public class StatePanel extends OrderPanel {
 	}
 
 	public void setCurrentSamuraiInG(SamuraiPanel samurai) { 
-		// TODO Auto-generated method stub
 		this.currentSamurai = samurai;
-
 		this.setActualLocationInG(); 
-		
 	}
 	
 	public void setActualLocationInG(){
 		this.setLayoutX((currentSamurai.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2)*SCALE);
-		if (currentSamurai.getLayoutY()-prefHeight*SCALE+10>0) {		
-			this.setLayoutY(currentSamurai.getLayoutY()-prefHeight*SCALE-25);
+		if (currentSamurai.getLayoutY()-prefHeight*SCALE-10>0) {		
+			this.setLayoutY(currentSamurai.getLayoutY()-prefHeight*SCALE-10);
 			this.setUpLocation();
 		}else{
 			this.setLayoutY(currentSamurai.getLayoutY()+currentSamurai.getHeight());
@@ -270,8 +262,7 @@ public class StatePanel extends OrderPanel {
 		}
 	}
 
-	public void setCurrentSamuraiInT(SamuraiView samurai) {  
-		// TODO Auto-generated method stub
+	public void setCurrentSamuraiInT(SamuraiView samurai) {
 		this.currentSamuraiV = samurai;
 		this.setActualLocationInT(); 
 		
@@ -279,7 +270,7 @@ public class StatePanel extends OrderPanel {
 	
 	public void setActualLocationInT(){
 		this.setLayoutX(currentSamuraiV.getLayoutX() +SAMURAI_WIDTH/2-prefWidth/2-100);		
-		if (currentSamuraiV.getLayoutY()-prefHeight*SCALE+10>0) {		
+		if (currentSamuraiV.getLayoutY()-prefHeight*SCALE-10>0) {		
 			this.setLayoutY(currentSamuraiV.getLayoutY()-prefHeight*SCALE-10);
 			this.setUpLocation();
 		}else{
@@ -289,7 +280,6 @@ public class StatePanel extends OrderPanel {
 	}
 
 	public void setAppear(boolean isAppear) {
-		// TODO Auto-generated method stub
 		this.isAppear = isAppear;
 		this.setVisible(isAppear); 
 	}

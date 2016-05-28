@@ -162,8 +162,8 @@ public class MapPanel extends Pane {
 		levelSelectPanel.setLayoutY(250);
 		this.getChildren().add(levelSelectPanel);
 
-		// TODO
 		mapHandler.update();
+//		updateMap(5);
 	}
 
 	// 内部类
@@ -350,6 +350,7 @@ public class MapPanel extends Pane {
 		if (level != currentLevel){
 			for (int i=0; i<level; i++){
 				BridgeView bridge = (BridgeView) bridgeGroup.getChildren().get(i);
+				bridge.setOpacity(1);
 				bridge.setVisible(true);		
 			}
 			
