@@ -3,14 +3,11 @@ package view.eventhandler;
 import controller.msgqueue.ContinueOperation;
 import controller.msgqueue.EndOperation;
 import controller.msgqueue.OperationQueue;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 import musics.Musics;
 import view.BasePanel;
 import view.GamePanel;
-import view.MenuPanel;
 import view.StoryPanel;
 
 public class GamePanelSelectHandler {
@@ -33,8 +30,6 @@ public class GamePanelSelectHandler {
 					BasePanel basePanel = (BasePanel) gamePanel.getParent(); 
 					basePanel.getChildren().remove(gamePanel);
 					basePanel.setMenu();
-//					MenuPanel menu = (MenuPanel)basePanel.menuPanel;
-//					menu.setAllAnimation(true);
 
 					OperationQueue.addOperation(new EndOperation(false));
 					gamePanel = null;
@@ -46,8 +41,6 @@ public class GamePanelSelectHandler {
 					basePanel = (BasePanel) gamePanel.getParent();
 					basePanel.getChildren().remove(gamePanel);
 					basePanel.setMenu();
-//					menu = (MenuPanel)basePanel.menuPanel;
-//					menu.setAllAnimation(true);
 
 					OperationQueue.addOperation(new EndOperation(false));
 					gamePanel = null;
@@ -85,6 +78,7 @@ public class GamePanelSelectHandler {
 	      public void handle(MouseEvent event) {
 	    	  gamePanel.selectPanel.setVisible(false);	
 	    	  OperationQueue.addOperation(new ContinueOperation());
+	    	  gamePanel.pausePanel.setVisible(false);
 	    	  Musics.playEffectMusic(1);
 	      }
 	};
