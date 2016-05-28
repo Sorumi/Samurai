@@ -123,7 +123,7 @@ public class ActionPanel extends OrderPanel {
 			return;
 		}
 		if (isAppear) {
-			this.setZOrder(900);
+			this.setZOrder(90);
 		} else {
 			this.setZOrder(-1);
 		}

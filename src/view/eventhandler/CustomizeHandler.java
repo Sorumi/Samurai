@@ -126,6 +126,7 @@ public class CustomizeHandler {
 		@Override
 		public void handle(MouseEvent t) {
 			SamuraiView samurai = (SamuraiView) (t.getSource());
+			int num = samurai.getNumber();
 			double layoutX = samurai.getLayoutX() + samurai.getTranslateX();
 			double layoutY = samurai.getLayoutY() + samurai.getTranslateY();
 			int positionX = -1;
@@ -148,6 +149,7 @@ public class CustomizeHandler {
 					}
 				}
 			}
+			
 			if (positionX >= 0 && positionY >= 0) {
 				double translateX = chessBoardWidthOffset + FIELD_WIDTH / 2 + (positionY - positionX) * blockWidthOffset
 						+ selfWidthOffset - samurai.getLayoutX();
@@ -155,8 +157,8 @@ public class CustomizeHandler {
 						+ selfHeightOffset - samurai.getLayoutY();
 				samurai.setTranslateX(translateX);
 				samurai.setTranslateY(translateY);
-				customizePanel.positions[samurai.getNumber()].setX(positionX);
-				customizePanel.positions[samurai.getNumber()].setY(positionY);
+				customizePanel.positions[num].setX(positionX);
+				customizePanel.positions[num].setY(positionY);
 				samurai.setZOrder(positionX + positionY);
 			} else {
 				samurai.setTranslateX(0);

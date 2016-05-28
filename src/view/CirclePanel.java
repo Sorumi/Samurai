@@ -302,32 +302,22 @@ public class CirclePanel extends Pane {
 				blockLabel.setText(blocksNum + "");
 			}
 		});
-		
-		if (player == 0){
-			double startAngle = 90.0;
-			double preAngle = -180.0 / (size*size);
-			timeline = new Timeline(
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[0].lengthProperty(), preAngle*blockNum[0])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].startAngleProperty(), startAngle+preAngle*blockNum[0])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].lengthProperty(), preAngle*blockNum[1])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].startAngleProperty(), startAngle+preAngle*blockNum[0]+preAngle*blockNum[1])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].lengthProperty(), preAngle*blockNum[2]))
-					);
-			timeline.play();
-		}else{
-			double startAngle = 90.0;
-			double preAngle = 180.0 / (size*size);
-			timeline = new Timeline(
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[0].lengthProperty(), preAngle*blockNum[0])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].startAngleProperty(), startAngle+preAngle*blockNum[0])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].lengthProperty(), preAngle*blockNum[1])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].startAngleProperty(), startAngle+preAngle*blockNum[0]+preAngle*blockNum[1])),
-					new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].lengthProperty(), preAngle*blockNum[2]))
-					);
 
-			timeline.play();
-		
+		double startAngle = 90.0;
+		double preAngle = 180.0 / (size*size);
+		if (player == 0){
+			 preAngle = -180.0 / (size*size);
+		}else{
+			preAngle = 180.0 / (size*size);
 		}
+		timeline = new Timeline(
+				new KeyFrame(Duration.millis(500), new KeyValue(arcs[0].lengthProperty(), preAngle*blockNum[0])),
+				new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].startAngleProperty(), startAngle+preAngle*blockNum[0])),
+				new KeyFrame(Duration.millis(500), new KeyValue(arcs[1].lengthProperty(), preAngle*blockNum[1])),
+				new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].startAngleProperty(), startAngle+preAngle*blockNum[0]+preAngle*blockNum[1])),
+				new KeyFrame(Duration.millis(500), new KeyValue(arcs[2].lengthProperty(), preAngle*blockNum[2]))
+				);
+		timeline.play();
 	}
 
 }

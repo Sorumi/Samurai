@@ -65,7 +65,7 @@ public class StartLogoPanel extends Pane{
 		logoText.setLayoutY(y+390);
 		logoText.setOpacity(0);
 		
-		this.getChildren().addAll(logoBelow, logoSwordLeft, logoSwordRight, logoAbove, logo, logoText);		
+		this.getChildren().addAll(logoBelow, logoSwordRight, logoSwordLeft, logoAbove, logo, logoText);		
 		
 		Timeline tl = new Timeline(
 				new KeyFrame(Duration.millis(0), new KeyValue(logoSwordLeft.layoutXProperty(), 0-100)),

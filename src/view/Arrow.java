@@ -41,7 +41,7 @@ public class Arrow extends OrderPanel{
 	
 	public void setAppear(boolean isAppear){
 		if(isAppear){
-			this.setZOrder(900);
+			this.setZOrder(90);
 			this.setVisible(true);
 			this.setActualLocation();
 		}else{

@@ -123,7 +123,7 @@ public class ActionHandler {
 			Timeline tl = new Timeline(new KeyFrame(Duration.millis(2000),
 					new KeyValue(gamePanel.overlayPanel.opacityProperty(), 0, Interpolator.EASE_IN)));
 			gamePanel.overlayPanel.setOnMouseClicked(null);
-			
+
 			tl.setOnFinished(new EventHandler<ActionEvent>() {
 				@Override
 				public void handle(ActionEvent event) {
@@ -135,6 +135,28 @@ public class ActionHandler {
 
 			});
 			tl.play();
+		}
+	};
+
+	public EventHandler<MouseEvent> samuraiActionClickEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			if (gamePanel.currentSamurai.canActionProperty().get() && event.getButton() == MouseButton.PRIMARY) {
+				gamePanel.actionPanel.setAppear(true, true);
+				gamePanel.arrow.setAppear(false);
+				gamePanel.setOrder();
+			}
+		}
+	};
+
+	public EventHandler<MouseEvent> samuraiActionEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			gamePanel.currentSamurai.setHighlight();
+		}
+	};
+	
+	public EventHandler<MouseEvent> samuraiActionExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			gamePanel.currentSamurai.setNormal();
 		}
 	};
 

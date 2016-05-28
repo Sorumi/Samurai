@@ -19,6 +19,27 @@ public class StateHandler {
 		this.territoryPanel = territoryPanel;
 	}
 	
+	public EventHandler<MouseEvent> currentSamuraiShowStateEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  SamuraiPanel currentSamurai = gamePanel.currentSamurai;
+	    	  currentSamurai.setHighlight();
+	    	  gamePanel.statePanel.setCurrentSamuraiInG(currentSamurai); 
+	    	  gamePanel.statePanel.setAppear(true);
+			  gamePanel.setOrder();
+	    	  gamePanel.statePanel.set6Properties(gamePanel.get6Properties(currentSamurai.getNum()));
+			  gamePanel.statePanel.setBloodTotal(gamePanel.getBloodTotalOfSamurai(currentSamurai.getNum()));
+			  gamePanel.statePanel.setBloodRest(gamePanel.getBloodRestOfSamurai(currentSamurai.getNum()));
+	      }
+	};
+	
+	public EventHandler<MouseEvent> currentSamuraiHideStateEvent = new EventHandler<MouseEvent>() {  
+	      public void handle(MouseEvent event) {
+	    	  SamuraiPanel currentSamurai = gamePanel.currentSamurai;
+	    	  currentSamurai.setNormal();
+	    	  gamePanel.statePanel.setAppear(false);
+	      }
+	};
+	
 	public EventHandler<MouseEvent> showStatePanelInG = new EventHandler<MouseEvent>() {  
 	      public void handle(MouseEvent event) {
 	    	  SamuraiPanel currentSamurai = (SamuraiPanel) event.getSource();
