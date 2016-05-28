@@ -47,10 +47,6 @@ public class LevelSelectPanel extends Pane{
 	public LevelSelectPanel(MapHandler mapHandler){
 		this.mapHandler = mapHandler;
 		
-		//TODO
-//		int itemNumOne = 00;
-//		int itemNumTwo = 10;
-		
 		this.setPrefWidth(width);
 		this.setPrefHeight(height);
 		this.setId("level-select-panel");
@@ -182,6 +178,7 @@ public class LevelSelectPanel extends Pane{
 				materialNameTwo.setText("石材");
 				itemNumOne = 10;
 				itemNumTwo = 20;
+				icon.setFitWidth(78);
 				break;
 			case 3:
 				levelName.setText("清莲之塘");

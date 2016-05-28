@@ -50,6 +50,7 @@ public class GamePanelSelectHandler {
 					
 				case -1:
 					StoryPanel storyPanel = (StoryPanel) gamePanel.getParent();
+					storyPanel.territoryPanel.setSamuraiAnimation(true);
 					storyPanel.territoryPanel.toFront();
 					storyPanel.getChildren().remove(gamePanel);
 					storyPanel.gamePanel = null;

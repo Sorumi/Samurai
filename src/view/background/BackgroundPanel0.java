@@ -25,12 +25,10 @@ public class BackgroundPanel0 extends BackgroundPanel{
 		this.cloud0.setFitWidth(103);
 		this.cloud1.setFitWidth(165);
 		this.cloud2.setFitWidth(79);
-		
 
 		this.cloud0.setPreserveRatio(true);
 		this.cloud1.setPreserveRatio(true);
 		this.cloud2.setPreserveRatio(true);
-		
 
 		this.getChildren().add(cloud0);
 		this.getChildren().add(cloud1);
@@ -46,9 +44,7 @@ public class BackgroundPanel0 extends BackgroundPanel{
 		this.startAnimation();
 	}
 	
-	public void startAnimation(){
-		
-		
+	public void startAnimation(){		
 		Timeline timeLine = new Timeline(
 				//CLOUD0
 				new KeyFrame(Duration.millis(20000), new KeyValue(cloud0.xProperty(), 400)),
@@ -61,12 +57,6 @@ public class BackgroundPanel0 extends BackgroundPanel{
 		);
 		timeLine.setCycleCount(Timeline.INDEFINITE);
 		timeLine.setAutoReverse(true);
-		timeLine.play();
-		
-	    
-	
+		timeLine.play();	
 	}
-	
-	
-
 }
