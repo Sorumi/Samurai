@@ -405,10 +405,10 @@ public class GameModel extends BaseModel implements Observer {
         for (int i = 1; i <= 6; i++) {
             super.updateChange(new UpdateMessage("healthTotal", new int[]{i, this.getSamuraiOfNum(i).getTotalHealthPoint()}));
             this.updateHome(i);
-            System.out.println(this.getSamuraiOfNum(i).getHome().getX() + "," + this.getSamuraiOfNum(i).getHome().getY());
             if(this.getSamuraiOfNum(i).getColdRound() != 0) {
                 this.getSamuraiOfNum(i).setColdRound(0);
             }
+            this.getSamuraiOfNum(i).setHealthPoint(this.getSamuraiOfNum(i).getTotalHealthPoint());
         }
 
         switch (this.level){
@@ -856,12 +856,12 @@ public class GameModel extends BaseModel implements Observer {
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(20);
                 super.updateChange(new UpdateMessage("pointsTotal", 20));
                 super.updateChange(new UpdateMessage("actionPoint", 20));
-                super.updateChange(new UpdateMessage("healthTotal", new int[]{this.getCurrentSamurai(), this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint()}));
+//                super.updateChange(new UpdateMessage("healthTotal", new int[]{this.getCurrentSamurai(), this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint()}));
             }else{
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setActionPoint(this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint());
                 super.updateChange(new UpdateMessage("pointsTotal", this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalActionPoint()));
                 super.updateChange(new UpdateMessage("actionPoint", this.getSamuraiOfNum(this.getCurrentSamurai()).getActionPoint()));
-                super.updateChange(new UpdateMessage("healthTotal", new int[]{this.getCurrentSamurai(), this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint()}));
+//                super.updateChange(new UpdateMessage("healthTotal", new int[]{this.getCurrentSamurai(), this.getSamuraiOfNum(this.getCurrentSamurai()).getTotalHealthPoint()}));
             }
 
             this.updateVisible(this.updateVision());
@@ -953,8 +953,10 @@ public class GameModel extends BaseModel implements Observer {
                 }
             }
         } else {
-
+            //复活:重置冷冻轮数和血量
             this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setColdRound(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getColdRound() - 1);
+
+            this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).setHealthPoint(this.getSamuraiOfNum(this.samuraiSeq[this.currentSamurai - 1]).getTotalHealthPoint());
 
             OperationQueue.addOperation(new SkipOperation());
         }
