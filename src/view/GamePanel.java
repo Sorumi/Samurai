@@ -846,7 +846,16 @@ public class GamePanel extends Pane implements Observer {
 				} else if (key.equals("replace")) {
 					int[] t = (int[]) notifingObject.getValue();
 					set6Properties(t[0], new int[] { t[1], t[2], t[3], t[4], t[5], t[6], t[7] });
-				}
+				} else if (key.equals("small-up")){
+
+                } else if (key.equals("small-down")){
+
+                } else if (key.equals("big-up")){
+
+                } else if (key.equals("big-down")){
+
+                }
+
 
 			}
 		});

@@ -494,12 +494,23 @@ public class GameModel extends BaseModel implements Observer {
         if (this.currentPlayer == 1 || this.currentPlayer == 4 || this.currentPlayer == 5){
             propList[propNum]--;
             String result = this.propsStore.use(PropsInG.get7Type(propNum), this.getSamuraiOfNum(this.getCurrentSamurai()));
-            System.out.println(result);
             if (result.equals("")) {
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setProp(propNum, 1 + this.getSamuraiOfNum(this.getCurrentSamurai()).getProp()[propNum]);
+
+                if(propNum == 13){
+                    super.updateChange(new UpdateMessage("small-down",this.currentSamurai));
+                }else if(propNum == 14){
+                    super.updateChange(new UpdateMessage("big-up",this.currentSamurai));
+                }
+
             } else if (result.equals("small")) {
 
+                super.updateChange(new UpdateMessage("small-up",this.currentSamurai));
+
             } else if (result.equals("kill")) {
+
+                super.updateChange(new UpdateMessage("big-down",this.currentSamurai));
+
                 super.updateChange(new UpdateMessage("healthPoint", new int[]{this.getCurrentSamurai(), -1}));
                 this.getSamuraiOfNum(this.getCurrentSamurai()).beKilled(this.chessBoardModel);
                 this.getSamuraiOfNum(this.getCurrentSamurai()).setColdRound(1);
