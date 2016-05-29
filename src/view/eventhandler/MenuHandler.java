@@ -236,6 +236,7 @@ public class MenuHandler {
 	public EventHandler<ActionEvent> musicEvent = new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
+			Musics.isBgMusic = false;
 			Musics.THEME.pause();
 			menuPanel.musicBtn.setVisible(false);
 		}
@@ -243,6 +244,7 @@ public class MenuHandler {
 	public EventHandler<ActionEvent> nomusicEvent = new EventHandler<ActionEvent>() {
 		@Override
 		public void handle(ActionEvent e) {
+			Musics.isBgMusic = true;
 			Musics.THEME.play();
 			menuPanel.musicBtn.setVisible(true);
 		}

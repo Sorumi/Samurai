@@ -4,8 +4,9 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 public class Musics {
-	private static boolean isBgMusic = true;
-	private static boolean isEffectMusic = true;  
+	public static boolean isBgMusic = true;
+	public static boolean isEffectMusic = true; 
+	
 	public static final MediaPlayer THEME = MusicManager.getMediaPlayer("main/theme.mp3");
 	public static final MediaPlayer BG1 = MusicManager.getMediaPlayer("main/bg1.mp3");
 	public static final MediaPlayer BG2 = MusicManager.getMediaPlayer("main/bg2.mp3");
