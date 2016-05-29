@@ -36,8 +36,7 @@ public class GuidePanel2 extends GuidePanel {
 		explainLabel3.setPrefSize(900, 165);
 		explainLabel3.setId("explain-label");
 
-		explainLabel4 = new Label("听了以上的说明，您是不是跃跃欲试了呢?" + "\n" + "您可以动手操作一下下一页中的武士，下页中的武士的行动时间无限，行动点数也无限。" + "\n"
-				+ "在您的武士附近(视野之外)有一个稻草人标靶，找到他并将其击退之后，让我们进入第二部分。");
+		explainLabel4 = new Label("听了以上的说明，您是不是跃跃欲试了呢?" + "\n" + "您可以动手操作一下下一页中的武士，下页中的武士的行动时间无限，行动点数也无限。");
 		explainLabel4.setLayoutX(130);
 		explainLabel4.setLayoutY(480);
 		explainLabel4.setPrefSize(1000, 100);

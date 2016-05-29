@@ -52,7 +52,7 @@ public class CampsiteItemInfo extends Pane {
 		descriptionScroll.setHbarPolicy(ScrollBarPolicy.NEVER);
 		descriptionScroll.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
 		descriptionScroll.setPrefWidth(430);
-		descriptionScroll.setPrefHeight(80);
+		descriptionScroll.setPrefHeight(70);
 		this.getChildren().add(descriptionScroll);
 		
 		//weaponStateIcon
