@@ -50,7 +50,7 @@ public class GamePanel extends Pane implements Observer {
 	public ChessBoardPanel chessBoard;
 
 	// TODO
-	protected int timeTotal = 30;
+	protected int timeTotal = 60;
 	protected int roundTotal = 120;
 
 	public SamuraiPanel currentSamurai; // 0：无 1 2 3 4 5 6
@@ -128,7 +128,7 @@ public class GamePanel extends Pane implements Observer {
 		this.close();
 
 		pauseBtn = new SystemButton(3);
-//		pauseBtn.setLayoutX(1050);
+		// pauseBtn.setLayoutX(1050);
 		pauseBtn.setLayoutY(25);
 		pauseBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -141,7 +141,7 @@ public class GamePanel extends Pane implements Observer {
 			}
 		});
 		continueBtn = new SystemButton(4);
-//		continueBtn.setLayoutX(1050);
+		// continueBtn.setLayoutX(1050);
 		continueBtn.setLayoutY(25);
 		continueBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -155,7 +155,7 @@ public class GamePanel extends Pane implements Observer {
 		OrderPanel systemPanel = new OrderPanel();
 		systemPanel.setLayoutX(1050);
 		systemPanel.getChildren().addAll(closeBtn, continueBtn, pauseBtn);
-//		systemPanel.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
+		// systemPanel.setStyle("-fx-background-color: rgba(0,0,0,0.3)");
 		this.getChildren().add(systemPanel);
 
 		// chessboard
@@ -184,7 +184,7 @@ public class GamePanel extends Pane implements Observer {
 		// actionpanel
 		if (level < 99 && level > 0 || level == -1) {
 			actionPanel = new ActionPanel(actionHandler, true);
-		}else{
+		} else {
 			actionPanel = new ActionPanel(actionHandler, false);
 		}
 		actionPanel.setSize(this.size);
@@ -206,7 +206,7 @@ public class GamePanel extends Pane implements Observer {
 		// samurai action
 		samuraiActionPanel = new OrderPanel();
 		samuraiActionPanel.setPrefSize(60, 120);
-//		samuraiActionPanel.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
+		// samuraiActionPanel.setStyle("-fx-background-color: rgba(0,0,0,0.2)");
 		samuraiActionPanel.setOnMouseClicked(actionHandler.samuraiActionClickEvent);
 		samuraiActionPanel.setOnMouseEntered(actionHandler.samuraiActionEnterEvent);
 		samuraiActionPanel.setOnMouseExited(actionHandler.samuraiActionExitEvent);
@@ -214,7 +214,6 @@ public class GamePanel extends Pane implements Observer {
 		// 只有故事模式有 statePanel 和 resultPanel 和 propPanel
 		if (level < 99 && level > 0 || level == -1) {
 
-			
 			// stateHandler
 			stateHandler = new StateHandler(this);
 			// statepanel
@@ -237,7 +236,7 @@ public class GamePanel extends Pane implements Observer {
 
 			samuraiActionPanel.setOnMouseEntered(stateHandler.currentSamuraiShowStateEvent);
 			samuraiActionPanel.setOnMouseExited(stateHandler.currentSamuraiHideStateEvent);
-			
+
 			// resultpanel
 			resultPanel = new ResultPanel(this);
 			this.getChildren().add(resultPanel);
@@ -341,7 +340,7 @@ public class GamePanel extends Pane implements Observer {
 		};
 	}
 
-	private void resetEvents(){
+	private void resetEvents() {
 		if (level < 99 && level > 0 || level == -1) {
 			currentSamurai.setOnMouseEntered(stateHandler.showStatePanelInG);
 			samuraiActionPanel.setOnMouseEntered(stateHandler.currentSamuraiShowStateEvent);
@@ -350,6 +349,7 @@ public class GamePanel extends Pane implements Observer {
 			samuraiActionPanel.setOnMouseEntered(actionHandler.samuraiActionEnterEvent);
 		}
 	}
+
 	private void addProp(int x, int y, int num) {
 		if (propsGroup != null) {
 			PropView prop = new PropView(num, 1);
@@ -591,10 +591,8 @@ public class GamePanel extends Pane implements Observer {
 	}
 
 	public void useProp(int num) {
-		// TODO
-		num = PropsInG.get7Type(num);
 		this.circleLight.setActualacation(this.currentSamurai.getLayoutX() - 40, this.currentSamurai.getLayoutY());
-		this.circleLight.setNum(num / 10 % 10);
+		this.circleLight.setNum(num);
 	}
 
 	public void close() {
@@ -760,7 +758,7 @@ public class GamePanel extends Pane implements Observer {
 
 				} else if (key.equals("occupiedBlocks")) {
 					int[] n = (int[]) notifingObject.getValue();
-					
+
 					playerA.circlePanel.setBlocks(new int[] { n[1], n[2], n[3] });
 					playerB.circlePanel.setBlocks(new int[] { n[4], n[5], n[6] });
 
@@ -780,7 +778,7 @@ public class GamePanel extends Pane implements Observer {
 					resultPanel.setBlocks((int[]) notifingObject.getValue());
 					GamePanel.this.updateIsOver(true);
 					GamePanel.this.close();
-					
+
 				} else if (key.equals("miss")) {
 					getSamurai((int) notifingObject.getValue()).setMiss();
 
@@ -844,22 +842,24 @@ public class GamePanel extends Pane implements Observer {
 				} else if (key.equals("useProp")) {
 					int[] t = (int[]) notifingObject.getValue();
 					propPanel.useProp(t[0]);
-					useProp(t[0]);
+					int num = PropsInG.get7Type((t[0]) / 10 % 10);
+					if (num <= 0 && num <= 3) {
+						useProp(num);
+					}
 					set6Properties(t[1], new int[] { t[2], t[3], t[4], t[5], t[6], t[7], t[8] });
 
 				} else if (key.equals("replace")) {
 					int[] t = (int[]) notifingObject.getValue();
 					set6Properties(t[0], new int[] { t[1], t[2], t[3], t[4], t[5], t[6], t[7] });
-				} else if (key.equals("small-up")){
-
-                } else if (key.equals("small-down")){
-
-                } else if (key.equals("big-up")){
-
-                } else if (key.equals("big-down")){
-
-                }
-
+				} else if (key.equals("small-up")) {
+					useProp(5);
+				} else if (key.equals("small-down")) {
+					useProp(6);
+				} else if (key.equals("big-up")) {
+					useProp(5);
+				} else if (key.equals("big-down")) {
+					useProp(6);
+				}
 
 			}
 		});
