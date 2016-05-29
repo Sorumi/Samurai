@@ -143,7 +143,8 @@ public class Images {
 	public static final Image BUTTON_HIDE = ImageManager.getImage("main/button_hide.png");
 	public static final Image BUTTON_EXIT = ImageManager.getImage("main/button_exit.png");
 	public static final Image BUTTON_BACK = ImageManager.getImage("main/button_back.png");
-	public static final Image ACTION_BUTTON[] = { BUTTON_OCCUPY, BUTTON_MOVE, BUTTON_HIDE, BUTTON_EXIT, BUTTON_BACK };
+	public static final Image BUTTON_HIDE_3 = ImageManager.getImage("main/button_hide_3.png");
+	public static final Image ACTION_BUTTON[] = { BUTTON_OCCUPY, BUTTON_MOVE, BUTTON_HIDE, BUTTON_EXIT, BUTTON_BACK, BUTTON_HIDE_3 };
 
 	// direction
 	public static final Image DIRECTION_0 = ImageManager.getImage("main/direction_0.png");

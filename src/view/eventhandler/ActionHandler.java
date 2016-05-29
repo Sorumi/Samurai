@@ -207,8 +207,8 @@ public class ActionHandler {
 	public EventHandler<MouseEvent> hideEvent = new EventHandler<MouseEvent>() {
 		public void handle(MouseEvent event) {
 			ActionButton btn = (ActionButton) event.getSource();
-			action = btn.action;
-			Operation op = new ActionOperation(action, 0);
+//			action = btn.action;
+			Operation op = new ActionOperation(2, 0);
 			OperationQueue.addOperation(op);
 		}
 	};

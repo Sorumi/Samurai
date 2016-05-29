@@ -10,12 +10,12 @@ public class ActionButton extends Pane {
 	private ImageView imageFront;
 	public int pointsCost;
 	public int action;
-//	public boolean canAction;
 	private ActionHandler actionHandler;
 
 	public ActionButton(int action, ActionHandler actionHandler) {
 		this.actionHandler = actionHandler;
 
+		System.out.println(action);
 		this.action = action;
 		this.imageFront = new ImageView(Images.ACTION_BUTTON[action]);
 		this.imageFront.setFitWidth(58);
@@ -42,6 +42,10 @@ public class ActionButton extends Pane {
 		case 4:
 			this.setOnMouseClicked(actionHandler.backEvent);
 			break;
+		case 5://hide3
+			pointsCost = 3;
+			this.setOnMouseClicked(actionHandler.hideEvent);
+			break;
 		}
 
 //		this.canAction = true;
@@ -64,6 +68,10 @@ public class ActionButton extends Pane {
 		case 4:
 			this.setOnMouseClicked(actionHandler.backEvent);
 			break;
+		case 5:
+			this.setOnMouseClicked(actionHandler.hideEvent);
+			break;
+
 		}
 	}
 

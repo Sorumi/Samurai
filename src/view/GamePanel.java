@@ -182,7 +182,11 @@ public class GamePanel extends Pane implements Observer {
 		// this.setOnKeyPressed(actionHandler.keyEvent);
 
 		// actionpanel
-		actionPanel = new ActionPanel(actionHandler);
+		if (level < 99 && level > 0 || level == -1) {
+			actionPanel = new ActionPanel(actionHandler, true);
+		}else{
+			actionPanel = new ActionPanel(actionHandler, false);
+		}
 		actionPanel.setSize(this.size);
 		this.getChildren().add(actionPanel);
 

@@ -30,14 +30,17 @@ public class ActionPanel extends OrderPanel {
 	private SamuraiPanel currentSamurai;
 
 
-	public ActionPanel(ActionHandler actionHandler) {
-
+	public ActionPanel(ActionHandler actionHandler, boolean isStory) {
 
 		occupyButton = new ActionButton(0, actionHandler);
 		moveButton = new ActionButton(1, actionHandler);
-		hideButton = new ActionButton(2, actionHandler);
 		exitButton = new ActionButton(3, actionHandler);
 		backButton = new ActionButton(4, actionHandler);
+		if(isStory){
+			hideButton = new ActionButton(5, actionHandler);
+		}else{
+			hideButton = new ActionButton(2, actionHandler);
+		}
 
 		this.setPrefWidth(BUTTONPANEL_WIDTH);
 		this.setPrefHeight(BUTTONPANEL_HEIGHT);
