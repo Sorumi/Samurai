@@ -103,11 +103,11 @@ public class SamuraiWeaponView extends OrderImageView {
 				this.setFitWidth(12*SCALE);
 				break;
 			case 112:
-				this.setFitWidth(8*SCALE);
-				height_fix = -10*SCALE;
+				this.setFitWidth(14*SCALE);
 				break;
 			case 113:
-				this.setFitWidth(14*SCALE);
+				this.setFitWidth(8*SCALE);
+				height_fix = -10*SCALE;
 				break;
 			case 114:
 				this.setFitWidth(10*SCALE);
