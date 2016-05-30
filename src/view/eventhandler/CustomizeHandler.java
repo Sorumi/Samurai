@@ -62,8 +62,6 @@ public class CustomizeHandler {
 			}
 			if(canStart){
 				StoryPanel storyPanel = (StoryPanel) customizePanel.getParent();
-				storyPanel.getChildren().remove(storyPanel.customizePanel);
-				storyPanel.customizePanel = null;
 
 				Platform.runLater(new Runnable() {
 					@Override
@@ -76,6 +74,8 @@ public class CustomizeHandler {
 								customizePanel.weapons, customizePanel.armors, customizePanel.levels);
 
 						storyPanel.gamePanel.toFront();
+						storyPanel.getChildren().remove(storyPanel.customizePanel);
+						storyPanel.customizePanel = null;
 					}
 				});
 			}else{

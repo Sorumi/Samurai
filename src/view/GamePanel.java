@@ -751,11 +751,11 @@ public class GamePanel extends Pane implements Observer {
 					}
 					// if (currentPlayer.getPlayer() == 0) {
 					// actionPanel.reset();
-					// setOrder();
+
 					// }
 					tmpView.setActualLocation(samuraiPO.getHome().getX(), samuraiPO.getHome().getY());
 					chessBoard.blocks[samuraiPO.getHome().getX()][samuraiPO.getHome().getY()].setHome();
-
+					setOrder();
 				} else if (key.equals("occupiedBlocks")) {
 					int[] n = (int[]) notifingObject.getValue();
 
@@ -799,6 +799,9 @@ public class GamePanel extends Pane implements Observer {
 				} else if (key.equals("experiences")) {
 					resultPanel.setExperiences((int[]) notifingObject.getValue());
 
+				} else if (key.equals("money")) {
+					resultPanel.setMoney((int) notifingObject.getValue());
+					
 				} else if (key.equals("healthTotal")) {
 					int[] t = (int[]) notifingObject.getValue();
 					bloodTotal[t[0]] = t[1];
@@ -842,8 +845,10 @@ public class GamePanel extends Pane implements Observer {
 				} else if (key.equals("useProp")) {
 					int[] t = (int[]) notifingObject.getValue();
 					propPanel.useProp(t[0]);
-					int num = PropsInG.get7Type((t[0]) / 10 % 10);
-					if (num <= 0 && num <= 3) {
+					int num = PropsInG.get7Type(t[0]) / 10 % 10;
+//					System.out.println("Prop: " + num);
+					if (num >= 0 && num <= 3) {
+
 						useProp(num);
 					}
 					set6Properties(t[1], new int[] { t[2], t[3], t[4], t[5], t[6], t[7], t[8] });

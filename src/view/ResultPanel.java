@@ -50,6 +50,8 @@ public class ResultPanel extends OrderPanel {
 	private BlockArc[] arcsOne;
 	private BlockArc[] arcsTwo;
 	
+	private Label moneyLabel;
+	
 	private int[] blocks = {0,0,0,0,0,0,0};
 	
 	private Pane samuraiPanel;
@@ -151,7 +153,21 @@ public class ResultPanel extends OrderPanel {
 		}
 		samuraiPanel.setLayoutX(120);
 		samuraiPanel.setLayoutY(380);
-		materialGroup.getChildren().addAll(materialCircle, tile, samuraiPanel);
+		
+		ImageView coin = new ImageView(Images.COIN);
+		coin.setFitWidth(30);
+		coin.setSmooth(true);
+		coin.setPreserveRatio(true);
+		coin.setLayoutX(240);
+		coin.setLayoutY(480);
+		
+		moneyLabel = new Label();
+		moneyLabel.setPrefSize(100, 30);
+		moneyLabel.setLayoutX(280);
+		moneyLabel.setLayoutY(480);
+		moneyLabel.setId("money-label");
+		
+		materialGroup.getChildren().addAll(materialCircle, tile, samuraiPanel, coin, moneyLabel);
 		materialGroup.setRotationAxis(Rotate.Y_AXIS);
 		materialGroup.setRotate(270);
 
@@ -206,6 +222,7 @@ public class ResultPanel extends OrderPanel {
 		this.getChildren().addAll(resultGroup, materialGroup);	
 
 		this.setVisible(false);
+
 	}
 	
 	private void setTimeline(){
@@ -261,6 +278,10 @@ public class ResultPanel extends OrderPanel {
 		label.setVisible(true);
 	}
 
+
+	public void setMoney(int money) {
+		moneyLabel.setText(money + "");
+	}
 
 	public void setRate(int rate) {
 		rateImg = new ImageView(Images.RATE[rate]);

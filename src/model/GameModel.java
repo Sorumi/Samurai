@@ -92,7 +92,7 @@ public class GameModel extends BaseModel implements Observer {
         this.aidPos = new Position(length/2 , length/2);
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(gamePanel.chessBoard);
-        this.timeTotal = 30;
+        this.timeTotal = 60;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
         this.currentRound = 1;
@@ -131,7 +131,7 @@ public class GameModel extends BaseModel implements Observer {
         this.length = length;
         this.chessBoardModel = new ChessBoardModel(this.length);
         this.chessBoardModel.addObserver(gamePanel.chessBoard);
-        this.timeTotal = 30;
+        this.timeTotal = 60;
         this.coldRoundNum = 1;
         this.currentTime = this.timeTotal;
         this.currentRound = 1;
@@ -841,9 +841,9 @@ public class GameModel extends BaseModel implements Observer {
             this.replaceProps();
 
             if(this.currentRound == 1){
-                this.currentTime = 31;
+                this.currentTime = timeTotal+1;
             }else{
-                this.currentTime = 30;
+                this.currentTime = timeTotal;
             }
         }
 
