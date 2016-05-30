@@ -15,8 +15,8 @@ import javafx.scene.Scene;
 	*       KrayC       *
 	*  SilverNarcissus  *
 	*     Vivian-SJ     *
-	*    Version 1.0    *
-	*     2016-5-18     *
+	*    Version 1.1    *
+	*     2016-5-29     *
 	*********************
  */
 

@@ -26,7 +26,7 @@ public class CustomContoller extends TerritoryController{
             weapons1[i-1] = storyModel.getArmory().getWeapon(weapons[i]);
             armors1[i-1] = storyModel.getArmory().getArmor(armors[i] + 900);
         }
-        this.gameModel = new GameModel(gamePanel, positions, 20, levels, weapons1, armors1);
+        this.gameModel = new GameModel(gamePanel, positions, 60, levels, weapons1, armors1);
         this.gameModel.addObserver(gamePanel);
         this.gameModel.getChessBoardModel().addObserver(gamePanel);
 
