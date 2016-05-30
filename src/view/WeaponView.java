@@ -133,10 +133,10 @@ public class WeaponView extends StackPane{
 				imgV.setFitWidth(12*SCALE);
 				break;
 			case 112:
-				imgV.setFitWidth(8*SCALE);
+				imgV.setFitWidth(14*SCALE);
 				break;
 			case 113:
-				imgV.setFitWidth(14*SCALE);
+				imgV.setFitWidth(8*SCALE);
 				break;
 			case 114:
 				imgV.setFitWidth(10*SCALE);
