@@ -310,6 +310,9 @@ public class StatePanel extends OrderPanel {
 	}
 	
 	public void setBloodRest(int rest){
+		if(rest < 0){
+			rest = 0;
+		}
 		this.bloodRest = rest;
 		bloodLabel.setText(rest + "");
 		bloodArc.setLength(- (float) bloodRest / bloodTotal * 360);

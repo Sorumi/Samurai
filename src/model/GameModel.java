@@ -559,6 +559,9 @@ public class GameModel extends BaseModel implements Observer {
 
     public int attackSamurai(int samurai, int attackPoint, int armorPuncture, int isCritical){
         double attackPointDouble=attackPoint;
+        if(this.getSamuraiOfNum(samurai).getColdRound() > 0){
+            return 9999;
+        }
         switch (samurai){
             case 1:
                 if(!this.players[0].getSamuraiOfNum(1).checkMiss()){
