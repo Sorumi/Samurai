@@ -23,7 +23,7 @@ public class CustomizeCampsiteHandler {
 		campsitePanel.samuraiPanel.setWeapon(customizePanel.weapons[num]);
 		campsitePanel.samuraiPanel.setArmor(customizePanel.armors[num]);
 		campsitePanel.samuraiPanel.setlevel(customizePanel.levels[num-1]);
-		campsitePanel.samuraiPanel.updatePolygonColor(num);
+		campsitePanel.samuraiPanel.updatePolygonColor();
 	}
 
 	public EventHandler<MouseEvent> samuraiClickEvent = new EventHandler<MouseEvent>() {
@@ -58,6 +58,7 @@ public class CustomizeCampsiteHandler {
 			if (x < 10) {
 				campsitePanel.samuraiPanel.setlevel(x);
 				campsitePanel.samuraiPanel.setItemBtnAbled();
+				campsitePanel.samuraiPanel.updatePolygonColor();
 			}
 		}
 	};
@@ -68,6 +69,7 @@ public class CustomizeCampsiteHandler {
 			if (x > 0) {
 				campsitePanel.samuraiPanel.setlevel(x);
 				campsitePanel.samuraiPanel.setItemBtnAbled();
+				campsitePanel.samuraiPanel.updatePolygonColor();
 			}
 		}
 	};

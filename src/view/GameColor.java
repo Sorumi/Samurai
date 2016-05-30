@@ -288,7 +288,7 @@ public class GameColor {
 			color = "#2EA1B3";
 			break;
 		default:
-			color = "#000000";
+			color = "#aaaaaa";
 		}
 		return color;
 	}
