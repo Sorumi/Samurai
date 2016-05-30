@@ -196,7 +196,9 @@ public class SamuraiPanel extends OrderPanel {
 		}else{
 			samuraiV.setInjured(isInjured, 3);
 		}
-		Musics.playEffectMusic(9); 
+		if(isInjured){
+			Musics.playEffectMusic(9); 
+		}
 	}
 	
 	public void setMiss(){

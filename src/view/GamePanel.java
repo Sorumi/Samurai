@@ -287,12 +287,12 @@ public class GamePanel extends Pane implements Observer {
 		arrow.setZOrder(-1);
 		actionPanel.setZOrder(-1);
 		samuraiActionPanel.setZOrder(50);
+		pausePanel.setZOrder(98);
 		playerA.setZOrder(99);
 		playerB.setZOrder(99);
 		roundPanel.setZOrder(99);
-		pausePanel.setZOrder(100);
-		systemPanel.setZOrder(101);
-		selectPanel.setZOrder(101);
+		systemPanel.setZOrder(100);
+		selectPanel.setZOrder(100);
 
 		if (level < 99 && level > 0) {
 			orderList = FXCollections.observableArrayList(backgroundPanel, chessBoard, A1, A2, A3, B1, B2, B3,
