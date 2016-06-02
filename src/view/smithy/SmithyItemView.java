@@ -8,8 +8,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
-import view.ArmorView;
-import view.WeaponView;
+import view.story.ArmorView;
+import view.story.WeaponView;
 
 public class SmithyItemView extends Pane{
 

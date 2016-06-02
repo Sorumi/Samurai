@@ -3,9 +3,9 @@ package view.store;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import view.SystemButton;
-import view.TerritoryPanel;
 import view.TransitionPanel;
 import view.eventhandler.StoreHandler;
+import view.story.TerritoryPanel;
 
 public class StorePanel extends TransitionPanel{
 	private StoreHandler storeHandler;

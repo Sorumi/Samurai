@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 
 public class OrderImageView extends ImageView implements Comparable<OrderImageView>{
 
-	protected int zOrder;
+	public int zOrder;
 	
 	public OrderImageView() {
 		super();

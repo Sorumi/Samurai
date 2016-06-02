@@ -6,7 +6,7 @@ import controller.msgqueue.StopOperation;
 import model.GameModel;
 import model.po.Position;
 import model.po.SamuraiPO;
-import view.GamePanel;
+import view.game.GamePanel;
 
 /**
  * Created by Kray on 16/5/9.

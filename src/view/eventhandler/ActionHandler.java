@@ -13,11 +13,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import view.ActionButton;
-import view.DirectionButton;
-import view.GamePanel;
-import view.SamuraiPanel;
 import view.StartLogoPanel;
+import view.game.ActionButton;
+import view.game.DirectionButton;
+import view.game.GamePanel;
+import view.samurai.SamuraiPanel;
 
 public class ActionHandler {
 

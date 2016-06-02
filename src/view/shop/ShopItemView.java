@@ -12,8 +12,8 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 import view.GameColor;
-import view.PropView;
-import view.WeaponView;
+import view.story.PropView;
+import view.story.WeaponView;
 
 public class ShopItemView extends StackPane {
 	private final int RADIUS = 50;

@@ -11,11 +11,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import model.StoryModel;
-import view.ArmorView;
 import view.GameColor;
 import view.SystemButton;
-import view.WeaponView;
 import view.eventhandler.SmithyHandler;
+import view.story.ArmorView;
+import view.story.WeaponView;
 
 public class SmithyBuilder extends Pane {
 

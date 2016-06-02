@@ -11,9 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
-import view.ArmorView;
 import view.GameColor;
-import view.WeaponView;
+import view.story.ArmorView;
+import view.story.WeaponView;
 
 public class CampsiteItemView extends StackPane {
 

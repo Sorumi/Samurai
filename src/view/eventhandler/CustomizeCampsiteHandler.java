@@ -3,9 +3,9 @@ package view.eventhandler;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import musics.Musics;
-import view.CustomizePanel;
 import view.campsite.CampsitePanel;
 import view.campsite.CampsiteSamuraiWrapper.SamuraiButton;
+import view.story.CustomizePanel;
 
 public class CustomizeCampsiteHandler {
 

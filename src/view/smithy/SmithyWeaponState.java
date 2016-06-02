@@ -13,9 +13,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
 import view.GameColor;
 import view.Images;
-import view.SamuraiPanel;
 import view.eventhandler.SmithyHandler;
 import view.eventhandler.StateHandler;
+import view.samurai.SamuraiPanel;
 
 public class SmithyWeaponState extends Pane {
 	private int prefWidth = 300;

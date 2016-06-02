@@ -20,6 +20,9 @@ import view.eventhandler.MenuHandler;
 import view.guide.GuideGroup;
 import view.guide.GuidePanel;
 import view.items.CircleLight;
+import view.samurai.SamuraiView;
+import view.story.ArchivePanel;
+import view.story.StorySelectPanel;
 
 public class MenuPanel extends Pane {
 

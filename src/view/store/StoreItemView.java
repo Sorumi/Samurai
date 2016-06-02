@@ -14,9 +14,9 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
 import javafx.util.Duration;
 import view.GameColor;
-import view.MaterialView;
-import view.PropView;
-import view.WeaponView;
+import view.story.MaterialView;
+import view.story.PropView;
+import view.story.WeaponView;
 
 public class StoreItemView extends StackPane {
 

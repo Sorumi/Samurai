@@ -9,11 +9,11 @@ import javafx.scene.text.Text;
 import model.StoryModel;
 import model.po.Position;
 import musics.Musics;
-import view.CustomizePanel;
-import view.GamePanel;
-import view.SamuraiView;
-import view.StoryPanel;
 import view.campsite.CampsitePanel;
+import view.game.GamePanel;
+import view.samurai.SamuraiView;
+import view.story.CustomizePanel;
+import view.story.StoryPanel;
 
 public class CustomizeHandler {
 

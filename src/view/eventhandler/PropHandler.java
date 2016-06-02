@@ -4,8 +4,8 @@ import controller.msgqueue.OperationQueue;
 import controller.msgqueue.PropOperation;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import view.PropPanel;
-import view.PropPanel.PropItem;
+import view.game.PropPanel;
+import view.game.PropPanel.PropItem;
 import view.shop.ShopItemView;
 
 public class PropHandler {

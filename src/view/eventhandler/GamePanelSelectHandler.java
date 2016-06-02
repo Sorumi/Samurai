@@ -7,8 +7,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import musics.Musics;
 import view.BasePanel;
-import view.GamePanel;
-import view.StoryPanel;
+import view.game.GamePanel;
+import view.story.StoryPanel;
 
 public class GamePanelSelectHandler {
 	private GamePanel gamePanel;

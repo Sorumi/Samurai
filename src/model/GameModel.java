@@ -4,7 +4,7 @@ import controller.msgqueue.*;
 import model.po.*;
 import network.TransformObject;
 import network.client.ClientService;
-import view.GamePanel;
+import view.game.GamePanel;
 
 /*
  * 2016-05-15 1,000 Lines Get!

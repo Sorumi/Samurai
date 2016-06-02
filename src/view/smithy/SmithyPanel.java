@@ -7,11 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import model.StoryModel;
 import view.SystemButton;
-import view.TerritoryPanel;
 import view.TransitionPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.SmithyHandler;
 import view.eventhandler.StateHandler;
+import view.story.TerritoryPanel;
 
 public class SmithyPanel extends TransitionPanel {
 	

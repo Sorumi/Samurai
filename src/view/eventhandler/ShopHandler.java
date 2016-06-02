@@ -7,9 +7,9 @@ import model.StoryModel;
 import model.po.Information;
 import model.po.PropsInG;
 import musics.Musics;
-import view.TerritoryPanel;
 import view.shop.ShopItemView;
 import view.shop.ShopPanel;
+import view.story.TerritoryPanel;
 
 public class ShopHandler {
 	private ShopPanel shopPanel;

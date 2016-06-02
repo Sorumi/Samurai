@@ -7,7 +7,7 @@ import network.client.ClientService;
 import network.client.ClientServiceImpl;
 import network.server.HostService;
 import network.server.HostServiceImpl;
-import view.GamePanel;
+import view.game.GamePanel;
 
 import java.io.Serializable;
 import java.util.Observable;

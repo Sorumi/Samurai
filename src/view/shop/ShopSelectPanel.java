@@ -6,11 +6,11 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import view.DoubleSelectPanel;
 import view.SystemButton;
-import view.TerritoryPanel;
 import view.eventhandler.MenuHandler;
 import view.eventhandler.ShopHandler;
 import view.eventhandler.TerritoryHandler;
 import view.smithy.SmithyPanel;
+import view.story.TerritoryPanel;
 
 public class ShopSelectPanel extends Pane{
 	private SystemButton closeBtn;

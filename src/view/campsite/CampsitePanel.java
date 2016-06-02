@@ -4,13 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import model.StoryModel;
-import view.CustomizePanel;
-import view.StoryPanel;
 import view.SystemButton;
-import view.TerritoryPanel;
 import view.TransitionPanel;
 import view.eventhandler.CampsiteHandler;
 import view.eventhandler.CustomizeCampsiteHandler;
+import view.story.CustomizePanel;
+import view.story.StoryPanel;
+import view.story.TerritoryPanel;
 
 public class CampsitePanel extends TransitionPanel{
 

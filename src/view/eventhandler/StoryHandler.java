@@ -2,7 +2,7 @@ package view.eventhandler;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import view.StoryPanel;
+import view.story.StoryPanel;
 
 public class StoryHandler {
 	

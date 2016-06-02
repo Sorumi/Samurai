@@ -9,12 +9,12 @@ import javafx.scene.input.MouseEvent;
 
 import model.StoryModel;
 import musics.Musics;
-import view.LevelSelectPanel;
-import view.LevelSelectPanel.LevelButton;
-import view.GamePanel;
-import view.MapPanel;
-import view.MapPanel.LandButton;
-import view.StoryPanel;
+import view.game.GamePanel;
+import view.story.LevelSelectPanel;
+import view.story.MapPanel;
+import view.story.StoryPanel;
+import view.story.LevelSelectPanel.LevelButton;
+import view.story.MapPanel.LandButton;
 
 public class MapHandler {
 

@@ -2,8 +2,8 @@ package controller.msgqueue;
 
 import javafx.scene.layout.Pane;
 import model.GameModel;
-import view.GamePanel;
 import view.MenuPanel;
+import view.game.GamePanel;
 
 /**
  * Created by Kray on 16/4/22.

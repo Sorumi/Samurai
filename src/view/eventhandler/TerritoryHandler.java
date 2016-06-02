@@ -5,170 +5,171 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import musics.Musics;
-import view.ArchivePanel;
-import view.CustomizePanel;
-import view.MapPanel;
-import view.StoryPanel;
-import view.TerritoryPanel;
-import view.TerritoryPanel.TerritoryButton;
 import view.campsite.CampsitePanel;
 import view.shop.ShopPanel;
 import view.shop.ShopSelectPanel;
 import view.smithy.SmithyPanel;
 import view.store.StorePanel;
+import view.story.ArchivePanel;
+import view.story.CustomizePanel;
+import view.story.MapPanel;
+import view.story.StoryPanel;
+import view.story.TerritoryPanel;
+import view.story.TerritoryPanel.TerritoryButton;
 
 public class TerritoryHandler {
-	
+
 	private TerritoryPanel territoryPanel;
 	private TerritoryController territoryController;
-	  
-	public TerritoryHandler(TerritoryPanel territoryPanel){
+
+	public TerritoryHandler(TerritoryPanel territoryPanel) {
 		this.territoryPanel = territoryPanel;
 		this.territoryController = TerritoryController.territoryController();
 
 		this.territoryController.setStoryModel(StoryModel.getStoryModel());
 	}
-	
-	public void updateSamurai(){
+
+	public void updateSamurai() {
 		territoryPanel.samurai1.setWeapon(territoryController.getWeaponOfSamurai(1).getType());
 		territoryPanel.samurai2.setWeapon(territoryController.getWeaponOfSamurai(2).getType());
 		territoryPanel.samurai3.setWeapon(territoryController.getWeaponOfSamurai(3).getType());
-		territoryPanel.samurai1.setArmor(territoryController.getArmorOfSamurai(1).getType()-900);
-		territoryPanel.samurai2.setArmor(territoryController.getArmorOfSamurai(2).getType()-900);
-		territoryPanel.samurai3.setArmor(territoryController.getArmorOfSamurai(3).getType()-900);
+		territoryPanel.samurai1.setArmor(territoryController.getArmorOfSamurai(1).getType() - 900);
+		territoryPanel.samurai2.setArmor(territoryController.getArmorOfSamurai(2).getType() - 900);
+		territoryPanel.samurai3.setArmor(territoryController.getArmorOfSamurai(3).getType() - 900);
 	}
-	
-	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.campsitePanel = new CampsitePanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.campsitePanel);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> smithyEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.smithyPanel = new SmithyPanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.smithyPanel);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> storeEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.storePanel = new StorePanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> shopSelectEvent = new EventHandler<MouseEvent>() {   
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.shopSelectPanel.setVisible(true);
-	      }
-	};
-	
-	public EventHandler<MouseEvent> customizeEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  StoryPanel storyPanel = (StoryPanel) territoryPanel.getParent();
-	    	  storyPanel.customizePanel = new CustomizePanel();
-	    	  storyPanel.getChildren().add(storyPanel.customizePanel);
-	    	  storyPanel.customizePanel.toFront();
-	    	  
-	    	  territoryPanel.setSamuraiAnimation(false);
-	    	  territoryPanel.territoryBg.removeAll();
-	    	  territoryPanel.territoryFg.removeAll();
-	      }
-	};
-	
-	public EventHandler<MouseEvent> flagEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  StoryPanel parent = (StoryPanel) territoryPanel.getParent();
-	    	  parent.mapPanel.toFront();
-	    	  territoryPanel.setSamuraiAnimation(false);
-	    	  territoryPanel.territoryBg.removeAll();
-	    	  territoryPanel.territoryFg.removeAll();
-	    	  Musics.effectMusic[0].stop();
-	      }
-	}; 
-	
-//场景介绍
-	public EventHandler<MouseEvent> introduceEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
-	    	  territoryPanel.startIntroduction(btn.num);
-	      }
-	}; 
-	
-	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.setBlur(true);
-	    	  territoryPanel.archivePanel = new ArchivePanel(0);
-	    	  territoryPanel.archivePanel.setLayoutX(350);
-	    	  territoryPanel.archivePanel.setLayoutY(50);
-	    	  territoryPanel.getChildren().add(territoryPanel.archivePanel);
-	      }
+
+	public EventHandler<MouseEvent> campsiteEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setBlur(true);
+			territoryPanel.campsitePanel = new CampsitePanel();
+			territoryPanel.getChildren().add(territoryPanel.campsitePanel);
+		}
 	};
 
-	
-	public EventHandler<MouseEvent> buttonEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
-	    	  btn.setHighlight();
-	      }
-	};
-	
-	public EventHandler<MouseEvent> buttonExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  TerritoryButton btn = (TerritoryButton) event.getSource();
-	    	  btn.setNormal();
-	      }
+	public EventHandler<MouseEvent> smithyEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setBlur(true);
+			territoryPanel.smithyPanel = new SmithyPanel();
+			territoryPanel.getChildren().add(territoryPanel.smithyPanel);
+		}
 	};
 
-	public EventHandler<MouseEvent> buyBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.shopSelectPanel.btnPressed(0);
-	      }
+	public EventHandler<MouseEvent> storeEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setBlur(true);
+			territoryPanel.storePanel = new StorePanel();
+			territoryPanel.getChildren().add(territoryPanel.storePanel);
+		}
 	};
-	
-	public EventHandler<MouseEvent> buyBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.shopSelectPanel.btnAbled(0);
-	      }
+
+	public EventHandler<MouseEvent> shopSelectEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setBlur(true);
+			territoryPanel.shopSelectPanel.setVisible(true);
+		}
 	};
-	 
-	public EventHandler<MouseEvent> sellBtnEnterEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.shopSelectPanel.btnPressed(1);
-	      }
+
+	public EventHandler<MouseEvent> customizeEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			StoryPanel storyPanel = (StoryPanel) territoryPanel.getParent();
+			storyPanel.customizePanel = new CustomizePanel();
+			storyPanel.getChildren().add(storyPanel.customizePanel);
+			storyPanel.customizePanel.toFront();
+
+			territoryPanel.setSamuraiAnimation(false);
+			territoryPanel.territoryBg.removeAll();
+			territoryPanel.territoryFg.removeAll();
+			Musics.stopEffectMusic();
+		}
 	};
-	 
-	public EventHandler<MouseEvent> sellBtnExitEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.shopSelectPanel.btnAbled(1);
-	      }
+
+	public EventHandler<MouseEvent> flagEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			StoryPanel parent = (StoryPanel) territoryPanel.getParent();
+			parent.mapPanel.toFront();
+			territoryPanel.setSamuraiAnimation(false);
+			territoryPanel.territoryBg.removeAll();
+			territoryPanel.territoryFg.removeAll();
+			Musics.stopEffectMusic();
+		}
 	};
-	
-	public EventHandler<MouseEvent> showBuyPanelEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.shopPanel = new ShopPanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.shopPanel);
-	    	  territoryPanel.shopSelectPanel.setVisible(false);
-	    	  }
-	       
+
+	// 场景介绍
+	public EventHandler<MouseEvent> introduceEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			TerritoryButton btn = (TerritoryButton) event.getSource();
+			territoryPanel.startIntroduction(btn.num);
+		}
 	};
-	
-	public EventHandler<MouseEvent> showSellPanelEvent = new EventHandler<MouseEvent>() {  
-	      public void handle(MouseEvent event) {
-	    	  territoryPanel.storePanel = new StorePanel();
-	    	  territoryPanel.getChildren().add(territoryPanel.storePanel);
-	    	  territoryPanel.storePanel.setSellPanel();
-	          territoryPanel.shopSelectPanel.setVisible(false);
-		  }
-	      
+
+	public EventHandler<MouseEvent> archiveEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.setBlur(true);
+			territoryPanel.archivePanel = new ArchivePanel(0);
+			territoryPanel.archivePanel.setLayoutX(350);
+			territoryPanel.archivePanel.setLayoutY(50);
+			territoryPanel.getChildren().add(territoryPanel.archivePanel);
+		}
 	};
-	public TerritoryController getTerritoryController(){
+
+	public EventHandler<MouseEvent> buttonEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			TerritoryButton btn = (TerritoryButton) event.getSource();
+			btn.setHighlight();
+		}
+	};
+
+	public EventHandler<MouseEvent> buttonExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			TerritoryButton btn = (TerritoryButton) event.getSource();
+			btn.setNormal();
+		}
+	};
+
+	public EventHandler<MouseEvent> buyBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.shopSelectPanel.btnPressed(0);
+		}
+	};
+
+	public EventHandler<MouseEvent> buyBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.shopSelectPanel.btnAbled(0);
+		}
+	};
+
+	public EventHandler<MouseEvent> sellBtnEnterEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.shopSelectPanel.btnPressed(1);
+		}
+	};
+
+	public EventHandler<MouseEvent> sellBtnExitEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.shopSelectPanel.btnAbled(1);
+		}
+	};
+
+	public EventHandler<MouseEvent> showBuyPanelEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.shopPanel = new ShopPanel();
+			territoryPanel.getChildren().add(territoryPanel.shopPanel);
+			territoryPanel.shopSelectPanel.setVisible(false);
+		}
+
+	};
+
+	public EventHandler<MouseEvent> showSellPanelEvent = new EventHandler<MouseEvent>() {
+		public void handle(MouseEvent event) {
+			territoryPanel.storePanel = new StorePanel();
+			territoryPanel.getChildren().add(territoryPanel.storePanel);
+			territoryPanel.storePanel.setSellPanel();
+			territoryPanel.shopSelectPanel.setVisible(false);
+		}
+
+	};
+
+	public TerritoryController getTerritoryController() {
 		return this.territoryController;
 	}
 

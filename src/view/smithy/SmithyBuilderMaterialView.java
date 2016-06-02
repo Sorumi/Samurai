@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import view.GameColor;
-import view.MaterialView;
+import view.story.MaterialView;
 
 public class SmithyBuilderMaterialView extends Pane {
 

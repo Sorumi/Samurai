@@ -5,6 +5,9 @@ import controller.msgqueue.StartGameOperation;
 import javafx.scene.layout.Pane;
 import model.GameModel;
 import musics.Musics;
+import view.game.GamePanel;
+import view.game.GamePanelOL;
+import view.story.StoryPanel;
 
 public class BasePanel extends Pane {
 	public StartLogoPanel logoPanel;

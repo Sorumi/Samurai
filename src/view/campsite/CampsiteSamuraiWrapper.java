@@ -9,9 +9,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import view.GameColor;
 import view.Images;
-import view.SamuraiView;
 import view.eventhandler.CampsiteHandler;
 import view.eventhandler.CustomizeCampsiteHandler;
+import view.samurai.SamuraiView;
 
 public class CampsiteSamuraiWrapper extends Pane {
 

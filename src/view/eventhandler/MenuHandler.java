@@ -14,11 +14,11 @@ import main.Main;
 import model.StoryModel;
 import musics.Musics;
 import network.Configure;
-import view.ArchivePanel;
 import view.BasePanel;
-import view.GamePanelOL;
 import view.MenuPanel;
+import view.game.GamePanelOL;
 import view.guide.GuideGroup;
+import view.story.ArchivePanel;
 
 public class MenuHandler {
 
@@ -237,7 +237,7 @@ public class MenuHandler {
 		@Override
 		public void handle(ActionEvent e) {
 			Musics.isBgMusic = false;
-			Musics.THEME.pause();
+			Musics.stopBgMusic();
 			menuPanel.musicBtn.setVisible(false);
 		}
 	};
@@ -245,7 +245,7 @@ public class MenuHandler {
 		@Override
 		public void handle(ActionEvent e) {
 			Musics.isBgMusic = true;
-			Musics.THEME.play();
+			Musics.stopBgMusic();
 			menuPanel.musicBtn.setVisible(true);
 		}
 	};

@@ -8,10 +8,10 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import musics.Musics;
-import view.ArchivePanel;
-import view.ArchiveSelectPanel;
-import view.ArchiveView;
 import view.MenuPanel;
+import view.story.ArchivePanel;
+import view.story.ArchiveSelectPanel;
+import view.story.ArchiveView;
 
 public class ArchiveSelectHandler{
 	private ArchivePanel archivePanel;

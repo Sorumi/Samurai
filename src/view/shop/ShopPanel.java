@@ -5,10 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.layout.Pane;
 import view.SuccessPanel;
 import view.SystemButton;
-import view.TerritoryPanel;
 import view.campsite.CampsitePanel;
 import view.eventhandler.ShopHandler;
 import view.eventhandler.SuccessHandler;
+import view.story.TerritoryPanel;
 
 
 public class ShopPanel extends Pane{

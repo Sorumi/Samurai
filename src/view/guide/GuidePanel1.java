@@ -8,8 +8,8 @@ import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Rectangle;
 import view.GameColor;
 import view.Images;
-import view.PlayerPanel;
-import view.RoundPanel;
+import view.game.PlayerPanel;
+import view.game.RoundPanel;
 
 public class GuidePanel1 extends GuidePanel {
 

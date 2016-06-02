@@ -1,9 +1,9 @@
 package view.guide;
 
 import javafx.scene.layout.Pane;
-import view.DirectionButton;
 import view.eventhandler.ActionGuideHandler;
 import view.eventhandler.ActionHandler;
+import view.game.DirectionButton;
 
 public class DirectionGuidePanel extends Pane {
 	

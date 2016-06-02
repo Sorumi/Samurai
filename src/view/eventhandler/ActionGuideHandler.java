@@ -5,7 +5,7 @@ import controller.GuideController;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import view.DirectionButton;
+import view.game.DirectionButton;
 import view.guide.ActionGuideButton;
 import view.guide.GameGuidePanel;
 import view.guide.GameGuidePanel.WeaponButton;

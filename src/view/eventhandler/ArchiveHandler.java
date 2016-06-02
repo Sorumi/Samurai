@@ -5,8 +5,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import model.StoryModel;
 import musics.Musics;
-import view.ArchivePanel;
-import view.ArchiveView;
+import view.story.ArchivePanel;
+import view.story.ArchiveView;
 
 public class ArchiveHandler {
 

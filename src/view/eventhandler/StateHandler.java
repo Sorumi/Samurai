@@ -2,10 +2,10 @@ package view.eventhandler;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-import view.GamePanel;
-import view.SamuraiPanel;
-import view.SamuraiView;
-import view.TerritoryPanel;
+import view.game.GamePanel;
+import view.samurai.SamuraiPanel;
+import view.samurai.SamuraiView;
+import view.story.TerritoryPanel;
 
 public class StateHandler {
 	private GamePanel gamePanel;

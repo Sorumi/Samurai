@@ -6,8 +6,8 @@ import java.util.Observer;
 
 import model.po.ActualBlock;
 import model.po.Position;
-import view.BlockView;
 import view.OrderPanel;
+import view.game.BlockView;
 
 public class ChessBoardGuidePanel extends OrderPanel implements Observer{
 	BlockView[][] blocks;

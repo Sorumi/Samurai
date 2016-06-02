@@ -18,7 +18,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.po.Position;
 import view.OrderPanel;
-import view.SamuraiView;
+import view.samurai.SamuraiView;
 
 public class SamuraiGuidePanel extends OrderPanel {
 

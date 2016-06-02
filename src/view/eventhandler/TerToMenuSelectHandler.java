@@ -4,8 +4,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import musics.Musics;
 import view.BasePanel;
-import view.StoryPanel;
-import view.TerritoryPanel;
+import view.story.StoryPanel;
+import view.story.TerritoryPanel;
 
 public class TerToMenuSelectHandler {
 	private TerritoryPanel territoryPanel;

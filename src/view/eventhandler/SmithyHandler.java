@@ -10,7 +10,7 @@ import model.po.Armor;
 import model.po.Information;
 import model.po.Weapon;
 import musics.Musics;
-import view.SamuraiPanel;
+import view.samurai.SamuraiPanel;
 import view.smithy.SmithyBuilder;
 import view.smithy.SmithyItemView;
 import view.smithy.SmithyPanel;
